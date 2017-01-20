@@ -1,0 +1,2881 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CSPesajeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Camion">
+          <Key>
+            <PropertyRef Name="IDEntidad" />
+            <PropertyRef Name="IDCamion" />
+          </Key>
+          <Property Name="IDEntidad" Type="int" Nullable="false" />
+          <Property Name="IDCamion" Type="tinyint" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" />
+          <Property Name="DominioChasis" Type="varchar" MaxLength="7" />
+          <Property Name="DominioAcoplado" Type="varchar" MaxLength="7" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
+          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cosecha">
+          <Key>
+            <PropertyRef Name="IDCosecha" />
+          </Key>
+          <Property Name="IDCosecha" Type="tinyint" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
+          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cosecha_Producto_Tarifa">
+          <Key>
+            <PropertyRef Name="IDCosecha" />
+            <PropertyRef Name="IDProducto" />
+            <PropertyRef Name="Indice" />
+          </Key>
+          <Property Name="IDCosecha" Type="tinyint" Nullable="false" />
+          <Property Name="IDProducto" Type="tinyint" Nullable="false" />
+          <Property Name="Indice" Type="smallint" Nullable="false" />
+          <Property Name="IDPlanta" Type="tinyint" />
+          <Property Name="IDEntidad" Type="int" />
+          <Property Name="IDOrigenDestino" Type="int" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FechaDesde" Type="date" />
+          <Property Name="FechaHasta" Type="date" />
+          <Property Name="TarifaParitariaImporte" Type="money" Nullable="false" />
+          <Property Name="TarifaSecadoTipo" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="TarifaSecadoInicialPunto" Type="decimal" Precision="3" Scale="1" Nullable="false" />
+          <Property Name="TarifaSecadoInicialImporte" Type="money" Nullable="false" />
+          <Property Name="TarifaSecadoPuntoExcesoImporte" Type="money" Nullable="false" />
+          <Property Name="TarifaSecadoHumedadBase" Type="decimal" Precision="3" Scale="1" />
+          <Property Name="TarifaSecadoHumedadMargenLibre" Type="decimal" Precision="1" Scale="1" />
+          <Property Name="TarifaSecadoHumedadRedondeoPuntoTipo" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="TarifaZarandeoImporte" Type="money" Nullable="false" />
+          <Property Name="TarifaFumigadoImporte" Type="money" Nullable="false" />
+          <Property Name="TarifaMezclaImporte" Type="money" Nullable="false" />
+          <Property Name="AlmacenajeTipo" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="AlmacenajeDiaGracia" Type="smallint" />
+          <Property Name="AlmacenajeInicio" Type="date" />
+          <Property Name="AlmacenajePorcentajeMensual" Type="decimal" Precision="2" Scale="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cosecha_Producto_TarifaEscala">
+          <Key>
+            <PropertyRef Name="IDCosecha" />
+            <PropertyRef Name="IDProducto" />
+            <PropertyRef Name="Indice" />
+            <PropertyRef Name="HumedadExcesoInicio" />
+          </Key>
+          <Property Name="IDCosecha" Type="tinyint" Nullable="false" />
+          <Property Name="IDProducto" Type="tinyint" Nullable="false" />
+          <Property Name="Indice" Type="smallint" Nullable="false" />
+          <Property Name="HumedadExcesoInicio" Type="decimal" Precision="3" Scale="1" Nullable="false" />
+          <Property Name="Tipo" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Tarifa" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Entidad">
+          <Key>
+            <PropertyRef Name="IDEntidad" />
+          </Key>
+          <Property Name="IDEntidad" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CUIT_CUIL" Type="char" MaxLength="11" />
+          <Property Name="EsTitular" Type="bit" Nullable="false" />
+          <Property Name="EsTransportista" Type="bit" Nullable="false" />
+          <Property Name="EsChofer" Type="bit" Nullable="false" />
+          <Property Name="Transportista_IDEntidad" Type="int" />
+          <Property Name="IDCamion" Type="tinyint" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
+          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Entidad_OrigenDestino">
+          <Key>
+            <PropertyRef Name="IDEntidad" />
+            <PropertyRef Name="IDOrigenDestino" />
+          </Key>
+          <Property Name="IDEntidad" Type="int" Nullable="false" />
+          <Property Name="IDOrigenDestino" Type="int" Nullable="false" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
+          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Entidad_Planta">
+          <Key>
+            <PropertyRef Name="IDEntidad" />
+            <PropertyRef Name="IDPlanta" />
+            <PropertyRef Name="Tipo" />
+          </Key>
+          <Property Name="IDEntidad" Type="int" Nullable="false" />
+          <Property Name="IDPlanta" Type="tinyint" Nullable="false" />
+          <Property Name="Tipo" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="UsoFrecuente" Type="bit" Nullable="false" />
+          <Property Name="UltimoUso" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Localidad">
+          <Key>
+            <PropertyRef Name="IDProvincia" />
+            <PropertyRef Name="IDLocalidad" />
+          </Key>
+          <Property Name="IDProvincia" Type="tinyint" Nullable="false" />
+          <Property Name="IDLocalidad" Type="smallint" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CodigoPostal" Type="char" MaxLength="4" />
+        </EntityType>
+        <EntityType Name="OrigenDestino">
+          <Key>
+            <PropertyRef Name="IDOrigenDestino" />
+          </Key>
+          <Property Name="IDOrigenDestino" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Domicilio" Type="varchar" MaxLength="100" />
+          <Property Name="IDProvincia" Type="tinyint" />
+          <Property Name="IDLocalidad" Type="smallint" />
+          <Property Name="CodigoPostal" Type="varchar" MaxLength="8" />
+          <Property Name="UbicacionLatitud" Type="decimal" Precision="10" Scale="6" />
+          <Property Name="UbicacionLongitud" Type="decimal" Precision="10" Scale="6" />
+          <Property Name="Notas" Type="varchar(max)" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
+          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Parametro">
+          <Key>
+            <PropertyRef Name="IDParametro" />
+          </Key>
+          <Property Name="IDParametro" Type="char" MaxLength="100" Nullable="false" />
+          <Property Name="Texto" Type="varchar" MaxLength="1000" />
+          <Property Name="NumeroEntero" Type="int" />
+          <Property Name="NumeroDecimal" Type="decimal" Precision="18" Scale="9" />
+          <Property Name="Moneda" Type="money" />
+          <Property Name="FechaHora" Type="smalldatetime" />
+          <Property Name="SiNo" Type="bit" />
+          <Property Name="Notas" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Pesada">
+          <Key>
+            <PropertyRef Name="IDPesada" />
+          </Key>
+          <Property Name="IDPesada" Type="int" Nullable="false" />
+          <Property Name="FechaHoraInicio" Type="smalldatetime" Nullable="false" />
+          <Property Name="FechaHoraFin" Type="smalldatetime" />
+          <Property Name="ComprobanteNumero" Type="varchar" MaxLength="12" />
+          <Property Name="IDPlanta" Type="tinyint" />
+          <Property Name="IDProducto" Type="tinyint" Nullable="false" />
+          <Property Name="IDCosecha" Type="tinyint" />
+          <Property Name="Tipo" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Titular_IDEntidad" Type="int" Nullable="false" />
+          <Property Name="IDOrigenDestino" Type="int" />
+          <Property Name="Transportista_IDEntidad" Type="int" />
+          <Property Name="Chofer_IDEntidad" Type="int" />
+          <Property Name="IDCamion" Type="tinyint" />
+          <Property Name="Kilometro" Type="smallint" />
+          <Property Name="KilogramoBruto" Type="int" />
+          <Property Name="KilogramoTara" Type="int" />
+          <Property Name="KilogramoNeto" Type="int" />
+          <Property Name="KilogramoFinal" Type="int" />
+          <Property Name="Notas" Type="varchar(max)" />
+          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
+          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pesada_Acondicionamiento">
+          <Key>
+            <PropertyRef Name="IDPesada" />
+          </Key>
+          <Property Name="IDPesada" Type="int" Nullable="false" />
+          <Property Name="TarifaIndice" Type="smallint" Nullable="false" />
+          <Property Name="ParitariaTarifa" Type="money" Nullable="false" />
+          <Property Name="ParitariaImporte" Type="money" Nullable="false" />
+          <Property Name="SecadoTarifa" Type="money" Nullable="false" />
+          <Property Name="SecadoImporte" Type="money" Nullable="false" />
+          <Property Name="HumedadExcesoReal" Type="decimal" Precision="3" Scale="1" Nullable="false" />
+          <Property Name="HumedadExcesoCalculo" Type="decimal" Precision="3" Scale="1" Nullable="false" />
+          <Property Name="SecadoExcesoTarifa" Type="money" Nullable="false" />
+          <Property Name="SecadoExcesoImporte" Type="money" Nullable="false" />
+          <Property Name="ZarandeoTarifa" Type="money" Nullable="false" />
+          <Property Name="ZarandeoImporte" Type="money" Nullable="false" />
+          <Property Name="FumigadoTarifa" Type="money" Nullable="false" />
+          <Property Name="FumigadoImporte" Type="money" Nullable="false" />
+          <Property Name="MezclaTarifa" Type="money" Nullable="false" />
+          <Property Name="MezclaImporte" Type="money" Nullable="false" />
+          <Property Name="ImporteTotal" Type="money" Nullable="false" />
+          <Property Name="FechaLiquidacion" Type="date" />
+        </EntityType>
+        <EntityType Name="Pesada_Analisis">
+          <Key>
+            <PropertyRef Name="IDPesada" />
+          </Key>
+          <Property Name="IDPesada" Type="int" Nullable="false" />
+          <Property Name="Humedad" Type="decimal" Precision="3" Scale="1" />
+          <Property Name="Zaranda" Type="decimal" Precision="3" Scale="1" />
+          <Property Name="GranoVerde" Type="decimal" Precision="3" Scale="1" />
+          <Property Name="GranoDaniado" Type="decimal" Precision="3" Scale="1" />
+          <Property Name="PesoHectolitrico" Type="decimal" Precision="3" Scale="1" />
+          <Property Name="Gluten" Type="decimal" Precision="3" Scale="1" />
+          <Property Name="Fumigado" Type="bit" />
+          <Property Name="MermaVolatilKilogramo" Type="int" />
+          <Property Name="MermaHumedadPorcentaje" Type="decimal" Precision="4" Scale="2" />
+          <Property Name="MermaHumedadKilogramo" Type="int" />
+          <Property Name="MermaZarandaKilogramo" Type="int" />
+        </EntityType>
+        <EntityType Name="Pesada_Otro">
+          <Key>
+            <PropertyRef Name="IDPesada" />
+          </Key>
+          <Property Name="IDPesada" Type="int" Nullable="false" />
+          <Property Name="Producto_Nombre" Type="varchar" MaxLength="50" />
+          <Property Name="Entidad_Nombre" Type="varchar" MaxLength="50" />
+          <Property Name="OrigenDestino_Nombre" Type="varchar" MaxLength="50" />
+          <Property Name="Transportista_Nombre" Type="varchar" MaxLength="50" />
+          <Property Name="Transportista_CUIT" Type="char" MaxLength="11" />
+          <Property Name="Chofer_Nombre" Type="varchar" MaxLength="50" />
+          <Property Name="Chofer_CUIT_CUIL" Type="char" MaxLength="11" />
+          <Property Name="Camion_DominioChasis" Type="varchar" MaxLength="7" />
+          <Property Name="Camion_DominioAcoplado" Type="varchar" MaxLength="7" />
+        </EntityType>
+        <EntityType Name="Planta">
+          <Key>
+            <PropertyRef Name="IDPlanta" />
+          </Key>
+          <Property Name="IDPlanta" Type="tinyint" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="AplicaMermaVolatil" Type="bit" Nullable="false" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
+          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="IDProducto" />
+          </Key>
+          <Property Name="IDProducto" Type="tinyint" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MermaVolatil" Type="decimal" Precision="3" Scale="2" />
+          <Property Name="MermaHumedadBase" Type="decimal" Precision="3" Scale="1" />
+          <Property Name="MermaHumedadManipuleo" Type="decimal" Precision="2" Scale="2" />
+          <Property Name="UtilizaPlanta" Type="bit" Nullable="false" />
+          <Property Name="UsoFrecuente" Type="bit" Nullable="false" />
+          <Property Name="UltimoUso" Type="date" Nullable="false" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
+          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Producto_Cosecha">
+          <Key>
+            <PropertyRef Name="IDProducto" />
+            <PropertyRef Name="IDCosecha" />
+          </Key>
+          <Property Name="IDProducto" Type="tinyint" Nullable="false" />
+          <Property Name="IDCosecha" Type="tinyint" Nullable="false" />
+          <Property Name="Inicio" Type="date" Nullable="false" />
+          <Property Name="Fin" Type="date" Nullable="false" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Producto_Planta">
+          <Key>
+            <PropertyRef Name="IDProducto" />
+            <PropertyRef Name="IDPlanta" />
+          </Key>
+          <Property Name="IDProducto" Type="tinyint" Nullable="false" />
+          <Property Name="IDPlanta" Type="tinyint" Nullable="false" />
+          <Property Name="TipoEntrada" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="TipoSalida" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="TipoNinguno" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Provincia">
+          <Key>
+            <PropertyRef Name="IDProvincia" />
+          </Key>
+          <Property Name="IDProvincia" Type="tinyint" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Reporte">
+          <Key>
+            <PropertyRef Name="IDReporte" />
+          </Key>
+          <Property Name="IDReporte" Type="smallint" Nullable="false" />
+          <Property Name="IDReporteGrupo" Type="tinyint" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Titulo" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Archivo" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="MostrarEnVisor" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ReporteGrupo">
+          <Key>
+            <PropertyRef Name="IDReporteGrupo" />
+          </Key>
+          <Property Name="IDReporteGrupo" Type="tinyint" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ReporteParametro">
+          <Key>
+            <PropertyRef Name="IDReporte" />
+            <PropertyRef Name="IDParametro" />
+          </Key>
+          <Property Name="IDReporte" Type="smallint" Nullable="false" />
+          <Property Name="IDParametro" Type="char" MaxLength="50" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Tipo" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="Requerido" Type="bit" Nullable="false" />
+          <Property Name="RequeridoLeyenda" Type="varchar" MaxLength="200" />
+          <Property Name="ValorPredeterminadoNumeroEntero" Type="int" />
+          <Property Name="ValorPredeterminadoNumeroDecimal" Type="decimal" Precision="18" Scale="9" />
+          <Property Name="ValorPredeterminadoMoneda" Type="money" />
+          <Property Name="ValorPredeterminadoFechaHora" Type="smalldatetime" />
+          <Property Name="ValorPredeterminadoSiNo" Type="bit" />
+          <Property Name="Orden" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="IDUsuario" />
+          </Key>
+          <Property Name="IDUsuario" Type="smallint" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Genero" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="IDUsuarioGrupo" Type="tinyint" Nullable="false" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
+          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UsuarioGrupo">
+          <Key>
+            <PropertyRef Name="IDUsuarioGrupo" />
+          </Key>
+          <Property Name="IDUsuarioGrupo" Type="tinyint" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
+          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UsuarioGrupoPermiso">
+          <Key>
+            <PropertyRef Name="IDUsuarioGrupo" />
+            <PropertyRef Name="IDPermiso" />
+          </Key>
+          <Property Name="IDUsuarioGrupo" Type="tinyint" Nullable="false" />
+          <Property Name="IDPermiso" Type="char" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Camion__Entidad">
+          <End Role="Camion" Type="Self.Camion" Multiplicity="0..1" />
+          <End Role="Entidad" Type="Self.Entidad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Camion">
+              <PropertyRef Name="IDEntidad" />
+              <PropertyRef Name="IDCamion" />
+            </Principal>
+            <Dependent Role="Entidad">
+              <PropertyRef Name="Transportista_IDEntidad" />
+              <PropertyRef Name="IDCamion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Camion__Pesada">
+          <End Role="Camion" Type="Self.Camion" Multiplicity="0..1" />
+          <End Role="Pesada" Type="Self.Pesada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Camion">
+              <PropertyRef Name="IDEntidad" />
+              <PropertyRef Name="IDCamion" />
+            </Principal>
+            <Dependent Role="Pesada">
+              <PropertyRef Name="Transportista_IDEntidad" />
+              <PropertyRef Name="IDCamion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cosecha__Cosecha_Producto_Tarifa">
+          <End Role="Cosecha" Type="Self.Cosecha" Multiplicity="1" />
+          <End Role="Cosecha_Producto_Tarifa" Type="Self.Cosecha_Producto_Tarifa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cosecha">
+              <PropertyRef Name="IDCosecha" />
+            </Principal>
+            <Dependent Role="Cosecha_Producto_Tarifa">
+              <PropertyRef Name="IDCosecha" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cosecha__Pesada">
+          <End Role="Cosecha" Type="Self.Cosecha" Multiplicity="0..1" />
+          <End Role="Pesada" Type="Self.Pesada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cosecha">
+              <PropertyRef Name="IDCosecha" />
+            </Principal>
+            <Dependent Role="Pesada">
+              <PropertyRef Name="IDCosecha" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cosecha__Producto_Cosecha">
+          <End Role="Cosecha" Type="Self.Cosecha" Multiplicity="1" />
+          <End Role="Producto_Cosecha" Type="Self.Producto_Cosecha" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cosecha">
+              <PropertyRef Name="IDCosecha" />
+            </Principal>
+            <Dependent Role="Producto_Cosecha">
+              <PropertyRef Name="IDCosecha" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cosecha_Producto_Tarifa">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="Cosecha_Producto_Tarifa" Type="Self.Cosecha_Producto_Tarifa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="IDProducto" />
+            </Principal>
+            <Dependent Role="Cosecha_Producto_Tarifa">
+              <PropertyRef Name="IDProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cosecha_Producto_Tarifa__Cosecha_Producto_TarifaEscala">
+          <End Role="Cosecha_Producto_Tarifa" Type="Self.Cosecha_Producto_Tarifa" Multiplicity="1" />
+          <End Role="Cosecha_Producto_TarifaEscala" Type="Self.Cosecha_Producto_TarifaEscala" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cosecha_Producto_Tarifa">
+              <PropertyRef Name="IDCosecha" />
+              <PropertyRef Name="IDProducto" />
+              <PropertyRef Name="Indice" />
+            </Principal>
+            <Dependent Role="Cosecha_Producto_TarifaEscala">
+              <PropertyRef Name="IDCosecha" />
+              <PropertyRef Name="IDProducto" />
+              <PropertyRef Name="Indice" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Entidad__Entidad__Transportista">
+          <End Role="Entidad" Type="Self.Entidad" Multiplicity="0..1" />
+          <End Role="Entidad1" Type="Self.Entidad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entidad">
+              <PropertyRef Name="IDEntidad" />
+            </Principal>
+            <Dependent Role="Entidad1">
+              <PropertyRef Name="Transportista_IDEntidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Entidad__Entidad_Planta">
+          <End Role="Entidad" Type="Self.Entidad" Multiplicity="1" />
+          <End Role="Entidad_Planta" Type="Self.Entidad_Planta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entidad">
+              <PropertyRef Name="IDEntidad" />
+            </Principal>
+            <Dependent Role="Entidad_Planta">
+              <PropertyRef Name="IDEntidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Entidad__Pesada__Chofer">
+          <End Role="Entidad" Type="Self.Entidad" Multiplicity="0..1" />
+          <End Role="Pesada" Type="Self.Pesada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entidad">
+              <PropertyRef Name="IDEntidad" />
+            </Principal>
+            <Dependent Role="Pesada">
+              <PropertyRef Name="Chofer_IDEntidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Entidad__Pesada__Titular">
+          <End Role="Entidad" Type="Self.Entidad" Multiplicity="1" />
+          <End Role="Pesada" Type="Self.Pesada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entidad">
+              <PropertyRef Name="IDEntidad" />
+            </Principal>
+            <Dependent Role="Pesada">
+              <PropertyRef Name="Titular_IDEntidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Entidad__Pesada__Transportista">
+          <End Role="Entidad" Type="Self.Entidad" Multiplicity="0..1" />
+          <End Role="Pesada" Type="Self.Pesada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entidad">
+              <PropertyRef Name="IDEntidad" />
+            </Principal>
+            <Dependent Role="Pesada">
+              <PropertyRef Name="Transportista_IDEntidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Localidad__OrigenDestino">
+          <End Role="Localidad" Type="Self.Localidad" Multiplicity="0..1" />
+          <End Role="OrigenDestino" Type="Self.OrigenDestino" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Localidad">
+              <PropertyRef Name="IDProvincia" />
+              <PropertyRef Name="IDLocalidad" />
+            </Principal>
+            <Dependent Role="OrigenDestino">
+              <PropertyRef Name="IDProvincia" />
+              <PropertyRef Name="IDLocalidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrigenDestino__Entidad_OrigenDestino">
+          <End Role="OrigenDestino" Type="Self.OrigenDestino" Multiplicity="1" />
+          <End Role="Entidad_OrigenDestino" Type="Self.Entidad_OrigenDestino" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrigenDestino">
+              <PropertyRef Name="IDOrigenDestino" />
+            </Principal>
+            <Dependent Role="Entidad_OrigenDestino">
+              <PropertyRef Name="IDOrigenDestino" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrigenDestino_Entidad__Entidad">
+          <End Role="Entidad" Type="Self.Entidad" Multiplicity="1" />
+          <End Role="Entidad_OrigenDestino" Type="Self.Entidad_OrigenDestino" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entidad">
+              <PropertyRef Name="IDEntidad" />
+            </Principal>
+            <Dependent Role="Entidad_OrigenDestino">
+              <PropertyRef Name="IDEntidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pesada__Pesada_Acondicionamiento">
+          <End Role="Pesada" Type="Self.Pesada" Multiplicity="1" />
+          <End Role="Pesada_Acondicionamiento" Type="Self.Pesada_Acondicionamiento" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Pesada">
+              <PropertyRef Name="IDPesada" />
+            </Principal>
+            <Dependent Role="Pesada_Acondicionamiento">
+              <PropertyRef Name="IDPesada" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pesada__Pesada_Analisis">
+          <End Role="Pesada" Type="Self.Pesada" Multiplicity="1" />
+          <End Role="Pesada_Analisis" Type="Self.Pesada_Analisis" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Pesada">
+              <PropertyRef Name="IDPesada" />
+            </Principal>
+            <Dependent Role="Pesada_Analisis">
+              <PropertyRef Name="IDPesada" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pesada__Pesada_Otro">
+          <End Role="Pesada" Type="Self.Pesada" Multiplicity="1" />
+          <End Role="Pesada_Otro" Type="Self.Pesada_Otro" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Pesada">
+              <PropertyRef Name="IDPesada" />
+            </Principal>
+            <Dependent Role="Pesada_Otro">
+              <PropertyRef Name="IDPesada" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Planta__Cosecha_Producto_Tarifa">
+          <End Role="Planta" Type="Self.Planta" Multiplicity="0..1" />
+          <End Role="Cosecha_Producto_Tarifa" Type="Self.Cosecha_Producto_Tarifa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Planta">
+              <PropertyRef Name="IDPlanta" />
+            </Principal>
+            <Dependent Role="Cosecha_Producto_Tarifa">
+              <PropertyRef Name="IDPlanta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Planta__Entidad_Planta">
+          <End Role="Planta" Type="Self.Planta" Multiplicity="1" />
+          <End Role="Entidad_Planta" Type="Self.Entidad_Planta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Planta">
+              <PropertyRef Name="IDPlanta" />
+            </Principal>
+            <Dependent Role="Entidad_Planta">
+              <PropertyRef Name="IDPlanta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Planta__Pesada">
+          <End Role="Planta" Type="Self.Planta" Multiplicity="0..1" />
+          <End Role="Pesada" Type="Self.Pesada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Planta">
+              <PropertyRef Name="IDPlanta" />
+            </Principal>
+            <Dependent Role="Pesada">
+              <PropertyRef Name="IDPlanta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Planta__Producto_Planta">
+          <End Role="Planta" Type="Self.Planta" Multiplicity="1" />
+          <End Role="Producto_Planta" Type="Self.Producto_Planta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Planta">
+              <PropertyRef Name="IDPlanta" />
+            </Principal>
+            <Dependent Role="Producto_Planta">
+              <PropertyRef Name="IDPlanta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Producto__Pesada">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="Pesada" Type="Self.Pesada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="IDProducto" />
+            </Principal>
+            <Dependent Role="Pesada">
+              <PropertyRef Name="IDProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Producto__Producto_Cosecha">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="Producto_Cosecha" Type="Self.Producto_Cosecha" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="IDProducto" />
+            </Principal>
+            <Dependent Role="Producto_Cosecha">
+              <PropertyRef Name="IDProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Producto__Producto_Planta">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="Producto_Planta" Type="Self.Producto_Planta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="IDProducto" />
+            </Principal>
+            <Dependent Role="Producto_Planta">
+              <PropertyRef Name="IDProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Provincia__Localidad">
+          <End Role="Provincia" Type="Self.Provincia" Multiplicity="1" />
+          <End Role="Localidad" Type="Self.Localidad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Provincia">
+              <PropertyRef Name="IDProvincia" />
+            </Principal>
+            <Dependent Role="Localidad">
+              <PropertyRef Name="IDProvincia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reporte__ReporteParametro">
+          <End Role="Reporte" Type="Self.Reporte" Multiplicity="1" />
+          <End Role="ReporteParametro" Type="Self.ReporteParametro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reporte">
+              <PropertyRef Name="IDReporte" />
+            </Principal>
+            <Dependent Role="ReporteParametro">
+              <PropertyRef Name="IDReporte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ReporteGrupo__Reporte">
+          <End Role="ReporteGrupo" Type="Self.ReporteGrupo" Multiplicity="1" />
+          <End Role="Reporte" Type="Self.Reporte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReporteGrupo">
+              <PropertyRef Name="IDReporteGrupo" />
+            </Principal>
+            <Dependent Role="Reporte">
+              <PropertyRef Name="IDReporteGrupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Camion__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Camion" Type="Self.Camion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Camion">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Camion__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Camion" Type="Self.Camion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Camion">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Cosecha__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Cosecha" Type="Self.Cosecha" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Cosecha">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Cosecha__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Cosecha" Type="Self.Cosecha" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Cosecha">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Entidad__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Entidad" Type="Self.Entidad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Entidad">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Entidad__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Entidad" Type="Self.Entidad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Entidad">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Entidad_OrigenDestino__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Entidad_OrigenDestino" Type="Self.Entidad_OrigenDestino" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Entidad_OrigenDestino">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Entidad_OrigenDestino__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Entidad_OrigenDestino" Type="Self.Entidad_OrigenDestino" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Entidad_OrigenDestino">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__OrigenDestino__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="OrigenDestino" Type="Self.OrigenDestino" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="OrigenDestino">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__OrigenDestino__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="OrigenDestino" Type="Self.OrigenDestino" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="OrigenDestino">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Pesada__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Pesada" Type="Self.Pesada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Pesada">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Pesada__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Pesada" Type="Self.Pesada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Pesada">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Planta__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Planta" Type="Self.Planta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Planta">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Planta__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Planta" Type="Self.Planta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Planta">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Producto__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Producto__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__UsuarioGrupo__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="UsuarioGrupo" Type="Self.UsuarioGrupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="UsuarioGrupo">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__UsuarioGrupo__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="UsuarioGrupo" Type="Self.UsuarioGrupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="UsuarioGrupo">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UsuarioGrupo__Usuario">
+          <End Role="UsuarioGrupo" Type="Self.UsuarioGrupo" Multiplicity="1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UsuarioGrupo">
+              <PropertyRef Name="IDUsuarioGrupo" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="IDUsuarioGrupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UsuarioGrupo__UsuarioGrupoPermiso">
+          <End Role="UsuarioGrupo" Type="Self.UsuarioGrupo" Multiplicity="1" />
+          <End Role="UsuarioGrupoPermiso" Type="Self.UsuarioGrupoPermiso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UsuarioGrupo">
+              <PropertyRef Name="IDUsuarioGrupo" />
+            </Principal>
+            <Dependent Role="UsuarioGrupoPermiso">
+              <PropertyRef Name="IDUsuarioGrupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CSPesajeModelStoreContainer">
+          <EntitySet Name="Camion" EntityType="Self.Camion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cosecha" EntityType="Self.Cosecha" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cosecha_Producto_Tarifa" EntityType="Self.Cosecha_Producto_Tarifa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cosecha_Producto_TarifaEscala" EntityType="Self.Cosecha_Producto_TarifaEscala" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Entidad" EntityType="Self.Entidad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Entidad_OrigenDestino" EntityType="Self.Entidad_OrigenDestino" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Entidad_Planta" EntityType="Self.Entidad_Planta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Localidad" EntityType="Self.Localidad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrigenDestino" EntityType="Self.OrigenDestino" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Parametro" EntityType="Self.Parametro" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pesada" EntityType="Self.Pesada" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pesada_Acondicionamiento" EntityType="Self.Pesada_Acondicionamiento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pesada_Analisis" EntityType="Self.Pesada_Analisis" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pesada_Otro" EntityType="Self.Pesada_Otro" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Planta" EntityType="Self.Planta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Producto" EntityType="Self.Producto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Producto_Cosecha" EntityType="Self.Producto_Cosecha" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Producto_Planta" EntityType="Self.Producto_Planta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Provincia" EntityType="Self.Provincia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reporte" EntityType="Self.Reporte" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReporteGrupo" EntityType="Self.ReporteGrupo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReporteParametro" EntityType="Self.ReporteParametro" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsuarioGrupo" EntityType="Self.UsuarioGrupo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsuarioGrupoPermiso" EntityType="Self.UsuarioGrupoPermiso" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Camion__Entidad" Association="Self.FK__Camion__Entidad">
+            <End Role="Camion" EntitySet="Camion" />
+            <End Role="Entidad" EntitySet="Entidad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Camion__Pesada" Association="Self.FK__Camion__Pesada">
+            <End Role="Camion" EntitySet="Camion" />
+            <End Role="Pesada" EntitySet="Pesada" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cosecha__Cosecha_Producto_Tarifa" Association="Self.FK__Cosecha__Cosecha_Producto_Tarifa">
+            <End Role="Cosecha" EntitySet="Cosecha" />
+            <End Role="Cosecha_Producto_Tarifa" EntitySet="Cosecha_Producto_Tarifa" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cosecha__Pesada" Association="Self.FK__Cosecha__Pesada">
+            <End Role="Cosecha" EntitySet="Cosecha" />
+            <End Role="Pesada" EntitySet="Pesada" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cosecha__Producto_Cosecha" Association="Self.FK__Cosecha__Producto_Cosecha">
+            <End Role="Cosecha" EntitySet="Cosecha" />
+            <End Role="Producto_Cosecha" EntitySet="Producto_Cosecha" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cosecha_Producto_Tarifa" Association="Self.FK__Cosecha_Producto_Tarifa">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Cosecha_Producto_Tarifa" EntitySet="Cosecha_Producto_Tarifa" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cosecha_Producto_Tarifa__Cosecha_Producto_TarifaEscala" Association="Self.FK__Cosecha_Producto_Tarifa__Cosecha_Producto_TarifaEscala">
+            <End Role="Cosecha_Producto_Tarifa" EntitySet="Cosecha_Producto_Tarifa" />
+            <End Role="Cosecha_Producto_TarifaEscala" EntitySet="Cosecha_Producto_TarifaEscala" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Entidad__Entidad__Transportista" Association="Self.FK__Entidad__Entidad__Transportista">
+            <End Role="Entidad" EntitySet="Entidad" />
+            <End Role="Entidad1" EntitySet="Entidad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Entidad__Entidad_Planta" Association="Self.FK__Entidad__Entidad_Planta">
+            <End Role="Entidad" EntitySet="Entidad" />
+            <End Role="Entidad_Planta" EntitySet="Entidad_Planta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Entidad__Pesada__Chofer" Association="Self.FK__Entidad__Pesada__Chofer">
+            <End Role="Entidad" EntitySet="Entidad" />
+            <End Role="Pesada" EntitySet="Pesada" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Entidad__Pesada__Titular" Association="Self.FK__Entidad__Pesada__Titular">
+            <End Role="Entidad" EntitySet="Entidad" />
+            <End Role="Pesada" EntitySet="Pesada" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Entidad__Pesada__Transportista" Association="Self.FK__Entidad__Pesada__Transportista">
+            <End Role="Entidad" EntitySet="Entidad" />
+            <End Role="Pesada" EntitySet="Pesada" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Localidad__OrigenDestino" Association="Self.FK__Localidad__OrigenDestino">
+            <End Role="Localidad" EntitySet="Localidad" />
+            <End Role="OrigenDestino" EntitySet="OrigenDestino" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrigenDestino__Entidad_OrigenDestino" Association="Self.FK__OrigenDestino__Entidad_OrigenDestino">
+            <End Role="OrigenDestino" EntitySet="OrigenDestino" />
+            <End Role="Entidad_OrigenDestino" EntitySet="Entidad_OrigenDestino" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrigenDestino_Entidad__Entidad" Association="Self.FK__OrigenDestino_Entidad__Entidad">
+            <End Role="Entidad" EntitySet="Entidad" />
+            <End Role="Entidad_OrigenDestino" EntitySet="Entidad_OrigenDestino" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pesada__Pesada_Acondicionamiento" Association="Self.FK__Pesada__Pesada_Acondicionamiento">
+            <End Role="Pesada" EntitySet="Pesada" />
+            <End Role="Pesada_Acondicionamiento" EntitySet="Pesada_Acondicionamiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pesada__Pesada_Analisis" Association="Self.FK__Pesada__Pesada_Analisis">
+            <End Role="Pesada" EntitySet="Pesada" />
+            <End Role="Pesada_Analisis" EntitySet="Pesada_Analisis" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pesada__Pesada_Otro" Association="Self.FK__Pesada__Pesada_Otro">
+            <End Role="Pesada" EntitySet="Pesada" />
+            <End Role="Pesada_Otro" EntitySet="Pesada_Otro" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Planta__Cosecha_Producto_Tarifa" Association="Self.FK__Planta__Cosecha_Producto_Tarifa">
+            <End Role="Planta" EntitySet="Planta" />
+            <End Role="Cosecha_Producto_Tarifa" EntitySet="Cosecha_Producto_Tarifa" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Planta__Entidad_Planta" Association="Self.FK__Planta__Entidad_Planta">
+            <End Role="Planta" EntitySet="Planta" />
+            <End Role="Entidad_Planta" EntitySet="Entidad_Planta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Planta__Pesada" Association="Self.FK__Planta__Pesada">
+            <End Role="Planta" EntitySet="Planta" />
+            <End Role="Pesada" EntitySet="Pesada" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Planta__Producto_Planta" Association="Self.FK__Planta__Producto_Planta">
+            <End Role="Planta" EntitySet="Planta" />
+            <End Role="Producto_Planta" EntitySet="Producto_Planta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Producto__Pesada" Association="Self.FK__Producto__Pesada">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Pesada" EntitySet="Pesada" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Producto__Producto_Cosecha" Association="Self.FK__Producto__Producto_Cosecha">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Producto_Cosecha" EntitySet="Producto_Cosecha" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Producto__Producto_Planta" Association="Self.FK__Producto__Producto_Planta">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Producto_Planta" EntitySet="Producto_Planta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Provincia__Localidad" Association="Self.FK__Provincia__Localidad">
+            <End Role="Provincia" EntitySet="Provincia" />
+            <End Role="Localidad" EntitySet="Localidad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reporte__ReporteParametro" Association="Self.FK__Reporte__ReporteParametro">
+            <End Role="Reporte" EntitySet="Reporte" />
+            <End Role="ReporteParametro" EntitySet="ReporteParametro" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ReporteGrupo__Reporte" Association="Self.FK__ReporteGrupo__Reporte">
+            <End Role="ReporteGrupo" EntitySet="ReporteGrupo" />
+            <End Role="Reporte" EntitySet="Reporte" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Camion__Creacion" Association="Self.FK__Usuario__Camion__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Camion" EntitySet="Camion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Camion__Modificacion" Association="Self.FK__Usuario__Camion__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Camion" EntitySet="Camion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Cosecha__Creacion" Association="Self.FK__Usuario__Cosecha__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Cosecha" EntitySet="Cosecha" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Cosecha__Modificacion" Association="Self.FK__Usuario__Cosecha__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Cosecha" EntitySet="Cosecha" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Entidad__Creacion" Association="Self.FK__Usuario__Entidad__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Entidad" EntitySet="Entidad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Entidad__Modificacion" Association="Self.FK__Usuario__Entidad__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Entidad" EntitySet="Entidad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Entidad_OrigenDestino__Creacion" Association="Self.FK__Usuario__Entidad_OrigenDestino__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Entidad_OrigenDestino" EntitySet="Entidad_OrigenDestino" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Entidad_OrigenDestino__Modificacion" Association="Self.FK__Usuario__Entidad_OrigenDestino__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Entidad_OrigenDestino" EntitySet="Entidad_OrigenDestino" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__OrigenDestino__Creacion" Association="Self.FK__Usuario__OrigenDestino__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="OrigenDestino" EntitySet="OrigenDestino" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__OrigenDestino__Modificacion" Association="Self.FK__Usuario__OrigenDestino__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="OrigenDestino" EntitySet="OrigenDestino" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Pesada__Creacion" Association="Self.FK__Usuario__Pesada__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Pesada" EntitySet="Pesada" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Pesada__Modificacion" Association="Self.FK__Usuario__Pesada__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Pesada" EntitySet="Pesada" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Planta__Creacion" Association="Self.FK__Usuario__Planta__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Planta" EntitySet="Planta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Planta__Modificacion" Association="Self.FK__Usuario__Planta__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Planta" EntitySet="Planta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Producto__Creacion" Association="Self.FK__Usuario__Producto__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Producto__Modificacion" Association="Self.FK__Usuario__Producto__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__UsuarioGrupo__Creacion" Association="Self.FK__Usuario__UsuarioGrupo__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="UsuarioGrupo" EntitySet="UsuarioGrupo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__UsuarioGrupo__Modificacion" Association="Self.FK__Usuario__UsuarioGrupo__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="UsuarioGrupo" EntitySet="UsuarioGrupo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UsuarioGrupo__Usuario" Association="Self.FK__UsuarioGrupo__Usuario">
+            <End Role="UsuarioGrupo" EntitySet="UsuarioGrupo" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UsuarioGrupo__UsuarioGrupoPermiso" Association="Self.FK__UsuarioGrupo__UsuarioGrupoPermiso">
+            <End Role="UsuarioGrupo" EntitySet="UsuarioGrupo" />
+            <End Role="UsuarioGrupoPermiso" EntitySet="UsuarioGrupoPermiso" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CSPesajeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Camion">
+          <Key>
+            <PropertyRef Name="IDEntidad" />
+            <PropertyRef Name="IDCamion" />
+          </Key>
+          <Property Name="IDEntidad" Type="Int32" Nullable="false" />
+          <Property Name="IDCamion" Type="Byte" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DominioChasis" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
+          <Property Name="DominioAcoplado" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
+          <Property Name="EsActivo" Type="Boolean" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Entidad" Relationship="Self.FK__Camion__Entidad" FromRole="Camion" ToRole="Entidad" />
+          <NavigationProperty Name="Pesadas" Relationship="Self.FK__Camion__Pesada" FromRole="Camion" ToRole="Pesada" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="Self.FK__Usuario__Camion__Creacion" FromRole="Camion" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="Self.FK__Usuario__Camion__Modificacion" FromRole="Camion" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Cosecha">
+          <Key>
+            <PropertyRef Name="IDCosecha" />
+          </Key>
+          <Property Name="IDCosecha" Type="Byte" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EsActivo" Type="Boolean" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Cosecha_Producto_Tarifa" Relationship="Self.FK__Cosecha__Cosecha_Producto_Tarifa" FromRole="Cosecha" ToRole="Cosecha_Producto_Tarifa" />
+          <NavigationProperty Name="Pesadas" Relationship="Self.FK__Cosecha__Pesada" FromRole="Cosecha" ToRole="Pesada" />
+          <NavigationProperty Name="Productos_Cosechas" Relationship="Self.FK__Cosecha__Producto_Cosecha" FromRole="Cosecha" ToRole="Producto_Cosecha" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="Self.FK__Usuario__Cosecha__Creacion" FromRole="Cosecha" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="Self.FK__Usuario__Cosecha__Modificacion" FromRole="Cosecha" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Cosecha_Producto_Tarifa">
+          <Key>
+            <PropertyRef Name="IDCosecha" />
+            <PropertyRef Name="IDProducto" />
+            <PropertyRef Name="Indice" />
+          </Key>
+          <Property Name="IDCosecha" Type="Byte" Nullable="false" />
+          <Property Name="IDProducto" Type="Byte" Nullable="false" />
+          <Property Name="Indice" Type="Int16" Nullable="false" />
+          <Property Name="IDPlanta" Type="Byte" />
+          <Property Name="IDEntidad" Type="Int32" />
+          <Property Name="IDOrigenDestino" Type="Int32" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FechaDesde" Type="DateTime" Precision="0" />
+          <Property Name="FechaHasta" Type="DateTime" Precision="0" />
+          <Property Name="TarifaParitariaImporte" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="TarifaSecadoTipo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="TarifaSecadoInicialPunto" Type="Decimal" Precision="3" Scale="1" Nullable="false" />
+          <Property Name="TarifaSecadoInicialImporte" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="TarifaSecadoPuntoExcesoImporte" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="TarifaSecadoHumedadBase" Type="Decimal" Precision="3" Scale="1" />
+          <Property Name="TarifaSecadoHumedadMargenLibre" Type="Decimal" Precision="1" Scale="1" />
+          <Property Name="TarifaSecadoHumedadRedondeoPuntoTipo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="TarifaZarandeoImporte" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="TarifaFumigadoImporte" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="TarifaMezclaImporte" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="AlmacenajeTipo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="AlmacenajeDiaGracia" Type="Int16" />
+          <Property Name="AlmacenajeInicio" Type="DateTime" Precision="0" />
+          <Property Name="AlmacenajePorcentajeMensual" Type="Decimal" Precision="2" Scale="1" Nullable="false" />
+          <NavigationProperty Name="Cosecha" Relationship="Self.FK__Cosecha__Cosecha_Producto_Tarifa" FromRole="Cosecha_Producto_Tarifa" ToRole="Cosecha" />
+          <NavigationProperty Name="Producto" Relationship="Self.FK__Cosecha_Producto_Tarifa" FromRole="Cosecha_Producto_Tarifa" ToRole="Producto" />
+          <NavigationProperty Name="Cosecha_Producto_TarifaEscala" Relationship="Self.FK__Cosecha_Producto_Tarifa__Cosecha_Producto_TarifaEscala" FromRole="Cosecha_Producto_Tarifa" ToRole="Cosecha_Producto_TarifaEscala" />
+          <NavigationProperty Name="Planta" Relationship="Self.FK__Planta__Cosecha_Producto_Tarifa" FromRole="Cosecha_Producto_Tarifa" ToRole="Planta" />
+        </EntityType>
+        <EntityType Name="Cosecha_Producto_TarifaEscala">
+          <Key>
+            <PropertyRef Name="IDCosecha" />
+            <PropertyRef Name="IDProducto" />
+            <PropertyRef Name="Indice" />
+            <PropertyRef Name="HumedadExcesoInicio" />
+          </Key>
+          <Property Name="IDCosecha" Type="Byte" Nullable="false" />
+          <Property Name="IDProducto" Type="Byte" Nullable="false" />
+          <Property Name="Indice" Type="Int16" Nullable="false" />
+          <Property Name="HumedadExcesoInicio" Type="Decimal" Precision="3" Scale="1" Nullable="false" />
+          <Property Name="Tipo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Tarifa" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="Cosecha_Producto_Tarifa" Relationship="Self.FK__Cosecha_Producto_Tarifa__Cosecha_Producto_TarifaEscala" FromRole="Cosecha_Producto_TarifaEscala" ToRole="Cosecha_Producto_Tarifa" />
+        </EntityType>
+        <EntityType Name="Entidad">
+          <Key>
+            <PropertyRef Name="IDEntidad" />
+          </Key>
+          <Property Name="IDEntidad" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CUIT_CUIL" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="EsTitular" Type="Boolean" Nullable="false" />
+          <Property Name="EsTransportista" Type="Boolean" Nullable="false" />
+          <Property Name="EsChofer" Type="Boolean" Nullable="false" />
+          <Property Name="Transportista_IDEntidad" Type="Int32" />
+          <Property Name="IDCamion" Type="Byte" />
+          <Property Name="EsActivo" Type="Boolean" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Camiones" Relationship="Self.FK__Camion__Entidad" FromRole="Entidad" ToRole="Camion" />
+          <NavigationProperty Name="EntidadesChoferes" Relationship="Self.FK__Entidad__Entidad__Transportista" FromRole="Entidad" ToRole="Entidad1" />
+          <NavigationProperty Name="EntidadTransportista" Relationship="Self.FK__Entidad__Entidad__Transportista" FromRole="Entidad1" ToRole="Entidad" />
+          <NavigationProperty Name="Entidades_Plantas" Relationship="Self.FK__Entidad__Entidad_Planta" FromRole="Entidad" ToRole="Entidad_Planta" />
+          <NavigationProperty Name="PesadasComoChofer" Relationship="Self.FK__Entidad__Pesada__Chofer" FromRole="Entidad" ToRole="Pesada" />
+          <NavigationProperty Name="PesadasComoTitular" Relationship="Self.FK__Entidad__Pesada__Titular" FromRole="Entidad" ToRole="Pesada" />
+          <NavigationProperty Name="PesadasComoTransportista" Relationship="Self.FK__Entidad__Pesada__Transportista" FromRole="Entidad" ToRole="Pesada" />
+          <NavigationProperty Name="Entidades_OrigenesDestinos" Relationship="Self.FK__OrigenDestino_Entidad__Entidad" FromRole="Entidad" ToRole="Entidad_OrigenDestino" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="Self.FK__Usuario__Entidad__Creacion" FromRole="Entidad" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="Self.FK__Usuario__Entidad__Modificacion" FromRole="Entidad" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Entidad_OrigenDestino">
+          <Key>
+            <PropertyRef Name="IDEntidad" />
+            <PropertyRef Name="IDOrigenDestino" />
+          </Key>
+          <Property Name="IDEntidad" Type="Int32" Nullable="false" />
+          <Property Name="IDOrigenDestino" Type="Int32" Nullable="false" />
+          <Property Name="EsActivo" Type="Boolean" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Entidad" Relationship="Self.FK__OrigenDestino_Entidad__Entidad" FromRole="Entidad_OrigenDestino" ToRole="Entidad" />
+          <NavigationProperty Name="OrigenDestino" Relationship="Self.FK__OrigenDestino__Entidad_OrigenDestino" FromRole="Entidad_OrigenDestino" ToRole="OrigenDestino" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="Self.FK__Usuario__Entidad_OrigenDestino__Creacion" FromRole="Entidad_OrigenDestino" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="Self.FK__Usuario__Entidad_OrigenDestino__Modificacion" FromRole="Entidad_OrigenDestino" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Entidad_Planta">
+          <Key>
+            <PropertyRef Name="IDEntidad" />
+            <PropertyRef Name="IDPlanta" />
+            <PropertyRef Name="Tipo" />
+          </Key>
+          <Property Name="IDEntidad" Type="Int32" Nullable="false" />
+          <Property Name="IDPlanta" Type="Byte" Nullable="false" />
+          <Property Name="Tipo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="UsoFrecuente" Type="Boolean" Nullable="false" />
+          <Property Name="UltimoUso" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Entidad" Relationship="Self.FK__Entidad__Entidad_Planta" FromRole="Entidad_Planta" ToRole="Entidad" />
+          <NavigationProperty Name="Planta" Relationship="Self.FK__Planta__Entidad_Planta" FromRole="Entidad_Planta" ToRole="Planta" />
+        </EntityType>
+        <EntityType Name="Localidad">
+          <Key>
+            <PropertyRef Name="IDProvincia" />
+            <PropertyRef Name="IDLocalidad" />
+          </Key>
+          <Property Name="IDProvincia" Type="Byte" Nullable="false" />
+          <Property Name="IDLocalidad" Type="Int16" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CodigoPostal" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="OrigenesDestinos" Relationship="Self.FK__Localidad__OrigenDestino" FromRole="Localidad" ToRole="OrigenDestino" />
+          <NavigationProperty Name="Provincia" Relationship="Self.FK__Provincia__Localidad" FromRole="Localidad" ToRole="Provincia" />
+        </EntityType>
+        <EntityType Name="OrigenDestino">
+          <Key>
+            <PropertyRef Name="IDOrigenDestino" />
+          </Key>
+          <Property Name="IDOrigenDestino" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Domicilio" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IDProvincia" Type="Byte" />
+          <Property Name="IDLocalidad" Type="Int16" />
+          <Property Name="CodigoPostal" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="UbicacionLatitud" Type="Decimal" Precision="10" Scale="6" />
+          <Property Name="UbicacionLongitud" Type="Decimal" Precision="10" Scale="6" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EsActivo" Type="Boolean" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Entidades_OrigenesDestinos" Relationship="Self.FK__OrigenDestino__Entidad_OrigenDestino" FromRole="OrigenDestino" ToRole="Entidad_OrigenDestino" />
+          <NavigationProperty Name="Localidad" Relationship="Self.FK__Localidad__OrigenDestino" FromRole="OrigenDestino" ToRole="Localidad" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="Self.FK__Usuario__OrigenDestino__Creacion" FromRole="OrigenDestino" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="Self.FK__Usuario__OrigenDestino__Modificacion" FromRole="OrigenDestino" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Parametro">
+          <Key>
+            <PropertyRef Name="IDParametro" />
+          </Key>
+          <Property Name="IDParametro" Type="String" MaxLength="100" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Texto" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="NumeroEntero" Type="Int32" />
+          <Property Name="NumeroDecimal" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="Moneda" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="FechaHora" Type="DateTime" Precision="0" />
+          <Property Name="SiNo" Type="Boolean" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Pesada">
+          <Key>
+            <PropertyRef Name="IDPesada" />
+          </Key>
+          <Property Name="IDPesada" Type="Int32" Nullable="false" />
+          <Property Name="FechaHoraInicio" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FechaHoraFin" Type="DateTime" Precision="0" />
+          <Property Name="ComprobanteNumero" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="IDPlanta" Type="Byte" />
+          <Property Name="IDProducto" Type="Byte" Nullable="false" />
+          <Property Name="IDCosecha" Type="Byte" />
+          <Property Name="Tipo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Titular_IDEntidad" Type="Int32" Nullable="false" />
+          <Property Name="IDOrigenDestino" Type="Int32" />
+          <Property Name="Transportista_IDEntidad" Type="Int32" />
+          <Property Name="Chofer_IDEntidad" Type="Int32" />
+          <Property Name="IDCamion" Type="Byte" />
+          <Property Name="Kilometro" Type="Int16" />
+          <Property Name="KilogramoBruto" Type="Int32" />
+          <Property Name="KilogramoTara" Type="Int32" />
+          <Property Name="KilogramoNeto" Type="Int32" />
+          <Property Name="KilogramoFinal" Type="Int32" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Camion" Relationship="Self.FK__Camion__Pesada" FromRole="Pesada" ToRole="Camion" />
+          <NavigationProperty Name="Cosecha" Relationship="Self.FK__Cosecha__Pesada" FromRole="Pesada" ToRole="Cosecha" />
+          <NavigationProperty Name="EntidadChofer" Relationship="Self.FK__Entidad__Pesada__Chofer" FromRole="Pesada" ToRole="Entidad" />
+          <NavigationProperty Name="EntidadTitular" Relationship="Self.FK__Entidad__Pesada__Titular" FromRole="Pesada" ToRole="Entidad" />
+          <NavigationProperty Name="EntidadTransportista" Relationship="Self.FK__Entidad__Pesada__Transportista" FromRole="Pesada" ToRole="Entidad" />
+          <NavigationProperty Name="Pesada_Acondicionamiento" Relationship="Self.FK__Pesada__Pesada_Acondicionamiento" FromRole="Pesada" ToRole="Pesada_Acondicionamiento" />
+          <NavigationProperty Name="Pesada_Analisis" Relationship="Self.FK__Pesada__Pesada_Analisis" FromRole="Pesada" ToRole="Pesada_Analisis" />
+          <NavigationProperty Name="Pesada_Otro" Relationship="Self.FK__Pesada__Pesada_Otro" FromRole="Pesada" ToRole="Pesada_Otro" />
+          <NavigationProperty Name="Planta" Relationship="Self.FK__Planta__Pesada" FromRole="Pesada" ToRole="Planta" />
+          <NavigationProperty Name="Producto" Relationship="Self.FK__Producto__Pesada" FromRole="Pesada" ToRole="Producto" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="Self.FK__Usuario__Pesada__Creacion" FromRole="Pesada" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="Self.FK__Usuario__Pesada__Modificacion" FromRole="Pesada" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Pesada_Acondicionamiento">
+          <Key>
+            <PropertyRef Name="IDPesada" />
+          </Key>
+          <Property Name="IDPesada" Type="Int32" Nullable="false" />
+          <Property Name="TarifaIndice" Type="Int16" Nullable="false" />
+          <Property Name="ParitariaTarifa" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="ParitariaImporte" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="SecadoTarifa" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="SecadoImporte" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="HumedadExcesoReal" Type="Decimal" Precision="3" Scale="1" Nullable="false" />
+          <Property Name="HumedadExcesoCalculo" Type="Decimal" Precision="3" Scale="1" Nullable="false" />
+          <Property Name="SecadoExcesoTarifa" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="SecadoExcesoImporte" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="ZarandeoTarifa" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="ZarandeoImporte" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="FumigadoTarifa" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="FumigadoImporte" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="MezclaTarifa" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="MezclaImporte" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="ImporteTotal" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="FechaLiquidacion" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Pesada" Relationship="Self.FK__Pesada__Pesada_Acondicionamiento" FromRole="Pesada_Acondicionamiento" ToRole="Pesada" />
+        </EntityType>
+        <EntityType Name="Pesada_Analisis">
+          <Key>
+            <PropertyRef Name="IDPesada" />
+          </Key>
+          <Property Name="IDPesada" Type="Int32" Nullable="false" />
+          <Property Name="Humedad" Type="Decimal" Precision="3" Scale="1" />
+          <Property Name="Zaranda" Type="Decimal" Precision="3" Scale="1" />
+          <Property Name="GranoVerde" Type="Decimal" Precision="3" Scale="1" />
+          <Property Name="GranoDaniado" Type="Decimal" Precision="3" Scale="1" />
+          <Property Name="PesoHectolitrico" Type="Decimal" Precision="3" Scale="1" />
+          <Property Name="Gluten" Type="Decimal" Precision="3" Scale="1" />
+          <Property Name="Fumigado" Type="Boolean" />
+          <Property Name="MermaVolatilKilogramo" Type="Int32" />
+          <Property Name="MermaHumedadPorcentaje" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="MermaHumedadKilogramo" Type="Int32" />
+          <Property Name="MermaZarandaKilogramo" Type="Int32" />
+          <NavigationProperty Name="Pesada" Relationship="Self.FK__Pesada__Pesada_Analisis" FromRole="Pesada_Analisis" ToRole="Pesada" />
+        </EntityType>
+        <EntityType Name="Pesada_Otro">
+          <Key>
+            <PropertyRef Name="IDPesada" />
+          </Key>
+          <Property Name="IDPesada" Type="Int32" Nullable="false" />
+          <Property Name="Producto_Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Entidad_Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OrigenDestino_Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Transportista_Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Transportista_CUIT" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="Chofer_Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Chofer_CUIT_CUIL" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="Camion_DominioChasis" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
+          <Property Name="Camion_DominioAcoplado" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Pesada" Relationship="Self.FK__Pesada__Pesada_Otro" FromRole="Pesada_Otro" ToRole="Pesada" />
+        </EntityType>
+        <EntityType Name="Planta">
+          <Key>
+            <PropertyRef Name="IDPlanta" />
+          </Key>
+          <Property Name="IDPlanta" Type="Byte" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AplicaMermaVolatil" Type="Boolean" Nullable="false" />
+          <Property Name="EsActivo" Type="Boolean" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Cosecha_Producto_Tarifa" Relationship="Self.FK__Planta__Cosecha_Producto_Tarifa" FromRole="Planta" ToRole="Cosecha_Producto_Tarifa" />
+          <NavigationProperty Name="Entidad_Planta" Relationship="Self.FK__Planta__Entidad_Planta" FromRole="Planta" ToRole="Entidad_Planta" />
+          <NavigationProperty Name="Pesada" Relationship="Self.FK__Planta__Pesada" FromRole="Planta" ToRole="Pesada" />
+          <NavigationProperty Name="Producto_Planta" Relationship="Self.FK__Planta__Producto_Planta" FromRole="Planta" ToRole="Producto_Planta" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="Self.FK__Usuario__Planta__Creacion" FromRole="Planta" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="Self.FK__Usuario__Planta__Modificacion" FromRole="Planta" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="IDProducto" />
+          </Key>
+          <Property Name="IDProducto" Type="Byte" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MermaVolatil" Type="Decimal" Precision="3" Scale="2" />
+          <Property Name="MermaHumedadBase" Type="Decimal" Precision="3" Scale="1" />
+          <Property Name="MermaHumedadManipuleo" Type="Decimal" Precision="2" Scale="2" />
+          <Property Name="UtilizaPlanta" Type="Boolean" Nullable="false" />
+          <Property Name="UsoFrecuente" Type="Boolean" Nullable="false" />
+          <Property Name="UltimoUso" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EsActivo" Type="Boolean" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Cosechas_Productos_Tarifas" Relationship="Self.FK__Cosecha_Producto_Tarifa" FromRole="Producto" ToRole="Cosecha_Producto_Tarifa" />
+          <NavigationProperty Name="Pesadas" Relationship="Self.FK__Producto__Pesada" FromRole="Producto" ToRole="Pesada" />
+          <NavigationProperty Name="Productos_Cosechas" Relationship="Self.FK__Producto__Producto_Cosecha" FromRole="Producto" ToRole="Producto_Cosecha" />
+          <NavigationProperty Name="Productos_Plantas" Relationship="Self.FK__Producto__Producto_Planta" FromRole="Producto" ToRole="Producto_Planta" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="Self.FK__Usuario__Producto__Creacion" FromRole="Producto" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="Self.FK__Usuario__Producto__Modificacion" FromRole="Producto" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Producto_Cosecha">
+          <Key>
+            <PropertyRef Name="IDProducto" />
+            <PropertyRef Name="IDCosecha" />
+          </Key>
+          <Property Name="IDProducto" Type="Byte" Nullable="false" />
+          <Property Name="IDCosecha" Type="Byte" Nullable="false" />
+          <Property Name="Inicio" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Fin" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EsActivo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Cosecha" Relationship="Self.FK__Cosecha__Producto_Cosecha" FromRole="Producto_Cosecha" ToRole="Cosecha" />
+          <NavigationProperty Name="Producto" Relationship="Self.FK__Producto__Producto_Cosecha" FromRole="Producto_Cosecha" ToRole="Producto" />
+        </EntityType>
+        <EntityType Name="Producto_Planta">
+          <Key>
+            <PropertyRef Name="IDProducto" />
+            <PropertyRef Name="IDPlanta" />
+          </Key>
+          <Property Name="IDProducto" Type="Byte" Nullable="false" />
+          <Property Name="IDPlanta" Type="Byte" Nullable="false" />
+          <Property Name="TipoEntrada" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="TipoSalida" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="TipoNinguno" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Planta" Relationship="Self.FK__Planta__Producto_Planta" FromRole="Producto_Planta" ToRole="Planta" />
+          <NavigationProperty Name="Producto" Relationship="Self.FK__Producto__Producto_Planta" FromRole="Producto_Planta" ToRole="Producto" />
+        </EntityType>
+        <EntityType Name="Provincia">
+          <Key>
+            <PropertyRef Name="IDProvincia" />
+          </Key>
+          <Property Name="IDProvincia" Type="Byte" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Localidades" Relationship="Self.FK__Provincia__Localidad" FromRole="Provincia" ToRole="Localidad" />
+        </EntityType>
+        <EntityType Name="Reporte">
+          <Key>
+            <PropertyRef Name="IDReporte" />
+          </Key>
+          <Property Name="IDReporte" Type="Int16" Nullable="false" />
+          <Property Name="IDReporteGrupo" Type="Byte" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Titulo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Archivo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MostrarEnVisor" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ReporteParametros" Relationship="Self.FK__Reporte__ReporteParametro" FromRole="Reporte" ToRole="ReporteParametro" />
+          <NavigationProperty Name="ReporteGrupo" Relationship="Self.FK__ReporteGrupo__Reporte" FromRole="Reporte" ToRole="ReporteGrupo" />
+        </EntityType>
+        <EntityType Name="ReporteGrupo">
+          <Key>
+            <PropertyRef Name="IDReporteGrupo" />
+          </Key>
+          <Property Name="IDReporteGrupo" Type="Byte" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EsActivo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Reportes" Relationship="Self.FK__ReporteGrupo__Reporte" FromRole="ReporteGrupo" ToRole="Reporte" />
+        </EntityType>
+        <EntityType Name="ReporteParametro">
+          <Key>
+            <PropertyRef Name="IDReporte" />
+            <PropertyRef Name="IDParametro" />
+          </Key>
+          <Property Name="IDReporte" Type="Int16" Nullable="false" />
+          <Property Name="IDParametro" Type="String" MaxLength="50" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Tipo" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Requerido" Type="Boolean" Nullable="false" />
+          <Property Name="RequeridoLeyenda" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ValorPredeterminadoNumeroEntero" Type="Int32" />
+          <Property Name="ValorPredeterminadoNumeroDecimal" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="ValorPredeterminadoMoneda" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ValorPredeterminadoFechaHora" Type="DateTime" Precision="0" />
+          <Property Name="ValorPredeterminadoSiNo" Type="Boolean" />
+          <Property Name="Orden" Type="Byte" />
+          <NavigationProperty Name="Reporte" Relationship="Self.FK__Reporte__ReporteParametro" FromRole="ReporteParametro" ToRole="Reporte" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="IDUsuario" />
+          </Key>
+          <Property Name="IDUsuario" Type="Int16" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Genero" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="IDUsuarioGrupo" Type="Byte" Nullable="false" />
+          <Property Name="EsActivo" Type="Boolean" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="CamionesCreados" Relationship="Self.FK__Usuario__Camion__Creacion" FromRole="Usuario" ToRole="Camion" />
+          <NavigationProperty Name="CamionesModificados" Relationship="Self.FK__Usuario__Camion__Modificacion" FromRole="Usuario" ToRole="Camion" />
+          <NavigationProperty Name="CosechasCreadas" Relationship="Self.FK__Usuario__Cosecha__Creacion" FromRole="Usuario" ToRole="Cosecha" />
+          <NavigationProperty Name="CosechasModificadas" Relationship="Self.FK__Usuario__Cosecha__Modificacion" FromRole="Usuario" ToRole="Cosecha" />
+          <NavigationProperty Name="EntidadesCreadas" Relationship="Self.FK__Usuario__Entidad__Creacion" FromRole="Usuario" ToRole="Entidad" />
+          <NavigationProperty Name="EntidadesModificadas" Relationship="Self.FK__Usuario__Entidad__Modificacion" FromRole="Usuario" ToRole="Entidad" />
+          <NavigationProperty Name="Entidades_OrigenesDestinosCreados" Relationship="Self.FK__Usuario__Entidad_OrigenDestino__Creacion" FromRole="Usuario" ToRole="Entidad_OrigenDestino" />
+          <NavigationProperty Name="Entidades_OrigenesDestinosModificados" Relationship="Self.FK__Usuario__Entidad_OrigenDestino__Modificacion" FromRole="Usuario" ToRole="Entidad_OrigenDestino" />
+          <NavigationProperty Name="OrigenesDestinosCreados" Relationship="Self.FK__Usuario__OrigenDestino__Creacion" FromRole="Usuario" ToRole="OrigenDestino" />
+          <NavigationProperty Name="OrigenesDestinosModificados" Relationship="Self.FK__Usuario__OrigenDestino__Modificacion" FromRole="Usuario" ToRole="OrigenDestino" />
+          <NavigationProperty Name="PesadasCreadas" Relationship="Self.FK__Usuario__Pesada__Creacion" FromRole="Usuario" ToRole="Pesada" />
+          <NavigationProperty Name="PesadasModificadas" Relationship="Self.FK__Usuario__Pesada__Modificacion" FromRole="Usuario" ToRole="Pesada" />
+          <NavigationProperty Name="PlantasCreadas" Relationship="Self.FK__Usuario__Planta__Creacion" FromRole="Usuario" ToRole="Planta" />
+          <NavigationProperty Name="PlantasModificadas" Relationship="Self.FK__Usuario__Planta__Modificacion" FromRole="Usuario" ToRole="Planta" />
+          <NavigationProperty Name="ProductosCreados" Relationship="Self.FK__Usuario__Producto__Creacion" FromRole="Usuario" ToRole="Producto" />
+          <NavigationProperty Name="ProductosModficados" Relationship="Self.FK__Usuario__Producto__Modificacion" FromRole="Usuario" ToRole="Producto" />
+          <NavigationProperty Name="UsuariosGruposCreados" Relationship="Self.FK__Usuario__UsuarioGrupo__Creacion" FromRole="Usuario" ToRole="UsuarioGrupo" />
+          <NavigationProperty Name="UsuariosGruposModificados" Relationship="Self.FK__Usuario__UsuarioGrupo__Modificacion" FromRole="Usuario" ToRole="UsuarioGrupo" />
+          <NavigationProperty Name="UsuarioGrupo" Relationship="Self.FK__UsuarioGrupo__Usuario" FromRole="Usuario" ToRole="UsuarioGrupo" />
+        </EntityType>
+        <EntityType Name="UsuarioGrupo">
+          <Key>
+            <PropertyRef Name="IDUsuarioGrupo" />
+          </Key>
+          <Property Name="IDUsuarioGrupo" Type="Byte" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EsActivo" Type="Boolean" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="Self.FK__Usuario__UsuarioGrupo__Creacion" FromRole="UsuarioGrupo" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="Self.FK__Usuario__UsuarioGrupo__Modificacion" FromRole="UsuarioGrupo" ToRole="Usuario" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK__UsuarioGrupo__Usuario" FromRole="UsuarioGrupo" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioGrupoPermiso" Relationship="Self.FK__UsuarioGrupo__UsuarioGrupoPermiso" FromRole="UsuarioGrupo" ToRole="UsuarioGrupoPermiso" />
+        </EntityType>
+        <EntityType Name="UsuarioGrupoPermiso">
+          <Key>
+            <PropertyRef Name="IDUsuarioGrupo" />
+            <PropertyRef Name="IDPermiso" />
+          </Key>
+          <Property Name="IDUsuarioGrupo" Type="Byte" Nullable="false" />
+          <Property Name="IDPermiso" Type="String" MaxLength="100" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="UsuarioGrupo" Relationship="Self.FK__UsuarioGrupo__UsuarioGrupoPermiso" FromRole="UsuarioGrupoPermiso" ToRole="UsuarioGrupo" />
+        </EntityType>
+        <Association Name="FK__Camion__Entidad">
+          <End Role="Camion" Type="Self.Camion" Multiplicity="0..1" />
+          <End Role="Entidad" Type="Self.Entidad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Camion">
+              <PropertyRef Name="IDEntidad" />
+              <PropertyRef Name="IDCamion" />
+            </Principal>
+            <Dependent Role="Entidad">
+              <PropertyRef Name="Transportista_IDEntidad" />
+              <PropertyRef Name="IDCamion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Camion__Pesada">
+          <End Role="Camion" Type="Self.Camion" Multiplicity="0..1" />
+          <End Role="Pesada" Type="Self.Pesada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Camion">
+              <PropertyRef Name="IDEntidad" />
+              <PropertyRef Name="IDCamion" />
+            </Principal>
+            <Dependent Role="Pesada">
+              <PropertyRef Name="Transportista_IDEntidad" />
+              <PropertyRef Name="IDCamion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Camion__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Camion" Type="Self.Camion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Camion">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Camion__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Camion" Type="Self.Camion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Camion">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cosecha__Cosecha_Producto_Tarifa">
+          <End Role="Cosecha" Type="Self.Cosecha" Multiplicity="1" />
+          <End Role="Cosecha_Producto_Tarifa" Type="Self.Cosecha_Producto_Tarifa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cosecha">
+              <PropertyRef Name="IDCosecha" />
+            </Principal>
+            <Dependent Role="Cosecha_Producto_Tarifa">
+              <PropertyRef Name="IDCosecha" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cosecha__Pesada">
+          <End Role="Cosecha" Type="Self.Cosecha" Multiplicity="0..1" />
+          <End Role="Pesada" Type="Self.Pesada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cosecha">
+              <PropertyRef Name="IDCosecha" />
+            </Principal>
+            <Dependent Role="Pesada">
+              <PropertyRef Name="IDCosecha" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cosecha__Producto_Cosecha">
+          <End Role="Cosecha" Type="Self.Cosecha" Multiplicity="1" />
+          <End Role="Producto_Cosecha" Type="Self.Producto_Cosecha" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cosecha">
+              <PropertyRef Name="IDCosecha" />
+            </Principal>
+            <Dependent Role="Producto_Cosecha">
+              <PropertyRef Name="IDCosecha" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Cosecha__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Cosecha" Type="Self.Cosecha" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Cosecha">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Cosecha__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Cosecha" Type="Self.Cosecha" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Cosecha">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cosecha_Producto_Tarifa">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="Cosecha_Producto_Tarifa" Type="Self.Cosecha_Producto_Tarifa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="IDProducto" />
+            </Principal>
+            <Dependent Role="Cosecha_Producto_Tarifa">
+              <PropertyRef Name="IDProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cosecha_Producto_Tarifa__Cosecha_Producto_TarifaEscala">
+          <End Role="Cosecha_Producto_Tarifa" Type="Self.Cosecha_Producto_Tarifa" Multiplicity="1" />
+          <End Role="Cosecha_Producto_TarifaEscala" Type="Self.Cosecha_Producto_TarifaEscala" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cosecha_Producto_Tarifa">
+              <PropertyRef Name="IDCosecha" />
+              <PropertyRef Name="IDProducto" />
+              <PropertyRef Name="Indice" />
+            </Principal>
+            <Dependent Role="Cosecha_Producto_TarifaEscala">
+              <PropertyRef Name="IDCosecha" />
+              <PropertyRef Name="IDProducto" />
+              <PropertyRef Name="Indice" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Planta__Cosecha_Producto_Tarifa">
+          <End Role="Planta" Type="Self.Planta" Multiplicity="0..1" />
+          <End Role="Cosecha_Producto_Tarifa" Type="Self.Cosecha_Producto_Tarifa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Planta">
+              <PropertyRef Name="IDPlanta" />
+            </Principal>
+            <Dependent Role="Cosecha_Producto_Tarifa">
+              <PropertyRef Name="IDPlanta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Entidad__Entidad__Transportista">
+          <End Role="Entidad" Type="Self.Entidad" Multiplicity="0..1" />
+          <End Role="Entidad1" Type="Self.Entidad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entidad">
+              <PropertyRef Name="IDEntidad" />
+            </Principal>
+            <Dependent Role="Entidad1">
+              <PropertyRef Name="Transportista_IDEntidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Entidad__Entidad_Planta">
+          <End Role="Entidad" Type="Self.Entidad" Multiplicity="1" />
+          <End Role="Entidad_Planta" Type="Self.Entidad_Planta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entidad">
+              <PropertyRef Name="IDEntidad" />
+            </Principal>
+            <Dependent Role="Entidad_Planta">
+              <PropertyRef Name="IDEntidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Entidad__Pesada__Chofer">
+          <End Role="Entidad" Type="Self.Entidad" Multiplicity="0..1" />
+          <End Role="Pesada" Type="Self.Pesada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entidad">
+              <PropertyRef Name="IDEntidad" />
+            </Principal>
+            <Dependent Role="Pesada">
+              <PropertyRef Name="Chofer_IDEntidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Entidad__Pesada__Titular">
+          <End Role="Entidad" Type="Self.Entidad" Multiplicity="1" />
+          <End Role="Pesada" Type="Self.Pesada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entidad">
+              <PropertyRef Name="IDEntidad" />
+            </Principal>
+            <Dependent Role="Pesada">
+              <PropertyRef Name="Titular_IDEntidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Entidad__Pesada__Transportista">
+          <End Role="Entidad" Type="Self.Entidad" Multiplicity="0..1" />
+          <End Role="Pesada" Type="Self.Pesada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entidad">
+              <PropertyRef Name="IDEntidad" />
+            </Principal>
+            <Dependent Role="Pesada">
+              <PropertyRef Name="Transportista_IDEntidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrigenDestino_Entidad__Entidad">
+          <End Role="Entidad" Type="Self.Entidad" Multiplicity="1" />
+          <End Role="Entidad_OrigenDestino" Type="Self.Entidad_OrigenDestino" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entidad">
+              <PropertyRef Name="IDEntidad" />
+            </Principal>
+            <Dependent Role="Entidad_OrigenDestino">
+              <PropertyRef Name="IDEntidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Entidad__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Entidad" Type="Self.Entidad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Entidad">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Entidad__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Entidad" Type="Self.Entidad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Entidad">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrigenDestino__Entidad_OrigenDestino">
+          <End Role="OrigenDestino" Type="Self.OrigenDestino" Multiplicity="1" />
+          <End Role="Entidad_OrigenDestino" Type="Self.Entidad_OrigenDestino" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrigenDestino">
+              <PropertyRef Name="IDOrigenDestino" />
+            </Principal>
+            <Dependent Role="Entidad_OrigenDestino">
+              <PropertyRef Name="IDOrigenDestino" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Entidad_OrigenDestino__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Entidad_OrigenDestino" Type="Self.Entidad_OrigenDestino" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Entidad_OrigenDestino">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Entidad_OrigenDestino__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Entidad_OrigenDestino" Type="Self.Entidad_OrigenDestino" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Entidad_OrigenDestino">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Planta__Entidad_Planta">
+          <End Role="Planta" Type="Self.Planta" Multiplicity="1" />
+          <End Role="Entidad_Planta" Type="Self.Entidad_Planta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Planta">
+              <PropertyRef Name="IDPlanta" />
+            </Principal>
+            <Dependent Role="Entidad_Planta">
+              <PropertyRef Name="IDPlanta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Localidad__OrigenDestino">
+          <End Role="Localidad" Type="Self.Localidad" Multiplicity="0..1" />
+          <End Role="OrigenDestino" Type="Self.OrigenDestino" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Localidad">
+              <PropertyRef Name="IDProvincia" />
+              <PropertyRef Name="IDLocalidad" />
+            </Principal>
+            <Dependent Role="OrigenDestino">
+              <PropertyRef Name="IDProvincia" />
+              <PropertyRef Name="IDLocalidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Provincia__Localidad">
+          <End Role="Provincia" Type="Self.Provincia" Multiplicity="1" />
+          <End Role="Localidad" Type="Self.Localidad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Provincia">
+              <PropertyRef Name="IDProvincia" />
+            </Principal>
+            <Dependent Role="Localidad">
+              <PropertyRef Name="IDProvincia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__OrigenDestino__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="OrigenDestino" Type="Self.OrigenDestino" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="OrigenDestino">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__OrigenDestino__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="OrigenDestino" Type="Self.OrigenDestino" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="OrigenDestino">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pesada__Pesada_Acondicionamiento">
+          <End Role="Pesada" Type="Self.Pesada" Multiplicity="1" />
+          <End Role="Pesada_Acondicionamiento" Type="Self.Pesada_Acondicionamiento" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Pesada">
+              <PropertyRef Name="IDPesada" />
+            </Principal>
+            <Dependent Role="Pesada_Acondicionamiento">
+              <PropertyRef Name="IDPesada" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pesada__Pesada_Analisis">
+          <End Role="Pesada" Type="Self.Pesada" Multiplicity="1" />
+          <End Role="Pesada_Analisis" Type="Self.Pesada_Analisis" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Pesada">
+              <PropertyRef Name="IDPesada" />
+            </Principal>
+            <Dependent Role="Pesada_Analisis">
+              <PropertyRef Name="IDPesada" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pesada__Pesada_Otro">
+          <End Role="Pesada" Type="Self.Pesada" Multiplicity="1" />
+          <End Role="Pesada_Otro" Type="Self.Pesada_Otro" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Pesada">
+              <PropertyRef Name="IDPesada" />
+            </Principal>
+            <Dependent Role="Pesada_Otro">
+              <PropertyRef Name="IDPesada" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Planta__Pesada">
+          <End Role="Planta" Type="Self.Planta" Multiplicity="0..1" />
+          <End Role="Pesada" Type="Self.Pesada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Planta">
+              <PropertyRef Name="IDPlanta" />
+            </Principal>
+            <Dependent Role="Pesada">
+              <PropertyRef Name="IDPlanta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Producto__Pesada">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="Pesada" Type="Self.Pesada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="IDProducto" />
+            </Principal>
+            <Dependent Role="Pesada">
+              <PropertyRef Name="IDProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Pesada__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Pesada" Type="Self.Pesada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Pesada">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Pesada__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Pesada" Type="Self.Pesada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Pesada">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Planta__Producto_Planta">
+          <End Role="Planta" Type="Self.Planta" Multiplicity="1" />
+          <End Role="Producto_Planta" Type="Self.Producto_Planta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Planta">
+              <PropertyRef Name="IDPlanta" />
+            </Principal>
+            <Dependent Role="Producto_Planta">
+              <PropertyRef Name="IDPlanta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Planta__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Planta" Type="Self.Planta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Planta">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Planta__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Planta" Type="Self.Planta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Planta">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Producto__Producto_Cosecha">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="Producto_Cosecha" Type="Self.Producto_Cosecha" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="IDProducto" />
+            </Principal>
+            <Dependent Role="Producto_Cosecha">
+              <PropertyRef Name="IDProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Producto__Producto_Planta">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="Producto_Planta" Type="Self.Producto_Planta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="IDProducto" />
+            </Principal>
+            <Dependent Role="Producto_Planta">
+              <PropertyRef Name="IDProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Producto__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Producto__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reporte__ReporteParametro">
+          <End Role="Reporte" Type="Self.Reporte" Multiplicity="1" />
+          <End Role="ReporteParametro" Type="Self.ReporteParametro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reporte">
+              <PropertyRef Name="IDReporte" />
+            </Principal>
+            <Dependent Role="ReporteParametro">
+              <PropertyRef Name="IDReporte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ReporteGrupo__Reporte">
+          <End Role="ReporteGrupo" Type="Self.ReporteGrupo" Multiplicity="1" />
+          <End Role="Reporte" Type="Self.Reporte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReporteGrupo">
+              <PropertyRef Name="IDReporteGrupo" />
+            </Principal>
+            <Dependent Role="Reporte">
+              <PropertyRef Name="IDReporteGrupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__UsuarioGrupo__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="UsuarioGrupo" Type="Self.UsuarioGrupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="UsuarioGrupo">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__UsuarioGrupo__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="UsuarioGrupo" Type="Self.UsuarioGrupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="UsuarioGrupo">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UsuarioGrupo__Usuario">
+          <End Role="UsuarioGrupo" Type="Self.UsuarioGrupo" Multiplicity="1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UsuarioGrupo">
+              <PropertyRef Name="IDUsuarioGrupo" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="IDUsuarioGrupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UsuarioGrupo__UsuarioGrupoPermiso">
+          <End Role="UsuarioGrupo" Type="Self.UsuarioGrupo" Multiplicity="1" />
+          <End Role="UsuarioGrupoPermiso" Type="Self.UsuarioGrupoPermiso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UsuarioGrupo">
+              <PropertyRef Name="IDUsuarioGrupo" />
+            </Principal>
+            <Dependent Role="UsuarioGrupoPermiso">
+              <PropertyRef Name="IDUsuarioGrupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Camion" EntityType="Self.Camion" />
+          <EntitySet Name="Cosecha" EntityType="Self.Cosecha" />
+          <EntitySet Name="Cosecha_Producto_Tarifa" EntityType="Self.Cosecha_Producto_Tarifa" />
+          <EntitySet Name="Cosecha_Producto_TarifaEscala" EntityType="Self.Cosecha_Producto_TarifaEscala" />
+          <EntitySet Name="Entidad" EntityType="Self.Entidad" />
+          <EntitySet Name="Entidad_OrigenDestino" EntityType="Self.Entidad_OrigenDestino" />
+          <EntitySet Name="Entidad_Planta" EntityType="Self.Entidad_Planta" />
+          <EntitySet Name="Localidad" EntityType="Self.Localidad" />
+          <EntitySet Name="OrigenDestino" EntityType="Self.OrigenDestino" />
+          <EntitySet Name="Parametro" EntityType="Self.Parametro" />
+          <EntitySet Name="Pesada" EntityType="Self.Pesada" />
+          <EntitySet Name="Pesada_Acondicionamiento" EntityType="Self.Pesada_Acondicionamiento" />
+          <EntitySet Name="Pesada_Analisis" EntityType="Self.Pesada_Analisis" />
+          <EntitySet Name="Pesada_Otro" EntityType="Self.Pesada_Otro" />
+          <EntitySet Name="Planta" EntityType="Self.Planta" />
+          <EntitySet Name="Producto" EntityType="Self.Producto" />
+          <EntitySet Name="Producto_Cosecha" EntityType="Self.Producto_Cosecha" />
+          <EntitySet Name="Producto_Planta" EntityType="Self.Producto_Planta" />
+          <EntitySet Name="Provincia" EntityType="Self.Provincia" />
+          <EntitySet Name="Reporte" EntityType="Self.Reporte" />
+          <EntitySet Name="ReporteGrupo" EntityType="Self.ReporteGrupo" />
+          <EntitySet Name="ReporteParametro" EntityType="Self.ReporteParametro" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+          <EntitySet Name="UsuarioGrupo" EntityType="Self.UsuarioGrupo" />
+          <EntitySet Name="UsuarioGrupoPermiso" EntityType="Self.UsuarioGrupoPermiso" />
+          <AssociationSet Name="FK__Camion__Entidad" Association="Self.FK__Camion__Entidad">
+            <End Role="Camion" EntitySet="Camion" />
+            <End Role="Entidad" EntitySet="Entidad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Camion__Pesada" Association="Self.FK__Camion__Pesada">
+            <End Role="Camion" EntitySet="Camion" />
+            <End Role="Pesada" EntitySet="Pesada" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Camion__Creacion" Association="Self.FK__Usuario__Camion__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Camion" EntitySet="Camion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Camion__Modificacion" Association="Self.FK__Usuario__Camion__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Camion" EntitySet="Camion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cosecha__Cosecha_Producto_Tarifa" Association="Self.FK__Cosecha__Cosecha_Producto_Tarifa">
+            <End Role="Cosecha" EntitySet="Cosecha" />
+            <End Role="Cosecha_Producto_Tarifa" EntitySet="Cosecha_Producto_Tarifa" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cosecha__Pesada" Association="Self.FK__Cosecha__Pesada">
+            <End Role="Cosecha" EntitySet="Cosecha" />
+            <End Role="Pesada" EntitySet="Pesada" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cosecha__Producto_Cosecha" Association="Self.FK__Cosecha__Producto_Cosecha">
+            <End Role="Cosecha" EntitySet="Cosecha" />
+            <End Role="Producto_Cosecha" EntitySet="Producto_Cosecha" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Cosecha__Creacion" Association="Self.FK__Usuario__Cosecha__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Cosecha" EntitySet="Cosecha" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Cosecha__Modificacion" Association="Self.FK__Usuario__Cosecha__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Cosecha" EntitySet="Cosecha" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cosecha_Producto_Tarifa" Association="Self.FK__Cosecha_Producto_Tarifa">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Cosecha_Producto_Tarifa" EntitySet="Cosecha_Producto_Tarifa" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cosecha_Producto_Tarifa__Cosecha_Producto_TarifaEscala" Association="Self.FK__Cosecha_Producto_Tarifa__Cosecha_Producto_TarifaEscala">
+            <End Role="Cosecha_Producto_Tarifa" EntitySet="Cosecha_Producto_Tarifa" />
+            <End Role="Cosecha_Producto_TarifaEscala" EntitySet="Cosecha_Producto_TarifaEscala" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Planta__Cosecha_Producto_Tarifa" Association="Self.FK__Planta__Cosecha_Producto_Tarifa">
+            <End Role="Planta" EntitySet="Planta" />
+            <End Role="Cosecha_Producto_Tarifa" EntitySet="Cosecha_Producto_Tarifa" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Entidad__Entidad__Transportista" Association="Self.FK__Entidad__Entidad__Transportista">
+            <End Role="Entidad" EntitySet="Entidad" />
+            <End Role="Entidad1" EntitySet="Entidad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Entidad__Entidad_Planta" Association="Self.FK__Entidad__Entidad_Planta">
+            <End Role="Entidad" EntitySet="Entidad" />
+            <End Role="Entidad_Planta" EntitySet="Entidad_Planta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Entidad__Pesada__Chofer" Association="Self.FK__Entidad__Pesada__Chofer">
+            <End Role="Entidad" EntitySet="Entidad" />
+            <End Role="Pesada" EntitySet="Pesada" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Entidad__Pesada__Titular" Association="Self.FK__Entidad__Pesada__Titular">
+            <End Role="Entidad" EntitySet="Entidad" />
+            <End Role="Pesada" EntitySet="Pesada" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Entidad__Pesada__Transportista" Association="Self.FK__Entidad__Pesada__Transportista">
+            <End Role="Entidad" EntitySet="Entidad" />
+            <End Role="Pesada" EntitySet="Pesada" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrigenDestino_Entidad__Entidad" Association="Self.FK__OrigenDestino_Entidad__Entidad">
+            <End Role="Entidad" EntitySet="Entidad" />
+            <End Role="Entidad_OrigenDestino" EntitySet="Entidad_OrigenDestino" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Entidad__Creacion" Association="Self.FK__Usuario__Entidad__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Entidad" EntitySet="Entidad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Entidad__Modificacion" Association="Self.FK__Usuario__Entidad__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Entidad" EntitySet="Entidad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrigenDestino__Entidad_OrigenDestino" Association="Self.FK__OrigenDestino__Entidad_OrigenDestino">
+            <End Role="OrigenDestino" EntitySet="OrigenDestino" />
+            <End Role="Entidad_OrigenDestino" EntitySet="Entidad_OrigenDestino" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Entidad_OrigenDestino__Creacion" Association="Self.FK__Usuario__Entidad_OrigenDestino__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Entidad_OrigenDestino" EntitySet="Entidad_OrigenDestino" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Entidad_OrigenDestino__Modificacion" Association="Self.FK__Usuario__Entidad_OrigenDestino__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Entidad_OrigenDestino" EntitySet="Entidad_OrigenDestino" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Planta__Entidad_Planta" Association="Self.FK__Planta__Entidad_Planta">
+            <End Role="Planta" EntitySet="Planta" />
+            <End Role="Entidad_Planta" EntitySet="Entidad_Planta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Localidad__OrigenDestino" Association="Self.FK__Localidad__OrigenDestino">
+            <End Role="Localidad" EntitySet="Localidad" />
+            <End Role="OrigenDestino" EntitySet="OrigenDestino" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Provincia__Localidad" Association="Self.FK__Provincia__Localidad">
+            <End Role="Provincia" EntitySet="Provincia" />
+            <End Role="Localidad" EntitySet="Localidad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__OrigenDestino__Creacion" Association="Self.FK__Usuario__OrigenDestino__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="OrigenDestino" EntitySet="OrigenDestino" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__OrigenDestino__Modificacion" Association="Self.FK__Usuario__OrigenDestino__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="OrigenDestino" EntitySet="OrigenDestino" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pesada__Pesada_Acondicionamiento" Association="Self.FK__Pesada__Pesada_Acondicionamiento">
+            <End Role="Pesada" EntitySet="Pesada" />
+            <End Role="Pesada_Acondicionamiento" EntitySet="Pesada_Acondicionamiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pesada__Pesada_Analisis" Association="Self.FK__Pesada__Pesada_Analisis">
+            <End Role="Pesada" EntitySet="Pesada" />
+            <End Role="Pesada_Analisis" EntitySet="Pesada_Analisis" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pesada__Pesada_Otro" Association="Self.FK__Pesada__Pesada_Otro">
+            <End Role="Pesada" EntitySet="Pesada" />
+            <End Role="Pesada_Otro" EntitySet="Pesada_Otro" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Planta__Pesada" Association="Self.FK__Planta__Pesada">
+            <End Role="Planta" EntitySet="Planta" />
+            <End Role="Pesada" EntitySet="Pesada" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Producto__Pesada" Association="Self.FK__Producto__Pesada">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Pesada" EntitySet="Pesada" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Pesada__Creacion" Association="Self.FK__Usuario__Pesada__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Pesada" EntitySet="Pesada" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Pesada__Modificacion" Association="Self.FK__Usuario__Pesada__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Pesada" EntitySet="Pesada" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Planta__Producto_Planta" Association="Self.FK__Planta__Producto_Planta">
+            <End Role="Planta" EntitySet="Planta" />
+            <End Role="Producto_Planta" EntitySet="Producto_Planta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Planta__Creacion" Association="Self.FK__Usuario__Planta__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Planta" EntitySet="Planta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Planta__Modificacion" Association="Self.FK__Usuario__Planta__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Planta" EntitySet="Planta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Producto__Producto_Cosecha" Association="Self.FK__Producto__Producto_Cosecha">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Producto_Cosecha" EntitySet="Producto_Cosecha" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Producto__Producto_Planta" Association="Self.FK__Producto__Producto_Planta">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Producto_Planta" EntitySet="Producto_Planta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Producto__Creacion" Association="Self.FK__Usuario__Producto__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Producto__Modificacion" Association="Self.FK__Usuario__Producto__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reporte__ReporteParametro" Association="Self.FK__Reporte__ReporteParametro">
+            <End Role="Reporte" EntitySet="Reporte" />
+            <End Role="ReporteParametro" EntitySet="ReporteParametro" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ReporteGrupo__Reporte" Association="Self.FK__ReporteGrupo__Reporte">
+            <End Role="ReporteGrupo" EntitySet="ReporteGrupo" />
+            <End Role="Reporte" EntitySet="Reporte" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__UsuarioGrupo__Creacion" Association="Self.FK__Usuario__UsuarioGrupo__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="UsuarioGrupo" EntitySet="UsuarioGrupo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__UsuarioGrupo__Modificacion" Association="Self.FK__Usuario__UsuarioGrupo__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="UsuarioGrupo" EntitySet="UsuarioGrupo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UsuarioGrupo__Usuario" Association="Self.FK__UsuarioGrupo__Usuario">
+            <End Role="UsuarioGrupo" EntitySet="UsuarioGrupo" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UsuarioGrupo__UsuarioGrupoPermiso" Association="Self.FK__UsuarioGrupo__UsuarioGrupoPermiso">
+            <End Role="UsuarioGrupo" EntitySet="UsuarioGrupo" />
+            <End Role="UsuarioGrupoPermiso" EntitySet="UsuarioGrupoPermiso" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CSPesajeModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Camion">
+            <EntityTypeMapping TypeName="CSPesajeModel.Camion">
+              <MappingFragment StoreEntitySet="Camion">
+                <ScalarProperty Name="IDEntidad" ColumnName="IDEntidad" />
+                <ScalarProperty Name="IDCamion" ColumnName="IDCamion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="DominioChasis" ColumnName="DominioChasis" />
+                <ScalarProperty Name="DominioAcoplado" ColumnName="DominioAcoplado" />
+                <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
+                <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
+                <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
+                <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
+                <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cosecha">
+            <EntityTypeMapping TypeName="CSPesajeModel.Cosecha">
+              <MappingFragment StoreEntitySet="Cosecha">
+                <ScalarProperty Name="IDCosecha" ColumnName="IDCosecha" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
+                <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
+                <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
+                <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
+                <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cosecha_Producto_Tarifa">
+            <EntityTypeMapping TypeName="CSPesajeModel.Cosecha_Producto_Tarifa">
+              <MappingFragment StoreEntitySet="Cosecha_Producto_Tarifa">
+                <ScalarProperty Name="IDCosecha" ColumnName="IDCosecha" />
+                <ScalarProperty Name="IDProducto" ColumnName="IDProducto" />
+                <ScalarProperty Name="Indice" ColumnName="Indice" />
+                <ScalarProperty Name="IDPlanta" ColumnName="IDPlanta" />
+                <ScalarProperty Name="IDEntidad" ColumnName="IDEntidad" />
+                <ScalarProperty Name="IDOrigenDestino" ColumnName="IDOrigenDestino" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="FechaDesde" ColumnName="FechaDesde" />
+                <ScalarProperty Name="FechaHasta" ColumnName="FechaHasta" />
+                <ScalarProperty Name="TarifaParitariaImporte" ColumnName="TarifaParitariaImporte" />
+                <ScalarProperty Name="TarifaSecadoTipo" ColumnName="TarifaSecadoTipo" />
+                <ScalarProperty Name="TarifaSecadoInicialPunto" ColumnName="TarifaSecadoInicialPunto" />
+                <ScalarProperty Name="TarifaSecadoInicialImporte" ColumnName="TarifaSecadoInicialImporte" />
+                <ScalarProperty Name="TarifaSecadoPuntoExcesoImporte" ColumnName="TarifaSecadoPuntoExcesoImporte" />
+                <ScalarProperty Name="TarifaSecadoHumedadBase" ColumnName="TarifaSecadoHumedadBase" />
+                <ScalarProperty Name="TarifaSecadoHumedadMargenLibre" ColumnName="TarifaSecadoHumedadMargenLibre" />
+                <ScalarProperty Name="TarifaSecadoHumedadRedondeoPuntoTipo" ColumnName="TarifaSecadoHumedadRedondeoPuntoTipo" />
+                <ScalarProperty Name="TarifaZarandeoImporte" ColumnName="TarifaZarandeoImporte" />
+                <ScalarProperty Name="TarifaFumigadoImporte" ColumnName="TarifaFumigadoImporte" />
+                <ScalarProperty Name="TarifaMezclaImporte" ColumnName="TarifaMezclaImporte" />
+                <ScalarProperty Name="AlmacenajeTipo" ColumnName="AlmacenajeTipo" />
+                <ScalarProperty Name="AlmacenajeDiaGracia" ColumnName="AlmacenajeDiaGracia" />
+                <ScalarProperty Name="AlmacenajeInicio" ColumnName="AlmacenajeInicio" />
+                <ScalarProperty Name="AlmacenajePorcentajeMensual" ColumnName="AlmacenajePorcentajeMensual" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cosecha_Producto_TarifaEscala">
+            <EntityTypeMapping TypeName="CSPesajeModel.Cosecha_Producto_TarifaEscala">
+              <MappingFragment StoreEntitySet="Cosecha_Producto_TarifaEscala">
+                <ScalarProperty Name="IDCosecha" ColumnName="IDCosecha" />
+                <ScalarProperty Name="IDProducto" ColumnName="IDProducto" />
+                <ScalarProperty Name="Indice" ColumnName="Indice" />
+                <ScalarProperty Name="HumedadExcesoInicio" ColumnName="HumedadExcesoInicio" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Tarifa" ColumnName="Tarifa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Entidad">
+            <EntityTypeMapping TypeName="CSPesajeModel.Entidad">
+              <MappingFragment StoreEntitySet="Entidad">
+                <ScalarProperty Name="IDEntidad" ColumnName="IDEntidad" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="CUIT_CUIL" ColumnName="CUIT_CUIL" />
+                <ScalarProperty Name="EsTitular" ColumnName="EsTitular" />
+                <ScalarProperty Name="EsTransportista" ColumnName="EsTransportista" />
+                <ScalarProperty Name="EsChofer" ColumnName="EsChofer" />
+                <ScalarProperty Name="Transportista_IDEntidad" ColumnName="Transportista_IDEntidad" />
+                <ScalarProperty Name="IDCamion" ColumnName="IDCamion" />
+                <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
+                <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
+                <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
+                <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
+                <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Entidad_OrigenDestino">
+            <EntityTypeMapping TypeName="CSPesajeModel.Entidad_OrigenDestino">
+              <MappingFragment StoreEntitySet="Entidad_OrigenDestino">
+                <ScalarProperty Name="IDEntidad" ColumnName="IDEntidad" />
+                <ScalarProperty Name="IDOrigenDestino" ColumnName="IDOrigenDestino" />
+                <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
+                <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
+                <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
+                <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
+                <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Entidad_Planta">
+            <EntityTypeMapping TypeName="CSPesajeModel.Entidad_Planta">
+              <MappingFragment StoreEntitySet="Entidad_Planta">
+                <ScalarProperty Name="IDEntidad" ColumnName="IDEntidad" />
+                <ScalarProperty Name="IDPlanta" ColumnName="IDPlanta" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="UsoFrecuente" ColumnName="UsoFrecuente" />
+                <ScalarProperty Name="UltimoUso" ColumnName="UltimoUso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Localidad">
+            <EntityTypeMapping TypeName="CSPesajeModel.Localidad">
+              <MappingFragment StoreEntitySet="Localidad">
+                <ScalarProperty Name="IDProvincia" ColumnName="IDProvincia" />
+                <ScalarProperty Name="IDLocalidad" ColumnName="IDLocalidad" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="CodigoPostal" ColumnName="CodigoPostal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrigenDestino">
+            <EntityTypeMapping TypeName="CSPesajeModel.OrigenDestino">
+              <MappingFragment StoreEntitySet="OrigenDestino">
+                <ScalarProperty Name="IDOrigenDestino" ColumnName="IDOrigenDestino" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Domicilio" ColumnName="Domicilio" />
+                <ScalarProperty Name="IDProvincia" ColumnName="IDProvincia" />
+                <ScalarProperty Name="IDLocalidad" ColumnName="IDLocalidad" />
+                <ScalarProperty Name="CodigoPostal" ColumnName="CodigoPostal" />
+                <ScalarProperty Name="UbicacionLatitud" ColumnName="UbicacionLatitud" />
+                <ScalarProperty Name="UbicacionLongitud" ColumnName="UbicacionLongitud" />
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
+                <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
+                <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
+                <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
+                <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
+                <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Parametro">
+            <EntityTypeMapping TypeName="CSPesajeModel.Parametro">
+              <MappingFragment StoreEntitySet="Parametro">
+                <ScalarProperty Name="IDParametro" ColumnName="IDParametro" />
+                <ScalarProperty Name="Texto" ColumnName="Texto" />
+                <ScalarProperty Name="NumeroEntero" ColumnName="NumeroEntero" />
+                <ScalarProperty Name="NumeroDecimal" ColumnName="NumeroDecimal" />
+                <ScalarProperty Name="Moneda" ColumnName="Moneda" />
+                <ScalarProperty Name="FechaHora" ColumnName="FechaHora" />
+                <ScalarProperty Name="SiNo" ColumnName="SiNo" />
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pesada">
+            <EntityTypeMapping TypeName="CSPesajeModel.Pesada">
+              <MappingFragment StoreEntitySet="Pesada">
+                <ScalarProperty Name="IDPesada" ColumnName="IDPesada" />
+                <ScalarProperty Name="FechaHoraInicio" ColumnName="FechaHoraInicio" />
+                <ScalarProperty Name="FechaHoraFin" ColumnName="FechaHoraFin" />
+                <ScalarProperty Name="ComprobanteNumero" ColumnName="ComprobanteNumero" />
+                <ScalarProperty Name="IDPlanta" ColumnName="IDPlanta" />
+                <ScalarProperty Name="IDProducto" ColumnName="IDProducto" />
+                <ScalarProperty Name="IDCosecha" ColumnName="IDCosecha" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Titular_IDEntidad" ColumnName="Titular_IDEntidad" />
+                <ScalarProperty Name="IDOrigenDestino" ColumnName="IDOrigenDestino" />
+                <ScalarProperty Name="Transportista_IDEntidad" ColumnName="Transportista_IDEntidad" />
+                <ScalarProperty Name="Chofer_IDEntidad" ColumnName="Chofer_IDEntidad" />
+                <ScalarProperty Name="IDCamion" ColumnName="IDCamion" />
+                <ScalarProperty Name="Kilometro" ColumnName="Kilometro" />
+                <ScalarProperty Name="KilogramoBruto" ColumnName="KilogramoBruto" />
+                <ScalarProperty Name="KilogramoTara" ColumnName="KilogramoTara" />
+                <ScalarProperty Name="KilogramoNeto" ColumnName="KilogramoNeto" />
+                <ScalarProperty Name="KilogramoFinal" ColumnName="KilogramoFinal" />
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
+                <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
+                <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
+                <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
+                <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pesada_Acondicionamiento">
+            <EntityTypeMapping TypeName="CSPesajeModel.Pesada_Acondicionamiento">
+              <MappingFragment StoreEntitySet="Pesada_Acondicionamiento">
+                <ScalarProperty Name="IDPesada" ColumnName="IDPesada" />
+                <ScalarProperty Name="TarifaIndice" ColumnName="TarifaIndice" />
+                <ScalarProperty Name="ParitariaTarifa" ColumnName="ParitariaTarifa" />
+                <ScalarProperty Name="ParitariaImporte" ColumnName="ParitariaImporte" />
+                <ScalarProperty Name="SecadoTarifa" ColumnName="SecadoTarifa" />
+                <ScalarProperty Name="SecadoImporte" ColumnName="SecadoImporte" />
+                <ScalarProperty Name="HumedadExcesoReal" ColumnName="HumedadExcesoReal" />
+                <ScalarProperty Name="HumedadExcesoCalculo" ColumnName="HumedadExcesoCalculo" />
+                <ScalarProperty Name="SecadoExcesoTarifa" ColumnName="SecadoExcesoTarifa" />
+                <ScalarProperty Name="SecadoExcesoImporte" ColumnName="SecadoExcesoImporte" />
+                <ScalarProperty Name="ZarandeoTarifa" ColumnName="ZarandeoTarifa" />
+                <ScalarProperty Name="ZarandeoImporte" ColumnName="ZarandeoImporte" />
+                <ScalarProperty Name="FumigadoTarifa" ColumnName="FumigadoTarifa" />
+                <ScalarProperty Name="FumigadoImporte" ColumnName="FumigadoImporte" />
+                <ScalarProperty Name="MezclaTarifa" ColumnName="MezclaTarifa" />
+                <ScalarProperty Name="MezclaImporte" ColumnName="MezclaImporte" />
+                <ScalarProperty Name="ImporteTotal" ColumnName="ImporteTotal" />
+                <ScalarProperty Name="FechaLiquidacion" ColumnName="FechaLiquidacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pesada_Analisis">
+            <EntityTypeMapping TypeName="CSPesajeModel.Pesada_Analisis">
+              <MappingFragment StoreEntitySet="Pesada_Analisis">
+                <ScalarProperty Name="IDPesada" ColumnName="IDPesada" />
+                <ScalarProperty Name="Humedad" ColumnName="Humedad" />
+                <ScalarProperty Name="Zaranda" ColumnName="Zaranda" />
+                <ScalarProperty Name="GranoVerde" ColumnName="GranoVerde" />
+                <ScalarProperty Name="GranoDaniado" ColumnName="GranoDaniado" />
+                <ScalarProperty Name="PesoHectolitrico" ColumnName="PesoHectolitrico" />
+                <ScalarProperty Name="Gluten" ColumnName="Gluten" />
+                <ScalarProperty Name="Fumigado" ColumnName="Fumigado" />
+                <ScalarProperty Name="MermaVolatilKilogramo" ColumnName="MermaVolatilKilogramo" />
+                <ScalarProperty Name="MermaHumedadPorcentaje" ColumnName="MermaHumedadPorcentaje" />
+                <ScalarProperty Name="MermaHumedadKilogramo" ColumnName="MermaHumedadKilogramo" />
+                <ScalarProperty Name="MermaZarandaKilogramo" ColumnName="MermaZarandaKilogramo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pesada_Otro">
+            <EntityTypeMapping TypeName="CSPesajeModel.Pesada_Otro">
+              <MappingFragment StoreEntitySet="Pesada_Otro">
+                <ScalarProperty Name="IDPesada" ColumnName="IDPesada" />
+                <ScalarProperty Name="Producto_Nombre" ColumnName="Producto_Nombre" />
+                <ScalarProperty Name="Entidad_Nombre" ColumnName="Entidad_Nombre" />
+                <ScalarProperty Name="OrigenDestino_Nombre" ColumnName="OrigenDestino_Nombre" />
+                <ScalarProperty Name="Transportista_Nombre" ColumnName="Transportista_Nombre" />
+                <ScalarProperty Name="Transportista_CUIT" ColumnName="Transportista_CUIT" />
+                <ScalarProperty Name="Chofer_Nombre" ColumnName="Chofer_Nombre" />
+                <ScalarProperty Name="Chofer_CUIT_CUIL" ColumnName="Chofer_CUIT_CUIL" />
+                <ScalarProperty Name="Camion_DominioChasis" ColumnName="Camion_DominioChasis" />
+                <ScalarProperty Name="Camion_DominioAcoplado" ColumnName="Camion_DominioAcoplado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Planta">
+            <EntityTypeMapping TypeName="CSPesajeModel.Planta">
+              <MappingFragment StoreEntitySet="Planta">
+                <ScalarProperty Name="IDPlanta" ColumnName="IDPlanta" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="AplicaMermaVolatil" ColumnName="AplicaMermaVolatil" />
+                <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
+                <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
+                <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
+                <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
+                <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Producto">
+            <EntityTypeMapping TypeName="CSPesajeModel.Producto">
+              <MappingFragment StoreEntitySet="Producto">
+                <ScalarProperty Name="IDProducto" ColumnName="IDProducto" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="MermaVolatil" ColumnName="MermaVolatil" />
+                <ScalarProperty Name="MermaHumedadBase" ColumnName="MermaHumedadBase" />
+                <ScalarProperty Name="MermaHumedadManipuleo" ColumnName="MermaHumedadManipuleo" />
+                <ScalarProperty Name="UtilizaPlanta" ColumnName="UtilizaPlanta" />
+                <ScalarProperty Name="UsoFrecuente" ColumnName="UsoFrecuente" />
+                <ScalarProperty Name="UltimoUso" ColumnName="UltimoUso" />
+                <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
+                <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
+                <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
+                <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
+                <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Producto_Cosecha">
+            <EntityTypeMapping TypeName="CSPesajeModel.Producto_Cosecha">
+              <MappingFragment StoreEntitySet="Producto_Cosecha">
+                <ScalarProperty Name="IDProducto" ColumnName="IDProducto" />
+                <ScalarProperty Name="IDCosecha" ColumnName="IDCosecha" />
+                <ScalarProperty Name="Inicio" ColumnName="Inicio" />
+                <ScalarProperty Name="Fin" ColumnName="Fin" />
+                <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Producto_Planta">
+            <EntityTypeMapping TypeName="CSPesajeModel.Producto_Planta">
+              <MappingFragment StoreEntitySet="Producto_Planta">
+                <ScalarProperty Name="IDProducto" ColumnName="IDProducto" />
+                <ScalarProperty Name="IDPlanta" ColumnName="IDPlanta" />
+                <ScalarProperty Name="TipoEntrada" ColumnName="TipoEntrada" />
+                <ScalarProperty Name="TipoSalida" ColumnName="TipoSalida" />
+                <ScalarProperty Name="TipoNinguno" ColumnName="TipoNinguno" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Provincia">
+            <EntityTypeMapping TypeName="CSPesajeModel.Provincia">
+              <MappingFragment StoreEntitySet="Provincia">
+                <ScalarProperty Name="IDProvincia" ColumnName="IDProvincia" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reporte">
+            <EntityTypeMapping TypeName="CSPesajeModel.Reporte">
+              <MappingFragment StoreEntitySet="Reporte">
+                <ScalarProperty Name="IDReporte" ColumnName="IDReporte" />
+                <ScalarProperty Name="IDReporteGrupo" ColumnName="IDReporteGrupo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="Archivo" ColumnName="Archivo" />
+                <ScalarProperty Name="MostrarEnVisor" ColumnName="MostrarEnVisor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReporteGrupo">
+            <EntityTypeMapping TypeName="CSPesajeModel.ReporteGrupo">
+              <MappingFragment StoreEntitySet="ReporteGrupo">
+                <ScalarProperty Name="IDReporteGrupo" ColumnName="IDReporteGrupo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReporteParametro">
+            <EntityTypeMapping TypeName="CSPesajeModel.ReporteParametro">
+              <MappingFragment StoreEntitySet="ReporteParametro">
+                <ScalarProperty Name="IDReporte" ColumnName="IDReporte" />
+                <ScalarProperty Name="IDParametro" ColumnName="IDParametro" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Requerido" ColumnName="Requerido" />
+                <ScalarProperty Name="RequeridoLeyenda" ColumnName="RequeridoLeyenda" />
+                <ScalarProperty Name="ValorPredeterminadoNumeroEntero" ColumnName="ValorPredeterminadoNumeroEntero" />
+                <ScalarProperty Name="ValorPredeterminadoNumeroDecimal" ColumnName="ValorPredeterminadoNumeroDecimal" />
+                <ScalarProperty Name="ValorPredeterminadoMoneda" ColumnName="ValorPredeterminadoMoneda" />
+                <ScalarProperty Name="ValorPredeterminadoFechaHora" ColumnName="ValorPredeterminadoFechaHora" />
+                <ScalarProperty Name="ValorPredeterminadoSiNo" ColumnName="ValorPredeterminadoSiNo" />
+                <ScalarProperty Name="Orden" ColumnName="Orden" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="CSPesajeModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="IDUsuario" ColumnName="IDUsuario" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Genero" ColumnName="Genero" />
+                <ScalarProperty Name="IDUsuarioGrupo" ColumnName="IDUsuarioGrupo" />
+                <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
+                <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
+                <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
+                <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
+                <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsuarioGrupo">
+            <EntityTypeMapping TypeName="CSPesajeModel.UsuarioGrupo">
+              <MappingFragment StoreEntitySet="UsuarioGrupo">
+                <ScalarProperty Name="IDUsuarioGrupo" ColumnName="IDUsuarioGrupo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
+                <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
+                <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
+                <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
+                <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsuarioGrupoPermiso">
+            <EntityTypeMapping TypeName="CSPesajeModel.UsuarioGrupoPermiso">
+              <MappingFragment StoreEntitySet="UsuarioGrupoPermiso">
+                <ScalarProperty Name="IDUsuarioGrupo" ColumnName="IDUsuarioGrupo" />
+                <ScalarProperty Name="IDPermiso" ColumnName="IDPermiso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

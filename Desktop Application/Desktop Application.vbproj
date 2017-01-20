@@ -1,0 +1,447 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{80F91FA5-66EC-49A8-87A4-A4EBB1DDE34D}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>Sub Main</StartupObject>
+    <RootNamespace>CSPesaje.DesktopApplication</RootNamespace>
+    <AssemblyName>Desktop Application</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsFormsWithCustomSubMain</MyType>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>Desktop Application.xml</DocumentationFile>
+    <NoWarn>
+    </NoWarn>
+    <WarningsAsErrors>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</WarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>Desktop Application.xml</DocumentationFile>
+    <NoWarn>
+    </NoWarn>
+    <WarningsAsErrors>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</WarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>On</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Threading.Tasks" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\..\..\..\..\..\Users\Tomas\Dropbox\Cardoner Sistemas\Framework\Visual Basic .NET\CS_Constants.vb">
+      <Link>CS_Constants.vb</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\..\..\Users\Tomas\Dropbox\Cardoner Sistemas\Framework\Visual Basic .NET\CS_Control_TabControl.vb">
+      <Link>CS_Control_TabControl.vb</Link>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="..\..\..\..\..\..\..\Users\Tomas\Dropbox\Cardoner Sistemas\Framework\Visual Basic .NET\CS_Control_Textbox_Currency.vb">
+      <Link>CS_Control_Textbox_Currency.vb</Link>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="..\..\..\..\..\..\..\Users\Tomas\Dropbox\Cardoner Sistemas\Framework\Visual Basic .NET\CS_Control_Textbox_Number.vb">
+      <Link>CS_Control_Textbox_Number.vb</Link>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="..\..\..\..\..\..\..\Users\Tomas\Dropbox\Cardoner Sistemas\Framework\Visual Basic .NET\CS_Database_SQL.vb">
+      <Link>CS_Database_SQL.vb</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\..\..\Users\Tomas\Dropbox\Cardoner Sistemas\Framework\Visual Basic .NET\CS_Encryption_TripleDES.vb">
+      <Link>CS_Encryption_TripleDES.vb</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\..\..\Users\Tomas\Dropbox\Cardoner Sistemas\Framework\Visual Basic .NET\CS_Error.vb">
+      <Link>CS_Error.vb</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\..\..\Users\Tomas\Dropbox\Cardoner Sistemas\Framework\Visual Basic .NET\CS_ErrorMessageBox.designer.vb">
+      <Link>CS_ErrorMessageBox.designer.vb</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\..\..\Users\Tomas\Dropbox\Cardoner Sistemas\Framework\Visual Basic .NET\CS_ErrorMessageBox.vb">
+      <Link>CS_ErrorMessageBox.vb</Link>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="..\..\..\..\..\..\..\Users\Tomas\Dropbox\Cardoner Sistemas\Framework\Visual Basic .NET\CS_Form.vb">
+      <Link>CS_Form.vb</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\..\..\Users\Tomas\Dropbox\Cardoner Sistemas\Framework\Visual Basic .NET\CS_Instance.vb">
+      <Link>CS_Instance.vb</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\..\..\Users\Tomas\Dropbox\Cardoner Sistemas\Framework\Visual Basic .NET\CS_Parameter.vb">
+      <Link>CS_Parameter.vb</Link>
+    </Compile>
+    <Compile Include="Camion.vb">
+      <DependentUpon>CSPesaje.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Constantes.vb" />
+    <Compile Include="Cosecha.vb">
+      <DependentUpon>CSPesaje.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Cosecha_Producto_Tarifa.vb">
+      <DependentUpon>CSPesaje.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Cosecha_Producto_TarifaEscala.vb">
+      <DependentUpon>CSPesaje.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CSPesaje.Context.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CSPesaje.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CSPesaje.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CSPesaje.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="CSPesaje.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CSPesaje.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidad.vb">
+      <DependentUpon>CSPesaje.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidad_OrigenDestino.vb">
+      <DependentUpon>CSPesaje.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidad_Planta.vb">
+      <DependentUpon>CSPesaje.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFrameworkExtension.vb" />
+    <Compile Include="FillAndRefreshLists.vb" />
+    <Compile Include="formAboutBox.designer.vb">
+      <DependentUpon>formAboutBox.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formAboutBox.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formLogin.Designer.vb">
+      <DependentUpon>formLogin.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formLogin.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formMDIMain.Designer.vb">
+      <DependentUpon>formMDIMain.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formMDIMain.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formReportes.Designer.vb">
+      <DependentUpon>formReportes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formReportes.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formReportesParametro.Designer.vb">
+      <DependentUpon>formReportesParametro.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formReportesParametro.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formReportesVisor.Designer.vb">
+      <DependentUpon>formReportesVisor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formReportesVisor.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formSplashScreen.Designer.vb">
+      <DependentUpon>formSplashScreen.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formSplashScreen.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formUsuarioGrupoPermisos.designer.vb">
+      <DependentUpon>formUsuarioGrupoPermisos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formUsuarioGrupoPermisos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Localidad.vb">
+      <DependentUpon>CSPesaje.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MiscFunctions.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="OrigenDestino.vb">
+      <DependentUpon>CSPesaje.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Parametro.vb">
+      <DependentUpon>CSPesaje.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Parametros.vb" />
+    <Compile Include="Permisos.vb" />
+    <Compile Include="Pesada.vb">
+      <DependentUpon>CSPesaje.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pesada_Acondicionamiento.vb">
+      <DependentUpon>CSPesaje.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pesada_Analisis.vb">
+      <DependentUpon>CSPesaje.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pesada_Otro.vb">
+      <DependentUpon>CSPesaje.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Planta.vb">
+      <DependentUpon>CSPesaje.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Producto.vb">
+      <DependentUpon>CSPesaje.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Producto_Cosecha.vb">
+      <DependentUpon>CSPesaje.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Producto_Planta.vb">
+      <DependentUpon>CSPesaje.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Provincia.vb">
+      <DependentUpon>CSPesaje.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Reporte.vb">
+      <DependentUpon>CSPesaje.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ReporteGrupo.vb">
+      <DependentUpon>CSPesaje.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ReporteParametro.vb">
+      <DependentUpon>CSPesaje.tt</DependentUpon>
+    </Compile>
+    <Compile Include="StartUp.vb" />
+    <Compile Include="Usuario.vb">
+      <DependentUpon>CSPesaje.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UsuarioGrupo.vb">
+      <DependentUpon>CSPesaje.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UsuarioGrupoPermiso.vb">
+      <DependentUpon>CSPesaje.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\..\..\..\..\..\Users\Tomas\Dropbox\Cardoner Sistemas\Framework\Visual Basic .NET\CS_ErrorMessageBox.resx">
+      <Link>CS_ErrorMessageBox.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formAboutBox.resx">
+      <DependentUpon>formAboutBox.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formLogin.resx">
+      <DependentUpon>formLogin.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formMDIMain.resx">
+      <DependentUpon>formMDIMain.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formReportes.resx">
+      <DependentUpon>formReportes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formReportesParametro.resx">
+      <DependentUpon>formReportesParametro.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formReportesVisor.resx">
+      <DependentUpon>formReportesVisor.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formSplashScreen.resx">
+      <DependentUpon>formSplashScreen.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formUsuarioGrupoPermisos.resx">
+      <DependentUpon>formUsuarioGrupoPermisos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="CSPesaje.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CSPesaje.Designer.vb</LastGenOutput>
+    </EntityDeploy>
+    <None Include="CSPesaje.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CSPesaje.edmx</DependentUpon>
+      <LastGenOutput>CSPesaje.Context.vb</LastGenOutput>
+    </None>
+    <None Include="CSPesaje.edmx.diagram">
+      <DependentUpon>CSPesaje.edmx</DependentUpon>
+    </None>
+    <None Include="CSPesaje.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CSPesaje.edmx</DependentUpon>
+      <LastGenOutput>CSPesaje.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Actions-dialog-cancel-icon %286%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Actions-dialog-close-icon %288%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Actions-dialog-close-icon %286%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Login Manager %285%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Actions-document-new-icon %286%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Actions-edit-copy-icon_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Actions-edit-delete-icon %286%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Actions-document-edit-icon %286%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Window - Close All.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\WindowFitToSize16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Window - Tile Horizontally.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Window - Tile Vertically.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Move Next %28Arrow%29 Green24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Move Previous %28Arrow%29 Red24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Actions-dialog-ok-apply-icon %286%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Actions-view-pim-contacts-icon %285%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\printer %287%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\printer %286%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document-print-preview %287%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document-print-preview %286%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ReportWithChart32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Search-icon %288%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\School2_3211.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\User-Coat-Red-icon %288%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\User-Coat-Red-icon %285%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Office-Girl-icon %288%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Office-Girl-icon %285%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
