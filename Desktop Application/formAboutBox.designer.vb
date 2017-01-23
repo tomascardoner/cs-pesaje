@@ -108,6 +108,7 @@ Partial Class formAboutBox
         '
         'pictureboxIcon
         '
+        Me.pictureboxIcon.Image = Global.CSPesaje.DesktopApplication.My.Resources.Resources.IMAGE_APPLICATION_ICON_256
         Me.pictureboxIcon.Location = New System.Drawing.Point(12, 12)
         Me.pictureboxIcon.Name = "pictureboxIcon"
         Me.pictureboxIcon.Size = New System.Drawing.Size(90, 96)

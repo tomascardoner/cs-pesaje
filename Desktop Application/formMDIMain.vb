@@ -101,6 +101,21 @@
 #End Region
 
 #Region "Left Toolbar - Tablas"
+    Private Sub Entidades() Handles menutitemTablas_Entidades.Click
+        If Permisos.VerificarPermiso(Permisos.ENTIDAD) Then
+            Me.Cursor = Cursors.WaitCursor
+
+            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formEntidades, Form))
+            formEntidades.Show()
+            If formEntidades.WindowState = FormWindowState.Minimized Then
+                formEntidades.WindowState = FormWindowState.Normal
+            End If
+            formEntidades.Focus()
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
     Private Sub UsuarioGrupoPermisos() Handles menuitemTablas_Permisos.Click
         If Permisos.VerificarPermiso(Permisos.USUARIOGRUPO) Then
             Me.Cursor = Cursors.WaitCursor
@@ -117,8 +132,8 @@
     End Sub
 #End Region
 
-#Region "Left Toolbar - Entidades"
-    Private Sub Personas() Handles buttonPersonas.Click
+#Region "Left Toolbar - Pesadas"
+    Private Sub Pesadas() Handles buttonPesadas.Click
         If Permisos.VerificarPermiso(Permisos.ENTIDAD) Then
             Me.Cursor = Cursors.WaitCursor
 

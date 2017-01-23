@@ -36,7 +36,7 @@ Partial Class formSplashScreen
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.labelAppTitle.BackColor = System.Drawing.Color.Transparent
         Me.labelAppTitle.Font = New System.Drawing.Font("Tahoma", 38.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.labelAppTitle.ForeColor = System.Drawing.Color.White
+        Me.labelAppTitle.ForeColor = System.Drawing.Color.Black
         Me.labelAppTitle.Location = New System.Drawing.Point(17, 72)
         Me.labelAppTitle.Name = "labelAppTitle"
         Me.labelAppTitle.Size = New System.Drawing.Size(469, 71)
@@ -47,7 +47,7 @@ Partial Class formSplashScreen
         '
         Me.labelCompanyName.BackColor = System.Drawing.Color.Transparent
         Me.labelCompanyName.Font = New System.Drawing.Font("Tahoma", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.labelCompanyName.ForeColor = System.Drawing.Color.Gold
+        Me.labelCompanyName.ForeColor = System.Drawing.Color.Gray
         Me.labelCompanyName.Location = New System.Drawing.Point(60, 57)
         Me.labelCompanyName.Name = "labelCompanyName"
         Me.labelCompanyName.Size = New System.Drawing.Size(426, 23)
@@ -95,7 +95,8 @@ Partial Class formSplashScreen
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.DarkOliveGreen
-        Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
+        Me.BackgroundImage = Global.CSPesaje.DesktopApplication.My.Resources.Resources.IMAGE_SPLASH_SCREEN_BACKGROUND
+        Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(498, 329)
         Me.ControlBox = False
         Me.Controls.Add(Me.labelStatus)
