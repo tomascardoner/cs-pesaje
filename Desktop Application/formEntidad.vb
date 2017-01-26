@@ -6,15 +6,16 @@
 
     Private mIsLoading As Boolean = False
     Private mEditMode As Boolean = False
+    Private mIsNew As Boolean
 #End Region
 
 #Region "Form stuff"
     Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDEntidad As Integer)
         mIsLoading = True
         mEditMode = EditMode
+        mIsNew = IDEntidad = 0
 
-        If IDEntidad = 0 Then
-            ' Es Nuevo
+        If mIsNew Then
             mEntidadActual = New Entidad
             With mEntidadActual
                 .EsActivo = True
@@ -60,13 +61,15 @@
         checkboxTipoTransportista.Enabled = mEditMode
         checkboxTipoChofer.Enabled = mEditMode
 
-        buttonEntidadTransportista.Enabled = mEditMode
-        buttonEntidadTransportistaBorrar.Enabled = mEditMode
-        comboboxCamion.Enabled = mEditMode
+        buttonEntidadTransportista.Enabled = (checkboxTipoChofer.Checked And mEditMode)
+        buttonEntidadTransportistaBorrar.Enabled = (checkboxTipoChofer.Checked And mEditMode)
+        comboboxCamion.Enabled = (checkboxTipoChofer.Checked And mEditMode)
     End Sub
 
     Friend Sub InitializeFormAndControls()
         SetAppearance()
+
+        pFillAndRefreshLists.Camion(comboboxCamion, 0, False, True)
     End Sub
 
     Friend Sub SetAppearance()
@@ -141,24 +144,35 @@
         CType(sender, MaskedTextBox).SelectAll()
     End Sub
 
+    Private Sub Chofer_Click() Handles checkboxTipoChofer.CheckedChanged
+        ChangeMode()
+    End Sub
+
     Private Sub buttonEntidadTransportista_Click(sender As Object, e As EventArgs) Handles buttonEntidadTransportista.Click
         formEntidadesSeleccionar.menuitemEntidadTipo_Titular.Checked = False
-        formEntidadesSeleccionar.menuitemEntidadTipo_Transportista.Checked = False
+        formEntidadesSeleccionar.menuitemEntidadTipo_Transportista.Checked = True
         formEntidadesSeleccionar.menuitemEntidadTipo_Chofer.Checked = False
         If formEntidadesSeleccionar.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
             Dim EntidadSeleccionada As Entidad
             EntidadSeleccionada = CType(formEntidadesSeleccionar.datagridviewMain.SelectedRows(0).DataBoundItem, Entidad)
             textboxEntidadTransportista.Text = EntidadSeleccionada.Nombre
             textboxEntidadTransportista.Tag = EntidadSeleccionada.IDEntidad
+
+            pFillAndRefreshLists.Camion(comboboxCamion, EntidadSeleccionada.IDEntidad, False, True)
         End If
         formEntidadesSeleccionar.Dispose()
+
+        comboboxCamion.Focus()
     End Sub
 
     Private Sub buttonEntidadPadreBorrar_Click(sender As Object, e As EventArgs) Handles buttonEntidadTransportistaBorrar.Click
         textboxEntidadTransportista.Text = ""
         textboxEntidadTransportista.Tag = Nothing
-    End Sub
 
+        pFillAndRefreshLists.Camion(comboboxCamion, 0, False, True)
+
+        textboxEntidadTransportista.Focus()
+    End Sub
 #End Region
 
 #Region "Main Toolbar"
@@ -207,7 +221,7 @@
         'End If
 
         ' Generar el ID de la Entidad nueva
-        If mEntidadActual.IDEntidad = 0 Then
+        If mIsNew Then
             Using dbcMaxID As New CSPesajeContext(True)
                 If dbcMaxID.Entidad.Count = 0 Then
                     mEntidadActual.IDEntidad = 1

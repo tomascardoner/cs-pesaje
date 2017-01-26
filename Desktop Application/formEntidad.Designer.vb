@@ -131,7 +131,7 @@ Partial Class formEntidad
         Me.textboxNombre.Location = New System.Drawing.Point(155, 77)
         Me.textboxNombre.MaxLength = 50
         Me.textboxNombre.Name = "textboxNombre"
-        Me.textboxNombre.Size = New System.Drawing.Size(361, 20)
+        Me.textboxNombre.Size = New System.Drawing.Size(404, 20)
         Me.textboxNombre.TabIndex = 8
         '
         'toolstripMain
@@ -202,7 +202,7 @@ Partial Class formEntidad
         Me.maskedtextboxCUIT_CUIL.Location = New System.Drawing.Point(155, 115)
         Me.maskedtextboxCUIT_CUIL.Mask = "00-00000000-0"
         Me.maskedtextboxCUIT_CUIL.Name = "maskedtextboxCUIT_CUIL"
-        Me.maskedtextboxCUIT_CUIL.Size = New System.Drawing.Size(115, 20)
+        Me.maskedtextboxCUIT_CUIL.Size = New System.Drawing.Size(90, 20)
         Me.maskedtextboxCUIT_CUIL.TabIndex = 94
         Me.maskedtextboxCUIT_CUIL.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
         '
@@ -329,7 +329,7 @@ Partial Class formEntidad
         Me.comboboxCamion.FormattingEnabled = True
         Me.comboboxCamion.Location = New System.Drawing.Point(155, 206)
         Me.comboboxCamion.Name = "comboboxCamion"
-        Me.comboboxCamion.Size = New System.Drawing.Size(361, 21)
+        Me.comboboxCamion.Size = New System.Drawing.Size(404, 21)
         Me.comboboxCamion.TabIndex = 107
         '
         'formEntidad

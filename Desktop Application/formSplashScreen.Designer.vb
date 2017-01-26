@@ -47,7 +47,7 @@ Partial Class formSplashScreen
         '
         Me.labelCompanyName.BackColor = System.Drawing.Color.Transparent
         Me.labelCompanyName.Font = New System.Drawing.Font("Tahoma", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.labelCompanyName.ForeColor = System.Drawing.Color.Gray
+        Me.labelCompanyName.ForeColor = System.Drawing.Color.Black
         Me.labelCompanyName.Location = New System.Drawing.Point(60, 57)
         Me.labelCompanyName.Name = "labelCompanyName"
         Me.labelCompanyName.Size = New System.Drawing.Size(426, 23)

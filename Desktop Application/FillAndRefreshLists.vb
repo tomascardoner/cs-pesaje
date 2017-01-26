@@ -113,4 +113,31 @@
         ComboBoxControl.DataSource = listItems
     End Sub
 
+    Friend Sub Camion(ByRef ComboBoxControl As ComboBox, ByVal IDTransportista As Integer, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
+        Dim listItems As List(Of Camion)
+
+        ComboBoxControl.ValueMember = "IDCamion"
+        ComboBoxControl.DisplayMember = "Nombre"
+
+        listItems = dbContext.Camion.Where(Function(c) c.IDEntidad = IDTransportista).OrderBy(Function(c) c.Nombre).ToList
+
+        If AgregarItem_Todos Then
+            Dim Item_Todos As New Camion
+            Item_Todos.IDEntidad = IDTransportista
+            Item_Todos.IDCamion = FIELD_VALUE_ALL_BYTE
+            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            listItems.Insert(0, Item_Todos)
+        End If
+
+        If AgregarItem_NoEspecifica Then
+            Dim Item_NoEspecifica As New Camion
+            Item_NoEspecifica.IDEntidad = IDTransportista
+            Item_NoEspecifica.IDCamion = FIELD_VALUE_NOTSPECIFIED_BYTE
+            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            listItems.Insert(0, Item_NoEspecifica)
+        End If
+
+        ComboBoxControl.DataSource = listItems
+    End Sub
+
 End Class

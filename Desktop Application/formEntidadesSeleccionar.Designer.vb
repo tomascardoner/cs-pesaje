@@ -27,6 +27,10 @@ Partial Class formEntidadesSeleccionar
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.toolstripMain = New System.Windows.Forms.ToolStrip()
+        Me.labelBuscar = New System.Windows.Forms.ToolStripLabel()
+        Me.textboxBuscar = New System.Windows.Forms.ToolStripTextBox()
+        Me.buttonBuscarBorrar = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
         Me.dropdownbuttonEntidadTipos = New System.Windows.Forms.ToolStripDropDownButton()
         Me.menuitemEntidadTipo_Titular = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemEntidadTipo_Transportista = New System.Windows.Forms.ToolStripMenuItem()
@@ -34,10 +38,6 @@ Partial Class formEntidadesSeleccionar
         Me.separatorMarcarTodos = New System.Windows.Forms.ToolStripSeparator()
         Me.menuitemMarcarTodos = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemDesmarcarTodos = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
-        Me.labelBuscar = New System.Windows.Forms.ToolStripLabel()
-        Me.textboxBuscar = New System.Windows.Forms.ToolStripTextBox()
-        Me.buttonBuscarBorrar = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator4 = New System.Windows.Forms.ToolStripSeparator()
         Me.labelActivo = New System.Windows.Forms.ToolStripLabel()
         Me.comboboxActivo = New System.Windows.Forms.ToolStripComboBox()
@@ -59,11 +59,37 @@ Partial Class formEntidadesSeleccionar
         '
         Me.toolstripMain.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolstripMain.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.toolstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.dropdownbuttonEntidadTipos, Me.ToolStripSeparator3, Me.labelBuscar, Me.textboxBuscar, Me.buttonBuscarBorrar, Me.ToolStripSeparator4, Me.labelActivo, Me.comboboxActivo, Me.ToolStripSeparator1, Me.buttonSeleccionar, Me.buttonCancelar})
+        Me.toolstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelBuscar, Me.textboxBuscar, Me.buttonBuscarBorrar, Me.ToolStripSeparator3, Me.dropdownbuttonEntidadTipos, Me.ToolStripSeparator4, Me.labelActivo, Me.comboboxActivo, Me.ToolStripSeparator1, Me.buttonSeleccionar, Me.buttonCancelar})
         Me.toolstripMain.Location = New System.Drawing.Point(0, 0)
         Me.toolstripMain.Name = "toolstripMain"
         Me.toolstripMain.Size = New System.Drawing.Size(655, 39)
         Me.toolstripMain.TabIndex = 1
+        '
+        'labelBuscar
+        '
+        Me.labelBuscar.Name = "labelBuscar"
+        Me.labelBuscar.Size = New System.Drawing.Size(45, 36)
+        Me.labelBuscar.Text = "Buscar:"
+        '
+        'textboxBuscar
+        '
+        Me.textboxBuscar.MaxLength = 100
+        Me.textboxBuscar.Name = "textboxBuscar"
+        Me.textboxBuscar.Size = New System.Drawing.Size(120, 39)
+        '
+        'buttonBuscarBorrar
+        '
+        Me.buttonBuscarBorrar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.buttonBuscarBorrar.Image = Global.CSPesaje.DesktopApplication.My.Resources.Resources.IMAGE_CLOSE_16
+        Me.buttonBuscarBorrar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonBuscarBorrar.Name = "buttonBuscarBorrar"
+        Me.buttonBuscarBorrar.Size = New System.Drawing.Size(24, 36)
+        Me.buttonBuscarBorrar.ToolTipText = "Limpiar búsqueda"
+        '
+        'ToolStripSeparator3
+        '
+        Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
+        Me.ToolStripSeparator3.Size = New System.Drawing.Size(6, 39)
         '
         'dropdownbuttonEntidadTipos
         '
@@ -118,32 +144,6 @@ Partial Class formEntidadesSeleccionar
         Me.menuitemDesmarcarTodos.Name = "menuitemDesmarcarTodos"
         Me.menuitemDesmarcarTodos.Size = New System.Drawing.Size(163, 22)
         Me.menuitemDesmarcarTodos.Text = "Desmarcar todos"
-        '
-        'ToolStripSeparator3
-        '
-        Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
-        Me.ToolStripSeparator3.Size = New System.Drawing.Size(6, 39)
-        '
-        'labelBuscar
-        '
-        Me.labelBuscar.Name = "labelBuscar"
-        Me.labelBuscar.Size = New System.Drawing.Size(45, 36)
-        Me.labelBuscar.Text = "Buscar:"
-        '
-        'textboxBuscar
-        '
-        Me.textboxBuscar.MaxLength = 100
-        Me.textboxBuscar.Name = "textboxBuscar"
-        Me.textboxBuscar.Size = New System.Drawing.Size(120, 39)
-        '
-        'buttonBuscarBorrar
-        '
-        Me.buttonBuscarBorrar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.buttonBuscarBorrar.Image = Global.CSPesaje.DesktopApplication.My.Resources.Resources.IMAGE_CLOSE_16
-        Me.buttonBuscarBorrar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonBuscarBorrar.Name = "buttonBuscarBorrar"
-        Me.buttonBuscarBorrar.Size = New System.Drawing.Size(24, 36)
-        Me.buttonBuscarBorrar.ToolTipText = "Limpiar búsqueda"
         '
         'ToolStripSeparator4
         '
@@ -225,6 +225,7 @@ Partial Class formEntidadesSeleccionar
         'columnEsTitular
         '
         Me.columnEsTitular.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnEsTitular.DataPropertyName = "EsTitular"
         Me.columnEsTitular.HeaderText = "Titular"
         Me.columnEsTitular.Name = "columnEsTitular"
         Me.columnEsTitular.ReadOnly = True
@@ -233,6 +234,7 @@ Partial Class formEntidadesSeleccionar
         'columnEsTransportista
         '
         Me.columnEsTransportista.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnEsTransportista.DataPropertyName = "EsTransportista"
         Me.columnEsTransportista.HeaderText = "Transportista"
         Me.columnEsTransportista.Name = "columnEsTransportista"
         Me.columnEsTransportista.ReadOnly = True
@@ -241,6 +243,7 @@ Partial Class formEntidadesSeleccionar
         'columnChofer
         '
         Me.columnChofer.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnChofer.DataPropertyName = "EsChofer"
         Me.columnChofer.HeaderText = "Chofer"
         Me.columnChofer.Name = "columnChofer"
         Me.columnChofer.ReadOnly = True

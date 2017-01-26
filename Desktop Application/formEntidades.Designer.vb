@@ -299,6 +299,7 @@ Partial Class formEntidades
         Me.columnNombre.HeaderText = "Nombre"
         Me.columnNombre.Name = "columnNombre"
         Me.columnNombre.ReadOnly = True
+        Me.columnNombre.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic
         Me.columnNombre.Width = 69
         '
         'columnEsTitular

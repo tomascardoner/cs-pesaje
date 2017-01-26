@@ -8,8 +8,8 @@
     Private mBusquedaAplicada As Boolean = False
     Private mReportSelectionFormula As String
 
-    Private OrdenColumna As DataGridViewColumn
-    Private OrdenTipo As SortOrder
+    Private mOrdenColumna As DataGridViewColumn
+    Private mOrdenTipo As SortOrder
 #End Region
 
 #Region "Form stuff"
@@ -28,8 +28,8 @@
 
         mSkipFilterData = False
 
-        OrdenColumna = columnNombre
-        OrdenTipo = SortOrder.Ascending
+        mOrdenColumna = columnNombre
+        mOrdenTipo = SortOrder.Ascending
 
         RefreshData()
     End Sub
@@ -50,7 +50,7 @@
             End Using
 
         Catch ex As Exception
-            CS_Error.ProcessError(ex, "Error al leer las Entidads.")
+            CS_Error.ProcessError(ex, "Error al leer las Entidades.")
             Me.Cursor = Cursors.Default
             Exit Sub
         End Try
@@ -93,6 +93,11 @@
                     mlistEntidadFiltradaYOrdenada = mlistEntidadFiltradaYOrdenada.Where(Function(p) p.Nombre.ToLower.Contains(textboxBuscar.Text.ToLower.Trim)).ToList
                 End If
 
+                ' Filtro por Tipos de Entidad
+                If Not (menuitemEntidadTipo_Titular.Checked And menuitemEntidadTipo_Transportista.Checked And menuitemEntidadTipo_Chofer.Checked) Then
+                    mlistEntidadFiltradaYOrdenada = mlistEntidadFiltradaYOrdenada.Where(Function(ent) ((menuitemEntidadTipo_Titular.Checked And ent.EsTitular) Or (menuitemEntidadTipo_Transportista.Checked And ent.EsTransportista) Or (menuitemEntidadTipo_Chofer.Checked And ent.EsChofer))).ToList
+                End If
+
                 ' Filtro por Activo
                 Select Case comboboxActivo.SelectedIndex
                     Case 0      ' Todos
@@ -127,9 +132,9 @@
 
     Private Sub OrderData()
         ' Realizo las rutinas de ordenamiento
-        Select Case OrdenColumna.Name
+        Select Case mOrdenColumna.Name
             Case columnNombre.Name
-                If OrdenTipo = SortOrder.Ascending Then
+                If mOrdenTipo = SortOrder.Ascending Then
                     mlistEntidadFiltradaYOrdenada = mlistEntidadFiltradaYOrdenada.OrderBy(Function(col) col.Nombre).ToList
                 Else
                     mlistEntidadFiltradaYOrdenada = mlistEntidadFiltradaYOrdenada.OrderByDescending(Function(col) col.Nombre).ToList
@@ -138,7 +143,7 @@
         bindingsourceMain.DataSource = mlistEntidadFiltradaYOrdenada
 
         ' Muestro el ícono de orden en la columna correspondiente
-        OrdenColumna.HeaderCell.SortGlyphDirection = OrdenTipo
+        mOrdenColumna.HeaderCell.SortGlyphDirection = mOrdenTipo
     End Sub
 #End Region
 
@@ -155,6 +160,22 @@
                 Next
             End If
         End If
+    End Sub
+
+    Private Sub EntidadTipo_Click() Handles menuitemEntidadTipo_Titular.Click, menuitemEntidadTipo_Transportista.Click, menuitemEntidadTipo_Chofer.Click
+        FilterData()
+    End Sub
+
+    Private Sub MarcarYDesmarcarTodo_Click(sender As Object, e As EventArgs) Handles menuitemMarcarTodos.Click, menuitemDesmarcarTodos.Click
+        mSkipFilterData = True
+
+        menuitemEntidadTipo_Titular.Checked = (CType(sender, ToolStripMenuItem) Is menuitemMarcarTodos)
+        menuitemEntidadTipo_Transportista.Checked = (CType(sender, ToolStripMenuItem) Is menuitemMarcarTodos)
+        menuitemEntidadTipo_Chofer.Checked = (CType(sender, ToolStripMenuItem) Is menuitemMarcarTodos)
+
+        mSkipFilterData = False
+
+        FilterData()
     End Sub
 
     Private Sub textboxBuscar_GotFocus() Handles textboxBuscar.GotFocus
@@ -186,29 +207,29 @@
         FilterData()
     End Sub
 
-    Private Sub GridChangeOrder(sender As Object, e As DataGridViewCellMouseEventArgs)
+    Private Sub GridChangeOrder(sender As Object, e As DataGridViewCellMouseEventArgs) Handles datagridviewMain.ColumnHeaderMouseClick
         Dim ClickedColumn As DataGridViewColumn
 
         ClickedColumn = CType(datagridviewMain.Columns(e.ColumnIndex), DataGridViewColumn)
 
         If ClickedColumn.Name = columnNombre.Name Then
-            If ClickedColumn Is OrdenColumna Then
+            If ClickedColumn Is mOrdenColumna Then
                 ' La columna clickeada es la misma por la que ya estaba ordenado, así que cambio la dirección del orden
-                If OrdenTipo = SortOrder.Ascending Then
-                    OrdenTipo = SortOrder.Descending
+                If mOrdenTipo = SortOrder.Ascending Then
+                    mOrdenTipo = SortOrder.Descending
                 Else
-                    OrdenTipo = SortOrder.Ascending
+                    mOrdenTipo = SortOrder.Ascending
                 End If
             Else
                 ' La columna clickeada es diferencte a la que ya estaba ordenada.
                 ' En primer lugar saco el ícono de orden de la columna vieja
-                If Not OrdenColumna Is Nothing Then
-                    OrdenColumna.HeaderCell.SortGlyphDirection = SortOrder.None
+                If Not mOrdenColumna Is Nothing Then
+                    mOrdenColumna.HeaderCell.SortGlyphDirection = SortOrder.None
                 End If
 
                 ' Ahora preparo todo para la nueva columna
-                OrdenTipo = SortOrder.Ascending
-                OrdenColumna = ClickedColumn
+                mOrdenTipo = SortOrder.Ascending
+                mOrdenColumna = ClickedColumn
             End If
         End If
 
@@ -330,7 +351,6 @@
             End If
         End If
     End Sub
-
 
 #End Region
 

@@ -1,14 +1,14 @@
 ﻿Public Class formEntidadesSeleccionar
 
 #Region "Declarations"
-    Private listEntidadBase As List(Of Entidad)
-    Private listEntidadFiltradaYOrdenada As List(Of Entidad)
+    Private mlistEntidadBase As List(Of Entidad)
+    Private mlistEntidadFiltradaYOrdenada As List(Of Entidad)
 
-    Private SkipFilterData As Boolean = False
-    Private BusquedaAplicada As Boolean = False
+    Private mSkipFilterData As Boolean = False
+    Private mBusquedaAplicada As Boolean = False
 
-    Private OrdenColumna As DataGridViewColumn
-    Private OrdenTipo As SortOrder
+    Private mOrdenColumna As DataGridViewColumn
+    Private mOrdenTipo As SortOrder
 #End Region
 
 #Region "Form stuff"
@@ -17,35 +17,42 @@
         datagridviewMain.ColumnHeadersDefaultCellStyle.Font = My.Settings.GridsAndListsFont
     End Sub
 
-    Private Sub formEntidadesSeleccionar_Load() Handles Me.Load
+    Private Sub Me_Load() Handles Me.Load
         SetAppearance()
 
-        SkipFilterData = True
+        mSkipFilterData = True
 
         comboboxActivo.Items.AddRange({My.Resources.STRING_ITEM_ALL_MALE, My.Resources.STRING_YES, My.Resources.STRING_NO})
         comboboxActivo.SelectedIndex = 1
 
-        SkipFilterData = False
+        mSkipFilterData = False
 
-        OrdenColumna = columnNombre
-        OrdenTipo = SortOrder.Ascending
+        mOrdenColumna = columnNombre
+        mOrdenTipo = SortOrder.Ascending
 
         RefreshData()
     End Sub
 
-    Private Sub formEntidades_FormClosed() Handles Me.FormClosed
-        listEntidadBase = Nothing
+    Private Sub Me_FormClosed() Handles Me.FormClosed
+        mlistEntidadBase = Nothing
+        mlistEntidadFiltradaYOrdenada = Nothing
     End Sub
-
 #End Region
 
 #Region "Load and Set Data"
     Friend Sub RefreshData(Optional ByVal PositionIDEntidad As Integer = 0, Optional ByVal RestoreCurrentPosition As Boolean = False)
         Me.Cursor = Cursors.WaitCursor
 
-        Using dbcontext As New CSPesajeContext(True)
-            listEntidadBase = dbcontext.Entidad.ToList
-        End Using
+        Try
+            Using dbContext As New CSPesajeContext(True)
+                mlistEntidadBase = dbContext.Entidad.ToList
+            End Using
+
+        Catch ex As Exception
+            CS_Error.ProcessError(ex, "Error al leer las Entidades.")
+            Me.Cursor = Cursors.Default
+            Exit Sub
+        End Try
 
         Me.Cursor = Cursors.Default
 
@@ -71,33 +78,38 @@
 
     Private Sub FilterData()
 
-        If Not SkipFilterData Then
+        If Not mSkipFilterData Then
 
             Me.Cursor = Cursors.WaitCursor
 
-            If menuitemEntidadTipo_Titular.Checked And menuitemEntidadTipo_Titular.Checked And menuitemEntidadTipo_Transportista.Checked And menuitemEntidadTipo_Chofer.Checked Then
-                'TODOS LOS TIPOS DE ENTIDAD SELECCIONADOS
-                If BusquedaAplicada Then
-                    listEntidadFiltradaYOrdenada = (From ent In listEntidadBase
-                                                    Where ent.Nombre.ToLower.Contains(textboxBuscar.Text.ToLower.Trim) And (comboboxActivo.SelectedIndex = 0 Or (comboboxActivo.SelectedIndex = 1 And ent.EsActivo) Or (comboboxActivo.SelectedIndex = 2 And Not ent.EsActivo))
-                                                    Select ent).ToList
-                Else
-                    listEntidadFiltradaYOrdenada = (From ent In listEntidadBase
-                                                    Where comboboxActivo.SelectedIndex = 0 Or (comboboxActivo.SelectedIndex = 1 And ent.EsActivo) Or (comboboxActivo.SelectedIndex = 2 And Not ent.EsActivo)
-                                                    Select ent).ToList
-                End If
-            Else
-                If BusquedaAplicada Then
-                    listEntidadFiltradaYOrdenada = (From ent In listEntidadBase
-                                                    Where ((menuitemEntidadTipo_Titular.Checked And ent.EsTitular) Or (menuitemEntidadTipo_Transportista.Checked And ent.EsTransportista) Or (menuitemEntidadTipo_Chofer.Checked And ent.EsChofer)) And ent.Nombre.ToLower.Contains(textboxBuscar.Text.ToLower.Trim) And (comboboxActivo.SelectedIndex = 0 Or (comboboxActivo.SelectedIndex = 1 And ent.EsActivo) Or (comboboxActivo.SelectedIndex = 2 And Not ent.EsActivo))
-                                                    Select ent).ToList
-                Else
-                    listEntidadFiltradaYOrdenada = (From ent In listEntidadBase
-                                                    Where ((menuitemEntidadTipo_Titular.Checked And ent.EsTitular) Or (menuitemEntidadTipo_Transportista.Checked And ent.EsTransportista) Or (menuitemEntidadTipo_Chofer.Checked And ent.EsChofer)) And (comboboxActivo.SelectedIndex = 0 Or (comboboxActivo.SelectedIndex = 1 And ent.EsActivo) Or (comboboxActivo.SelectedIndex = 2 And Not ent.EsActivo))
-                                                    Select ent).ToList
+            Try
+                ' Inicializo las variables
+                mlistEntidadFiltradaYOrdenada = mlistEntidadBase
+
+                ' Filtro por Búsqueda en Nombre
+                If mBusquedaAplicada Then
+                    mlistEntidadFiltradaYOrdenada = mlistEntidadFiltradaYOrdenada.Where(Function(p) p.Nombre.ToLower.Contains(textboxBuscar.Text.ToLower.Trim)).ToList
                 End If
 
-            End If
+                ' Filtro por Tipos de Entidad
+                If Not (menuitemEntidadTipo_Titular.Checked And menuitemEntidadTipo_Transportista.Checked And menuitemEntidadTipo_Chofer.Checked) Then
+                    mlistEntidadFiltradaYOrdenada = mlistEntidadFiltradaYOrdenada.Where(Function(ent) ((menuitemEntidadTipo_Titular.Checked And ent.EsTitular) Or (menuitemEntidadTipo_Transportista.Checked And ent.EsTransportista) Or (menuitemEntidadTipo_Chofer.Checked And ent.EsChofer))).ToList
+                End If
+
+                ' Filtro por Activo
+                Select Case comboboxActivo.SelectedIndex
+                    Case 0      ' Todos
+                    Case FILTER_ACTIVO_YES_LISTINDEX       ' Sí
+                        mlistEntidadFiltradaYOrdenada = mlistEntidadFiltradaYOrdenada.Where(Function(a) a.EsActivo).ToList
+                    Case FILTER_ACTIVO_NO_LISTINDEX       ' No
+                        mlistEntidadFiltradaYOrdenada = mlistEntidadFiltradaYOrdenada.Where(Function(a) Not a.EsActivo).ToList
+                End Select
+
+            Catch ex As Exception
+                CS_Error.ProcessError(ex, "Error al filtrar los datos.")
+                Me.Cursor = Cursors.Default
+                Exit Sub
+            End Try
 
             OrderData()
 
@@ -107,18 +119,18 @@
 
     Private Sub OrderData()
         ' Realizo las rutinas de ordenamiento
-        Select Case OrdenColumna.Name
+        Select Case mOrdenColumna.Name
             Case columnNombre.Name
-                If OrdenTipo = SortOrder.Ascending Then
-                    listEntidadFiltradaYOrdenada = listEntidadFiltradaYOrdenada.OrderBy(Function(col) col.Nombre).ToList
+                If mOrdenTipo = SortOrder.Ascending Then
+                    mlistEntidadFiltradaYOrdenada = mlistEntidadFiltradaYOrdenada.OrderBy(Function(col) col.Nombre).ToList
                 Else
-                    listEntidadFiltradaYOrdenada = listEntidadFiltradaYOrdenada.OrderByDescending(Function(col) col.Nombre).ToList
+                    mlistEntidadFiltradaYOrdenada = mlistEntidadFiltradaYOrdenada.OrderByDescending(Function(col) col.Nombre).ToList
                 End If
         End Select
-        bindingsourceMain.DataSource = listEntidadFiltradaYOrdenada
+        bindingsourceMain.DataSource = mlistEntidadFiltradaYOrdenada
 
         ' Muestro el ícono de orden en la columna correspondiente
-        OrdenColumna.HeaderCell.SortGlyphDirection = OrdenTipo
+        mOrdenColumna.HeaderCell.SortGlyphDirection = mOrdenTipo
     End Sub
 
 #End Region
@@ -143,13 +155,13 @@
     End Sub
 
     Private Sub MarcarYDesmarcarTodo_Click(sender As Object, e As EventArgs) Handles menuitemMarcarTodos.Click, menuitemDesmarcarTodos.Click
-        SkipFilterData = True
+        mSkipFilterData = True
 
         menuitemEntidadTipo_Titular.Checked = (CType(sender, ToolStripMenuItem) Is menuitemMarcarTodos)
         menuitemEntidadTipo_Transportista.Checked = (CType(sender, ToolStripMenuItem) Is menuitemMarcarTodos)
         menuitemEntidadTipo_Chofer.Checked = (CType(sender, ToolStripMenuItem) Is menuitemMarcarTodos)
 
-        SkipFilterData = False
+        mSkipFilterData = False
 
         FilterData()
     End Sub
@@ -164,7 +176,7 @@
                 MsgBox("Se deben especificar al menos 3 letras para buscar.", MsgBoxStyle.Information, My.Application.Info.Title)
                 textboxBuscar.Focus()
             Else
-                BusquedaAplicada = True
+                mBusquedaAplicada = True
                 FilterData()
             End If
             e.Handled = True
@@ -172,9 +184,9 @@
     End Sub
 
     Private Sub buttonBuscarBorrar_Click() Handles buttonBuscarBorrar.Click
-        If BusquedaAplicada Then
+        If mBusquedaAplicada Then
             textboxBuscar.Clear()
-            BusquedaAplicada = False
+            mBusquedaAplicada = False
             FilterData()
         End If
     End Sub
@@ -189,23 +201,23 @@
         ClickedColumn = CType(datagridviewMain.Columns(e.ColumnIndex), DataGridViewColumn)
 
         If ClickedColumn.Name = columnNombre.Name Then
-            If ClickedColumn Is OrdenColumna Then
+            If ClickedColumn Is mOrdenColumna Then
                 ' La columna clickeada es la misma por la que ya estaba ordenado, así que cambio la dirección del orden
-                If OrdenTipo = SortOrder.Ascending Then
-                    OrdenTipo = SortOrder.Descending
+                If mOrdenTipo = SortOrder.Ascending Then
+                    mOrdenTipo = SortOrder.Descending
                 Else
-                    OrdenTipo = SortOrder.Ascending
+                    mOrdenTipo = SortOrder.Ascending
                 End If
             Else
                 ' La columna clickeada es diferencte a la que ya estaba ordenada.
                 ' En primer lugar saco el ícono de orden de la columna vieja
-                If Not OrdenColumna Is Nothing Then
-                    OrdenColumna.HeaderCell.SortGlyphDirection = SortOrder.None
+                If Not mOrdenColumna Is Nothing Then
+                    mOrdenColumna.HeaderCell.SortGlyphDirection = SortOrder.None
                 End If
 
                 ' Ahora preparo todo para la nueva columna
-                OrdenTipo = SortOrder.Ascending
-                OrdenColumna = ClickedColumn
+                mOrdenTipo = SortOrder.Ascending
+                mOrdenColumna = ClickedColumn
             End If
         End If
 
