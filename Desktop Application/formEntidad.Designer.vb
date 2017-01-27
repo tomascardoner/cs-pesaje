@@ -25,8 +25,6 @@ Partial Class formEntidad
         Me.components = New System.ComponentModel.Container()
         Dim labelTipo As System.Windows.Forms.Label
         Dim labelEsActivo As System.Windows.Forms.Label
-        Dim labelEntidadTransportista As System.Windows.Forms.Label
-        Dim labelCamion As System.Windows.Forms.Label
         Me.labelNombre = New System.Windows.Forms.Label()
         Me.labelIDEntidad = New System.Windows.Forms.Label()
         Me.textboxIDEntidad = New System.Windows.Forms.TextBox()
@@ -37,7 +35,7 @@ Partial Class formEntidad
         Me.buttonCancelar = New System.Windows.Forms.ToolStripButton()
         Me.buttonGuardar = New System.Windows.Forms.ToolStripButton()
         Me.tooltipMain = New System.Windows.Forms.ToolTip(Me.components)
-        Me.Label1 = New System.Windows.Forms.Label()
+        Me.labelCUIT_CUIL = New System.Windows.Forms.Label()
         Me.maskedtextboxCUIT_CUIL = New System.Windows.Forms.MaskedTextBox()
         Me.labelTipoChofer = New System.Windows.Forms.Label()
         Me.labelTipoTransportista = New System.Windows.Forms.Label()
@@ -46,25 +44,25 @@ Partial Class formEntidad
         Me.checkboxTipoTransportista = New System.Windows.Forms.CheckBox()
         Me.checkboxTipoTitular = New System.Windows.Forms.CheckBox()
         Me.checkboxEsActivo = New System.Windows.Forms.CheckBox()
-        Me.panelEntidadPadre = New System.Windows.Forms.Panel()
+        Me.panelEntidadTransportista = New System.Windows.Forms.Panel()
         Me.buttonEntidadTransportistaBorrar = New System.Windows.Forms.Button()
         Me.buttonEntidadTransportista = New System.Windows.Forms.Button()
         Me.textboxEntidadTransportista = New System.Windows.Forms.TextBox()
         Me.pictureboxMain = New System.Windows.Forms.PictureBox()
         Me.comboboxCamion = New System.Windows.Forms.ComboBox()
+        Me.labelEntidadTransportista = New System.Windows.Forms.Label()
+        Me.labelCamion = New System.Windows.Forms.Label()
         labelTipo = New System.Windows.Forms.Label()
         labelEsActivo = New System.Windows.Forms.Label()
-        labelEntidadTransportista = New System.Windows.Forms.Label()
-        labelCamion = New System.Windows.Forms.Label()
         Me.toolstripMain.SuspendLayout()
-        Me.panelEntidadPadre.SuspendLayout()
+        Me.panelEntidadTransportista.SuspendLayout()
         CType(Me.pictureboxMain, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'labelTipo
         '
         labelTipo.AutoSize = True
-        labelTipo.Location = New System.Drawing.Point(12, 149)
+        labelTipo.Location = New System.Drawing.Point(12, 146)
         labelTipo.Name = "labelTipo"
         labelTipo.Size = New System.Drawing.Size(31, 13)
         labelTipo.TabIndex = 95
@@ -78,24 +76,6 @@ Partial Class formEntidad
         labelEsActivo.Size = New System.Drawing.Size(40, 13)
         labelEsActivo.TabIndex = 102
         labelEsActivo.Text = "Activo:"
-        '
-        'labelEntidadTransportista
-        '
-        labelEntidadTransportista.AutoSize = True
-        labelEntidadTransportista.Location = New System.Drawing.Point(9, 178)
-        labelEntidadTransportista.Name = "labelEntidadTransportista"
-        labelEntidadTransportista.Size = New System.Drawing.Size(71, 13)
-        labelEntidadTransportista.TabIndex = 104
-        labelEntidadTransportista.Text = "Transportista:"
-        '
-        'labelCamion
-        '
-        labelCamion.AutoSize = True
-        labelCamion.Location = New System.Drawing.Point(12, 209)
-        labelCamion.Name = "labelCamion"
-        labelCamion.Size = New System.Drawing.Size(45, 13)
-        labelCamion.TabIndex = 106
-        labelCamion.Text = "Camión:"
         '
         'labelNombre
         '
@@ -183,15 +163,15 @@ Partial Class formEntidad
         Me.buttonGuardar.Size = New System.Drawing.Size(85, 36)
         Me.buttonGuardar.Text = "Guardar"
         '
-        'Label1
+        'labelCUIT_CUIL
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(12, 118)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(70, 13)
-        Me.Label1.TabIndex = 24
-        Me.Label1.Text = "CUIT / CUIL:"
-        Me.tooltipMain.SetToolTip(Me.Label1, "Ingrese el Número de Documento sin utilizar puntos.")
+        Me.labelCUIT_CUIL.AutoSize = True
+        Me.labelCUIT_CUIL.Location = New System.Drawing.Point(12, 118)
+        Me.labelCUIT_CUIL.Name = "labelCUIT_CUIL"
+        Me.labelCUIT_CUIL.Size = New System.Drawing.Size(70, 13)
+        Me.labelCUIT_CUIL.TabIndex = 24
+        Me.labelCUIT_CUIL.Text = "CUIT / CUIL:"
+        Me.tooltipMain.SetToolTip(Me.labelCUIT_CUIL, "Ingrese el Número de Documento sin utilizar puntos.")
         '
         'maskedtextboxCUIT_CUIL
         '
@@ -209,7 +189,7 @@ Partial Class formEntidad
         'labelTipoChofer
         '
         Me.labelTipoChofer.AutoSize = True
-        Me.labelTipoChofer.Location = New System.Drawing.Point(371, 149)
+        Me.labelTipoChofer.Location = New System.Drawing.Point(371, 146)
         Me.labelTipoChofer.Name = "labelTipoChofer"
         Me.labelTipoChofer.Size = New System.Drawing.Size(38, 13)
         Me.labelTipoChofer.TabIndex = 101
@@ -218,7 +198,7 @@ Partial Class formEntidad
         'labelTipoTransportista
         '
         Me.labelTipoTransportista.AutoSize = True
-        Me.labelTipoTransportista.Location = New System.Drawing.Point(260, 149)
+        Me.labelTipoTransportista.Location = New System.Drawing.Point(260, 146)
         Me.labelTipoTransportista.Name = "labelTipoTransportista"
         Me.labelTipoTransportista.Size = New System.Drawing.Size(68, 13)
         Me.labelTipoTransportista.TabIndex = 99
@@ -227,7 +207,7 @@ Partial Class formEntidad
         'labelTipoTitular
         '
         Me.labelTipoTitular.AutoSize = True
-        Me.labelTipoTitular.Location = New System.Drawing.Point(170, 149)
+        Me.labelTipoTitular.Location = New System.Drawing.Point(176, 146)
         Me.labelTipoTitular.Name = "labelTipoTitular"
         Me.labelTipoTitular.Size = New System.Drawing.Size(36, 13)
         Me.labelTipoTitular.TabIndex = 97
@@ -236,7 +216,7 @@ Partial Class formEntidad
         'checkboxTipoChofer
         '
         Me.checkboxTipoChofer.AutoSize = True
-        Me.checkboxTipoChofer.Location = New System.Drawing.Point(355, 149)
+        Me.checkboxTipoChofer.Location = New System.Drawing.Point(350, 146)
         Me.checkboxTipoChofer.Name = "checkboxTipoChofer"
         Me.checkboxTipoChofer.Size = New System.Drawing.Size(15, 14)
         Me.checkboxTipoChofer.TabIndex = 100
@@ -245,7 +225,7 @@ Partial Class formEntidad
         'checkboxTipoTransportista
         '
         Me.checkboxTipoTransportista.AutoSize = True
-        Me.checkboxTipoTransportista.Location = New System.Drawing.Point(245, 149)
+        Me.checkboxTipoTransportista.Location = New System.Drawing.Point(239, 146)
         Me.checkboxTipoTransportista.Name = "checkboxTipoTransportista"
         Me.checkboxTipoTransportista.Size = New System.Drawing.Size(15, 14)
         Me.checkboxTipoTransportista.TabIndex = 98
@@ -254,7 +234,7 @@ Partial Class formEntidad
         'checkboxTipoTitular
         '
         Me.checkboxTipoTitular.AutoSize = True
-        Me.checkboxTipoTitular.Location = New System.Drawing.Point(155, 149)
+        Me.checkboxTipoTitular.Location = New System.Drawing.Point(155, 146)
         Me.checkboxTipoTitular.Name = "checkboxTipoTitular"
         Me.checkboxTipoTitular.Size = New System.Drawing.Size(15, 14)
         Me.checkboxTipoTitular.TabIndex = 96
@@ -269,15 +249,15 @@ Partial Class formEntidad
         Me.checkboxEsActivo.TabIndex = 103
         Me.checkboxEsActivo.UseVisualStyleBackColor = True
         '
-        'panelEntidadPadre
+        'panelEntidadTransportista
         '
-        Me.panelEntidadPadre.Controls.Add(Me.buttonEntidadTransportistaBorrar)
-        Me.panelEntidadPadre.Controls.Add(Me.buttonEntidadTransportista)
-        Me.panelEntidadPadre.Controls.Add(Me.textboxEntidadTransportista)
-        Me.panelEntidadPadre.Location = New System.Drawing.Point(155, 174)
-        Me.panelEntidadPadre.Name = "panelEntidadPadre"
-        Me.panelEntidadPadre.Size = New System.Drawing.Size(405, 22)
-        Me.panelEntidadPadre.TabIndex = 105
+        Me.panelEntidadTransportista.Controls.Add(Me.buttonEntidadTransportistaBorrar)
+        Me.panelEntidadTransportista.Controls.Add(Me.buttonEntidadTransportista)
+        Me.panelEntidadTransportista.Controls.Add(Me.textboxEntidadTransportista)
+        Me.panelEntidadTransportista.Location = New System.Drawing.Point(155, 169)
+        Me.panelEntidadTransportista.Name = "panelEntidadTransportista"
+        Me.panelEntidadTransportista.Size = New System.Drawing.Size(405, 22)
+        Me.panelEntidadTransportista.TabIndex = 105
         '
         'buttonEntidadTransportistaBorrar
         '
@@ -327,20 +307,38 @@ Partial Class formEntidad
         '
         Me.comboboxCamion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxCamion.FormattingEnabled = True
-        Me.comboboxCamion.Location = New System.Drawing.Point(155, 206)
+        Me.comboboxCamion.Location = New System.Drawing.Point(155, 199)
         Me.comboboxCamion.Name = "comboboxCamion"
         Me.comboboxCamion.Size = New System.Drawing.Size(404, 21)
         Me.comboboxCamion.TabIndex = 107
+        '
+        'labelEntidadTransportista
+        '
+        Me.labelEntidadTransportista.AutoSize = True
+        Me.labelEntidadTransportista.Location = New System.Drawing.Point(12, 174)
+        Me.labelEntidadTransportista.Name = "labelEntidadTransportista"
+        Me.labelEntidadTransportista.Size = New System.Drawing.Size(71, 13)
+        Me.labelEntidadTransportista.TabIndex = 108
+        Me.labelEntidadTransportista.Text = "Transportista:"
+        '
+        'labelCamion
+        '
+        Me.labelCamion.AutoSize = True
+        Me.labelCamion.Location = New System.Drawing.Point(12, 202)
+        Me.labelCamion.Name = "labelCamion"
+        Me.labelCamion.Size = New System.Drawing.Size(45, 13)
+        Me.labelCamion.TabIndex = 109
+        Me.labelCamion.Text = "Camión:"
         '
         'formEntidad
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(571, 243)
+        Me.ClientSize = New System.Drawing.Size(571, 234)
+        Me.Controls.Add(Me.labelCamion)
+        Me.Controls.Add(Me.labelEntidadTransportista)
         Me.Controls.Add(Me.comboboxCamion)
-        Me.Controls.Add(labelCamion)
-        Me.Controls.Add(Me.panelEntidadPadre)
-        Me.Controls.Add(labelEntidadTransportista)
+        Me.Controls.Add(Me.panelEntidadTransportista)
         Me.Controls.Add(Me.checkboxEsActivo)
         Me.Controls.Add(labelEsActivo)
         Me.Controls.Add(Me.labelTipoChofer)
@@ -351,7 +349,7 @@ Partial Class formEntidad
         Me.Controls.Add(Me.checkboxTipoTitular)
         Me.Controls.Add(labelTipo)
         Me.Controls.Add(Me.maskedtextboxCUIT_CUIL)
-        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.labelCUIT_CUIL)
         Me.Controls.Add(Me.toolstripMain)
         Me.Controls.Add(Me.pictureboxMain)
         Me.Controls.Add(Me.labelIDEntidad)
@@ -366,8 +364,8 @@ Partial Class formEntidad
         Me.Text = "Detalle de la Entidad"
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()
-        Me.panelEntidadPadre.ResumeLayout(False)
-        Me.panelEntidadPadre.PerformLayout()
+        Me.panelEntidadTransportista.ResumeLayout(False)
+        Me.panelEntidadTransportista.PerformLayout()
         CType(Me.pictureboxMain, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -384,7 +382,7 @@ Partial Class formEntidad
     Friend WithEvents tooltipMain As System.Windows.Forms.ToolTip
     Friend WithEvents labelIDEntidad As System.Windows.Forms.Label
     Friend WithEvents labelNombre As System.Windows.Forms.Label
-    Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents labelCUIT_CUIL As System.Windows.Forms.Label
     Friend WithEvents maskedtextboxCUIT_CUIL As System.Windows.Forms.MaskedTextBox
     Friend WithEvents labelTipoChofer As System.Windows.Forms.Label
     Friend WithEvents labelTipoTransportista As System.Windows.Forms.Label
@@ -393,9 +391,11 @@ Partial Class formEntidad
     Friend WithEvents checkboxTipoTransportista As System.Windows.Forms.CheckBox
     Friend WithEvents checkboxTipoTitular As System.Windows.Forms.CheckBox
     Friend WithEvents checkboxEsActivo As System.Windows.Forms.CheckBox
-    Friend WithEvents panelEntidadPadre As System.Windows.Forms.Panel
+    Friend WithEvents panelEntidadTransportista As System.Windows.Forms.Panel
     Friend WithEvents buttonEntidadTransportistaBorrar As System.Windows.Forms.Button
     Friend WithEvents buttonEntidadTransportista As System.Windows.Forms.Button
     Friend WithEvents textboxEntidadTransportista As System.Windows.Forms.TextBox
     Friend WithEvents comboboxCamion As System.Windows.Forms.ComboBox
+    Friend WithEvents labelEntidadTransportista As System.Windows.Forms.Label
+    Friend WithEvents labelCamion As System.Windows.Forms.Label
 End Class

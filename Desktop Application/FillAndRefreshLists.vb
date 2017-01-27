@@ -1,16 +1,21 @@
 ﻿Friend Class FillAndRefreshLists
 
 #Region "Declarations..."
-    Friend dbContext As CSPesajeContext
+    Friend mdbContext As CSPesajeContext
 
     Public Sub New()
-        dbContext = New CSPesajeContext(True)
+        mdbContext = New CSPesajeContext(True)
     End Sub
 
     Protected Overrides Sub Finalize()
-        dbContext.Dispose()
+        mdbContext.Dispose()
         MyBase.Finalize()
     End Sub
+
+    Public Class Camion_ListItem
+        Public Property IDCamion As Byte
+        Public Property Descripcion As String
+    End Class
 
 #End Region
 
@@ -18,7 +23,7 @@
         ComboBoxControl.ValueMember = "IDProvincia"
         ComboBoxControl.DisplayMember = "Nombre"
 
-        Dim qryList = From tbl In dbContext.Provincia
+        Dim qryList = From tbl In mdbContext.Provincia
                           Order By tbl.Nombre
 
         Dim localList = qryList.ToList
@@ -36,7 +41,7 @@
         ComboBoxControl.ValueMember = "IDLocalidad"
         ComboBoxControl.DisplayMember = "Nombre"
 
-        Dim qryList = From tbl In dbContext.Localidad
+        Dim qryList = From tbl In mdbContext.Localidad
                           Where tbl.IDProvincia = IDProvincia
                           Order By tbl.Nombre
 
@@ -94,7 +99,7 @@
         ComboBoxControl.ValueMember = "IDUsuarioGrupo"
         ComboBoxControl.DisplayMember = "Nombre"
 
-        listItems = dbContext.UsuarioGrupo.OrderBy(Function(cl) cl.Nombre).ToList
+        listItems = mdbContext.UsuarioGrupo.OrderBy(Function(cl) cl.Nombre).ToList
 
         If AgregarItem_Todos Then
             Dim Item_Todos As New UsuarioGrupo
@@ -113,27 +118,43 @@
         ComboBoxControl.DataSource = listItems
     End Sub
 
-    Friend Sub Camion(ByRef ComboBoxControl As ComboBox, ByVal IDTransportista As Integer, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
-        Dim listItems As List(Of Camion)
+    Friend Sub Camion(ByRef ComboBoxControl As ComboBox, ByVal IDTransportista As Integer, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean, ByVal MostrarNombre As Boolean, ByVal MostrarPatentes As Boolean)
+        Dim listItems As List(Of Camion_ListItem)
 
         ComboBoxControl.ValueMember = "IDCamion"
-        ComboBoxControl.DisplayMember = "Nombre"
+        ComboBoxControl.DisplayMember = "Descripcion"
 
-        listItems = dbContext.Camion.Where(Function(c) c.IDEntidad = IDTransportista).OrderBy(Function(c) c.Nombre).ToList
+        If MostrarNombre And MostrarPatentes Then
+            listItems = (From c In mdbContext.Camion
+                         Where c.IDEntidad = IDTransportista
+                         Order By c.DominioChasis, c.DominioAcoplado
+                         Select New Camion_ListItem With {.IDCamion = c.IDCamion, .Descripcion = c.Nombre & CStr(If(c.DominioChasis Is Nothing, "", " - " & c.DominioChasis)) & CStr(If(c.DominioAcoplado Is Nothing, "", " - " & c.DominioAcoplado))}).ToList
+        ElseIf MostrarNombre Then
+            listItems = (From c In mdbContext.Camion
+                         Where c.IDEntidad = IDTransportista
+                         Order By c.Nombre
+                         Select New Camion_ListItem With {.IDCamion = c.IDCamion, .Descripcion = c.Nombre}).ToList
+        ElseIf MostrarPatentes Then
+            listItems = (From c In mdbContext.Camion
+                         Where c.IDEntidad = IDTransportista
+                         Order By c.DominioChasis, c.DominioAcoplado
+                         Select New Camion_ListItem With {.IDCamion = c.IDCamion, .Descripcion = CStr(If(c.DominioChasis Is Nothing, "", c.DominioChasis)) & CStr(If(c.DominioAcoplado Is Nothing, "", " - " & c.DominioAcoplado))}).ToList
+        Else
+            listItems = New List(Of Camion_ListItem)
+        End If
+
 
         If AgregarItem_Todos Then
-            Dim Item_Todos As New Camion
-            Item_Todos.IDEntidad = IDTransportista
+            Dim Item_Todos As New Camion_ListItem
             Item_Todos.IDCamion = FIELD_VALUE_ALL_BYTE
-            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            Item_Todos.Descripcion = My.Resources.STRING_ITEM_ALL_MALE
             listItems.Insert(0, Item_Todos)
         End If
 
         If AgregarItem_NoEspecifica Then
-            Dim Item_NoEspecifica As New Camion
-            Item_NoEspecifica.IDEntidad = IDTransportista
+            Dim Item_NoEspecifica As New Camion_ListItem
             Item_NoEspecifica.IDCamion = FIELD_VALUE_NOTSPECIFIED_BYTE
-            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            Item_NoEspecifica.Descripcion = My.Resources.STRING_ITEM_NOT_SPECIFIED
             listItems.Insert(0, Item_NoEspecifica)
         End If
 

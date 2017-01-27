@@ -61,15 +61,18 @@
         checkboxTipoTransportista.Enabled = mEditMode
         checkboxTipoChofer.Enabled = mEditMode
 
-        buttonEntidadTransportista.Enabled = (checkboxTipoChofer.Checked And mEditMode)
-        buttonEntidadTransportistaBorrar.Enabled = (checkboxTipoChofer.Checked And mEditMode)
+        labelEntidadTransportista.Visible = checkboxTipoChofer.Checked
+        panelEntidadTransportista.Visible = checkboxTipoChofer.Checked
+        panelEntidadTransportista.Enabled = (checkboxTipoChofer.Checked And mEditMode)
+        labelCamion.Visible = checkboxTipoChofer.Checked
+        comboboxCamion.Visible = checkboxTipoChofer.Checked
         comboboxCamion.Enabled = (checkboxTipoChofer.Checked And mEditMode)
     End Sub
 
     Friend Sub InitializeFormAndControls()
         SetAppearance()
 
-        pFillAndRefreshLists.Camion(comboboxCamion, 0, False, True)
+        CargarCamiones()
     End Sub
 
     Friend Sub SetAppearance()
@@ -106,10 +109,12 @@
                     textboxEntidadTransportista.Text = .EntidadTransportista.Nombre
                     textboxEntidadTransportista.Tag = .EntidadTransportista.IDEntidad
                 End If
+                CargarCamiones()
                 CS_Control_ComboBox.SetSelectedValue(comboboxCamion, SelectedItemOptions.ValueOrFirst, .IDCamion)
             Else
                 textboxEntidadTransportista.Text = ""
                 textboxEntidadTransportista.Tag = Nothing
+                CargarCamiones()
             End If
         End With
     End Sub
@@ -131,6 +136,10 @@
                 .IDCamion = Nothing
             End If
         End With
+    End Sub
+
+    Friend Sub CargarCamiones()
+        pFillAndRefreshLists.Camion(comboboxCamion, CInt(textboxEntidadTransportista.Tag), False, True, True, True)
     End Sub
 
 #End Region
@@ -157,11 +166,10 @@
             EntidadSeleccionada = CType(formEntidadesSeleccionar.datagridviewMain.SelectedRows(0).DataBoundItem, Entidad)
             textboxEntidadTransportista.Text = EntidadSeleccionada.Nombre
             textboxEntidadTransportista.Tag = EntidadSeleccionada.IDEntidad
-
-            pFillAndRefreshLists.Camion(comboboxCamion, EntidadSeleccionada.IDEntidad, False, True)
         End If
         formEntidadesSeleccionar.Dispose()
 
+        CargarCamiones()
         comboboxCamion.Focus()
     End Sub
 
@@ -169,8 +177,7 @@
         textboxEntidadTransportista.Text = ""
         textboxEntidadTransportista.Tag = Nothing
 
-        pFillAndRefreshLists.Camion(comboboxCamion, 0, False, True)
-
+        CargarCamiones()
         textboxEntidadTransportista.Focus()
     End Sub
 #End Region
@@ -195,16 +202,18 @@
             Exit Sub
         End If
 
-        ' Verifico el Número de Documento
-        If maskedtextboxCUIT_CUIL.Text.Trim.Length < 11 Then
-            MsgBox("El Número de CUIT / CUIL debe contener 11 dígitos (sin contar los guiones).", MsgBoxStyle.Information, My.Application.Info.Title)
-            maskedtextboxCUIT_CUIL.Focus()
-            Exit Sub
-        End If
-        If Not CS_AFIP.VerificarCUIT(maskedtextboxCUIT_CUIL.Text) Then
-            MsgBox("El Número de CUIT / CUIL ingresado es incorrecto.", MsgBoxStyle.Information, My.Application.Info.Title)
-            maskedtextboxCUIT_CUIL.Focus()
-            Exit Sub
+        ' Verifico el Número de CUIT / CUIL
+        If maskedtextboxCUIT_CUIL.Text.Trim.Length > 0 Then
+            If maskedtextboxCUIT_CUIL.Text.Trim.Length < 11 Then
+                MsgBox("El Número de CUIT / CUIL debe contener 11 dígitos (sin contar los guiones).", MsgBoxStyle.Information, My.Application.Info.Title)
+                maskedtextboxCUIT_CUIL.Focus()
+                Exit Sub
+            End If
+            If Not CS_AFIP.VerificarCUIT(maskedtextboxCUIT_CUIL.Text) Then
+                MsgBox("El Número de CUIT / CUIL ingresado es incorrecto.", MsgBoxStyle.Information, My.Application.Info.Title)
+                maskedtextboxCUIT_CUIL.Focus()
+                Exit Sub
+            End If
         End If
 
         'If checkboxTipoChofer.Checked Then
