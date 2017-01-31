@@ -35,5 +35,6 @@ Partial Public Class Entidad
     Public Overridable Property Entidades_OrigenesDestinos As ICollection(Of Entidad_OrigenDestino) = New HashSet(Of Entidad_OrigenDestino)
     Public Overridable Property UsuarioCreacion As Usuario
     Public Overridable Property UsuarioModificacion As Usuario
+    Public Overridable Property Camion1 As ICollection(Of Camion) = New HashSet(Of Camion)
 
 End Class

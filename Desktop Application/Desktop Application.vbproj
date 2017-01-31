@@ -161,11 +161,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CSPesaje.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="CSPesaje.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CSPesaje.edmx</DependentUpon>
-    </Compile>
     <Compile Include="CSPesaje.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -186,6 +181,12 @@
       <DependentUpon>formAboutBox.vb</DependentUpon>
     </Compile>
     <Compile Include="formAboutBox.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formPesadas.Designer.vb">
+      <DependentUpon>formPesadas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formPesadas.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="formEntidadesSeleccionar.Designer.vb">
@@ -333,6 +334,9 @@
     <EmbeddedResource Include="formEntidad.resx">
       <DependentUpon>formEntidad.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="formPesadas.resx">
+      <DependentUpon>formPesadas.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="formEntidades.resx">
       <DependentUpon>formEntidades.vb</DependentUpon>
     </EmbeddedResource>
@@ -368,10 +372,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="CSPesaje.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>CSPesaje.Designer.vb</LastGenOutput>
-    </EntityDeploy>
+    <EntityDeploy Include="CSPesaje.edmx" />
     <None Include="CSPesaje.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>CSPesaje.edmx</DependentUpon>

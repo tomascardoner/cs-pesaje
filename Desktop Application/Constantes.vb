@@ -11,6 +11,10 @@
     Friend Const PERSONA_GENERO_MASCULINO As String = "M"
     Friend Const PERSONA_GENERO_FEMENINO As String = "F"
 
+    Friend Const PESADA_TIPO_ENTRADA As String = "E"
+    Friend Const PESADA_TIPO_SALIDA As String = "S"
+    Friend Const PESADA_TIPO_NINGUNA As String = "N"
+
     '///////////////////////////////////
     '    PARÁMETROS DE LOS REPORTES
     '///////////////////////////////////

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CSPesajeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="CSPesajeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Camion">
           <Key>
             <PropertyRef Name="IDEntidad" />
@@ -15,6 +15,7 @@
           <Property Name="Nombre" Type="varchar" MaxLength="50" />
           <Property Name="DominioChasis" Type="varchar" MaxLength="7" />
           <Property Name="DominioAcoplado" Type="varchar" MaxLength="7" />
+          <Property Name="NombreDominios" Type="varchar" MaxLength="72" StoreGeneratedPattern="Computed" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
@@ -175,6 +176,7 @@
           <Property Name="IDProducto" Type="tinyint" Nullable="false" />
           <Property Name="IDCosecha" Type="tinyint" />
           <Property Name="Tipo" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="TipoNombre" Type="varchar" MaxLength="7" StoreGeneratedPattern="Computed" />
           <Property Name="Titular_IDEntidad" Type="int" Nullable="false" />
           <Property Name="IDOrigenDestino" Type="int" />
           <Property Name="Transportista_IDEntidad" Type="int" />
@@ -468,6 +470,18 @@
               <PropertyRef Name="IDCosecha" />
               <PropertyRef Name="IDProducto" />
               <PropertyRef Name="Indice" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Entidad__Camion">
+          <End Role="Entidad" Type="Self.Entidad" Multiplicity="1" />
+          <End Role="Camion" Type="Self.Camion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entidad">
+              <PropertyRef Name="IDEntidad" />
+            </Principal>
+            <Dependent Role="Camion">
+              <PropertyRef Name="IDEntidad" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1019,6 +1033,10 @@
             <End Role="Cosecha_Producto_Tarifa" EntitySet="Cosecha_Producto_Tarifa" />
             <End Role="Cosecha_Producto_TarifaEscala" EntitySet="Cosecha_Producto_TarifaEscala" />
           </AssociationSet>
+          <AssociationSet Name="FK__Entidad__Camion" Association="Self.FK__Entidad__Camion">
+            <End Role="Entidad" EntitySet="Entidad" />
+            <End Role="Camion" EntitySet="Camion" />
+          </AssociationSet>
           <AssociationSet Name="FK__Entidad__Entidad__Transportista" Association="Self.FK__Entidad__Entidad__Transportista">
             <End Role="Entidad" EntitySet="Entidad" />
             <End Role="Entidad1" EntitySet="Entidad" />
@@ -1184,12 +1202,234 @@
             <End Role="UsuarioGrupoPermiso" EntitySet="UsuarioGrupoPermiso" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CSPesajeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Camion">
+		<EntityContainer Name="CSPesajeContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Camion" EntityType="CSPesajeModel.Camion" />
+          <EntitySet Name="Cosecha" EntityType="CSPesajeModel.Cosecha" />
+          <EntitySet Name="Cosecha_Producto_Tarifa" EntityType="CSPesajeModel.Cosecha_Producto_Tarifa" />
+          <EntitySet Name="Cosecha_Producto_TarifaEscala" EntityType="CSPesajeModel.Cosecha_Producto_TarifaEscala" />
+          <EntitySet Name="Entidad" EntityType="CSPesajeModel.Entidad" />
+          <EntitySet Name="Entidad_OrigenDestino" EntityType="CSPesajeModel.Entidad_OrigenDestino" />
+          <EntitySet Name="Entidad_Planta" EntityType="CSPesajeModel.Entidad_Planta" />
+          <EntitySet Name="Localidad" EntityType="CSPesajeModel.Localidad" />
+          <EntitySet Name="OrigenDestino" EntityType="CSPesajeModel.OrigenDestino" />
+          <EntitySet Name="Parametro" EntityType="CSPesajeModel.Parametro" />
+          <EntitySet Name="Pesada" EntityType="CSPesajeModel.Pesada" />
+          <EntitySet Name="Pesada_Acondicionamiento" EntityType="CSPesajeModel.Pesada_Acondicionamiento" />
+          <EntitySet Name="Pesada_Analisis" EntityType="CSPesajeModel.Pesada_Analisis" />
+          <EntitySet Name="Pesada_Otro" EntityType="CSPesajeModel.Pesada_Otro" />
+          <EntitySet Name="Planta" EntityType="CSPesajeModel.Planta" />
+          <EntitySet Name="Producto" EntityType="CSPesajeModel.Producto" />
+          <EntitySet Name="Producto_Cosecha" EntityType="CSPesajeModel.Producto_Cosecha" />
+          <EntitySet Name="Producto_Planta" EntityType="CSPesajeModel.Producto_Planta" />
+          <EntitySet Name="Provincia" EntityType="CSPesajeModel.Provincia" />
+          <EntitySet Name="Reporte" EntityType="CSPesajeModel.Reporte" />
+          <EntitySet Name="ReporteGrupo" EntityType="CSPesajeModel.ReporteGrupo" />
+          <EntitySet Name="ReporteParametro" EntityType="CSPesajeModel.ReporteParametro" />
+          <EntitySet Name="Usuario" EntityType="CSPesajeModel.Usuario" />
+          <EntitySet Name="UsuarioGrupo" EntityType="CSPesajeModel.UsuarioGrupo" />
+          <EntitySet Name="UsuarioGrupoPermiso" EntityType="CSPesajeModel.UsuarioGrupoPermiso" />
+          <AssociationSet Name="FK__Camion__Entidad" Association="CSPesajeModel.FK__Camion__Entidad">
+            <End Role="Camion" EntitySet="Camion" />
+            <End Role="Entidad" EntitySet="Entidad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Camion__Pesada" Association="CSPesajeModel.FK__Camion__Pesada">
+            <End Role="Camion" EntitySet="Camion" />
+            <End Role="Pesada" EntitySet="Pesada" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Camion__Creacion" Association="CSPesajeModel.FK__Usuario__Camion__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Camion" EntitySet="Camion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Camion__Modificacion" Association="CSPesajeModel.FK__Usuario__Camion__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Camion" EntitySet="Camion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cosecha__Cosecha_Producto_Tarifa" Association="CSPesajeModel.FK__Cosecha__Cosecha_Producto_Tarifa">
+            <End Role="Cosecha" EntitySet="Cosecha" />
+            <End Role="Cosecha_Producto_Tarifa" EntitySet="Cosecha_Producto_Tarifa" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cosecha__Pesada" Association="CSPesajeModel.FK__Cosecha__Pesada">
+            <End Role="Cosecha" EntitySet="Cosecha" />
+            <End Role="Pesada" EntitySet="Pesada" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cosecha__Producto_Cosecha" Association="CSPesajeModel.FK__Cosecha__Producto_Cosecha">
+            <End Role="Cosecha" EntitySet="Cosecha" />
+            <End Role="Producto_Cosecha" EntitySet="Producto_Cosecha" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Cosecha__Creacion" Association="CSPesajeModel.FK__Usuario__Cosecha__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Cosecha" EntitySet="Cosecha" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Cosecha__Modificacion" Association="CSPesajeModel.FK__Usuario__Cosecha__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Cosecha" EntitySet="Cosecha" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cosecha_Producto_Tarifa" Association="CSPesajeModel.FK__Cosecha_Producto_Tarifa">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Cosecha_Producto_Tarifa" EntitySet="Cosecha_Producto_Tarifa" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cosecha_Producto_Tarifa__Cosecha_Producto_TarifaEscala" Association="CSPesajeModel.FK__Cosecha_Producto_Tarifa__Cosecha_Producto_TarifaEscala">
+            <End Role="Cosecha_Producto_Tarifa" EntitySet="Cosecha_Producto_Tarifa" />
+            <End Role="Cosecha_Producto_TarifaEscala" EntitySet="Cosecha_Producto_TarifaEscala" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Planta__Cosecha_Producto_Tarifa" Association="CSPesajeModel.FK__Planta__Cosecha_Producto_Tarifa">
+            <End Role="Planta" EntitySet="Planta" />
+            <End Role="Cosecha_Producto_Tarifa" EntitySet="Cosecha_Producto_Tarifa" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Entidad__Entidad__Transportista" Association="CSPesajeModel.FK__Entidad__Entidad__Transportista">
+            <End Role="Entidad" EntitySet="Entidad" />
+            <End Role="Entidad1" EntitySet="Entidad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Entidad__Entidad_Planta" Association="CSPesajeModel.FK__Entidad__Entidad_Planta">
+            <End Role="Entidad" EntitySet="Entidad" />
+            <End Role="Entidad_Planta" EntitySet="Entidad_Planta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Entidad__Pesada__Chofer" Association="CSPesajeModel.FK__Entidad__Pesada__Chofer">
+            <End Role="Entidad" EntitySet="Entidad" />
+            <End Role="Pesada" EntitySet="Pesada" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Entidad__Pesada__Titular" Association="CSPesajeModel.FK__Entidad__Pesada__Titular">
+            <End Role="Entidad" EntitySet="Entidad" />
+            <End Role="Pesada" EntitySet="Pesada" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Entidad__Pesada__Transportista" Association="CSPesajeModel.FK__Entidad__Pesada__Transportista">
+            <End Role="Entidad" EntitySet="Entidad" />
+            <End Role="Pesada" EntitySet="Pesada" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrigenDestino_Entidad__Entidad" Association="CSPesajeModel.FK__OrigenDestino_Entidad__Entidad">
+            <End Role="Entidad" EntitySet="Entidad" />
+            <End Role="Entidad_OrigenDestino" EntitySet="Entidad_OrigenDestino" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Entidad__Creacion" Association="CSPesajeModel.FK__Usuario__Entidad__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Entidad" EntitySet="Entidad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Entidad__Modificacion" Association="CSPesajeModel.FK__Usuario__Entidad__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Entidad" EntitySet="Entidad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrigenDestino__Entidad_OrigenDestino" Association="CSPesajeModel.FK__OrigenDestino__Entidad_OrigenDestino">
+            <End Role="OrigenDestino" EntitySet="OrigenDestino" />
+            <End Role="Entidad_OrigenDestino" EntitySet="Entidad_OrigenDestino" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Entidad_OrigenDestino__Creacion" Association="CSPesajeModel.FK__Usuario__Entidad_OrigenDestino__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Entidad_OrigenDestino" EntitySet="Entidad_OrigenDestino" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Entidad_OrigenDestino__Modificacion" Association="CSPesajeModel.FK__Usuario__Entidad_OrigenDestino__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Entidad_OrigenDestino" EntitySet="Entidad_OrigenDestino" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Planta__Entidad_Planta" Association="CSPesajeModel.FK__Planta__Entidad_Planta">
+            <End Role="Planta" EntitySet="Planta" />
+            <End Role="Entidad_Planta" EntitySet="Entidad_Planta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Localidad__OrigenDestino" Association="CSPesajeModel.FK__Localidad__OrigenDestino">
+            <End Role="Localidad" EntitySet="Localidad" />
+            <End Role="OrigenDestino" EntitySet="OrigenDestino" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Provincia__Localidad" Association="CSPesajeModel.FK__Provincia__Localidad">
+            <End Role="Provincia" EntitySet="Provincia" />
+            <End Role="Localidad" EntitySet="Localidad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__OrigenDestino__Creacion" Association="CSPesajeModel.FK__Usuario__OrigenDestino__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="OrigenDestino" EntitySet="OrigenDestino" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__OrigenDestino__Modificacion" Association="CSPesajeModel.FK__Usuario__OrigenDestino__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="OrigenDestino" EntitySet="OrigenDestino" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pesada__Pesada_Acondicionamiento" Association="CSPesajeModel.FK__Pesada__Pesada_Acondicionamiento">
+            <End Role="Pesada" EntitySet="Pesada" />
+            <End Role="Pesada_Acondicionamiento" EntitySet="Pesada_Acondicionamiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pesada__Pesada_Analisis" Association="CSPesajeModel.FK__Pesada__Pesada_Analisis">
+            <End Role="Pesada" EntitySet="Pesada" />
+            <End Role="Pesada_Analisis" EntitySet="Pesada_Analisis" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pesada__Pesada_Otro" Association="CSPesajeModel.FK__Pesada__Pesada_Otro">
+            <End Role="Pesada" EntitySet="Pesada" />
+            <End Role="Pesada_Otro" EntitySet="Pesada_Otro" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Planta__Pesada" Association="CSPesajeModel.FK__Planta__Pesada">
+            <End Role="Planta" EntitySet="Planta" />
+            <End Role="Pesada" EntitySet="Pesada" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Producto__Pesada" Association="CSPesajeModel.FK__Producto__Pesada">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Pesada" EntitySet="Pesada" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Pesada__Creacion" Association="CSPesajeModel.FK__Usuario__Pesada__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Pesada" EntitySet="Pesada" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Pesada__Modificacion" Association="CSPesajeModel.FK__Usuario__Pesada__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Pesada" EntitySet="Pesada" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Planta__Producto_Planta" Association="CSPesajeModel.FK__Planta__Producto_Planta">
+            <End Role="Planta" EntitySet="Planta" />
+            <End Role="Producto_Planta" EntitySet="Producto_Planta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Planta__Creacion" Association="CSPesajeModel.FK__Usuario__Planta__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Planta" EntitySet="Planta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Planta__Modificacion" Association="CSPesajeModel.FK__Usuario__Planta__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Planta" EntitySet="Planta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Producto__Producto_Cosecha" Association="CSPesajeModel.FK__Producto__Producto_Cosecha">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Producto_Cosecha" EntitySet="Producto_Cosecha" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Producto__Producto_Planta" Association="CSPesajeModel.FK__Producto__Producto_Planta">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Producto_Planta" EntitySet="Producto_Planta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Producto__Creacion" Association="CSPesajeModel.FK__Usuario__Producto__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Producto__Modificacion" Association="CSPesajeModel.FK__Usuario__Producto__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reporte__ReporteParametro" Association="CSPesajeModel.FK__Reporte__ReporteParametro">
+            <End Role="Reporte" EntitySet="Reporte" />
+            <End Role="ReporteParametro" EntitySet="ReporteParametro" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ReporteGrupo__Reporte" Association="CSPesajeModel.FK__ReporteGrupo__Reporte">
+            <End Role="ReporteGrupo" EntitySet="ReporteGrupo" />
+            <End Role="Reporte" EntitySet="Reporte" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__UsuarioGrupo__Creacion" Association="CSPesajeModel.FK__Usuario__UsuarioGrupo__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="UsuarioGrupo" EntitySet="UsuarioGrupo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__UsuarioGrupo__Modificacion" Association="CSPesajeModel.FK__Usuario__UsuarioGrupo__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="UsuarioGrupo" EntitySet="UsuarioGrupo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UsuarioGrupo__Usuario" Association="CSPesajeModel.FK__UsuarioGrupo__Usuario">
+            <End Role="UsuarioGrupo" EntitySet="UsuarioGrupo" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UsuarioGrupo__UsuarioGrupoPermiso" Association="CSPesajeModel.FK__UsuarioGrupo__UsuarioGrupoPermiso">
+            <End Role="UsuarioGrupo" EntitySet="UsuarioGrupo" />
+            <End Role="UsuarioGrupoPermiso" EntitySet="UsuarioGrupoPermiso" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Entidad__Camion" Association="CSPesajeModel.FK__Entidad__Camion">
+            <End Role="Entidad" EntitySet="Entidad" />
+            <End Role="Camion" EntitySet="Camion" />
+          </AssociationSet>
+        </EntityContainer>		
+		<EntityType Name="Camion">
           <Key>
             <PropertyRef Name="IDEntidad" />
             <PropertyRef Name="IDCamion" />
@@ -1199,15 +1439,17 @@
           <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="DominioChasis" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
           <Property Name="DominioAcoplado" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
+          <Property Name="NombreDominios" Type="String" MaxLength="72" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Entidad" Relationship="Self.FK__Camion__Entidad" FromRole="Camion" ToRole="Entidad" />
-          <NavigationProperty Name="Pesadas" Relationship="Self.FK__Camion__Pesada" FromRole="Camion" ToRole="Pesada" />
-          <NavigationProperty Name="UsuarioCreacion" Relationship="Self.FK__Usuario__Camion__Creacion" FromRole="Camion" ToRole="Usuario" />
-          <NavigationProperty Name="UsuarioModificacion" Relationship="Self.FK__Usuario__Camion__Modificacion" FromRole="Camion" ToRole="Usuario" />
+          <NavigationProperty Name="Entidad" Relationship="CSPesajeModel.FK__Camion__Entidad" FromRole="Camion" ToRole="Entidad" />
+          <NavigationProperty Name="Pesadas" Relationship="CSPesajeModel.FK__Camion__Pesada" FromRole="Camion" ToRole="Pesada" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSPesajeModel.FK__Usuario__Camion__Creacion" FromRole="Camion" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSPesajeModel.FK__Usuario__Camion__Modificacion" FromRole="Camion" ToRole="Usuario" />
+          <NavigationProperty Name="Entidad1" Relationship="CSPesajeModel.FK__Entidad__Camion" FromRole="Camion" ToRole="Entidad" />
         </EntityType>
         <EntityType Name="Cosecha">
           <Key>
@@ -1220,11 +1462,11 @@
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Cosecha_Producto_Tarifa" Relationship="Self.FK__Cosecha__Cosecha_Producto_Tarifa" FromRole="Cosecha" ToRole="Cosecha_Producto_Tarifa" />
-          <NavigationProperty Name="Pesadas" Relationship="Self.FK__Cosecha__Pesada" FromRole="Cosecha" ToRole="Pesada" />
-          <NavigationProperty Name="Productos_Cosechas" Relationship="Self.FK__Cosecha__Producto_Cosecha" FromRole="Cosecha" ToRole="Producto_Cosecha" />
-          <NavigationProperty Name="UsuarioCreacion" Relationship="Self.FK__Usuario__Cosecha__Creacion" FromRole="Cosecha" ToRole="Usuario" />
-          <NavigationProperty Name="UsuarioModificacion" Relationship="Self.FK__Usuario__Cosecha__Modificacion" FromRole="Cosecha" ToRole="Usuario" />
+          <NavigationProperty Name="Cosecha_Producto_Tarifa" Relationship="CSPesajeModel.FK__Cosecha__Cosecha_Producto_Tarifa" FromRole="Cosecha" ToRole="Cosecha_Producto_Tarifa" />
+          <NavigationProperty Name="Pesadas" Relationship="CSPesajeModel.FK__Cosecha__Pesada" FromRole="Cosecha" ToRole="Pesada" />
+          <NavigationProperty Name="Productos_Cosechas" Relationship="CSPesajeModel.FK__Cosecha__Producto_Cosecha" FromRole="Cosecha" ToRole="Producto_Cosecha" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSPesajeModel.FK__Usuario__Cosecha__Creacion" FromRole="Cosecha" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSPesajeModel.FK__Usuario__Cosecha__Modificacion" FromRole="Cosecha" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="Cosecha_Producto_Tarifa">
           <Key>
@@ -1256,10 +1498,10 @@
           <Property Name="AlmacenajeDiaGracia" Type="Int16" />
           <Property Name="AlmacenajeInicio" Type="DateTime" Precision="0" />
           <Property Name="AlmacenajePorcentajeMensual" Type="Decimal" Precision="2" Scale="1" Nullable="false" />
-          <NavigationProperty Name="Cosecha" Relationship="Self.FK__Cosecha__Cosecha_Producto_Tarifa" FromRole="Cosecha_Producto_Tarifa" ToRole="Cosecha" />
-          <NavigationProperty Name="Producto" Relationship="Self.FK__Cosecha_Producto_Tarifa" FromRole="Cosecha_Producto_Tarifa" ToRole="Producto" />
-          <NavigationProperty Name="Cosecha_Producto_TarifaEscala" Relationship="Self.FK__Cosecha_Producto_Tarifa__Cosecha_Producto_TarifaEscala" FromRole="Cosecha_Producto_Tarifa" ToRole="Cosecha_Producto_TarifaEscala" />
-          <NavigationProperty Name="Planta" Relationship="Self.FK__Planta__Cosecha_Producto_Tarifa" FromRole="Cosecha_Producto_Tarifa" ToRole="Planta" />
+          <NavigationProperty Name="Cosecha" Relationship="CSPesajeModel.FK__Cosecha__Cosecha_Producto_Tarifa" FromRole="Cosecha_Producto_Tarifa" ToRole="Cosecha" />
+          <NavigationProperty Name="Producto" Relationship="CSPesajeModel.FK__Cosecha_Producto_Tarifa" FromRole="Cosecha_Producto_Tarifa" ToRole="Producto" />
+          <NavigationProperty Name="Cosecha_Producto_TarifaEscala" Relationship="CSPesajeModel.FK__Cosecha_Producto_Tarifa__Cosecha_Producto_TarifaEscala" FromRole="Cosecha_Producto_Tarifa" ToRole="Cosecha_Producto_TarifaEscala" />
+          <NavigationProperty Name="Planta" Relationship="CSPesajeModel.FK__Planta__Cosecha_Producto_Tarifa" FromRole="Cosecha_Producto_Tarifa" ToRole="Planta" />
         </EntityType>
         <EntityType Name="Cosecha_Producto_TarifaEscala">
           <Key>
@@ -1274,7 +1516,7 @@
           <Property Name="HumedadExcesoInicio" Type="Decimal" Precision="3" Scale="1" Nullable="false" />
           <Property Name="Tipo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="Tarifa" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <NavigationProperty Name="Cosecha_Producto_Tarifa" Relationship="Self.FK__Cosecha_Producto_Tarifa__Cosecha_Producto_TarifaEscala" FromRole="Cosecha_Producto_TarifaEscala" ToRole="Cosecha_Producto_Tarifa" />
+          <NavigationProperty Name="Cosecha_Producto_Tarifa" Relationship="CSPesajeModel.FK__Cosecha_Producto_Tarifa__Cosecha_Producto_TarifaEscala" FromRole="Cosecha_Producto_TarifaEscala" ToRole="Cosecha_Producto_Tarifa" />
         </EntityType>
         <EntityType Name="Entidad">
           <Key>
@@ -1293,16 +1535,17 @@
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Camiones" Relationship="Self.FK__Camion__Entidad" FromRole="Entidad" ToRole="Camion" />
-          <NavigationProperty Name="EntidadesChoferes" Relationship="Self.FK__Entidad__Entidad__Transportista" FromRole="Entidad" ToRole="Entidad1" />
-          <NavigationProperty Name="EntidadTransportista" Relationship="Self.FK__Entidad__Entidad__Transportista" FromRole="Entidad1" ToRole="Entidad" />
-          <NavigationProperty Name="Entidades_Plantas" Relationship="Self.FK__Entidad__Entidad_Planta" FromRole="Entidad" ToRole="Entidad_Planta" />
-          <NavigationProperty Name="PesadasComoChofer" Relationship="Self.FK__Entidad__Pesada__Chofer" FromRole="Entidad" ToRole="Pesada" />
-          <NavigationProperty Name="PesadasComoTitular" Relationship="Self.FK__Entidad__Pesada__Titular" FromRole="Entidad" ToRole="Pesada" />
-          <NavigationProperty Name="PesadasComoTransportista" Relationship="Self.FK__Entidad__Pesada__Transportista" FromRole="Entidad" ToRole="Pesada" />
-          <NavigationProperty Name="Entidades_OrigenesDestinos" Relationship="Self.FK__OrigenDestino_Entidad__Entidad" FromRole="Entidad" ToRole="Entidad_OrigenDestino" />
-          <NavigationProperty Name="UsuarioCreacion" Relationship="Self.FK__Usuario__Entidad__Creacion" FromRole="Entidad" ToRole="Usuario" />
-          <NavigationProperty Name="UsuarioModificacion" Relationship="Self.FK__Usuario__Entidad__Modificacion" FromRole="Entidad" ToRole="Usuario" />
+          <NavigationProperty Name="Camiones" Relationship="CSPesajeModel.FK__Camion__Entidad" FromRole="Entidad" ToRole="Camion" />
+          <NavigationProperty Name="EntidadesChoferes" Relationship="CSPesajeModel.FK__Entidad__Entidad__Transportista" FromRole="Entidad" ToRole="Entidad1" />
+          <NavigationProperty Name="EntidadTransportista" Relationship="CSPesajeModel.FK__Entidad__Entidad__Transportista" FromRole="Entidad1" ToRole="Entidad" />
+          <NavigationProperty Name="Entidades_Plantas" Relationship="CSPesajeModel.FK__Entidad__Entidad_Planta" FromRole="Entidad" ToRole="Entidad_Planta" />
+          <NavigationProperty Name="PesadasComoChofer" Relationship="CSPesajeModel.FK__Entidad__Pesada__Chofer" FromRole="Entidad" ToRole="Pesada" />
+          <NavigationProperty Name="PesadasComoTitular" Relationship="CSPesajeModel.FK__Entidad__Pesada__Titular" FromRole="Entidad" ToRole="Pesada" />
+          <NavigationProperty Name="PesadasComoTransportista" Relationship="CSPesajeModel.FK__Entidad__Pesada__Transportista" FromRole="Entidad" ToRole="Pesada" />
+          <NavigationProperty Name="Entidades_OrigenesDestinos" Relationship="CSPesajeModel.FK__OrigenDestino_Entidad__Entidad" FromRole="Entidad" ToRole="Entidad_OrigenDestino" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSPesajeModel.FK__Usuario__Entidad__Creacion" FromRole="Entidad" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSPesajeModel.FK__Usuario__Entidad__Modificacion" FromRole="Entidad" ToRole="Usuario" />
+          <NavigationProperty Name="Camion1" Relationship="CSPesajeModel.FK__Entidad__Camion" FromRole="Entidad" ToRole="Camion" />
         </EntityType>
         <EntityType Name="Entidad_OrigenDestino">
           <Key>
@@ -1316,10 +1559,10 @@
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Entidad" Relationship="Self.FK__OrigenDestino_Entidad__Entidad" FromRole="Entidad_OrigenDestino" ToRole="Entidad" />
-          <NavigationProperty Name="OrigenDestino" Relationship="Self.FK__OrigenDestino__Entidad_OrigenDestino" FromRole="Entidad_OrigenDestino" ToRole="OrigenDestino" />
-          <NavigationProperty Name="UsuarioCreacion" Relationship="Self.FK__Usuario__Entidad_OrigenDestino__Creacion" FromRole="Entidad_OrigenDestino" ToRole="Usuario" />
-          <NavigationProperty Name="UsuarioModificacion" Relationship="Self.FK__Usuario__Entidad_OrigenDestino__Modificacion" FromRole="Entidad_OrigenDestino" ToRole="Usuario" />
+          <NavigationProperty Name="Entidad" Relationship="CSPesajeModel.FK__OrigenDestino_Entidad__Entidad" FromRole="Entidad_OrigenDestino" ToRole="Entidad" />
+          <NavigationProperty Name="OrigenDestino" Relationship="CSPesajeModel.FK__OrigenDestino__Entidad_OrigenDestino" FromRole="Entidad_OrigenDestino" ToRole="OrigenDestino" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSPesajeModel.FK__Usuario__Entidad_OrigenDestino__Creacion" FromRole="Entidad_OrigenDestino" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSPesajeModel.FK__Usuario__Entidad_OrigenDestino__Modificacion" FromRole="Entidad_OrigenDestino" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="Entidad_Planta">
           <Key>
@@ -1332,8 +1575,8 @@
           <Property Name="Tipo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="UsoFrecuente" Type="Boolean" Nullable="false" />
           <Property Name="UltimoUso" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Entidad" Relationship="Self.FK__Entidad__Entidad_Planta" FromRole="Entidad_Planta" ToRole="Entidad" />
-          <NavigationProperty Name="Planta" Relationship="Self.FK__Planta__Entidad_Planta" FromRole="Entidad_Planta" ToRole="Planta" />
+          <NavigationProperty Name="Entidad" Relationship="CSPesajeModel.FK__Entidad__Entidad_Planta" FromRole="Entidad_Planta" ToRole="Entidad" />
+          <NavigationProperty Name="Planta" Relationship="CSPesajeModel.FK__Planta__Entidad_Planta" FromRole="Entidad_Planta" ToRole="Planta" />
         </EntityType>
         <EntityType Name="Localidad">
           <Key>
@@ -1344,8 +1587,8 @@
           <Property Name="IDLocalidad" Type="Int16" Nullable="false" />
           <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CodigoPostal" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
-          <NavigationProperty Name="OrigenesDestinos" Relationship="Self.FK__Localidad__OrigenDestino" FromRole="Localidad" ToRole="OrigenDestino" />
-          <NavigationProperty Name="Provincia" Relationship="Self.FK__Provincia__Localidad" FromRole="Localidad" ToRole="Provincia" />
+          <NavigationProperty Name="OrigenesDestinos" Relationship="CSPesajeModel.FK__Localidad__OrigenDestino" FromRole="Localidad" ToRole="OrigenDestino" />
+          <NavigationProperty Name="Provincia" Relationship="CSPesajeModel.FK__Provincia__Localidad" FromRole="Localidad" ToRole="Provincia" />
         </EntityType>
         <EntityType Name="OrigenDestino">
           <Key>
@@ -1365,10 +1608,10 @@
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Entidades_OrigenesDestinos" Relationship="Self.FK__OrigenDestino__Entidad_OrigenDestino" FromRole="OrigenDestino" ToRole="Entidad_OrigenDestino" />
-          <NavigationProperty Name="Localidad" Relationship="Self.FK__Localidad__OrigenDestino" FromRole="OrigenDestino" ToRole="Localidad" />
-          <NavigationProperty Name="UsuarioCreacion" Relationship="Self.FK__Usuario__OrigenDestino__Creacion" FromRole="OrigenDestino" ToRole="Usuario" />
-          <NavigationProperty Name="UsuarioModificacion" Relationship="Self.FK__Usuario__OrigenDestino__Modificacion" FromRole="OrigenDestino" ToRole="Usuario" />
+          <NavigationProperty Name="Entidades_OrigenesDestinos" Relationship="CSPesajeModel.FK__OrigenDestino__Entidad_OrigenDestino" FromRole="OrigenDestino" ToRole="Entidad_OrigenDestino" />
+          <NavigationProperty Name="Localidad" Relationship="CSPesajeModel.FK__Localidad__OrigenDestino" FromRole="OrigenDestino" ToRole="Localidad" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSPesajeModel.FK__Usuario__OrigenDestino__Creacion" FromRole="OrigenDestino" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSPesajeModel.FK__Usuario__OrigenDestino__Modificacion" FromRole="OrigenDestino" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="Parametro">
           <Key>
@@ -1395,6 +1638,7 @@
           <Property Name="IDProducto" Type="Byte" Nullable="false" />
           <Property Name="IDCosecha" Type="Byte" />
           <Property Name="Tipo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="TipoNombre" Type="String" MaxLength="7" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" />
           <Property Name="Titular_IDEntidad" Type="Int32" Nullable="false" />
           <Property Name="IDOrigenDestino" Type="Int32" />
           <Property Name="Transportista_IDEntidad" Type="Int32" />
@@ -1410,18 +1654,18 @@
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Camion" Relationship="Self.FK__Camion__Pesada" FromRole="Pesada" ToRole="Camion" />
-          <NavigationProperty Name="Cosecha" Relationship="Self.FK__Cosecha__Pesada" FromRole="Pesada" ToRole="Cosecha" />
-          <NavigationProperty Name="EntidadChofer" Relationship="Self.FK__Entidad__Pesada__Chofer" FromRole="Pesada" ToRole="Entidad" />
-          <NavigationProperty Name="EntidadTitular" Relationship="Self.FK__Entidad__Pesada__Titular" FromRole="Pesada" ToRole="Entidad" />
-          <NavigationProperty Name="EntidadTransportista" Relationship="Self.FK__Entidad__Pesada__Transportista" FromRole="Pesada" ToRole="Entidad" />
-          <NavigationProperty Name="Pesada_Acondicionamiento" Relationship="Self.FK__Pesada__Pesada_Acondicionamiento" FromRole="Pesada" ToRole="Pesada_Acondicionamiento" />
-          <NavigationProperty Name="Pesada_Analisis" Relationship="Self.FK__Pesada__Pesada_Analisis" FromRole="Pesada" ToRole="Pesada_Analisis" />
-          <NavigationProperty Name="Pesada_Otro" Relationship="Self.FK__Pesada__Pesada_Otro" FromRole="Pesada" ToRole="Pesada_Otro" />
-          <NavigationProperty Name="Planta" Relationship="Self.FK__Planta__Pesada" FromRole="Pesada" ToRole="Planta" />
-          <NavigationProperty Name="Producto" Relationship="Self.FK__Producto__Pesada" FromRole="Pesada" ToRole="Producto" />
-          <NavigationProperty Name="UsuarioCreacion" Relationship="Self.FK__Usuario__Pesada__Creacion" FromRole="Pesada" ToRole="Usuario" />
-          <NavigationProperty Name="UsuarioModificacion" Relationship="Self.FK__Usuario__Pesada__Modificacion" FromRole="Pesada" ToRole="Usuario" />
+          <NavigationProperty Name="Camion" Relationship="CSPesajeModel.FK__Camion__Pesada" FromRole="Pesada" ToRole="Camion" />
+          <NavigationProperty Name="Cosecha" Relationship="CSPesajeModel.FK__Cosecha__Pesada" FromRole="Pesada" ToRole="Cosecha" />
+          <NavigationProperty Name="EntidadChofer" Relationship="CSPesajeModel.FK__Entidad__Pesada__Chofer" FromRole="Pesada" ToRole="Entidad" />
+          <NavigationProperty Name="EntidadTitular" Relationship="CSPesajeModel.FK__Entidad__Pesada__Titular" FromRole="Pesada" ToRole="Entidad" />
+          <NavigationProperty Name="EntidadTransportista" Relationship="CSPesajeModel.FK__Entidad__Pesada__Transportista" FromRole="Pesada" ToRole="Entidad" />
+          <NavigationProperty Name="Pesada_Acondicionamiento" Relationship="CSPesajeModel.FK__Pesada__Pesada_Acondicionamiento" FromRole="Pesada" ToRole="Pesada_Acondicionamiento" />
+          <NavigationProperty Name="Pesada_Analisis" Relationship="CSPesajeModel.FK__Pesada__Pesada_Analisis" FromRole="Pesada" ToRole="Pesada_Analisis" />
+          <NavigationProperty Name="Pesada_Otro" Relationship="CSPesajeModel.FK__Pesada__Pesada_Otro" FromRole="Pesada" ToRole="Pesada_Otro" />
+          <NavigationProperty Name="Planta" Relationship="CSPesajeModel.FK__Planta__Pesada" FromRole="Pesada" ToRole="Planta" />
+          <NavigationProperty Name="Producto" Relationship="CSPesajeModel.FK__Producto__Pesada" FromRole="Pesada" ToRole="Producto" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSPesajeModel.FK__Usuario__Pesada__Creacion" FromRole="Pesada" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSPesajeModel.FK__Usuario__Pesada__Modificacion" FromRole="Pesada" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="Pesada_Acondicionamiento">
           <Key>
@@ -1445,7 +1689,7 @@
           <Property Name="MezclaImporte" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="ImporteTotal" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="FechaLiquidacion" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="Pesada" Relationship="Self.FK__Pesada__Pesada_Acondicionamiento" FromRole="Pesada_Acondicionamiento" ToRole="Pesada" />
+          <NavigationProperty Name="Pesada" Relationship="CSPesajeModel.FK__Pesada__Pesada_Acondicionamiento" FromRole="Pesada_Acondicionamiento" ToRole="Pesada" />
         </EntityType>
         <EntityType Name="Pesada_Analisis">
           <Key>
@@ -1463,7 +1707,7 @@
           <Property Name="MermaHumedadPorcentaje" Type="Decimal" Precision="4" Scale="2" />
           <Property Name="MermaHumedadKilogramo" Type="Int32" />
           <Property Name="MermaZarandaKilogramo" Type="Int32" />
-          <NavigationProperty Name="Pesada" Relationship="Self.FK__Pesada__Pesada_Analisis" FromRole="Pesada_Analisis" ToRole="Pesada" />
+          <NavigationProperty Name="Pesada" Relationship="CSPesajeModel.FK__Pesada__Pesada_Analisis" FromRole="Pesada_Analisis" ToRole="Pesada" />
         </EntityType>
         <EntityType Name="Pesada_Otro">
           <Key>
@@ -1479,7 +1723,7 @@
           <Property Name="Chofer_CUIT_CUIL" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
           <Property Name="Camion_DominioChasis" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
           <Property Name="Camion_DominioAcoplado" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Pesada" Relationship="Self.FK__Pesada__Pesada_Otro" FromRole="Pesada_Otro" ToRole="Pesada" />
+          <NavigationProperty Name="Pesada" Relationship="CSPesajeModel.FK__Pesada__Pesada_Otro" FromRole="Pesada_Otro" ToRole="Pesada" />
         </EntityType>
         <EntityType Name="Planta">
           <Key>
@@ -1493,12 +1737,12 @@
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Cosecha_Producto_Tarifa" Relationship="Self.FK__Planta__Cosecha_Producto_Tarifa" FromRole="Planta" ToRole="Cosecha_Producto_Tarifa" />
-          <NavigationProperty Name="Entidad_Planta" Relationship="Self.FK__Planta__Entidad_Planta" FromRole="Planta" ToRole="Entidad_Planta" />
-          <NavigationProperty Name="Pesada" Relationship="Self.FK__Planta__Pesada" FromRole="Planta" ToRole="Pesada" />
-          <NavigationProperty Name="Producto_Planta" Relationship="Self.FK__Planta__Producto_Planta" FromRole="Planta" ToRole="Producto_Planta" />
-          <NavigationProperty Name="UsuarioCreacion" Relationship="Self.FK__Usuario__Planta__Creacion" FromRole="Planta" ToRole="Usuario" />
-          <NavigationProperty Name="UsuarioModificacion" Relationship="Self.FK__Usuario__Planta__Modificacion" FromRole="Planta" ToRole="Usuario" />
+          <NavigationProperty Name="Cosecha_Producto_Tarifa" Relationship="CSPesajeModel.FK__Planta__Cosecha_Producto_Tarifa" FromRole="Planta" ToRole="Cosecha_Producto_Tarifa" />
+          <NavigationProperty Name="Entidad_Planta" Relationship="CSPesajeModel.FK__Planta__Entidad_Planta" FromRole="Planta" ToRole="Entidad_Planta" />
+          <NavigationProperty Name="Pesada" Relationship="CSPesajeModel.FK__Planta__Pesada" FromRole="Planta" ToRole="Pesada" />
+          <NavigationProperty Name="Producto_Planta" Relationship="CSPesajeModel.FK__Planta__Producto_Planta" FromRole="Planta" ToRole="Producto_Planta" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSPesajeModel.FK__Usuario__Planta__Creacion" FromRole="Planta" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSPesajeModel.FK__Usuario__Planta__Modificacion" FromRole="Planta" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="Producto">
           <Key>
@@ -1517,12 +1761,12 @@
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Cosechas_Productos_Tarifas" Relationship="Self.FK__Cosecha_Producto_Tarifa" FromRole="Producto" ToRole="Cosecha_Producto_Tarifa" />
-          <NavigationProperty Name="Pesadas" Relationship="Self.FK__Producto__Pesada" FromRole="Producto" ToRole="Pesada" />
-          <NavigationProperty Name="Productos_Cosechas" Relationship="Self.FK__Producto__Producto_Cosecha" FromRole="Producto" ToRole="Producto_Cosecha" />
-          <NavigationProperty Name="Productos_Plantas" Relationship="Self.FK__Producto__Producto_Planta" FromRole="Producto" ToRole="Producto_Planta" />
-          <NavigationProperty Name="UsuarioCreacion" Relationship="Self.FK__Usuario__Producto__Creacion" FromRole="Producto" ToRole="Usuario" />
-          <NavigationProperty Name="UsuarioModificacion" Relationship="Self.FK__Usuario__Producto__Modificacion" FromRole="Producto" ToRole="Usuario" />
+          <NavigationProperty Name="Cosechas_Productos_Tarifas" Relationship="CSPesajeModel.FK__Cosecha_Producto_Tarifa" FromRole="Producto" ToRole="Cosecha_Producto_Tarifa" />
+          <NavigationProperty Name="Pesadas" Relationship="CSPesajeModel.FK__Producto__Pesada" FromRole="Producto" ToRole="Pesada" />
+          <NavigationProperty Name="Productos_Cosechas" Relationship="CSPesajeModel.FK__Producto__Producto_Cosecha" FromRole="Producto" ToRole="Producto_Cosecha" />
+          <NavigationProperty Name="Productos_Plantas" Relationship="CSPesajeModel.FK__Producto__Producto_Planta" FromRole="Producto" ToRole="Producto_Planta" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSPesajeModel.FK__Usuario__Producto__Creacion" FromRole="Producto" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSPesajeModel.FK__Usuario__Producto__Modificacion" FromRole="Producto" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="Producto_Cosecha">
           <Key>
@@ -1534,8 +1778,8 @@
           <Property Name="Inicio" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Fin" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Cosecha" Relationship="Self.FK__Cosecha__Producto_Cosecha" FromRole="Producto_Cosecha" ToRole="Cosecha" />
-          <NavigationProperty Name="Producto" Relationship="Self.FK__Producto__Producto_Cosecha" FromRole="Producto_Cosecha" ToRole="Producto" />
+          <NavigationProperty Name="Cosecha" Relationship="CSPesajeModel.FK__Cosecha__Producto_Cosecha" FromRole="Producto_Cosecha" ToRole="Cosecha" />
+          <NavigationProperty Name="Producto" Relationship="CSPesajeModel.FK__Producto__Producto_Cosecha" FromRole="Producto_Cosecha" ToRole="Producto" />
         </EntityType>
         <EntityType Name="Producto_Planta">
           <Key>
@@ -1547,8 +1791,8 @@
           <Property Name="TipoEntrada" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="TipoSalida" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="TipoNinguno" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Planta" Relationship="Self.FK__Planta__Producto_Planta" FromRole="Producto_Planta" ToRole="Planta" />
-          <NavigationProperty Name="Producto" Relationship="Self.FK__Producto__Producto_Planta" FromRole="Producto_Planta" ToRole="Producto" />
+          <NavigationProperty Name="Planta" Relationship="CSPesajeModel.FK__Planta__Producto_Planta" FromRole="Producto_Planta" ToRole="Planta" />
+          <NavigationProperty Name="Producto" Relationship="CSPesajeModel.FK__Producto__Producto_Planta" FromRole="Producto_Planta" ToRole="Producto" />
         </EntityType>
         <EntityType Name="Provincia">
           <Key>
@@ -1556,7 +1800,7 @@
           </Key>
           <Property Name="IDProvincia" Type="Byte" Nullable="false" />
           <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Localidades" Relationship="Self.FK__Provincia__Localidad" FromRole="Provincia" ToRole="Localidad" />
+          <NavigationProperty Name="Localidades" Relationship="CSPesajeModel.FK__Provincia__Localidad" FromRole="Provincia" ToRole="Localidad" />
         </EntityType>
         <EntityType Name="Reporte">
           <Key>
@@ -1568,8 +1812,8 @@
           <Property Name="Titulo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Archivo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="MostrarEnVisor" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="ReporteParametros" Relationship="Self.FK__Reporte__ReporteParametro" FromRole="Reporte" ToRole="ReporteParametro" />
-          <NavigationProperty Name="ReporteGrupo" Relationship="Self.FK__ReporteGrupo__Reporte" FromRole="Reporte" ToRole="ReporteGrupo" />
+          <NavigationProperty Name="ReporteParametros" Relationship="CSPesajeModel.FK__Reporte__ReporteParametro" FromRole="Reporte" ToRole="ReporteParametro" />
+          <NavigationProperty Name="ReporteGrupo" Relationship="CSPesajeModel.FK__ReporteGrupo__Reporte" FromRole="Reporte" ToRole="ReporteGrupo" />
         </EntityType>
         <EntityType Name="ReporteGrupo">
           <Key>
@@ -1578,7 +1822,7 @@
           <Property Name="IDReporteGrupo" Type="Byte" Nullable="false" />
           <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Reportes" Relationship="Self.FK__ReporteGrupo__Reporte" FromRole="ReporteGrupo" ToRole="Reporte" />
+          <NavigationProperty Name="Reportes" Relationship="CSPesajeModel.FK__ReporteGrupo__Reporte" FromRole="ReporteGrupo" ToRole="Reporte" />
         </EntityType>
         <EntityType Name="ReporteParametro">
           <Key>
@@ -1597,7 +1841,7 @@
           <Property Name="ValorPredeterminadoFechaHora" Type="DateTime" Precision="0" />
           <Property Name="ValorPredeterminadoSiNo" Type="Boolean" />
           <Property Name="Orden" Type="Byte" />
-          <NavigationProperty Name="Reporte" Relationship="Self.FK__Reporte__ReporteParametro" FromRole="ReporteParametro" ToRole="Reporte" />
+          <NavigationProperty Name="Reporte" Relationship="CSPesajeModel.FK__Reporte__ReporteParametro" FromRole="ReporteParametro" ToRole="Reporte" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
@@ -1614,25 +1858,25 @@
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="CamionesCreados" Relationship="Self.FK__Usuario__Camion__Creacion" FromRole="Usuario" ToRole="Camion" />
-          <NavigationProperty Name="CamionesModificados" Relationship="Self.FK__Usuario__Camion__Modificacion" FromRole="Usuario" ToRole="Camion" />
-          <NavigationProperty Name="CosechasCreadas" Relationship="Self.FK__Usuario__Cosecha__Creacion" FromRole="Usuario" ToRole="Cosecha" />
-          <NavigationProperty Name="CosechasModificadas" Relationship="Self.FK__Usuario__Cosecha__Modificacion" FromRole="Usuario" ToRole="Cosecha" />
-          <NavigationProperty Name="EntidadesCreadas" Relationship="Self.FK__Usuario__Entidad__Creacion" FromRole="Usuario" ToRole="Entidad" />
-          <NavigationProperty Name="EntidadesModificadas" Relationship="Self.FK__Usuario__Entidad__Modificacion" FromRole="Usuario" ToRole="Entidad" />
-          <NavigationProperty Name="Entidades_OrigenesDestinosCreados" Relationship="Self.FK__Usuario__Entidad_OrigenDestino__Creacion" FromRole="Usuario" ToRole="Entidad_OrigenDestino" />
-          <NavigationProperty Name="Entidades_OrigenesDestinosModificados" Relationship="Self.FK__Usuario__Entidad_OrigenDestino__Modificacion" FromRole="Usuario" ToRole="Entidad_OrigenDestino" />
-          <NavigationProperty Name="OrigenesDestinosCreados" Relationship="Self.FK__Usuario__OrigenDestino__Creacion" FromRole="Usuario" ToRole="OrigenDestino" />
-          <NavigationProperty Name="OrigenesDestinosModificados" Relationship="Self.FK__Usuario__OrigenDestino__Modificacion" FromRole="Usuario" ToRole="OrigenDestino" />
-          <NavigationProperty Name="PesadasCreadas" Relationship="Self.FK__Usuario__Pesada__Creacion" FromRole="Usuario" ToRole="Pesada" />
-          <NavigationProperty Name="PesadasModificadas" Relationship="Self.FK__Usuario__Pesada__Modificacion" FromRole="Usuario" ToRole="Pesada" />
-          <NavigationProperty Name="PlantasCreadas" Relationship="Self.FK__Usuario__Planta__Creacion" FromRole="Usuario" ToRole="Planta" />
-          <NavigationProperty Name="PlantasModificadas" Relationship="Self.FK__Usuario__Planta__Modificacion" FromRole="Usuario" ToRole="Planta" />
-          <NavigationProperty Name="ProductosCreados" Relationship="Self.FK__Usuario__Producto__Creacion" FromRole="Usuario" ToRole="Producto" />
-          <NavigationProperty Name="ProductosModficados" Relationship="Self.FK__Usuario__Producto__Modificacion" FromRole="Usuario" ToRole="Producto" />
-          <NavigationProperty Name="UsuariosGruposCreados" Relationship="Self.FK__Usuario__UsuarioGrupo__Creacion" FromRole="Usuario" ToRole="UsuarioGrupo" />
-          <NavigationProperty Name="UsuariosGruposModificados" Relationship="Self.FK__Usuario__UsuarioGrupo__Modificacion" FromRole="Usuario" ToRole="UsuarioGrupo" />
-          <NavigationProperty Name="UsuarioGrupo" Relationship="Self.FK__UsuarioGrupo__Usuario" FromRole="Usuario" ToRole="UsuarioGrupo" />
+          <NavigationProperty Name="CamionesCreados" Relationship="CSPesajeModel.FK__Usuario__Camion__Creacion" FromRole="Usuario" ToRole="Camion" />
+          <NavigationProperty Name="CamionesModificados" Relationship="CSPesajeModel.FK__Usuario__Camion__Modificacion" FromRole="Usuario" ToRole="Camion" />
+          <NavigationProperty Name="CosechasCreadas" Relationship="CSPesajeModel.FK__Usuario__Cosecha__Creacion" FromRole="Usuario" ToRole="Cosecha" />
+          <NavigationProperty Name="CosechasModificadas" Relationship="CSPesajeModel.FK__Usuario__Cosecha__Modificacion" FromRole="Usuario" ToRole="Cosecha" />
+          <NavigationProperty Name="EntidadesCreadas" Relationship="CSPesajeModel.FK__Usuario__Entidad__Creacion" FromRole="Usuario" ToRole="Entidad" />
+          <NavigationProperty Name="EntidadesModificadas" Relationship="CSPesajeModel.FK__Usuario__Entidad__Modificacion" FromRole="Usuario" ToRole="Entidad" />
+          <NavigationProperty Name="Entidades_OrigenesDestinosCreados" Relationship="CSPesajeModel.FK__Usuario__Entidad_OrigenDestino__Creacion" FromRole="Usuario" ToRole="Entidad_OrigenDestino" />
+          <NavigationProperty Name="Entidades_OrigenesDestinosModificados" Relationship="CSPesajeModel.FK__Usuario__Entidad_OrigenDestino__Modificacion" FromRole="Usuario" ToRole="Entidad_OrigenDestino" />
+          <NavigationProperty Name="OrigenesDestinosCreados" Relationship="CSPesajeModel.FK__Usuario__OrigenDestino__Creacion" FromRole="Usuario" ToRole="OrigenDestino" />
+          <NavigationProperty Name="OrigenesDestinosModificados" Relationship="CSPesajeModel.FK__Usuario__OrigenDestino__Modificacion" FromRole="Usuario" ToRole="OrigenDestino" />
+          <NavigationProperty Name="PesadasCreadas" Relationship="CSPesajeModel.FK__Usuario__Pesada__Creacion" FromRole="Usuario" ToRole="Pesada" />
+          <NavigationProperty Name="PesadasModificadas" Relationship="CSPesajeModel.FK__Usuario__Pesada__Modificacion" FromRole="Usuario" ToRole="Pesada" />
+          <NavigationProperty Name="PlantasCreadas" Relationship="CSPesajeModel.FK__Usuario__Planta__Creacion" FromRole="Usuario" ToRole="Planta" />
+          <NavigationProperty Name="PlantasModificadas" Relationship="CSPesajeModel.FK__Usuario__Planta__Modificacion" FromRole="Usuario" ToRole="Planta" />
+          <NavigationProperty Name="ProductosCreados" Relationship="CSPesajeModel.FK__Usuario__Producto__Creacion" FromRole="Usuario" ToRole="Producto" />
+          <NavigationProperty Name="ProductosModficados" Relationship="CSPesajeModel.FK__Usuario__Producto__Modificacion" FromRole="Usuario" ToRole="Producto" />
+          <NavigationProperty Name="UsuariosGruposCreados" Relationship="CSPesajeModel.FK__Usuario__UsuarioGrupo__Creacion" FromRole="Usuario" ToRole="UsuarioGrupo" />
+          <NavigationProperty Name="UsuariosGruposModificados" Relationship="CSPesajeModel.FK__Usuario__UsuarioGrupo__Modificacion" FromRole="Usuario" ToRole="UsuarioGrupo" />
+          <NavigationProperty Name="UsuarioGrupo" Relationship="CSPesajeModel.FK__UsuarioGrupo__Usuario" FromRole="Usuario" ToRole="UsuarioGrupo" />
         </EntityType>
         <EntityType Name="UsuarioGrupo">
           <Key>
@@ -1645,10 +1889,10 @@
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="UsuarioCreacion" Relationship="Self.FK__Usuario__UsuarioGrupo__Creacion" FromRole="UsuarioGrupo" ToRole="Usuario" />
-          <NavigationProperty Name="UsuarioModificacion" Relationship="Self.FK__Usuario__UsuarioGrupo__Modificacion" FromRole="UsuarioGrupo" ToRole="Usuario" />
-          <NavigationProperty Name="Usuarios" Relationship="Self.FK__UsuarioGrupo__Usuario" FromRole="UsuarioGrupo" ToRole="Usuario" />
-          <NavigationProperty Name="UsuarioGrupoPermiso" Relationship="Self.FK__UsuarioGrupo__UsuarioGrupoPermiso" FromRole="UsuarioGrupo" ToRole="UsuarioGrupoPermiso" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSPesajeModel.FK__Usuario__UsuarioGrupo__Creacion" FromRole="UsuarioGrupo" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSPesajeModel.FK__Usuario__UsuarioGrupo__Modificacion" FromRole="UsuarioGrupo" ToRole="Usuario" />
+          <NavigationProperty Name="Usuarios" Relationship="CSPesajeModel.FK__UsuarioGrupo__Usuario" FromRole="UsuarioGrupo" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioGrupoPermiso" Relationship="CSPesajeModel.FK__UsuarioGrupo__UsuarioGrupoPermiso" FromRole="UsuarioGrupo" ToRole="UsuarioGrupoPermiso" />
         </EntityType>
         <EntityType Name="UsuarioGrupoPermiso">
           <Key>
@@ -1657,11 +1901,11 @@
           </Key>
           <Property Name="IDUsuarioGrupo" Type="Byte" Nullable="false" />
           <Property Name="IDPermiso" Type="String" MaxLength="100" FixedLength="true" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="UsuarioGrupo" Relationship="Self.FK__UsuarioGrupo__UsuarioGrupoPermiso" FromRole="UsuarioGrupoPermiso" ToRole="UsuarioGrupo" />
+          <NavigationProperty Name="UsuarioGrupo" Relationship="CSPesajeModel.FK__UsuarioGrupo__UsuarioGrupoPermiso" FromRole="UsuarioGrupoPermiso" ToRole="UsuarioGrupo" />
         </EntityType>
         <Association Name="FK__Camion__Entidad">
-          <End Role="Camion" Type="Self.Camion" Multiplicity="0..1" />
-          <End Role="Entidad" Type="Self.Entidad" Multiplicity="*" />
+          <End Role="Camion" Type="CSPesajeModel.Camion" Multiplicity="0..1" />
+          <End Role="Entidad" Type="CSPesajeModel.Entidad" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Camion">
               <PropertyRef Name="IDEntidad" />
@@ -1674,8 +1918,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Camion__Pesada">
-          <End Role="Camion" Type="Self.Camion" Multiplicity="0..1" />
-          <End Role="Pesada" Type="Self.Pesada" Multiplicity="*" />
+          <End Role="Camion" Type="CSPesajeModel.Camion" Multiplicity="0..1" />
+          <End Role="Pesada" Type="CSPesajeModel.Pesada" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Camion">
               <PropertyRef Name="IDEntidad" />
@@ -1688,8 +1932,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Usuario__Camion__Creacion">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="Camion" Type="Self.Camion" Multiplicity="*" />
+          <End Role="Usuario" Type="CSPesajeModel.Usuario" Multiplicity="1" />
+          <End Role="Camion" Type="CSPesajeModel.Camion" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuario">
               <PropertyRef Name="IDUsuario" />
@@ -1700,8 +1944,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Usuario__Camion__Modificacion">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="Camion" Type="Self.Camion" Multiplicity="*" />
+          <End Role="Usuario" Type="CSPesajeModel.Usuario" Multiplicity="1" />
+          <End Role="Camion" Type="CSPesajeModel.Camion" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuario">
               <PropertyRef Name="IDUsuario" />
@@ -1712,8 +1956,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Cosecha__Cosecha_Producto_Tarifa">
-          <End Role="Cosecha" Type="Self.Cosecha" Multiplicity="1" />
-          <End Role="Cosecha_Producto_Tarifa" Type="Self.Cosecha_Producto_Tarifa" Multiplicity="*" />
+          <End Role="Cosecha" Type="CSPesajeModel.Cosecha" Multiplicity="1" />
+          <End Role="Cosecha_Producto_Tarifa" Type="CSPesajeModel.Cosecha_Producto_Tarifa" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Cosecha">
               <PropertyRef Name="IDCosecha" />
@@ -1724,8 +1968,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Cosecha__Pesada">
-          <End Role="Cosecha" Type="Self.Cosecha" Multiplicity="0..1" />
-          <End Role="Pesada" Type="Self.Pesada" Multiplicity="*" />
+          <End Role="Cosecha" Type="CSPesajeModel.Cosecha" Multiplicity="0..1" />
+          <End Role="Pesada" Type="CSPesajeModel.Pesada" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Cosecha">
               <PropertyRef Name="IDCosecha" />
@@ -1736,8 +1980,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Cosecha__Producto_Cosecha">
-          <End Role="Cosecha" Type="Self.Cosecha" Multiplicity="1" />
-          <End Role="Producto_Cosecha" Type="Self.Producto_Cosecha" Multiplicity="*" />
+          <End Role="Cosecha" Type="CSPesajeModel.Cosecha" Multiplicity="1" />
+          <End Role="Producto_Cosecha" Type="CSPesajeModel.Producto_Cosecha" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Cosecha">
               <PropertyRef Name="IDCosecha" />
@@ -1748,8 +1992,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Usuario__Cosecha__Creacion">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="Cosecha" Type="Self.Cosecha" Multiplicity="*" />
+          <End Role="Usuario" Type="CSPesajeModel.Usuario" Multiplicity="1" />
+          <End Role="Cosecha" Type="CSPesajeModel.Cosecha" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuario">
               <PropertyRef Name="IDUsuario" />
@@ -1760,8 +2004,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Usuario__Cosecha__Modificacion">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="Cosecha" Type="Self.Cosecha" Multiplicity="*" />
+          <End Role="Usuario" Type="CSPesajeModel.Usuario" Multiplicity="1" />
+          <End Role="Cosecha" Type="CSPesajeModel.Cosecha" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuario">
               <PropertyRef Name="IDUsuario" />
@@ -1772,8 +2016,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Cosecha_Producto_Tarifa">
-          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
-          <End Role="Cosecha_Producto_Tarifa" Type="Self.Cosecha_Producto_Tarifa" Multiplicity="*" />
+          <End Role="Producto" Type="CSPesajeModel.Producto" Multiplicity="1" />
+          <End Role="Cosecha_Producto_Tarifa" Type="CSPesajeModel.Cosecha_Producto_Tarifa" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Producto">
               <PropertyRef Name="IDProducto" />
@@ -1784,8 +2028,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Cosecha_Producto_Tarifa__Cosecha_Producto_TarifaEscala">
-          <End Role="Cosecha_Producto_Tarifa" Type="Self.Cosecha_Producto_Tarifa" Multiplicity="1" />
-          <End Role="Cosecha_Producto_TarifaEscala" Type="Self.Cosecha_Producto_TarifaEscala" Multiplicity="*" />
+          <End Role="Cosecha_Producto_Tarifa" Type="CSPesajeModel.Cosecha_Producto_Tarifa" Multiplicity="1" />
+          <End Role="Cosecha_Producto_TarifaEscala" Type="CSPesajeModel.Cosecha_Producto_TarifaEscala" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Cosecha_Producto_Tarifa">
               <PropertyRef Name="IDCosecha" />
@@ -1800,8 +2044,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Planta__Cosecha_Producto_Tarifa">
-          <End Role="Planta" Type="Self.Planta" Multiplicity="0..1" />
-          <End Role="Cosecha_Producto_Tarifa" Type="Self.Cosecha_Producto_Tarifa" Multiplicity="*" />
+          <End Role="Planta" Type="CSPesajeModel.Planta" Multiplicity="0..1" />
+          <End Role="Cosecha_Producto_Tarifa" Type="CSPesajeModel.Cosecha_Producto_Tarifa" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Planta">
               <PropertyRef Name="IDPlanta" />
@@ -1812,8 +2056,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Entidad__Entidad__Transportista">
-          <End Role="Entidad" Type="Self.Entidad" Multiplicity="0..1" />
-          <End Role="Entidad1" Type="Self.Entidad" Multiplicity="*" />
+          <End Role="Entidad" Type="CSPesajeModel.Entidad" Multiplicity="0..1" />
+          <End Role="Entidad1" Type="CSPesajeModel.Entidad" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Entidad">
               <PropertyRef Name="IDEntidad" />
@@ -1824,8 +2068,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Entidad__Entidad_Planta">
-          <End Role="Entidad" Type="Self.Entidad" Multiplicity="1" />
-          <End Role="Entidad_Planta" Type="Self.Entidad_Planta" Multiplicity="*" />
+          <End Role="Entidad" Type="CSPesajeModel.Entidad" Multiplicity="1" />
+          <End Role="Entidad_Planta" Type="CSPesajeModel.Entidad_Planta" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Entidad">
               <PropertyRef Name="IDEntidad" />
@@ -1836,8 +2080,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Entidad__Pesada__Chofer">
-          <End Role="Entidad" Type="Self.Entidad" Multiplicity="0..1" />
-          <End Role="Pesada" Type="Self.Pesada" Multiplicity="*" />
+          <End Role="Entidad" Type="CSPesajeModel.Entidad" Multiplicity="0..1" />
+          <End Role="Pesada" Type="CSPesajeModel.Pesada" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Entidad">
               <PropertyRef Name="IDEntidad" />
@@ -1848,8 +2092,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Entidad__Pesada__Titular">
-          <End Role="Entidad" Type="Self.Entidad" Multiplicity="1" />
-          <End Role="Pesada" Type="Self.Pesada" Multiplicity="*" />
+          <End Role="Entidad" Type="CSPesajeModel.Entidad" Multiplicity="1" />
+          <End Role="Pesada" Type="CSPesajeModel.Pesada" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Entidad">
               <PropertyRef Name="IDEntidad" />
@@ -1860,8 +2104,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Entidad__Pesada__Transportista">
-          <End Role="Entidad" Type="Self.Entidad" Multiplicity="0..1" />
-          <End Role="Pesada" Type="Self.Pesada" Multiplicity="*" />
+          <End Role="Entidad" Type="CSPesajeModel.Entidad" Multiplicity="0..1" />
+          <End Role="Pesada" Type="CSPesajeModel.Pesada" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Entidad">
               <PropertyRef Name="IDEntidad" />
@@ -1872,8 +2116,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__OrigenDestino_Entidad__Entidad">
-          <End Role="Entidad" Type="Self.Entidad" Multiplicity="1" />
-          <End Role="Entidad_OrigenDestino" Type="Self.Entidad_OrigenDestino" Multiplicity="*" />
+          <End Role="Entidad" Type="CSPesajeModel.Entidad" Multiplicity="1" />
+          <End Role="Entidad_OrigenDestino" Type="CSPesajeModel.Entidad_OrigenDestino" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Entidad">
               <PropertyRef Name="IDEntidad" />
@@ -1884,8 +2128,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Usuario__Entidad__Creacion">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="Entidad" Type="Self.Entidad" Multiplicity="*" />
+          <End Role="Usuario" Type="CSPesajeModel.Usuario" Multiplicity="1" />
+          <End Role="Entidad" Type="CSPesajeModel.Entidad" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuario">
               <PropertyRef Name="IDUsuario" />
@@ -1896,8 +2140,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Usuario__Entidad__Modificacion">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="Entidad" Type="Self.Entidad" Multiplicity="*" />
+          <End Role="Usuario" Type="CSPesajeModel.Usuario" Multiplicity="1" />
+          <End Role="Entidad" Type="CSPesajeModel.Entidad" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuario">
               <PropertyRef Name="IDUsuario" />
@@ -1908,8 +2152,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__OrigenDestino__Entidad_OrigenDestino">
-          <End Role="OrigenDestino" Type="Self.OrigenDestino" Multiplicity="1" />
-          <End Role="Entidad_OrigenDestino" Type="Self.Entidad_OrigenDestino" Multiplicity="*" />
+          <End Role="OrigenDestino" Type="CSPesajeModel.OrigenDestino" Multiplicity="1" />
+          <End Role="Entidad_OrigenDestino" Type="CSPesajeModel.Entidad_OrigenDestino" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="OrigenDestino">
               <PropertyRef Name="IDOrigenDestino" />
@@ -1920,8 +2164,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Usuario__Entidad_OrigenDestino__Creacion">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="Entidad_OrigenDestino" Type="Self.Entidad_OrigenDestino" Multiplicity="*" />
+          <End Role="Usuario" Type="CSPesajeModel.Usuario" Multiplicity="1" />
+          <End Role="Entidad_OrigenDestino" Type="CSPesajeModel.Entidad_OrigenDestino" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuario">
               <PropertyRef Name="IDUsuario" />
@@ -1932,8 +2176,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Usuario__Entidad_OrigenDestino__Modificacion">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="Entidad_OrigenDestino" Type="Self.Entidad_OrigenDestino" Multiplicity="*" />
+          <End Role="Usuario" Type="CSPesajeModel.Usuario" Multiplicity="1" />
+          <End Role="Entidad_OrigenDestino" Type="CSPesajeModel.Entidad_OrigenDestino" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuario">
               <PropertyRef Name="IDUsuario" />
@@ -1944,8 +2188,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Planta__Entidad_Planta">
-          <End Role="Planta" Type="Self.Planta" Multiplicity="1" />
-          <End Role="Entidad_Planta" Type="Self.Entidad_Planta" Multiplicity="*" />
+          <End Role="Planta" Type="CSPesajeModel.Planta" Multiplicity="1" />
+          <End Role="Entidad_Planta" Type="CSPesajeModel.Entidad_Planta" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Planta">
               <PropertyRef Name="IDPlanta" />
@@ -1956,8 +2200,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Localidad__OrigenDestino">
-          <End Role="Localidad" Type="Self.Localidad" Multiplicity="0..1" />
-          <End Role="OrigenDestino" Type="Self.OrigenDestino" Multiplicity="*" />
+          <End Role="Localidad" Type="CSPesajeModel.Localidad" Multiplicity="0..1" />
+          <End Role="OrigenDestino" Type="CSPesajeModel.OrigenDestino" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Localidad">
               <PropertyRef Name="IDProvincia" />
@@ -1970,8 +2214,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Provincia__Localidad">
-          <End Role="Provincia" Type="Self.Provincia" Multiplicity="1" />
-          <End Role="Localidad" Type="Self.Localidad" Multiplicity="*" />
+          <End Role="Provincia" Type="CSPesajeModel.Provincia" Multiplicity="1" />
+          <End Role="Localidad" Type="CSPesajeModel.Localidad" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Provincia">
               <PropertyRef Name="IDProvincia" />
@@ -1982,8 +2226,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Usuario__OrigenDestino__Creacion">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="OrigenDestino" Type="Self.OrigenDestino" Multiplicity="*" />
+          <End Role="Usuario" Type="CSPesajeModel.Usuario" Multiplicity="1" />
+          <End Role="OrigenDestino" Type="CSPesajeModel.OrigenDestino" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuario">
               <PropertyRef Name="IDUsuario" />
@@ -1994,8 +2238,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Usuario__OrigenDestino__Modificacion">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="OrigenDestino" Type="Self.OrigenDestino" Multiplicity="*" />
+          <End Role="Usuario" Type="CSPesajeModel.Usuario" Multiplicity="1" />
+          <End Role="OrigenDestino" Type="CSPesajeModel.OrigenDestino" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuario">
               <PropertyRef Name="IDUsuario" />
@@ -2006,8 +2250,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Pesada__Pesada_Acondicionamiento">
-          <End Role="Pesada" Type="Self.Pesada" Multiplicity="1" />
-          <End Role="Pesada_Acondicionamiento" Type="Self.Pesada_Acondicionamiento" Multiplicity="0..1" />
+          <End Role="Pesada" Type="CSPesajeModel.Pesada" Multiplicity="1" />
+          <End Role="Pesada_Acondicionamiento" Type="CSPesajeModel.Pesada_Acondicionamiento" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Pesada">
               <PropertyRef Name="IDPesada" />
@@ -2018,8 +2262,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Pesada__Pesada_Analisis">
-          <End Role="Pesada" Type="Self.Pesada" Multiplicity="1" />
-          <End Role="Pesada_Analisis" Type="Self.Pesada_Analisis" Multiplicity="0..1" />
+          <End Role="Pesada" Type="CSPesajeModel.Pesada" Multiplicity="1" />
+          <End Role="Pesada_Analisis" Type="CSPesajeModel.Pesada_Analisis" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Pesada">
               <PropertyRef Name="IDPesada" />
@@ -2030,8 +2274,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Pesada__Pesada_Otro">
-          <End Role="Pesada" Type="Self.Pesada" Multiplicity="1" />
-          <End Role="Pesada_Otro" Type="Self.Pesada_Otro" Multiplicity="0..1" />
+          <End Role="Pesada" Type="CSPesajeModel.Pesada" Multiplicity="1" />
+          <End Role="Pesada_Otro" Type="CSPesajeModel.Pesada_Otro" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Pesada">
               <PropertyRef Name="IDPesada" />
@@ -2042,8 +2286,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Planta__Pesada">
-          <End Role="Planta" Type="Self.Planta" Multiplicity="0..1" />
-          <End Role="Pesada" Type="Self.Pesada" Multiplicity="*" />
+          <End Role="Planta" Type="CSPesajeModel.Planta" Multiplicity="0..1" />
+          <End Role="Pesada" Type="CSPesajeModel.Pesada" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Planta">
               <PropertyRef Name="IDPlanta" />
@@ -2054,8 +2298,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Producto__Pesada">
-          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
-          <End Role="Pesada" Type="Self.Pesada" Multiplicity="*" />
+          <End Role="Producto" Type="CSPesajeModel.Producto" Multiplicity="1" />
+          <End Role="Pesada" Type="CSPesajeModel.Pesada" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Producto">
               <PropertyRef Name="IDProducto" />
@@ -2066,8 +2310,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Usuario__Pesada__Creacion">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="Pesada" Type="Self.Pesada" Multiplicity="*" />
+          <End Role="Usuario" Type="CSPesajeModel.Usuario" Multiplicity="1" />
+          <End Role="Pesada" Type="CSPesajeModel.Pesada" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuario">
               <PropertyRef Name="IDUsuario" />
@@ -2078,8 +2322,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Usuario__Pesada__Modificacion">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="Pesada" Type="Self.Pesada" Multiplicity="*" />
+          <End Role="Usuario" Type="CSPesajeModel.Usuario" Multiplicity="1" />
+          <End Role="Pesada" Type="CSPesajeModel.Pesada" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuario">
               <PropertyRef Name="IDUsuario" />
@@ -2090,8 +2334,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Planta__Producto_Planta">
-          <End Role="Planta" Type="Self.Planta" Multiplicity="1" />
-          <End Role="Producto_Planta" Type="Self.Producto_Planta" Multiplicity="*" />
+          <End Role="Planta" Type="CSPesajeModel.Planta" Multiplicity="1" />
+          <End Role="Producto_Planta" Type="CSPesajeModel.Producto_Planta" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Planta">
               <PropertyRef Name="IDPlanta" />
@@ -2102,8 +2346,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Usuario__Planta__Creacion">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="Planta" Type="Self.Planta" Multiplicity="*" />
+          <End Role="Usuario" Type="CSPesajeModel.Usuario" Multiplicity="1" />
+          <End Role="Planta" Type="CSPesajeModel.Planta" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuario">
               <PropertyRef Name="IDUsuario" />
@@ -2114,8 +2358,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Usuario__Planta__Modificacion">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="Planta" Type="Self.Planta" Multiplicity="*" />
+          <End Role="Usuario" Type="CSPesajeModel.Usuario" Multiplicity="1" />
+          <End Role="Planta" Type="CSPesajeModel.Planta" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuario">
               <PropertyRef Name="IDUsuario" />
@@ -2126,8 +2370,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Producto__Producto_Cosecha">
-          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
-          <End Role="Producto_Cosecha" Type="Self.Producto_Cosecha" Multiplicity="*" />
+          <End Role="Producto" Type="CSPesajeModel.Producto" Multiplicity="1" />
+          <End Role="Producto_Cosecha" Type="CSPesajeModel.Producto_Cosecha" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Producto">
               <PropertyRef Name="IDProducto" />
@@ -2138,8 +2382,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Producto__Producto_Planta">
-          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
-          <End Role="Producto_Planta" Type="Self.Producto_Planta" Multiplicity="*" />
+          <End Role="Producto" Type="CSPesajeModel.Producto" Multiplicity="1" />
+          <End Role="Producto_Planta" Type="CSPesajeModel.Producto_Planta" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Producto">
               <PropertyRef Name="IDProducto" />
@@ -2150,8 +2394,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Usuario__Producto__Creacion">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+          <End Role="Usuario" Type="CSPesajeModel.Usuario" Multiplicity="1" />
+          <End Role="Producto" Type="CSPesajeModel.Producto" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuario">
               <PropertyRef Name="IDUsuario" />
@@ -2162,8 +2406,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Usuario__Producto__Modificacion">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+          <End Role="Usuario" Type="CSPesajeModel.Usuario" Multiplicity="1" />
+          <End Role="Producto" Type="CSPesajeModel.Producto" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuario">
               <PropertyRef Name="IDUsuario" />
@@ -2174,8 +2418,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Reporte__ReporteParametro">
-          <End Role="Reporte" Type="Self.Reporte" Multiplicity="1" />
-          <End Role="ReporteParametro" Type="Self.ReporteParametro" Multiplicity="*" />
+          <End Role="Reporte" Type="CSPesajeModel.Reporte" Multiplicity="1" />
+          <End Role="ReporteParametro" Type="CSPesajeModel.ReporteParametro" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Reporte">
               <PropertyRef Name="IDReporte" />
@@ -2186,8 +2430,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__ReporteGrupo__Reporte">
-          <End Role="ReporteGrupo" Type="Self.ReporteGrupo" Multiplicity="1" />
-          <End Role="Reporte" Type="Self.Reporte" Multiplicity="*" />
+          <End Role="ReporteGrupo" Type="CSPesajeModel.ReporteGrupo" Multiplicity="1" />
+          <End Role="Reporte" Type="CSPesajeModel.Reporte" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ReporteGrupo">
               <PropertyRef Name="IDReporteGrupo" />
@@ -2198,8 +2442,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Usuario__UsuarioGrupo__Creacion">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="UsuarioGrupo" Type="Self.UsuarioGrupo" Multiplicity="*" />
+          <End Role="Usuario" Type="CSPesajeModel.Usuario" Multiplicity="1" />
+          <End Role="UsuarioGrupo" Type="CSPesajeModel.UsuarioGrupo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuario">
               <PropertyRef Name="IDUsuario" />
@@ -2210,8 +2454,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Usuario__UsuarioGrupo__Modificacion">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="UsuarioGrupo" Type="Self.UsuarioGrupo" Multiplicity="*" />
+          <End Role="Usuario" Type="CSPesajeModel.Usuario" Multiplicity="1" />
+          <End Role="UsuarioGrupo" Type="CSPesajeModel.UsuarioGrupo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuario">
               <PropertyRef Name="IDUsuario" />
@@ -2222,8 +2466,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__UsuarioGrupo__Usuario">
-          <End Role="UsuarioGrupo" Type="Self.UsuarioGrupo" Multiplicity="1" />
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <End Role="UsuarioGrupo" Type="CSPesajeModel.UsuarioGrupo" Multiplicity="1" />
+          <End Role="Usuario" Type="CSPesajeModel.Usuario" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UsuarioGrupo">
               <PropertyRef Name="IDUsuarioGrupo" />
@@ -2234,8 +2478,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__UsuarioGrupo__UsuarioGrupoPermiso">
-          <End Role="UsuarioGrupo" Type="Self.UsuarioGrupo" Multiplicity="1" />
-          <End Role="UsuarioGrupoPermiso" Type="Self.UsuarioGrupoPermiso" Multiplicity="*" />
+          <End Role="UsuarioGrupo" Type="CSPesajeModel.UsuarioGrupo" Multiplicity="1" />
+          <End Role="UsuarioGrupoPermiso" Type="CSPesajeModel.UsuarioGrupoPermiso" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UsuarioGrupo">
               <PropertyRef Name="IDUsuarioGrupo" />
@@ -2245,234 +2489,28 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Camion" EntityType="Self.Camion" />
-          <EntitySet Name="Cosecha" EntityType="Self.Cosecha" />
-          <EntitySet Name="Cosecha_Producto_Tarifa" EntityType="Self.Cosecha_Producto_Tarifa" />
-          <EntitySet Name="Cosecha_Producto_TarifaEscala" EntityType="Self.Cosecha_Producto_TarifaEscala" />
-          <EntitySet Name="Entidad" EntityType="Self.Entidad" />
-          <EntitySet Name="Entidad_OrigenDestino" EntityType="Self.Entidad_OrigenDestino" />
-          <EntitySet Name="Entidad_Planta" EntityType="Self.Entidad_Planta" />
-          <EntitySet Name="Localidad" EntityType="Self.Localidad" />
-          <EntitySet Name="OrigenDestino" EntityType="Self.OrigenDestino" />
-          <EntitySet Name="Parametro" EntityType="Self.Parametro" />
-          <EntitySet Name="Pesada" EntityType="Self.Pesada" />
-          <EntitySet Name="Pesada_Acondicionamiento" EntityType="Self.Pesada_Acondicionamiento" />
-          <EntitySet Name="Pesada_Analisis" EntityType="Self.Pesada_Analisis" />
-          <EntitySet Name="Pesada_Otro" EntityType="Self.Pesada_Otro" />
-          <EntitySet Name="Planta" EntityType="Self.Planta" />
-          <EntitySet Name="Producto" EntityType="Self.Producto" />
-          <EntitySet Name="Producto_Cosecha" EntityType="Self.Producto_Cosecha" />
-          <EntitySet Name="Producto_Planta" EntityType="Self.Producto_Planta" />
-          <EntitySet Name="Provincia" EntityType="Self.Provincia" />
-          <EntitySet Name="Reporte" EntityType="Self.Reporte" />
-          <EntitySet Name="ReporteGrupo" EntityType="Self.ReporteGrupo" />
-          <EntitySet Name="ReporteParametro" EntityType="Self.ReporteParametro" />
-          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
-          <EntitySet Name="UsuarioGrupo" EntityType="Self.UsuarioGrupo" />
-          <EntitySet Name="UsuarioGrupoPermiso" EntityType="Self.UsuarioGrupoPermiso" />
-          <AssociationSet Name="FK__Camion__Entidad" Association="Self.FK__Camion__Entidad">
-            <End Role="Camion" EntitySet="Camion" />
-            <End Role="Entidad" EntitySet="Entidad" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Camion__Pesada" Association="Self.FK__Camion__Pesada">
-            <End Role="Camion" EntitySet="Camion" />
-            <End Role="Pesada" EntitySet="Pesada" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Usuario__Camion__Creacion" Association="Self.FK__Usuario__Camion__Creacion">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="Camion" EntitySet="Camion" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Usuario__Camion__Modificacion" Association="Self.FK__Usuario__Camion__Modificacion">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="Camion" EntitySet="Camion" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Cosecha__Cosecha_Producto_Tarifa" Association="Self.FK__Cosecha__Cosecha_Producto_Tarifa">
-            <End Role="Cosecha" EntitySet="Cosecha" />
-            <End Role="Cosecha_Producto_Tarifa" EntitySet="Cosecha_Producto_Tarifa" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Cosecha__Pesada" Association="Self.FK__Cosecha__Pesada">
-            <End Role="Cosecha" EntitySet="Cosecha" />
-            <End Role="Pesada" EntitySet="Pesada" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Cosecha__Producto_Cosecha" Association="Self.FK__Cosecha__Producto_Cosecha">
-            <End Role="Cosecha" EntitySet="Cosecha" />
-            <End Role="Producto_Cosecha" EntitySet="Producto_Cosecha" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Usuario__Cosecha__Creacion" Association="Self.FK__Usuario__Cosecha__Creacion">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="Cosecha" EntitySet="Cosecha" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Usuario__Cosecha__Modificacion" Association="Self.FK__Usuario__Cosecha__Modificacion">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="Cosecha" EntitySet="Cosecha" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Cosecha_Producto_Tarifa" Association="Self.FK__Cosecha_Producto_Tarifa">
-            <End Role="Producto" EntitySet="Producto" />
-            <End Role="Cosecha_Producto_Tarifa" EntitySet="Cosecha_Producto_Tarifa" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Cosecha_Producto_Tarifa__Cosecha_Producto_TarifaEscala" Association="Self.FK__Cosecha_Producto_Tarifa__Cosecha_Producto_TarifaEscala">
-            <End Role="Cosecha_Producto_Tarifa" EntitySet="Cosecha_Producto_Tarifa" />
-            <End Role="Cosecha_Producto_TarifaEscala" EntitySet="Cosecha_Producto_TarifaEscala" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Planta__Cosecha_Producto_Tarifa" Association="Self.FK__Planta__Cosecha_Producto_Tarifa">
-            <End Role="Planta" EntitySet="Planta" />
-            <End Role="Cosecha_Producto_Tarifa" EntitySet="Cosecha_Producto_Tarifa" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Entidad__Entidad__Transportista" Association="Self.FK__Entidad__Entidad__Transportista">
-            <End Role="Entidad" EntitySet="Entidad" />
-            <End Role="Entidad1" EntitySet="Entidad" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Entidad__Entidad_Planta" Association="Self.FK__Entidad__Entidad_Planta">
-            <End Role="Entidad" EntitySet="Entidad" />
-            <End Role="Entidad_Planta" EntitySet="Entidad_Planta" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Entidad__Pesada__Chofer" Association="Self.FK__Entidad__Pesada__Chofer">
-            <End Role="Entidad" EntitySet="Entidad" />
-            <End Role="Pesada" EntitySet="Pesada" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Entidad__Pesada__Titular" Association="Self.FK__Entidad__Pesada__Titular">
-            <End Role="Entidad" EntitySet="Entidad" />
-            <End Role="Pesada" EntitySet="Pesada" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Entidad__Pesada__Transportista" Association="Self.FK__Entidad__Pesada__Transportista">
-            <End Role="Entidad" EntitySet="Entidad" />
-            <End Role="Pesada" EntitySet="Pesada" />
-          </AssociationSet>
-          <AssociationSet Name="FK__OrigenDestino_Entidad__Entidad" Association="Self.FK__OrigenDestino_Entidad__Entidad">
-            <End Role="Entidad" EntitySet="Entidad" />
-            <End Role="Entidad_OrigenDestino" EntitySet="Entidad_OrigenDestino" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Usuario__Entidad__Creacion" Association="Self.FK__Usuario__Entidad__Creacion">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="Entidad" EntitySet="Entidad" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Usuario__Entidad__Modificacion" Association="Self.FK__Usuario__Entidad__Modificacion">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="Entidad" EntitySet="Entidad" />
-          </AssociationSet>
-          <AssociationSet Name="FK__OrigenDestino__Entidad_OrigenDestino" Association="Self.FK__OrigenDestino__Entidad_OrigenDestino">
-            <End Role="OrigenDestino" EntitySet="OrigenDestino" />
-            <End Role="Entidad_OrigenDestino" EntitySet="Entidad_OrigenDestino" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Usuario__Entidad_OrigenDestino__Creacion" Association="Self.FK__Usuario__Entidad_OrigenDestino__Creacion">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="Entidad_OrigenDestino" EntitySet="Entidad_OrigenDestino" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Usuario__Entidad_OrigenDestino__Modificacion" Association="Self.FK__Usuario__Entidad_OrigenDestino__Modificacion">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="Entidad_OrigenDestino" EntitySet="Entidad_OrigenDestino" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Planta__Entidad_Planta" Association="Self.FK__Planta__Entidad_Planta">
-            <End Role="Planta" EntitySet="Planta" />
-            <End Role="Entidad_Planta" EntitySet="Entidad_Planta" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Localidad__OrigenDestino" Association="Self.FK__Localidad__OrigenDestino">
-            <End Role="Localidad" EntitySet="Localidad" />
-            <End Role="OrigenDestino" EntitySet="OrigenDestino" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Provincia__Localidad" Association="Self.FK__Provincia__Localidad">
-            <End Role="Provincia" EntitySet="Provincia" />
-            <End Role="Localidad" EntitySet="Localidad" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Usuario__OrigenDestino__Creacion" Association="Self.FK__Usuario__OrigenDestino__Creacion">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="OrigenDestino" EntitySet="OrigenDestino" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Usuario__OrigenDestino__Modificacion" Association="Self.FK__Usuario__OrigenDestino__Modificacion">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="OrigenDestino" EntitySet="OrigenDestino" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Pesada__Pesada_Acondicionamiento" Association="Self.FK__Pesada__Pesada_Acondicionamiento">
-            <End Role="Pesada" EntitySet="Pesada" />
-            <End Role="Pesada_Acondicionamiento" EntitySet="Pesada_Acondicionamiento" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Pesada__Pesada_Analisis" Association="Self.FK__Pesada__Pesada_Analisis">
-            <End Role="Pesada" EntitySet="Pesada" />
-            <End Role="Pesada_Analisis" EntitySet="Pesada_Analisis" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Pesada__Pesada_Otro" Association="Self.FK__Pesada__Pesada_Otro">
-            <End Role="Pesada" EntitySet="Pesada" />
-            <End Role="Pesada_Otro" EntitySet="Pesada_Otro" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Planta__Pesada" Association="Self.FK__Planta__Pesada">
-            <End Role="Planta" EntitySet="Planta" />
-            <End Role="Pesada" EntitySet="Pesada" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Producto__Pesada" Association="Self.FK__Producto__Pesada">
-            <End Role="Producto" EntitySet="Producto" />
-            <End Role="Pesada" EntitySet="Pesada" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Usuario__Pesada__Creacion" Association="Self.FK__Usuario__Pesada__Creacion">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="Pesada" EntitySet="Pesada" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Usuario__Pesada__Modificacion" Association="Self.FK__Usuario__Pesada__Modificacion">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="Pesada" EntitySet="Pesada" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Planta__Producto_Planta" Association="Self.FK__Planta__Producto_Planta">
-            <End Role="Planta" EntitySet="Planta" />
-            <End Role="Producto_Planta" EntitySet="Producto_Planta" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Usuario__Planta__Creacion" Association="Self.FK__Usuario__Planta__Creacion">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="Planta" EntitySet="Planta" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Usuario__Planta__Modificacion" Association="Self.FK__Usuario__Planta__Modificacion">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="Planta" EntitySet="Planta" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Producto__Producto_Cosecha" Association="Self.FK__Producto__Producto_Cosecha">
-            <End Role="Producto" EntitySet="Producto" />
-            <End Role="Producto_Cosecha" EntitySet="Producto_Cosecha" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Producto__Producto_Planta" Association="Self.FK__Producto__Producto_Planta">
-            <End Role="Producto" EntitySet="Producto" />
-            <End Role="Producto_Planta" EntitySet="Producto_Planta" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Usuario__Producto__Creacion" Association="Self.FK__Usuario__Producto__Creacion">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="Producto" EntitySet="Producto" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Usuario__Producto__Modificacion" Association="Self.FK__Usuario__Producto__Modificacion">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="Producto" EntitySet="Producto" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Reporte__ReporteParametro" Association="Self.FK__Reporte__ReporteParametro">
-            <End Role="Reporte" EntitySet="Reporte" />
-            <End Role="ReporteParametro" EntitySet="ReporteParametro" />
-          </AssociationSet>
-          <AssociationSet Name="FK__ReporteGrupo__Reporte" Association="Self.FK__ReporteGrupo__Reporte">
-            <End Role="ReporteGrupo" EntitySet="ReporteGrupo" />
-            <End Role="Reporte" EntitySet="Reporte" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Usuario__UsuarioGrupo__Creacion" Association="Self.FK__Usuario__UsuarioGrupo__Creacion">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="UsuarioGrupo" EntitySet="UsuarioGrupo" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Usuario__UsuarioGrupo__Modificacion" Association="Self.FK__Usuario__UsuarioGrupo__Modificacion">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="UsuarioGrupo" EntitySet="UsuarioGrupo" />
-          </AssociationSet>
-          <AssociationSet Name="FK__UsuarioGrupo__Usuario" Association="Self.FK__UsuarioGrupo__Usuario">
-            <End Role="UsuarioGrupo" EntitySet="UsuarioGrupo" />
-            <End Role="Usuario" EntitySet="Usuario" />
-          </AssociationSet>
-          <AssociationSet Name="FK__UsuarioGrupo__UsuarioGrupoPermiso" Association="Self.FK__UsuarioGrupo__UsuarioGrupoPermiso">
-            <End Role="UsuarioGrupo" EntitySet="UsuarioGrupo" />
-            <End Role="UsuarioGrupoPermiso" EntitySet="UsuarioGrupoPermiso" />
-          </AssociationSet>
-        </EntityContainer>
+        <Association Name="FK__Entidad__Camion">
+          <End Type="CSPesajeModel.Entidad" Role="Entidad" Multiplicity="1" />
+          <End Type="CSPesajeModel.Camion" Role="Camion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entidad">
+              <PropertyRef Name="IDEntidad" />
+            </Principal>
+            <Dependent Role="Camion">
+              <PropertyRef Name="IDEntidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="CSPesajeModelStoreContainer" CdmEntityContainer="Entities">
+        <EntityContainerMapping StorageEntityContainer="CSPesajeModelStoreContainer" CdmEntityContainer="CSPesajeContext">
           <EntitySetMapping Name="Camion">
             <EntityTypeMapping TypeName="CSPesajeModel.Camion">
               <MappingFragment StoreEntitySet="Camion">
+                <ScalarProperty Name="NombreDominios" ColumnName="NombreDominios" />
                 <ScalarProperty Name="IDEntidad" ColumnName="IDEntidad" />
                 <ScalarProperty Name="IDCamion" ColumnName="IDCamion" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
@@ -2631,6 +2669,7 @@
           <EntitySetMapping Name="Pesada">
             <EntityTypeMapping TypeName="CSPesajeModel.Pesada">
               <MappingFragment StoreEntitySet="Pesada">
+                <ScalarProperty Name="TipoNombre" ColumnName="TipoNombre" />
                 <ScalarProperty Name="IDPesada" ColumnName="IDPesada" />
                 <ScalarProperty Name="FechaHoraInicio" ColumnName="FechaHoraInicio" />
                 <ScalarProperty Name="FechaHoraFin" ColumnName="FechaHoraFin" />

@@ -79,6 +79,7 @@
         <AssociationConnector Association="CSPesajeModel.FK__Usuario__UsuarioGrupo__Modificacion" ManuallyRouted="false" />
         <AssociationConnector Association="CSPesajeModel.FK__UsuarioGrupo__Usuario" ManuallyRouted="false" />
         <AssociationConnector Association="CSPesajeModel.FK__UsuarioGrupo__UsuarioGrupoPermiso" ManuallyRouted="false" />
+        <AssociationConnector Association="CSPesajeModel.FK__Entidad__Camion" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -19,6 +19,7 @@ Partial Public Class Pesada
     Public Property IDProducto As Byte
     Public Property IDCosecha As Nullable(Of Byte)
     Public Property Tipo As String
+    Public Property TipoNombre As String
     Public Property Titular_IDEntidad As Integer
     Public Property IDOrigenDestino As Nullable(Of Integer)
     Public Property Transportista_IDEntidad As Nullable(Of Integer)

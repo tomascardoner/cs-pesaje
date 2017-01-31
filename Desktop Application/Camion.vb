@@ -16,6 +16,7 @@ Partial Public Class Camion
     Public Property Nombre As String
     Public Property DominioChasis As String
     Public Property DominioAcoplado As String
+    Public Property NombreDominios As String
     Public Property EsActivo As Boolean
     Public Property IDUsuarioCreacion As Short
     Public Property FechaHoraCreacion As Date
@@ -26,5 +27,6 @@ Partial Public Class Camion
     Public Overridable Property Pesadas As ICollection(Of Pesada) = New HashSet(Of Pesada)
     Public Overridable Property UsuarioCreacion As Usuario
     Public Overridable Property UsuarioModificacion As Usuario
+    Public Overridable Property Entidad1 As Entidad
 
 End Class

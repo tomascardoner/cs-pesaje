@@ -137,12 +137,12 @@
         If Permisos.VerificarPermiso(Permisos.ENTIDAD) Then
             Me.Cursor = Cursors.WaitCursor
 
-            'CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formEntidades, Form))
-            'formEntidades.Show()
-            'If formEntidades.WindowState = FormWindowState.Minimized Then
-            '    formEntidades.WindowState = FormWindowState.Normal
-            'End If
-            'formEntidades.Focus()
+            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formPesadas, Form))
+            formPesadas.Show()
+            If formPesadas.WindowState = FormWindowState.Minimized Then
+                formPesadas.WindowState = FormWindowState.Normal
+            End If
+            formPesadas.Focus()
 
             Me.Cursor = Cursors.Default
         End If
