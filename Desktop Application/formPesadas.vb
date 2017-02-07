@@ -1,6 +1,9 @@
 ﻿Public Class formPesadas
 
 #Region "Declarations"
+    Private WithEvents datetimepickerFechaDesdeHost As ToolStripControlHost
+    Private WithEvents datetimepickerFechaHastaHost As ToolStripControlHost
+
     Friend Class GridRowData
         Public Property IDPesada As Integer
         Public Property FechaHoraInicio As Date
@@ -25,6 +28,7 @@
     Private mlistPesadaBase As List(Of GridRowData)
     Private mlistPesadaFiltradaYOrdenada As List(Of GridRowData)
 
+    Private mFiltroPeriodoExpandido As Boolean = False
     Private mSkipFilterData As Boolean = False
     Private mReportSelectionFormula As String
 
@@ -43,6 +47,11 @@
 
         mSkipFilterData = True
 
+        InicializarFiltroDeFechas()
+
+        comboboxPeriodoTipo.Items.AddRange({"Día:", "Semana:", "Mes:", "Fecha"})
+        FiltroPeriodoMostrar()
+
         mSkipFilterData = False
 
         mOrdenColumna = columnFechaHoraInicio
@@ -55,10 +64,48 @@
         mlistPesadaBase = Nothing
         mlistPesadaFiltradaYOrdenada = Nothing
     End Sub
+
+    Private Sub InicializarFiltroDeFechas()
+        ' Create a new ToolStripControlHost, passing in a control.
+        datetimepickerFechaDesdeHost = New ToolStripControlHost(New DateTimePicker())
+        datetimepickerFechaHastaHost = New ToolStripControlHost(New DateTimePicker())
+
+        ' Set the font on the ToolStripControlHost, this will affect the hosted control.
+        'dateTimePickerHost.Font = New Font("Arial", 7.0F, FontStyle.Italic)
+
+        ' Set the Width property, this will also affect the hosted control.
+        datetimepickerFechaDesdeHost.Width = 100
+        datetimepickerFechaDesdeHost.DisplayStyle = ToolStripItemDisplayStyle.Text
+        datetimepickerFechaHastaHost.Width = 100
+        datetimepickerFechaHastaHost.DisplayStyle = ToolStripItemDisplayStyle.Text
+
+        ' Setting the Text property requires a string that converts to a  
+        ' DateTime type since that is what the hosted control requires.
+        datetimepickerFechaDesdeHost.Text = DateTime.Today.ToShortDateString
+        datetimepickerFechaHastaHost.Text = DateTime.Today.ToShortDateString
+
+        ' Cast the Control property back to the original type to set a  
+        ' type-specific property. 
+        CType(datetimepickerFechaDesdeHost.Control, DateTimePicker).Format = DateTimePickerFormat.Short
+        CType(datetimepickerFechaHastaHost.Control, DateTimePicker).Format = DateTimePickerFormat.Short
+
+        ' Add the control host to the ToolStrip.
+        toolstripgroupPeriodo.Items.Insert(toolstripgroupPeriodo.Items.IndexOf(buttonFechaDesdeSiguiente), datetimepickerFechaDesdeHost)
+        toolstripgroupPeriodo.Items.Insert(toolstripgroupPeriodo.Items.IndexOf(buttonFechaHastaSiguiente), datetimepickerFechaHastaHost)
+
+        datetimepickerFechaDesdeHost.Visible = False
+        datetimepickerFechaHastaHost.Visible = False
+    End Sub
+
 #End Region
 
 #Region "Load and Set Data"
     Friend Sub RefreshData(Optional ByVal PositionIDPesada As Integer = 0, Optional ByVal RestoreCurrentPosition As Boolean = False)
+
+        If mSkipFilterData Then
+            Exit Sub
+        End If
+
         Me.Cursor = Cursors.WaitCursor
 
         Try
@@ -175,16 +222,86 @@
 #End Region
 
 #Region "Controls behavior"
-    Private Sub PesadaTipo_Click() Handles menuitemTipo_Entrada.Click, menuitemTipo_Salida.Click, menuitemTipo_Ninguna.Click
+
+    Private Sub Periodo_LauncherClick() Handles toolstripgroupPeriodo.LauncherClick
+        mFiltroPeriodoExpandido = Not mFiltroPeriodoExpandido
+        FiltroPeriodoMostrar()
+    End Sub
+
+    Private Sub PeriodoTipoSeleccionar() Handles comboboxPeriodoTipo.SelectedIndexChanged
+        comboboxPeriodoValor.Items.Clear()
+        Select Case comboboxPeriodoTipo.SelectedIndex
+            Case 0  ' Día
+                comboboxPeriodoValor.Items.AddRange({"Hoy", "Ayer", "Anteayer", "Últimos 2", "Últimos 3"})
+            Case 1  ' Semana
+                comboboxPeriodoValor.Items.AddRange({"Actual", "Anterior", "Últimas 2"})
+            Case 2  ' Mes
+                comboboxPeriodoValor.Items.AddRange({"Actual", "Anterior", "Últimos 2"})
+            Case 3  ' Fecha
+                comboboxPeriodoValor.Items.AddRange({"es igual a:", "es posterior a:", "es anterior a:", "está entre:"})
+        End Select
+        comboboxPeriodoValor.SelectedIndex = 0
+    End Sub
+
+    Private Sub PeriodoValorSeleccionar() Handles comboboxPeriodoValor.SelectedIndexChanged
+        ' Fecha Desde
+        buttonFechaDesdeAnterior.Visible = (comboboxPeriodoTipo.SelectedIndex = 3)
+        datetimepickerFechaDesdeHost.Visible = (comboboxPeriodoTipo.SelectedIndex = 3)
+        buttonFechaDesdeSiguiente.Visible = (comboboxPeriodoTipo.SelectedIndex = 3)
+        buttonFechaDesdeHoy.Visible = (comboboxPeriodoTipo.SelectedIndex = 3)
+
+        ' Fecha Hasta
+        labelFechaY.Visible = (comboboxPeriodoTipo.SelectedIndex = 3 And comboboxPeriodoValor.SelectedIndex = 3)
+        buttonFechaHastaAnterior.Visible = (comboboxPeriodoTipo.SelectedIndex = 3 And comboboxPeriodoValor.SelectedIndex = 3)
+        datetimepickerFechaHastaHost.Visible = (comboboxPeriodoTipo.SelectedIndex = 3 And comboboxPeriodoValor.SelectedIndex = 3)
+        buttonFechaHastaSiguiente.Visible = (comboboxPeriodoTipo.SelectedIndex = 3 And comboboxPeriodoValor.SelectedIndex = 3)
+        buttonFechaHastaHoy.Visible = (comboboxPeriodoTipo.SelectedIndex = 3 And comboboxPeriodoValor.SelectedIndex = 3)
+
+        RefreshData()
+    End Sub
+
+    ' ///// Fecha Desde /////
+    Private Sub FechaDesdeAnterior() Handles buttonFechaDesdeAnterior.Click
+        CType(datetimepickerFechaDesdeHost.Control, DateTimePicker).Value = CType(datetimepickerFechaDesdeHost.Control, DateTimePicker).Value.AddDays(-1)
+    End Sub
+
+    Private Sub FechaDesdeSiguiente() Handles buttonFechaDesdeSiguiente.Click
+        CType(datetimepickerFechaDesdeHost.Control, DateTimePicker).Value = CType(datetimepickerFechaDesdeHost.Control, DateTimePicker).Value.AddDays(1)
+    End Sub
+
+    Private Sub FechaDesdeHoy() Handles buttonFechaDesdeHoy.Click
+        CType(datetimepickerFechaDesdeHost.Control, DateTimePicker).Value = DateAndTime.Today
+    End Sub
+
+    ' ///// Fecha Hasta /////
+    Private Sub FechaHastaAnterior() Handles buttonFechaHastaAnterior.Click
+        CType(datetimepickerFechaHastaHost.Control, DateTimePicker).Value = CType(datetimepickerFechaHastaHost.Control, DateTimePicker).Value.AddDays(-1)
+    End Sub
+
+    Private Sub FechaHastaSiguiente() Handles buttonFechaHastaSiguiente.Click
+        CType(datetimepickerFechaHastaHost.Control, DateTimePicker).Value = CType(datetimepickerFechaHastaHost.Control, DateTimePicker).Value.AddDays(1)
+    End Sub
+
+    Private Sub FechaHastaHoy() Handles buttonFechaHastaHoy.Click
+        CType(datetimepickerFechaHastaHost.Control, DateTimePicker).Value = DateAndTime.Today
+    End Sub
+
+
+    Private Sub FechaCambiar() Handles datetimepickerFechaHastaHost.TextChanged, datetimepickerFechaHastaHost.TextChanged
+        RefreshData()
+    End Sub
+
+
+    Private Sub PesadaTipo_Click() Handles menuitemPesadaTipo_Entrada.Click, menuitemPesadaTipo_Salida.Click, menuitemPesadaTipo_Ninguno.Click
         FilterData()
     End Sub
 
-    Private Sub MarcarYDesmarcarTodo_Click(sender As Object, e As EventArgs) Handles menuitemMarcarTodos.Click, menuitemDesmarcarTodos.Click
+    Private Sub MarcarYDesmarcarTodo_Click(sender As Object, e As EventArgs) Handles menuitemPesadaTipo_MarcarTodos.Click, menuitemPesadaTipo_DesmarcarTodos.Click
         mSkipFilterData = True
 
-        menuitemTipo_Entrada.Checked = (CType(sender, ToolStripMenuItem) Is menuitemMarcarTodos)
-        menuitemTipo_Salida.Checked = (CType(sender, ToolStripMenuItem) Is menuitemMarcarTodos)
-        menuitemTipo_Ninguna.Checked = (CType(sender, ToolStripMenuItem) Is menuitemMarcarTodos)
+        menuitemPesadaTipo_Entrada.Checked = (CType(sender, ToolStripMenuItem) Is menuitemPesadaTipo_MarcarTodos)
+        menuitemPesadaTipo_Salida.Checked = (CType(sender, ToolStripMenuItem) Is menuitemPesadaTipo_MarcarTodos)
+        menuitemPesadaTipo_Ninguno.Checked = (CType(sender, ToolStripMenuItem) Is menuitemPesadaTipo_MarcarTodos)
 
         mSkipFilterData = False
 
@@ -310,32 +427,18 @@
             Me.Cursor = Cursors.Default
         End If
     End Sub
+#End Region
 
-    Private Sub Imprimir_Listado() Handles menuitemImprimirListado.Click
-        If datagridviewMain.CurrentRow Is Nothing Then
-            MsgBox("No hay ninguna Entidad para imprimir el Listado.", vbInformation, My.Application.Info.Title)
-        Else
-            If Permisos.VerificarPermiso(Permisos.ENTIDAD_IMPRIMIR) Then
-                Me.Cursor = Cursors.WaitCursor
-
-                datagridviewMain.Enabled = False
-
-                Dim ReporteActual As New Reporte
-                If ReporteActual.Open(My.Settings.ReportsPath & "\") Then
-                    If ReporteActual.SetDatabaseConnection(pDatabase.DataSource, pDatabase.InitialCatalog, pDatabase.UserID, pDatabase.Password) Then
-                        ReporteActual.RecordSelectionFormula = mReportSelectionFormula
-
-                        MiscFunctions.PreviewCrystalReport(ReporteActual, "Listado de Entidades")
-                    End If
-                End If
-
-                datagridviewMain.Enabled = True
-
-                Me.Cursor = Cursors.Default
-            End If
+#Region "Extra stuff"
+    Private Sub FiltroPeriodoMostrar()
+        comboboxPeriodoTipo.Visible = mFiltroPeriodoExpandido
+        comboboxPeriodoValor.Visible = mFiltroPeriodoExpandido
+        labelFecha.Visible = Not mFiltroPeriodoExpandido
+        If Not mFiltroPeriodoExpandido Then
+            comboboxPeriodoTipo.SelectedIndex = 3
+            comboboxPeriodoValor.SelectedIndex = 0
         End If
     End Sub
-
 #End Region
 
 End Class

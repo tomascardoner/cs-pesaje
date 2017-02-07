@@ -61,26 +61,30 @@
 #End Region
 
 #Region "Menu Debug"
+    Private Sub Debug_ShowTestForm() Handles menuitemDebug_ShowTestForm.Click
+        formTest.ShowDialog()
+    End Sub
+
 #End Region
 
 #Region "Menu Ventana"
-    Private Sub menuitemVentana_MosaicoHorizontal_Click() Handles menuitemVentanaMosaicoHorizontal.Click
+    Private Sub menuitemVentana_MosaicoHorizontal_Click() Handles menuitemVentana_MosaicoHorizontal.Click
         Me.LayoutMdi(MdiLayout.TileHorizontal)
     End Sub
 
-    Private Sub menuitemVentana_MosaicoVertical_Click() Handles menuitemVentanaMosaicoVertical.Click
+    Private Sub menuitemVentana_MosaicoVertical_Click() Handles menuitemVentana_MosaicoVertical.Click
         Me.LayoutMdi(MdiLayout.TileVertical)
     End Sub
 
-    Private Sub menuitemVentana_Cascada_Click() Handles menuitemVentanaCascada.Click
+    Private Sub menuitemVentana_Cascada_Click() Handles menuitemVentana_Cascada.Click
         Me.LayoutMdi(MdiLayout.Cascade)
     End Sub
 
-    Private Sub menuitemVentana_OrganizarIconos_Click() Handles menuitemVentanaOrganizarIconos.Click
+    Private Sub menuitemVentana_OrganizarIconos_Click() Handles menuitemVentana_OrganizarIconos.Click
         Me.LayoutMdi(MdiLayout.ArrangeIcons)
     End Sub
 
-    Private Sub menuitemVentana_EncajarEnVentana_Click() Handles menuitemVentanaEncajarEnVentana.Click
+    Private Sub menuitemVentana_EncajarEnVentana_Click() Handles menuitemVentana_EncajarEnVentana.Click
         If Not Me.ActiveMdiChild Is Nothing Then
             Me.ActiveMdiChild.Left = 0
             Me.ActiveMdiChild.Top = 0
@@ -88,7 +92,7 @@
         End If
     End Sub
 
-    Private Sub menuitemVentana_CerrarTodas_Click() Handles menuitemVentanaCerrarTodas.Click
+    Private Sub menuitemVentana_CerrarTodas_Click() Handles menuitemVentana_CerrarTodas.Click
         CS_Form.MDIChild_CloseAll(Me)
     End Sub
 #End Region
@@ -134,7 +138,7 @@
 
 #Region "Left Toolbar - Pesadas"
     Private Sub Pesadas() Handles buttonPesadas.Click
-        If Permisos.VerificarPermiso(Permisos.ENTIDAD) Then
+        If Permisos.VerificarPermiso(Permisos.PESADA) Then
             Me.Cursor = Cursors.WaitCursor
 
             CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formPesadas, Form))

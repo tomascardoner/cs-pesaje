@@ -10,6 +10,12 @@
     Friend Const ENTIDAD_ELIMINAR As String = "ENTIDAD_ELIMINAR"
     Friend Const ENTIDAD_IMPRIMIR As String = "ENTIDAD_IMPRIMIR"
 
+    Friend Const PESADA As String = "PESADA"
+    Friend Const PESADA_AGREGAR As String = "PESADA_AGREGAR"
+    Friend Const PESADA_EDITAR As String = "PESADA_EDITAR"
+    Friend Const PESADA_ELIMINAR As String = "PESADA_ELIMINAR"
+    Friend Const PESADA_IMPRIMIR As String = "PESADA_IMPRIMIR"
+
     Friend Const REPORTE As String = "REPORTE"
 
     Friend Const DESCRIPCION_AGREGAR As String = "Agregar"
@@ -54,6 +60,13 @@
             .Nodes.Add(ENTIDAD_IMPRIMIR, DESCRIPCION_IMPRIMIR)
         End With
 
+        RootNode = Arbol.Nodes.Add(PESADA, "Pesadas")
+        With RootNode
+            .Nodes.Add(PESADA_AGREGAR, DESCRIPCION_AGREGAR)
+            .Nodes.Add(PESADA_EDITAR, DESCRIPCION_EDITAR)
+            .Nodes.Add(PESADA_ELIMINAR, DESCRIPCION_ELIMINAR)
+            .Nodes.Add(PESADA_IMPRIMIR, DESCRIPCION_IMPRIMIR)
+        End With
 
         RootNode = Arbol.Nodes.Add(REPORTE, "Reportes")
 
