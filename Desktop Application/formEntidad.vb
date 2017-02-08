@@ -61,9 +61,9 @@
         checkboxTipoTransportista.Enabled = mEditMode
         checkboxTipoChofer.Enabled = mEditMode
 
-        labelEntidadTransportista.Visible = checkboxTipoChofer.Checked
-        panelEntidadTransportista.Visible = checkboxTipoChofer.Checked
-        panelEntidadTransportista.Enabled = (checkboxTipoChofer.Checked And mEditMode)
+        labelTransportista.Visible = checkboxTipoChofer.Checked
+        comboboxTransportista.Visible = checkboxTipoChofer.Checked
+        comboboxTransportista.Enabled = (checkboxTipoChofer.Checked And mEditMode)
         labelCamion.Visible = checkboxTipoChofer.Checked
         comboboxCamion.Visible = checkboxTipoChofer.Checked
         comboboxCamion.Enabled = (checkboxTipoChofer.Checked And mEditMode)
@@ -72,6 +72,7 @@
     Friend Sub InitializeFormAndControls()
         SetAppearance()
 
+        pFillAndRefreshLists.Transportista(comboboxTransportista, False, True)
         CargarCamiones()
     End Sub
 
@@ -103,17 +104,14 @@
 
             If .EsChofer Then
                 If .EntidadTransportista Is Nothing Then
-                    textboxEntidadTransportista.Text = ""
-                    textboxEntidadTransportista.Tag = Nothing
+                    comboboxTransportista.SelectedItem = Nothing
                 Else
-                    textboxEntidadTransportista.Text = .EntidadTransportista.Nombre
-                    textboxEntidadTransportista.Tag = .EntidadTransportista.IDEntidad
+                    CS_Control_ComboBox.SetSelectedValue(comboboxTransportista, SelectedItemOptions.ValueOrFirst, .Transportista_IDEntidad)
                 End If
                 CargarCamiones()
                 CS_Control_ComboBox.SetSelectedValue(comboboxCamion, SelectedItemOptions.ValueOrFirst, .IDCamion)
             Else
-                textboxEntidadTransportista.Text = ""
-                textboxEntidadTransportista.Tag = Nothing
+                comboboxTransportista.SelectedIndex = 0
                 CargarCamiones()
             End If
         End With
@@ -129,7 +127,7 @@
             .CUIT_CUIL = CS_ValueTranslation.FromControlTextBoxToObjectString(maskedtextboxCUIT_CUIL.Text)
 
             If .EsChofer Then
-                .Transportista_IDEntidad = CS_ValueTranslation.FromControlTagToObjectInteger(textboxEntidadTransportista.Tag)
+                .Transportista_IDEntidad = CS_ValueTranslation.FromControlComboBoxToObjectInteger(comboboxTransportista.SelectedValue)
                 .IDCamion = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxCamion.SelectedValue)
             Else
                 .Transportista_IDEntidad = Nothing
@@ -139,7 +137,7 @@
     End Sub
 
     Friend Sub CargarCamiones()
-        pFillAndRefreshLists.Camion(comboboxCamion, CInt(textboxEntidadTransportista.Tag), False, True, True, True)
+        pFillAndRefreshLists.Camion(comboboxCamion, CInt(comboboxTransportista.SelectedValue), True, True, False, True)
     End Sub
 
 #End Region
@@ -157,28 +155,9 @@
         ChangeMode()
     End Sub
 
-    Private Sub buttonEntidadTransportista_Click(sender As Object, e As EventArgs) Handles buttonEntidadTransportista.Click
-        formEntidadesSeleccionar.menuitemEntidadTipo_Titular.Checked = False
-        formEntidadesSeleccionar.menuitemEntidadTipo_Transportista.Checked = True
-        formEntidadesSeleccionar.menuitemEntidadTipo_Chofer.Checked = False
-        If formEntidadesSeleccionar.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
-            Dim EntidadSeleccionada As Entidad
-            EntidadSeleccionada = CType(formEntidadesSeleccionar.datagridviewMain.SelectedRows(0).DataBoundItem, Entidad)
-            textboxEntidadTransportista.Text = EntidadSeleccionada.Nombre
-            textboxEntidadTransportista.Tag = EntidadSeleccionada.IDEntidad
-        End If
-        formEntidadesSeleccionar.Dispose()
-
+    Private Sub Transportista_Cambiar(sender As Object, e As EventArgs) Handles comboboxTransportista.SelectedValueChanged
         CargarCamiones()
         comboboxCamion.Focus()
-    End Sub
-
-    Private Sub buttonEntidadPadreBorrar_Click(sender As Object, e As EventArgs) Handles buttonEntidadTransportistaBorrar.Click
-        textboxEntidadTransportista.Text = ""
-        textboxEntidadTransportista.Tag = Nothing
-
-        CargarCamiones()
-        textboxEntidadTransportista.Focus()
     End Sub
 #End Region
 

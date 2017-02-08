@@ -15,6 +15,10 @@
     Friend Const PESADA_TIPO_SALIDA As String = "S"
     Friend Const PESADA_TIPO_NINGUNA As String = "N"
 
+    Friend Const PESADA_TIPO_PERIODICIDAD_FRECUENTE As String = "F"
+    Friend Const PESADA_TIPO_PERIODICIDAD_ESPORADICA As String = "E"
+    Friend Const PESADA_TIPO_PERIODICIDAD_NUNCA As String = "N"
+
     '///////////////////////////////////
     '    PARÁMETROS DE LOS REPORTES
     '///////////////////////////////////

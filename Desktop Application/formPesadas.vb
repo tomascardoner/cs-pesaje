@@ -140,7 +140,7 @@
             If datagridviewMain.CurrentRow Is Nothing Then
                 PositionIDPesada = 0
             Else
-                PositionIDPesada = CType(datagridviewMain.CurrentRow.DataBoundItem, Entidad).IDEntidad
+                PositionIDPesada = CType(datagridviewMain.CurrentRow.DataBoundItem, Pesada).IDPesada
             End If
         End If
 
@@ -341,12 +341,12 @@
 
 #Region "Main Toolbar"
     Private Sub Agregar_Click() Handles buttonAgregar.Click
-        If Permisos.VerificarPermiso(Permisos.ENTIDAD_AGREGAR) Then
+        If Permisos.VerificarPermiso(Permisos.PESADA_AGREGAR) Then
             Me.Cursor = Cursors.WaitCursor
 
             datagridviewMain.Enabled = False
 
-            formEntidad.LoadAndShow(True, Me, 0)
+            formPesada.LoadAndShow(True, Me, 0)
 
             datagridviewMain.Enabled = True
 
@@ -356,14 +356,14 @@
 
     Private Sub Editar_Click() Handles buttonEditar.Click
         If datagridviewMain.CurrentRow Is Nothing Then
-            MsgBox("No hay ninguna Entidad para editar.", vbInformation, My.Application.Info.Title)
+            MsgBox("No hay ninguna Pesada para editar.", vbInformation, My.Application.Info.Title)
         Else
-            If Permisos.VerificarPermiso(Permisos.ENTIDAD_EDITAR) Then
+            If Permisos.VerificarPermiso(Permisos.PESADA_EDITAR) Then
                 Me.Cursor = Cursors.WaitCursor
 
                 datagridviewMain.Enabled = False
 
-                formEntidad.LoadAndShow(True, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, Entidad).IDEntidad)
+                formPesada.LoadAndShow(True, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, Pesada).IDPesada)
 
                 datagridviewMain.Enabled = True
 
@@ -374,21 +374,21 @@
 
     Private Sub Eliminar_Click() Handles buttonEliminar.Click
         If datagridviewMain.CurrentRow Is Nothing Then
-            MsgBox("No hay ninguna Entidad para eliminar.", vbInformation, My.Application.Info.Title)
+            MsgBox("No hay ninguna Pesada para eliminar.", vbInformation, My.Application.Info.Title)
         Else
-            If Permisos.VerificarPermiso(Permisos.ENTIDAD_ELIMINAR) Then
+            If Permisos.VerificarPermiso(Permisos.PESADA_ELIMINAR) Then
                 Dim Mensaje As String
-                Mensaje = String.Format("Se eliminará la Entidad seleccionada.{0}{0}{1}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, CType(datagridviewMain.SelectedRows(0).DataBoundItem, Entidad).Nombre)
+                Mensaje = String.Format("Se eliminará la Pesada seleccionada.{0}{0}Número: {1}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, CType(datagridviewMain.SelectedRows(0).DataBoundItem, Pesada).IDPesada)
                 If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
                     Me.Cursor = Cursors.WaitCursor
 
                     Try
                         Using dbContext = New CSPesajeContext(True)
-                            Dim EntidadActual As Entidad
-                            EntidadActual = dbContext.Entidad.Find(CType(datagridviewMain.SelectedRows(0).DataBoundItem, Entidad).IDEntidad)
+                            Dim PesadaActual As Pesada
+                            PesadaActual = dbContext.Pesada.Find(CType(datagridviewMain.SelectedRows(0).DataBoundItem, Pesada).IDPesada)
 
-                            dbContext.Entidad.Attach(EntidadActual)
-                            dbContext.Entidad.Remove(EntidadActual)
+                            dbContext.Pesada.Attach(PesadaActual)
+                            dbContext.Pesada.Remove(PesadaActual)
                             dbContext.SaveChanges()
                         End Using
 
@@ -396,12 +396,12 @@
                         Me.Cursor = Cursors.Default
                         Select Case CS_Database_EF_SQL.TryDecodeDbUpdateException(dbuex)
                             Case Errors.RelatedEntity
-                                MsgBox("No se puede eliminar la Entidad porque tiene datos relacionados.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                                MsgBox("No se puede eliminar la Pesada porque tiene datos relacionados.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                         End Select
                         Exit Sub
 
                     Catch ex As Exception
-                        CS_Error.ProcessError(ex, "Error al eliminar la Entidad.")
+                        CS_Error.ProcessError(ex, "Error al eliminar la Pesada.")
                     End Try
 
                     RefreshData()
@@ -414,13 +414,13 @@
 
     Private Sub Ver() Handles datagridviewMain.DoubleClick
         If datagridviewMain.CurrentRow Is Nothing Then
-            MsgBox("No hay ninguna Entidad para ver.", vbInformation, My.Application.Info.Title)
+            MsgBox("No hay ninguna Pesada para ver.", vbInformation, My.Application.Info.Title)
         Else
             Me.Cursor = Cursors.WaitCursor
 
             datagridviewMain.Enabled = False
 
-            formEntidad.LoadAndShow(False, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, Entidad).IDEntidad)
+            formPesada.LoadAndShow(False, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, Pesada).IDPesada)
 
             datagridviewMain.Enabled = True
 

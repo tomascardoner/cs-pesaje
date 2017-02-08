@@ -1445,11 +1445,11 @@
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Entidad" Relationship="CSPesajeModel.FK__Camion__Entidad" FromRole="Camion" ToRole="Entidad" />
+          <NavigationProperty Name="Choferes" Relationship="CSPesajeModel.FK__Camion__Entidad" FromRole="Camion" ToRole="Entidad" />
           <NavigationProperty Name="Pesadas" Relationship="CSPesajeModel.FK__Camion__Pesada" FromRole="Camion" ToRole="Pesada" />
           <NavigationProperty Name="UsuarioCreacion" Relationship="CSPesajeModel.FK__Usuario__Camion__Creacion" FromRole="Camion" ToRole="Usuario" />
           <NavigationProperty Name="UsuarioModificacion" Relationship="CSPesajeModel.FK__Usuario__Camion__Modificacion" FromRole="Camion" ToRole="Usuario" />
-          <NavigationProperty Name="Entidad1" Relationship="CSPesajeModel.FK__Entidad__Camion" FromRole="Camion" ToRole="Entidad" />
+          <NavigationProperty Name="Transportista" Relationship="CSPesajeModel.FK__Entidad__Camion" FromRole="Camion" ToRole="Entidad" />
         </EntityType>
         <EntityType Name="Cosecha">
           <Key>
@@ -1535,7 +1535,7 @@
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Camiones" Relationship="CSPesajeModel.FK__Camion__Entidad" FromRole="Entidad" ToRole="Camion" />
+          <NavigationProperty Name="Camion" Relationship="CSPesajeModel.FK__Camion__Entidad" FromRole="Entidad" ToRole="Camion" />
           <NavigationProperty Name="EntidadesChoferes" Relationship="CSPesajeModel.FK__Entidad__Entidad__Transportista" FromRole="Entidad" ToRole="Entidad1" />
           <NavigationProperty Name="EntidadTransportista" Relationship="CSPesajeModel.FK__Entidad__Entidad__Transportista" FromRole="Entidad1" ToRole="Entidad" />
           <NavigationProperty Name="Entidades_Plantas" Relationship="CSPesajeModel.FK__Entidad__Entidad_Planta" FromRole="Entidad" ToRole="Entidad_Planta" />
@@ -1545,7 +1545,7 @@
           <NavigationProperty Name="Entidades_OrigenesDestinos" Relationship="CSPesajeModel.FK__OrigenDestino_Entidad__Entidad" FromRole="Entidad" ToRole="Entidad_OrigenDestino" />
           <NavigationProperty Name="UsuarioCreacion" Relationship="CSPesajeModel.FK__Usuario__Entidad__Creacion" FromRole="Entidad" ToRole="Usuario" />
           <NavigationProperty Name="UsuarioModificacion" Relationship="CSPesajeModel.FK__Usuario__Entidad__Modificacion" FromRole="Entidad" ToRole="Usuario" />
-          <NavigationProperty Name="Camion1" Relationship="CSPesajeModel.FK__Entidad__Camion" FromRole="Entidad" ToRole="Camion" />
+          <NavigationProperty Name="Camiones" Relationship="CSPesajeModel.FK__Entidad__Camion" FromRole="Entidad" ToRole="Camion" />
         </EntityType>
         <EntityType Name="Entidad_OrigenDestino">
           <Key>

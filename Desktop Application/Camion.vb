@@ -23,10 +23,10 @@ Partial Public Class Camion
     Public Property IDUsuarioModificacion As Short
     Public Property FechaHoraModificacion As Date
 
-    Public Overridable Property Entidad As ICollection(Of Entidad) = New HashSet(Of Entidad)
+    Public Overridable Property Choferes As ICollection(Of Entidad) = New HashSet(Of Entidad)
     Public Overridable Property Pesadas As ICollection(Of Pesada) = New HashSet(Of Pesada)
     Public Overridable Property UsuarioCreacion As Usuario
     Public Overridable Property UsuarioModificacion As Usuario
-    Public Overridable Property Entidad1 As Entidad
+    Public Overridable Property Transportista As Entidad
 
 End Class
