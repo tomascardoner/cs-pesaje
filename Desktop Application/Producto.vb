@@ -17,6 +17,7 @@ Partial Public Class Producto
     Public Property MermaHumedadBase As Nullable(Of Decimal)
     Public Property MermaHumedadManipuleo As Nullable(Of Decimal)
     Public Property UtilizaPlanta As Boolean
+    Public Property UtilizaCosecha As Boolean
     Public Property UsoFrecuente As Boolean
     Public Property UltimoUso As Date
     Public Property EsActivo As Boolean

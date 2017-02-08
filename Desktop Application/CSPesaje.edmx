@@ -271,6 +271,7 @@
           <Property Name="MermaHumedadBase" Type="decimal" Precision="3" Scale="1" />
           <Property Name="MermaHumedadManipuleo" Type="decimal" Precision="2" Scale="2" />
           <Property Name="UtilizaPlanta" Type="bit" Nullable="false" />
+          <Property Name="UtilizaCosecha" Type="bit" Nullable="false" />
           <Property Name="UsoFrecuente" Type="bit" Nullable="false" />
           <Property Name="UltimoUso" Type="date" Nullable="false" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
@@ -1754,6 +1755,7 @@
           <Property Name="MermaHumedadBase" Type="Decimal" Precision="3" Scale="1" />
           <Property Name="MermaHumedadManipuleo" Type="Decimal" Precision="2" Scale="2" />
           <Property Name="UtilizaPlanta" Type="Boolean" Nullable="false" />
+          <Property Name="UtilizaCosecha" Type="Boolean" Nullable="false" />
           <Property Name="UsoFrecuente" Type="Boolean" Nullable="false" />
           <Property Name="UltimoUso" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
@@ -2771,6 +2773,7 @@
           <EntitySetMapping Name="Producto">
             <EntityTypeMapping TypeName="CSPesajeModel.Producto">
               <MappingFragment StoreEntitySet="Producto">
+                <ScalarProperty Name="UtilizaCosecha" ColumnName="UtilizaCosecha" />
                 <ScalarProperty Name="IDProducto" ColumnName="IDProducto" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="MermaVolatil" ColumnName="MermaVolatil" />

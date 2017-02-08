@@ -77,8 +77,8 @@
         comboboxCamion.Enabled = mEditMode
 
         ' Kilogramos
-        textboxKilogramoBruto.Enabled = mEditMode
-        textboxKilogramoTara.Enabled = mEditMode
+        integertextboxKilogramoBruto.Enabled = mEditMode
+        integertextboxKilogramoTara.Enabled = mEditMode
     End Sub
 
     Friend Sub InitializeFormAndControls()
@@ -156,10 +156,17 @@
 
 #Region "Controls behavior"
     Private Sub CambioProducto() Handles comboboxProducto.SelectedValueChanged
-        pFillAndRefreshLists.Planta(comboboxPlanta, CByte(comboboxProducto.SelectedValue), False, False)
-        CS_Control_ComboBox.SetSelectedValue(comboboxPlanta, SelectedItemOptions.NoneOrFirstIfUnique)
-        pFillAndRefreshLists.Cosecha(comboboxCosecha, CByte(comboboxProducto.SelectedValue), datetimepickerFechaInicio.Value, False, False)
-        CS_Control_ComboBox.SetSelectedValue(comboboxCosecha, SelectedItemOptions.NoneOrFirstIfUnique)
+        If Not comboboxProducto.SelectedItem Is Nothing Then
+            ' Planta
+            pFillAndRefreshLists.Planta(comboboxPlanta, CByte(comboboxProducto.SelectedValue), False, False)
+            CS_Control_ComboBox.SetSelectedValue(comboboxPlanta, SelectedItemOptions.NoneOrFirstIfUnique)
+
+            ' Cosecha
+            labelCosecha.Visible = CType(comboboxProducto.SelectedItem, Producto).UtilizaCosecha
+            comboboxCosecha.Visible = CType(comboboxProducto.SelectedItem, Producto).UtilizaCosecha
+            pFillAndRefreshLists.Cosecha(comboboxCosecha, CByte(comboboxProducto.SelectedValue), datetimepickerFechaInicio.Value, False, False)
+            CS_Control_ComboBox.SetSelectedValue(comboboxCosecha, SelectedItemOptions.NoneOrFirstIfUnique)
+        End If
     End Sub
 
     Private Sub CambioPlanta() Handles comboboxPlanta.SelectedValueChanged
@@ -189,6 +196,18 @@
         End If
     End Sub
 
+    Private Sub CambioTipo() Handles radiobuttonEntrada.CheckedChanged, radiobuttonSalida.CheckedChanged, radiobuttonNinguno.CheckedChanged
+        If radiobuttonEntrada.Checked Then
+            labelOrigenDestino.Text = "Origen:"
+        ElseIf radiobuttonSalida.Checked Then
+            labelOrigenDestino.Text = "Destino:"
+        ElseIf radiobuttonNinguno.Checked Then
+            labelOrigenDestino.Text = "Origen/Destino:"
+        Else
+            labelOrigenDestino.Text = "Origen/Destino:"
+        End If
+    End Sub
+
     Private Sub CambioTransportista() Handles comboboxTransportista.SelectedValueChanged
         pFillAndRefreshLists.Camion(comboboxCamion, CInt(comboboxTransportista.SelectedValue), True, True, False, True)
         pFillAndRefreshLists.Chofer(comboboxChofer, CInt(comboboxTransportista.SelectedValue), False, True)
@@ -202,7 +221,7 @@
         End If
     End Sub
 
-    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxKilogramoBruto.GotFocus, textboxKilogramoTara.GotFocus, textboxKilogramoNeto.GotFocus
+    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles integertextboxKilogramoBruto.GotFocus, integertextboxKilogramoTara.GotFocus, integertextboxKilogramoNeto.GotFocus
         CType(sender, Syncfusion.Windows.Forms.Tools.IntegerTextBox).SelectAll()
     End Sub
 #End Region
