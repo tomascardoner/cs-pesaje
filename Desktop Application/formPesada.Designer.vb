@@ -32,7 +32,22 @@ Partial Class formPesada
         Me.tooltipMain = New System.Windows.Forms.ToolTip(Me.components)
         Me.labelOrigenDestino = New System.Windows.Forms.Label()
         Me.labelTitular = New System.Windows.Forms.Label()
+        Me.checkboxProductoTodos = New System.Windows.Forms.CheckBox()
+        Me.checkboxTipoTodos = New System.Windows.Forms.CheckBox()
+        Me.checkboxTitularTodos = New System.Windows.Forms.CheckBox()
+        Me.labelChoferCUIT_CUIL = New System.Windows.Forms.Label()
+        Me.checkboxTransportistaTodos = New System.Windows.Forms.CheckBox()
+        Me.checkboxChoferTodos = New System.Windows.Forms.CheckBox()
+        Me.checkboxCamionTodos = New System.Windows.Forms.CheckBox()
         Me.groupboxTransporte = New System.Windows.Forms.GroupBox()
+        Me.labelCamion_DominioAcoplado = New System.Windows.Forms.Label()
+        Me.textboxCamion_DominioAcoplado = New System.Windows.Forms.TextBox()
+        Me.textboxCamion_DominioChasis = New System.Windows.Forms.TextBox()
+        Me.textboxChofer = New System.Windows.Forms.TextBox()
+        Me.maskedtextboxChoferCUIT_CUIL = New System.Windows.Forms.MaskedTextBox()
+        Me.maskedtextboxTransportistaCUIT = New System.Windows.Forms.MaskedTextBox()
+        Me.labelTransportistaCUIT = New System.Windows.Forms.Label()
+        Me.textboxTransportista = New System.Windows.Forms.TextBox()
         Me.labelChofer = New System.Windows.Forms.Label()
         Me.comboboxChofer = New System.Windows.Forms.ComboBox()
         Me.comboboxTransportista = New System.Windows.Forms.ComboBox()
@@ -40,9 +55,12 @@ Partial Class formPesada
         Me.labelTransportista = New System.Windows.Forms.Label()
         Me.comboboxCamion = New System.Windows.Forms.ComboBox()
         Me.groupboxTitular = New System.Windows.Forms.GroupBox()
+        Me.textboxOrigenDestino = New System.Windows.Forms.TextBox()
+        Me.textboxTitular = New System.Windows.Forms.TextBox()
         Me.comboboxOrigenDestino = New System.Windows.Forms.ComboBox()
         Me.comboboxTitular = New System.Windows.Forms.ComboBox()
-        Me.groupboxProductoPlanta = New System.Windows.Forms.GroupBox()
+        Me.groupboxProductoPlantaCosecha = New System.Windows.Forms.GroupBox()
+        Me.textboxProducto = New System.Windows.Forms.TextBox()
         Me.comboboxCosecha = New System.Windows.Forms.ComboBox()
         Me.labelCosecha = New System.Windows.Forms.Label()
         Me.groupboxTipo = New System.Windows.Forms.GroupBox()
@@ -54,6 +72,8 @@ Partial Class formPesada
         Me.comboboxProducto = New System.Windows.Forms.ComboBox()
         Me.labelProducto = New System.Windows.Forms.Label()
         Me.groupboxEncabezado = New System.Windows.Forms.GroupBox()
+        Me.labelComprobanteNumero = New System.Windows.Forms.Label()
+        Me.maskedtextboxComprobanteNumero = New System.Windows.Forms.MaskedTextBox()
         Me.datetimepickerHoraFin = New System.Windows.Forms.DateTimePicker()
         Me.datetimepickerFechaFin = New System.Windows.Forms.DateTimePicker()
         Me.labelFin = New System.Windows.Forms.Label()
@@ -63,57 +83,37 @@ Partial Class formPesada
         Me.textboxIDPesada = New System.Windows.Forms.TextBox()
         Me.labelInicio = New System.Windows.Forms.Label()
         Me.groupboxKilogramo = New System.Windows.Forms.GroupBox()
-        Me.Label2 = New System.Windows.Forms.Label()
+        Me.labelKilogramoNeto = New System.Windows.Forms.Label()
         Me.integertextboxKilogramoNeto = New Syncfusion.Windows.Forms.Tools.IntegerTextBox()
         Me.labelKilogramoTara = New System.Windows.Forms.Label()
         Me.integertextboxKilogramoTara = New Syncfusion.Windows.Forms.Tools.IntegerTextBox()
         Me.labelKilogramoBruto = New System.Windows.Forms.Label()
         Me.integertextboxKilogramoBruto = New Syncfusion.Windows.Forms.Tools.IntegerTextBox()
-        Me.checkboxProductoTodos = New System.Windows.Forms.CheckBox()
-        Me.checkboxTipoTodos = New System.Windows.Forms.CheckBox()
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
-        Me.textboxProducto = New System.Windows.Forms.TextBox()
-        Me.textboxTitular = New System.Windows.Forms.TextBox()
-        Me.textboxOrigenDestino = New System.Windows.Forms.TextBox()
-        Me.textboxTransportista = New System.Windows.Forms.TextBox()
-        Me.labelTransportistaCUIT = New System.Windows.Forms.Label()
-        Me.maskedtextboxTransportistaCUIT = New System.Windows.Forms.MaskedTextBox()
-        Me.maskedtextboxChoferCUIT_CUIL = New System.Windows.Forms.MaskedTextBox()
-        Me.labelChoferCUIT_CUIL = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.textboxCamion_DominioChasis = New System.Windows.Forms.TextBox()
-        Me.textboxCamion_DominioAcoplado = New System.Windows.Forms.TextBox()
-        Me.labelCamion_DominioAcoplado = New System.Windows.Forms.Label()
-        Me.maskedtextboxComprobanteNumero = New System.Windows.Forms.MaskedTextBox()
-        Me.labelComprobanteNumero = New System.Windows.Forms.Label()
         Me.groupboxNotas = New System.Windows.Forms.GroupBox()
+        Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.labelNotas = New System.Windows.Forms.Label()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
-        Me.checkboxTransportistaTodos = New System.Windows.Forms.CheckBox()
-        Me.checkboxChoferTodos = New System.Windows.Forms.CheckBox()
-        Me.checkboxCamionTodos = New System.Windows.Forms.CheckBox()
         Me.groupboxAnalisis = New System.Windows.Forms.GroupBox()
-        Me.labelHumedad = New System.Windows.Forms.Label()
-        Me.doubletextboxHumedad = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
-        Me.doubletextboxZaranda = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
-        Me.labelZaranda = New System.Windows.Forms.Label()
-        Me.DoubleTextBox1 = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.DoubleTextBox2 = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.DoubleTextBox3 = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.DoubleTextBox4 = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.checkboxFumigado = New System.Windows.Forms.CheckBox()
-        Me.labelFumigado = New System.Windows.Forms.Label()
         Me.labelMezclado = New System.Windows.Forms.Label()
         Me.checkboxMezclado = New System.Windows.Forms.CheckBox()
+        Me.labelFumigado = New System.Windows.Forms.Label()
+        Me.checkboxFumigado = New System.Windows.Forms.CheckBox()
+        Me.doubletextboxGluten = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
+        Me.labelGluten = New System.Windows.Forms.Label()
+        Me.doubletextboxPesoHectolitrico = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
+        Me.labelPesoHectolitrico = New System.Windows.Forms.Label()
+        Me.doubletextboxGranoDaniado = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
+        Me.labelGranoDaniado = New System.Windows.Forms.Label()
+        Me.doubletextboxGranoVerde = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
+        Me.labelGranoVerde = New System.Windows.Forms.Label()
+        Me.doubletextboxZaranda = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
+        Me.labelZaranda = New System.Windows.Forms.Label()
+        Me.doubletextboxHumedad = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
+        Me.labelHumedad = New System.Windows.Forms.Label()
         labelTipo = New System.Windows.Forms.Label()
         Me.toolstripMain.SuspendLayout()
         Me.groupboxTransporte.SuspendLayout()
         Me.groupboxTitular.SuspendLayout()
-        Me.groupboxProductoPlanta.SuspendLayout()
+        Me.groupboxProductoPlantaCosecha.SuspendLayout()
         Me.groupboxTipo.SuspendLayout()
         Me.groupboxEncabezado.SuspendLayout()
         Me.groupboxKilogramo.SuspendLayout()
@@ -122,12 +122,12 @@ Partial Class formPesada
         CType(Me.integertextboxKilogramoBruto, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.groupboxNotas.SuspendLayout()
         Me.groupboxAnalisis.SuspendLayout()
-        CType(Me.doubletextboxHumedad, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.doubletextboxGluten, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.doubletextboxPesoHectolitrico, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.doubletextboxGranoDaniado, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.doubletextboxGranoVerde, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.doubletextboxZaranda, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DoubleTextBox1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DoubleTextBox2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DoubleTextBox3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DoubleTextBox4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.doubletextboxHumedad, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'labelTipo
@@ -208,6 +208,94 @@ Partial Class formPesada
         Me.labelTitular.Text = "Titular:"
         Me.tooltipMain.SetToolTip(Me.labelTitular, "Ingrese el Número de Documento sin utilizar puntos.")
         '
+        'checkboxProductoTodos
+        '
+        Me.checkboxProductoTodos.Appearance = System.Windows.Forms.Appearance.Button
+        Me.checkboxProductoTodos.Location = New System.Drawing.Point(326, 13)
+        Me.checkboxProductoTodos.Name = "checkboxProductoTodos"
+        Me.checkboxProductoTodos.Size = New System.Drawing.Size(21, 21)
+        Me.checkboxProductoTodos.TabIndex = 3
+        Me.checkboxProductoTodos.TabStop = False
+        Me.checkboxProductoTodos.Text = "+"
+        Me.checkboxProductoTodos.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.tooltipMain.SetToolTip(Me.checkboxProductoTodos, "Ver todos")
+        Me.checkboxProductoTodos.UseVisualStyleBackColor = True
+        '
+        'checkboxTipoTodos
+        '
+        Me.checkboxTipoTodos.Appearance = System.Windows.Forms.Appearance.Button
+        Me.checkboxTipoTodos.Location = New System.Drawing.Point(234, 9)
+        Me.checkboxTipoTodos.Name = "checkboxTipoTodos"
+        Me.checkboxTipoTodos.Size = New System.Drawing.Size(21, 21)
+        Me.checkboxTipoTodos.TabIndex = 3
+        Me.checkboxTipoTodos.TabStop = False
+        Me.checkboxTipoTodos.Text = "+"
+        Me.checkboxTipoTodos.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.tooltipMain.SetToolTip(Me.checkboxTipoTodos, "Ver todos")
+        Me.checkboxTipoTodos.UseVisualStyleBackColor = True
+        '
+        'checkboxTitularTodos
+        '
+        Me.checkboxTitularTodos.Appearance = System.Windows.Forms.Appearance.Button
+        Me.checkboxTitularTodos.Location = New System.Drawing.Point(326, 12)
+        Me.checkboxTitularTodos.Name = "checkboxTitularTodos"
+        Me.checkboxTitularTodos.Size = New System.Drawing.Size(21, 21)
+        Me.checkboxTitularTodos.TabIndex = 5
+        Me.checkboxTitularTodos.TabStop = False
+        Me.checkboxTitularTodos.Text = "+"
+        Me.checkboxTitularTodos.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.tooltipMain.SetToolTip(Me.checkboxTitularTodos, "Ver todos")
+        Me.checkboxTitularTodos.UseVisualStyleBackColor = True
+        '
+        'labelChoferCUIT_CUIL
+        '
+        Me.labelChoferCUIT_CUIL.AutoSize = True
+        Me.labelChoferCUIT_CUIL.Location = New System.Drawing.Point(6, 96)
+        Me.labelChoferCUIT_CUIL.Name = "labelChoferCUIT_CUIL"
+        Me.labelChoferCUIT_CUIL.Size = New System.Drawing.Size(70, 13)
+        Me.labelChoferCUIT_CUIL.TabIndex = 10
+        Me.labelChoferCUIT_CUIL.Text = "CUIT / CUIL:"
+        Me.tooltipMain.SetToolTip(Me.labelChoferCUIT_CUIL, "Ingrese el Número de Documento sin utilizar puntos.")
+        '
+        'checkboxTransportistaTodos
+        '
+        Me.checkboxTransportistaTodos.Appearance = System.Windows.Forms.Appearance.Button
+        Me.checkboxTransportistaTodos.Location = New System.Drawing.Point(326, 12)
+        Me.checkboxTransportistaTodos.Name = "checkboxTransportistaTodos"
+        Me.checkboxTransportistaTodos.Size = New System.Drawing.Size(21, 21)
+        Me.checkboxTransportistaTodos.TabIndex = 3
+        Me.checkboxTransportistaTodos.TabStop = False
+        Me.checkboxTransportistaTodos.Text = "+"
+        Me.checkboxTransportistaTodos.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.tooltipMain.SetToolTip(Me.checkboxTransportistaTodos, "Ver todos")
+        Me.checkboxTransportistaTodos.UseVisualStyleBackColor = True
+        '
+        'checkboxChoferTodos
+        '
+        Me.checkboxChoferTodos.Appearance = System.Windows.Forms.Appearance.Button
+        Me.checkboxChoferTodos.Location = New System.Drawing.Point(326, 66)
+        Me.checkboxChoferTodos.Name = "checkboxChoferTodos"
+        Me.checkboxChoferTodos.Size = New System.Drawing.Size(21, 21)
+        Me.checkboxChoferTodos.TabIndex = 9
+        Me.checkboxChoferTodos.TabStop = False
+        Me.checkboxChoferTodos.Text = "+"
+        Me.checkboxChoferTodos.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.tooltipMain.SetToolTip(Me.checkboxChoferTodos, "Ver todos")
+        Me.checkboxChoferTodos.UseVisualStyleBackColor = True
+        '
+        'checkboxCamionTodos
+        '
+        Me.checkboxCamionTodos.Appearance = System.Windows.Forms.Appearance.Button
+        Me.checkboxCamionTodos.Location = New System.Drawing.Point(326, 119)
+        Me.checkboxCamionTodos.Name = "checkboxCamionTodos"
+        Me.checkboxCamionTodos.Size = New System.Drawing.Size(21, 21)
+        Me.checkboxCamionTodos.TabIndex = 17
+        Me.checkboxCamionTodos.TabStop = False
+        Me.checkboxCamionTodos.Text = "+"
+        Me.checkboxCamionTodos.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.tooltipMain.SetToolTip(Me.checkboxCamionTodos, "Ver todos")
+        Me.checkboxCamionTodos.UseVisualStyleBackColor = True
+        '
         'groupboxTransporte
         '
         Me.groupboxTransporte.Controls.Add(Me.checkboxCamionTodos)
@@ -216,7 +304,7 @@ Partial Class formPesada
         Me.groupboxTransporte.Controls.Add(Me.labelCamion_DominioAcoplado)
         Me.groupboxTransporte.Controls.Add(Me.textboxCamion_DominioAcoplado)
         Me.groupboxTransporte.Controls.Add(Me.textboxCamion_DominioChasis)
-        Me.groupboxTransporte.Controls.Add(Me.TextBox1)
+        Me.groupboxTransporte.Controls.Add(Me.textboxChofer)
         Me.groupboxTransporte.Controls.Add(Me.maskedtextboxChoferCUIT_CUIL)
         Me.groupboxTransporte.Controls.Add(Me.labelChoferCUIT_CUIL)
         Me.groupboxTransporte.Controls.Add(Me.maskedtextboxTransportistaCUIT)
@@ -233,6 +321,82 @@ Partial Class formPesada
         Me.groupboxTransporte.Size = New System.Drawing.Size(353, 149)
         Me.groupboxTransporte.TabIndex = 3
         Me.groupboxTransporte.TabStop = False
+        '
+        'labelCamion_DominioAcoplado
+        '
+        Me.labelCamion_DominioAcoplado.AutoSize = True
+        Me.labelCamion_DominioAcoplado.Location = New System.Drawing.Point(193, 123)
+        Me.labelCamion_DominioAcoplado.Name = "labelCamion_DominioAcoplado"
+        Me.labelCamion_DominioAcoplado.Size = New System.Drawing.Size(55, 13)
+        Me.labelCamion_DominioAcoplado.TabIndex = 15
+        Me.labelCamion_DominioAcoplado.Text = "Acoplado:"
+        '
+        'textboxCamion_DominioAcoplado
+        '
+        Me.textboxCamion_DominioAcoplado.Location = New System.Drawing.Point(254, 119)
+        Me.textboxCamion_DominioAcoplado.MaxLength = 7
+        Me.textboxCamion_DominioAcoplado.Name = "textboxCamion_DominioAcoplado"
+        Me.textboxCamion_DominioAcoplado.Size = New System.Drawing.Size(68, 20)
+        Me.textboxCamion_DominioAcoplado.TabIndex = 16
+        '
+        'textboxCamion_DominioChasis
+        '
+        Me.textboxCamion_DominioChasis.Location = New System.Drawing.Point(92, 119)
+        Me.textboxCamion_DominioChasis.MaxLength = 7
+        Me.textboxCamion_DominioChasis.Name = "textboxCamion_DominioChasis"
+        Me.textboxCamion_DominioChasis.Size = New System.Drawing.Size(68, 20)
+        Me.textboxCamion_DominioChasis.TabIndex = 14
+        '
+        'textboxChofer
+        '
+        Me.textboxChofer.Location = New System.Drawing.Point(176, 66)
+        Me.textboxChofer.MaxLength = 50
+        Me.textboxChofer.Name = "textboxChofer"
+        Me.textboxChofer.Size = New System.Drawing.Size(146, 20)
+        Me.textboxChofer.TabIndex = 8
+        '
+        'maskedtextboxChoferCUIT_CUIL
+        '
+        Me.maskedtextboxChoferCUIT_CUIL.AllowPromptAsInput = False
+        Me.maskedtextboxChoferCUIT_CUIL.AsciiOnly = True
+        Me.maskedtextboxChoferCUIT_CUIL.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
+        Me.maskedtextboxChoferCUIT_CUIL.HidePromptOnLeave = True
+        Me.maskedtextboxChoferCUIT_CUIL.Location = New System.Drawing.Point(92, 93)
+        Me.maskedtextboxChoferCUIT_CUIL.Mask = "00-00000000-0"
+        Me.maskedtextboxChoferCUIT_CUIL.Name = "maskedtextboxChoferCUIT_CUIL"
+        Me.maskedtextboxChoferCUIT_CUIL.Size = New System.Drawing.Size(90, 20)
+        Me.maskedtextboxChoferCUIT_CUIL.TabIndex = 11
+        Me.maskedtextboxChoferCUIT_CUIL.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
+        '
+        'maskedtextboxTransportistaCUIT
+        '
+        Me.maskedtextboxTransportistaCUIT.AllowPromptAsInput = False
+        Me.maskedtextboxTransportistaCUIT.AsciiOnly = True
+        Me.maskedtextboxTransportistaCUIT.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
+        Me.maskedtextboxTransportistaCUIT.HidePromptOnLeave = True
+        Me.maskedtextboxTransportistaCUIT.Location = New System.Drawing.Point(92, 40)
+        Me.maskedtextboxTransportistaCUIT.Mask = "00-00000000-0"
+        Me.maskedtextboxTransportistaCUIT.Name = "maskedtextboxTransportistaCUIT"
+        Me.maskedtextboxTransportistaCUIT.Size = New System.Drawing.Size(90, 20)
+        Me.maskedtextboxTransportistaCUIT.TabIndex = 5
+        Me.maskedtextboxTransportistaCUIT.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
+        '
+        'labelTransportistaCUIT
+        '
+        Me.labelTransportistaCUIT.AutoSize = True
+        Me.labelTransportistaCUIT.Location = New System.Drawing.Point(6, 43)
+        Me.labelTransportistaCUIT.Name = "labelTransportistaCUIT"
+        Me.labelTransportistaCUIT.Size = New System.Drawing.Size(35, 13)
+        Me.labelTransportistaCUIT.TabIndex = 4
+        Me.labelTransportistaCUIT.Text = "CUIT:"
+        '
+        'textboxTransportista
+        '
+        Me.textboxTransportista.Location = New System.Drawing.Point(176, 13)
+        Me.textboxTransportista.MaxLength = 50
+        Me.textboxTransportista.Name = "textboxTransportista"
+        Me.textboxTransportista.Size = New System.Drawing.Size(146, 20)
+        Me.textboxTransportista.TabIndex = 2
         '
         'labelChofer
         '
@@ -292,7 +456,7 @@ Partial Class formPesada
         '
         Me.groupboxTitular.Controls.Add(Me.textboxOrigenDestino)
         Me.groupboxTitular.Controls.Add(Me.textboxTitular)
-        Me.groupboxTitular.Controls.Add(Me.CheckBox1)
+        Me.groupboxTitular.Controls.Add(Me.checkboxTitularTodos)
         Me.groupboxTitular.Controls.Add(Me.comboboxOrigenDestino)
         Me.groupboxTitular.Controls.Add(Me.labelOrigenDestino)
         Me.groupboxTitular.Controls.Add(Me.comboboxTitular)
@@ -302,6 +466,22 @@ Partial Class formPesada
         Me.groupboxTitular.Size = New System.Drawing.Size(353, 71)
         Me.groupboxTitular.TabIndex = 2
         Me.groupboxTitular.TabStop = False
+        '
+        'textboxOrigenDestino
+        '
+        Me.textboxOrigenDestino.Location = New System.Drawing.Point(176, 40)
+        Me.textboxOrigenDestino.MaxLength = 50
+        Me.textboxOrigenDestino.Name = "textboxOrigenDestino"
+        Me.textboxOrigenDestino.Size = New System.Drawing.Size(146, 20)
+        Me.textboxOrigenDestino.TabIndex = 1
+        '
+        'textboxTitular
+        '
+        Me.textboxTitular.Location = New System.Drawing.Point(176, 13)
+        Me.textboxTitular.MaxLength = 50
+        Me.textboxTitular.Name = "textboxTitular"
+        Me.textboxTitular.Size = New System.Drawing.Size(146, 20)
+        Me.textboxTitular.TabIndex = 4
         '
         'comboboxOrigenDestino
         '
@@ -321,23 +501,31 @@ Partial Class formPesada
         Me.comboboxTitular.Size = New System.Drawing.Size(230, 21)
         Me.comboboxTitular.TabIndex = 3
         '
-        'groupboxProductoPlanta
+        'groupboxProductoPlantaCosecha
         '
-        Me.groupboxProductoPlanta.Controls.Add(Me.textboxProducto)
-        Me.groupboxProductoPlanta.Controls.Add(Me.checkboxProductoTodos)
-        Me.groupboxProductoPlanta.Controls.Add(Me.comboboxCosecha)
-        Me.groupboxProductoPlanta.Controls.Add(Me.labelCosecha)
-        Me.groupboxProductoPlanta.Controls.Add(Me.groupboxTipo)
-        Me.groupboxProductoPlanta.Controls.Add(Me.comboboxPlanta)
-        Me.groupboxProductoPlanta.Controls.Add(Me.labelPlanta)
-        Me.groupboxProductoPlanta.Controls.Add(Me.comboboxProducto)
-        Me.groupboxProductoPlanta.Controls.Add(Me.labelProducto)
-        Me.groupboxProductoPlanta.Controls.Add(labelTipo)
-        Me.groupboxProductoPlanta.Location = New System.Drawing.Point(12, 170)
-        Me.groupboxProductoPlanta.Name = "groupboxProductoPlanta"
-        Me.groupboxProductoPlanta.Size = New System.Drawing.Size(353, 132)
-        Me.groupboxProductoPlanta.TabIndex = 1
-        Me.groupboxProductoPlanta.TabStop = False
+        Me.groupboxProductoPlantaCosecha.Controls.Add(Me.textboxProducto)
+        Me.groupboxProductoPlantaCosecha.Controls.Add(Me.checkboxProductoTodos)
+        Me.groupboxProductoPlantaCosecha.Controls.Add(Me.comboboxCosecha)
+        Me.groupboxProductoPlantaCosecha.Controls.Add(Me.labelCosecha)
+        Me.groupboxProductoPlantaCosecha.Controls.Add(Me.groupboxTipo)
+        Me.groupboxProductoPlantaCosecha.Controls.Add(Me.comboboxPlanta)
+        Me.groupboxProductoPlantaCosecha.Controls.Add(Me.labelPlanta)
+        Me.groupboxProductoPlantaCosecha.Controls.Add(Me.comboboxProducto)
+        Me.groupboxProductoPlantaCosecha.Controls.Add(Me.labelProducto)
+        Me.groupboxProductoPlantaCosecha.Controls.Add(labelTipo)
+        Me.groupboxProductoPlantaCosecha.Location = New System.Drawing.Point(12, 170)
+        Me.groupboxProductoPlantaCosecha.Name = "groupboxProductoPlantaCosecha"
+        Me.groupboxProductoPlantaCosecha.Size = New System.Drawing.Size(353, 132)
+        Me.groupboxProductoPlantaCosecha.TabIndex = 1
+        Me.groupboxProductoPlantaCosecha.TabStop = False
+        '
+        'textboxProducto
+        '
+        Me.textboxProducto.Location = New System.Drawing.Point(176, 13)
+        Me.textboxProducto.MaxLength = 50
+        Me.textboxProducto.Name = "textboxProducto"
+        Me.textboxProducto.Size = New System.Drawing.Size(146, 20)
+        Me.textboxProducto.TabIndex = 2
         '
         'comboboxCosecha
         '
@@ -456,10 +644,34 @@ Partial Class formPesada
         Me.groupboxEncabezado.TabIndex = 0
         Me.groupboxEncabezado.TabStop = False
         '
+        'labelComprobanteNumero
+        '
+        Me.labelComprobanteNumero.AutoSize = True
+        Me.labelComprobanteNumero.Location = New System.Drawing.Point(6, 96)
+        Me.labelComprobanteNumero.Name = "labelComprobanteNumero"
+        Me.labelComprobanteNumero.Size = New System.Drawing.Size(70, 13)
+        Me.labelComprobanteNumero.TabIndex = 8
+        Me.labelComprobanteNumero.Text = "Nº Comprob.:"
+        '
+        'maskedtextboxComprobanteNumero
+        '
+        Me.maskedtextboxComprobanteNumero.AllowPromptAsInput = False
+        Me.maskedtextboxComprobanteNumero.AsciiOnly = True
+        Me.maskedtextboxComprobanteNumero.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
+        Me.maskedtextboxComprobanteNumero.HidePromptOnLeave = True
+        Me.maskedtextboxComprobanteNumero.Location = New System.Drawing.Point(92, 91)
+        Me.maskedtextboxComprobanteNumero.Mask = "0000-00000000"
+        Me.maskedtextboxComprobanteNumero.Name = "maskedtextboxComprobanteNumero"
+        Me.maskedtextboxComprobanteNumero.Size = New System.Drawing.Size(90, 20)
+        Me.maskedtextboxComprobanteNumero.TabIndex = 9
+        Me.maskedtextboxComprobanteNumero.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
+        '
         'datetimepickerHoraFin
         '
         Me.datetimepickerHoraFin.Format = System.Windows.Forms.DateTimePickerFormat.Time
         Me.datetimepickerHoraFin.Location = New System.Drawing.Point(212, 65)
+        Me.datetimepickerHoraFin.MaxDate = New Date(2099, 12, 31, 0, 0, 0, 0)
+        Me.datetimepickerHoraFin.MinDate = New Date(2017, 1, 1, 0, 0, 0, 0)
         Me.datetimepickerHoraFin.Name = "datetimepickerHoraFin"
         Me.datetimepickerHoraFin.ShowUpDown = True
         Me.datetimepickerHoraFin.Size = New System.Drawing.Size(85, 20)
@@ -478,7 +690,7 @@ Partial Class formPesada
         'labelFin
         '
         Me.labelFin.AutoSize = True
-        Me.labelFin.Location = New System.Drawing.Point(6, 71)
+        Me.labelFin.Location = New System.Drawing.Point(6, 69)
         Me.labelFin.Name = "labelFin"
         Me.labelFin.Size = New System.Drawing.Size(24, 13)
         Me.labelFin.TabIndex = 5
@@ -488,6 +700,8 @@ Partial Class formPesada
         '
         Me.datetimepickerHoraInicio.Format = System.Windows.Forms.DateTimePickerFormat.Time
         Me.datetimepickerHoraInicio.Location = New System.Drawing.Point(212, 39)
+        Me.datetimepickerHoraInicio.MaxDate = New Date(2099, 12, 31, 0, 0, 0, 0)
+        Me.datetimepickerHoraInicio.MinDate = New Date(2017, 1, 1, 0, 0, 0, 0)
         Me.datetimepickerHoraInicio.Name = "datetimepickerHoraInicio"
         Me.datetimepickerHoraInicio.ShowUpDown = True
         Me.datetimepickerHoraInicio.Size = New System.Drawing.Size(85, 20)
@@ -526,7 +740,7 @@ Partial Class formPesada
         'labelInicio
         '
         Me.labelInicio.AutoSize = True
-        Me.labelInicio.Location = New System.Drawing.Point(6, 45)
+        Me.labelInicio.Location = New System.Drawing.Point(6, 43)
         Me.labelInicio.Name = "labelInicio"
         Me.labelInicio.Size = New System.Drawing.Size(35, 13)
         Me.labelInicio.TabIndex = 2
@@ -534,7 +748,7 @@ Partial Class formPesada
         '
         'groupboxKilogramo
         '
-        Me.groupboxKilogramo.Controls.Add(Me.Label2)
+        Me.groupboxKilogramo.Controls.Add(Me.labelKilogramoNeto)
         Me.groupboxKilogramo.Controls.Add(Me.integertextboxKilogramoNeto)
         Me.groupboxKilogramo.Controls.Add(Me.labelKilogramoTara)
         Me.groupboxKilogramo.Controls.Add(Me.integertextboxKilogramoTara)
@@ -546,14 +760,14 @@ Partial Class formPesada
         Me.groupboxKilogramo.TabIndex = 4
         Me.groupboxKilogramo.TabStop = False
         '
-        'Label2
+        'labelKilogramoNeto
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(6, 68)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(57, 13)
-        Me.Label2.TabIndex = 4
-        Me.Label2.Text = "Kgs. Neto:"
+        Me.labelKilogramoNeto.AutoSize = True
+        Me.labelKilogramoNeto.Location = New System.Drawing.Point(6, 68)
+        Me.labelKilogramoNeto.Name = "labelKilogramoNeto"
+        Me.labelKilogramoNeto.Size = New System.Drawing.Size(57, 13)
+        Me.labelKilogramoNeto.TabIndex = 4
+        Me.labelKilogramoNeto.Text = "Kgs. Neto:"
         '
         'integertextboxKilogramoNeto
         '
@@ -634,186 +848,25 @@ Partial Class formPesada
         Me.integertextboxKilogramoBruto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.integertextboxKilogramoBruto.WordWrap = False
         '
-        'checkboxProductoTodos
-        '
-        Me.checkboxProductoTodos.Appearance = System.Windows.Forms.Appearance.Button
-        Me.checkboxProductoTodos.Location = New System.Drawing.Point(326, 13)
-        Me.checkboxProductoTodos.Name = "checkboxProductoTodos"
-        Me.checkboxProductoTodos.Size = New System.Drawing.Size(21, 21)
-        Me.checkboxProductoTodos.TabIndex = 3
-        Me.checkboxProductoTodos.TabStop = False
-        Me.checkboxProductoTodos.Text = "+"
-        Me.checkboxProductoTodos.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.tooltipMain.SetToolTip(Me.checkboxProductoTodos, "Ver todos")
-        Me.checkboxProductoTodos.UseVisualStyleBackColor = True
-        '
-        'checkboxTipoTodos
-        '
-        Me.checkboxTipoTodos.Appearance = System.Windows.Forms.Appearance.Button
-        Me.checkboxTipoTodos.Location = New System.Drawing.Point(234, 9)
-        Me.checkboxTipoTodos.Name = "checkboxTipoTodos"
-        Me.checkboxTipoTodos.Size = New System.Drawing.Size(21, 21)
-        Me.checkboxTipoTodos.TabIndex = 3
-        Me.checkboxTipoTodos.TabStop = False
-        Me.checkboxTipoTodos.Text = "+"
-        Me.checkboxTipoTodos.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.tooltipMain.SetToolTip(Me.checkboxTipoTodos, "Ver todos")
-        Me.checkboxTipoTodos.UseVisualStyleBackColor = True
-        '
-        'CheckBox1
-        '
-        Me.CheckBox1.Appearance = System.Windows.Forms.Appearance.Button
-        Me.CheckBox1.Location = New System.Drawing.Point(326, 12)
-        Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(21, 21)
-        Me.CheckBox1.TabIndex = 5
-        Me.CheckBox1.TabStop = False
-        Me.CheckBox1.Text = "+"
-        Me.CheckBox1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.tooltipMain.SetToolTip(Me.CheckBox1, "Ver todos")
-        Me.CheckBox1.UseVisualStyleBackColor = True
-        '
-        'textboxProducto
-        '
-        Me.textboxProducto.Location = New System.Drawing.Point(92, 13)
-        Me.textboxProducto.MaxLength = 50
-        Me.textboxProducto.Name = "textboxProducto"
-        Me.textboxProducto.Size = New System.Drawing.Size(230, 20)
-        Me.textboxProducto.TabIndex = 2
-        '
-        'textboxTitular
-        '
-        Me.textboxTitular.Location = New System.Drawing.Point(92, 13)
-        Me.textboxTitular.MaxLength = 50
-        Me.textboxTitular.Name = "textboxTitular"
-        Me.textboxTitular.Size = New System.Drawing.Size(230, 20)
-        Me.textboxTitular.TabIndex = 4
-        '
-        'textboxOrigenDestino
-        '
-        Me.textboxOrigenDestino.Location = New System.Drawing.Point(92, 40)
-        Me.textboxOrigenDestino.MaxLength = 50
-        Me.textboxOrigenDestino.Name = "textboxOrigenDestino"
-        Me.textboxOrigenDestino.Size = New System.Drawing.Size(230, 20)
-        Me.textboxOrigenDestino.TabIndex = 1
-        '
-        'textboxTransportista
-        '
-        Me.textboxTransportista.Location = New System.Drawing.Point(92, 13)
-        Me.textboxTransportista.MaxLength = 50
-        Me.textboxTransportista.Name = "textboxTransportista"
-        Me.textboxTransportista.Size = New System.Drawing.Size(230, 20)
-        Me.textboxTransportista.TabIndex = 2
-        '
-        'labelTransportistaCUIT
-        '
-        Me.labelTransportistaCUIT.AutoSize = True
-        Me.labelTransportistaCUIT.Location = New System.Drawing.Point(6, 43)
-        Me.labelTransportistaCUIT.Name = "labelTransportistaCUIT"
-        Me.labelTransportistaCUIT.Size = New System.Drawing.Size(35, 13)
-        Me.labelTransportistaCUIT.TabIndex = 4
-        Me.labelTransportistaCUIT.Text = "CUIT:"
-        '
-        'maskedtextboxTransportistaCUIT
-        '
-        Me.maskedtextboxTransportistaCUIT.AllowPromptAsInput = False
-        Me.maskedtextboxTransportistaCUIT.AsciiOnly = True
-        Me.maskedtextboxTransportistaCUIT.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
-        Me.maskedtextboxTransportistaCUIT.HidePromptOnLeave = True
-        Me.maskedtextboxTransportistaCUIT.Location = New System.Drawing.Point(92, 40)
-        Me.maskedtextboxTransportistaCUIT.Mask = "00-00000000-0"
-        Me.maskedtextboxTransportistaCUIT.Name = "maskedtextboxTransportistaCUIT"
-        Me.maskedtextboxTransportistaCUIT.Size = New System.Drawing.Size(90, 20)
-        Me.maskedtextboxTransportistaCUIT.TabIndex = 5
-        Me.maskedtextboxTransportistaCUIT.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
-        '
-        'maskedtextboxChoferCUIT_CUIL
-        '
-        Me.maskedtextboxChoferCUIT_CUIL.AllowPromptAsInput = False
-        Me.maskedtextboxChoferCUIT_CUIL.AsciiOnly = True
-        Me.maskedtextboxChoferCUIT_CUIL.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
-        Me.maskedtextboxChoferCUIT_CUIL.HidePromptOnLeave = True
-        Me.maskedtextboxChoferCUIT_CUIL.Location = New System.Drawing.Point(92, 93)
-        Me.maskedtextboxChoferCUIT_CUIL.Mask = "00-00000000-0"
-        Me.maskedtextboxChoferCUIT_CUIL.Name = "maskedtextboxChoferCUIT_CUIL"
-        Me.maskedtextboxChoferCUIT_CUIL.Size = New System.Drawing.Size(90, 20)
-        Me.maskedtextboxChoferCUIT_CUIL.TabIndex = 11
-        Me.maskedtextboxChoferCUIT_CUIL.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
-        '
-        'labelChoferCUIT_CUIL
-        '
-        Me.labelChoferCUIT_CUIL.AutoSize = True
-        Me.labelChoferCUIT_CUIL.Location = New System.Drawing.Point(6, 96)
-        Me.labelChoferCUIT_CUIL.Name = "labelChoferCUIT_CUIL"
-        Me.labelChoferCUIT_CUIL.Size = New System.Drawing.Size(70, 13)
-        Me.labelChoferCUIT_CUIL.TabIndex = 10
-        Me.labelChoferCUIT_CUIL.Text = "CUIT / CUIL:"
-        Me.tooltipMain.SetToolTip(Me.labelChoferCUIT_CUIL, "Ingrese el Número de Documento sin utilizar puntos.")
-        '
-        'TextBox1
-        '
-        Me.TextBox1.Location = New System.Drawing.Point(92, 66)
-        Me.TextBox1.MaxLength = 50
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(230, 20)
-        Me.TextBox1.TabIndex = 8
-        '
-        'textboxCamion_DominioChasis
-        '
-        Me.textboxCamion_DominioChasis.Location = New System.Drawing.Point(92, 119)
-        Me.textboxCamion_DominioChasis.MaxLength = 7
-        Me.textboxCamion_DominioChasis.Name = "textboxCamion_DominioChasis"
-        Me.textboxCamion_DominioChasis.Size = New System.Drawing.Size(68, 20)
-        Me.textboxCamion_DominioChasis.TabIndex = 14
-        '
-        'textboxCamion_DominioAcoplado
-        '
-        Me.textboxCamion_DominioAcoplado.Location = New System.Drawing.Point(254, 119)
-        Me.textboxCamion_DominioAcoplado.MaxLength = 7
-        Me.textboxCamion_DominioAcoplado.Name = "textboxCamion_DominioAcoplado"
-        Me.textboxCamion_DominioAcoplado.Size = New System.Drawing.Size(68, 20)
-        Me.textboxCamion_DominioAcoplado.TabIndex = 16
-        '
-        'labelCamion_DominioAcoplado
-        '
-        Me.labelCamion_DominioAcoplado.AutoSize = True
-        Me.labelCamion_DominioAcoplado.Location = New System.Drawing.Point(193, 123)
-        Me.labelCamion_DominioAcoplado.Name = "labelCamion_DominioAcoplado"
-        Me.labelCamion_DominioAcoplado.Size = New System.Drawing.Size(55, 13)
-        Me.labelCamion_DominioAcoplado.TabIndex = 15
-        Me.labelCamion_DominioAcoplado.Text = "Acoplado:"
-        '
-        'maskedtextboxComprobanteNumero
-        '
-        Me.maskedtextboxComprobanteNumero.AllowPromptAsInput = False
-        Me.maskedtextboxComprobanteNumero.AsciiOnly = True
-        Me.maskedtextboxComprobanteNumero.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
-        Me.maskedtextboxComprobanteNumero.HidePromptOnLeave = True
-        Me.maskedtextboxComprobanteNumero.Location = New System.Drawing.Point(92, 91)
-        Me.maskedtextboxComprobanteNumero.Mask = "0000-00000000"
-        Me.maskedtextboxComprobanteNumero.Name = "maskedtextboxComprobanteNumero"
-        Me.maskedtextboxComprobanteNumero.Size = New System.Drawing.Size(90, 20)
-        Me.maskedtextboxComprobanteNumero.TabIndex = 9
-        Me.maskedtextboxComprobanteNumero.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
-        '
-        'labelComprobanteNumero
-        '
-        Me.labelComprobanteNumero.AutoSize = True
-        Me.labelComprobanteNumero.Location = New System.Drawing.Point(6, 96)
-        Me.labelComprobanteNumero.Name = "labelComprobanteNumero"
-        Me.labelComprobanteNumero.Size = New System.Drawing.Size(70, 13)
-        Me.labelComprobanteNumero.TabIndex = 8
-        Me.labelComprobanteNumero.Text = "Nº Comprob.:"
-        '
         'groupboxNotas
         '
-        Me.groupboxNotas.Controls.Add(Me.TextBox2)
+        Me.groupboxNotas.Controls.Add(Me.textboxNotas)
         Me.groupboxNotas.Controls.Add(Me.labelNotas)
         Me.groupboxNotas.Location = New System.Drawing.Point(12, 385)
         Me.groupboxNotas.Name = "groupboxNotas"
         Me.groupboxNotas.Size = New System.Drawing.Size(722, 75)
         Me.groupboxNotas.TabIndex = 6
         Me.groupboxNotas.TabStop = False
+        '
+        'textboxNotas
+        '
+        Me.textboxNotas.Location = New System.Drawing.Point(92, 17)
+        Me.textboxNotas.MaxLength = 0
+        Me.textboxNotas.Multiline = True
+        Me.textboxNotas.Name = "textboxNotas"
+        Me.textboxNotas.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.textboxNotas.Size = New System.Drawing.Size(624, 48)
+        Me.textboxNotas.TabIndex = 1
         '
         'labelNotas
         '
@@ -824,68 +877,20 @@ Partial Class formPesada
         Me.labelNotas.TabIndex = 0
         Me.labelNotas.Text = "Notas:"
         '
-        'TextBox2
-        '
-        Me.TextBox2.Location = New System.Drawing.Point(92, 17)
-        Me.TextBox2.MaxLength = 0
-        Me.TextBox2.Multiline = True
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(624, 48)
-        Me.TextBox2.TabIndex = 1
-        '
-        'checkboxTransportistaTodos
-        '
-        Me.checkboxTransportistaTodos.Appearance = System.Windows.Forms.Appearance.Button
-        Me.checkboxTransportistaTodos.Location = New System.Drawing.Point(326, 12)
-        Me.checkboxTransportistaTodos.Name = "checkboxTransportistaTodos"
-        Me.checkboxTransportistaTodos.Size = New System.Drawing.Size(21, 21)
-        Me.checkboxTransportistaTodos.TabIndex = 3
-        Me.checkboxTransportistaTodos.TabStop = False
-        Me.checkboxTransportistaTodos.Text = "+"
-        Me.checkboxTransportistaTodos.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.tooltipMain.SetToolTip(Me.checkboxTransportistaTodos, "Ver todos")
-        Me.checkboxTransportistaTodos.UseVisualStyleBackColor = True
-        '
-        'checkboxChoferTodos
-        '
-        Me.checkboxChoferTodos.Appearance = System.Windows.Forms.Appearance.Button
-        Me.checkboxChoferTodos.Location = New System.Drawing.Point(326, 66)
-        Me.checkboxChoferTodos.Name = "checkboxChoferTodos"
-        Me.checkboxChoferTodos.Size = New System.Drawing.Size(21, 21)
-        Me.checkboxChoferTodos.TabIndex = 9
-        Me.checkboxChoferTodos.TabStop = False
-        Me.checkboxChoferTodos.Text = "+"
-        Me.checkboxChoferTodos.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.tooltipMain.SetToolTip(Me.checkboxChoferTodos, "Ver todos")
-        Me.checkboxChoferTodos.UseVisualStyleBackColor = True
-        '
-        'checkboxCamionTodos
-        '
-        Me.checkboxCamionTodos.Appearance = System.Windows.Forms.Appearance.Button
-        Me.checkboxCamionTodos.Location = New System.Drawing.Point(326, 119)
-        Me.checkboxCamionTodos.Name = "checkboxCamionTodos"
-        Me.checkboxCamionTodos.Size = New System.Drawing.Size(21, 21)
-        Me.checkboxCamionTodos.TabIndex = 17
-        Me.checkboxCamionTodos.TabStop = False
-        Me.checkboxCamionTodos.Text = "+"
-        Me.checkboxCamionTodos.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.tooltipMain.SetToolTip(Me.checkboxCamionTodos, "Ver todos")
-        Me.checkboxCamionTodos.UseVisualStyleBackColor = True
-        '
         'groupboxAnalisis
         '
         Me.groupboxAnalisis.Controls.Add(Me.labelMezclado)
         Me.groupboxAnalisis.Controls.Add(Me.checkboxMezclado)
         Me.groupboxAnalisis.Controls.Add(Me.labelFumigado)
         Me.groupboxAnalisis.Controls.Add(Me.checkboxFumigado)
-        Me.groupboxAnalisis.Controls.Add(Me.DoubleTextBox4)
-        Me.groupboxAnalisis.Controls.Add(Me.Label5)
-        Me.groupboxAnalisis.Controls.Add(Me.DoubleTextBox3)
-        Me.groupboxAnalisis.Controls.Add(Me.Label4)
-        Me.groupboxAnalisis.Controls.Add(Me.DoubleTextBox2)
-        Me.groupboxAnalisis.Controls.Add(Me.Label3)
-        Me.groupboxAnalisis.Controls.Add(Me.DoubleTextBox1)
-        Me.groupboxAnalisis.Controls.Add(Me.Label1)
+        Me.groupboxAnalisis.Controls.Add(Me.doubletextboxGluten)
+        Me.groupboxAnalisis.Controls.Add(Me.labelGluten)
+        Me.groupboxAnalisis.Controls.Add(Me.doubletextboxPesoHectolitrico)
+        Me.groupboxAnalisis.Controls.Add(Me.labelPesoHectolitrico)
+        Me.groupboxAnalisis.Controls.Add(Me.doubletextboxGranoDaniado)
+        Me.groupboxAnalisis.Controls.Add(Me.labelGranoDaniado)
+        Me.groupboxAnalisis.Controls.Add(Me.doubletextboxGranoVerde)
+        Me.groupboxAnalisis.Controls.Add(Me.labelGranoVerde)
         Me.groupboxAnalisis.Controls.Add(Me.doubletextboxZaranda)
         Me.groupboxAnalisis.Controls.Add(Me.labelZaranda)
         Me.groupboxAnalisis.Controls.Add(Me.doubletextboxHumedad)
@@ -896,35 +901,161 @@ Partial Class formPesada
         Me.groupboxAnalisis.TabIndex = 5
         Me.groupboxAnalisis.TabStop = False
         '
-        'labelHumedad
+        'labelMezclado
         '
-        Me.labelHumedad.AutoSize = True
-        Me.labelHumedad.Location = New System.Drawing.Point(6, 15)
-        Me.labelHumedad.Name = "labelHumedad"
-        Me.labelHumedad.Size = New System.Drawing.Size(56, 13)
-        Me.labelHumedad.TabIndex = 0
-        Me.labelHumedad.Text = "Humedad:"
+        Me.labelMezclado.AutoSize = True
+        Me.labelMezclado.Location = New System.Drawing.Point(112, 65)
+        Me.labelMezclado.Name = "labelMezclado"
+        Me.labelMezclado.Size = New System.Drawing.Size(56, 13)
+        Me.labelMezclado.TabIndex = 11
+        Me.labelMezclado.Text = "Mezclado:"
         '
-        'doubletextboxHumedad
+        'checkboxMezclado
         '
-        Me.doubletextboxHumedad.BackGroundColor = System.Drawing.SystemColors.Window
-        Me.doubletextboxHumedad.BeforeTouchSize = New System.Drawing.Size(38, 20)
-        Me.doubletextboxHumedad.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.doubletextboxHumedad.DoubleValue = 0.0R
-        Me.doubletextboxHumedad.Location = New System.Drawing.Point(68, 12)
-        Me.doubletextboxHumedad.MaxValue = 40.0R
-        Me.doubletextboxHumedad.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
-        Me.doubletextboxHumedad.MinValue = 0.0R
-        Me.doubletextboxHumedad.Name = "doubletextboxHumedad"
-        Me.doubletextboxHumedad.NullString = ""
-        Me.doubletextboxHumedad.NumberDecimalDigits = 1
-        Me.doubletextboxHumedad.NumberNegativePattern = 0
-        Me.doubletextboxHumedad.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.SetNullString
-        Me.doubletextboxHumedad.Size = New System.Drawing.Size(38, 20)
-        Me.doubletextboxHumedad.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
-        Me.doubletextboxHumedad.TabIndex = 1
-        Me.doubletextboxHumedad.Text = "0,0"
-        Me.doubletextboxHumedad.WordWrap = False
+        Me.checkboxMezclado.AutoSize = True
+        Me.checkboxMezclado.Location = New System.Drawing.Point(206, 66)
+        Me.checkboxMezclado.Name = "checkboxMezclado"
+        Me.checkboxMezclado.Size = New System.Drawing.Size(15, 14)
+        Me.checkboxMezclado.TabIndex = 12
+        Me.checkboxMezclado.UseVisualStyleBackColor = True
+        '
+        'labelFumigado
+        '
+        Me.labelFumigado.AutoSize = True
+        Me.labelFumigado.Location = New System.Drawing.Point(6, 65)
+        Me.labelFumigado.Name = "labelFumigado"
+        Me.labelFumigado.Size = New System.Drawing.Size(56, 13)
+        Me.labelFumigado.TabIndex = 4
+        Me.labelFumigado.Text = "Fumigado:"
+        '
+        'checkboxFumigado
+        '
+        Me.checkboxFumigado.AutoSize = True
+        Me.checkboxFumigado.Location = New System.Drawing.Point(68, 66)
+        Me.checkboxFumigado.Name = "checkboxFumigado"
+        Me.checkboxFumigado.Size = New System.Drawing.Size(15, 14)
+        Me.checkboxFumigado.TabIndex = 5
+        Me.checkboxFumigado.UseVisualStyleBackColor = True
+        '
+        'doubletextboxGluten
+        '
+        Me.doubletextboxGluten.BackGroundColor = System.Drawing.SystemColors.Window
+        Me.doubletextboxGluten.BeforeTouchSize = New System.Drawing.Size(38, 20)
+        Me.doubletextboxGluten.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.doubletextboxGluten.DoubleValue = 0.0R
+        Me.doubletextboxGluten.Location = New System.Drawing.Point(309, 38)
+        Me.doubletextboxGluten.MaxValue = 40.0R
+        Me.doubletextboxGluten.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
+        Me.doubletextboxGluten.MinValue = 0.0R
+        Me.doubletextboxGluten.Name = "doubletextboxGluten"
+        Me.doubletextboxGluten.NullString = ""
+        Me.doubletextboxGluten.NumberDecimalDigits = 1
+        Me.doubletextboxGluten.NumberNegativePattern = 0
+        Me.doubletextboxGluten.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.SetNullString
+        Me.doubletextboxGluten.Size = New System.Drawing.Size(38, 20)
+        Me.doubletextboxGluten.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
+        Me.doubletextboxGluten.TabIndex = 0
+        Me.doubletextboxGluten.Text = "0,0"
+        Me.doubletextboxGluten.WordWrap = False
+        '
+        'labelGluten
+        '
+        Me.labelGluten.AutoSize = True
+        Me.labelGluten.Location = New System.Drawing.Point(247, 41)
+        Me.labelGluten.Name = "labelGluten"
+        Me.labelGluten.Size = New System.Drawing.Size(41, 13)
+        Me.labelGluten.TabIndex = 15
+        Me.labelGluten.Text = "Gluten:"
+        '
+        'doubletextboxPesoHectolitrico
+        '
+        Me.doubletextboxPesoHectolitrico.BackGroundColor = System.Drawing.SystemColors.Window
+        Me.doubletextboxPesoHectolitrico.BeforeTouchSize = New System.Drawing.Size(38, 20)
+        Me.doubletextboxPesoHectolitrico.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.doubletextboxPesoHectolitrico.DoubleValue = 0.0R
+        Me.doubletextboxPesoHectolitrico.Location = New System.Drawing.Point(309, 12)
+        Me.doubletextboxPesoHectolitrico.MaxValue = 40.0R
+        Me.doubletextboxPesoHectolitrico.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
+        Me.doubletextboxPesoHectolitrico.MinValue = 0.0R
+        Me.doubletextboxPesoHectolitrico.Name = "doubletextboxPesoHectolitrico"
+        Me.doubletextboxPesoHectolitrico.NullString = ""
+        Me.doubletextboxPesoHectolitrico.NumberDecimalDigits = 1
+        Me.doubletextboxPesoHectolitrico.NumberNegativePattern = 0
+        Me.doubletextboxPesoHectolitrico.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.SetNullString
+        Me.doubletextboxPesoHectolitrico.Size = New System.Drawing.Size(38, 20)
+        Me.doubletextboxPesoHectolitrico.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
+        Me.doubletextboxPesoHectolitrico.TabIndex = 14
+        Me.doubletextboxPesoHectolitrico.Text = "0,0"
+        Me.doubletextboxPesoHectolitrico.WordWrap = False
+        '
+        'labelPesoHectolitrico
+        '
+        Me.labelPesoHectolitrico.AutoSize = True
+        Me.labelPesoHectolitrico.Location = New System.Drawing.Point(247, 15)
+        Me.labelPesoHectolitrico.Name = "labelPesoHectolitrico"
+        Me.labelPesoHectolitrico.Size = New System.Drawing.Size(63, 13)
+        Me.labelPesoHectolitrico.TabIndex = 13
+        Me.labelPesoHectolitrico.Text = "Peso Hect.:"
+        '
+        'doubletextboxGranoDaniado
+        '
+        Me.doubletextboxGranoDaniado.BackGroundColor = System.Drawing.SystemColors.Window
+        Me.doubletextboxGranoDaniado.BeforeTouchSize = New System.Drawing.Size(38, 20)
+        Me.doubletextboxGranoDaniado.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.doubletextboxGranoDaniado.DoubleValue = 0.0R
+        Me.doubletextboxGranoDaniado.Location = New System.Drawing.Point(206, 38)
+        Me.doubletextboxGranoDaniado.MaxValue = 40.0R
+        Me.doubletextboxGranoDaniado.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
+        Me.doubletextboxGranoDaniado.MinValue = 0.0R
+        Me.doubletextboxGranoDaniado.Name = "doubletextboxGranoDaniado"
+        Me.doubletextboxGranoDaniado.NullString = ""
+        Me.doubletextboxGranoDaniado.NumberDecimalDigits = 1
+        Me.doubletextboxGranoDaniado.NumberNegativePattern = 0
+        Me.doubletextboxGranoDaniado.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.SetNullString
+        Me.doubletextboxGranoDaniado.Size = New System.Drawing.Size(38, 20)
+        Me.doubletextboxGranoDaniado.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
+        Me.doubletextboxGranoDaniado.TabIndex = 10
+        Me.doubletextboxGranoDaniado.Text = "0,0"
+        Me.doubletextboxGranoDaniado.WordWrap = False
+        '
+        'labelGranoDaniado
+        '
+        Me.labelGranoDaniado.AutoSize = True
+        Me.labelGranoDaniado.Location = New System.Drawing.Point(112, 41)
+        Me.labelGranoDaniado.Name = "labelGranoDaniado"
+        Me.labelGranoDaniado.Size = New System.Drawing.Size(88, 13)
+        Me.labelGranoDaniado.TabIndex = 9
+        Me.labelGranoDaniado.Text = "Granos dañados:"
+        '
+        'doubletextboxGranoVerde
+        '
+        Me.doubletextboxGranoVerde.BackGroundColor = System.Drawing.SystemColors.Window
+        Me.doubletextboxGranoVerde.BeforeTouchSize = New System.Drawing.Size(38, 20)
+        Me.doubletextboxGranoVerde.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.doubletextboxGranoVerde.DoubleValue = 0.0R
+        Me.doubletextboxGranoVerde.Location = New System.Drawing.Point(206, 12)
+        Me.doubletextboxGranoVerde.MaxValue = 40.0R
+        Me.doubletextboxGranoVerde.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
+        Me.doubletextboxGranoVerde.MinValue = 0.0R
+        Me.doubletextboxGranoVerde.Name = "doubletextboxGranoVerde"
+        Me.doubletextboxGranoVerde.NullString = ""
+        Me.doubletextboxGranoVerde.NumberDecimalDigits = 1
+        Me.doubletextboxGranoVerde.NumberNegativePattern = 0
+        Me.doubletextboxGranoVerde.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.SetNullString
+        Me.doubletextboxGranoVerde.Size = New System.Drawing.Size(38, 20)
+        Me.doubletextboxGranoVerde.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
+        Me.doubletextboxGranoVerde.TabIndex = 8
+        Me.doubletextboxGranoVerde.Text = "0,0"
+        Me.doubletextboxGranoVerde.WordWrap = False
+        '
+        'labelGranoVerde
+        '
+        Me.labelGranoVerde.AutoSize = True
+        Me.labelGranoVerde.Location = New System.Drawing.Point(112, 15)
+        Me.labelGranoVerde.Name = "labelGranoVerde"
+        Me.labelGranoVerde.Size = New System.Drawing.Size(79, 13)
+        Me.labelGranoVerde.TabIndex = 7
+        Me.labelGranoVerde.Text = "Granos verdes:"
         '
         'doubletextboxZaranda
         '
@@ -956,161 +1087,35 @@ Partial Class formPesada
         Me.labelZaranda.TabIndex = 2
         Me.labelZaranda.Text = "Zaranda:"
         '
-        'DoubleTextBox1
+        'doubletextboxHumedad
         '
-        Me.DoubleTextBox1.BackGroundColor = System.Drawing.SystemColors.Window
-        Me.DoubleTextBox1.BeforeTouchSize = New System.Drawing.Size(38, 20)
-        Me.DoubleTextBox1.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.DoubleTextBox1.DoubleValue = 0.0R
-        Me.DoubleTextBox1.Location = New System.Drawing.Point(206, 12)
-        Me.DoubleTextBox1.MaxValue = 40.0R
-        Me.DoubleTextBox1.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
-        Me.DoubleTextBox1.MinValue = 0.0R
-        Me.DoubleTextBox1.Name = "DoubleTextBox1"
-        Me.DoubleTextBox1.NullString = ""
-        Me.DoubleTextBox1.NumberDecimalDigits = 1
-        Me.DoubleTextBox1.NumberNegativePattern = 0
-        Me.DoubleTextBox1.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.SetNullString
-        Me.DoubleTextBox1.Size = New System.Drawing.Size(38, 20)
-        Me.DoubleTextBox1.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
-        Me.DoubleTextBox1.TabIndex = 8
-        Me.DoubleTextBox1.Text = "0,0"
-        Me.DoubleTextBox1.WordWrap = False
+        Me.doubletextboxHumedad.BackGroundColor = System.Drawing.SystemColors.Window
+        Me.doubletextboxHumedad.BeforeTouchSize = New System.Drawing.Size(38, 20)
+        Me.doubletextboxHumedad.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.doubletextboxHumedad.DoubleValue = 0.0R
+        Me.doubletextboxHumedad.Location = New System.Drawing.Point(68, 12)
+        Me.doubletextboxHumedad.MaxValue = 40.0R
+        Me.doubletextboxHumedad.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
+        Me.doubletextboxHumedad.MinValue = 0.0R
+        Me.doubletextboxHumedad.Name = "doubletextboxHumedad"
+        Me.doubletextboxHumedad.NullString = ""
+        Me.doubletextboxHumedad.NumberDecimalDigits = 1
+        Me.doubletextboxHumedad.NumberNegativePattern = 0
+        Me.doubletextboxHumedad.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.SetNullString
+        Me.doubletextboxHumedad.Size = New System.Drawing.Size(38, 20)
+        Me.doubletextboxHumedad.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
+        Me.doubletextboxHumedad.TabIndex = 1
+        Me.doubletextboxHumedad.Text = "0,0"
+        Me.doubletextboxHumedad.WordWrap = False
         '
-        'Label1
+        'labelHumedad
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(112, 15)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(79, 13)
-        Me.Label1.TabIndex = 7
-        Me.Label1.Text = "Granos verdes:"
-        '
-        'DoubleTextBox2
-        '
-        Me.DoubleTextBox2.BackGroundColor = System.Drawing.SystemColors.Window
-        Me.DoubleTextBox2.BeforeTouchSize = New System.Drawing.Size(38, 20)
-        Me.DoubleTextBox2.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.DoubleTextBox2.DoubleValue = 0.0R
-        Me.DoubleTextBox2.Location = New System.Drawing.Point(206, 38)
-        Me.DoubleTextBox2.MaxValue = 40.0R
-        Me.DoubleTextBox2.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
-        Me.DoubleTextBox2.MinValue = 0.0R
-        Me.DoubleTextBox2.Name = "DoubleTextBox2"
-        Me.DoubleTextBox2.NullString = ""
-        Me.DoubleTextBox2.NumberDecimalDigits = 1
-        Me.DoubleTextBox2.NumberNegativePattern = 0
-        Me.DoubleTextBox2.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.SetNullString
-        Me.DoubleTextBox2.Size = New System.Drawing.Size(38, 20)
-        Me.DoubleTextBox2.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
-        Me.DoubleTextBox2.TabIndex = 10
-        Me.DoubleTextBox2.Text = "0,0"
-        Me.DoubleTextBox2.WordWrap = False
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(112, 41)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(88, 13)
-        Me.Label3.TabIndex = 9
-        Me.Label3.Text = "Granos dañados:"
-        '
-        'DoubleTextBox3
-        '
-        Me.DoubleTextBox3.BackGroundColor = System.Drawing.SystemColors.Window
-        Me.DoubleTextBox3.BeforeTouchSize = New System.Drawing.Size(38, 20)
-        Me.DoubleTextBox3.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.DoubleTextBox3.DoubleValue = 0.0R
-        Me.DoubleTextBox3.Location = New System.Drawing.Point(309, 12)
-        Me.DoubleTextBox3.MaxValue = 40.0R
-        Me.DoubleTextBox3.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
-        Me.DoubleTextBox3.MinValue = 0.0R
-        Me.DoubleTextBox3.Name = "DoubleTextBox3"
-        Me.DoubleTextBox3.NullString = ""
-        Me.DoubleTextBox3.NumberDecimalDigits = 1
-        Me.DoubleTextBox3.NumberNegativePattern = 0
-        Me.DoubleTextBox3.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.SetNullString
-        Me.DoubleTextBox3.Size = New System.Drawing.Size(38, 20)
-        Me.DoubleTextBox3.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
-        Me.DoubleTextBox3.TabIndex = 14
-        Me.DoubleTextBox3.Text = "0,0"
-        Me.DoubleTextBox3.WordWrap = False
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(247, 15)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(63, 13)
-        Me.Label4.TabIndex = 13
-        Me.Label4.Text = "Peso Hect.:"
-        '
-        'DoubleTextBox4
-        '
-        Me.DoubleTextBox4.BackGroundColor = System.Drawing.SystemColors.Window
-        Me.DoubleTextBox4.BeforeTouchSize = New System.Drawing.Size(38, 20)
-        Me.DoubleTextBox4.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.DoubleTextBox4.DoubleValue = 0.0R
-        Me.DoubleTextBox4.Location = New System.Drawing.Point(309, 38)
-        Me.DoubleTextBox4.MaxValue = 40.0R
-        Me.DoubleTextBox4.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
-        Me.DoubleTextBox4.MinValue = 0.0R
-        Me.DoubleTextBox4.Name = "DoubleTextBox4"
-        Me.DoubleTextBox4.NullString = ""
-        Me.DoubleTextBox4.NumberDecimalDigits = 1
-        Me.DoubleTextBox4.NumberNegativePattern = 0
-        Me.DoubleTextBox4.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.SetNullString
-        Me.DoubleTextBox4.Size = New System.Drawing.Size(38, 20)
-        Me.DoubleTextBox4.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
-        Me.DoubleTextBox4.TabIndex = 0
-        Me.DoubleTextBox4.Text = "0,0"
-        Me.DoubleTextBox4.WordWrap = False
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(247, 41)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(41, 13)
-        Me.Label5.TabIndex = 15
-        Me.Label5.Text = "Gluten:"
-        '
-        'checkboxFumigado
-        '
-        Me.checkboxFumigado.AutoSize = True
-        Me.checkboxFumigado.Location = New System.Drawing.Point(68, 66)
-        Me.checkboxFumigado.Name = "checkboxFumigado"
-        Me.checkboxFumigado.Size = New System.Drawing.Size(15, 14)
-        Me.checkboxFumigado.TabIndex = 5
-        Me.checkboxFumigado.UseVisualStyleBackColor = True
-        '
-        'labelFumigado
-        '
-        Me.labelFumigado.AutoSize = True
-        Me.labelFumigado.Location = New System.Drawing.Point(6, 65)
-        Me.labelFumigado.Name = "labelFumigado"
-        Me.labelFumigado.Size = New System.Drawing.Size(56, 13)
-        Me.labelFumigado.TabIndex = 4
-        Me.labelFumigado.Text = "Fumigado:"
-        '
-        'labelMezclado
-        '
-        Me.labelMezclado.AutoSize = True
-        Me.labelMezclado.Location = New System.Drawing.Point(112, 65)
-        Me.labelMezclado.Name = "labelMezclado"
-        Me.labelMezclado.Size = New System.Drawing.Size(56, 13)
-        Me.labelMezclado.TabIndex = 11
-        Me.labelMezclado.Text = "Mezclado:"
-        '
-        'checkboxMezclado
-        '
-        Me.checkboxMezclado.AutoSize = True
-        Me.checkboxMezclado.Location = New System.Drawing.Point(206, 66)
-        Me.checkboxMezclado.Name = "checkboxMezclado"
-        Me.checkboxMezclado.Size = New System.Drawing.Size(15, 14)
-        Me.checkboxMezclado.TabIndex = 12
-        Me.checkboxMezclado.UseVisualStyleBackColor = True
+        Me.labelHumedad.AutoSize = True
+        Me.labelHumedad.Location = New System.Drawing.Point(6, 15)
+        Me.labelHumedad.Name = "labelHumedad"
+        Me.labelHumedad.Size = New System.Drawing.Size(56, 13)
+        Me.labelHumedad.TabIndex = 0
+        Me.labelHumedad.Text = "Humedad:"
         '
         'formPesada
         '
@@ -1121,7 +1126,7 @@ Partial Class formPesada
         Me.Controls.Add(Me.groupboxNotas)
         Me.Controls.Add(Me.groupboxKilogramo)
         Me.Controls.Add(Me.groupboxEncabezado)
-        Me.Controls.Add(Me.groupboxProductoPlanta)
+        Me.Controls.Add(Me.groupboxProductoPlantaCosecha)
         Me.Controls.Add(Me.groupboxTitular)
         Me.Controls.Add(Me.groupboxTransporte)
         Me.Controls.Add(Me.toolstripMain)
@@ -1137,8 +1142,8 @@ Partial Class formPesada
         Me.groupboxTransporte.PerformLayout()
         Me.groupboxTitular.ResumeLayout(False)
         Me.groupboxTitular.PerformLayout()
-        Me.groupboxProductoPlanta.ResumeLayout(False)
-        Me.groupboxProductoPlanta.PerformLayout()
+        Me.groupboxProductoPlantaCosecha.ResumeLayout(False)
+        Me.groupboxProductoPlantaCosecha.PerformLayout()
         Me.groupboxTipo.ResumeLayout(False)
         Me.groupboxTipo.PerformLayout()
         Me.groupboxEncabezado.ResumeLayout(False)
@@ -1152,12 +1157,12 @@ Partial Class formPesada
         Me.groupboxNotas.PerformLayout()
         Me.groupboxAnalisis.ResumeLayout(False)
         Me.groupboxAnalisis.PerformLayout()
-        CType(Me.doubletextboxHumedad, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.doubletextboxGluten, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.doubletextboxPesoHectolitrico, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.doubletextboxGranoDaniado, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.doubletextboxGranoVerde, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.doubletextboxZaranda, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DoubleTextBox1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DoubleTextBox2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DoubleTextBox3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DoubleTextBox4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.doubletextboxHumedad, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1180,7 +1185,7 @@ Partial Class formPesada
     Friend WithEvents labelOrigenDestino As System.Windows.Forms.Label
     Friend WithEvents comboboxTitular As System.Windows.Forms.ComboBox
     Friend WithEvents labelTitular As System.Windows.Forms.Label
-    Friend WithEvents groupboxProductoPlanta As System.Windows.Forms.GroupBox
+    Friend WithEvents groupboxProductoPlantaCosecha As System.Windows.Forms.GroupBox
     Friend WithEvents comboboxCosecha As System.Windows.Forms.ComboBox
     Friend WithEvents labelCosecha As System.Windows.Forms.Label
     Friend WithEvents groupboxTipo As System.Windows.Forms.GroupBox
@@ -1203,13 +1208,13 @@ Partial Class formPesada
     Friend WithEvents groupboxKilogramo As System.Windows.Forms.GroupBox
     Friend WithEvents labelKilogramoBruto As System.Windows.Forms.Label
     Friend WithEvents integertextboxKilogramoBruto As Syncfusion.Windows.Forms.Tools.IntegerTextBox
-    Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents labelKilogramoNeto As System.Windows.Forms.Label
     Friend WithEvents integertextboxKilogramoNeto As Syncfusion.Windows.Forms.Tools.IntegerTextBox
     Friend WithEvents labelKilogramoTara As System.Windows.Forms.Label
     Friend WithEvents integertextboxKilogramoTara As Syncfusion.Windows.Forms.Tools.IntegerTextBox
     Friend WithEvents checkboxProductoTodos As System.Windows.Forms.CheckBox
     Friend WithEvents checkboxTipoTodos As System.Windows.Forms.CheckBox
-    Friend WithEvents CheckBox1 As System.Windows.Forms.CheckBox
+    Friend WithEvents checkboxTitularTodos As System.Windows.Forms.CheckBox
     Friend WithEvents textboxProducto As System.Windows.Forms.TextBox
     Friend WithEvents labelTransportistaCUIT As System.Windows.Forms.Label
     Friend WithEvents textboxTransportista As System.Windows.Forms.TextBox
@@ -1218,7 +1223,7 @@ Partial Class formPesada
     Friend WithEvents maskedtextboxTransportistaCUIT As System.Windows.Forms.MaskedTextBox
     Friend WithEvents maskedtextboxChoferCUIT_CUIL As System.Windows.Forms.MaskedTextBox
     Friend WithEvents labelChoferCUIT_CUIL As System.Windows.Forms.Label
-    Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
+    Friend WithEvents textboxChofer As System.Windows.Forms.TextBox
     Friend WithEvents textboxCamion_DominioAcoplado As System.Windows.Forms.TextBox
     Friend WithEvents textboxCamion_DominioChasis As System.Windows.Forms.TextBox
     Friend WithEvents labelCamion_DominioAcoplado As System.Windows.Forms.Label
@@ -1226,7 +1231,7 @@ Partial Class formPesada
     Friend WithEvents labelComprobanteNumero As System.Windows.Forms.Label
     Friend WithEvents groupboxNotas As System.Windows.Forms.GroupBox
     Friend WithEvents labelNotas As System.Windows.Forms.Label
-    Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
+    Friend WithEvents textboxNotas As System.Windows.Forms.TextBox
     Friend WithEvents checkboxChoferTodos As System.Windows.Forms.CheckBox
     Friend WithEvents checkboxTransportistaTodos As System.Windows.Forms.CheckBox
     Friend WithEvents checkboxCamionTodos As System.Windows.Forms.CheckBox
@@ -1235,14 +1240,14 @@ Partial Class formPesada
     Friend WithEvents doubletextboxHumedad As Syncfusion.Windows.Forms.Tools.DoubleTextBox
     Friend WithEvents doubletextboxZaranda As Syncfusion.Windows.Forms.Tools.DoubleTextBox
     Friend WithEvents labelZaranda As System.Windows.Forms.Label
-    Friend WithEvents DoubleTextBox4 As Syncfusion.Windows.Forms.Tools.DoubleTextBox
-    Friend WithEvents Label5 As System.Windows.Forms.Label
-    Friend WithEvents DoubleTextBox3 As Syncfusion.Windows.Forms.Tools.DoubleTextBox
-    Friend WithEvents Label4 As System.Windows.Forms.Label
-    Friend WithEvents DoubleTextBox2 As Syncfusion.Windows.Forms.Tools.DoubleTextBox
-    Friend WithEvents Label3 As System.Windows.Forms.Label
-    Friend WithEvents DoubleTextBox1 As Syncfusion.Windows.Forms.Tools.DoubleTextBox
-    Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents doubletextboxGluten As Syncfusion.Windows.Forms.Tools.DoubleTextBox
+    Friend WithEvents labelGluten As System.Windows.Forms.Label
+    Friend WithEvents doubletextboxPesoHectolitrico As Syncfusion.Windows.Forms.Tools.DoubleTextBox
+    Friend WithEvents labelPesoHectolitrico As System.Windows.Forms.Label
+    Friend WithEvents doubletextboxGranoDaniado As Syncfusion.Windows.Forms.Tools.DoubleTextBox
+    Friend WithEvents labelGranoDaniado As System.Windows.Forms.Label
+    Friend WithEvents doubletextboxGranoVerde As Syncfusion.Windows.Forms.Tools.DoubleTextBox
+    Friend WithEvents labelGranoVerde As System.Windows.Forms.Label
     Friend WithEvents labelFumigado As System.Windows.Forms.Label
     Friend WithEvents checkboxFumigado As System.Windows.Forms.CheckBox
     Friend WithEvents labelMezclado As System.Windows.Forms.Label

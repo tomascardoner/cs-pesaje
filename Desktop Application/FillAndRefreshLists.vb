@@ -118,13 +118,16 @@
         ComboBoxControl.DataSource = listItems
     End Sub
 
-    Friend Sub Transportista(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
+    Friend Sub Entidad(ByRef ComboBoxControl As ComboBox, ByVal EsTitular As Boolean, ByVal EsTransportista As Boolean, ByVal EsChofer As Boolean, ByVal UsoFrecuente As Boolean, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
         Dim listItems As List(Of Entidad)
 
         ComboBoxControl.ValueMember = "IDEntidad"
         ComboBoxControl.DisplayMember = "Nombre"
 
-        listItems = mdbContext.Entidad.Where(Function(ent) ent.EsActivo And ent.EsTransportista).OrderBy(Function(ent) ent.Nombre).ToList
+        listItems = (From ent In mdbContext.Entidad
+                     Where ent.EsActivo And ((EsTitular And ent.EsTitular) Or (EsTransportista And ent.EsTransportista) Or EsChofer And ent.EsChofer) And (ent.UsoFrecuente Or Not UsoFrecuente)
+                     Order By ent.Nombre
+                     Select ent).ToList
 
         If AgregarItem_Todos Then
             Dim Item_Todos As New Entidad
@@ -299,6 +302,35 @@
         If AgregarItem_NoEspecifica Then
             Dim Item_NoEspecifica As New Cosecha
             Item_NoEspecifica.IDCosecha = FIELD_VALUE_NOTSPECIFIED_BYTE
+            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            listItems.Insert(0, Item_NoEspecifica)
+        End If
+
+        ComboBoxControl.DataSource = listItems
+    End Sub
+
+    Friend Sub OrigenDestino(ByRef ComboBoxControl As ComboBox, ByVal IDEntidad As Integer, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
+        Dim listItems As List(Of OrigenDestino)
+
+        ComboBoxControl.ValueMember = "IDOrigenDestino"
+        ComboBoxControl.DisplayMember = "Nombre"
+
+        listItems = (From ori In mdbContext.OrigenDestino
+                     Join ent_ori In mdbContext.Entidad_OrigenDestino On ori.IDOrigenDestino Equals ent_ori.IDOrigenDestino
+                     Where ent_ori.IDEntidad = IDEntidad And ori.EsActivo
+                     Order By ori.Nombre
+                     Select ori).ToList
+
+        If AgregarItem_Todos Then
+            Dim Item_Todos As New OrigenDestino
+            Item_Todos.IDOrigenDestino = FIELD_VALUE_ALL_BYTE
+            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_FEMALE
+            listItems.Insert(0, Item_Todos)
+        End If
+
+        If AgregarItem_NoEspecifica Then
+            Dim Item_NoEspecifica As New OrigenDestino
+            Item_NoEspecifica.IDOrigenDestino = FIELD_VALUE_NOTSPECIFIED_BYTE
             Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
             listItems.Insert(0, Item_NoEspecifica)
         End If

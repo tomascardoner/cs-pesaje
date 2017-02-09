@@ -7,6 +7,9 @@
     Private mIsLoading As Boolean = False
     Private mEditMode As Boolean = False
     Private mIsNew As Boolean
+
+    Private Const COMBOBOX_WIDTH As Integer = 230
+    Private Const TEXTBOX_OTRO_SEPARACION As Integer = 5
 #End Region
 
 #Region "Form stuff"
@@ -60,32 +63,59 @@
         datetimepickerHoraInicio.Enabled = mEditMode
         datetimepickerFechaFin.Enabled = mEditMode
         datetimepickerHoraFin.Enabled = mEditMode
+        maskedtextboxComprobanteNumero.ReadOnly = Not mEditMode
 
-        ' Producto - Planta
+        ' Producto - Planta - Cosecha
         comboboxProducto.Enabled = mEditMode
+        textboxProducto.ReadOnly = Not mEditMode
+        checkboxProductoTodos.Visible = mEditMode
         comboboxPlanta.Enabled = mEditMode
         groupboxTipo.Enabled = mEditMode
+        checkboxTipoTodos.Visible = mEditMode
         comboboxCosecha.Enabled = mEditMode
 
         ' Titular
         comboboxTitular.Enabled = mEditMode
+        textboxTitular.ReadOnly = Not mEditMode
         comboboxOrigenDestino.Enabled = mEditMode
+        textboxOrigenDestino.ReadOnly = Not mEditMode
 
         ' Transporte
         comboboxTransportista.Enabled = mEditMode
+        textboxTransportista.ReadOnly = Not mEditMode
+        checkboxTransportistaTodos.Visible = mEditMode
+        maskedtextboxTransportistaCUIT.ReadOnly = Not mEditMode
         comboboxChofer.Enabled = mEditMode
+        textboxChofer.ReadOnly = Not mEditMode
+        checkboxChoferTodos.Visible = mEditMode
         comboboxCamion.Enabled = mEditMode
+        textboxCamion_DominioChasis.ReadOnly = Not mEditMode
+        textboxCamion_DominioAcoplado.ReadOnly = Not mEditMode
+        checkboxCamionTodos.Visible = mEditMode
 
         ' Kilogramos
-        integertextboxKilogramoBruto.Enabled = mEditMode
-        integertextboxKilogramoTara.Enabled = mEditMode
+        integertextboxKilogramoBruto.ReadOnly = Not mEditMode
+        integertextboxKilogramoTara.ReadOnly = Not mEditMode
+
+        ' Análisis
+        doubletextboxHumedad.ReadOnly = Not mEditMode
+        doubletextboxZaranda.ReadOnly = Not mEditMode
+        checkboxFumigado.Enabled = mEditMode
+        doubletextboxGranoVerde.ReadOnly = Not mEditMode
+        doubletextboxGranoDaniado.ReadOnly = Not mEditMode
+        checkboxMezclado.Enabled = mEditMode
+        doubletextboxPesoHectolitrico.ReadOnly = Not mEditMode
+        doubletextboxGluten.ReadOnly = Not mEditMode
+
+        ' Notas
+        textboxNotas.ReadOnly = Not mEditMode
     End Sub
 
     Friend Sub InitializeFormAndControls()
         SetAppearance()
 
         pFillAndRefreshLists.Producto(comboboxProducto, True, False, False)
-        pFillAndRefreshLists.Transportista(comboboxTransportista, False, True)
+        pFillAndRefreshLists.Entidad(comboboxTransportista, False, True, False, True, False, True)
     End Sub
 
     Friend Sub SetAppearance()
@@ -103,11 +133,26 @@
 #Region "Load and Set Data"
     Friend Sub SetDataFromObjectToControls()
         With mPesadaActual
-            If .IDPesada = 0 Then
+            ' Encabezado
+            If mIsNew Then
                 textboxIDPesada.Text = My.Resources.STRING_ITEM_NEW_MALE
             Else
                 textboxIDPesada.Text = String.Format(.IDPesada.ToString, "G")
             End If
+            datetimepickerFechaInicio.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker(.FechaHoraInicio)
+            datetimepickerHoraInicio.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker(.FechaHoraInicio)
+            datetimepickerFechaFin.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker(.FechaHoraFin)
+            datetimepickerHoraFin.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker(.FechaHoraFin)
+            maskedtextboxComprobanteNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.ComprobanteNumero)
+
+            ' Producto - Planta - Cosecha
+            CS_Control_ComboBox.SetSelectedValue(comboboxProducto, SelectedItemOptions.Value, .IDProducto)
+            If .IDProducto = CS_Constants.FIELD_VALUE_OTHER_BYTE Then
+                textboxProducto.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Pesada_Otro.Producto_Nombre)
+            Else
+                textboxProducto.Text = ""
+            End If
+            CS_Control_ComboBox.SetSelectedValue(comboboxPlanta, SelectedItemOptions.Value, .IDPlanta, CS_Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
 
             'checkboxEsActivo.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.EsActivo)
             'textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
@@ -155,8 +200,16 @@
 #End Region
 
 #Region "Controls behavior"
-    Private Sub CambioProducto() Handles comboboxProducto.SelectedValueChanged
+    Private Sub ProductoCambio() Handles comboboxProducto.SelectedValueChanged
         If Not comboboxProducto.SelectedItem Is Nothing Then
+            If CByte(comboboxProducto.SelectedValue) = CS_Constants.FIELD_VALUE_OTHER_BYTE Then
+                comboboxProducto.Width = textboxProducto.Left - comboboxProducto.Left - TEXTBOX_OTRO_SEPARACION
+                textboxProducto.Visible = True
+            Else
+                comboboxProducto.Width = COMBOBOX_WIDTH
+                textboxProducto.Visible = False
+            End If
+
             ' Planta
             pFillAndRefreshLists.Planta(comboboxPlanta, CByte(comboboxProducto.SelectedValue), False, False)
             CS_Control_ComboBox.SetSelectedValue(comboboxPlanta, SelectedItemOptions.NoneOrFirstIfUnique)
@@ -169,7 +222,11 @@
         End If
     End Sub
 
-    Private Sub CambioPlanta() Handles comboboxPlanta.SelectedValueChanged
+    Private Sub ProductoTodos() Handles checkboxProductoTodos.CheckedChanged
+        pFillAndRefreshLists.Producto(comboboxProducto, checkboxProductoTodos.Checked, False, False)
+    End Sub
+
+    Private Sub PlantaCambio() Handles comboboxPlanta.SelectedValueChanged
         Dim Producto_PlantaActual As Producto_Planta
 
         If comboboxProducto.SelectedValue Is Nothing Or comboboxPlanta.SelectedValue Is Nothing Then
@@ -182,6 +239,7 @@
             radiobuttonSalida.Visible = (Producto_PlantaActual.TipoSalida = Constantes.PESADA_TIPO_PERIODICIDAD_FRECUENTE)
             radiobuttonNinguno.Visible = (Producto_PlantaActual.TipoNinguno = Constantes.PESADA_TIPO_PERIODICIDAD_FRECUENTE)
             Producto_PlantaActual = Nothing
+
             If radiobuttonEntrada.Visible And radiobuttonSalida.Visible = False And radiobuttonNinguno.Visible = False Then
                 radiobuttonEntrada.Checked = True
             ElseIf radiobuttonEntrada.Visible = False And radiobuttonSalida.Visible And radiobuttonNinguno.Visible = False Then
@@ -196,7 +254,7 @@
         End If
     End Sub
 
-    Private Sub CambioTipo() Handles radiobuttonEntrada.CheckedChanged, radiobuttonSalida.CheckedChanged, radiobuttonNinguno.CheckedChanged
+    Private Sub TipoCambio() Handles radiobuttonEntrada.CheckedChanged, radiobuttonSalida.CheckedChanged, radiobuttonNinguno.CheckedChanged
         If radiobuttonEntrada.Checked Then
             labelOrigenDestino.Text = "Origen:"
         ElseIf radiobuttonSalida.Checked Then
@@ -208,12 +266,62 @@
         End If
     End Sub
 
-    Private Sub CambioTransportista() Handles comboboxTransportista.SelectedValueChanged
-        pFillAndRefreshLists.Camion(comboboxCamion, CInt(comboboxTransportista.SelectedValue), True, True, False, True)
-        pFillAndRefreshLists.Chofer(comboboxChofer, CInt(comboboxTransportista.SelectedValue), False, True)
+    Private Sub TitularCambio() Handles comboboxTitular.SelectedValueChanged
+        If Not comboboxTitular.SelectedItem Is Nothing Then
+            If CByte(comboboxTitular.SelectedValue) = CS_Constants.FIELD_VALUE_OTHER_INTEGER Then
+                comboboxTitular.Width = textboxTitular.Left - comboboxTitular.Left - TEXTBOX_OTRO_SEPARACION
+                textboxTitular.Visible = True
+            Else
+                comboboxTitular.Width = COMBOBOX_WIDTH
+                textboxTitular.Visible = False
+            End If
+
+            ' Origen / Destino
+            pFillAndRefreshLists.OrigenDestino(comboboxOrigenDestino, CInt(comboboxTitular.SelectedValue), False, True)
+            CS_Control_ComboBox.SetSelectedValue(comboboxOrigenDestino, SelectedItemOptions.First)
+        End If
     End Sub
 
-    Private Sub CambioChofer() Handles comboboxChofer.SelectedValueChanged
+    Private Sub TitularTodos() Handles checkboxTitularTodos.CheckedChanged
+        'pFillAndRefreshLists.titul(comboboxProducto, checkboxProductoTodos.Checked, False, False)
+    End Sub
+
+    Private Sub OrigenDestinoCambio() Handles comboboxOrigenDestino.SelectedValueChanged
+        If Not comboboxOrigenDestino.SelectedItem Is Nothing Then
+            If CByte(comboboxOrigenDestino.SelectedValue) = CS_Constants.FIELD_VALUE_OTHER_INTEGER Then
+                comboboxOrigenDestino.Width = textboxOrigenDestino.Left - comboboxOrigenDestino.Left - TEXTBOX_OTRO_SEPARACION
+                textboxOrigenDestino.Visible = True
+            Else
+                comboboxOrigenDestino.Width = COMBOBOX_WIDTH
+                textboxOrigenDestino.Visible = False
+            End If
+        End If
+    End Sub
+
+    Private Sub TransportistaCambio() Handles comboboxTransportista.SelectedValueChanged
+        If Not comboboxTransportista.SelectedItem Is Nothing Then
+            pFillAndRefreshLists.Camion(comboboxCamion, CInt(comboboxTransportista.SelectedValue), True, True, False, True)
+            pFillAndRefreshLists.Chofer(comboboxChofer, CInt(comboboxTransportista.SelectedValue), False, True)
+
+            If CByte(comboboxTransportista.SelectedValue) = CS_Constants.FIELD_VALUE_OTHER_INTEGER Then
+                comboboxTransportista.Width = textboxTransportista.Left - comboboxTransportista.Left - TEXTBOX_OTRO_SEPARACION
+                textboxTransportista.Visible = True
+                CS_Control_ComboBox.SetSelectedValue(comboboxCamion, SelectedItemOptions.ValueOrFirst, CS_Constants.FIELD_VALUE_OTHER_BYTE)
+                CS_Control_ComboBox.SetSelectedValue(comboboxChofer, SelectedItemOptions.ValueOrFirst, CS_Constants.FIELD_VALUE_OTHER_INTEGER)
+            Else
+                comboboxTransportista.Width = COMBOBOX_WIDTH
+                textboxTransportista.Visible = False
+                CS_Control_ComboBox.SetSelectedValue(comboboxCamion, SelectedItemOptions.First)
+                CS_Control_ComboBox.SetSelectedValue(comboboxChofer, SelectedItemOptions.First)
+            End If
+        End If
+    End Sub
+
+    Private Sub TransportistaTodos() Handles checkboxTransportistaTodos.CheckedChanged
+        pFillAndRefreshLists.Entidad(comboboxProducto, False, True, False, checkboxTransportistaTodos.Checked, False, True)
+    End Sub
+
+    Private Sub ChoferCambio() Handles comboboxChofer.SelectedValueChanged
         If comboboxChofer.SelectedIndex > 0 Then
             If CType(comboboxChofer.SelectedItem, Entidad).IDCamion.HasValue Then
                 CS_Control_ComboBox.SetSelectedValue(comboboxCamion, SelectedItemOptions.ValueOrFirst, CType(comboboxChofer.SelectedItem, Entidad).IDCamion)
@@ -221,8 +329,8 @@
         End If
     End Sub
 
-    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles integertextboxKilogramoBruto.GotFocus, integertextboxKilogramoTara.GotFocus, integertextboxKilogramoNeto.GotFocus
-        CType(sender, Syncfusion.Windows.Forms.Tools.IntegerTextBox).SelectAll()
+    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxProducto.GotFocus, textboxTitular.GotFocus, textboxOrigenDestino.GotFocus, textboxTransportista.GotFocus, textboxChofer.GotFocus, textboxCamion_DominioChasis.GotFocus, textboxCamion_DominioAcoplado.GotFocus, textboxNotas.GotFocus
+        CType(sender, TextBox).SelectAll()
     End Sub
 #End Region
 
