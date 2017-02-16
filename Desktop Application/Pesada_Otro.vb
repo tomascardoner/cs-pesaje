@@ -13,7 +13,7 @@ Imports System.Collections.Generic
 Partial Public Class Pesada_Otro
     Public Property IDPesada As Integer
     Public Property Producto_Nombre As String
-    Public Property Entidad_Nombre As String
+    Public Property Titular_Nombre As String
     Public Property OrigenDestino_Nombre As String
     Public Property Transportista_Nombre As String
     Public Property Transportista_CUIT As String
