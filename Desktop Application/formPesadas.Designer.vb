@@ -76,6 +76,10 @@ Partial Class formPesadas
         Me.buttonFechaHastaSiguiente = New System.Windows.Forms.ToolStripButton()
         Me.buttonFechaHastaHoy = New System.Windows.Forms.ToolStripButton()
         Me.toolstripFiltrosBasicos = New Syncfusion.Windows.Forms.Tools.ToolStripTabItem()
+        Me.toolstripgroupTitular = New Syncfusion.Windows.Forms.Tools.ToolStripEx()
+        Me.comboboxTitular = New System.Windows.Forms.ToolStripComboBox()
+        Me.toolstripgroupProducto = New Syncfusion.Windows.Forms.Tools.ToolStripEx()
+        Me.comboboxProducto = New System.Windows.Forms.ToolStripComboBox()
         Me.tooltripgroupPesadaTipo = New Syncfusion.Windows.Forms.Tools.ToolStripEx()
         Me.dropdownbuttonPesadaTipo = New System.Windows.Forms.ToolStripDropDownButton()
         Me.menuitemPesadaTipo_Entrada = New System.Windows.Forms.ToolStripMenuItem()
@@ -84,17 +88,13 @@ Partial Class formPesadas
         Me.separatorMarcarTodos = New System.Windows.Forms.ToolStripSeparator()
         Me.menuitemPesadaTipo_MarcarTodos = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemPesadaTipo_DesmarcarTodos = New System.Windows.Forms.ToolStripMenuItem()
-        Me.toolstripgroupTitular = New Syncfusion.Windows.Forms.Tools.ToolStripEx()
-        Me.toolstripgroupProducto = New Syncfusion.Windows.Forms.Tools.ToolStripEx()
         Me.toolstripgroupCosecha = New Syncfusion.Windows.Forms.Tools.ToolStripEx()
-        Me.comboboxTitular = New System.Windows.Forms.ToolStripComboBox()
-        Me.comboboxProducto = New System.Windows.Forms.ToolStripComboBox()
         Me.comboboxCosecha = New System.Windows.Forms.ToolStripComboBox()
         Me.toolstripgroupOrigenDestino = New Syncfusion.Windows.Forms.Tools.ToolStripEx()
         Me.comboboxOrigenDestino = New System.Windows.Forms.ToolStripComboBox()
         Me.toolstripgroupTransportista = New Syncfusion.Windows.Forms.Tools.ToolStripEx()
-        Me.toolstripgroupChofer = New Syncfusion.Windows.Forms.Tools.ToolStripEx()
         Me.comboboxTransportista = New System.Windows.Forms.ToolStripComboBox()
+        Me.toolstripgroupChofer = New Syncfusion.Windows.Forms.Tools.ToolStripEx()
         Me.comboboxChofer = New System.Windows.Forms.ToolStripComboBox()
         Me.toolstriptabFiltrosAvanzados = New Syncfusion.Windows.Forms.Tools.ToolStripTabItem()
         Me.statusstripMain.SuspendLayout()
@@ -106,9 +106,9 @@ Partial Class formPesadas
         Me.toolstripgroupAcciones.SuspendLayout()
         Me.toolstripgroupPeriodo.SuspendLayout()
         Me.toolstripFiltrosBasicos.Panel.SuspendLayout()
-        Me.tooltripgroupPesadaTipo.SuspendLayout()
         Me.toolstripgroupTitular.SuspendLayout()
         Me.toolstripgroupProducto.SuspendLayout()
+        Me.tooltripgroupPesadaTipo.SuspendLayout()
         Me.toolstripgroupCosecha.SuspendLayout()
         Me.toolstripgroupOrigenDestino.SuspendLayout()
         Me.toolstripgroupTransportista.SuspendLayout()
@@ -144,14 +144,14 @@ Partial Class formPesadas
         Me.datagridviewMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.datagridviewMain.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnIDPesada, Me.columnFechaHoraInicio, Me.columnFechaHoraFin, Me.columnComprobanteNumero, Me.columnEntidadTitular, Me.columnProducto, Me.columnTipo, Me.columnCosecha, Me.columnOrigenDestino, Me.columnKilogramoBruto, Me.columnKilogramoTara, Me.columnKilogramoNeto, Me.columnHumedad, Me.columnZaranda, Me.columnKilogramoFinal, Me.columnEntidadTransportista, Me.columnChofer, Me.columnCamion})
         Me.datagridviewMain.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.datagridviewMain.Location = New System.Drawing.Point(0, 120)
+        Me.datagridviewMain.Location = New System.Drawing.Point(0, 125)
         Me.datagridviewMain.MultiSelect = False
         Me.datagridviewMain.Name = "datagridviewMain"
         Me.datagridviewMain.ReadOnly = True
         Me.datagridviewMain.RowHeadersVisible = False
         Me.datagridviewMain.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.datagridviewMain.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datagridviewMain.Size = New System.Drawing.Size(999, 227)
+        Me.datagridviewMain.Size = New System.Drawing.Size(999, 222)
         Me.datagridviewMain.TabIndex = 3
         '
         'columnIDPesada
@@ -350,6 +350,8 @@ Partial Class formPesadas
         '
         'ribbonMain
         '
+        Me.ribbonMain.AllowCollapse = False
+        Me.ribbonMain.CaptionFont = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ribbonMain.Dock = Syncfusion.Windows.Forms.Tools.DockStyleEx.Top
         Me.ribbonMain.Font = New System.Drawing.Font("Segoe UI", 8.25!)
         Me.ribbonMain.Header.AddMainItem(toolstriptabPrincipal)
@@ -358,6 +360,7 @@ Partial Class formPesadas
         Me.ribbonMain.Location = New System.Drawing.Point(0, 0)
         Me.ribbonMain.MenuButtonFont = New System.Drawing.Font("Segoe UI", 8.25!)
         Me.ribbonMain.MenuButtonText = ""
+        Me.ribbonMain.MenuButtonVisible = False
         Me.ribbonMain.MenuColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(198, Byte), Integer))
         Me.ribbonMain.Name = "ribbonMain"
         Me.ribbonMain.OfficeColorScheme = Syncfusion.Windows.Forms.Tools.ToolStripEx.ColorScheme.Managed
@@ -368,14 +371,14 @@ Partial Class formPesadas
         Me.ribbonMain.OfficeMenu.ShowItemToolTips = True
         Me.ribbonMain.OfficeMenu.Size = New System.Drawing.Size(12, 65)
         Me.ribbonMain.QuickPanelImageLayout = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.ribbonMain.QuickPanelVisible = False
         Me.ribbonMain.RibbonHeaderImage = Syncfusion.Windows.Forms.Tools.RibbonHeaderImage.None
         Me.ribbonMain.SelectedTab = Me.toolstriptabPrincipal
         Me.ribbonMain.ShowRibbonDisplayOptionButton = True
-        Me.ribbonMain.Size = New System.Drawing.Size(999, 120)
+        Me.ribbonMain.Size = New System.Drawing.Size(999, 125)
         Me.ribbonMain.SystemText.QuickAccessDialogDropDownName = "Start menu"
         Me.ribbonMain.SystemText.RenameDisplayLabelText = "&Display Name:"
         Me.ribbonMain.TabIndex = 4
-        Me.ribbonMain.Text = "RibbonControlAdv1"
         '
         'toolstriptabPrincipal
         '
@@ -406,7 +409,8 @@ Partial Class formPesadas
         Me.toolstripgroupAcciones.LauncherStyle = Syncfusion.Windows.Forms.Tools.LauncherStyle.Office2007
         Me.toolstripgroupAcciones.Location = New System.Drawing.Point(0, 1)
         Me.toolstripgroupAcciones.Name = "toolstripgroupAcciones"
-        Me.toolstripgroupAcciones.Size = New System.Drawing.Size(262, 64)
+        Me.toolstripgroupAcciones.Padding = New System.Windows.Forms.Padding(0, 5, 0, 0)
+        Me.toolstripgroupAcciones.Size = New System.Drawing.Size(261, 69)
         Me.toolstripgroupAcciones.TabIndex = 1
         Me.toolstripgroupAcciones.Text = "Acciones"
         '
@@ -468,10 +472,11 @@ Partial Class formPesadas
         Me.toolstripgroupPeriodo.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolstripgroupPeriodo.Image = Nothing
         Me.toolstripgroupPeriodo.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.comboboxPeriodoTipo, Me.comboboxPeriodoValor, Me.labelFecha, Me.buttonFechaDesdeAnterior, Me.buttonFechaDesdeSiguiente, Me.buttonFechaDesdeHoy, Me.labelFechaY, Me.buttonFechaHastaAnterior, Me.buttonFechaHastaSiguiente, Me.buttonFechaHastaHoy})
-        Me.toolstripgroupPeriodo.Location = New System.Drawing.Point(264, 1)
+        Me.toolstripgroupPeriodo.Location = New System.Drawing.Point(263, 1)
         Me.toolstripgroupPeriodo.Name = "toolstripgroupPeriodo"
+        Me.toolstripgroupPeriodo.Padding = New System.Windows.Forms.Padding(0, 5, 0, 0)
         Me.toolstripgroupPeriodo.ShowLauncher = True
-        Me.toolstripgroupPeriodo.Size = New System.Drawing.Size(409, 64)
+        Me.toolstripgroupPeriodo.Size = New System.Drawing.Size(408, 69)
         Me.toolstripgroupPeriodo.TabIndex = 2
         Me.toolstripgroupPeriodo.Text = "Período"
         '
@@ -578,6 +583,48 @@ Partial Class formPesadas
         Me.toolstripFiltrosBasicos.Tag = "1"
         Me.toolstripFiltrosBasicos.Text = "Básicos"
         '
+        'toolstripgroupTitular
+        '
+        Me.toolstripgroupTitular.Dock = System.Windows.Forms.DockStyle.None
+        Me.toolstripgroupTitular.Font = New System.Drawing.Font("Segoe UI", 8.25!)
+        Me.toolstripgroupTitular.ForeColor = System.Drawing.Color.MidnightBlue
+        Me.toolstripgroupTitular.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.toolstripgroupTitular.Image = Nothing
+        Me.toolstripgroupTitular.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.comboboxTitular})
+        Me.toolstripgroupTitular.Location = New System.Drawing.Point(0, 1)
+        Me.toolstripgroupTitular.Name = "toolstripgroupTitular"
+        Me.toolstripgroupTitular.Padding = New System.Windows.Forms.Padding(0, 5, 0, 0)
+        Me.toolstripgroupTitular.Size = New System.Drawing.Size(158, 64)
+        Me.toolstripgroupTitular.TabIndex = 1
+        Me.toolstripgroupTitular.Text = "Titular"
+        '
+        'comboboxTitular
+        '
+        Me.comboboxTitular.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxTitular.Name = "comboboxTitular"
+        Me.comboboxTitular.Size = New System.Drawing.Size(150, 42)
+        '
+        'toolstripgroupProducto
+        '
+        Me.toolstripgroupProducto.Dock = System.Windows.Forms.DockStyle.None
+        Me.toolstripgroupProducto.Font = New System.Drawing.Font("Segoe UI", 8.25!)
+        Me.toolstripgroupProducto.ForeColor = System.Drawing.Color.MidnightBlue
+        Me.toolstripgroupProducto.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.toolstripgroupProducto.Image = Nothing
+        Me.toolstripgroupProducto.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.comboboxProducto})
+        Me.toolstripgroupProducto.Location = New System.Drawing.Point(160, 1)
+        Me.toolstripgroupProducto.Name = "toolstripgroupProducto"
+        Me.toolstripgroupProducto.Padding = New System.Windows.Forms.Padding(0, 5, 0, 0)
+        Me.toolstripgroupProducto.Size = New System.Drawing.Size(108, 64)
+        Me.toolstripgroupProducto.TabIndex = 2
+        Me.toolstripgroupProducto.Text = "Producto"
+        '
+        'comboboxProducto
+        '
+        Me.comboboxProducto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxProducto.Name = "comboboxProducto"
+        Me.comboboxProducto.Size = New System.Drawing.Size(100, 42)
+        '
         'tooltripgroupPesadaTipo
         '
         Me.tooltripgroupPesadaTipo.Dock = System.Windows.Forms.DockStyle.None
@@ -586,9 +633,10 @@ Partial Class formPesadas
         Me.tooltripgroupPesadaTipo.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.tooltripgroupPesadaTipo.Image = Nothing
         Me.tooltripgroupPesadaTipo.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.dropdownbuttonPesadaTipo})
-        Me.tooltripgroupPesadaTipo.Location = New System.Drawing.Point(272, 1)
+        Me.tooltripgroupPesadaTipo.Location = New System.Drawing.Point(270, 1)
         Me.tooltripgroupPesadaTipo.Name = "tooltripgroupPesadaTipo"
-        Me.tooltripgroupPesadaTipo.Size = New System.Drawing.Size(114, 64)
+        Me.tooltripgroupPesadaTipo.Padding = New System.Windows.Forms.Padding(0, 5, 0, 0)
+        Me.tooltripgroupPesadaTipo.Size = New System.Drawing.Size(113, 64)
         Me.tooltripgroupPesadaTipo.TabIndex = 0
         '
         'dropdownbuttonPesadaTipo
@@ -598,7 +646,7 @@ Partial Class formPesadas
         Me.dropdownbuttonPesadaTipo.Image = CType(resources.GetObject("dropdownbuttonPesadaTipo.Image"), System.Drawing.Image)
         Me.dropdownbuttonPesadaTipo.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.dropdownbuttonPesadaTipo.Name = "dropdownbuttonPesadaTipo"
-        Me.dropdownbuttonPesadaTipo.Size = New System.Drawing.Size(107, 44)
+        Me.dropdownbuttonPesadaTipo.Size = New System.Drawing.Size(107, 39)
         Me.dropdownbuttonPesadaTipo.Text = "Tipos de Pesadas"
         '
         'menuitemPesadaTipo_Entrada
@@ -645,34 +693,6 @@ Partial Class formPesadas
         Me.menuitemPesadaTipo_DesmarcarTodos.Size = New System.Drawing.Size(160, 22)
         Me.menuitemPesadaTipo_DesmarcarTodos.Text = "Desmarcar todos"
         '
-        'toolstripgroupTitular
-        '
-        Me.toolstripgroupTitular.Dock = System.Windows.Forms.DockStyle.None
-        Me.toolstripgroupTitular.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.toolstripgroupTitular.ForeColor = System.Drawing.Color.MidnightBlue
-        Me.toolstripgroupTitular.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.toolstripgroupTitular.Image = Nothing
-        Me.toolstripgroupTitular.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.comboboxTitular})
-        Me.toolstripgroupTitular.Location = New System.Drawing.Point(0, 1)
-        Me.toolstripgroupTitular.Name = "toolstripgroupTitular"
-        Me.toolstripgroupTitular.Size = New System.Drawing.Size(159, 64)
-        Me.toolstripgroupTitular.TabIndex = 1
-        Me.toolstripgroupTitular.Text = "Titular"
-        '
-        'toolstripgroupProducto
-        '
-        Me.toolstripgroupProducto.Dock = System.Windows.Forms.DockStyle.None
-        Me.toolstripgroupProducto.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.toolstripgroupProducto.ForeColor = System.Drawing.Color.MidnightBlue
-        Me.toolstripgroupProducto.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.toolstripgroupProducto.Image = Nothing
-        Me.toolstripgroupProducto.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.comboboxProducto})
-        Me.toolstripgroupProducto.Location = New System.Drawing.Point(161, 1)
-        Me.toolstripgroupProducto.Name = "toolstripgroupProducto"
-        Me.toolstripgroupProducto.Size = New System.Drawing.Size(109, 64)
-        Me.toolstripgroupProducto.TabIndex = 2
-        Me.toolstripgroupProducto.Text = "Producto"
-        '
         'toolstripgroupCosecha
         '
         Me.toolstripgroupCosecha.Dock = System.Windows.Forms.DockStyle.None
@@ -681,29 +701,18 @@ Partial Class formPesadas
         Me.toolstripgroupCosecha.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolstripgroupCosecha.Image = Nothing
         Me.toolstripgroupCosecha.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.comboboxCosecha})
-        Me.toolstripgroupCosecha.Location = New System.Drawing.Point(388, 1)
+        Me.toolstripgroupCosecha.Location = New System.Drawing.Point(385, 1)
         Me.toolstripgroupCosecha.Name = "toolstripgroupCosecha"
-        Me.toolstripgroupCosecha.Size = New System.Drawing.Size(109, 64)
+        Me.toolstripgroupCosecha.Padding = New System.Windows.Forms.Padding(0, 5, 0, 0)
+        Me.toolstripgroupCosecha.Size = New System.Drawing.Size(108, 64)
         Me.toolstripgroupCosecha.TabIndex = 3
         Me.toolstripgroupCosecha.Text = "Cosecha"
-        '
-        'comboboxTitular
-        '
-        Me.comboboxTitular.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboboxTitular.Name = "comboboxTitular"
-        Me.comboboxTitular.Size = New System.Drawing.Size(150, 47)
-        '
-        'comboboxProducto
-        '
-        Me.comboboxProducto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboboxProducto.Name = "comboboxProducto"
-        Me.comboboxProducto.Size = New System.Drawing.Size(100, 47)
         '
         'comboboxCosecha
         '
         Me.comboboxCosecha.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxCosecha.Name = "comboboxCosecha"
-        Me.comboboxCosecha.Size = New System.Drawing.Size(100, 47)
+        Me.comboboxCosecha.Size = New System.Drawing.Size(100, 42)
         '
         'toolstripgroupOrigenDestino
         '
@@ -713,9 +722,10 @@ Partial Class formPesadas
         Me.toolstripgroupOrigenDestino.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolstripgroupOrigenDestino.Image = Nothing
         Me.toolstripgroupOrigenDestino.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.comboboxOrigenDestino})
-        Me.toolstripgroupOrigenDestino.Location = New System.Drawing.Point(499, 1)
+        Me.toolstripgroupOrigenDestino.Location = New System.Drawing.Point(495, 1)
         Me.toolstripgroupOrigenDestino.Name = "toolstripgroupOrigenDestino"
-        Me.toolstripgroupOrigenDestino.Size = New System.Drawing.Size(159, 64)
+        Me.toolstripgroupOrigenDestino.Padding = New System.Windows.Forms.Padding(0, 5, 0, 0)
+        Me.toolstripgroupOrigenDestino.Size = New System.Drawing.Size(158, 64)
         Me.toolstripgroupOrigenDestino.TabIndex = 4
         Me.toolstripgroupOrigenDestino.Text = "Orígen / Destino"
         '
@@ -723,7 +733,7 @@ Partial Class formPesadas
         '
         Me.comboboxOrigenDestino.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxOrigenDestino.Name = "comboboxOrigenDestino"
-        Me.comboboxOrigenDestino.Size = New System.Drawing.Size(150, 47)
+        Me.comboboxOrigenDestino.Size = New System.Drawing.Size(150, 42)
         '
         'toolstripgroupTransportista
         '
@@ -733,11 +743,18 @@ Partial Class formPesadas
         Me.toolstripgroupTransportista.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolstripgroupTransportista.Image = Nothing
         Me.toolstripgroupTransportista.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.comboboxTransportista})
-        Me.toolstripgroupTransportista.Location = New System.Drawing.Point(660, 1)
+        Me.toolstripgroupTransportista.Location = New System.Drawing.Point(655, 1)
         Me.toolstripgroupTransportista.Name = "toolstripgroupTransportista"
-        Me.toolstripgroupTransportista.Size = New System.Drawing.Size(130, 64)
+        Me.toolstripgroupTransportista.Padding = New System.Windows.Forms.Padding(0, 5, 0, 0)
+        Me.toolstripgroupTransportista.Size = New System.Drawing.Size(129, 64)
         Me.toolstripgroupTransportista.TabIndex = 5
         Me.toolstripgroupTransportista.Text = "Transportista"
+        '
+        'comboboxTransportista
+        '
+        Me.comboboxTransportista.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxTransportista.Name = "comboboxTransportista"
+        Me.comboboxTransportista.Size = New System.Drawing.Size(121, 42)
         '
         'toolstripgroupChofer
         '
@@ -747,23 +764,18 @@ Partial Class formPesadas
         Me.toolstripgroupChofer.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolstripgroupChofer.Image = Nothing
         Me.toolstripgroupChofer.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.comboboxChofer})
-        Me.toolstripgroupChofer.Location = New System.Drawing.Point(792, 1)
+        Me.toolstripgroupChofer.Location = New System.Drawing.Point(786, 1)
         Me.toolstripgroupChofer.Name = "toolstripgroupChofer"
-        Me.toolstripgroupChofer.Size = New System.Drawing.Size(130, 64)
+        Me.toolstripgroupChofer.Padding = New System.Windows.Forms.Padding(0, 5, 0, 0)
+        Me.toolstripgroupChofer.Size = New System.Drawing.Size(129, 64)
         Me.toolstripgroupChofer.TabIndex = 6
         Me.toolstripgroupChofer.Text = "Chofer"
-        '
-        'comboboxTransportista
-        '
-        Me.comboboxTransportista.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboboxTransportista.Name = "comboboxTransportista"
-        Me.comboboxTransportista.Size = New System.Drawing.Size(121, 47)
         '
         'comboboxChofer
         '
         Me.comboboxChofer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxChofer.Name = "comboboxChofer"
-        Me.comboboxChofer.Size = New System.Drawing.Size(121, 47)
+        Me.comboboxChofer.Size = New System.Drawing.Size(121, 42)
         '
         'toolstriptabFiltrosAvanzados
         '
@@ -807,12 +819,12 @@ Partial Class formPesadas
         Me.toolstripgroupPeriodo.PerformLayout()
         Me.toolstripFiltrosBasicos.Panel.ResumeLayout(False)
         Me.toolstripFiltrosBasicos.Panel.PerformLayout()
-        Me.tooltripgroupPesadaTipo.ResumeLayout(False)
-        Me.tooltripgroupPesadaTipo.PerformLayout()
         Me.toolstripgroupTitular.ResumeLayout(False)
         Me.toolstripgroupTitular.PerformLayout()
         Me.toolstripgroupProducto.ResumeLayout(False)
         Me.toolstripgroupProducto.PerformLayout()
+        Me.tooltripgroupPesadaTipo.ResumeLayout(False)
+        Me.tooltripgroupPesadaTipo.PerformLayout()
         Me.toolstripgroupCosecha.ResumeLayout(False)
         Me.toolstripgroupCosecha.PerformLayout()
         Me.toolstripgroupOrigenDestino.ResumeLayout(False)

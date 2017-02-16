@@ -45,6 +45,7 @@ Partial Class formPesada
         Me.checkboxCamionOtro = New System.Windows.Forms.CheckBox()
         Me.checkboxCamionTodos = New System.Windows.Forms.CheckBox()
         Me.checkboxTipoTodos = New System.Windows.Forms.CheckBox()
+        Me.checkboxCosechaTodos = New System.Windows.Forms.CheckBox()
         Me.groupboxTransporte = New System.Windows.Forms.GroupBox()
         Me.labelCamion_DominioAcoplado = New System.Windows.Forms.Label()
         Me.textboxCamion_DominioAcoplado = New System.Windows.Forms.TextBox()
@@ -378,6 +379,19 @@ Partial Class formPesada
         Me.tooltipMain.SetToolTip(Me.checkboxTipoTodos, "Ver todos")
         Me.checkboxTipoTodos.UseVisualStyleBackColor = True
         '
+        'checkboxCosechaTodos
+        '
+        Me.checkboxCosechaTodos.Appearance = System.Windows.Forms.Appearance.Button
+        Me.checkboxCosechaTodos.Location = New System.Drawing.Point(214, 100)
+        Me.checkboxCosechaTodos.Name = "checkboxCosechaTodos"
+        Me.checkboxCosechaTodos.Size = New System.Drawing.Size(23, 23)
+        Me.checkboxCosechaTodos.TabIndex = 12
+        Me.checkboxCosechaTodos.TabStop = False
+        Me.checkboxCosechaTodos.Text = "T"
+        Me.checkboxCosechaTodos.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.tooltipMain.SetToolTip(Me.checkboxCosechaTodos, "Ver todos")
+        Me.checkboxCosechaTodos.UseVisualStyleBackColor = True
+        '
         'groupboxTransporte
         '
         Me.groupboxTransporte.Controls.Add(Me.checkboxCamionOtro)
@@ -591,6 +605,7 @@ Partial Class formPesada
         '
         'groupboxProductoPlantaCosecha
         '
+        Me.groupboxProductoPlantaCosecha.Controls.Add(Me.checkboxCosechaTodos)
         Me.groupboxProductoPlantaCosecha.Controls.Add(Me.checkboxTipoTodos)
         Me.groupboxProductoPlantaCosecha.Controls.Add(Me.labelTipo)
         Me.groupboxProductoPlantaCosecha.Controls.Add(Me.checkboxProductoOtro)
@@ -1364,4 +1379,5 @@ Partial Class formPesada
     Friend WithEvents checkboxCamionTodos As System.Windows.Forms.CheckBox
     Friend WithEvents labelTipo As System.Windows.Forms.Label
     Friend WithEvents checkboxTipoTodos As System.Windows.Forms.CheckBox
+    Friend WithEvents checkboxCosechaTodos As System.Windows.Forms.CheckBox
 End Class

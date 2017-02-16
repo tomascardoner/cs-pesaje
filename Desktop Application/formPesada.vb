@@ -228,6 +228,13 @@
         checkboxTipoTodos.Visible = Not checkboxProductoOtro.Checked
         labelCosecha.Visible = Not checkboxProductoOtro.Checked
         comboboxCosecha.Visible = Not checkboxProductoOtro.Checked
+        checkboxCosechaTodos.Visible = Not checkboxProductoOtro.Checked
+
+        If checkboxProductoOtro.Checked Then
+            textboxProducto.Focus()
+        Else
+            comboboxProducto.Focus()
+        End If
     End Sub
 
     Private Sub ProductoCambio() Handles comboboxProducto.SelectedValueChanged
@@ -239,8 +246,8 @@
             ' Cosecha
             labelCosecha.Visible = CType(comboboxProducto.SelectedItem, Producto).UtilizaCosecha
             comboboxCosecha.Visible = CType(comboboxProducto.SelectedItem, Producto).UtilizaCosecha
-            'pFillAndRefreshLists.Cosecha(comboboxCosecha, CByte(comboboxProducto.SelectedValue), mPesadaActual.IDCosecha, datetimepickerFechaInicio.Value, False, False)
-            CS_Control_ComboBox.SetSelectedValue(comboboxCosecha, SelectedItemOptions.NoneOrFirstIfUnique)
+            checkboxCosechaTodos.Visible = CType(comboboxProducto.SelectedItem, Producto).UtilizaCosecha
+            CosechaTodos()
 
             TitularCargarLista()
         End If
@@ -248,36 +255,11 @@
 
     Private Sub ProductoTodos() Handles checkboxProductoTodos.CheckedChanged
         pFillAndRefreshLists.Producto(comboboxProducto, mPesadaActual.IDProducto, Not checkboxProductoTodos.Checked, False, False)
+        comboboxProducto.Focus()
     End Sub
 
     Private Sub PlantaCambio() Handles comboboxPlanta.SelectedValueChanged
-        Dim Producto_PlantaActual As Producto_Planta
-
-        If comboboxProducto.SelectedValue Is Nothing Or comboboxPlanta.SelectedValue Is Nothing Then
-            radiobuttonEntrada.Visible = False
-            radiobuttonSalida.Visible = False
-            radiobuttonNinguno.Visible = False
-        Else
-            Producto_PlantaActual = mdbContext.Producto_Planta.Find(CByte(comboboxProducto.SelectedValue), CByte(comboboxPlanta.SelectedValue))
-            radiobuttonEntrada.Visible = (Producto_PlantaActual.TipoEntrada = Constantes.PESADA_TIPO_PERIODICIDAD_FRECUENTE)
-            radiobuttonSalida.Visible = (Producto_PlantaActual.TipoSalida = Constantes.PESADA_TIPO_PERIODICIDAD_FRECUENTE)
-            radiobuttonNinguno.Visible = (Producto_PlantaActual.TipoNinguno = Constantes.PESADA_TIPO_PERIODICIDAD_FRECUENTE)
-            Producto_PlantaActual = Nothing
-
-            If radiobuttonEntrada.Visible And radiobuttonSalida.Visible = False And radiobuttonNinguno.Visible = False Then
-                radiobuttonEntrada.Checked = True
-            ElseIf radiobuttonEntrada.Visible = False And radiobuttonSalida.Visible And radiobuttonNinguno.Visible = False Then
-                radiobuttonSalida.Checked = True
-            ElseIf radiobuttonEntrada.Visible = False And radiobuttonSalida.Visible = False And radiobuttonNinguno.Visible Then
-                radiobuttonNinguno.Checked = True
-            Else
-                radiobuttonEntrada.Checked = False
-                radiobuttonSalida.Checked = False
-                radiobuttonNinguno.Checked = False
-
-                TitularCargarLista()
-            End If
-        End If
+        TipoTodos()
     End Sub
 
     Private Sub TipoCambio() Handles radiobuttonEntrada.CheckedChanged, radiobuttonSalida.CheckedChanged, radiobuttonNinguno.CheckedChanged
@@ -292,6 +274,53 @@
         End If
     End Sub
 
+    Private Sub TipoTodos() Handles checkboxTipoTodos.CheckedChanged
+        Dim Producto_PlantaActual As Producto_Planta
+
+        If checkboxTipoTodos.Checked Then
+            radiobuttonEntrada.Visible = True
+            radiobuttonSalida.Visible = True
+            radiobuttonNinguno.Visible = True
+        Else
+            If comboboxProducto.SelectedValue Is Nothing Or comboboxPlanta.SelectedValue Is Nothing Then
+                radiobuttonEntrada.Visible = False
+                radiobuttonSalida.Visible = False
+                radiobuttonNinguno.Visible = False
+            Else
+                Producto_PlantaActual = mdbContext.Producto_Planta.Find(CByte(comboboxProducto.SelectedValue), CByte(comboboxPlanta.SelectedValue))
+                radiobuttonEntrada.Visible = (Producto_PlantaActual.TipoEntrada = Constantes.PESADA_TIPO_PERIODICIDAD_FRECUENTE)
+                radiobuttonSalida.Visible = (Producto_PlantaActual.TipoSalida = Constantes.PESADA_TIPO_PERIODICIDAD_FRECUENTE)
+                radiobuttonNinguno.Visible = (Producto_PlantaActual.TipoNinguno = Constantes.PESADA_TIPO_PERIODICIDAD_FRECUENTE)
+                Producto_PlantaActual = Nothing
+
+                If radiobuttonEntrada.Visible And radiobuttonSalida.Visible = False And radiobuttonNinguno.Visible = False Then
+                    radiobuttonEntrada.Checked = True
+                ElseIf radiobuttonEntrada.Visible = False And radiobuttonSalida.Visible And radiobuttonNinguno.Visible = False Then
+                    radiobuttonSalida.Checked = True
+                ElseIf radiobuttonEntrada.Visible = False And radiobuttonSalida.Visible = False And radiobuttonNinguno.Visible Then
+                    radiobuttonNinguno.Checked = True
+                Else
+                    radiobuttonEntrada.Checked = False
+                    radiobuttonSalida.Checked = False
+                    radiobuttonNinguno.Checked = False
+
+                    TitularCargarLista()
+                End If
+            End If
+        End If
+
+        groupboxTipo.Focus()
+    End Sub
+
+    Private Sub CosechaTodos() Handles checkboxCosechaTodos.CheckedChanged
+        If checkboxCosechaTodos.Checked Then
+            pFillAndRefreshLists.Cosecha(comboboxCosecha, mPesadaActual.IDCosecha, CS_Constants.FIELD_VALUE_NOTSPECIFIED_BYTE, CS_Constants.FIELD_VALUE_NOTSPECIFIED_DATE, False, False)
+        Else
+            pFillAndRefreshLists.Cosecha(comboboxCosecha, mPesadaActual.IDCosecha, CByte(comboboxProducto.SelectedValue), datetimepickerFechaInicio.Value, False, False)
+        End If
+        CS_Control_ComboBox.SetSelectedValue(comboboxCosecha, SelectedItemOptions.NoneOrFirstIfUnique)
+    End Sub
+
     Private Sub TitularCargarLista()
         If checkboxTitularTodos.Checked Or Not comboboxPlanta.Visible Then
             'pFillAndRefreshLists.Entidad(comboboxTitular, True, False, False, CS_Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER, False, False, False)
@@ -304,6 +333,12 @@
         comboboxTitular.Visible = Not checkboxTitularOtro.Checked
         textboxTitular.Visible = checkboxTitularOtro.Checked
         checkboxTitularTodos.Visible = Not checkboxTitularOtro.Checked
+
+        If checkboxTitularOtro.Checked Then
+            textboxTitular.Focus()
+        Else
+            comboboxTitular.Focus()
+        End If
     End Sub
 
     Private Sub TitularCambio() Handles comboboxTitular.SelectedValueChanged
@@ -316,12 +351,19 @@
 
     Private Sub TitularTodos() Handles checkboxTitularTodos.CheckedChanged
         TitularCargarLista()
+        comboboxTitular.Focus()
     End Sub
 
     Private Sub OrigenDestinoOtro() Handles checkboxOrigenDestinoOtro.CheckedChanged
         comboboxOrigenDestino.Visible = Not checkboxOrigenDestinoOtro.Checked
         textboxOrigenDestino.Visible = checkboxOrigenDestinoOtro.Checked
         checkboxOrigenDestinoTodos.Visible = Not checkboxOrigenDestinoOtro.Checked
+
+        If checkboxOrigenDestinoOtro.Checked Then
+            textboxOrigenDestino.Focus()
+        Else
+            comboboxOrigenDestino.Focus()
+        End If
     End Sub
 
     Private Sub OrigenDestinoCambio() Handles comboboxOrigenDestino.SelectedValueChanged
@@ -333,6 +375,12 @@
         comboboxTransportista.Visible = Not checkboxTransportistaOtro.Checked
         textboxTransportista.Visible = checkboxTransportistaOtro.Checked
         checkboxTransportistaTodos.Visible = Not checkboxTransportistaOtro.Checked
+
+        If checkboxTransportistaOtro.Checked Then
+            textboxTransportista.Focus()
+        Else
+            comboboxTransportista.Focus()
+        End If
     End Sub
 
     Private Sub TransportistaCambio() Handles comboboxTransportista.SelectedValueChanged
@@ -352,12 +400,19 @@
 
     Private Sub TransportistaTodos() Handles checkboxTransportistaTodos.CheckedChanged
         'pFillAndRefreshLists.Entidad(comboboxProducto, False, True, False, CS_Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER, checkboxTransportistaTodos.Checked, False, True)
+        comboboxTransportista.Focus()
     End Sub
 
     Private Sub ChoferOtro() Handles checkboxChoferOtro.CheckedChanged
         comboboxChofer.Visible = Not checkboxChoferOtro.Checked
         textboxChofer.Visible = checkboxChoferOtro.Checked
         checkboxChoferTodos.Visible = Not checkboxChoferOtro.Checked
+
+        If checkboxChoferOtro.Checked Then
+            textboxChofer.Focus()
+        Else
+            comboboxChofer.Focus()
+        End If
     End Sub
 
     Private Sub ChoferCambio() Handles comboboxChofer.SelectedValueChanged
@@ -374,6 +429,7 @@
             'Else
             '    pFillAndRefreshLists.Entidad(comboboxChofer, False, False, True, CInt(comboboxTransportista.SelectedValue), True, False, True)
         End If
+        comboboxChofer.Focus()
     End Sub
 
     Private Sub CamionOtro() Handles checkboxCamionOtro.CheckedChanged
@@ -382,6 +438,12 @@
         labelCamion_DominioAcoplado.Visible = checkboxCamionOtro.Checked
         textboxCamion_DominioAcoplado.Visible = checkboxCamionOtro.Checked
         checkboxCamionTodos.Visible = Not checkboxCamionOtro.Checked
+
+        If checkboxCamionOtro.Checked Then
+            textboxCamion_DominioChasis.Focus()
+        Else
+            comboboxCamion.Focus()
+        End If
     End Sub
 
     Private Sub CamionCambio() Handles comboboxCamion.SelectedValueChanged
@@ -396,6 +458,7 @@
 
     Private Sub CamionTodos() Handles checkboxCamionTodos.CheckedChanged
         'pFillAndRefreshLists.Camion(comboboxCamion, CInt(comboboxTransportista.SelectedValue), True, True, False, True)
+        comboboxCamion.Focus()
     End Sub
 
     Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxProducto.GotFocus, textboxTitular.GotFocus, textboxOrigenDestino.GotFocus, textboxTransportista.GotFocus, textboxChofer.GotFocus, textboxCamion_DominioChasis.GotFocus, textboxCamion_DominioAcoplado.GotFocus, textboxNotas.GotFocus
@@ -486,7 +549,4 @@
 
 #End Region
 
-    Private Sub ProductoTodos(sender As Object, e As EventArgs) Handles checkboxProductoTodos.CheckedChanged
-
-    End Sub
 End Class
