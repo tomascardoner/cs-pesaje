@@ -72,7 +72,7 @@
     Friend Sub InitializeFormAndControls()
         SetAppearance()
 
-        pFillAndRefreshLists.Entidad(comboboxTransportista, False, True, False, False, False, True)
+        'pFillAndRefreshLists.Entidad(comboboxTransportista, False, True, False, CS_Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER, False, False, True)
         CargarCamiones()
     End Sub
 
@@ -137,7 +137,7 @@
     End Sub
 
     Friend Sub CargarCamiones()
-        pFillAndRefreshLists.Camion(comboboxCamion, CInt(comboboxTransportista.SelectedValue), True, True, False, True)
+        pFillAndRefreshLists.Camion(comboboxCamion, mEntidadActual.IDCamion, CInt(comboboxTransportista.SelectedValue), True, True, False, True)
     End Sub
 
 #End Region

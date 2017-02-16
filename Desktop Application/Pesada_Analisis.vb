@@ -23,6 +23,7 @@ Partial Public Class Pesada_Analisis
     Public Property MermaHumedadPorcentaje As Nullable(Of Decimal)
     Public Property MermaHumedadKilogramo As Nullable(Of Integer)
     Public Property MermaZarandaKilogramo As Nullable(Of Integer)
+    Public Property Mezclado As Nullable(Of Boolean)
 
     Public Overridable Property Pesada As Pesada
 

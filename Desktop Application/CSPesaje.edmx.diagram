@@ -80,6 +80,8 @@
         <AssociationConnector Association="CSPesajeModel.FK__UsuarioGrupo__Usuario" ManuallyRouted="false" />
         <AssociationConnector Association="CSPesajeModel.FK__UsuarioGrupo__UsuarioGrupoPermiso" ManuallyRouted="false" />
         <AssociationConnector Association="CSPesajeModel.FK__Entidad__Camion" />
+        <EntityTypeShape EntityType="CSPesajeModel.Producto_Humedad" Width="1.5" PointX="5.25" PointY="37.875" />
+        <AssociationConnector Association="CSPesajeModel.FK__Producto__Producto_Humedad" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

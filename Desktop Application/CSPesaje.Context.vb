@@ -47,5 +47,6 @@ Partial Public Class CSPesajeContext
     Public Overridable Property Usuario() As DbSet(Of Usuario)
     Public Overridable Property UsuarioGrupo() As DbSet(Of UsuarioGrupo)
     Public Overridable Property UsuarioGrupoPermiso() As DbSet(Of UsuarioGrupoPermiso)
+    Public Overridable Property Producto_Humedad() As DbSet(Of Producto_Humedad)
 
 End Class

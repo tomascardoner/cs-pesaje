@@ -91,6 +91,7 @@
           <Property Name="EsChofer" Type="bit" Nullable="false" />
           <Property Name="Transportista_IDEntidad" Type="int" />
           <Property Name="IDCamion" Type="tinyint" />
+          <Property Name="UsoFrecuente" Type="bit" Nullable="false" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
@@ -228,6 +229,7 @@
           <Property Name="PesoHectolitrico" Type="decimal" Precision="3" Scale="1" />
           <Property Name="Gluten" Type="decimal" Precision="3" Scale="1" />
           <Property Name="Fumigado" Type="bit" />
+          <Property Name="Mezclado" Type="bit" />
           <Property Name="MermaVolatilKilogramo" Type="int" />
           <Property Name="MermaHumedadPorcentaje" Type="decimal" Precision="4" Scale="2" />
           <Property Name="MermaHumedadKilogramo" Type="int" />
@@ -290,6 +292,15 @@
           <Property Name="Inicio" Type="date" Nullable="false" />
           <Property Name="Fin" Type="date" Nullable="false" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Producto_Humedad">
+          <Key>
+            <PropertyRef Name="IDProducto" />
+            <PropertyRef Name="Humedad" />
+          </Key>
+          <Property Name="IDProducto" Type="tinyint" Nullable="false" />
+          <Property Name="Humedad" Type="decimal" Precision="3" Scale="1" Nullable="false" />
+          <Property Name="Merma" Type="decimal" Precision="4" Scale="2" Nullable="false" />
         </EntityType>
         <EntityType Name="Producto_Planta">
           <Key>
@@ -692,6 +703,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Producto__Producto_Humedad">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="Producto_Humedad" Type="Self.Producto_Humedad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="IDProducto" />
+            </Principal>
+            <Dependent Role="Producto_Humedad">
+              <PropertyRef Name="IDProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Producto__Producto_Planta">
           <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
           <End Role="Producto_Planta" Type="Self.Producto_Planta" Multiplicity="*" />
@@ -998,6 +1021,7 @@
           <EntitySet Name="Planta" EntityType="Self.Planta" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Producto" EntityType="Self.Producto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Producto_Cosecha" EntityType="Self.Producto_Cosecha" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Producto_Humedad" EntityType="Self.Producto_Humedad" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Producto_Planta" EntityType="Self.Producto_Planta" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Provincia" EntityType="Self.Provincia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reporte" EntityType="Self.Reporte" Schema="dbo" store:Type="Tables" />
@@ -1105,6 +1129,10 @@
           <AssociationSet Name="FK__Producto__Producto_Cosecha" Association="Self.FK__Producto__Producto_Cosecha">
             <End Role="Producto" EntitySet="Producto" />
             <End Role="Producto_Cosecha" EntitySet="Producto_Cosecha" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Producto__Producto_Humedad" Association="Self.FK__Producto__Producto_Humedad">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Producto_Humedad" EntitySet="Producto_Humedad" />
           </AssociationSet>
           <AssociationSet Name="FK__Producto__Producto_Planta" Association="Self.FK__Producto__Producto_Planta">
             <End Role="Producto" EntitySet="Producto" />
@@ -1429,6 +1457,11 @@
             <End Role="Entidad" EntitySet="Entidad" />
             <End Role="Camion" EntitySet="Camion" />
           </AssociationSet>
+          <EntitySet Name="Producto_Humedad" EntityType="CSPesajeModel.Producto_Humedad" />
+          <AssociationSet Name="FK__Producto__Producto_Humedad" Association="CSPesajeModel.FK__Producto__Producto_Humedad">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Producto_Humedad" EntitySet="Producto_Humedad" />
+          </AssociationSet>
         </EntityContainer>		
 		<EntityType Name="Camion">
           <Key>
@@ -1531,6 +1564,7 @@
           <Property Name="EsChofer" Type="Boolean" Nullable="false" />
           <Property Name="Transportista_IDEntidad" Type="Int32" />
           <Property Name="IDCamion" Type="Byte" />
+          <Property Name="UsoFrecuente" Type="Boolean" Nullable="false" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
@@ -1709,6 +1743,7 @@
           <Property Name="MermaHumedadKilogramo" Type="Int32" />
           <Property Name="MermaZarandaKilogramo" Type="Int32" />
           <NavigationProperty Name="Pesada" Relationship="CSPesajeModel.FK__Pesada__Pesada_Analisis" FromRole="Pesada_Analisis" ToRole="Pesada" />
+          <Property Name="Mezclado" Type="Boolean" />
         </EntityType>
         <EntityType Name="Pesada_Otro">
           <Key>
@@ -1769,6 +1804,7 @@
           <NavigationProperty Name="Productos_Plantas" Relationship="CSPesajeModel.FK__Producto__Producto_Planta" FromRole="Producto" ToRole="Producto_Planta" />
           <NavigationProperty Name="UsuarioCreacion" Relationship="CSPesajeModel.FK__Usuario__Producto__Creacion" FromRole="Producto" ToRole="Usuario" />
           <NavigationProperty Name="UsuarioModificacion" Relationship="CSPesajeModel.FK__Usuario__Producto__Modificacion" FromRole="Producto" ToRole="Usuario" />
+          <NavigationProperty Name="Producto_Humedades" Relationship="CSPesajeModel.FK__Producto__Producto_Humedad" FromRole="Producto" ToRole="Producto_Humedad" />
         </EntityType>
         <EntityType Name="Producto_Cosecha">
           <Key>
@@ -2503,6 +2539,28 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Producto_Humedad">
+          <Key>
+            <PropertyRef Name="IDProducto" />
+            <PropertyRef Name="Humedad" />
+          </Key>
+          <Property Name="IDProducto" Type="Byte" Nullable="false" />
+          <Property Name="Humedad" Type="Decimal" Nullable="false" Precision="3" Scale="1" />
+          <Property Name="Merma" Type="Decimal" Nullable="false" Precision="4" Scale="2" />
+          <NavigationProperty Name="Producto" Relationship="CSPesajeModel.FK__Producto__Producto_Humedad" FromRole="Producto_Humedad" ToRole="Producto" />
+        </EntityType>
+        <Association Name="FK__Producto__Producto_Humedad">
+          <End Type="CSPesajeModel.Producto" Role="Producto" Multiplicity="1" />
+          <End Type="CSPesajeModel.Producto_Humedad" Role="Producto_Humedad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="IDProducto" />
+            </Principal>
+            <Dependent Role="Producto_Humedad">
+              <PropertyRef Name="IDProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2584,6 +2642,7 @@
           <EntitySetMapping Name="Entidad">
             <EntityTypeMapping TypeName="CSPesajeModel.Entidad">
               <MappingFragment StoreEntitySet="Entidad">
+                <ScalarProperty Name="UsoFrecuente" ColumnName="UsoFrecuente" />
                 <ScalarProperty Name="IDEntidad" ColumnName="IDEntidad" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="CUIT_CUIL" ColumnName="CUIT_CUIL" />
@@ -2725,6 +2784,7 @@
           <EntitySetMapping Name="Pesada_Analisis">
             <EntityTypeMapping TypeName="CSPesajeModel.Pesada_Analisis">
               <MappingFragment StoreEntitySet="Pesada_Analisis">
+                <ScalarProperty Name="Mezclado" ColumnName="Mezclado" />
                 <ScalarProperty Name="IDPesada" ColumnName="IDPesada" />
                 <ScalarProperty Name="Humedad" ColumnName="Humedad" />
                 <ScalarProperty Name="Zaranda" ColumnName="Zaranda" />
@@ -2894,6 +2954,15 @@
               <MappingFragment StoreEntitySet="UsuarioGrupoPermiso">
                 <ScalarProperty Name="IDUsuarioGrupo" ColumnName="IDUsuarioGrupo" />
                 <ScalarProperty Name="IDPermiso" ColumnName="IDPermiso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Producto_Humedad">
+            <EntityTypeMapping TypeName="CSPesajeModel.Producto_Humedad">
+              <MappingFragment StoreEntitySet="Producto_Humedad">
+                <ScalarProperty Name="Merma" ColumnName="Merma" />
+                <ScalarProperty Name="Humedad" ColumnName="Humedad" />
+                <ScalarProperty Name="IDProducto" ColumnName="IDProducto" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

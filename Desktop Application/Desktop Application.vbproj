@@ -187,6 +187,12 @@
     <Compile Include="formPesada.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="formPesadaAsistente.Designer.vb">
+      <DependentUpon>formPesadaAsistente.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formPesadaAsistente.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="formTest.Designer.vb">
       <DependentUpon>formTest.vb</DependentUpon>
     </Compile>
@@ -313,6 +319,9 @@
     <Compile Include="Producto_Cosecha.vb">
       <DependentUpon>CSPesaje.tt</DependentUpon>
     </Compile>
+    <Compile Include="Producto_Humedad.vb">
+      <DependentUpon>CSPesaje.tt</DependentUpon>
+    </Compile>
     <Compile Include="Producto_Planta.vb">
       <DependentUpon>CSPesaje.tt</DependentUpon>
     </Compile>
@@ -346,6 +355,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="formPesada.resx">
       <DependentUpon>formPesada.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formPesadaAsistente.resx">
+      <DependentUpon>formPesadaAsistente.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formTest.resx">
       <DependentUpon>formTest.vb</DependentUpon>

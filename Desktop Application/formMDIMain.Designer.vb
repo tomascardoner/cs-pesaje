@@ -33,8 +33,6 @@ Partial Class formMDIMain
         Me.menuitemArchivo_CerrarSesion = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemArchivo_Separador_Salir = New System.Windows.Forms.ToolStripSeparator()
         Me.menuitemArchivo_Salir = New System.Windows.Forms.ToolStripMenuItem()
-        Me.menuitemDebug = New System.Windows.Forms.ToolStripMenuItem()
-        Me.menuitemDebug_ShowTestForm = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemVentana = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemVentana_MosaicoHorizontal = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemVentana_MosaicoVertical = New System.Windows.Forms.ToolStripMenuItem()
@@ -44,6 +42,8 @@ Partial Class formMDIMain
         Me.menuitemVentana_CerrarTodas = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemVentana_EncajarEnVentana = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemVentana_SeparadorListaVentanas = New System.Windows.Forms.ToolStripSeparator()
+        Me.menuitemDebug = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuitemDebug_ShowTestForm = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemAyuda = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemAyuda_AcercaDe = New System.Windows.Forms.ToolStripMenuItem()
         Me.toolstripMain = New System.Windows.Forms.ToolStrip()
@@ -125,20 +125,6 @@ Partial Class formMDIMain
         Me.menuitemArchivo_Salir.Size = New System.Drawing.Size(204, 22)
         Me.menuitemArchivo_Salir.Text = "&Salir"
         '
-        'menuitemDebug
-        '
-        Me.menuitemDebug.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemDebug_ShowTestForm})
-        Me.menuitemDebug.Name = "menuitemDebug"
-        Me.menuitemDebug.Size = New System.Drawing.Size(54, 20)
-        Me.menuitemDebug.Text = "Debug"
-        Me.menuitemDebug.Visible = False
-        '
-        'menuitemDebug_ShowTestForm
-        '
-        Me.menuitemDebug_ShowTestForm.Name = "menuitemDebug_ShowTestForm"
-        Me.menuitemDebug_ShowTestForm.Size = New System.Drawing.Size(217, 22)
-        Me.menuitemDebug_ShowTestForm.Text = "Mostrar ventana de Testing"
-        '
         'menuitemVentana
         '
         Me.menuitemVentana.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemVentana_MosaicoHorizontal, Me.menuitemVentana_MosaicoVertical, Me.menuitemVentana_Cascada, Me.menuitemVentana_OrganizarIconos, Me.menuitemVentana_SeparadorCerrarTodas, Me.menuitemVentana_CerrarTodas, Me.menuitemVentana_EncajarEnVentana, Me.menuitemVentana_SeparadorListaVentanas})
@@ -196,6 +182,20 @@ Partial Class formMDIMain
         Me.menuitemVentana_SeparadorListaVentanas.Name = "menuitemVentana_SeparadorListaVentanas"
         Me.menuitemVentana_SeparadorListaVentanas.Size = New System.Drawing.Size(174, 6)
         '
+        'menuitemDebug
+        '
+        Me.menuitemDebug.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemDebug_ShowTestForm})
+        Me.menuitemDebug.Name = "menuitemDebug"
+        Me.menuitemDebug.Size = New System.Drawing.Size(54, 20)
+        Me.menuitemDebug.Text = "Debug"
+        Me.menuitemDebug.Visible = False
+        '
+        'menuitemDebug_ShowTestForm
+        '
+        Me.menuitemDebug_ShowTestForm.Name = "menuitemDebug_ShowTestForm"
+        Me.menuitemDebug_ShowTestForm.Size = New System.Drawing.Size(217, 22)
+        Me.menuitemDebug_ShowTestForm.Text = "Mostrar ventana de Testing"
+        '
         'menuitemAyuda
         '
         Me.menuitemAyuda.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemAyuda_AcercaDe})
@@ -212,11 +212,10 @@ Partial Class formMDIMain
         'toolstripMain
         '
         Me.toolstripMain.AllowMerge = False
-        Me.toolstripMain.Dock = System.Windows.Forms.DockStyle.Left
         Me.toolstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.dropdownbuttonTablas, Me.buttonPesadas, Me.buttonReportes})
         Me.toolstripMain.Location = New System.Drawing.Point(0, 24)
         Me.toolstripMain.Name = "toolstripMain"
-        Me.toolstripMain.Size = New System.Drawing.Size(90, 489)
+        Me.toolstripMain.Size = New System.Drawing.Size(928, 39)
         Me.toolstripMain.TabIndex = 1
         Me.toolstripMain.Text = "Principal"
         '
@@ -228,7 +227,7 @@ Partial Class formMDIMain
         Me.dropdownbuttonTablas.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.dropdownbuttonTablas.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.dropdownbuttonTablas.Name = "dropdownbuttonTablas"
-        Me.dropdownbuttonTablas.Size = New System.Drawing.Size(87, 36)
+        Me.dropdownbuttonTablas.Size = New System.Drawing.Size(85, 36)
         Me.dropdownbuttonTablas.Text = "Tablas"
         '
         'menutitemTablas_Entidades
@@ -273,7 +272,7 @@ Partial Class formMDIMain
         Me.buttonPesadas.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonPesadas.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonPesadas.Name = "buttonPesadas"
-        Me.buttonPesadas.Size = New System.Drawing.Size(87, 19)
+        Me.buttonPesadas.Size = New System.Drawing.Size(53, 36)
         Me.buttonPesadas.Text = "Pesadas"
         '
         'buttonReportes
@@ -283,7 +282,7 @@ Partial Class formMDIMain
         Me.buttonReportes.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonReportes.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonReportes.Name = "buttonReportes"
-        Me.buttonReportes.Size = New System.Drawing.Size(87, 36)
+        Me.buttonReportes.Size = New System.Drawing.Size(89, 36)
         Me.buttonReportes.Text = "Reportes"
         '
         'formMDIMain

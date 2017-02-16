@@ -32,5 +32,6 @@ Partial Public Class Producto
     Public Overridable Property Productos_Plantas As ICollection(Of Producto_Planta) = New HashSet(Of Producto_Planta)
     Public Overridable Property UsuarioCreacion As Usuario
     Public Overridable Property UsuarioModificacion As Usuario
+    Public Overridable Property Producto_Humedades As ICollection(Of Producto_Humedad) = New HashSet(Of Producto_Humedad)
 
 End Class

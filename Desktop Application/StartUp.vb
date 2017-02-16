@@ -86,6 +86,12 @@
         formMDIMain.Cursor = Cursors.AppStarting
         formMDIMain.Enabled = False
 
+        ' Muestro el form de Pesadas
+        formSplashScreen.labelStatus.Text = "Cargando y mostrando ventana de Pesadas..."
+        Application.DoEvents()
+
+        CS_Form.MDIChild_PositionAndSizeToFit(CType(formMDIMain, Form), CType(formPesadas, Form))
+
         formSplashScreen.labelStatus.Text = "Todo completado."
         Application.DoEvents()
 
@@ -114,9 +120,11 @@
             formLogin.Dispose()
         End If
 
-        ' Está todo listo. Cambio el puntero del mouse a modo normal y habilito el form MDI principal
+        ' Está todo listo. Cambio el puntero del mouse a modo normal y habilito los forms
         formMDIMain.Cursor = Cursors.Default
         formMDIMain.Enabled = True
+
+        formPesadas.Show()
 
         System.Windows.Forms.Cursor.Current = Cursors.Default
 
