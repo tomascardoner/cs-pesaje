@@ -10,14 +10,13 @@
 Imports System
 Imports System.Collections.Generic
 
-Partial Public Class Entidad_Planta
+Partial Public Class Entidad_Producto_Planta
     Public Property IDEntidad As Integer
+    Public Property IDProducto As Byte
     Public Property IDPlanta As Byte
     Public Property Tipo As String
-    Public Property UsoFrecuente As Boolean
-    Public Property UltimoUso As Date
 
     Public Overridable Property Entidad As Entidad
-    Public Overridable Property Planta As Planta
+    Public Overridable Property Producto_Planta As Producto_Planta
 
 End Class

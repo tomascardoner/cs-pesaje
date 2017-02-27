@@ -19,5 +19,6 @@ Partial Public Class Producto_Planta
 
     Public Overridable Property Planta As Planta
     Public Overridable Property Producto As Producto
+    Public Overridable Property Entidades_Producto_Planta As ICollection(Of Entidad_Producto_Planta) = New HashSet(Of Entidad_Producto_Planta)
 
 End Class

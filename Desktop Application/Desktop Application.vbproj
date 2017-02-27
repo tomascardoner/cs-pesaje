@@ -176,7 +176,7 @@
     <Compile Include="Entidad_OrigenDestino.vb">
       <DependentUpon>CSPesaje.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entidad_Planta.vb">
+    <Compile Include="Entidad_Producto_Planta.vb">
       <DependentUpon>CSPesaje.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityFrameworkExtension.vb" />

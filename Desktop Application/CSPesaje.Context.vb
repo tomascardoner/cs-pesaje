@@ -28,7 +28,6 @@ Partial Public Class CSPesajeContext
     Public Overridable Property Cosecha_Producto_TarifaEscala() As DbSet(Of Cosecha_Producto_TarifaEscala)
     Public Overridable Property Entidad() As DbSet(Of Entidad)
     Public Overridable Property Entidad_OrigenDestino() As DbSet(Of Entidad_OrigenDestino)
-    Public Overridable Property Entidad_Planta() As DbSet(Of Entidad_Planta)
     Public Overridable Property Localidad() As DbSet(Of Localidad)
     Public Overridable Property OrigenDestino() As DbSet(Of OrigenDestino)
     Public Overridable Property Parametro() As DbSet(Of Parametro)
@@ -48,5 +47,6 @@ Partial Public Class CSPesajeContext
     Public Overridable Property UsuarioGrupo() As DbSet(Of UsuarioGrupo)
     Public Overridable Property UsuarioGrupoPermiso() As DbSet(Of UsuarioGrupoPermiso)
     Public Overridable Property Producto_Humedad() As DbSet(Of Producto_Humedad)
+    Public Overridable Property Entidad_Producto_Planta() As DbSet(Of Entidad_Producto_Planta)
 
 End Class

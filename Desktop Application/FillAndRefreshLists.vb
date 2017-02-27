@@ -146,15 +146,15 @@
         ComboBoxControl.DataSource = listItems
     End Sub
 
-    Friend Sub EntidadTitularPorPlanta(ByRef ComboBoxControl As ComboBox, ByVal IDEntidad As Integer, ByVal IDPlanta As Byte, ByVal Tipo As String, ByVal UsoFrecuente As Boolean, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
+    Friend Sub EntidadTitularPorProductoPlanta(ByRef ComboBoxControl As ComboBox, ByVal IDEntidad As Integer, ByVal IDProducto As Byte, ByVal IDPlanta As Byte, ByVal Tipo As String, ByVal UsoFrecuente As Boolean, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
         Dim listItems As List(Of Entidad)
 
         ComboBoxControl.ValueMember = "IDEntidad"
         ComboBoxControl.DisplayMember = "Nombre"
 
         listItems = (From ent In mdbContext.Entidad
-                     Join ent_pla In mdbContext.Entidad_Planta On ent.IDEntidad Equals ent_pla.IDEntidad
-                     Where ent.IDEntidad = IDEntidad Or (ent.EsActivo And ent.EsTitular And (ent.UsoFrecuente Or Not UsoFrecuente) And ent_pla.IDPlanta = IDPlanta And ent_pla.Tipo = Tipo)
+                     Join ent_pro_pla In mdbContext.Entidad_Producto_Planta On ent.IDEntidad Equals ent_pro_pla.IDEntidad
+                     Where ent.IDEntidad = IDEntidad Or (ent.EsActivo And ent.EsTitular And (ent.UsoFrecuente Or Not UsoFrecuente) And ent_pro_pla.IDProducto = IDProducto And ent_pro_pla.IDPlanta = IDPlanta And ent_pro_pla.Tipo = Tipo)
                      Order By ent.Nombre
                      Select ent).ToList
 

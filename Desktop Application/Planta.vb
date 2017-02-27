@@ -21,7 +21,6 @@ Partial Public Class Planta
     Public Property FechaHoraModificacion As Date
 
     Public Overridable Property Cosecha_Producto_Tarifa As ICollection(Of Cosecha_Producto_Tarifa) = New HashSet(Of Cosecha_Producto_Tarifa)
-    Public Overridable Property Entidad_Planta As ICollection(Of Entidad_Planta) = New HashSet(Of Entidad_Planta)
     Public Overridable Property Pesada As ICollection(Of Pesada) = New HashSet(Of Pesada)
     Public Overridable Property Producto_Planta As ICollection(Of Producto_Planta) = New HashSet(Of Producto_Planta)
     Public Overridable Property UsuarioCreacion As Usuario

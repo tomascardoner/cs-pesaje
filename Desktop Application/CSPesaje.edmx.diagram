@@ -11,7 +11,6 @@
         <EntityTypeShape EntityType="CSPesajeModel.Cosecha_Producto_TarifaEscala" Width="1.5" PointX="10.5" PointY="29.5" IsExpanded="true" />
         <EntityTypeShape EntityType="CSPesajeModel.Entidad" Width="1.5" PointX="5.25" PointY="21.375" IsExpanded="true" />
         <EntityTypeShape EntityType="CSPesajeModel.Entidad_OrigenDestino" Width="1.5" PointX="7.5" PointY="22.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CSPesajeModel.Entidad_Planta" Width="1.5" PointX="10.5" PointY="25.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CSPesajeModel.Localidad" Width="1.5" PointX="0.75" PointY="20.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CSPesajeModel.OrigenDestino" Width="1.5" PointX="3" PointY="25.625" IsExpanded="true" />
         <EntityTypeShape EntityType="CSPesajeModel.Parametro" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
@@ -44,7 +43,6 @@
         <AssociationConnector Association="CSPesajeModel.FK__Cosecha_Producto_Tarifa__Cosecha_Producto_TarifaEscala" ManuallyRouted="false" />
         <AssociationConnector Association="CSPesajeModel.FK__Planta__Cosecha_Producto_Tarifa" ManuallyRouted="false" />
         <AssociationConnector Association="CSPesajeModel.FK__Entidad__Entidad__Transportista" ManuallyRouted="false" />
-        <AssociationConnector Association="CSPesajeModel.FK__Entidad__Entidad_Planta" ManuallyRouted="false" />
         <AssociationConnector Association="CSPesajeModel.FK__Entidad__Pesada__Chofer" ManuallyRouted="false" />
         <AssociationConnector Association="CSPesajeModel.FK__Entidad__Pesada__Titular" ManuallyRouted="false" />
         <AssociationConnector Association="CSPesajeModel.FK__Entidad__Pesada__Transportista" ManuallyRouted="false" />
@@ -54,7 +52,6 @@
         <AssociationConnector Association="CSPesajeModel.FK__OrigenDestino__Entidad_OrigenDestino" ManuallyRouted="false" />
         <AssociationConnector Association="CSPesajeModel.FK__Usuario__Entidad_OrigenDestino__Creacion" ManuallyRouted="false" />
         <AssociationConnector Association="CSPesajeModel.FK__Usuario__Entidad_OrigenDestino__Modificacion" ManuallyRouted="false" />
-        <AssociationConnector Association="CSPesajeModel.FK__Planta__Entidad_Planta" ManuallyRouted="false" />
         <AssociationConnector Association="CSPesajeModel.FK__Localidad__OrigenDestino" ManuallyRouted="false" />
         <AssociationConnector Association="CSPesajeModel.FK__Provincia__Localidad" ManuallyRouted="false" />
         <AssociationConnector Association="CSPesajeModel.FK__Usuario__OrigenDestino__Creacion" ManuallyRouted="false" />
@@ -82,6 +79,9 @@
         <AssociationConnector Association="CSPesajeModel.FK__Entidad__Camion" />
         <EntityTypeShape EntityType="CSPesajeModel.Producto_Humedad" Width="1.5" PointX="5.25" PointY="37.875" />
         <AssociationConnector Association="CSPesajeModel.FK__Producto__Producto_Humedad" />
+        <EntityTypeShape EntityType="CSPesajeModel.Entidad_Producto_Planta" Width="1.5" PointX="10.5" PointY="33" />
+        <AssociationConnector Association="CSPesajeModel.FK__Entidad__Entidad_Producto_Planta" />
+        <AssociationConnector Association="CSPesajeModel.FK__Producto_Planta__Entidad_Producto_Planta" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

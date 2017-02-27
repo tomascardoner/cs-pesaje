@@ -519,7 +519,7 @@
         If checkboxTitularTodos.Checked Or Not comboboxPlanta.Visible Then
             pFillAndRefreshLists.Entidad(comboboxTitular, mPesadaActual.Titular_IDEntidad, True, False, False, CS_Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER, False, False, False)
         Else
-            pFillAndRefreshLists.EntidadTitularPorPlanta(comboboxTitular, mPesadaActual.Titular_IDEntidad, CByte(comboboxPlanta.SelectedValue), CStr(Microsoft.VisualBasic.Switch(radiobuttonEntrada.Checked, Constantes.PESADA_TIPO_ENTRADA, radiobuttonSalida.Checked, Constantes.PESADA_TIPO_SALIDA, radiobuttonNinguno.Checked, Constantes.PESADA_TIPO_NINGUNA)), True, False, False)
+            pFillAndRefreshLists.EntidadTitularPorProductoPlanta(comboboxTitular, mPesadaActual.Titular_IDEntidad, CByte(comboboxProducto.SelectedValue), CByte(comboboxPlanta.SelectedValue), CStr(Microsoft.VisualBasic.Switch(radiobuttonEntrada.Checked, Constantes.PESADA_TIPO_ENTRADA, radiobuttonSalida.Checked, Constantes.PESADA_TIPO_SALIDA, radiobuttonNinguno.Checked, Constantes.PESADA_TIPO_NINGUNA)), True, False, False)
         End If
     End Sub
 

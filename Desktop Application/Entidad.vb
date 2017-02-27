@@ -29,7 +29,6 @@ Partial Public Class Entidad
     Public Overridable Property Camion As Camion
     Public Overridable Property EntidadesChoferes As ICollection(Of Entidad) = New HashSet(Of Entidad)
     Public Overridable Property EntidadTransportista As Entidad
-    Public Overridable Property Entidades_Plantas As ICollection(Of Entidad_Planta) = New HashSet(Of Entidad_Planta)
     Public Overridable Property PesadasComoChofer As ICollection(Of Pesada) = New HashSet(Of Pesada)
     Public Overridable Property PesadasComoTitular As ICollection(Of Pesada) = New HashSet(Of Pesada)
     Public Overridable Property PesadasComoTransportista As ICollection(Of Pesada) = New HashSet(Of Pesada)
@@ -37,5 +36,6 @@ Partial Public Class Entidad
     Public Overridable Property UsuarioCreacion As Usuario
     Public Overridable Property UsuarioModificacion As Usuario
     Public Overridable Property Camiones As ICollection(Of Camion) = New HashSet(Of Camion)
+    Public Overridable Property Entidad_Productos_Plantas As ICollection(Of Entidad_Producto_Planta) = New HashSet(Of Entidad_Producto_Planta)
 
 End Class
