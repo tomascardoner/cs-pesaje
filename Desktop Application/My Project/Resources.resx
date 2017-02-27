@@ -274,6 +274,9 @@
   <data name="STRING_NO" xml:space="preserve">
     <value>No</value>
   </data>
+  <data name="STRING_PERMISO_MENSAJE" xml:space="preserve">
+    <value>No tiene autorización para realizar esta acción.</value>
+  </data>
   <data name="STRING_YES" xml:space="preserve">
     <value>Sí</value>
   </data>

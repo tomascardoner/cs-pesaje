@@ -12,6 +12,10 @@
 
     Friend Const PESADA As String = "PESADA"
     Friend Const PESADA_AGREGAR As String = "PESADA_AGREGAR"
+    Friend Const PESADA_AGREGAR_HORA_ANTERIOR As String = "PESADA_AGREGAR_HORA_ANTERIOR"
+    Friend Const PESADA_AGREGAR_FECHA_ANTERIOR_XDIAS As String = "PESADA_AGREGAR_FECHA_ANTERIOR_XDIAS"
+    Friend Const PESADA_AGREGAR_FECHA_ANTERIOR As String = "PESADA_AGREGAR_FECHA_ANTERIOR"
+    Friend Const PESADA_AGREGAR_FECHA_POSTERIOR As String = "PESADA_AGREGAR_FECHA_POSTERIOR"
     Friend Const PESADA_EDITAR As String = "PESADA_EDITAR"
     Friend Const PESADA_ELIMINAR As String = "PESADA_ELIMINAR"
     Friend Const PESADA_IMPRIMIR As String = "PESADA_IMPRIMIR"
@@ -29,7 +33,7 @@
         Else
             If pPermisos.Find(Function(usrper) usrper.IDUsuarioGrupo = pUsuario.IDUsuarioGrupo And usrper.IDPermiso.TrimEnd = IDPermiso) Is Nothing Then
                 If MostrarAviso Then
-                    MsgBox("No tiene autorización para realizar esta acción.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                    MsgBox(My.Resources.STRING_PERMISO_MENSAJE, MsgBoxStyle.Exclamation, My.Application.Info.Title)
                 End If
                 Return False
             Else
@@ -63,6 +67,10 @@
         RootNode = Arbol.Nodes.Add(PESADA, "Pesadas")
         With RootNode
             .Nodes.Add(PESADA_AGREGAR, DESCRIPCION_AGREGAR)
+            .Nodes.Add(PESADA_AGREGAR_HORA_ANTERIOR, "Agregar con hora anterior de la hora actual")
+            .Nodes.Add(PESADA_AGREGAR_FECHA_ANTERIOR_XDIAS, "Agregar con fecha anterior (hasta X días especificados en los parámetros de la aplicación)")
+            .Nodes.Add(PESADA_AGREGAR_FECHA_ANTERIOR, "Agregar con fecha anterior (sin límite)")
+            .Nodes.Add(PESADA_AGREGAR_FECHA_POSTERIOR, "Agregar con fecha posterior")
             .Nodes.Add(PESADA_EDITAR, DESCRIPCION_EDITAR)
             .Nodes.Add(PESADA_ELIMINAR, DESCRIPCION_ELIMINAR)
             .Nodes.Add(PESADA_IMPRIMIR, DESCRIPCION_IMPRIMIR)

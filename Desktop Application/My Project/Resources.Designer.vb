@@ -76,30 +76,30 @@ Namespace My.Resources
         Friend ReadOnly Property IMAGE_CALENDAR_NEXT_16() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("IMAGE_CALENDAR_NEXT_16", resourceCulture)
-                Return CType(obj, System.Drawing.Bitmap)
+                Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
-
+        
         '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
         Friend ReadOnly Property IMAGE_CALENDAR_PREVIOUS_16() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("IMAGE_CALENDAR_PREVIOUS_16", resourceCulture)
-                Return CType(obj, System.Drawing.Bitmap)
+                Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
-
+        
         '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
         Friend ReadOnly Property IMAGE_CALENDAR_TODAY_16() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("IMAGE_CALENDAR_TODAY_16", resourceCulture)
-                Return CType(obj, System.Drawing.Bitmap)
+                Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
-
+        
         '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
@@ -557,6 +557,15 @@ Namespace My.Resources
         Friend ReadOnly Property STRING_NO() As String
             Get
                 Return ResourceManager.GetString("STRING_NO", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to No tiene autorización para realizar esta acción..
+        '''</summary>
+        Friend ReadOnly Property STRING_PERMISO_MENSAJE() As String
+            Get
+                Return ResourceManager.GetString("STRING_PERMISO_MENSAJE", resourceCulture)
             End Get
         End Property
         

@@ -80,6 +80,8 @@ Partial Class formPesada
         Me.textboxProducto = New System.Windows.Forms.TextBox()
         Me.comboboxProducto = New System.Windows.Forms.ComboBox()
         Me.groupboxEncabezado = New System.Windows.Forms.GroupBox()
+        Me.buttonFechaHoraFinAhora = New System.Windows.Forms.Button()
+        Me.buttonFechaHoraInicioAhora = New System.Windows.Forms.Button()
         Me.labelComprobanteNumero = New System.Windows.Forms.Label()
         Me.maskedtextboxComprobanteNumero = New System.Windows.Forms.MaskedTextBox()
         Me.datetimepickerHoraFin = New System.Windows.Forms.DateTimePicker()
@@ -117,6 +119,7 @@ Partial Class formPesada
         Me.labelZaranda = New System.Windows.Forms.Label()
         Me.doubletextboxHumedad = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
         Me.labelHumedad = New System.Windows.Forms.Label()
+        Me.timerMain = New System.Windows.Forms.Timer(Me.components)
         Me.toolstripMain.SuspendLayout()
         Me.groupboxTransporte.SuspendLayout()
         Me.groupboxTitular.SuspendLayout()
@@ -432,6 +435,7 @@ Partial Class formPesada
         '
         'textboxCamion_DominioAcoplado
         '
+        Me.textboxCamion_DominioAcoplado.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.textboxCamion_DominioAcoplado.Location = New System.Drawing.Point(254, 119)
         Me.textboxCamion_DominioAcoplado.MaxLength = 7
         Me.textboxCamion_DominioAcoplado.Name = "textboxCamion_DominioAcoplado"
@@ -440,6 +444,7 @@ Partial Class formPesada
         '
         'textboxCamion_DominioChasis
         '
+        Me.textboxCamion_DominioChasis.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.textboxCamion_DominioChasis.Location = New System.Drawing.Point(116, 119)
         Me.textboxCamion_DominioChasis.MaxLength = 7
         Me.textboxCamion_DominioChasis.Name = "textboxCamion_DominioChasis"
@@ -658,7 +663,7 @@ Partial Class formPesada
         Me.groupboxTipo.Controls.Add(Me.radiobuttonEntrada)
         Me.groupboxTipo.Location = New System.Drawing.Point(92, 62)
         Me.groupboxTipo.Name = "groupboxTipo"
-        Me.groupboxTipo.Size = New System.Drawing.Size(230, 33)
+        Me.groupboxTipo.Size = New System.Drawing.Size(233, 33)
         Me.groupboxTipo.TabIndex = 8
         Me.groupboxTipo.TabStop = False
         '
@@ -701,7 +706,7 @@ Partial Class formPesada
         Me.comboboxPlanta.FormattingEnabled = True
         Me.comboboxPlanta.Location = New System.Drawing.Point(92, 40)
         Me.comboboxPlanta.Name = "comboboxPlanta"
-        Me.comboboxPlanta.Size = New System.Drawing.Size(230, 21)
+        Me.comboboxPlanta.Size = New System.Drawing.Size(233, 21)
         Me.comboboxPlanta.TabIndex = 6
         '
         'labelPlanta
@@ -741,6 +746,8 @@ Partial Class formPesada
         '
         'groupboxEncabezado
         '
+        Me.groupboxEncabezado.Controls.Add(Me.buttonFechaHoraFinAhora)
+        Me.groupboxEncabezado.Controls.Add(Me.buttonFechaHoraInicioAhora)
         Me.groupboxEncabezado.Controls.Add(Me.labelComprobanteNumero)
         Me.groupboxEncabezado.Controls.Add(Me.maskedtextboxComprobanteNumero)
         Me.groupboxEncabezado.Controls.Add(Me.datetimepickerHoraFin)
@@ -756,6 +763,26 @@ Partial Class formPesada
         Me.groupboxEncabezado.Size = New System.Drawing.Size(353, 122)
         Me.groupboxEncabezado.TabIndex = 0
         Me.groupboxEncabezado.TabStop = False
+        '
+        'buttonFechaHoraFinAhora
+        '
+        Me.buttonFechaHoraFinAhora.Image = Global.CSPesaje.DesktopApplication.My.Resources.Resources.IMAGE_CALENDAR_TODAY_16
+        Me.buttonFechaHoraFinAhora.Location = New System.Drawing.Point(303, 64)
+        Me.buttonFechaHoraFinAhora.Name = "buttonFechaHoraFinAhora"
+        Me.buttonFechaHoraFinAhora.Size = New System.Drawing.Size(22, 22)
+        Me.buttonFechaHoraFinAhora.TabIndex = 11
+        Me.buttonFechaHoraFinAhora.Text = "Ahora"
+        Me.buttonFechaHoraFinAhora.UseVisualStyleBackColor = True
+        '
+        'buttonFechaHoraInicioAhora
+        '
+        Me.buttonFechaHoraInicioAhora.Image = Global.CSPesaje.DesktopApplication.My.Resources.Resources.IMAGE_CALENDAR_TODAY_16
+        Me.buttonFechaHoraInicioAhora.Location = New System.Drawing.Point(303, 38)
+        Me.buttonFechaHoraInicioAhora.Name = "buttonFechaHoraInicioAhora"
+        Me.buttonFechaHoraInicioAhora.Size = New System.Drawing.Size(22, 22)
+        Me.buttonFechaHoraInicioAhora.TabIndex = 10
+        Me.buttonFechaHoraInicioAhora.Text = "Ahora"
+        Me.buttonFechaHoraInicioAhora.UseVisualStyleBackColor = True
         '
         'labelComprobanteNumero
         '
@@ -900,6 +927,7 @@ Partial Class formPesada
         Me.integertextboxKilogramoNeto.Size = New System.Drawing.Size(53, 20)
         Me.integertextboxKilogramoNeto.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
         Me.integertextboxKilogramoNeto.TabIndex = 5
+        Me.integertextboxKilogramoNeto.TabStop = False
         Me.integertextboxKilogramoNeto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.integertextboxKilogramoNeto.WordWrap = False
         '
@@ -1058,7 +1086,7 @@ Partial Class formPesada
         Me.doubletextboxGluten.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.doubletextboxGluten.DoubleValue = 0.0R
         Me.doubletextboxGluten.Location = New System.Drawing.Point(309, 38)
-        Me.doubletextboxGluten.MaxValue = 40.0R
+        Me.doubletextboxGluten.MaxValue = 80.0R
         Me.doubletextboxGluten.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
         Me.doubletextboxGluten.MinValue = 0.0R
         Me.doubletextboxGluten.Name = "doubletextboxGluten"
@@ -1089,7 +1117,7 @@ Partial Class formPesada
         Me.doubletextboxPesoHectolitrico.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.doubletextboxPesoHectolitrico.DoubleValue = 0.0R
         Me.doubletextboxPesoHectolitrico.Location = New System.Drawing.Point(309, 12)
-        Me.doubletextboxPesoHectolitrico.MaxValue = 40.0R
+        Me.doubletextboxPesoHectolitrico.MaxValue = 100.0R
         Me.doubletextboxPesoHectolitrico.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
         Me.doubletextboxPesoHectolitrico.MinValue = 0.0R
         Me.doubletextboxPesoHectolitrico.Name = "doubletextboxPesoHectolitrico"
@@ -1120,7 +1148,7 @@ Partial Class formPesada
         Me.doubletextboxGranoDaniado.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.doubletextboxGranoDaniado.DoubleValue = 0.0R
         Me.doubletextboxGranoDaniado.Location = New System.Drawing.Point(206, 38)
-        Me.doubletextboxGranoDaniado.MaxValue = 40.0R
+        Me.doubletextboxGranoDaniado.MaxValue = 100.0R
         Me.doubletextboxGranoDaniado.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
         Me.doubletextboxGranoDaniado.MinValue = 0.0R
         Me.doubletextboxGranoDaniado.Name = "doubletextboxGranoDaniado"
@@ -1151,7 +1179,7 @@ Partial Class formPesada
         Me.doubletextboxGranoVerde.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.doubletextboxGranoVerde.DoubleValue = 0.0R
         Me.doubletextboxGranoVerde.Location = New System.Drawing.Point(206, 12)
-        Me.doubletextboxGranoVerde.MaxValue = 40.0R
+        Me.doubletextboxGranoVerde.MaxValue = 100.0R
         Me.doubletextboxGranoVerde.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
         Me.doubletextboxGranoVerde.MinValue = 0.0R
         Me.doubletextboxGranoVerde.Name = "doubletextboxGranoVerde"
@@ -1236,6 +1264,10 @@ Partial Class formPesada
         Me.labelHumedad.TabIndex = 0
         Me.labelHumedad.Text = "Humedad:"
         '
+        'timerMain
+        '
+        Me.timerMain.Interval = 500
+        '
         'formPesada
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1251,6 +1283,7 @@ Partial Class formPesada
         Me.Controls.Add(Me.toolstripMain)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "formPesada"
         Me.ShowIcon = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
@@ -1380,4 +1413,7 @@ Partial Class formPesada
     Friend WithEvents labelTipo As System.Windows.Forms.Label
     Friend WithEvents checkboxTipoTodos As System.Windows.Forms.CheckBox
     Friend WithEvents checkboxCosechaTodos As System.Windows.Forms.CheckBox
+    Friend WithEvents buttonFechaHoraInicioAhora As System.Windows.Forms.Button
+    Friend WithEvents buttonFechaHoraFinAhora As System.Windows.Forms.Button
+    Friend WithEvents timerMain As System.Windows.Forms.Timer
 End Class
