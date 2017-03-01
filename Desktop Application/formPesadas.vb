@@ -19,7 +19,7 @@
         Public Property KilogramoNeto As Integer?
         Public Property Humedad As Decimal?
         Public Property Zaranda As Decimal?
-        Public Property KilogramoFinal As Integer
+        Public Property KilogramoFinal As Integer?
         Public Property TransportistaNombre As String
         Public Property ChoferNombre As String
         Public Property CamionNombreDominios As String
@@ -111,12 +111,14 @@
         Try
             Using dbContext As New CSPesajeContext(True)
                 mlistPesadaBase = (From pe In dbContext.Pesada
-                                   Join eti In dbContext.Entidad On pe.Titular_IDEntidad Equals eti.IDEntidad
+                                   Join ent In dbContext.Entidad On pe.Titular_IDEntidad Equals ent.IDEntidad
                                    Join pr In dbContext.Producto On pe.IDProducto Equals pr.IDProducto
                                    Group Join co In dbContext.Cosecha On pe.IDCosecha Equals co.IDCosecha Into Cosecha_Group = Group
                                    From cog In Cosecha_Group.DefaultIfEmpty
                                    Group Join od In dbContext.OrigenDestino On pe.IDOrigenDestino Equals od.IDOrigenDestino Into OrigenDestino_Group = Group
                                    From odg In OrigenDestino_Group.DefaultIfEmpty
+                                   Group Join pe_ot In dbContext.Pesada_Otro On pe.IDPesada Equals pe_ot.IDPesada Into Pesada_Otro_Group = Group
+                                   From pe_otg In Pesada_Otro_Group.DefaultIfEmpty
                                    Group Join pe_an In dbContext.Pesada_Analisis On pe.IDPesada Equals pe_an.IDPesada Into Pesada_Analisis_Group = Group
                                    From pe_ang In Pesada_Analisis_Group.DefaultIfEmpty
                                    Group Join etr In dbContext.Entidad On pe.Transportista_IDEntidad Equals etr.IDEntidad Into Transportista_Group = Group
@@ -125,7 +127,7 @@
                                    From chg In Chofer_Group.DefaultIfEmpty
                                    Group Join ca In dbContext.Camion On pe.IDCamion Equals ca.IDCamion Into Camion_Group = Group
                                    From cag In Camion_Group.DefaultIfEmpty
-                                   Select New GridRowData With {.IDPesada = pe.IDPesada, .FechaHoraInicio = pe.FechaHoraInicio, .FechaHoraFin = pe.FechaHoraFin, .ComprobanteNumero = pe.ComprobanteNumero, .TitularNombre = eti.Nombre, .ProductoNombre = pr.Nombre, .TipoNombre = pe.TipoNombre, .CosechaNombre = If(cog Is Nothing, "", cog.Nombre), .OrigenDestinoNombre = If(odg Is Nothing, "", odg.Nombre), .KilogramoBruto = pe.KilogramoBruto, .KilogramoTara = pe.KilogramoTara, .KilogramoNeto = pe.KilogramoNeto, .Humedad = If(pe_ang Is Nothing, Nothing, pe_ang.Humedad), .Zaranda = If(pe_ang Is Nothing, Nothing, pe_ang.Zaranda), .TransportistaNombre = If(trg Is Nothing, "", trg.Nombre), .ChoferNombre = If(chg Is Nothing, "", chg.Nombre), .CamionNombreDominios = If(cag Is Nothing, "", cag.NombreDominios)}).ToList
+                                   Select New GridRowData With {.IDPesada = pe.IDPesada, .FechaHoraInicio = pe.FechaHoraInicio, .FechaHoraFin = pe.FechaHoraFin, .ComprobanteNumero = pe.ComprobanteNumero, .TitularNombre = If(pe.Titular_IDEntidad = CS_Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Titular_Nombre, ent.Nombre), .ProductoNombre = If(pe.IDProducto = CS_Constants.FIELD_VALUE_OTHER_BYTE, pe_otg.Producto_Nombre, pr.Nombre), .TipoNombre = pe.TipoNombre, .CosechaNombre = If(cog Is Nothing, "", cog.Nombre), .OrigenDestinoNombre = If(pe.IDOrigenDestino = CS_Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.OrigenDestino_Nombre, If(odg Is Nothing, "", odg.Nombre)), .KilogramoBruto = pe.KilogramoBruto, .KilogramoTara = pe.KilogramoTara, .KilogramoNeto = pe.KilogramoNeto, .Humedad = If(pe_ang Is Nothing, Nothing, pe_ang.Humedad), .Zaranda = If(pe_ang Is Nothing, Nothing, pe_ang.Zaranda), .TransportistaNombre = If(pe.Transportista_IDEntidad = CS_Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Transportista_Nombre, If(trg Is Nothing, "", trg.Nombre)), .ChoferNombre = If(pe.Chofer_IDEntidad = CS_Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Chofer_Nombre, If(chg Is Nothing, "", chg.Nombre)), .CamionNombreDominios = If(pe.IDCamion = CS_Constants.FIELD_VALUE_OTHER_BYTE, pe_otg.Camion_DominioChasis & If(pe_otg.Camion_DominioAcoplado Is Nothing, "", " - " & pe_otg.Camion_DominioAcoplado), If(cag Is Nothing, "", cag.NombreDominios))}).ToList
             End Using
 
         Catch ex As Exception
@@ -222,7 +224,6 @@
 #End Region
 
 #Region "Controls behavior"
-
     Private Sub Periodo_LauncherClick() Handles toolstripgroupPeriodo.LauncherClick
         mFiltroPeriodoExpandido = Not mFiltroPeriodoExpandido
         FiltroPeriodoMostrar()
@@ -363,7 +364,7 @@
 
                 datagridviewMain.Enabled = False
 
-                formPesada.LoadAndShow(True, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, Pesada).IDPesada)
+                formPesada.LoadAndShow(True, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDPesada)
 
                 datagridviewMain.Enabled = True
 
@@ -420,7 +421,7 @@
 
             datagridviewMain.Enabled = False
 
-            formPesada.LoadAndShow(False, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, Pesada).IDPesada)
+            formPesada.LoadAndShow(False, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDPesada)
 
             datagridviewMain.Enabled = True
 

@@ -50,10 +50,6 @@
             Exit Sub
         End If
 
-        If mIsNew Then
-            timerMain.Enabled = True
-        End If
-
         buttonGuardar.Visible = mEditMode
         buttonCancelar.Visible = mEditMode
         buttonEditar.Visible = Not mEditMode
@@ -62,8 +58,10 @@
         ' Encabezado
         datetimepickerFechaInicio.Enabled = mEditMode
         datetimepickerHoraInicio.Enabled = mEditMode
+        buttonFechaHoraInicioAhora.Visible = mEditMode
         datetimepickerFechaFin.Enabled = mEditMode
         datetimepickerHoraFin.Enabled = mEditMode
+        buttonFechaHoraFinAhora.Visible = mEditMode
         maskedtextboxComprobanteNumero.ReadOnly = Not mEditMode
 
         ' Producto - Planta - Cosecha
@@ -99,9 +97,8 @@
         maskedtextboxChoferCUIT_CUIL.ReadOnly = Not (mEditMode And checkboxChoferOtro.Checked)
         checkboxCamionOtro.Visible = mEditMode
         comboboxCamion.Enabled = mEditMode
-        textboxCamion_DominioChasis.ReadOnly = Not (mEditMode And checkboxCamionOtro.Checked)
-        textboxCamion_DominioAcoplado.ReadOnly = Not (mEditMode And checkboxCamionOtro.Checked)
-        checkboxCamionTodos.Visible = mEditMode
+        textboxCamion_DominioChasis.ReadOnly = Not mEditMode
+        textboxCamion_DominioAcoplado.ReadOnly = Not mEditMode
 
         ' Kilogramos
         integertextboxKilogramoBruto.ReadOnly = Not mEditMode
@@ -131,8 +128,8 @@
         ChoferOtro()
         CamionOtro()
 
-        pFillAndRefreshLists.Producto(comboboxProducto, mPesadaActual.IDProducto, True, False, False)
-        pFillAndRefreshLists.Entidad(comboboxTransportista, mPesadaActual.Transportista_IDEntidad, False, True, False, CS_Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER, True, False, True)
+        pFillAndRefreshLists.Producto(comboboxProducto, mPesadaActual.IDProducto, False, True, False, False)
+        pFillAndRefreshLists.Entidad(comboboxTransportista, mPesadaActual.Transportista_IDEntidad, False, False, True, False, CS_Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER, True, False, True)
     End Sub
 
     Friend Sub SetAppearance()
@@ -158,7 +155,7 @@
             If mIsNew Then
                 textboxIDPesada.Text = My.Resources.STRING_ITEM_NEW_MALE
             Else
-                textboxIDPesada.Text = String.Format(.IDPesada.ToString, "G")
+                textboxIDPesada.Text = Microsoft.VisualBasic.Strings.Format(.IDPesada, "N0")
             End If
             datetimepickerFechaInicio.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker(.FechaHoraInicio)
             datetimepickerHoraInicio.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker(.FechaHoraInicio)
@@ -200,7 +197,7 @@
                 checkboxOrigenDestinoOtro.Checked = True
                 textboxOrigenDestino.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Pesada_Otro.OrigenDestino_Nombre)
             Else
-                CS_Control_ComboBox.SetSelectedValue(comboboxOrigenDestino, SelectedItemOptions.Value, .IDOrigenDestino)
+                CS_Control_ComboBox.SetSelectedValue(comboboxOrigenDestino, SelectedItemOptions.ValueOrFirst, .IDOrigenDestino)
                 textboxOrigenDestino.Text = ""
             End If
 
@@ -235,7 +232,7 @@
 
             ' Kilogramos
             integertextboxKilogramoBruto.Text = CS_ValueTranslation.FromObjectIntegerToControlTextBox(.KilogramoBruto)
-            integertextboxKilogramoNeto.Text = CS_ValueTranslation.FromObjectIntegerToControlTextBox(.KilogramoNeto)
+            integertextboxKilogramoTara.Text = CS_ValueTranslation.FromObjectIntegerToControlTextBox(.KilogramoTara)
 
             ' Análisis
             If .Pesada_Analisis Is Nothing Then
@@ -332,6 +329,7 @@
             If checkboxChoferOtro.Checked Then
                 .Chofer_IDEntidad = CS_Constants.FIELD_VALUE_OTHER_INTEGER
                 .Pesada_Otro.Chofer_Nombre = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxChofer.Text)
+                .Pesada_Otro.Chofer_CUIT_CUIL = CS_ValueTranslation.FromControlTextBoxToObjectString(maskedtextboxChoferCUIT_CUIL.Text)
             Else
                 .Chofer_IDEntidad = CS_ValueTranslation.FromControlComboBoxToObjectInteger(comboboxChofer.SelectedValue)
                 If Not .Pesada_Otro Is Nothing Then
@@ -353,6 +351,7 @@
 
             ' Kilogramos
             .KilogramoBruto = CS_ValueTranslation.FromControlTextBoxToObjectInteger(integertextboxKilogramoBruto.Text)
+            .KilogramoTara = CS_ValueTranslation.FromControlTextBoxToObjectInteger(integertextboxKilogramoTara.Text)
             .KilogramoNeto = CS_ValueTranslation.FromControlTextBoxToObjectInteger(integertextboxKilogramoNeto.Text)
 
             ' Análisis
@@ -376,16 +375,18 @@
 
             ' Notas
             .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
+
+            ' Otros
+            If Not (checkboxProductoOtro.Checked Or checkboxTitularOtro.Checked Or checkboxOrigenDestinoOtro.Checked Or checkboxTransportistaOtro.Checked Or checkboxChoferOtro.Checked Or checkboxCamionOtro.Checked) Then
+                If Not .Pesada_Otro Is Nothing Then
+                    mdbContext.Pesada_Otro.Remove(.Pesada_Otro)
+                End If
+            End If
         End With
     End Sub
 #End Region
 
 #Region "Controls behavior"
-    Private Sub TimerCambio() Handles timerMain.Tick
-        FechaHoraInicioAhora()
-        FechaHoraFinAhora()
-    End Sub
-
     Private Sub FechaInicioCambio() Handles datetimepickerFechaInicio.ValueChanged
         CosechaTodos()
     End Sub
@@ -446,7 +447,7 @@
     End Sub
 
     Private Sub ProductoTodos() Handles checkboxProductoTodos.CheckedChanged
-        pFillAndRefreshLists.Producto(comboboxProducto, mPesadaActual.IDProducto, Not checkboxProductoTodos.Checked, False, False)
+        pFillAndRefreshLists.Producto(comboboxProducto, mPesadaActual.IDProducto, False, Not checkboxProductoTodos.Checked, False, False)
         comboboxProducto.Focus()
     End Sub
 
@@ -517,7 +518,7 @@
 
     Private Sub TitularCargarLista()
         If checkboxTitularTodos.Checked Or Not comboboxPlanta.Visible Then
-            pFillAndRefreshLists.Entidad(comboboxTitular, mPesadaActual.Titular_IDEntidad, True, False, False, CS_Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER, False, False, False)
+            pFillAndRefreshLists.Entidad(comboboxTitular, mPesadaActual.Titular_IDEntidad, False, True, False, False, CS_Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER, False, False, False)
         Else
             pFillAndRefreshLists.EntidadTitularPorProductoPlanta(comboboxTitular, mPesadaActual.Titular_IDEntidad, CByte(comboboxProducto.SelectedValue), CByte(comboboxPlanta.SelectedValue), CStr(Microsoft.VisualBasic.Switch(radiobuttonEntrada.Checked, Constantes.PESADA_TIPO_ENTRADA, radiobuttonSalida.Checked, Constantes.PESADA_TIPO_SALIDA, radiobuttonNinguno.Checked, Constantes.PESADA_TIPO_NINGUNA)), True, False, False)
         End If
@@ -538,7 +539,7 @@
     Private Sub TitularCambio() Handles comboboxTitular.SelectedValueChanged
         If Not comboboxTitular.SelectedItem Is Nothing Then
             ' Origen / Destino
-            pFillAndRefreshLists.OrigenDestino(comboboxOrigenDestino, mPesadaActual.IDOrigenDestino, CInt(comboboxTitular.SelectedValue), False, True)
+            pFillAndRefreshLists.OrigenDestino(comboboxOrigenDestino, mPesadaActual.IDOrigenDestino, False, CInt(comboboxTitular.SelectedValue), False, True)
             CS_Control_ComboBox.SetSelectedValue(comboboxOrigenDestino, SelectedItemOptions.First)
         End If
     End Sub
@@ -582,12 +583,14 @@
             End If
             comboboxTransportista.Focus()
         End If
+
+        checkboxCamionOtro.Checked = checkboxTransportistaOtro.Checked
     End Sub
 
     Private Sub TransportistaCambio() Handles comboboxTransportista.SelectedValueChanged
         If Not comboboxTransportista.SelectedItem Is Nothing Then
             maskedtextboxTransportistaCUIT.Text = CType(comboboxTransportista.SelectedItem, Entidad).CUIT_CUIL
-            CamionTodos()
+            pFillAndRefreshLists.Camion(comboboxCamion, mPesadaActual.IDCamion, False, CInt(comboboxTransportista.SelectedValue), True, True, False, True)
             ChoferTodos()
 
             If CInt(comboboxTransportista.SelectedValue) = CS_Constants.FIELD_VALUE_OTHER_INTEGER Then
@@ -601,7 +604,7 @@
     End Sub
 
     Private Sub TransportistaTodos() Handles checkboxTransportistaTodos.CheckedChanged
-        pFillAndRefreshLists.Entidad(comboboxTransportista, mPesadaActual.Transportista_IDEntidad, False, True, False, CS_Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER, checkboxTransportistaTodos.Checked, False, True)
+        pFillAndRefreshLists.Entidad(comboboxTransportista, mPesadaActual.Transportista_IDEntidad, False, False, True, False, CS_Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER, checkboxTransportistaTodos.Checked, False, True)
         comboboxTransportista.Focus()
     End Sub
 
@@ -634,9 +637,9 @@
 
     Private Sub ChoferTodos() Handles checkboxChoferTodos.CheckedChanged
         If checkboxChoferTodos.Checked Then
-            pFillAndRefreshLists.Entidad(comboboxChofer, mPesadaActual.Chofer_IDEntidad, False, False, True, CS_Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER, False, False, True)
+            pFillAndRefreshLists.Entidad(comboboxChofer, mPesadaActual.Chofer_IDEntidad, False, False, False, True, CS_Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER, False, False, True)
         Else
-            pFillAndRefreshLists.Entidad(comboboxChofer, mPesadaActual.Chofer_IDEntidad, False, False, True, CInt(comboboxTransportista.SelectedValue), True, False, True)
+            pFillAndRefreshLists.Entidad(comboboxChofer, mPesadaActual.Chofer_IDEntidad, False, False, False, True, CInt(comboboxTransportista.SelectedValue), True, False, True)
         End If
         comboboxChofer.Focus()
     End Sub
@@ -646,7 +649,6 @@
         textboxCamion_DominioChasis.Visible = checkboxCamionOtro.Checked
         labelCamion_DominioAcoplado.Visible = checkboxCamionOtro.Checked
         textboxCamion_DominioAcoplado.Visible = checkboxCamionOtro.Checked
-        checkboxCamionTodos.Visible = Not checkboxCamionOtro.Checked
 
         If checkboxCamionOtro.Checked Then
             labelCamion.Text = "Chasis:"
@@ -657,13 +659,13 @@
         End If
     End Sub
 
-    Private Sub CamionTodos() Handles checkboxCamionTodos.CheckedChanged
-        If checkboxCamionTodos.Checked Then
-            pFillAndRefreshLists.Camion(comboboxCamion, mPesadaActual.IDCamion, Nothing, True, True, False, True)
+    Private Sub KilogramoIngreso() Handles integertextboxKilogramoBruto.KeyPress, integertextboxKilogramoTara.KeyPress
+        If integertextboxKilogramoBruto.IsNull Or integertextboxKilogramoTara.IsNull Then
+            FechaHoraInicioAhora()
+            FechaHoraFinAhora()
         Else
-            pFillAndRefreshLists.Camion(comboboxCamion, mPesadaActual.IDCamion, CInt(comboboxTransportista.SelectedValue), True, True, False, True)
+            FechaHoraFinAhora()
         End If
-        comboboxCamion.Focus()
     End Sub
 
     Private Sub KilogramoCambio() Handles integertextboxKilogramoBruto.TextChanged, integertextboxKilogramoTara.TextChanged
@@ -729,11 +731,11 @@
         End If
 
         ' Fecha de fin
-        If DateDiff(DateInterval.Second, datetimepickerFechaInicio.Value.Date, datetimepickerFechaFin.Value.Date) < 0 Then
+        If DateDiff(DateInterval.Second, datetimepickerFechaInicio.Value, datetimepickerFechaFin.Value) < 0 Then
             MsgBox("La fecha/hora de fin de la pesada no debe ser menor a la fecha/hora de inicio.", MsgBoxStyle.Information, My.Application.Info.Title)
             datetimepickerFechaFin.Focus()
             Exit Sub
-        ElseIf DateDiff(DateInterval.Day, datetimepickerFechaInicio.Value.Date, datetimepickerFechaFin.Value.Date) > CS_Parameter.GetIntegerAsInteger(Parametros.PESADA_FECHA_INICIOFIN_DIFERENCIAMAXIMA_DIAS) Then
+        ElseIf DateDiff(DateInterval.Day, datetimepickerFechaInicio.Value, datetimepickerFechaFin.Value) > CS_Parameter.GetIntegerAsInteger(Parametros.PESADA_FECHA_INICIOFIN_DIFERENCIAMAXIMA_DIAS) Then
             ' La fecha de fin de la pesada es posterior en más de x días a la fecha de inicio
             MsgBox(String.Format("La fecha de fin de la pesada no debe ser mayor en {0} días a la fecha de inicio.", CS_Parameter.GetIntegerAsInteger(Parametros.PESADA_FECHA_INICIOFIN_DIFERENCIAMAXIMA_DIAS)), MsgBoxStyle.Information, My.Application.Info.Title)
             datetimepickerFechaFin.Focus()

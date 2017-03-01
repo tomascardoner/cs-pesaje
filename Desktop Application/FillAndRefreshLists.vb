@@ -118,14 +118,14 @@
         ComboBoxControl.DataSource = listItems
     End Sub
 
-    Friend Sub Entidad(ByRef ComboBoxControl As ComboBox, ByVal IDEntidadActual As Integer?, ByVal EsTitular As Boolean, ByVal EsTransportista As Boolean, ByVal EsChofer As Boolean, ByVal IDTransportista As Integer, ByVal UsoFrecuente As Boolean, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
+    Friend Sub Entidad(ByRef ComboBoxControl As ComboBox, ByVal IDEntidadActual As Integer?, ByVal MostrarItemOtro As Boolean, ByVal EsTitular As Boolean, ByVal EsTransportista As Boolean, ByVal EsChofer As Boolean, ByVal IDTransportista As Integer, ByVal UsoFrecuente As Boolean, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
         Dim listItems As List(Of Entidad)
 
         ComboBoxControl.ValueMember = "IDEntidad"
         ComboBoxControl.DisplayMember = "Nombre"
 
         listItems = (From ent In mdbContext.Entidad
-                     Where (IDEntidadActual.HasValue And ent.IDEntidad = IDEntidadActual.Value) Or (ent.IDEntidad <> CS_Constants.FIELD_VALUE_OTHER_INTEGER And ent.EsActivo And ((EsTitular And ent.EsTitular) Or (EsTransportista And ent.EsTransportista) Or EsChofer And ent.EsChofer) And (ent.Transportista_IDEntidad = IDTransportista Or IDTransportista = CS_Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER) And (ent.UsoFrecuente Or Not UsoFrecuente))
+                     Where (ent.IDEntidad <> CS_Constants.FIELD_VALUE_OTHER_INTEGER Or MostrarItemOtro) And (IDEntidadActual.HasValue And ent.IDEntidad = IDEntidadActual.Value) Or (ent.EsActivo And ((EsTitular And ent.EsTitular) Or (EsTransportista And ent.EsTransportista) Or EsChofer And ent.EsChofer) And (ent.Transportista_IDEntidad = IDTransportista Or IDTransportista = CS_Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER) And (ent.UsoFrecuente Or Not UsoFrecuente))
                      Order By ent.Nombre
                      Select ent).ToList
 
@@ -146,7 +146,7 @@
         ComboBoxControl.DataSource = listItems
     End Sub
 
-    Friend Sub EntidadTitularPorProductoPlanta(ByRef ComboBoxControl As ComboBox, ByVal IDEntidad As Integer, ByVal IDProducto As Byte, ByVal IDPlanta As Byte, ByVal Tipo As String, ByVal UsoFrecuente As Boolean, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
+    Friend Sub EntidadTitularPorProductoPlanta(ByRef ComboBoxControl As ComboBox, ByVal IDEntidadActual As Integer, ByVal IDProducto As Byte, ByVal IDPlanta As Byte, ByVal Tipo As String, ByVal UsoFrecuente As Boolean, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
         Dim listItems As List(Of Entidad)
 
         ComboBoxControl.ValueMember = "IDEntidad"
@@ -154,7 +154,7 @@
 
         listItems = (From ent In mdbContext.Entidad
                      Join ent_pro_pla In mdbContext.Entidad_Producto_Planta On ent.IDEntidad Equals ent_pro_pla.IDEntidad
-                     Where ent.IDEntidad = IDEntidad Or (ent.EsActivo And ent.EsTitular And (ent.UsoFrecuente Or Not UsoFrecuente) And ent_pro_pla.IDProducto = IDProducto And ent_pro_pla.IDPlanta = IDPlanta And ent_pro_pla.Tipo = Tipo)
+                     Where ent.IDEntidad <> CS_Constants.FIELD_VALUE_OTHER_INTEGER And (ent.IDEntidad = IDEntidadActual Or (ent.EsActivo And ent.EsTitular And (ent.UsoFrecuente Or Not UsoFrecuente) And ent_pro_pla.IDProducto = IDProducto And ent_pro_pla.IDPlanta = IDPlanta And ent_pro_pla.Tipo = Tipo))
                      Order By ent.Nombre
                      Select ent).ToList
 
@@ -175,7 +175,7 @@
         ComboBoxControl.DataSource = listItems
     End Sub
 
-    Friend Sub Camion(ByRef ComboBoxControl As ComboBox, ByVal IDCamionActual As Byte?, ByVal IDTransportista As Integer?, ByVal MostrarNombre As Boolean, ByVal MostrarPatentes As Boolean, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
+    Friend Sub Camion(ByRef ComboBoxControl As ComboBox, ByVal IDCamionActual As Byte?, ByVal MostrarItemOtro As Boolean, ByVal IDTransportista As Integer?, ByVal MostrarNombre As Boolean, ByVal MostrarPatentes As Boolean, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
         Dim listItems As List(Of Camion_ListItem)
 
         ComboBoxControl.ValueMember = "IDCamion"
@@ -183,17 +183,17 @@
 
         If MostrarNombre And MostrarPatentes Then
             listItems = (From c In mdbContext.Camion
-                         Where (IDCamionActual.HasValue And c.IDCamion = IDCamionActual.Value) Or (c.IDEntidad <> CS_Constants.FIELD_VALUE_OTHER_INTEGER And c.IDEntidad = IDTransportista)
+                         Where (c.IDEntidad <> CS_Constants.FIELD_VALUE_OTHER_INTEGER Or MostrarItemOtro) And ((IDCamionActual.HasValue And c.IDCamion = IDCamionActual.Value) Or c.IDEntidad = IDTransportista)
                          Order By c.DominioChasis, c.DominioAcoplado
                          Select New Camion_ListItem With {.IDCamion = c.IDCamion, .Descripcion = c.Nombre & CStr(If(c.DominioChasis Is Nothing, "", " - " & c.DominioChasis)) & CStr(If(c.DominioAcoplado Is Nothing, "", " - " & c.DominioAcoplado))}).ToList
         ElseIf MostrarNombre Then
             listItems = (From c In mdbContext.Camion
-                         Where (IDCamionActual.HasValue And c.IDCamion = IDCamionActual.Value) Or (c.IDEntidad <> CS_Constants.FIELD_VALUE_OTHER_INTEGER And c.IDEntidad = IDTransportista)
+                         Where (c.IDEntidad <> CS_Constants.FIELD_VALUE_OTHER_INTEGER Or MostrarItemOtro) And ((IDCamionActual.HasValue And c.IDCamion = IDCamionActual.Value) Or c.IDEntidad = IDTransportista)
                          Order By c.Nombre
                          Select New Camion_ListItem With {.IDCamion = c.IDCamion, .Descripcion = c.Nombre}).ToList
         ElseIf MostrarPatentes Then
             listItems = (From c In mdbContext.Camion
-                         Where (IDCamionActual.HasValue And c.IDCamion = IDCamionActual.Value) Or (c.IDEntidad <> CS_Constants.FIELD_VALUE_OTHER_INTEGER And c.IDEntidad = IDTransportista)
+                         Where (c.IDEntidad <> CS_Constants.FIELD_VALUE_OTHER_INTEGER Or MostrarItemOtro) And ((IDCamionActual.HasValue And c.IDCamion = IDCamionActual.Value) Or c.IDEntidad = IDTransportista)
                          Order By c.DominioChasis, c.DominioAcoplado
                          Select New Camion_ListItem With {.IDCamion = c.IDCamion, .Descripcion = CStr(If(c.DominioChasis Is Nothing, "", c.DominioChasis)) & CStr(If(c.DominioAcoplado Is Nothing, "", " - " & c.DominioAcoplado))}).ToList
         Else
@@ -217,7 +217,7 @@
         ComboBoxControl.DataSource = listItems
     End Sub
 
-    Friend Sub Producto(ByRef ComboBoxControl As ComboBox, ByVal IDProductoActual As Byte?, ByVal UsoFrecuente As Boolean, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
+    Friend Sub Producto(ByRef ComboBoxControl As ComboBox, ByVal IDProductoActual As Byte?, ByVal MostrarItemOtro As Boolean, ByVal UsoFrecuente As Boolean, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
         Dim listItems As List(Of Producto)
         Dim IDProductoSeleccionadoActualmente As Byte?
 
@@ -225,7 +225,7 @@
         ComboBoxControl.DisplayMember = "Nombre"
         IDProductoSeleccionadoActualmente = CByte(ComboBoxControl.SelectedValue)
 
-        listItems = mdbContext.Producto.Where(Function(pr) (IDProductoActual.HasValue And pr.IDProducto = IDProductoActual.Value) Or (pr.IDProducto <> CS_Constants.FIELD_VALUE_OTHER_BYTE And (UsoFrecuente = False Or pr.UsoFrecuente) And pr.EsActivo)).OrderBy(Function(cl) cl.Nombre).ToList
+        listItems = mdbContext.Producto.Where(Function(pr) (pr.IDProducto <> CS_Constants.FIELD_VALUE_OTHER_BYTE Or MostrarItemOtro) And (pr.IDProducto = IDProductoActual.Value Or ((UsoFrecuente = False Or pr.UsoFrecuente) And pr.EsActivo))).OrderBy(Function(cl) cl.Nombre).ToList
 
         If AgregarItem_Todos Then
             Dim Item_Todos As New Producto
@@ -311,14 +311,14 @@
         ComboBoxControl.DataSource = listItems
     End Sub
 
-    Friend Sub OrigenDestino(ByRef ComboBoxControl As ComboBox, ByVal IDOrigenDestino As Integer?, ByVal IDEntidad As Integer, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
+    Friend Sub OrigenDestino(ByRef ComboBoxControl As ComboBox, ByVal IDOrigenDestino As Integer?, ByVal MostrarItemOtro As Boolean, ByVal IDEntidad As Integer, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
         Dim listItems As List(Of OrigenDestino)
 
         ComboBoxControl.ValueMember = "IDOrigenDestino"
         ComboBoxControl.DisplayMember = "Nombre"
 
         If IDEntidad = CS_Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER Then
-            listItems = mdbContext.OrigenDestino.Where(Function(od) (IDOrigenDestino.HasValue And od.IDOrigenDestino = IDOrigenDestino.Value) Or od.EsActivo).OrderBy(Function(od) od.Nombre).ToList
+            listItems = mdbContext.OrigenDestino.Where(Function(od) (od.IDOrigenDestino <> CS_Constants.FIELD_VALUE_OTHER_INTEGER Or MostrarItemOtro) And (IDOrigenDestino.HasValue And od.IDOrigenDestino = IDOrigenDestino.Value) Or od.EsActivo).OrderBy(Function(od) od.Nombre).ToList
         Else
             listItems = (From ori In mdbContext.OrigenDestino
                              Join ent_ori In mdbContext.Entidad_OrigenDestino On ori.IDOrigenDestino Equals ent_ori.IDOrigenDestino

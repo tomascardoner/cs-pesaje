@@ -43,7 +43,6 @@ Partial Class formPesada
         Me.checkboxChoferOtro = New System.Windows.Forms.CheckBox()
         Me.checkboxChoferTodos = New System.Windows.Forms.CheckBox()
         Me.checkboxCamionOtro = New System.Windows.Forms.CheckBox()
-        Me.checkboxCamionTodos = New System.Windows.Forms.CheckBox()
         Me.checkboxTipoTodos = New System.Windows.Forms.CheckBox()
         Me.checkboxCosechaTodos = New System.Windows.Forms.CheckBox()
         Me.groupboxTransporte = New System.Windows.Forms.GroupBox()
@@ -119,7 +118,6 @@ Partial Class formPesada
         Me.labelZaranda = New System.Windows.Forms.Label()
         Me.doubletextboxHumedad = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
         Me.labelHumedad = New System.Windows.Forms.Label()
-        Me.timerMain = New System.Windows.Forms.Timer(Me.components)
         Me.toolstripMain.SuspendLayout()
         Me.groupboxTransporte.SuspendLayout()
         Me.groupboxTitular.SuspendLayout()
@@ -356,19 +354,6 @@ Partial Class formPesada
         Me.tooltipMain.SetToolTip(Me.checkboxCamionOtro, "Otro")
         Me.checkboxCamionOtro.UseVisualStyleBackColor = True
         '
-        'checkboxCamionTodos
-        '
-        Me.checkboxCamionTodos.Appearance = System.Windows.Forms.Appearance.Button
-        Me.checkboxCamionTodos.Location = New System.Drawing.Point(326, 118)
-        Me.checkboxCamionTodos.Name = "checkboxCamionTodos"
-        Me.checkboxCamionTodos.Size = New System.Drawing.Size(23, 23)
-        Me.checkboxCamionTodos.TabIndex = 20
-        Me.checkboxCamionTodos.TabStop = False
-        Me.checkboxCamionTodos.Text = "T"
-        Me.checkboxCamionTodos.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.tooltipMain.SetToolTip(Me.checkboxCamionTodos, "Ver todos")
-        Me.checkboxCamionTodos.UseVisualStyleBackColor = True
-        '
         'checkboxTipoTodos
         '
         Me.checkboxTipoTodos.Appearance = System.Windows.Forms.Appearance.Button
@@ -398,7 +383,6 @@ Partial Class formPesada
         'groupboxTransporte
         '
         Me.groupboxTransporte.Controls.Add(Me.checkboxCamionOtro)
-        Me.groupboxTransporte.Controls.Add(Me.checkboxCamionTodos)
         Me.groupboxTransporte.Controls.Add(Me.checkboxChoferOtro)
         Me.groupboxTransporte.Controls.Add(Me.checkboxChoferTodos)
         Me.groupboxTransporte.Controls.Add(Me.checkboxTransportistaOtro)
@@ -1264,10 +1248,6 @@ Partial Class formPesada
         Me.labelHumedad.TabIndex = 0
         Me.labelHumedad.Text = "Humedad:"
         '
-        'timerMain
-        '
-        Me.timerMain.Interval = 500
-        '
         'formPesada
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1409,11 +1389,9 @@ Partial Class formPesada
     Friend WithEvents checkboxChoferOtro As System.Windows.Forms.CheckBox
     Friend WithEvents checkboxChoferTodos As System.Windows.Forms.CheckBox
     Friend WithEvents checkboxCamionOtro As System.Windows.Forms.CheckBox
-    Friend WithEvents checkboxCamionTodos As System.Windows.Forms.CheckBox
     Friend WithEvents labelTipo As System.Windows.Forms.Label
     Friend WithEvents checkboxTipoTodos As System.Windows.Forms.CheckBox
     Friend WithEvents checkboxCosechaTodos As System.Windows.Forms.CheckBox
     Friend WithEvents buttonFechaHoraInicioAhora As System.Windows.Forms.Button
     Friend WithEvents buttonFechaHoraFinAhora As System.Windows.Forms.Button
-    Friend WithEvents timerMain As System.Windows.Forms.Timer
 End Class

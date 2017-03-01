@@ -137,7 +137,7 @@
     End Sub
 
     Friend Sub CargarCamiones()
-        pFillAndRefreshLists.Camion(comboboxCamion, mEntidadActual.IDCamion, CInt(comboboxTransportista.SelectedValue), True, True, False, True)
+        pFillAndRefreshLists.Camion(comboboxCamion, mEntidadActual.IDCamion, False, CInt(comboboxTransportista.SelectedValue), True, True, False, True)
     End Sub
 
 #End Region
