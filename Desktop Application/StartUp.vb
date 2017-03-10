@@ -7,6 +7,7 @@
     Friend pParametros As List(Of Parametro)
     Friend pLicensedTo As String
     Friend pUsuario As Usuario
+    Friend pBalanzaConeccionHabilitada As Boolean = False
 
     Friend Sub Main()
         Dim StartupTime As Date
@@ -85,6 +86,11 @@
 
         formMDIMain.Cursor = Cursors.AppStarting
         formMDIMain.Enabled = False
+
+        ' Si corresponde, abro la conexión con el puerto correspondiente para leer los valores de la balanza
+        If My.Settings.ScaleConnectionEnabled Then
+            pBalanzaConeccionHabilitada = True
+        End If
 
         ' Muestro el form de Pesadas
         formSplashScreen.labelStatus.Text = "Cargando y mostrando ventana de Pesadas..."

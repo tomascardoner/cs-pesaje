@@ -92,6 +92,7 @@ Partial Class formPesada
         Me.textboxIDPesada = New System.Windows.Forms.TextBox()
         Me.labelInicio = New System.Windows.Forms.Label()
         Me.groupboxKilogramo = New System.Windows.Forms.GroupBox()
+        Me.buttonObtenerKilogramosBrutos = New System.Windows.Forms.Button()
         Me.labelKilogramoNeto = New System.Windows.Forms.Label()
         Me.integertextboxKilogramoNeto = New Syncfusion.Windows.Forms.Tools.IntegerTextBox()
         Me.labelKilogramoTara = New System.Windows.Forms.Label()
@@ -118,6 +119,7 @@ Partial Class formPesada
         Me.labelZaranda = New System.Windows.Forms.Label()
         Me.doubletextboxHumedad = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
         Me.labelHumedad = New System.Windows.Forms.Label()
+        Me.buttonObtenerKilogramosTara = New System.Windows.Forms.Button()
         Me.toolstripMain.SuspendLayout()
         Me.groupboxTransporte.SuspendLayout()
         Me.groupboxTitular.SuspendLayout()
@@ -872,6 +874,8 @@ Partial Class formPesada
         '
         'groupboxKilogramo
         '
+        Me.groupboxKilogramo.Controls.Add(Me.buttonObtenerKilogramosTara)
+        Me.groupboxKilogramo.Controls.Add(Me.buttonObtenerKilogramosBrutos)
         Me.groupboxKilogramo.Controls.Add(Me.labelKilogramoNeto)
         Me.groupboxKilogramo.Controls.Add(Me.integertextboxKilogramoNeto)
         Me.groupboxKilogramo.Controls.Add(Me.labelKilogramoTara)
@@ -880,9 +884,19 @@ Partial Class formPesada
         Me.groupboxKilogramo.Controls.Add(Me.integertextboxKilogramoBruto)
         Me.groupboxKilogramo.Location = New System.Drawing.Point(381, 197)
         Me.groupboxKilogramo.Name = "groupboxKilogramo"
-        Me.groupboxKilogramo.Size = New System.Drawing.Size(153, 93)
+        Me.groupboxKilogramo.Size = New System.Drawing.Size(182, 93)
         Me.groupboxKilogramo.TabIndex = 4
         Me.groupboxKilogramo.TabStop = False
+        '
+        'buttonObtenerKilogramosBrutos
+        '
+        Me.buttonObtenerKilogramosBrutos.Image = Global.CSPesaje.DesktopApplication.My.Resources.Resources.IMAGE_SCALE_16
+        Me.buttonObtenerKilogramosBrutos.Location = New System.Drawing.Point(151, 12)
+        Me.buttonObtenerKilogramosBrutos.Name = "buttonObtenerKilogramosBrutos"
+        Me.buttonObtenerKilogramosBrutos.Size = New System.Drawing.Size(22, 22)
+        Me.buttonObtenerKilogramosBrutos.TabIndex = 2
+        Me.buttonObtenerKilogramosBrutos.Text = "Ahora"
+        Me.buttonObtenerKilogramosBrutos.UseVisualStyleBackColor = True
         '
         'labelKilogramoNeto
         '
@@ -890,7 +904,7 @@ Partial Class formPesada
         Me.labelKilogramoNeto.Location = New System.Drawing.Point(6, 68)
         Me.labelKilogramoNeto.Name = "labelKilogramoNeto"
         Me.labelKilogramoNeto.Size = New System.Drawing.Size(57, 13)
-        Me.labelKilogramoNeto.TabIndex = 4
+        Me.labelKilogramoNeto.TabIndex = 6
         Me.labelKilogramoNeto.Text = "Kgs. Neto:"
         '
         'integertextboxKilogramoNeto
@@ -910,7 +924,7 @@ Partial Class formPesada
         Me.integertextboxKilogramoNeto.ReadOnly = True
         Me.integertextboxKilogramoNeto.Size = New System.Drawing.Size(53, 20)
         Me.integertextboxKilogramoNeto.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
-        Me.integertextboxKilogramoNeto.TabIndex = 5
+        Me.integertextboxKilogramoNeto.TabIndex = 7
         Me.integertextboxKilogramoNeto.TabStop = False
         Me.integertextboxKilogramoNeto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.integertextboxKilogramoNeto.WordWrap = False
@@ -921,7 +935,7 @@ Partial Class formPesada
         Me.labelKilogramoTara.Location = New System.Drawing.Point(6, 42)
         Me.labelKilogramoTara.Name = "labelKilogramoTara"
         Me.labelKilogramoTara.Size = New System.Drawing.Size(56, 13)
-        Me.labelKilogramoTara.TabIndex = 2
+        Me.labelKilogramoTara.TabIndex = 3
         Me.labelKilogramoTara.Text = "Kgs. Tara:"
         '
         'integertextboxKilogramoTara
@@ -940,7 +954,7 @@ Partial Class formPesada
         Me.integertextboxKilogramoTara.NumberNegativePattern = 0
         Me.integertextboxKilogramoTara.Size = New System.Drawing.Size(53, 20)
         Me.integertextboxKilogramoTara.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
-        Me.integertextboxKilogramoTara.TabIndex = 3
+        Me.integertextboxKilogramoTara.TabIndex = 4
         Me.integertextboxKilogramoTara.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.integertextboxKilogramoTara.WordWrap = False
         '
@@ -1248,6 +1262,16 @@ Partial Class formPesada
         Me.labelHumedad.TabIndex = 0
         Me.labelHumedad.Text = "Humedad:"
         '
+        'buttonObtenerKilogramosTara
+        '
+        Me.buttonObtenerKilogramosTara.Image = Global.CSPesaje.DesktopApplication.My.Resources.Resources.IMAGE_SCALE_16
+        Me.buttonObtenerKilogramosTara.Location = New System.Drawing.Point(151, 38)
+        Me.buttonObtenerKilogramosTara.Name = "buttonObtenerKilogramosTara"
+        Me.buttonObtenerKilogramosTara.Size = New System.Drawing.Size(22, 22)
+        Me.buttonObtenerKilogramosTara.TabIndex = 5
+        Me.buttonObtenerKilogramosTara.Text = "Ahora"
+        Me.buttonObtenerKilogramosTara.UseVisualStyleBackColor = True
+        '
         'formPesada
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1394,4 +1418,6 @@ Partial Class formPesada
     Friend WithEvents checkboxCosechaTodos As System.Windows.Forms.CheckBox
     Friend WithEvents buttonFechaHoraInicioAhora As System.Windows.Forms.Button
     Friend WithEvents buttonFechaHoraFinAhora As System.Windows.Forms.Button
+    Friend WithEvents buttonObtenerKilogramosBrutos As System.Windows.Forms.Button
+    Friend WithEvents buttonObtenerKilogramosTara As System.Windows.Forms.Button
 End Class

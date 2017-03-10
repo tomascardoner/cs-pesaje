@@ -15,7 +15,9 @@
 
         Me.Text = My.Application.Info.Title
 
-        menuitemAyuda_AcercaDe.Text = "&Acerca de " & My.Application.Info.Title & "..."
+        menuitemAyuda_AcercaDe.Text = String.Format("&Acerca de {0}...", My.Application.Info.Title)
+
+        textboxKilogramo.Visible = pBalanzaConeccionHabilitada
     End Sub
 
     Private Sub formMDIMain_Resize() Handles Me.Resize
@@ -155,7 +157,7 @@
 #End Region
 
 #Region "Left Toolbar - Reportes"
-    Private Sub buttonReportes_Click(sender As Object, e As EventArgs) Handles buttonReportes.Click
+    Private Sub buttonReportes_Click(sender As Object, e As EventArgs)
         If Permisos.VerificarPermiso(Permisos.REPORTE) Then
             Me.Cursor = Cursors.WaitCursor
 

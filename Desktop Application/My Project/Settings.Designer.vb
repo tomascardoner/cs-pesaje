@@ -182,6 +182,15 @@ Namespace My
                 Return CType(Me("DBConnection_Provider"),String)
             End Get
         End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public ReadOnly Property ScaleConnectionEnabled() As Boolean
+            Get
+                Return CType(Me("ScaleConnectionEnabled"),Boolean)
+            End Get
+        End Property
     End Class
 End Namespace
 

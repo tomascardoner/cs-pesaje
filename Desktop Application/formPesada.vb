@@ -78,7 +78,7 @@
         checkboxTitularOtro.Visible = mEditMode
         comboboxTitular.Enabled = mEditMode
         textboxTitular.ReadOnly = Not mEditMode
-        checkboxTipoTodos.Visible = mEditMode
+        checkboxTitularTodos.Visible = mEditMode
         checkboxOrigenDestinoOtro.Visible = mEditMode
         comboboxOrigenDestino.Enabled = mEditMode
         textboxOrigenDestino.ReadOnly = Not mEditMode
@@ -130,6 +130,9 @@
 
         pFillAndRefreshLists.Producto(comboboxProducto, mPesadaActual.IDProducto, False, True, False, False)
         pFillAndRefreshLists.Entidad(comboboxTransportista, mPesadaActual.Transportista_IDEntidad, False, False, True, False, CS_Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER, True, False, True)
+
+        buttonObtenerKilogramosBrutos.Visible = (pBalanzaConeccionHabilitada And mEditMode)
+        buttonObtenerKilogramosTara.Visible = (pBalanzaConeccionHabilitada And mEditMode)
     End Sub
 
     Friend Sub SetAppearance()
@@ -674,6 +677,30 @@
         Else
             integertextboxKilogramoNeto.IntegerValue = integertextboxKilogramoBruto.IntegerValue - integertextboxKilogramoTara.IntegerValue
         End If
+    End Sub
+
+    Private Sub ObtenerKilogramosBrutos() Handles buttonObtenerKilogramosBrutos.Click
+        'If formMDIMain.labelDisplay.text <> "" Then
+        '    integertextboxKilogramoBruto.Text = formMDIMain.labelDisplay.text
+        '    If integertextboxKilogramoBruto.IsNull Or integertextboxKilogramoTara.IsNull Then
+        '        FechaHoraInicioAhora()
+        '        FechaHoraFinAhora()
+        '    Else
+        '        FechaHoraFinAhora()
+        '    End If
+        'End If
+    End Sub
+
+    Private Sub ObtenerKilogramosTara() Handles buttonObtenerKilogramosTara.Click
+        'If formMDIMain.labelDisplay.text <> "" Then
+        '    integertextboxKilogramoBruto.Text = formMDIMain.labelDisplay.text
+        '    If integertextboxKilogramoBruto.IsNull Or integertextboxKilogramoTara.IsNull Then
+        '        FechaHoraInicioAhora()
+        '        FechaHoraFinAhora()
+        '    Else
+        '        FechaHoraFinAhora()
+        '    End If
+        'End If
     End Sub
 
     Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxProducto.GotFocus, textboxTitular.GotFocus, textboxOrigenDestino.GotFocus, textboxTransportista.GotFocus, textboxChofer.GotFocus, textboxCamion_DominioChasis.GotFocus, textboxCamion_DominioAcoplado.GotFocus, textboxNotas.GotFocus

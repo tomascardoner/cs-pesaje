@@ -19,6 +19,11 @@
     Friend Const PESADA_TIPO_PERIODICIDAD_ESPORADICA As String = "E"
     Friend Const PESADA_TIPO_PERIODICIDAD_NUNCA As String = "N"
 
+    '////////////////
+    '    REPORTES
+    '////////////////
+    Friend Const REPORTE_TICKETPESADA As String = "Ticket Pesada.rpt"
+
     '///////////////////////////////////
     '    PARÁMETROS DE LOS REPORTES
     '///////////////////////////////////

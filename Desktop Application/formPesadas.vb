@@ -101,12 +101,76 @@
 
 #Region "Load and Set Data"
     Friend Sub RefreshData(Optional ByVal PositionIDPesada As Integer = 0, Optional ByVal RestoreCurrentPosition As Boolean = False)
+        Dim FechaDesde As Date
+        Dim FechaHasta As Date
 
         If mSkipFilterData Then
             Exit Sub
         End If
 
         Me.Cursor = Cursors.WaitCursor
+
+        Select Case comboboxPeriodoTipo.SelectedIndex
+            Case 0  ' Día
+                Select Case comboboxPeriodoValor.SelectedIndex
+                    Case 0  ' Hoy
+                        FechaDesde = System.DateTime.Today
+                        FechaHasta = System.DateTime.Today
+                    Case 1  ' Ayer
+                        FechaDesde = System.DateTime.Today.AddDays(-1)
+                        FechaHasta = System.DateTime.Today.AddDays(-1)
+                    Case 2  ' Anteayer
+                        FechaDesde = System.DateTime.Today.AddDays(-2)
+                        FechaHasta = System.DateTime.Today.AddDays(-2)
+                    Case 3  ' Últimos 2
+                        FechaDesde = System.DateTime.Today.AddDays(-1)
+                        FechaHasta = System.DateTime.Today
+                    Case 4  ' Últimos 3
+                        FechaDesde = System.DateTime.Today.AddDays(-2)
+                        FechaHasta = System.DateTime.Today
+                End Select
+            Case 1  ' Semana
+                Select Case comboboxPeriodoValor.SelectedIndex
+                    Case 0  ' Actual
+                        FechaDesde = System.DateTime.Today.AddDays(-System.DateTime.Today.DayOfWeek)
+                        FechaHasta = System.DateTime.Today
+                    Case 1  ' Anterior
+                        FechaDesde = System.DateTime.Today.AddDays(-System.DateTime.Today.DayOfWeek - 7)
+                        FechaHasta = System.DateTime.Today.AddDays(-System.DateTime.Today.DayOfWeek - 1)
+                    Case 2  ' Últimas 2
+                        FechaDesde = System.DateTime.Today.AddDays(-System.DateTime.Today.DayOfWeek - 7)
+                        FechaHasta = System.DateTime.Today
+                End Select
+            Case 2  ' Mes
+                Select Case comboboxPeriodoValor.SelectedIndex
+                    Case 0  ' Actual
+                        FechaDesde = New Date(System.DateTime.Today.Year, System.DateTime.Today.Month, 1)
+                        FechaHasta = System.DateTime.Today
+                    Case 1  ' Anterior
+                        FechaDesde = New Date(System.DateTime.Today.Year, System.DateTime.Today.AddMonths(-1).Month, 1)
+                        FechaHasta = New Date(System.DateTime.Today.Year, System.DateTime.Today.AddMonths(-1).Month, New System.Globalization.GregorianCalendar().GetDaysInMonth(System.DateTime.Today.Year, System.DateTime.Today.AddMonths(-1).Month))
+                    Case 2  ' Últimos 2
+                        FechaDesde = New Date(System.DateTime.Today.Year, System.DateTime.Today.AddMonths(-1).Month, 1)
+                        FechaHasta = System.DateTime.Today
+                End Select
+            Case 3  ' Fecha
+                Select Case comboboxPeriodoValor.SelectedIndex
+                    Case 0  ' igual
+                        FechaDesde = CType(datetimepickerFechaDesdeHost.Control, DateTimePicker).Value
+                        FechaHasta = CType(datetimepickerFechaDesdeHost.Control, DateTimePicker).Value
+                    Case 1  ' posterior
+                        FechaDesde = CType(datetimepickerFechaDesdeHost.Control, DateTimePicker).Value
+                        FechaHasta = Date.MaxValue
+                    Case 2  ' anterior
+                        FechaDesde = Date.MinValue
+                        FechaHasta = CType(datetimepickerFechaDesdeHost.Control, DateTimePicker).Value
+                    Case 3  ' entre
+                        FechaDesde = CType(datetimepickerFechaDesdeHost.Control, DateTimePicker).Value
+                        FechaHasta = CType(datetimepickerFechaHastaHost.Control, DateTimePicker).Value
+                End Select
+        End Select
+        ' A la fecha desde, le sumo un día y le resto un segundo, para que quede conformado por la fecha original y la hora 23:59:59
+        FechaHasta = FechaHasta.AddDays(1).AddSeconds(-1)
 
         Try
             Using dbContext As New CSPesajeContext(True)
@@ -127,6 +191,7 @@
                                    From chg In Chofer_Group.DefaultIfEmpty
                                    Group Join ca In dbContext.Camion On pe.IDCamion Equals ca.IDCamion Into Camion_Group = Group
                                    From cag In Camion_Group.DefaultIfEmpty
+                                   Where pe.FechaHoraInicio >= FechaDesde And pe.FechaHoraInicio <= FechaHasta
                                    Select New GridRowData With {.IDPesada = pe.IDPesada, .FechaHoraInicio = pe.FechaHoraInicio, .FechaHoraFin = pe.FechaHoraFin, .ComprobanteNumero = pe.ComprobanteNumero, .TitularNombre = If(pe.Titular_IDEntidad = CS_Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Titular_Nombre, ent.Nombre), .ProductoNombre = If(pe.IDProducto = CS_Constants.FIELD_VALUE_OTHER_BYTE, pe_otg.Producto_Nombre, pr.Nombre), .TipoNombre = pe.TipoNombre, .CosechaNombre = If(cog Is Nothing, "", cog.Nombre), .OrigenDestinoNombre = If(pe.IDOrigenDestino = CS_Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.OrigenDestino_Nombre, If(odg Is Nothing, "", odg.Nombre)), .KilogramoBruto = pe.KilogramoBruto, .KilogramoTara = pe.KilogramoTara, .KilogramoNeto = pe.KilogramoNeto, .Humedad = If(pe_ang Is Nothing, Nothing, pe_ang.Humedad), .Zaranda = If(pe_ang Is Nothing, Nothing, pe_ang.Zaranda), .TransportistaNombre = If(pe.Transportista_IDEntidad = CS_Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Transportista_Nombre, If(trg Is Nothing, "", trg.Nombre)), .ChoferNombre = If(pe.Chofer_IDEntidad = CS_Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Chofer_Nombre, If(chg Is Nothing, "", chg.Nombre)), .CamionNombreDominios = If(pe.IDCamion = CS_Constants.FIELD_VALUE_OTHER_BYTE, pe_otg.Camion_DominioChasis & If(pe_otg.Camion_DominioAcoplado Is Nothing, "", " - " & pe_otg.Camion_DominioAcoplado), If(cag Is Nothing, "", cag.NombreDominios))}).ToList
             End Using
 
@@ -264,34 +329,38 @@
     ' ///// Fecha Desde /////
     Private Sub FechaDesdeAnterior() Handles buttonFechaDesdeAnterior.Click
         CType(datetimepickerFechaDesdeHost.Control, DateTimePicker).Value = CType(datetimepickerFechaDesdeHost.Control, DateTimePicker).Value.AddDays(-1)
+        RefreshData()
     End Sub
 
     Private Sub FechaDesdeSiguiente() Handles buttonFechaDesdeSiguiente.Click
         CType(datetimepickerFechaDesdeHost.Control, DateTimePicker).Value = CType(datetimepickerFechaDesdeHost.Control, DateTimePicker).Value.AddDays(1)
+        RefreshData()
     End Sub
 
     Private Sub FechaDesdeHoy() Handles buttonFechaDesdeHoy.Click
         CType(datetimepickerFechaDesdeHost.Control, DateTimePicker).Value = DateAndTime.Today
+        RefreshData()
     End Sub
 
     ' ///// Fecha Hasta /////
     Private Sub FechaHastaAnterior() Handles buttonFechaHastaAnterior.Click
         CType(datetimepickerFechaHastaHost.Control, DateTimePicker).Value = CType(datetimepickerFechaHastaHost.Control, DateTimePicker).Value.AddDays(-1)
+        RefreshData()
     End Sub
 
     Private Sub FechaHastaSiguiente() Handles buttonFechaHastaSiguiente.Click
         CType(datetimepickerFechaHastaHost.Control, DateTimePicker).Value = CType(datetimepickerFechaHastaHost.Control, DateTimePicker).Value.AddDays(1)
+        RefreshData()
     End Sub
 
     Private Sub FechaHastaHoy() Handles buttonFechaHastaHoy.Click
         CType(datetimepickerFechaHastaHost.Control, DateTimePicker).Value = DateAndTime.Today
+        RefreshData()
     End Sub
-
 
     Private Sub FechaCambiar() Handles datetimepickerFechaHastaHost.TextChanged, datetimepickerFechaHastaHost.TextChanged
         RefreshData()
     End Sub
-
 
     Private Sub PesadaTipo_Click() Handles menuitemPesadaTipo_Entrada.Click, menuitemPesadaTipo_Salida.Click, menuitemPesadaTipo_Ninguno.Click
         FilterData()
@@ -426,6 +495,45 @@
             datagridviewMain.Enabled = True
 
             Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub Imprimir(sender As Object, e As EventArgs) Handles buttonImprimir.ButtonClick, menuitemImprimir_TicketPesada.Click
+        Dim CurrentRow As GridRowData
+
+        If datagridviewMain.CurrentRow Is Nothing Then
+            MsgBox("No hay ninguna Pesada para imprimir.", vbInformation, My.Application.Info.Title)
+        Else
+            If Permisos.VerificarPermiso(Permisos.PESADA_IMPRIMIR) Then
+                'If sender.Equals(buttonImprimir) Then
+                '    If MsgBox("Se va a imprimir directamente el Comprobante seleccionado." & vbCrLf & vbCrLf & "¿Desea continuar?", CType(MsgBoxStyle.Question + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.No Then
+                '        Exit Sub
+                '    End If
+                'End If
+
+                CurrentRow = CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData)
+
+                Me.Cursor = Cursors.WaitCursor
+
+                datagridviewMain.Enabled = False
+
+                Dim ReporteActual As New Reporte
+                If ReporteActual.Open(My.Settings.ReportsPath & "\" & Constantes.REPORTE_TICKETPESADA) Then
+                    If ReporteActual.SetDatabaseConnection(pDatabase.DataSource, pDatabase.InitialCatalog, pDatabase.UserID, pDatabase.Password) Then
+                        ReporteActual.RecordSelectionFormula = "{Pesada.IDPesada} = " & CurrentRow.IDPesada
+
+                        If sender.Equals(buttonImprimir) Then
+                            ReporteActual.ReportObject.PrintToPrinter(1, False, 1, 100)
+                        Else
+                            MiscFunctions.PreviewCrystalReport(ReporteActual, "Ticket Pesada N° " & Microsoft.VisualBasic.Strings.Format(CurrentRow.IDPesada, "N0"))
+                        End If
+                    End If
+                End If
+
+                datagridviewMain.Enabled = True
+
+                Me.Cursor = Cursors.Default
+            End If
         End If
     End Sub
 #End Region

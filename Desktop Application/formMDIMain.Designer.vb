@@ -46,6 +46,7 @@ Partial Class formMDIMain
         Me.menuitemDebug_ShowTestForm = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemAyuda = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemAyuda_AcercaDe = New System.Windows.Forms.ToolStripMenuItem()
+        Me.panelMain = New System.Windows.Forms.TableLayoutPanel()
         Me.toolstripMain = New System.Windows.Forms.ToolStrip()
         Me.dropdownbuttonTablas = New System.Windows.Forms.ToolStripDropDownButton()
         Me.menutitemTablas_Entidades = New System.Windows.Forms.ToolStripMenuItem()
@@ -56,8 +57,10 @@ Partial Class formMDIMain
         Me.menuitemTablas_Permisos = New System.Windows.Forms.ToolStripMenuItem()
         Me.buttonPesadas = New System.Windows.Forms.ToolStripButton()
         Me.buttonReportes = New System.Windows.Forms.ToolStripButton()
+        Me.textboxKilogramo = New System.Windows.Forms.TextBox()
         Me.statusstripMain.SuspendLayout()
         Me.menustripMain.SuspendLayout()
+        Me.panelMain.SuspendLayout()
         Me.toolstripMain.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -66,14 +69,14 @@ Partial Class formMDIMain
         Me.statusstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelStatus, Me.labelUsuarioNombre})
         Me.statusstripMain.Location = New System.Drawing.Point(0, 513)
         Me.statusstripMain.Name = "statusstripMain"
-        Me.statusstripMain.Size = New System.Drawing.Size(928, 22)
+        Me.statusstripMain.Size = New System.Drawing.Size(718, 22)
         Me.statusstripMain.TabIndex = 2
         '
         'labelStatus
         '
         Me.labelStatus.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right
         Me.labelStatus.Name = "labelStatus"
-        Me.labelStatus.Size = New System.Drawing.Size(913, 17)
+        Me.labelStatus.Size = New System.Drawing.Size(703, 17)
         Me.labelStatus.Spring = True
         '
         'labelUsuarioNombre
@@ -87,7 +90,7 @@ Partial Class formMDIMain
         Me.menustripMain.Location = New System.Drawing.Point(0, 0)
         Me.menustripMain.MdiWindowListItem = Me.menuitemVentana
         Me.menustripMain.Name = "menustripMain"
-        Me.menustripMain.Size = New System.Drawing.Size(928, 24)
+        Me.menustripMain.Size = New System.Drawing.Size(718, 24)
         Me.menustripMain.TabIndex = 0
         '
         'menuitemArchivo
@@ -209,14 +212,32 @@ Partial Class formMDIMain
         Me.menuitemAyuda_AcercaDe.Size = New System.Drawing.Size(135, 22)
         Me.menuitemAyuda_AcercaDe.Text = "&Acerca de..."
         '
+        'panelMain
+        '
+        Me.panelMain.AutoSize = True
+        Me.panelMain.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.panelMain.ColumnCount = 2
+        Me.panelMain.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+        Me.panelMain.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.panelMain.Controls.Add(Me.toolstripMain, 0, 0)
+        Me.panelMain.Controls.Add(Me.textboxKilogramo, 1, 0)
+        Me.panelMain.Dock = System.Windows.Forms.DockStyle.Top
+        Me.panelMain.Location = New System.Drawing.Point(0, 24)
+        Me.panelMain.Name = "panelMain"
+        Me.panelMain.RowCount = 1
+        Me.panelMain.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.panelMain.Size = New System.Drawing.Size(718, 44)
+        Me.panelMain.TabIndex = 4
+        '
         'toolstripMain
         '
         Me.toolstripMain.AllowMerge = False
+        Me.toolstripMain.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.dropdownbuttonTablas, Me.buttonPesadas, Me.buttonReportes})
-        Me.toolstripMain.Location = New System.Drawing.Point(0, 24)
+        Me.toolstripMain.Location = New System.Drawing.Point(0, 0)
         Me.toolstripMain.Name = "toolstripMain"
-        Me.toolstripMain.Size = New System.Drawing.Size(928, 39)
-        Me.toolstripMain.TabIndex = 1
+        Me.toolstripMain.Size = New System.Drawing.Size(230, 39)
+        Me.toolstripMain.TabIndex = 2
         Me.toolstripMain.Text = "Principal"
         '
         'dropdownbuttonTablas
@@ -285,12 +306,26 @@ Partial Class formMDIMain
         Me.buttonReportes.Size = New System.Drawing.Size(89, 36)
         Me.buttonReportes.Text = "Reportes"
         '
+        'textboxKilogramo
+        '
+        Me.textboxKilogramo.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.textboxKilogramo.Dock = System.Windows.Forms.DockStyle.Right
+        Me.textboxKilogramo.Font = New System.Drawing.Font("Microsoft Sans Serif", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.textboxKilogramo.ForeColor = System.Drawing.Color.Lime
+        Me.textboxKilogramo.Location = New System.Drawing.Point(602, 3)
+        Me.textboxKilogramo.MaxLength = 6
+        Me.textboxKilogramo.Name = "textboxKilogramo"
+        Me.textboxKilogramo.ReadOnly = True
+        Me.textboxKilogramo.Size = New System.Drawing.Size(113, 38)
+        Me.textboxKilogramo.TabIndex = 3
+        Me.textboxKilogramo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
         'formMDIMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(928, 535)
-        Me.Controls.Add(Me.toolstripMain)
+        Me.ClientSize = New System.Drawing.Size(718, 535)
+        Me.Controls.Add(Me.panelMain)
         Me.Controls.Add(Me.statusstripMain)
         Me.Controls.Add(Me.menustripMain)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
@@ -305,6 +340,8 @@ Partial Class formMDIMain
         Me.statusstripMain.PerformLayout()
         Me.menustripMain.ResumeLayout(False)
         Me.menustripMain.PerformLayout()
+        Me.panelMain.ResumeLayout(False)
+        Me.panelMain.PerformLayout()
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()
         Me.ResumeLayout(False)
@@ -331,17 +368,19 @@ Partial Class formMDIMain
     Friend WithEvents menuitemVentana_EncajarEnVentana As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents menuitemAyuda As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents menuitemAyuda_AcercaDe As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents toolstripMain As System.Windows.Forms.ToolStrip
-    Friend WithEvents dropdownbuttonTablas As System.Windows.Forms.ToolStripDropDownButton
-    Friend WithEvents menuitemTablas_Productos As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents menuitemVentana_SeparadorListaVentanas As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents menuitemDebug As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents buttonReportes As System.Windows.Forms.ToolStripButton
-    Friend WithEvents buttonPesadas As System.Windows.Forms.ToolStripButton
+    Friend WithEvents menuitemDebug_ShowTestForm As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents panelMain As System.Windows.Forms.TableLayoutPanel
+    Friend WithEvents toolstripMain As System.Windows.Forms.ToolStrip
+    Friend WithEvents dropdownbuttonTablas As System.Windows.Forms.ToolStripDropDownButton
+    Friend WithEvents menutitemTablas_Entidades As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents menuitemTablas_Productos As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents menuitemTablas_Cosechas As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents menuitemTablas_Permisos As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents menuitemTablas_GruposUsuarios As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents menuitemTablas_Usuarios As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents menutitemTablas_Entidades As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents menuitemDebug_ShowTestForm As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents menuitemTablas_Permisos As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents buttonPesadas As System.Windows.Forms.ToolStripButton
+    Friend WithEvents buttonReportes As System.Windows.Forms.ToolStripButton
+    Friend WithEvents textboxKilogramo As System.Windows.Forms.TextBox
 End Class
