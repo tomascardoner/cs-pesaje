@@ -4,34 +4,32 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f60ecae879c946eeab33f133da41948d" Name="Diagram1">
-        <EntityTypeShape EntityType="CSPesajeModel.Camion" Width="1.5" PointX="3" PointY="17" IsExpanded="true" />
-        <EntityTypeShape EntityType="CSPesajeModel.Cosecha" Width="1.5" PointX="3" PointY="21.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="CSPesajeModel.Cosecha_Producto_Tarifa" Width="1.5" PointX="8.25" PointY="27.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="CSPesajeModel.Cosecha_Producto_TarifaEscala" Width="1.5" PointX="10.5" PointY="29.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="CSPesajeModel.Entidad" Width="1.5" PointX="5.25" PointY="21.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="CSPesajeModel.Entidad_OrigenDestino" Width="1.5" PointX="7.5" PointY="22.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CSPesajeModel.Localidad" Width="1.5" PointX="0.75" PointY="20.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CSPesajeModel.OrigenDestino" Width="1.5" PointX="3" PointY="25.625" IsExpanded="true" />
+      <Diagram DiagramId="f60ecae879c946eeab33f133da41948d" Name="Diagram1" ZoomLevel="75">
+        <EntityTypeShape EntityType="CSPesajeModel.Camion" Width="1.5" PointX="6" PointY="25.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSPesajeModel.Cosecha" Width="1.5" PointX="3" PointY="24.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSPesajeModel.Cosecha_Producto_Tarifa" Width="1.5" PointX="8.25" PointY="30.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSPesajeModel.Cosecha_Producto_TarifaEscala" Width="1.5" PointX="10.5" PointY="32.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSPesajeModel.Entidad" Width="1.5" PointX="8.25" PointY="23" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSPesajeModel.Entidad_OrigenDestino" Width="1.5" PointX="10.5" PointY="24" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSPesajeModel.Localidad" Width="1.5" PointX="3.75" PointY="20.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSPesajeModel.OrigenDestino" Width="1.5" PointX="6" PointY="19.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CSPesajeModel.Parametro" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CSPesajeModel.Pesada" Width="1.5" PointX="13.5" PointY="24.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="CSPesajeModel.Pesada_Acondicionamiento" Width="1.5" PointX="15.75" PointY="22.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="CSPesajeModel.Pesada_Analisis" Width="1.5" PointX="15.75" PointY="27.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="CSPesajeModel.Pesada_Otro" Width="1.5" PointX="15.75" PointY="31.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CSPesajeModel.Planta" Width="1.5" PointX="3" PointY="30.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="CSPesajeModel.Producto" Width="1.5" PointX="3" PointY="35.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="CSPesajeModel.Producto_Cosecha" Width="1.5" PointX="5.25" PointY="29.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="CSPesajeModel.Producto_Planta" Width="1.5" PointX="5.25" PointY="34.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="CSPesajeModel.Provincia" Width="1.5" PointX="1.5" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSPesajeModel.Pesada" Width="1.5" PointX="13.5" PointY="27.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSPesajeModel.Pesada_Acondicionamiento" Width="1.5" PointX="15.75" PointY="25.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSPesajeModel.Pesada_Analisis" Width="1.5" PointX="15.75" PointY="30.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSPesajeModel.Pesada_Otro" Width="1.5" PointX="15.75" PointY="35.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSPesajeModel.Planta" Width="1.5" PointX="3" PointY="33.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSPesajeModel.Producto" Width="1.5" PointX="3" PointY="37.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSPesajeModel.Producto_Cosecha" Width="1.5" PointX="5.25" PointY="32.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSPesajeModel.Producto_Planta" Width="1.5" PointX="5.25" PointY="35.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSPesajeModel.Provincia" Width="1.5" PointX="1.5" PointY="21.125" IsExpanded="true" />
         <EntityTypeShape EntityType="CSPesajeModel.Reporte" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="CSPesajeModel.ReporteGrupo" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
         <EntityTypeShape EntityType="CSPesajeModel.ReporteParametro" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="CSPesajeModel.Usuario" Width="1.5" PointX="0.75" PointY="24.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="CSPesajeModel.UsuarioGrupo" Width="1.5" PointX="3" PointY="40.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CSPesajeModel.UsuarioGrupoPermiso" Width="1.5" PointX="5.25" PointY="41.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSPesajeModel.Usuario" Width="1.5" PointX="0.75" PointY="24.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSPesajeModel.UsuarioGrupo" Width="1.5" PointX="3" PointY="43.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSPesajeModel.UsuarioGrupoPermiso" Width="1.5" PointX="5.25" PointY="44.25" IsExpanded="true" />
         <AssociationConnector Association="CSPesajeModel.FK__Camion__Entidad" ManuallyRouted="false" />
-        <AssociationConnector Association="CSPesajeModel.FK__Camion__Pesada" ManuallyRouted="false" >
-        </AssociationConnector>
         <AssociationConnector Association="CSPesajeModel.FK__Usuario__Camion__Creacion" ManuallyRouted="false" />
         <AssociationConnector Association="CSPesajeModel.FK__Usuario__Camion__Modificacion" ManuallyRouted="false" />
         <AssociationConnector Association="CSPesajeModel.FK__Cosecha__Cosecha_Producto_Tarifa" ManuallyRouted="false" />
@@ -77,11 +75,13 @@
         <AssociationConnector Association="CSPesajeModel.FK__UsuarioGrupo__Usuario" ManuallyRouted="false" />
         <AssociationConnector Association="CSPesajeModel.FK__UsuarioGrupo__UsuarioGrupoPermiso" ManuallyRouted="false" />
         <AssociationConnector Association="CSPesajeModel.FK__Entidad__Camion" />
-        <EntityTypeShape EntityType="CSPesajeModel.Producto_Humedad" Width="1.5" PointX="5.25" PointY="37.875" />
+        <EntityTypeShape EntityType="CSPesajeModel.Producto_Humedad" Width="1.5" PointX="5.25" PointY="39.375" />
         <AssociationConnector Association="CSPesajeModel.FK__Producto__Producto_Humedad" />
-        <EntityTypeShape EntityType="CSPesajeModel.Entidad_Producto_Planta" Width="1.5" PointX="10.5" PointY="33" />
+        <EntityTypeShape EntityType="CSPesajeModel.Entidad_Producto_Planta" Width="1.5" PointX="10.5" PointY="28.625" />
         <AssociationConnector Association="CSPesajeModel.FK__Entidad__Entidad_Producto_Planta" />
         <AssociationConnector Association="CSPesajeModel.FK__Producto_Planta__Entidad_Producto_Planta" />
+        <AssociationConnector Association="CSPesajeModel.FK__Camion__Pesada" ManuallyRouted="false" >
+        </AssociationConnector>
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

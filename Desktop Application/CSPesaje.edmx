@@ -182,6 +182,7 @@
           <Property Name="IDOrigenDestino" Type="int" />
           <Property Name="Transportista_IDEntidad" Type="int" />
           <Property Name="Chofer_IDEntidad" Type="int" />
+          <Property Name="Camion_IDEntidad" Type="int" />
           <Property Name="IDCamion" Type="tinyint" />
           <Property Name="Kilometro" Type="smallint" />
           <Property Name="KilogramoBruto" Type="int" />
@@ -416,7 +417,7 @@
               <PropertyRef Name="IDCamion" />
             </Principal>
             <Dependent Role="Pesada">
-              <PropertyRef Name="Transportista_IDEntidad" />
+              <PropertyRef Name="Camion_IDEntidad" />
               <PropertyRef Name="IDCamion" />
             </Dependent>
           </ReferentialConstraint>
@@ -1266,10 +1267,6 @@
             <End Role="Camion" EntitySet="Camion" />
             <End Role="Entidad" EntitySet="Entidad" />
           </AssociationSet>
-          <AssociationSet Name="FK__Camion__Pesada" Association="CSPesajeModel.FK__Camion__Pesada">
-            <End Role="Camion" EntitySet="Camion" />
-            <End Role="Pesada" EntitySet="Pesada" />
-          </AssociationSet>
           <AssociationSet Name="FK__Usuario__Camion__Creacion" Association="CSPesajeModel.FK__Usuario__Camion__Creacion">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Camion" EntitySet="Camion" />
@@ -1464,6 +1461,10 @@
             <End Role="Producto_Planta" EntitySet="Producto_Planta" />
             <End Role="Entidad_Producto_Planta" EntitySet="Entidad_Producto_Planta" />
           </AssociationSet>
+          <AssociationSet Name="FK__Camion__Pesada" Association="CSPesajeModel.FK__Camion__Pesada">
+            <End Role="Camion" EntitySet="Camion" />
+            <End Role="Pesada" EntitySet="Pesada" />
+          </AssociationSet>
         </EntityContainer>		
 		<EntityType Name="Camion">
           <Key>
@@ -1482,10 +1483,10 @@
           <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Choferes" Relationship="CSPesajeModel.FK__Camion__Entidad" FromRole="Camion" ToRole="Entidad" />
-          <NavigationProperty Name="Pesadas" Relationship="CSPesajeModel.FK__Camion__Pesada" FromRole="Camion" ToRole="Pesada" />
           <NavigationProperty Name="UsuarioCreacion" Relationship="CSPesajeModel.FK__Usuario__Camion__Creacion" FromRole="Camion" ToRole="Usuario" />
           <NavigationProperty Name="UsuarioModificacion" Relationship="CSPesajeModel.FK__Usuario__Camion__Modificacion" FromRole="Camion" ToRole="Usuario" />
           <NavigationProperty Name="Transportista" Relationship="CSPesajeModel.FK__Entidad__Camion" FromRole="Camion" ToRole="Entidad" />
+          <NavigationProperty Name="Pesadas" Relationship="CSPesajeModel.FK__Camion__Pesada" FromRole="Camion" ToRole="Pesada" />
         </EntityType>
         <EntityType Name="Cosecha">
           <Key>
@@ -1666,6 +1667,7 @@
           <Property Name="IDOrigenDestino" Type="Int32" />
           <Property Name="Transportista_IDEntidad" Type="Int32" />
           <Property Name="Chofer_IDEntidad" Type="Int32" />
+          <Property Name="Camion_IDEntidad" Type="Int32" />
           <Property Name="IDCamion" Type="Byte" />
           <Property Name="Kilometro" Type="Int16" />
           <Property Name="KilogramoBruto" Type="Int32" />
@@ -1677,7 +1679,6 @@
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Camion" Relationship="CSPesajeModel.FK__Camion__Pesada" FromRole="Pesada" ToRole="Camion" />
           <NavigationProperty Name="Cosecha" Relationship="CSPesajeModel.FK__Cosecha__Pesada" FromRole="Pesada" ToRole="Cosecha" />
           <NavigationProperty Name="EntidadChofer" Relationship="CSPesajeModel.FK__Entidad__Pesada__Chofer" FromRole="Pesada" ToRole="Entidad" />
           <NavigationProperty Name="EntidadTitular" Relationship="CSPesajeModel.FK__Entidad__Pesada__Titular" FromRole="Pesada" ToRole="Entidad" />
@@ -1689,6 +1690,7 @@
           <NavigationProperty Name="Producto" Relationship="CSPesajeModel.FK__Producto__Pesada" FromRole="Pesada" ToRole="Producto" />
           <NavigationProperty Name="UsuarioCreacion" Relationship="CSPesajeModel.FK__Usuario__Pesada__Creacion" FromRole="Pesada" ToRole="Usuario" />
           <NavigationProperty Name="UsuarioModificacion" Relationship="CSPesajeModel.FK__Usuario__Pesada__Modificacion" FromRole="Pesada" ToRole="Usuario" />
+          <NavigationProperty Name="Camion" Relationship="CSPesajeModel.FK__Camion__Pesada" FromRole="Pesada" ToRole="Camion" />
         </EntityType>
         <EntityType Name="Pesada_Acondicionamiento">
           <Key>
@@ -1938,20 +1940,6 @@
               <PropertyRef Name="IDCamion" />
             </Principal>
             <Dependent Role="Entidad">
-              <PropertyRef Name="Transportista_IDEntidad" />
-              <PropertyRef Name="IDCamion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Camion__Pesada">
-          <End Role="Camion" Type="CSPesajeModel.Camion" Multiplicity="0..1" />
-          <End Role="Pesada" Type="CSPesajeModel.Pesada" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Camion">
-              <PropertyRef Name="IDEntidad" />
-              <PropertyRef Name="IDCamion" />
-            </Principal>
-            <Dependent Role="Pesada">
               <PropertyRef Name="Transportista_IDEntidad" />
               <PropertyRef Name="IDCamion" />
             </Dependent>
@@ -2565,6 +2553,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Camion__Pesada">
+          <End Type="CSPesajeModel.Camion" Role="Camion" Multiplicity="0..1" />
+          <End Type="CSPesajeModel.Pesada" Role="Pesada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Camion">
+              <PropertyRef Name="IDEntidad" />
+              <PropertyRef Name="IDCamion" />
+            </Principal>
+            <Dependent Role="Pesada">
+              <PropertyRef Name="Camion_IDEntidad" />
+              <PropertyRef Name="IDCamion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2723,6 +2725,7 @@
           <EntitySetMapping Name="Pesada">
             <EntityTypeMapping TypeName="CSPesajeModel.Pesada">
               <MappingFragment StoreEntitySet="Pesada">
+                <ScalarProperty Name="Camion_IDEntidad" ColumnName="Camion_IDEntidad" />
                 <ScalarProperty Name="TipoNombre" ColumnName="TipoNombre" />
                 <ScalarProperty Name="IDPesada" ColumnName="IDPesada" />
                 <ScalarProperty Name="FechaHoraInicio" ColumnName="FechaHoraInicio" />

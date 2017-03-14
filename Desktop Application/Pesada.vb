@@ -24,6 +24,7 @@ Partial Public Class Pesada
     Public Property IDOrigenDestino As Nullable(Of Integer)
     Public Property Transportista_IDEntidad As Nullable(Of Integer)
     Public Property Chofer_IDEntidad As Nullable(Of Integer)
+    Public Property Camion_IDEntidad As Nullable(Of Integer)
     Public Property IDCamion As Nullable(Of Byte)
     Public Property Kilometro As Nullable(Of Short)
     Public Property KilogramoBruto As Nullable(Of Integer)
@@ -36,7 +37,6 @@ Partial Public Class Pesada
     Public Property IDUsuarioModificacion As Short
     Public Property FechaHoraModificacion As Date
 
-    Public Overridable Property Camion As Camion
     Public Overridable Property Cosecha As Cosecha
     Public Overridable Property EntidadChofer As Entidad
     Public Overridable Property EntidadTitular As Entidad
@@ -48,5 +48,6 @@ Partial Public Class Pesada
     Public Overridable Property Producto As Producto
     Public Overridable Property UsuarioCreacion As Usuario
     Public Overridable Property UsuarioModificacion As Usuario
+    Public Overridable Property Camion As Camion
 
 End Class

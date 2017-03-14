@@ -175,7 +175,7 @@
         ComboBoxControl.DataSource = listItems
     End Sub
 
-    Friend Sub Camion(ByRef ComboBoxControl As ComboBox, ByVal IDCamionActual As Byte?, ByVal MostrarItemOtro As Boolean, ByVal IDTransportista As Integer?, ByVal MostrarNombre As Boolean, ByVal MostrarPatentes As Boolean, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
+    Friend Sub Camion(ByRef ComboBoxControl As ComboBox, ByVal IDCamionActual As Byte?, ByVal MostrarItemOtro As Boolean, ByVal IDEntidad As Integer?, ByVal MostrarNombre As Boolean, ByVal MostrarPatentes As Boolean, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
         Dim listItems As List(Of Camion_ListItem)
 
         ComboBoxControl.ValueMember = "IDCamion"
@@ -183,17 +183,17 @@
 
         If MostrarNombre And MostrarPatentes Then
             listItems = (From c In mdbContext.Camion
-                         Where (c.IDEntidad <> CS_Constants.FIELD_VALUE_OTHER_INTEGER Or MostrarItemOtro) And ((IDCamionActual.HasValue And c.IDCamion = IDCamionActual.Value) Or c.IDEntidad = IDTransportista)
+                         Where (c.IDEntidad <> CS_Constants.FIELD_VALUE_OTHER_INTEGER Or MostrarItemOtro) And ((IDCamionActual.HasValue And c.IDCamion = IDCamionActual.Value) Or c.IDEntidad = IDEntidad)
                          Order By c.DominioChasis, c.DominioAcoplado
                          Select New Camion_ListItem With {.IDCamion = c.IDCamion, .Descripcion = c.Nombre & CStr(If(c.DominioChasis Is Nothing, "", " - " & c.DominioChasis)) & CStr(If(c.DominioAcoplado Is Nothing, "", " - " & c.DominioAcoplado))}).ToList
         ElseIf MostrarNombre Then
             listItems = (From c In mdbContext.Camion
-                         Where (c.IDEntidad <> CS_Constants.FIELD_VALUE_OTHER_INTEGER Or MostrarItemOtro) And ((IDCamionActual.HasValue And c.IDCamion = IDCamionActual.Value) Or c.IDEntidad = IDTransportista)
+                         Where (c.IDEntidad <> CS_Constants.FIELD_VALUE_OTHER_INTEGER Or MostrarItemOtro) And ((IDCamionActual.HasValue And c.IDCamion = IDCamionActual.Value) Or c.IDEntidad = IDEntidad)
                          Order By c.Nombre
                          Select New Camion_ListItem With {.IDCamion = c.IDCamion, .Descripcion = c.Nombre}).ToList
         ElseIf MostrarPatentes Then
             listItems = (From c In mdbContext.Camion
-                         Where (c.IDEntidad <> CS_Constants.FIELD_VALUE_OTHER_INTEGER Or MostrarItemOtro) And ((IDCamionActual.HasValue And c.IDCamion = IDCamionActual.Value) Or c.IDEntidad = IDTransportista)
+                         Where (c.IDEntidad <> CS_Constants.FIELD_VALUE_OTHER_INTEGER Or MostrarItemOtro) And ((IDCamionActual.HasValue And c.IDCamion = IDCamionActual.Value) Or c.IDEntidad = IDEntidad)
                          Order By c.DominioChasis, c.DominioAcoplado
                          Select New Camion_ListItem With {.IDCamion = c.IDCamion, .Descripcion = CStr(If(c.DominioChasis Is Nothing, "", c.DominioChasis)) & CStr(If(c.DominioAcoplado Is Nothing, "", " - " & c.DominioAcoplado))}).ToList
         Else
