@@ -596,9 +596,9 @@
             pFillAndRefreshLists.Camion(comboboxCamion, mPesadaActual.IDCamion, False, CInt(comboboxTransportista.SelectedValue), True, True, False, True)
             ChoferTodos()
 
-            If CInt(comboboxTransportista.SelectedValue) = CS_Constants.FIELD_VALUE_OTHER_INTEGER Then
-                CS_Control_ComboBox.SetSelectedValue(comboboxCamion, SelectedItemOptions.ValueOrFirst, CS_Constants.FIELD_VALUE_OTHER_BYTE)
-                CS_Control_ComboBox.SetSelectedValue(comboboxChofer, SelectedItemOptions.ValueOrFirst, CS_Constants.FIELD_VALUE_OTHER_INTEGER)
+            If CInt(comboboxTransportista.SelectedValue) = CS_Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER Then
+                CS_Control_ComboBox.SetSelectedValue(comboboxCamion, SelectedItemOptions.First)
+                CS_Control_ComboBox.SetSelectedValue(comboboxChofer, SelectedItemOptions.First)
             Else
                 CS_Control_ComboBox.SetSelectedValue(comboboxCamion, SelectedItemOptions.First)
                 CS_Control_ComboBox.SetSelectedValue(comboboxChofer, SelectedItemOptions.First)
@@ -631,7 +631,8 @@
     End Sub
 
     Private Sub ChoferCambio() Handles comboboxChofer.SelectedValueChanged
-        If comboboxChofer.SelectedIndex > 0 Then
+        If Not comboboxChofer.SelectedItem Is Nothing Then
+            maskedtextboxChoferCUIT_CUIL.Text = CType(comboboxChofer.SelectedItem, Entidad).CUIT_CUIL
             If CType(comboboxChofer.SelectedItem, Entidad).IDCamion.HasValue Then
                 CS_Control_ComboBox.SetSelectedValue(comboboxCamion, SelectedItemOptions.ValueOrFirst, CType(comboboxChofer.SelectedItem, Entidad).IDCamion)
             End If

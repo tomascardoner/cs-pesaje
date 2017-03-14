@@ -125,7 +125,7 @@
         ComboBoxControl.DisplayMember = "Nombre"
 
         listItems = (From ent In mdbContext.Entidad
-                     Where (ent.IDEntidad <> CS_Constants.FIELD_VALUE_OTHER_INTEGER Or MostrarItemOtro) And (IDEntidadActual.HasValue And ent.IDEntidad = IDEntidadActual.Value) Or (ent.EsActivo And ((EsTitular And ent.EsTitular) Or (EsTransportista And ent.EsTransportista) Or EsChofer And ent.EsChofer) And (ent.Transportista_IDEntidad = IDTransportista Or IDTransportista = CS_Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER) And (ent.UsoFrecuente Or Not UsoFrecuente))
+                     Where (ent.IDEntidad <> CS_Constants.FIELD_VALUE_OTHER_INTEGER Or MostrarItemOtro) And ((IDEntidadActual.HasValue And ent.IDEntidad = IDEntidadActual.Value) Or (ent.EsActivo And ((EsTitular And ent.EsTitular) Or (EsTransportista And ent.EsTransportista) Or EsChofer And ent.EsChofer) And (ent.Transportista_IDEntidad = IDTransportista Or IDTransportista = CS_Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER) And (ent.UsoFrecuente Or Not UsoFrecuente)))
                      Order By ent.Nombre
                      Select ent).ToList
 

@@ -92,6 +92,7 @@ Partial Class formPesada
         Me.textboxIDPesada = New System.Windows.Forms.TextBox()
         Me.labelInicio = New System.Windows.Forms.Label()
         Me.groupboxKilogramo = New System.Windows.Forms.GroupBox()
+        Me.buttonObtenerKilogramosTara = New System.Windows.Forms.Button()
         Me.buttonObtenerKilogramosBrutos = New System.Windows.Forms.Button()
         Me.labelKilogramoNeto = New System.Windows.Forms.Label()
         Me.integertextboxKilogramoNeto = New Syncfusion.Windows.Forms.Tools.IntegerTextBox()
@@ -119,7 +120,6 @@ Partial Class formPesada
         Me.labelZaranda = New System.Windows.Forms.Label()
         Me.doubletextboxHumedad = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
         Me.labelHumedad = New System.Windows.Forms.Label()
-        Me.buttonObtenerKilogramosTara = New System.Windows.Forms.Button()
         Me.toolstripMain.SuspendLayout()
         Me.groupboxTransporte.SuspendLayout()
         Me.groupboxTitular.SuspendLayout()
@@ -756,7 +756,8 @@ Partial Class formPesada
         Me.buttonFechaHoraFinAhora.Location = New System.Drawing.Point(303, 64)
         Me.buttonFechaHoraFinAhora.Name = "buttonFechaHoraFinAhora"
         Me.buttonFechaHoraFinAhora.Size = New System.Drawing.Size(22, 22)
-        Me.buttonFechaHoraFinAhora.TabIndex = 11
+        Me.buttonFechaHoraFinAhora.TabIndex = 9
+        Me.buttonFechaHoraFinAhora.TabStop = False
         Me.buttonFechaHoraFinAhora.Text = "Ahora"
         Me.buttonFechaHoraFinAhora.UseVisualStyleBackColor = True
         '
@@ -766,7 +767,8 @@ Partial Class formPesada
         Me.buttonFechaHoraInicioAhora.Location = New System.Drawing.Point(303, 38)
         Me.buttonFechaHoraInicioAhora.Name = "buttonFechaHoraInicioAhora"
         Me.buttonFechaHoraInicioAhora.Size = New System.Drawing.Size(22, 22)
-        Me.buttonFechaHoraInicioAhora.TabIndex = 10
+        Me.buttonFechaHoraInicioAhora.TabIndex = 5
+        Me.buttonFechaHoraInicioAhora.TabStop = False
         Me.buttonFechaHoraInicioAhora.Text = "Ahora"
         Me.buttonFechaHoraInicioAhora.UseVisualStyleBackColor = True
         '
@@ -776,7 +778,7 @@ Partial Class formPesada
         Me.labelComprobanteNumero.Location = New System.Drawing.Point(6, 96)
         Me.labelComprobanteNumero.Name = "labelComprobanteNumero"
         Me.labelComprobanteNumero.Size = New System.Drawing.Size(70, 13)
-        Me.labelComprobanteNumero.TabIndex = 8
+        Me.labelComprobanteNumero.TabIndex = 10
         Me.labelComprobanteNumero.Text = "Nº Comprob.:"
         '
         'maskedtextboxComprobanteNumero
@@ -789,7 +791,7 @@ Partial Class formPesada
         Me.maskedtextboxComprobanteNumero.Mask = "0000-00000000"
         Me.maskedtextboxComprobanteNumero.Name = "maskedtextboxComprobanteNumero"
         Me.maskedtextboxComprobanteNumero.Size = New System.Drawing.Size(90, 20)
-        Me.maskedtextboxComprobanteNumero.TabIndex = 9
+        Me.maskedtextboxComprobanteNumero.TabIndex = 11
         Me.maskedtextboxComprobanteNumero.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
         '
         'datetimepickerHoraFin
@@ -801,7 +803,7 @@ Partial Class formPesada
         Me.datetimepickerHoraFin.Name = "datetimepickerHoraFin"
         Me.datetimepickerHoraFin.ShowUpDown = True
         Me.datetimepickerHoraFin.Size = New System.Drawing.Size(85, 20)
-        Me.datetimepickerHoraFin.TabIndex = 7
+        Me.datetimepickerHoraFin.TabIndex = 8
         '
         'datetimepickerFechaFin
         '
@@ -811,7 +813,7 @@ Partial Class formPesada
         Me.datetimepickerFechaFin.MinDate = New Date(2017, 1, 1, 0, 0, 0, 0)
         Me.datetimepickerFechaFin.Name = "datetimepickerFechaFin"
         Me.datetimepickerFechaFin.Size = New System.Drawing.Size(114, 20)
-        Me.datetimepickerFechaFin.TabIndex = 6
+        Me.datetimepickerFechaFin.TabIndex = 7
         '
         'labelFin
         '
@@ -819,7 +821,7 @@ Partial Class formPesada
         Me.labelFin.Location = New System.Drawing.Point(6, 69)
         Me.labelFin.Name = "labelFin"
         Me.labelFin.Size = New System.Drawing.Size(24, 13)
-        Me.labelFin.TabIndex = 5
+        Me.labelFin.TabIndex = 6
         Me.labelFin.Text = "Fin:"
         '
         'datetimepickerHoraInicio
@@ -887,6 +889,16 @@ Partial Class formPesada
         Me.groupboxKilogramo.Size = New System.Drawing.Size(182, 93)
         Me.groupboxKilogramo.TabIndex = 4
         Me.groupboxKilogramo.TabStop = False
+        '
+        'buttonObtenerKilogramosTara
+        '
+        Me.buttonObtenerKilogramosTara.Image = Global.CSPesaje.DesktopApplication.My.Resources.Resources.IMAGE_SCALE_16
+        Me.buttonObtenerKilogramosTara.Location = New System.Drawing.Point(151, 38)
+        Me.buttonObtenerKilogramosTara.Name = "buttonObtenerKilogramosTara"
+        Me.buttonObtenerKilogramosTara.Size = New System.Drawing.Size(22, 22)
+        Me.buttonObtenerKilogramosTara.TabIndex = 5
+        Me.buttonObtenerKilogramosTara.Text = "Ahora"
+        Me.buttonObtenerKilogramosTara.UseVisualStyleBackColor = True
         '
         'buttonObtenerKilogramosBrutos
         '
@@ -1261,16 +1273,6 @@ Partial Class formPesada
         Me.labelHumedad.Size = New System.Drawing.Size(56, 13)
         Me.labelHumedad.TabIndex = 0
         Me.labelHumedad.Text = "Humedad:"
-        '
-        'buttonObtenerKilogramosTara
-        '
-        Me.buttonObtenerKilogramosTara.Image = Global.CSPesaje.DesktopApplication.My.Resources.Resources.IMAGE_SCALE_16
-        Me.buttonObtenerKilogramosTara.Location = New System.Drawing.Point(151, 38)
-        Me.buttonObtenerKilogramosTara.Name = "buttonObtenerKilogramosTara"
-        Me.buttonObtenerKilogramosTara.Size = New System.Drawing.Size(22, 22)
-        Me.buttonObtenerKilogramosTara.TabIndex = 5
-        Me.buttonObtenerKilogramosTara.Text = "Ahora"
-        Me.buttonObtenerKilogramosTara.UseVisualStyleBackColor = True
         '
         'formPesada
         '

@@ -23,38 +23,20 @@ Partial Class formPesadas
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(formPesadas))
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.statusstripMain = New System.Windows.Forms.StatusStrip()
         Me.statuslabelMain = New System.Windows.Forms.ToolStripStatusLabel()
         Me.datagridviewMain = New System.Windows.Forms.DataGridView()
-        Me.columnIDPesada = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnFechaHoraInicio = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnFechaHoraFin = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnComprobanteNumero = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnEntidadTitular = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnProducto = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnTipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnCosecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnOrigenDestino = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnKilogramoBruto = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnKilogramoTara = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnKilogramoNeto = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnHumedad = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnZaranda = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnKilogramoFinal = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnEntidadTransportista = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnChofer = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnCamion = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.bindingsourceMain = New System.Windows.Forms.BindingSource(Me.components)
         Me.ribbonMain = New Syncfusion.Windows.Forms.Tools.RibbonControlAdv()
         Me.toolstriptabPrincipal = New Syncfusion.Windows.Forms.Tools.ToolStripTabItem()
@@ -99,6 +81,24 @@ Partial Class formPesadas
         Me.toolstripgroupChofer = New Syncfusion.Windows.Forms.Tools.ToolStripEx()
         Me.comboboxChofer = New System.Windows.Forms.ToolStripComboBox()
         Me.toolstriptabFiltrosAvanzados = New Syncfusion.Windows.Forms.Tools.ToolStripTabItem()
+        Me.columnIDPesada = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnFechaHoraInicio = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnFechaHoraFin = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnComprobanteNumero = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnEntidadTitular = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnProducto = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnTipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnCosecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnOrigenDestino = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnKilogramoBruto = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnKilogramoTara = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnKilogramoNeto = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnHumedad = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnZaranda = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnKilogramoFinal = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnEntidadTransportista = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnChofer = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnCamion = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.statusstripMain.SuspendLayout()
         CType(Me.datagridviewMain, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.bindingsourceMain, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -138,11 +138,11 @@ Partial Class formPesadas
         Me.datagridviewMain.AllowUserToDeleteRows = False
         Me.datagridviewMain.AllowUserToOrderColumns = True
         Me.datagridviewMain.AllowUserToResizeRows = False
-        DataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.GradientActiveCaption
-        DataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
-        DataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.WindowText
-        Me.datagridviewMain.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle11
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.GradientActiveCaption
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText
+        Me.datagridviewMain.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.datagridviewMain.AutoGenerateColumns = False
         Me.datagridviewMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.datagridviewMain.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnIDPesada, Me.columnFechaHoraInicio, Me.columnFechaHoraFin, Me.columnComprobanteNumero, Me.columnEntidadTitular, Me.columnProducto, Me.columnTipo, Me.columnCosecha, Me.columnOrigenDestino, Me.columnKilogramoBruto, Me.columnKilogramoTara, Me.columnKilogramoNeto, Me.columnHumedad, Me.columnZaranda, Me.columnKilogramoFinal, Me.columnEntidadTransportista, Me.columnChofer, Me.columnCamion})
@@ -157,200 +157,6 @@ Partial Class formPesadas
         Me.datagridviewMain.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.datagridviewMain.Size = New System.Drawing.Size(999, 222)
         Me.datagridviewMain.TabIndex = 3
-        '
-        'columnIDPesada
-        '
-        Me.columnIDPesada.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnIDPesada.DataPropertyName = "IDPesada"
-        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle12.Format = "N0"
-        DataGridViewCellStyle12.NullValue = Nothing
-        Me.columnIDPesada.DefaultCellStyle = DataGridViewCellStyle12
-        Me.columnIDPesada.HeaderText = "Número"
-        Me.columnIDPesada.Name = "columnIDPesada"
-        Me.columnIDPesada.ReadOnly = True
-        Me.columnIDPesada.Width = 69
-        '
-        'columnFechaHoraInicio
-        '
-        Me.columnFechaHoraInicio.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnFechaHoraInicio.DataPropertyName = "FechaHoraInicio"
-        DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle13.Format = "g"
-        DataGridViewCellStyle13.NullValue = Nothing
-        Me.columnFechaHoraInicio.DefaultCellStyle = DataGridViewCellStyle13
-        Me.columnFechaHoraInicio.HeaderText = "Inicio"
-        Me.columnFechaHoraInicio.Name = "columnFechaHoraInicio"
-        Me.columnFechaHoraInicio.ReadOnly = True
-        Me.columnFechaHoraInicio.Width = 57
-        '
-        'columnFechaHoraFin
-        '
-        Me.columnFechaHoraFin.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnFechaHoraFin.DataPropertyName = "FechaHoraFin"
-        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle14.Format = "g"
-        DataGridViewCellStyle14.NullValue = Nothing
-        Me.columnFechaHoraFin.DefaultCellStyle = DataGridViewCellStyle14
-        Me.columnFechaHoraFin.HeaderText = "Fin"
-        Me.columnFechaHoraFin.Name = "columnFechaHoraFin"
-        Me.columnFechaHoraFin.ReadOnly = True
-        Me.columnFechaHoraFin.Width = 46
-        '
-        'columnComprobanteNumero
-        '
-        Me.columnComprobanteNumero.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnComprobanteNumero.DataPropertyName = "ComprobanteNumero"
-        Me.columnComprobanteNumero.HeaderText = "Comprobante"
-        Me.columnComprobanteNumero.Name = "columnComprobanteNumero"
-        Me.columnComprobanteNumero.ReadOnly = True
-        Me.columnComprobanteNumero.Width = 95
-        '
-        'columnEntidadTitular
-        '
-        Me.columnEntidadTitular.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnEntidadTitular.DataPropertyName = "TitularNombre"
-        Me.columnEntidadTitular.HeaderText = "Titular"
-        Me.columnEntidadTitular.Name = "columnEntidadTitular"
-        Me.columnEntidadTitular.ReadOnly = True
-        Me.columnEntidadTitular.Width = 61
-        '
-        'columnProducto
-        '
-        Me.columnProducto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnProducto.DataPropertyName = "ProductoNombre"
-        Me.columnProducto.HeaderText = "Producto"
-        Me.columnProducto.Name = "columnProducto"
-        Me.columnProducto.ReadOnly = True
-        Me.columnProducto.Width = 75
-        '
-        'columnTipo
-        '
-        Me.columnTipo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnTipo.DataPropertyName = "Tipo"
-        Me.columnTipo.HeaderText = "Tipo"
-        Me.columnTipo.Name = "columnTipo"
-        Me.columnTipo.ReadOnly = True
-        Me.columnTipo.Width = 53
-        '
-        'columnCosecha
-        '
-        Me.columnCosecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnCosecha.DataPropertyName = "CosechaNombre"
-        Me.columnCosecha.HeaderText = "Cosecha"
-        Me.columnCosecha.Name = "columnCosecha"
-        Me.columnCosecha.ReadOnly = True
-        Me.columnCosecha.Width = 74
-        '
-        'columnOrigenDestino
-        '
-        Me.columnOrigenDestino.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnOrigenDestino.DataPropertyName = "OrigenDestinoNombre"
-        Me.columnOrigenDestino.HeaderText = "Origen / Destino"
-        Me.columnOrigenDestino.Name = "columnOrigenDestino"
-        Me.columnOrigenDestino.ReadOnly = True
-        Me.columnOrigenDestino.Width = 101
-        '
-        'columnKilogramoBruto
-        '
-        Me.columnKilogramoBruto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnKilogramoBruto.DataPropertyName = "KilogramoBruto"
-        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle15.Format = "N0"
-        DataGridViewCellStyle15.NullValue = Nothing
-        Me.columnKilogramoBruto.DefaultCellStyle = DataGridViewCellStyle15
-        Me.columnKilogramoBruto.HeaderText = "Kgs. Bruto"
-        Me.columnKilogramoBruto.Name = "columnKilogramoBruto"
-        Me.columnKilogramoBruto.ReadOnly = True
-        Me.columnKilogramoBruto.Width = 75
-        '
-        'columnKilogramoTara
-        '
-        Me.columnKilogramoTara.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnKilogramoTara.DataPropertyName = "KilogramoTara"
-        DataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle16.Format = "N0"
-        Me.columnKilogramoTara.DefaultCellStyle = DataGridViewCellStyle16
-        Me.columnKilogramoTara.HeaderText = "Kgs. Tara"
-        Me.columnKilogramoTara.Name = "columnKilogramoTara"
-        Me.columnKilogramoTara.ReadOnly = True
-        Me.columnKilogramoTara.Width = 72
-        '
-        'columnKilogramoNeto
-        '
-        Me.columnKilogramoNeto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnKilogramoNeto.DataPropertyName = "KilogramoNeto"
-        DataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle17.Format = "N0"
-        Me.columnKilogramoNeto.DefaultCellStyle = DataGridViewCellStyle17
-        Me.columnKilogramoNeto.HeaderText = "Kgs. Neto"
-        Me.columnKilogramoNeto.Name = "columnKilogramoNeto"
-        Me.columnKilogramoNeto.ReadOnly = True
-        Me.columnKilogramoNeto.Width = 73
-        '
-        'columnHumedad
-        '
-        Me.columnHumedad.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnHumedad.DataPropertyName = "Humedad"
-        DataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle18.Format = "N1"
-        DataGridViewCellStyle18.NullValue = Nothing
-        Me.columnHumedad.DefaultCellStyle = DataGridViewCellStyle18
-        Me.columnHumedad.HeaderText = "Hum."
-        Me.columnHumedad.Name = "columnHumedad"
-        Me.columnHumedad.ReadOnly = True
-        Me.columnHumedad.Width = 57
-        '
-        'columnZaranda
-        '
-        Me.columnZaranda.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnZaranda.DataPropertyName = "Zaranda"
-        DataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle19.Format = "N1"
-        Me.columnZaranda.DefaultCellStyle = DataGridViewCellStyle19
-        Me.columnZaranda.HeaderText = "Zar."
-        Me.columnZaranda.Name = "columnZaranda"
-        Me.columnZaranda.ReadOnly = True
-        Me.columnZaranda.Width = 51
-        '
-        'columnKilogramoFinal
-        '
-        Me.columnKilogramoFinal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnKilogramoFinal.DataPropertyName = "KilogramoFinal"
-        DataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle20.Format = "N0"
-        Me.columnKilogramoFinal.DefaultCellStyle = DataGridViewCellStyle20
-        Me.columnKilogramoFinal.HeaderText = "Kgs. Final"
-        Me.columnKilogramoFinal.Name = "columnKilogramoFinal"
-        Me.columnKilogramoFinal.ReadOnly = True
-        Me.columnKilogramoFinal.Width = 72
-        '
-        'columnEntidadTransportista
-        '
-        Me.columnEntidadTransportista.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnEntidadTransportista.DataPropertyName = "TransportistaNombre"
-        Me.columnEntidadTransportista.HeaderText = "Transportista"
-        Me.columnEntidadTransportista.Name = "columnEntidadTransportista"
-        Me.columnEntidadTransportista.ReadOnly = True
-        Me.columnEntidadTransportista.Width = 93
-        '
-        'columnChofer
-        '
-        Me.columnChofer.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnChofer.DataPropertyName = "ChoferNombre"
-        Me.columnChofer.HeaderText = "Chofer"
-        Me.columnChofer.Name = "columnChofer"
-        Me.columnChofer.ReadOnly = True
-        Me.columnChofer.Width = 63
-        '
-        'columnCamion
-        '
-        Me.columnCamion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnCamion.DataPropertyName = "CamionNombreDominios"
-        Me.columnCamion.HeaderText = "Camión"
-        Me.columnCamion.Name = "columnCamion"
-        Me.columnCamion.ReadOnly = True
-        Me.columnCamion.Width = 67
         '
         'ribbonMain
         '
@@ -414,7 +220,7 @@ Partial Class formPesadas
         Me.toolstripgroupAcciones.Location = New System.Drawing.Point(0, 1)
         Me.toolstripgroupAcciones.Name = "toolstripgroupAcciones"
         Me.toolstripgroupAcciones.Padding = New System.Windows.Forms.Padding(0, 5, 0, 0)
-        Me.toolstripgroupAcciones.Size = New System.Drawing.Size(292, 69)
+        Me.toolstripgroupAcciones.Size = New System.Drawing.Size(261, 69)
         Me.toolstripgroupAcciones.TabIndex = 1
         Me.toolstripgroupAcciones.Text = "Acciones"
         '
@@ -489,7 +295,7 @@ Partial Class formPesadas
         Me.toolstripgroupPeriodo.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolstripgroupPeriodo.Image = Nothing
         Me.toolstripgroupPeriodo.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.comboboxPeriodoTipo, Me.comboboxPeriodoValor, Me.labelFecha, Me.buttonFechaDesdeAnterior, Me.buttonFechaDesdeSiguiente, Me.buttonFechaDesdeHoy, Me.labelFechaY, Me.buttonFechaHastaAnterior, Me.buttonFechaHastaSiguiente, Me.buttonFechaHastaHoy})
-        Me.toolstripgroupPeriodo.Location = New System.Drawing.Point(294, 1)
+        Me.toolstripgroupPeriodo.Location = New System.Drawing.Point(263, 1)
         Me.toolstripgroupPeriodo.Name = "toolstripgroupPeriodo"
         Me.toolstripgroupPeriodo.Padding = New System.Windows.Forms.Padding(0, 5, 0, 0)
         Me.toolstripgroupPeriodo.ShowLauncher = True
@@ -809,6 +615,200 @@ Partial Class formPesadas
         Me.toolstriptabFiltrosAvanzados.Tag = "1"
         Me.toolstriptabFiltrosAvanzados.Text = "Avanzados"
         '
+        'columnIDPesada
+        '
+        Me.columnIDPesada.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnIDPesada.DataPropertyName = "IDPesada"
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle2.Format = "N0"
+        DataGridViewCellStyle2.NullValue = Nothing
+        Me.columnIDPesada.DefaultCellStyle = DataGridViewCellStyle2
+        Me.columnIDPesada.HeaderText = "Número"
+        Me.columnIDPesada.Name = "columnIDPesada"
+        Me.columnIDPesada.ReadOnly = True
+        Me.columnIDPesada.Width = 69
+        '
+        'columnFechaHoraInicio
+        '
+        Me.columnFechaHoraInicio.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnFechaHoraInicio.DataPropertyName = "FechaHoraInicio"
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle3.Format = "g"
+        DataGridViewCellStyle3.NullValue = Nothing
+        Me.columnFechaHoraInicio.DefaultCellStyle = DataGridViewCellStyle3
+        Me.columnFechaHoraInicio.HeaderText = "Inicio"
+        Me.columnFechaHoraInicio.Name = "columnFechaHoraInicio"
+        Me.columnFechaHoraInicio.ReadOnly = True
+        Me.columnFechaHoraInicio.Width = 57
+        '
+        'columnFechaHoraFin
+        '
+        Me.columnFechaHoraFin.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnFechaHoraFin.DataPropertyName = "FechaHoraFin"
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle4.Format = "g"
+        DataGridViewCellStyle4.NullValue = Nothing
+        Me.columnFechaHoraFin.DefaultCellStyle = DataGridViewCellStyle4
+        Me.columnFechaHoraFin.HeaderText = "Fin"
+        Me.columnFechaHoraFin.Name = "columnFechaHoraFin"
+        Me.columnFechaHoraFin.ReadOnly = True
+        Me.columnFechaHoraFin.Width = 46
+        '
+        'columnComprobanteNumero
+        '
+        Me.columnComprobanteNumero.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnComprobanteNumero.DataPropertyName = "ComprobanteNumero"
+        Me.columnComprobanteNumero.HeaderText = "Comprobante"
+        Me.columnComprobanteNumero.Name = "columnComprobanteNumero"
+        Me.columnComprobanteNumero.ReadOnly = True
+        Me.columnComprobanteNumero.Width = 95
+        '
+        'columnEntidadTitular
+        '
+        Me.columnEntidadTitular.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnEntidadTitular.DataPropertyName = "TitularNombre"
+        Me.columnEntidadTitular.HeaderText = "Titular"
+        Me.columnEntidadTitular.Name = "columnEntidadTitular"
+        Me.columnEntidadTitular.ReadOnly = True
+        Me.columnEntidadTitular.Width = 61
+        '
+        'columnProducto
+        '
+        Me.columnProducto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnProducto.DataPropertyName = "ProductoNombre"
+        Me.columnProducto.HeaderText = "Producto"
+        Me.columnProducto.Name = "columnProducto"
+        Me.columnProducto.ReadOnly = True
+        Me.columnProducto.Width = 75
+        '
+        'columnTipo
+        '
+        Me.columnTipo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnTipo.DataPropertyName = "TipoNombre"
+        Me.columnTipo.HeaderText = "Tipo"
+        Me.columnTipo.Name = "columnTipo"
+        Me.columnTipo.ReadOnly = True
+        Me.columnTipo.Width = 53
+        '
+        'columnCosecha
+        '
+        Me.columnCosecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnCosecha.DataPropertyName = "CosechaNombre"
+        Me.columnCosecha.HeaderText = "Cosecha"
+        Me.columnCosecha.Name = "columnCosecha"
+        Me.columnCosecha.ReadOnly = True
+        Me.columnCosecha.Width = 74
+        '
+        'columnOrigenDestino
+        '
+        Me.columnOrigenDestino.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnOrigenDestino.DataPropertyName = "OrigenDestinoNombre"
+        Me.columnOrigenDestino.HeaderText = "Origen / Destino"
+        Me.columnOrigenDestino.Name = "columnOrigenDestino"
+        Me.columnOrigenDestino.ReadOnly = True
+        Me.columnOrigenDestino.Width = 101
+        '
+        'columnKilogramoBruto
+        '
+        Me.columnKilogramoBruto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnKilogramoBruto.DataPropertyName = "KilogramoBruto"
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle5.Format = "N0"
+        DataGridViewCellStyle5.NullValue = Nothing
+        Me.columnKilogramoBruto.DefaultCellStyle = DataGridViewCellStyle5
+        Me.columnKilogramoBruto.HeaderText = "Kgs. Bruto"
+        Me.columnKilogramoBruto.Name = "columnKilogramoBruto"
+        Me.columnKilogramoBruto.ReadOnly = True
+        Me.columnKilogramoBruto.Width = 75
+        '
+        'columnKilogramoTara
+        '
+        Me.columnKilogramoTara.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnKilogramoTara.DataPropertyName = "KilogramoTara"
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle6.Format = "N0"
+        Me.columnKilogramoTara.DefaultCellStyle = DataGridViewCellStyle6
+        Me.columnKilogramoTara.HeaderText = "Kgs. Tara"
+        Me.columnKilogramoTara.Name = "columnKilogramoTara"
+        Me.columnKilogramoTara.ReadOnly = True
+        Me.columnKilogramoTara.Width = 72
+        '
+        'columnKilogramoNeto
+        '
+        Me.columnKilogramoNeto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnKilogramoNeto.DataPropertyName = "KilogramoNeto"
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle7.Format = "N0"
+        Me.columnKilogramoNeto.DefaultCellStyle = DataGridViewCellStyle7
+        Me.columnKilogramoNeto.HeaderText = "Kgs. Neto"
+        Me.columnKilogramoNeto.Name = "columnKilogramoNeto"
+        Me.columnKilogramoNeto.ReadOnly = True
+        Me.columnKilogramoNeto.Width = 73
+        '
+        'columnHumedad
+        '
+        Me.columnHumedad.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnHumedad.DataPropertyName = "Humedad"
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle8.Format = "N1"
+        DataGridViewCellStyle8.NullValue = Nothing
+        Me.columnHumedad.DefaultCellStyle = DataGridViewCellStyle8
+        Me.columnHumedad.HeaderText = "Hum."
+        Me.columnHumedad.Name = "columnHumedad"
+        Me.columnHumedad.ReadOnly = True
+        Me.columnHumedad.Width = 57
+        '
+        'columnZaranda
+        '
+        Me.columnZaranda.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnZaranda.DataPropertyName = "Zaranda"
+        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle9.Format = "N1"
+        Me.columnZaranda.DefaultCellStyle = DataGridViewCellStyle9
+        Me.columnZaranda.HeaderText = "Zar."
+        Me.columnZaranda.Name = "columnZaranda"
+        Me.columnZaranda.ReadOnly = True
+        Me.columnZaranda.Width = 51
+        '
+        'columnKilogramoFinal
+        '
+        Me.columnKilogramoFinal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnKilogramoFinal.DataPropertyName = "KilogramoFinal"
+        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle10.Format = "N0"
+        Me.columnKilogramoFinal.DefaultCellStyle = DataGridViewCellStyle10
+        Me.columnKilogramoFinal.HeaderText = "Kgs. Final"
+        Me.columnKilogramoFinal.Name = "columnKilogramoFinal"
+        Me.columnKilogramoFinal.ReadOnly = True
+        Me.columnKilogramoFinal.Width = 72
+        '
+        'columnEntidadTransportista
+        '
+        Me.columnEntidadTransportista.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnEntidadTransportista.DataPropertyName = "TransportistaNombre"
+        Me.columnEntidadTransportista.HeaderText = "Transportista"
+        Me.columnEntidadTransportista.Name = "columnEntidadTransportista"
+        Me.columnEntidadTransportista.ReadOnly = True
+        Me.columnEntidadTransportista.Width = 93
+        '
+        'columnChofer
+        '
+        Me.columnChofer.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnChofer.DataPropertyName = "ChoferNombre"
+        Me.columnChofer.HeaderText = "Chofer"
+        Me.columnChofer.Name = "columnChofer"
+        Me.columnChofer.ReadOnly = True
+        Me.columnChofer.Width = 63
+        '
+        'columnCamion
+        '
+        Me.columnCamion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnCamion.DataPropertyName = "CamionNombreDominios"
+        Me.columnCamion.HeaderText = "Camión"
+        Me.columnCamion.Name = "columnCamion"
+        Me.columnCamion.ReadOnly = True
+        Me.columnCamion.Width = 67
+        '
         'formPesadas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -858,24 +858,6 @@ Partial Class formPesadas
     Private WithEvents statuslabelMain As System.Windows.Forms.ToolStripStatusLabel
     Private WithEvents datagridviewMain As System.Windows.Forms.DataGridView
     Private WithEvents bindingsourceMain As System.Windows.Forms.BindingSource
-    Private WithEvents columnIDPesada As System.Windows.Forms.DataGridViewTextBoxColumn
-    Private WithEvents columnFechaHoraInicio As System.Windows.Forms.DataGridViewTextBoxColumn
-    Private WithEvents columnFechaHoraFin As System.Windows.Forms.DataGridViewTextBoxColumn
-    Private WithEvents columnComprobanteNumero As System.Windows.Forms.DataGridViewTextBoxColumn
-    Private WithEvents columnEntidadTitular As System.Windows.Forms.DataGridViewTextBoxColumn
-    Private WithEvents columnProducto As System.Windows.Forms.DataGridViewTextBoxColumn
-    Private WithEvents columnTipo As System.Windows.Forms.DataGridViewTextBoxColumn
-    Private WithEvents columnCosecha As System.Windows.Forms.DataGridViewTextBoxColumn
-    Private WithEvents columnOrigenDestino As System.Windows.Forms.DataGridViewTextBoxColumn
-    Private WithEvents columnKilogramoBruto As System.Windows.Forms.DataGridViewTextBoxColumn
-    Private WithEvents columnKilogramoTara As System.Windows.Forms.DataGridViewTextBoxColumn
-    Private WithEvents columnKilogramoNeto As System.Windows.Forms.DataGridViewTextBoxColumn
-    Private WithEvents columnHumedad As System.Windows.Forms.DataGridViewTextBoxColumn
-    Private WithEvents columnZaranda As System.Windows.Forms.DataGridViewTextBoxColumn
-    Private WithEvents columnKilogramoFinal As System.Windows.Forms.DataGridViewTextBoxColumn
-    Private WithEvents columnEntidadTransportista As System.Windows.Forms.DataGridViewTextBoxColumn
-    Private WithEvents columnChofer As System.Windows.Forms.DataGridViewTextBoxColumn
-    Private WithEvents columnCamion As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents ribbonMain As Syncfusion.Windows.Forms.Tools.RibbonControlAdv
     Friend WithEvents toolstriptabPrincipal As Syncfusion.Windows.Forms.Tools.ToolStripTabItem
     Friend WithEvents toolstripgroupAcciones As Syncfusion.Windows.Forms.Tools.ToolStripEx
@@ -919,4 +901,22 @@ Partial Class formPesadas
     Friend WithEvents toolstriptabFiltrosAvanzados As Syncfusion.Windows.Forms.Tools.ToolStripTabItem
     Friend WithEvents menuitemImprimir_TicketPesada As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents menuitemImprimir_TicketPesadaReducido As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents columnIDPesada As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents columnFechaHoraInicio As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents columnFechaHoraFin As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents columnComprobanteNumero As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents columnEntidadTitular As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents columnProducto As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents columnTipo As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents columnCosecha As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents columnOrigenDestino As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents columnKilogramoBruto As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents columnKilogramoTara As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents columnKilogramoNeto As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents columnHumedad As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents columnZaranda As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents columnKilogramoFinal As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents columnEntidadTransportista As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents columnChofer As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents columnCamion As System.Windows.Forms.DataGridViewTextBoxColumn
 End Class
