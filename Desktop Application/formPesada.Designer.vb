@@ -46,6 +46,8 @@ Partial Class formPesada
         Me.checkboxTipoTodos = New System.Windows.Forms.CheckBox()
         Me.checkboxCosechaTodos = New System.Windows.Forms.CheckBox()
         Me.groupboxTransporte = New System.Windows.Forms.GroupBox()
+        Me.labelKilometro = New System.Windows.Forms.Label()
+        Me.integertextboxKilometro = New Syncfusion.Windows.Forms.Tools.IntegerTextBox()
         Me.labelCamion_DominioAcoplado = New System.Windows.Forms.Label()
         Me.textboxCamion_DominioAcoplado = New System.Windows.Forms.TextBox()
         Me.textboxCamion_DominioChasis = New System.Windows.Forms.TextBox()
@@ -120,8 +122,11 @@ Partial Class formPesada
         Me.labelZaranda = New System.Windows.Forms.Label()
         Me.doubletextboxHumedad = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
         Me.labelHumedad = New System.Windows.Forms.Label()
+        Me.labelComprobanteNumeroTercero = New System.Windows.Forms.Label()
+        Me.maskedtextboxComprobanteNumeroTercero = New System.Windows.Forms.MaskedTextBox()
         Me.toolstripMain.SuspendLayout()
         Me.groupboxTransporte.SuspendLayout()
+        CType(Me.integertextboxKilometro, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.groupboxTitular.SuspendLayout()
         Me.groupboxProductoPlantaCosecha.SuspendLayout()
         Me.groupboxTipo.SuspendLayout()
@@ -384,6 +389,8 @@ Partial Class formPesada
         '
         'groupboxTransporte
         '
+        Me.groupboxTransporte.Controls.Add(Me.labelKilometro)
+        Me.groupboxTransporte.Controls.Add(Me.integertextboxKilometro)
         Me.groupboxTransporte.Controls.Add(Me.checkboxCamionOtro)
         Me.groupboxTransporte.Controls.Add(Me.checkboxChoferOtro)
         Me.groupboxTransporte.Controls.Add(Me.checkboxChoferTodos)
@@ -406,9 +413,38 @@ Partial Class formPesada
         Me.groupboxTransporte.Controls.Add(Me.comboboxCamion)
         Me.groupboxTransporte.Location = New System.Drawing.Point(381, 42)
         Me.groupboxTransporte.Name = "groupboxTransporte"
-        Me.groupboxTransporte.Size = New System.Drawing.Size(353, 149)
+        Me.groupboxTransporte.Size = New System.Drawing.Size(353, 175)
         Me.groupboxTransporte.TabIndex = 3
         Me.groupboxTransporte.TabStop = False
+        '
+        'labelKilometro
+        '
+        Me.labelKilometro.AutoSize = True
+        Me.labelKilometro.Location = New System.Drawing.Point(6, 148)
+        Me.labelKilometro.Name = "labelKilometro"
+        Me.labelKilometro.Size = New System.Drawing.Size(58, 13)
+        Me.labelKilometro.TabIndex = 19
+        Me.labelKilometro.Text = "Kilómetros:"
+        '
+        'integertextboxKilometro
+        '
+        Me.integertextboxKilometro.AllowNull = True
+        Me.integertextboxKilometro.BackGroundColor = System.Drawing.SystemColors.Window
+        Me.integertextboxKilometro.BeforeTouchSize = New System.Drawing.Size(38, 20)
+        Me.integertextboxKilometro.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.integertextboxKilometro.IntegerValue = CType(0, Long)
+        Me.integertextboxKilometro.Location = New System.Drawing.Point(92, 145)
+        Me.integertextboxKilometro.MaxValue = CType(3000, Long)
+        Me.integertextboxKilometro.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
+        Me.integertextboxKilometro.MinValue = CType(0, Long)
+        Me.integertextboxKilometro.Name = "integertextboxKilometro"
+        Me.integertextboxKilometro.NullString = ""
+        Me.integertextboxKilometro.NumberNegativePattern = 0
+        Me.integertextboxKilometro.Size = New System.Drawing.Size(53, 20)
+        Me.integertextboxKilometro.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
+        Me.integertextboxKilometro.TabIndex = 20
+        Me.integertextboxKilometro.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.integertextboxKilometro.WordWrap = False
         '
         'labelCamion_DominioAcoplado
         '
@@ -732,6 +768,8 @@ Partial Class formPesada
         '
         'groupboxEncabezado
         '
+        Me.groupboxEncabezado.Controls.Add(Me.labelComprobanteNumeroTercero)
+        Me.groupboxEncabezado.Controls.Add(Me.maskedtextboxComprobanteNumeroTercero)
         Me.groupboxEncabezado.Controls.Add(Me.buttonFechaHoraFinAhora)
         Me.groupboxEncabezado.Controls.Add(Me.buttonFechaHoraInicioAhora)
         Me.groupboxEncabezado.Controls.Add(Me.labelComprobanteNumero)
@@ -884,9 +922,9 @@ Partial Class formPesada
         Me.groupboxKilogramo.Controls.Add(Me.integertextboxKilogramoTara)
         Me.groupboxKilogramo.Controls.Add(Me.labelKilogramoBruto)
         Me.groupboxKilogramo.Controls.Add(Me.integertextboxKilogramoBruto)
-        Me.groupboxKilogramo.Location = New System.Drawing.Point(381, 197)
+        Me.groupboxKilogramo.Location = New System.Drawing.Point(381, 223)
         Me.groupboxKilogramo.Name = "groupboxKilogramo"
-        Me.groupboxKilogramo.Size = New System.Drawing.Size(182, 93)
+        Me.groupboxKilogramo.Size = New System.Drawing.Size(353, 70)
         Me.groupboxKilogramo.TabIndex = 4
         Me.groupboxKilogramo.TabStop = False
         '
@@ -913,9 +951,10 @@ Partial Class formPesada
         'labelKilogramoNeto
         '
         Me.labelKilogramoNeto.AutoSize = True
-        Me.labelKilogramoNeto.Location = New System.Drawing.Point(6, 68)
+        Me.labelKilogramoNeto.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.labelKilogramoNeto.Location = New System.Drawing.Point(193, 29)
         Me.labelKilogramoNeto.Name = "labelKilogramoNeto"
-        Me.labelKilogramoNeto.Size = New System.Drawing.Size(57, 13)
+        Me.labelKilogramoNeto.Size = New System.Drawing.Size(69, 16)
         Me.labelKilogramoNeto.TabIndex = 6
         Me.labelKilogramoNeto.Text = "Kgs. Neto:"
         '
@@ -925,8 +964,9 @@ Partial Class formPesada
         Me.integertextboxKilogramoNeto.BackGroundColor = System.Drawing.SystemColors.Window
         Me.integertextboxKilogramoNeto.BeforeTouchSize = New System.Drawing.Size(38, 20)
         Me.integertextboxKilogramoNeto.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.integertextboxKilogramoNeto.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.integertextboxKilogramoNeto.IntegerValue = CType(0, Long)
-        Me.integertextboxKilogramoNeto.Location = New System.Drawing.Point(92, 65)
+        Me.integertextboxKilogramoNeto.Location = New System.Drawing.Point(268, 26)
         Me.integertextboxKilogramoNeto.MaxValue = CType(99999, Long)
         Me.integertextboxKilogramoNeto.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
         Me.integertextboxKilogramoNeto.MinValue = CType(0, Long)
@@ -934,7 +974,7 @@ Partial Class formPesada
         Me.integertextboxKilogramoNeto.NullString = ""
         Me.integertextboxKilogramoNeto.NumberNegativePattern = 0
         Me.integertextboxKilogramoNeto.ReadOnly = True
-        Me.integertextboxKilogramoNeto.Size = New System.Drawing.Size(53, 20)
+        Me.integertextboxKilogramoNeto.Size = New System.Drawing.Size(79, 22)
         Me.integertextboxKilogramoNeto.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
         Me.integertextboxKilogramoNeto.TabIndex = 7
         Me.integertextboxKilogramoNeto.TabStop = False
@@ -1274,6 +1314,28 @@ Partial Class formPesada
         Me.labelHumedad.TabIndex = 0
         Me.labelHumedad.Text = "Humedad:"
         '
+        'labelComprobanteNumeroTercero
+        '
+        Me.labelComprobanteNumeroTercero.AutoSize = True
+        Me.labelComprobanteNumeroTercero.Location = New System.Drawing.Point(204, 96)
+        Me.labelComprobanteNumeroTercero.Name = "labelComprobanteNumeroTercero"
+        Me.labelComprobanteNumeroTercero.Size = New System.Drawing.Size(47, 13)
+        Me.labelComprobanteNumeroTercero.TabIndex = 12
+        Me.labelComprobanteNumeroTercero.Text = "Tercero:"
+        '
+        'maskedtextboxComprobanteNumeroTercero
+        '
+        Me.maskedtextboxComprobanteNumeroTercero.AllowPromptAsInput = False
+        Me.maskedtextboxComprobanteNumeroTercero.AsciiOnly = True
+        Me.maskedtextboxComprobanteNumeroTercero.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
+        Me.maskedtextboxComprobanteNumeroTercero.HidePromptOnLeave = True
+        Me.maskedtextboxComprobanteNumeroTercero.Location = New System.Drawing.Point(257, 91)
+        Me.maskedtextboxComprobanteNumeroTercero.Mask = "0000-00000000"
+        Me.maskedtextboxComprobanteNumeroTercero.Name = "maskedtextboxComprobanteNumeroTercero"
+        Me.maskedtextboxComprobanteNumeroTercero.Size = New System.Drawing.Size(90, 20)
+        Me.maskedtextboxComprobanteNumeroTercero.TabIndex = 13
+        Me.maskedtextboxComprobanteNumeroTercero.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
+        '
         'formPesada
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1298,6 +1360,7 @@ Partial Class formPesada
         Me.toolstripMain.PerformLayout()
         Me.groupboxTransporte.ResumeLayout(False)
         Me.groupboxTransporte.PerformLayout()
+        CType(Me.integertextboxKilometro, System.ComponentModel.ISupportInitialize).EndInit()
         Me.groupboxTitular.ResumeLayout(False)
         Me.groupboxTitular.PerformLayout()
         Me.groupboxProductoPlantaCosecha.ResumeLayout(False)
@@ -1422,4 +1485,8 @@ Partial Class formPesada
     Friend WithEvents buttonFechaHoraFinAhora As System.Windows.Forms.Button
     Friend WithEvents buttonObtenerKilogramosBrutos As System.Windows.Forms.Button
     Friend WithEvents buttonObtenerKilogramosTara As System.Windows.Forms.Button
+    Friend WithEvents labelKilometro As System.Windows.Forms.Label
+    Friend WithEvents integertextboxKilometro As Syncfusion.Windows.Forms.Tools.IntegerTextBox
+    Friend WithEvents labelComprobanteNumeroTercero As System.Windows.Forms.Label
+    Friend WithEvents maskedtextboxComprobanteNumeroTercero As System.Windows.Forms.MaskedTextBox
 End Class

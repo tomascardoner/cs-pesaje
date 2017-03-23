@@ -191,6 +191,24 @@ Namespace My
                 Return CType(Me("ScaleConnectionEnabled"),Boolean)
             End Get
         End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(), _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.Configuration.DefaultSettingValueAttribute("balanza")> _
+        Public ReadOnly Property AutoLogon_Usuario() As String
+            Get
+                Return CType(Me("AutoLogon_Usuario"), String)
+            End Get
+        End Property
+
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(), _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.Configuration.DefaultSettingValueAttribute("Z7OZfx3IvSrrzNuh+wGYmg==")> _
+        Public ReadOnly Property AutoLogon_Password() As String
+            Get
+                Return CType(Me("AutoLogon_Password"), String)
+            End Get
+        End Property
     End Class
 End Namespace
 

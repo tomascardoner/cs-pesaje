@@ -116,7 +116,28 @@
                 pUsuario = dbcontext.Usuario.Find(1)
                 MiscFunctions.UserLoggedIn()
             End Using
+        ElseIf My.Settings.AutoLogon_Usuario <> "" Then
+            ' Se especifica un Usaurio de Auto Logon, por lo tanto, se procederá a verificar la información de Logon
+            Using dbcontext As New CSPesajeContext(True)
+                pUsuario = dbcontext.Usuario.Where(Function(us) us.Nombre = My.Settings.AutoLogon_Usuario).FirstOrDefault
+                If pUsuario Is Nothing Then
+                    Application.Exit()
+                    My.Application.Log.WriteEntry("La Aplicación ha finalizado porque el Usuario especificado en Auto-Logon no existe.", TraceEventType.Warning)
+                    Exit Sub
+                End If
+                Dim UserPasswordDecrypter As New CS_Encrypt_TripleDES(CS_Constants.ENCRYPTION_PASSWORD)
+                If String.Compare(UserPasswordDecrypter.Decrypt(My.Settings.AutoLogon_Password), pUsuario.Password, False) <> 0 Then
+                    UserPasswordDecrypter = Nothing
+                    Application.Exit()
+                    My.Application.Log.WriteEntry("La Aplicación ha finalizado porque el Password especificado en el Auto-Logon es incorrecto.", TraceEventType.Warning)
+                    Exit Sub
+                End If
+                UserPasswordDecrypter = Nothing
+
+                MiscFunctions.UserLoggedIn()
+            End Using
         Else
+            ' El Usuario debe iniciar sesión a través del form correspondiente
             If Not formLogin.ShowDialog(formMDIMain) = DialogResult.OK Then
                 Application.Exit()
                 My.Application.Log.WriteEntry("La Aplicación ha finalizado porque el Usuario no ha iniciado sesión.", TraceEventType.Warning)

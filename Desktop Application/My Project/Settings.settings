@@ -47,5 +47,11 @@
     <Setting Name="ScaleConnectionEnabled" Type="System.Boolean" Scope="Application">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="AutoLogon_Usuario" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">balanza</Value>
+    </Setting>
+    <Setting Name="AutoLogon_Password" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Z7OZfx3IvSrrzNuh+wGYmg==</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

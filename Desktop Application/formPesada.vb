@@ -99,6 +99,7 @@
         comboboxCamion.Enabled = mEditMode
         textboxCamion_DominioChasis.ReadOnly = Not mEditMode
         textboxCamion_DominioAcoplado.ReadOnly = Not mEditMode
+        integertextboxKilometro.ReadOnly = Not mEditMode
 
         ' Kilogramos
         integertextboxKilogramoBruto.ReadOnly = Not mEditMode
@@ -232,6 +233,7 @@
                 textboxCamion_DominioAcoplado.Text = ""
                 CS_Control_ComboBox.SetSelectedValue(comboboxCamion, SelectedItemOptions.ValueOrFirst, .IDCamion)
             End If
+            integertextboxKilometro.Text = CS_ValueTranslation.FromObjectIntegerToControlTextBox(.Kilometro)
 
             ' Kilogramos
             integertextboxKilogramoBruto.Text = CS_ValueTranslation.FromObjectIntegerToControlTextBox(.KilogramoBruto)
@@ -351,6 +353,7 @@
                     .Pesada_Otro.Camion_DominioAcoplado = ""
                 End If
             End If
+            .Kilometro = CS_ValueTranslation.FromControlTextBoxToObjectShort(integertextboxKilometro.Text)
 
             ' Kilogramos
             .KilogramoBruto = CS_ValueTranslation.FromControlTextBoxToObjectInteger(integertextboxKilogramoBruto.Text)
