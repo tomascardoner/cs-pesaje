@@ -81,6 +81,8 @@ Partial Class formPesada
         Me.textboxProducto = New System.Windows.Forms.TextBox()
         Me.comboboxProducto = New System.Windows.Forms.ComboBox()
         Me.groupboxEncabezado = New System.Windows.Forms.GroupBox()
+        Me.labelComprobanteNumeroTercero = New System.Windows.Forms.Label()
+        Me.maskedtextboxComprobanteNumeroTercero = New System.Windows.Forms.MaskedTextBox()
         Me.buttonFechaHoraFinAhora = New System.Windows.Forms.Button()
         Me.buttonFechaHoraInicioAhora = New System.Windows.Forms.Button()
         Me.labelComprobanteNumero = New System.Windows.Forms.Label()
@@ -106,6 +108,8 @@ Partial Class formPesada
         Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.labelNotas = New System.Windows.Forms.Label()
         Me.groupboxAnalisis = New System.Windows.Forms.GroupBox()
+        Me.integertextboxGranoDaniado = New Syncfusion.Windows.Forms.Tools.IntegerTextBox()
+        Me.integertextboxGranoVerde = New Syncfusion.Windows.Forms.Tools.IntegerTextBox()
         Me.labelMezclado = New System.Windows.Forms.Label()
         Me.checkboxMezclado = New System.Windows.Forms.CheckBox()
         Me.labelFumigado = New System.Windows.Forms.Label()
@@ -114,16 +118,12 @@ Partial Class formPesada
         Me.labelGluten = New System.Windows.Forms.Label()
         Me.doubletextboxPesoHectolitrico = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
         Me.labelPesoHectolitrico = New System.Windows.Forms.Label()
-        Me.doubletextboxGranoDaniado = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
         Me.labelGranoDaniado = New System.Windows.Forms.Label()
-        Me.doubletextboxGranoVerde = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
         Me.labelGranoVerde = New System.Windows.Forms.Label()
         Me.doubletextboxZaranda = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
         Me.labelZaranda = New System.Windows.Forms.Label()
         Me.doubletextboxHumedad = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
         Me.labelHumedad = New System.Windows.Forms.Label()
-        Me.labelComprobanteNumeroTercero = New System.Windows.Forms.Label()
-        Me.maskedtextboxComprobanteNumeroTercero = New System.Windows.Forms.MaskedTextBox()
         Me.toolstripMain.SuspendLayout()
         Me.groupboxTransporte.SuspendLayout()
         CType(Me.integertextboxKilometro, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -137,10 +137,10 @@ Partial Class formPesada
         CType(Me.integertextboxKilogramoBruto, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.groupboxNotas.SuspendLayout()
         Me.groupboxAnalisis.SuspendLayout()
+        CType(Me.integertextboxGranoDaniado, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.integertextboxGranoVerde, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.doubletextboxGluten, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.doubletextboxPesoHectolitrico, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.doubletextboxGranoDaniado, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.doubletextboxGranoVerde, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.doubletextboxZaranda, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.doubletextboxHumedad, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -788,6 +788,28 @@ Partial Class formPesada
         Me.groupboxEncabezado.TabIndex = 0
         Me.groupboxEncabezado.TabStop = False
         '
+        'labelComprobanteNumeroTercero
+        '
+        Me.labelComprobanteNumeroTercero.AutoSize = True
+        Me.labelComprobanteNumeroTercero.Location = New System.Drawing.Point(204, 96)
+        Me.labelComprobanteNumeroTercero.Name = "labelComprobanteNumeroTercero"
+        Me.labelComprobanteNumeroTercero.Size = New System.Drawing.Size(47, 13)
+        Me.labelComprobanteNumeroTercero.TabIndex = 12
+        Me.labelComprobanteNumeroTercero.Text = "Tercero:"
+        '
+        'maskedtextboxComprobanteNumeroTercero
+        '
+        Me.maskedtextboxComprobanteNumeroTercero.AllowPromptAsInput = False
+        Me.maskedtextboxComprobanteNumeroTercero.AsciiOnly = True
+        Me.maskedtextboxComprobanteNumeroTercero.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
+        Me.maskedtextboxComprobanteNumeroTercero.HidePromptOnLeave = True
+        Me.maskedtextboxComprobanteNumeroTercero.Location = New System.Drawing.Point(257, 91)
+        Me.maskedtextboxComprobanteNumeroTercero.Mask = "0000-00000000"
+        Me.maskedtextboxComprobanteNumeroTercero.Name = "maskedtextboxComprobanteNumeroTercero"
+        Me.maskedtextboxComprobanteNumeroTercero.Size = New System.Drawing.Size(90, 20)
+        Me.maskedtextboxComprobanteNumeroTercero.TabIndex = 13
+        Me.maskedtextboxComprobanteNumeroTercero.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
+        '
         'buttonFechaHoraFinAhora
         '
         Me.buttonFechaHoraFinAhora.Image = Global.CSPesaje.DesktopApplication.My.Resources.Resources.IMAGE_CALENDAR_TODAY_16
@@ -1070,6 +1092,8 @@ Partial Class formPesada
         '
         'groupboxAnalisis
         '
+        Me.groupboxAnalisis.Controls.Add(Me.integertextboxGranoDaniado)
+        Me.groupboxAnalisis.Controls.Add(Me.integertextboxGranoVerde)
         Me.groupboxAnalisis.Controls.Add(Me.labelMezclado)
         Me.groupboxAnalisis.Controls.Add(Me.checkboxMezclado)
         Me.groupboxAnalisis.Controls.Add(Me.labelFumigado)
@@ -1078,9 +1102,7 @@ Partial Class formPesada
         Me.groupboxAnalisis.Controls.Add(Me.labelGluten)
         Me.groupboxAnalisis.Controls.Add(Me.doubletextboxPesoHectolitrico)
         Me.groupboxAnalisis.Controls.Add(Me.labelPesoHectolitrico)
-        Me.groupboxAnalisis.Controls.Add(Me.doubletextboxGranoDaniado)
         Me.groupboxAnalisis.Controls.Add(Me.labelGranoDaniado)
-        Me.groupboxAnalisis.Controls.Add(Me.doubletextboxGranoVerde)
         Me.groupboxAnalisis.Controls.Add(Me.labelGranoVerde)
         Me.groupboxAnalisis.Controls.Add(Me.doubletextboxZaranda)
         Me.groupboxAnalisis.Controls.Add(Me.labelZaranda)
@@ -1091,6 +1113,46 @@ Partial Class formPesada
         Me.groupboxAnalisis.Size = New System.Drawing.Size(353, 88)
         Me.groupboxAnalisis.TabIndex = 5
         Me.groupboxAnalisis.TabStop = False
+        '
+        'integertextboxGranoDaniado
+        '
+        Me.integertextboxGranoDaniado.AllowNull = True
+        Me.integertextboxGranoDaniado.BackGroundColor = System.Drawing.SystemColors.Window
+        Me.integertextboxGranoDaniado.BeforeTouchSize = New System.Drawing.Size(38, 20)
+        Me.integertextboxGranoDaniado.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.integertextboxGranoDaniado.IntegerValue = CType(0, Long)
+        Me.integertextboxGranoDaniado.Location = New System.Drawing.Point(206, 38)
+        Me.integertextboxGranoDaniado.MaxValue = CType(99, Long)
+        Me.integertextboxGranoDaniado.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
+        Me.integertextboxGranoDaniado.MinValue = CType(0, Long)
+        Me.integertextboxGranoDaniado.Name = "integertextboxGranoDaniado"
+        Me.integertextboxGranoDaniado.NullString = ""
+        Me.integertextboxGranoDaniado.NumberNegativePattern = 0
+        Me.integertextboxGranoDaniado.Size = New System.Drawing.Size(38, 20)
+        Me.integertextboxGranoDaniado.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
+        Me.integertextboxGranoDaniado.TabIndex = 9
+        Me.integertextboxGranoDaniado.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.integertextboxGranoDaniado.WordWrap = False
+        '
+        'integertextboxGranoVerde
+        '
+        Me.integertextboxGranoVerde.AllowNull = True
+        Me.integertextboxGranoVerde.BackGroundColor = System.Drawing.SystemColors.Window
+        Me.integertextboxGranoVerde.BeforeTouchSize = New System.Drawing.Size(38, 20)
+        Me.integertextboxGranoVerde.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.integertextboxGranoVerde.IntegerValue = CType(0, Long)
+        Me.integertextboxGranoVerde.Location = New System.Drawing.Point(206, 12)
+        Me.integertextboxGranoVerde.MaxValue = CType(99, Long)
+        Me.integertextboxGranoVerde.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
+        Me.integertextboxGranoVerde.MinValue = CType(0, Long)
+        Me.integertextboxGranoVerde.Name = "integertextboxGranoVerde"
+        Me.integertextboxGranoVerde.NullString = ""
+        Me.integertextboxGranoVerde.NumberNegativePattern = 0
+        Me.integertextboxGranoVerde.Size = New System.Drawing.Size(38, 20)
+        Me.integertextboxGranoVerde.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
+        Me.integertextboxGranoVerde.TabIndex = 7
+        Me.integertextboxGranoVerde.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.integertextboxGranoVerde.WordWrap = False
         '
         'labelMezclado
         '
@@ -1190,28 +1252,6 @@ Partial Class formPesada
         Me.labelPesoHectolitrico.TabIndex = 12
         Me.labelPesoHectolitrico.Text = "Peso Hect.:"
         '
-        'doubletextboxGranoDaniado
-        '
-        Me.doubletextboxGranoDaniado.AllowNull = True
-        Me.doubletextboxGranoDaniado.BackGroundColor = System.Drawing.SystemColors.Window
-        Me.doubletextboxGranoDaniado.BeforeTouchSize = New System.Drawing.Size(38, 20)
-        Me.doubletextboxGranoDaniado.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.doubletextboxGranoDaniado.DoubleValue = 0.0R
-        Me.doubletextboxGranoDaniado.Location = New System.Drawing.Point(206, 38)
-        Me.doubletextboxGranoDaniado.MaxValue = 100.0R
-        Me.doubletextboxGranoDaniado.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
-        Me.doubletextboxGranoDaniado.MinValue = 0.0R
-        Me.doubletextboxGranoDaniado.Name = "doubletextboxGranoDaniado"
-        Me.doubletextboxGranoDaniado.NullString = ""
-        Me.doubletextboxGranoDaniado.NumberDecimalDigits = 1
-        Me.doubletextboxGranoDaniado.NumberNegativePattern = 0
-        Me.doubletextboxGranoDaniado.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.SetNullString
-        Me.doubletextboxGranoDaniado.Size = New System.Drawing.Size(38, 20)
-        Me.doubletextboxGranoDaniado.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
-        Me.doubletextboxGranoDaniado.TabIndex = 9
-        Me.doubletextboxGranoDaniado.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.doubletextboxGranoDaniado.WordWrap = False
-        '
         'labelGranoDaniado
         '
         Me.labelGranoDaniado.AutoSize = True
@@ -1220,28 +1260,6 @@ Partial Class formPesada
         Me.labelGranoDaniado.Size = New System.Drawing.Size(88, 13)
         Me.labelGranoDaniado.TabIndex = 8
         Me.labelGranoDaniado.Text = "Granos dañados:"
-        '
-        'doubletextboxGranoVerde
-        '
-        Me.doubletextboxGranoVerde.AllowNull = True
-        Me.doubletextboxGranoVerde.BackGroundColor = System.Drawing.SystemColors.Window
-        Me.doubletextboxGranoVerde.BeforeTouchSize = New System.Drawing.Size(38, 20)
-        Me.doubletextboxGranoVerde.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.doubletextboxGranoVerde.DoubleValue = 0.0R
-        Me.doubletextboxGranoVerde.Location = New System.Drawing.Point(206, 12)
-        Me.doubletextboxGranoVerde.MaxValue = 100.0R
-        Me.doubletextboxGranoVerde.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
-        Me.doubletextboxGranoVerde.MinValue = 0.0R
-        Me.doubletextboxGranoVerde.Name = "doubletextboxGranoVerde"
-        Me.doubletextboxGranoVerde.NullString = ""
-        Me.doubletextboxGranoVerde.NumberDecimalDigits = 1
-        Me.doubletextboxGranoVerde.NumberNegativePattern = 0
-        Me.doubletextboxGranoVerde.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.SetNullString
-        Me.doubletextboxGranoVerde.Size = New System.Drawing.Size(38, 20)
-        Me.doubletextboxGranoVerde.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
-        Me.doubletextboxGranoVerde.TabIndex = 7
-        Me.doubletextboxGranoVerde.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.doubletextboxGranoVerde.WordWrap = False
         '
         'labelGranoVerde
         '
@@ -1314,28 +1332,6 @@ Partial Class formPesada
         Me.labelHumedad.TabIndex = 0
         Me.labelHumedad.Text = "Humedad:"
         '
-        'labelComprobanteNumeroTercero
-        '
-        Me.labelComprobanteNumeroTercero.AutoSize = True
-        Me.labelComprobanteNumeroTercero.Location = New System.Drawing.Point(204, 96)
-        Me.labelComprobanteNumeroTercero.Name = "labelComprobanteNumeroTercero"
-        Me.labelComprobanteNumeroTercero.Size = New System.Drawing.Size(47, 13)
-        Me.labelComprobanteNumeroTercero.TabIndex = 12
-        Me.labelComprobanteNumeroTercero.Text = "Tercero:"
-        '
-        'maskedtextboxComprobanteNumeroTercero
-        '
-        Me.maskedtextboxComprobanteNumeroTercero.AllowPromptAsInput = False
-        Me.maskedtextboxComprobanteNumeroTercero.AsciiOnly = True
-        Me.maskedtextboxComprobanteNumeroTercero.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
-        Me.maskedtextboxComprobanteNumeroTercero.HidePromptOnLeave = True
-        Me.maskedtextboxComprobanteNumeroTercero.Location = New System.Drawing.Point(257, 91)
-        Me.maskedtextboxComprobanteNumeroTercero.Mask = "0000-00000000"
-        Me.maskedtextboxComprobanteNumeroTercero.Name = "maskedtextboxComprobanteNumeroTercero"
-        Me.maskedtextboxComprobanteNumeroTercero.Size = New System.Drawing.Size(90, 20)
-        Me.maskedtextboxComprobanteNumeroTercero.TabIndex = 13
-        Me.maskedtextboxComprobanteNumeroTercero.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
-        '
         'formPesada
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1378,10 +1374,10 @@ Partial Class formPesada
         Me.groupboxNotas.PerformLayout()
         Me.groupboxAnalisis.ResumeLayout(False)
         Me.groupboxAnalisis.PerformLayout()
+        CType(Me.integertextboxGranoDaniado, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.integertextboxGranoVerde, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.doubletextboxGluten, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.doubletextboxPesoHectolitrico, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.doubletextboxGranoDaniado, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.doubletextboxGranoVerde, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.doubletextboxZaranda, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.doubletextboxHumedad, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -1460,9 +1456,7 @@ Partial Class formPesada
     Friend WithEvents labelGluten As System.Windows.Forms.Label
     Friend WithEvents doubletextboxPesoHectolitrico As Syncfusion.Windows.Forms.Tools.DoubleTextBox
     Friend WithEvents labelPesoHectolitrico As System.Windows.Forms.Label
-    Friend WithEvents doubletextboxGranoDaniado As Syncfusion.Windows.Forms.Tools.DoubleTextBox
     Friend WithEvents labelGranoDaniado As System.Windows.Forms.Label
-    Friend WithEvents doubletextboxGranoVerde As Syncfusion.Windows.Forms.Tools.DoubleTextBox
     Friend WithEvents labelGranoVerde As System.Windows.Forms.Label
     Friend WithEvents labelFumigado As System.Windows.Forms.Label
     Friend WithEvents checkboxFumigado As System.Windows.Forms.CheckBox
@@ -1489,4 +1483,6 @@ Partial Class formPesada
     Friend WithEvents integertextboxKilometro As Syncfusion.Windows.Forms.Tools.IntegerTextBox
     Friend WithEvents labelComprobanteNumeroTercero As System.Windows.Forms.Label
     Friend WithEvents maskedtextboxComprobanteNumeroTercero As System.Windows.Forms.MaskedTextBox
+    Friend WithEvents integertextboxGranoDaniado As Syncfusion.Windows.Forms.Tools.IntegerTextBox
+    Friend WithEvents integertextboxGranoVerde As Syncfusion.Windows.Forms.Tools.IntegerTextBox
 End Class

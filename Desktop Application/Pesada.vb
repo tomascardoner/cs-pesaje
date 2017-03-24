@@ -15,6 +15,7 @@ Partial Public Class Pesada
     Public Property FechaHoraInicio As Date
     Public Property FechaHoraFin As Nullable(Of Date)
     Public Property ComprobanteNumero As String
+    Public Property ComprobanteNumeroTercero As String
     Public Property IDPlanta As Nullable(Of Byte)
     Public Property IDProducto As Byte
     Public Property IDCosecha As Nullable(Of Byte)

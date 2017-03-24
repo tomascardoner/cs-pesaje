@@ -173,6 +173,7 @@
           <Property Name="FechaHoraInicio" Type="smalldatetime" Nullable="false" />
           <Property Name="FechaHoraFin" Type="smalldatetime" />
           <Property Name="ComprobanteNumero" Type="varchar" MaxLength="12" />
+          <Property Name="ComprobanteNumeroTercero" Type="varchar" MaxLength="12" />
           <Property Name="IDPlanta" Type="tinyint" />
           <Property Name="IDProducto" Type="tinyint" Nullable="false" />
           <Property Name="IDCosecha" Type="tinyint" />
@@ -225,8 +226,8 @@
           <Property Name="IDPesada" Type="int" Nullable="false" />
           <Property Name="Humedad" Type="decimal" Precision="3" Scale="1" />
           <Property Name="Zaranda" Type="decimal" Precision="3" Scale="1" />
-          <Property Name="GranoVerde" Type="decimal" Precision="3" Scale="1" />
-          <Property Name="GranoDaniado" Type="decimal" Precision="3" Scale="1" />
+          <Property Name="GranoVerde" Type="tinyint" />
+          <Property Name="GranoDaniado" Type="tinyint" />
           <Property Name="PesoHectolitrico" Type="decimal" Precision="3" Scale="1" />
           <Property Name="Gluten" Type="decimal" Precision="3" Scale="1" />
           <Property Name="Fumigado" Type="bit" />
@@ -277,6 +278,7 @@
           <Property Name="UtilizaCosecha" Type="bit" Nullable="false" />
           <Property Name="UsoFrecuente" Type="bit" Nullable="false" />
           <Property Name="UltimoUso" Type="date" Nullable="false" />
+          <Property Name="ReporteNombre" Type="varchar" MaxLength="100" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
@@ -1658,6 +1660,7 @@
           <Property Name="FechaHoraInicio" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="FechaHoraFin" Type="DateTime" Precision="0" />
           <Property Name="ComprobanteNumero" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="ComprobanteNumeroTercero" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
           <Property Name="IDPlanta" Type="Byte" />
           <Property Name="IDProducto" Type="Byte" Nullable="false" />
           <Property Name="IDCosecha" Type="Byte" />
@@ -1723,8 +1726,8 @@
           <Property Name="IDPesada" Type="Int32" Nullable="false" />
           <Property Name="Humedad" Type="Decimal" Precision="3" Scale="1" />
           <Property Name="Zaranda" Type="Decimal" Precision="3" Scale="1" />
-          <Property Name="GranoVerde" Type="Decimal" Precision="3" Scale="1" />
-          <Property Name="GranoDaniado" Type="Decimal" Precision="3" Scale="1" />
+          <Property Name="GranoVerde" Type="Byte" />
+          <Property Name="GranoDaniado" Type="Byte" />
           <Property Name="PesoHectolitrico" Type="Decimal" Precision="3" Scale="1" />
           <Property Name="Gluten" Type="Decimal" Precision="3" Scale="1" />
           <Property Name="Fumigado" Type="Boolean" />
@@ -1782,6 +1785,7 @@
           <Property Name="UtilizaCosecha" Type="Boolean" Nullable="false" />
           <Property Name="UsoFrecuente" Type="Boolean" Nullable="false" />
           <Property Name="UltimoUso" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ReporteNombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
@@ -2725,6 +2729,7 @@
           <EntitySetMapping Name="Pesada">
             <EntityTypeMapping TypeName="CSPesajeModel.Pesada">
               <MappingFragment StoreEntitySet="Pesada">
+                <ScalarProperty Name="ComprobanteNumeroTercero" ColumnName="ComprobanteNumeroTercero" />
                 <ScalarProperty Name="Camion_IDEntidad" ColumnName="Camion_IDEntidad" />
                 <ScalarProperty Name="TipoNombre" ColumnName="TipoNombre" />
                 <ScalarProperty Name="IDPesada" ColumnName="IDPesada" />
@@ -2829,6 +2834,7 @@
           <EntitySetMapping Name="Producto">
             <EntityTypeMapping TypeName="CSPesajeModel.Producto">
               <MappingFragment StoreEntitySet="Producto">
+                <ScalarProperty Name="ReporteNombre" ColumnName="ReporteNombre" />
                 <ScalarProperty Name="UtilizaCosecha" ColumnName="UtilizaCosecha" />
                 <ScalarProperty Name="IDProducto" ColumnName="IDProducto" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />

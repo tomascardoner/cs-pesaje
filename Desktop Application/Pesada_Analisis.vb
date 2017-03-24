@@ -14,8 +14,8 @@ Partial Public Class Pesada_Analisis
     Public Property IDPesada As Integer
     Public Property Humedad As Nullable(Of Decimal)
     Public Property Zaranda As Nullable(Of Decimal)
-    Public Property GranoVerde As Nullable(Of Decimal)
-    Public Property GranoDaniado As Nullable(Of Decimal)
+    Public Property GranoVerde As Nullable(Of Byte)
+    Public Property GranoDaniado As Nullable(Of Byte)
     Public Property PesoHectolitrico As Nullable(Of Decimal)
     Public Property Gluten As Nullable(Of Decimal)
     Public Property Fumigado As Nullable(Of Boolean)

@@ -20,6 +20,7 @@ Partial Public Class Producto
     Public Property UtilizaCosecha As Boolean
     Public Property UsoFrecuente As Boolean
     Public Property UltimoUso As Date
+    Public Property ReporteNombre As String
     Public Property EsActivo As Boolean
     Public Property IDUsuarioCreacion As Short
     Public Property FechaHoraCreacion As Date

@@ -63,6 +63,7 @@
         datetimepickerHoraFin.Enabled = mEditMode
         buttonFechaHoraFinAhora.Visible = mEditMode
         maskedtextboxComprobanteNumero.ReadOnly = Not mEditMode
+        maskedtextboxComprobanteNumeroTercero.ReadOnly = Not mEditMode
 
         ' Producto - Planta - Cosecha
         checkboxProductoOtro.Visible = mEditMode
@@ -109,8 +110,8 @@
         doubletextboxHumedad.ReadOnly = Not mEditMode
         doubletextboxZaranda.ReadOnly = Not mEditMode
         checkboxFumigado.Enabled = mEditMode
-        doubletextboxGranoVerde.ReadOnly = Not mEditMode
-        doubletextboxGranoDaniado.ReadOnly = Not mEditMode
+        integertextboxGranoVerde.ReadOnly = Not mEditMode
+        integertextboxGranoDaniado.ReadOnly = Not mEditMode
         checkboxMezclado.Enabled = mEditMode
         doubletextboxPesoHectolitrico.ReadOnly = Not mEditMode
         doubletextboxGluten.ReadOnly = Not mEditMode
@@ -166,6 +167,7 @@
             datetimepickerFechaFin.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker(.FechaHoraFin)
             datetimepickerHoraFin.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker(.FechaHoraFin)
             maskedtextboxComprobanteNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.ComprobanteNumero)
+            maskedtextboxComprobanteNumeroTercero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.ComprobanteNumeroTercero)
 
             ' Producto - Planta - Cosecha
             If .IDProducto = CS_Constants.FIELD_VALUE_OTHER_BYTE Then
@@ -244,8 +246,8 @@
                 doubletextboxHumedad.Text = ""
                 doubletextboxZaranda.Text = ""
                 checkboxFumigado.CheckState = CheckState.Unchecked
-                doubletextboxGranoVerde.Text = ""
-                doubletextboxGranoDaniado.Text = ""
+                integertextboxGranoVerde.Text = ""
+                integertextboxGranoDaniado.Text = ""
                 checkboxMezclado.CheckState = CheckState.Unchecked
                 doubletextboxPesoHectolitrico.Text = ""
                 doubletextboxGluten.Text = ""
@@ -253,8 +255,8 @@
                 doubletextboxHumedad.Text = CS_ValueTranslation.FromObjectDecimalToControlTextBox(.Pesada_Analisis.Humedad)
                 doubletextboxZaranda.Text = CS_ValueTranslation.FromObjectDecimalToControlTextBox(.Pesada_Analisis.Zaranda)
                 checkboxFumigado.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.Pesada_Analisis.Fumigado)
-                doubletextboxGranoVerde.Text = CS_ValueTranslation.FromObjectDecimalToControlTextBox(.Pesada_Analisis.GranoVerde)
-                doubletextboxGranoDaniado.Text = CS_ValueTranslation.FromObjectDecimalToControlTextBox(.Pesada_Analisis.GranoDaniado)
+                integertextboxGranoVerde.Text = CS_ValueTranslation.FromObjectDecimalToControlTextBox(.Pesada_Analisis.GranoVerde)
+                integertextboxGranoDaniado.Text = CS_ValueTranslation.FromObjectDecimalToControlTextBox(.Pesada_Analisis.GranoDaniado)
                 checkboxMezclado.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.Pesada_Analisis.Mezclado)
                 doubletextboxPesoHectolitrico.Text = CS_ValueTranslation.FromObjectDecimalToControlTextBox(.Pesada_Analisis.PesoHectolitrico)
                 doubletextboxGluten.Text = CS_ValueTranslation.FromObjectDecimalToControlTextBox(.Pesada_Analisis.Gluten)
@@ -278,6 +280,7 @@
             .FechaHoraInicio = CS_ValueTranslation.FromControlTwoDateTimePickerToObjectDate(datetimepickerFechaInicio.Value, datetimepickerHoraInicio.Value).Value
             .FechaHoraFin = CS_ValueTranslation.FromControlTwoDateTimePickerToObjectDate(datetimepickerFechaFin.Value, datetimepickerHoraFin.Value).Value
             .ComprobanteNumero = CS_ValueTranslation.FromObjectStringToControlTextBox(maskedtextboxComprobanteNumero.Text)
+            .ComprobanteNumeroTercero = CS_ValueTranslation.FromObjectStringToControlTextBox(maskedtextboxComprobanteNumeroTercero.Text)
 
             ' Producto - Planta - Cosecha
             If checkboxProductoOtro.Checked Then
@@ -361,15 +364,15 @@
             .KilogramoNeto = CS_ValueTranslation.FromControlTextBoxToObjectInteger(integertextboxKilogramoNeto.Text)
 
             ' Análisis
-            If doubletextboxHumedad.DoubleValue > 0 Or doubletextboxZaranda.DoubleValue > 0 Or checkboxFumigado.Checked Or doubletextboxGranoVerde.DoubleValue > 0 Or doubletextboxGranoDaniado.DoubleValue > 0 Or checkboxMezclado.Checked Or doubletextboxPesoHectolitrico.DoubleValue > 0 Or doubletextboxGluten.DoubleValue > 0 Then
+            If doubletextboxHumedad.DoubleValue > 0 Or doubletextboxZaranda.DoubleValue > 0 Or checkboxFumigado.Checked Or integertextboxGranoVerde.IntegerValue > 0 Or integertextboxGranoDaniado.IntegerValue > 0 Or checkboxMezclado.Checked Or doubletextboxPesoHectolitrico.DoubleValue > 0 Or doubletextboxGluten.DoubleValue > 0 Then
                 If .Pesada_Analisis Is Nothing Then
                     .Pesada_Analisis = New Pesada_Analisis
                 End If
                 .Pesada_Analisis.Humedad = CS_ValueTranslation.FromControlTextBoxToObjectDecimal(doubletextboxHumedad.Text)
                 .Pesada_Analisis.Zaranda = CS_ValueTranslation.FromControlTextBoxToObjectDecimal(doubletextboxZaranda.Text)
                 .Pesada_Analisis.Fumigado = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxFumigado.CheckState)
-                .Pesada_Analisis.GranoVerde = CS_ValueTranslation.FromControlTextBoxToObjectDecimal(doubletextboxGranoVerde.Text)
-                .Pesada_Analisis.GranoDaniado = CS_ValueTranslation.FromControlTextBoxToObjectDecimal(doubletextboxGranoDaniado.Text)
+                .Pesada_Analisis.GranoVerde = CS_ValueTranslation.FromControlTextBoxToObjectByte(integertextboxGranoVerde.Text)
+                .Pesada_Analisis.GranoDaniado = CS_ValueTranslation.FromControlTextBoxToObjectByte(integertextboxGranoDaniado.Text)
                 .Pesada_Analisis.Mezclado = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxMezclado.CheckState)
                 .Pesada_Analisis.PesoHectolitrico = CS_ValueTranslation.FromControlTextBoxToObjectDecimal(doubletextboxPesoHectolitrico.Text)
                 .Pesada_Analisis.Gluten = CS_ValueTranslation.FromControlTextBoxToObjectDecimal(doubletextboxGluten.Text)
@@ -779,6 +782,11 @@
             maskedtextboxComprobanteNumero.Focus()
             Exit Sub
         End If
+        If maskedtextboxComprobanteNumeroTercero.Text.Length > 0 AndAlso maskedtextboxComprobanteNumeroTercero.Text.Length < 12 Then
+            MsgBox("El Número de Comprobante del Tercero debe contener 12 dígitos.", MsgBoxStyle.Information, My.Application.Info.Title)
+            maskedtextboxComprobanteNumeroTercero.Focus()
+            Exit Sub
+        End If
 
         ' Producto
         If checkboxProductoOtro.Checked Then
@@ -982,4 +990,10 @@
 
 #End Region
 
+    Private Sub KilogramoIngreso(sender As Object, e As KeyPressEventArgs) Handles integertextboxKilogramoTara.KeyPress, integertextboxKilogramoBruto.KeyPress
+
+    End Sub
+    Private Sub KilogramoCambio(sender As Object, e As EventArgs) Handles integertextboxKilogramoTara.TextChanged, integertextboxKilogramoBruto.TextChanged
+
+    End Sub
 End Class

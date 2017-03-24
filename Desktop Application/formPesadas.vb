@@ -11,6 +11,7 @@
         Public Property ComprobanteNumero As String
         Public Property TitularNombre As String
         Public Property ProductoNombre As String
+        Public Property ProductoReporteNombre As String
         Public Property TipoNombre As String
         Public Property CosechaNombre As String
         Public Property OrigenDestinoNombre As String
@@ -192,7 +193,7 @@
                                    Group Join ca In dbContext.Camion On pe.IDCamion Equals ca.IDCamion Into Camion_Group = Group
                                    From cag In Camion_Group.DefaultIfEmpty
                                    Where pe.FechaHoraInicio >= FechaDesde And pe.FechaHoraInicio <= FechaHasta
-                                   Select New GridRowData With {.IDPesada = pe.IDPesada, .FechaHoraInicio = pe.FechaHoraInicio, .FechaHoraFin = pe.FechaHoraFin, .ComprobanteNumero = pe.ComprobanteNumero, .TitularNombre = If(pe.Titular_IDEntidad = CS_Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Titular_Nombre, ent.Nombre), .ProductoNombre = If(pe.IDProducto = CS_Constants.FIELD_VALUE_OTHER_BYTE, pe_otg.Producto_Nombre, pr.Nombre), .TipoNombre = pe.TipoNombre, .CosechaNombre = If(cog Is Nothing, "", cog.Nombre), .OrigenDestinoNombre = If(pe.IDOrigenDestino = CS_Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.OrigenDestino_Nombre, If(odg Is Nothing, "", odg.Nombre)), .KilogramoBruto = pe.KilogramoBruto, .KilogramoTara = pe.KilogramoTara, .KilogramoNeto = pe.KilogramoNeto, .Humedad = If(pe_ang Is Nothing, Nothing, pe_ang.Humedad), .Zaranda = If(pe_ang Is Nothing, Nothing, pe_ang.Zaranda), .TransportistaNombre = If(pe.Transportista_IDEntidad = CS_Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Transportista_Nombre, If(trg Is Nothing, "", trg.Nombre)), .ChoferNombre = If(pe.Chofer_IDEntidad = CS_Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Chofer_Nombre, If(chg Is Nothing, "", chg.Nombre)), .CamionNombreDominios = If(pe.IDCamion = CS_Constants.FIELD_VALUE_OTHER_BYTE, pe_otg.Camion_DominioChasis & If(pe_otg.Camion_DominioAcoplado Is Nothing, "", " - " & pe_otg.Camion_DominioAcoplado), If(cag Is Nothing, "", cag.NombreDominios))}).ToList
+                                   Select New GridRowData With {.IDPesada = pe.IDPesada, .FechaHoraInicio = pe.FechaHoraInicio, .FechaHoraFin = pe.FechaHoraFin, .ComprobanteNumero = pe.ComprobanteNumero, .TitularNombre = If(pe.Titular_IDEntidad = CS_Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Titular_Nombre, ent.Nombre), .ProductoNombre = If(pe.IDProducto = CS_Constants.FIELD_VALUE_OTHER_BYTE, pe_otg.Producto_Nombre, pr.Nombre), .ProductoreporteNombre = pr.ReporteNombre, .TipoNombre = pe.TipoNombre, .CosechaNombre = If(cog Is Nothing, "", cog.Nombre), .OrigenDestinoNombre = If(pe.IDOrigenDestino = CS_Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.OrigenDestino_Nombre, If(odg Is Nothing, "", odg.Nombre)), .KilogramoBruto = pe.KilogramoBruto, .KilogramoTara = pe.KilogramoTara, .KilogramoNeto = pe.KilogramoNeto, .Humedad = If(pe_ang Is Nothing, Nothing, pe_ang.Humedad), .Zaranda = If(pe_ang Is Nothing, Nothing, pe_ang.Zaranda), .TransportistaNombre = If(pe.Transportista_IDEntidad = CS_Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Transportista_Nombre, If(trg Is Nothing, "", trg.Nombre)), .ChoferNombre = If(pe.Chofer_IDEntidad = CS_Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Chofer_Nombre, If(chg Is Nothing, "", chg.Nombre)), .CamionNombreDominios = If(pe.IDCamion = CS_Constants.FIELD_VALUE_OTHER_BYTE, pe_otg.Camion_DominioChasis & If(pe_otg.Camion_DominioAcoplado Is Nothing, "", " - " & pe_otg.Camion_DominioAcoplado), If(cag Is Nothing, "", cag.NombreDominios))}).ToList
             End Using
 
         Catch ex As Exception
@@ -518,7 +519,7 @@
                 datagridviewMain.Enabled = False
 
                 Dim ReporteActual As New Reporte
-                If ReporteActual.Open(My.Settings.ReportsPath & "\" & Constantes.REPORTE_TICKETPESADA) Then
+                If ReporteActual.Open(My.Settings.ReportsPath & "\" & CurrentRow.ProductoReporteNombre) Then
                     If ReporteActual.SetDatabaseConnection(pDatabase.DataSource, pDatabase.InitialCatalog, pDatabase.UserID, pDatabase.Password) Then
                         ReporteActual.RecordSelectionFormula = "{Pesada.IDPesada} = " & CurrentRow.IDPesada
 

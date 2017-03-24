@@ -22,7 +22,6 @@
     '////////////////
     '    REPORTES
     '////////////////
-    Friend Const REPORTE_TICKETPESADA As String = "Ticket Pesada.rpt"
 
     '///////////////////////////////////
     '    PARÁMETROS DE LOS REPORTES
