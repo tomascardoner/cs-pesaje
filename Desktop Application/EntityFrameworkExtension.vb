@@ -35,6 +35,95 @@ Partial Public Class OrigenDestino
     End Property
 End Class
 
+Partial Public Class Pesada_Analisis
+    Public Sub CalcularMermas()
+        Dim KilogramoNeto As Integer
+        Dim KilogramoFinal As Integer
+
+        If Me.Pesada.KilogramoNeto.HasValue Then
+            KilogramoNeto = Me.Pesada.KilogramoNeto.Value
+            Select Case Me.Pesada.Tipo
+                Case Constantes.PESADA_TIPO_ENTRADA
+                    KilogramoFinal = KilogramoNeto
+                    With Me.Pesada.Producto
+                        ' MERMA VOLÁTIL
+                        If .MermaVolatil Is Nothing Then
+                            ' El producto no especifica merma volátil
+                            Me.MermaVolatilKilogramo = Nothing
+                        Else
+                            Me.MermaVolatilKilogramo = CInt(KilogramoNeto * .MermaVolatil.Value / 100)
+                        End If
+                        KilogramoFinal -= Me.MermaVolatilKilogramo.Value
+
+                        ' HUMEDAD
+                        If .MermaHumedadBase Is Nothing Then
+                            ' El producto no especifica base de humedad
+                            Me.MermaHumedadPorcentaje = Nothing
+                            Me.MermaHumedadKilogramo = Nothing
+                        Else
+                            If Me.Humedad Is Nothing Then
+                                ' La pesada no especifica humedad
+                                Me.MermaHumedadPorcentaje = 0
+                                Me.MermaHumedadKilogramo = 0
+                            Else
+                                If Me.Humedad <= .MermaHumedadBase Then
+                                    ' La humedad especificada es menor o igual a la Base, por lo tanto, no hay mermas
+                                    Me.MermaHumedadPorcentaje = 0
+                                    Me.MermaHumedadKilogramo = 0
+                                Else
+                                    ' El producto está húmedo. Primero aplico la merma por manipuleo
+                                    Me.MermaHumedadPorcentaje = .MermaHumedadManipuleo
+                                    ' Busco la humedad correpondiente a la pesada en la tabla de mermas del producto
+                                    Using dbContext As New CSPesajeContext(True)
+                                        Dim Producto_HumedadActual As Producto_Humedad
+                                        Producto_HumedadActual = dbContext.Producto_Humedad.Find(.IDProducto, Me.Humedad)
+                                        If Producto_HumedadActual Is Nothing Then
+                                            MsgBox(String.Format("No está especificada la merma para una humedad del {0} para el producto: {1}.", Microsoft.VisualBasic.FormatPercent(Me.Humedad), .Nombre), MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                                        Else
+                                            Me.MermaHumedadPorcentaje += Producto_HumedadActual.Merma
+                                        End If
+                                    End Using
+                                    Me.MermaHumedadKilogramo = CInt(KilogramoNeto * Me.MermaHumedadPorcentaje / 100)
+                                    KilogramoFinal -= Me.MermaHumedadKilogramo.Value
+                                End If
+                            End If
+                        End If
+
+                        ' ZARANDA
+                        If .MermaVolatil Is Nothing Then
+                            ' El producto no especifica merma volátil, asumo que no es un cereal, y por eso no aplica zaranda
+                            Me.MermaZarandaKilogramo = Nothing
+                        Else
+                            If Me.Zaranda Is Nothing Then
+                                ' El producto no especifica zarandeo
+                                Me.MermaZarandaKilogramo = 0
+                            Else
+                                Me.MermaZarandaKilogramo = CInt(KilogramoNeto * (Me.Zaranda / 100))
+                                KilogramoFinal -= Me.MermaZarandaKilogramo.Value
+                            End If
+                        End If
+                    End With
+                Case Constantes.PESADA_TIPO_SALIDA
+                    KilogramoFinal = -KilogramoNeto
+            End Select
+            Me.Pesada.KilogramoFinal = KilogramoFinal
+        Else
+            Me.MermaVolatilKilogramo = Nothing
+            Me.MermaHumedadPorcentaje = Nothing
+            Me.MermaHumedadKilogramo = Nothing
+            Me.MermaZarandaKilogramo = Nothing
+            Me.Pesada.KilogramoFinal = Nothing
+        End If
+    End Sub
+End Class
+
+Partial Public Class Pesada_Acondicionamiento
+    Public Sub CalcularAcondicionamiento()
+        ' Primero debo determinar que tarifa voy a aplicar, verifico si no hay una tarifa aplicada manualmente
+
+    End Sub
+End Class
+
 Partial Public Class Reporte
     Friend Property ReportObject As ReportDocument
 

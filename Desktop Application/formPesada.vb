@@ -669,7 +669,7 @@
         End If
     End Sub
 
-    Private Sub KilogramoIngreso() Handles integertextboxKilogramoBruto.KeyPress, integertextboxKilogramoTara.KeyPress
+    Private Sub KilogramoIngreso(sender As Object, e As KeyPressEventArgs) Handles integertextboxKilogramoBruto.KeyPress, integertextboxKilogramoTara.KeyPress
         If integertextboxKilogramoBruto.IsNull Or integertextboxKilogramoTara.IsNull Then
             FechaHoraInicioAhora()
             FechaHoraFinAhora()
@@ -678,7 +678,7 @@
         End If
     End Sub
 
-    Private Sub KilogramoCambio() Handles integertextboxKilogramoBruto.TextChanged, integertextboxKilogramoTara.TextChanged
+    Private Sub KilogramoCambio(sender As Object, e As EventArgs) Handles integertextboxKilogramoBruto.TextChanged, integertextboxKilogramoTara.TextChanged
         If integertextboxKilogramoBruto.IsNull Or integertextboxKilogramoTara.IsNull Then
             integertextboxKilogramoNeto.Text = ""
         Else
@@ -944,6 +944,15 @@
             mPesadaActual.FechaHoraModificacion = Now
 
             Try
+                ' Calculo mermas si corresponde
+                If Not mPesadaActual.Pesada_Analisis Is Nothing Then
+                    mPesadaActual.Pesada_Analisis.CalcularMermas()
+                End If
+
+                ' Calculo el acondicionamiento si corresponde
+                If mPesadaActual.Tipo = Constantes.PESADA_TIPO_ENTRADA AndAlso mPesadaActual.IDCosecha.HasValue Then
+
+                End If
 
                 ' Guardo los cambios
                 mdbContext.SaveChanges()
@@ -990,10 +999,4 @@
 
 #End Region
 
-    Private Sub KilogramoIngreso(sender As Object, e As KeyPressEventArgs) Handles integertextboxKilogramoTara.KeyPress, integertextboxKilogramoBruto.KeyPress
-
-    End Sub
-    Private Sub KilogramoCambio(sender As Object, e As EventArgs) Handles integertextboxKilogramoTara.TextChanged, integertextboxKilogramoBruto.TextChanged
-
-    End Sub
 End Class
