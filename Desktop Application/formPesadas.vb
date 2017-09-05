@@ -170,7 +170,7 @@
                         FechaHasta = CType(datetimepickerFechaHastaHost.Control, DateTimePicker).Value
                 End Select
         End Select
-        ' A la fecha desde, le sumo un día y le resto un segundo, para que quede conformado por la fecha original y la hora 23:59:59
+        ' A la fecha hasta, le sumo un día y le resto un segundo, para que quede conformado por la fecha original y la hora 23:59:59
         FechaHasta = FechaHasta.AddDays(1).AddSeconds(-1)
 
         Try
@@ -449,14 +449,14 @@
         Else
             If Permisos.VerificarPermiso(Permisos.PESADA_ELIMINAR) Then
                 Dim Mensaje As String
-                Mensaje = String.Format("Se eliminará la Pesada seleccionada.{0}{0}Número: {1}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, CType(datagridviewMain.SelectedRows(0).DataBoundItem, Pesada).IDPesada)
+                Mensaje = String.Format("Se eliminará la Pesada seleccionada.{0}{0}Número: {1}{0}{0}Fecha/hora de inicio: {2}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, FormatNumber(CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDPesada, 0), FormatDateTime(CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).FechaHoraInicio, DateFormat.GeneralDate))
                 If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
                     Me.Cursor = Cursors.WaitCursor
 
                     Try
                         Using dbContext = New CSPesajeContext(True)
                             Dim PesadaActual As Pesada
-                            PesadaActual = dbContext.Pesada.Find(CType(datagridviewMain.SelectedRows(0).DataBoundItem, Pesada).IDPesada)
+                            PesadaActual = dbContext.Pesada.Find(CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDPesada)
 
                             dbContext.Pesada.Attach(PesadaActual)
                             dbContext.Pesada.Remove(PesadaActual)

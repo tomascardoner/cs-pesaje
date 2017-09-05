@@ -37,5 +37,6 @@ Partial Public Class Entidad
     Public Overridable Property UsuarioModificacion As Usuario
     Public Overridable Property Camiones As ICollection(Of Camion) = New HashSet(Of Camion)
     Public Overridable Property Entidad_Productos_Plantas As ICollection(Of Entidad_Producto_Planta) = New HashSet(Of Entidad_Producto_Planta)
+    Public Overridable Property Cosecha_Producto_Tarifas As ICollection(Of Cosecha_Producto_Tarifa) = New HashSet(Of Cosecha_Producto_Tarifa)
 
 End Class

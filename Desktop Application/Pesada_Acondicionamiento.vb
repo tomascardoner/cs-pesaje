@@ -12,6 +12,7 @@ Imports System.Collections.Generic
 
 Partial Public Class Pesada_Acondicionamiento
     Public Property IDPesada As Integer
+    Public Property TarifaManual As Boolean
     Public Property TarifaIndice As Short
     Public Property ParitariaTarifa As Decimal
     Public Property ParitariaImporte As Decimal

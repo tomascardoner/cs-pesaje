@@ -40,5 +40,7 @@ Partial Public Class Cosecha_Producto_Tarifa
     Public Overridable Property Producto As Producto
     Public Overridable Property Cosecha_Producto_TarifaEscala As ICollection(Of Cosecha_Producto_TarifaEscala) = New HashSet(Of Cosecha_Producto_TarifaEscala)
     Public Overridable Property Planta As Planta
+    Public Overridable Property Entidad As Entidad
+    Public Overridable Property OrigenDestino As OrigenDestino
 
 End Class

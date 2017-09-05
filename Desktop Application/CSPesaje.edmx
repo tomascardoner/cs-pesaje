@@ -201,6 +201,7 @@
             <PropertyRef Name="IDPesada" />
           </Key>
           <Property Name="IDPesada" Type="int" Nullable="false" />
+          <Property Name="TarifaManual" Type="bit" Nullable="false" />
           <Property Name="TarifaIndice" Type="smallint" Nullable="false" />
           <Property Name="ParitariaTarifa" Type="money" Nullable="false" />
           <Property Name="ParitariaImporte" Type="money" Nullable="false" />
@@ -500,6 +501,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Entidad__Cosecha_Producto_Tarifa">
+          <End Role="Entidad" Type="Self.Entidad" Multiplicity="0..1" />
+          <End Role="Cosecha_Producto_Tarifa" Type="Self.Cosecha_Producto_Tarifa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entidad">
+              <PropertyRef Name="IDEntidad" />
+            </Principal>
+            <Dependent Role="Cosecha_Producto_Tarifa">
+              <PropertyRef Name="IDEntidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Entidad__Entidad__Transportista">
           <End Role="Entidad" Type="Self.Entidad" Multiplicity="0..1" />
           <End Role="Entidad1" Type="Self.Entidad" Multiplicity="*" />
@@ -571,6 +584,18 @@
             <Dependent Role="OrigenDestino">
               <PropertyRef Name="IDProvincia" />
               <PropertyRef Name="IDLocalidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrigenDestino__Cosecha_Producto_Tarifa">
+          <End Role="OrigenDestino" Type="Self.OrigenDestino" Multiplicity="0..1" />
+          <End Role="Cosecha_Producto_Tarifa" Type="Self.Cosecha_Producto_Tarifa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrigenDestino">
+              <PropertyRef Name="IDOrigenDestino" />
+            </Principal>
+            <Dependent Role="Cosecha_Producto_Tarifa">
+              <PropertyRef Name="IDOrigenDestino" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1067,6 +1092,10 @@
             <End Role="Entidad" EntitySet="Entidad" />
             <End Role="Camion" EntitySet="Camion" />
           </AssociationSet>
+          <AssociationSet Name="FK__Entidad__Cosecha_Producto_Tarifa" Association="Self.FK__Entidad__Cosecha_Producto_Tarifa">
+            <End Role="Entidad" EntitySet="Entidad" />
+            <End Role="Cosecha_Producto_Tarifa" EntitySet="Cosecha_Producto_Tarifa" />
+          </AssociationSet>
           <AssociationSet Name="FK__Entidad__Entidad__Transportista" Association="Self.FK__Entidad__Entidad__Transportista">
             <End Role="Entidad" EntitySet="Entidad" />
             <End Role="Entidad1" EntitySet="Entidad" />
@@ -1090,6 +1119,10 @@
           <AssociationSet Name="FK__Localidad__OrigenDestino" Association="Self.FK__Localidad__OrigenDestino">
             <End Role="Localidad" EntitySet="Localidad" />
             <End Role="OrigenDestino" EntitySet="OrigenDestino" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrigenDestino__Cosecha_Producto_Tarifa" Association="Self.FK__OrigenDestino__Cosecha_Producto_Tarifa">
+            <End Role="OrigenDestino" EntitySet="OrigenDestino" />
+            <End Role="Cosecha_Producto_Tarifa" EntitySet="Cosecha_Producto_Tarifa" />
           </AssociationSet>
           <AssociationSet Name="FK__OrigenDestino__Entidad_OrigenDestino" Association="Self.FK__OrigenDestino__Entidad_OrigenDestino">
             <End Role="OrigenDestino" EntitySet="OrigenDestino" />
@@ -1467,6 +1500,14 @@
             <End Role="Camion" EntitySet="Camion" />
             <End Role="Pesada" EntitySet="Pesada" />
           </AssociationSet>
+          <AssociationSet Name="FK__Entidad__Cosecha_Producto_Tarifa" Association="CSPesajeModel.FK__Entidad__Cosecha_Producto_Tarifa">
+            <End Role="Entidad" EntitySet="Entidad" />
+            <End Role="Cosecha_Producto_Tarifa" EntitySet="Cosecha_Producto_Tarifa" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrigenDestino__Cosecha_Producto_Tarifa" Association="CSPesajeModel.FK__OrigenDestino__Cosecha_Producto_Tarifa">
+            <End Role="OrigenDestino" EntitySet="OrigenDestino" />
+            <End Role="Cosecha_Producto_Tarifa" EntitySet="Cosecha_Producto_Tarifa" />
+          </AssociationSet>
         </EntityContainer>		
 		<EntityType Name="Camion">
           <Key>
@@ -1541,6 +1582,8 @@
           <NavigationProperty Name="Producto" Relationship="CSPesajeModel.FK__Cosecha_Producto_Tarifa" FromRole="Cosecha_Producto_Tarifa" ToRole="Producto" />
           <NavigationProperty Name="Cosecha_Producto_TarifaEscala" Relationship="CSPesajeModel.FK__Cosecha_Producto_Tarifa__Cosecha_Producto_TarifaEscala" FromRole="Cosecha_Producto_Tarifa" ToRole="Cosecha_Producto_TarifaEscala" />
           <NavigationProperty Name="Planta" Relationship="CSPesajeModel.FK__Planta__Cosecha_Producto_Tarifa" FromRole="Cosecha_Producto_Tarifa" ToRole="Planta" />
+          <NavigationProperty Name="Entidad" Relationship="CSPesajeModel.FK__Entidad__Cosecha_Producto_Tarifa" FromRole="Cosecha_Producto_Tarifa" ToRole="Entidad" />
+          <NavigationProperty Name="OrigenDestino" Relationship="CSPesajeModel.FK__OrigenDestino__Cosecha_Producto_Tarifa" FromRole="Cosecha_Producto_Tarifa" ToRole="OrigenDestino" />
         </EntityType>
         <EntityType Name="Cosecha_Producto_TarifaEscala">
           <Key>
@@ -1586,6 +1629,7 @@
           <NavigationProperty Name="UsuarioModificacion" Relationship="CSPesajeModel.FK__Usuario__Entidad__Modificacion" FromRole="Entidad" ToRole="Usuario" />
           <NavigationProperty Name="Camiones" Relationship="CSPesajeModel.FK__Entidad__Camion" FromRole="Entidad" ToRole="Camion" />
           <NavigationProperty Name="Entidad_Productos_Plantas" Relationship="CSPesajeModel.FK__Entidad__Entidad_Producto_Planta" FromRole="Entidad" ToRole="Entidad_Producto_Planta" />
+          <NavigationProperty Name="Cosecha_Producto_Tarifas" Relationship="CSPesajeModel.FK__Entidad__Cosecha_Producto_Tarifa" FromRole="Entidad" ToRole="Cosecha_Producto_Tarifa" />
         </EntityType>
         <EntityType Name="Entidad_OrigenDestino">
           <Key>
@@ -1638,6 +1682,7 @@
           <NavigationProperty Name="Localidad" Relationship="CSPesajeModel.FK__Localidad__OrigenDestino" FromRole="OrigenDestino" ToRole="Localidad" />
           <NavigationProperty Name="UsuarioCreacion" Relationship="CSPesajeModel.FK__Usuario__OrigenDestino__Creacion" FromRole="OrigenDestino" ToRole="Usuario" />
           <NavigationProperty Name="UsuarioModificacion" Relationship="CSPesajeModel.FK__Usuario__OrigenDestino__Modificacion" FromRole="OrigenDestino" ToRole="Usuario" />
+          <NavigationProperty Name="Cosecha_Producto_Tarifas" Relationship="CSPesajeModel.FK__OrigenDestino__Cosecha_Producto_Tarifa" FromRole="OrigenDestino" ToRole="Cosecha_Producto_Tarifa" />
         </EntityType>
         <EntityType Name="Parametro">
           <Key>
@@ -1700,6 +1745,7 @@
             <PropertyRef Name="IDPesada" />
           </Key>
           <Property Name="IDPesada" Type="Int32" Nullable="false" />
+          <Property Name="TarifaManual" Type="Boolean" Nullable="false" />
           <Property Name="TarifaIndice" Type="Int16" Nullable="false" />
           <Property Name="ParitariaTarifa" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="ParitariaImporte" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
@@ -2571,6 +2617,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Entidad__Cosecha_Producto_Tarifa">
+          <End Type="CSPesajeModel.Entidad" Role="Entidad" Multiplicity="0..1" />
+          <End Type="CSPesajeModel.Cosecha_Producto_Tarifa" Role="Cosecha_Producto_Tarifa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entidad">
+              <PropertyRef Name="IDEntidad" />
+            </Principal>
+            <Dependent Role="Cosecha_Producto_Tarifa">
+              <PropertyRef Name="IDEntidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrigenDestino__Cosecha_Producto_Tarifa">
+          <End Type="CSPesajeModel.OrigenDestino" Role="OrigenDestino" Multiplicity="0..1" />
+          <End Type="CSPesajeModel.Cosecha_Producto_Tarifa" Role="Cosecha_Producto_Tarifa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrigenDestino">
+              <PropertyRef Name="IDOrigenDestino" />
+            </Principal>
+            <Dependent Role="Cosecha_Producto_Tarifa">
+              <PropertyRef Name="IDOrigenDestino" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2761,6 +2831,7 @@
           <EntitySetMapping Name="Pesada_Acondicionamiento">
             <EntityTypeMapping TypeName="CSPesajeModel.Pesada_Acondicionamiento">
               <MappingFragment StoreEntitySet="Pesada_Acondicionamiento">
+                <ScalarProperty Name="TarifaManual" ColumnName="TarifaManual" />
                 <ScalarProperty Name="IDPesada" ColumnName="IDPesada" />
                 <ScalarProperty Name="TarifaIndice" ColumnName="TarifaIndice" />
                 <ScalarProperty Name="ParitariaTarifa" ColumnName="ParitariaTarifa" />
