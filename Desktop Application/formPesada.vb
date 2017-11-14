@@ -346,12 +346,10 @@
                 End If
             End If
             If checkboxCamionOtro.Checked Then
-                .Camion_IDEntidad = CS_Constants.FIELD_VALUE_OTHER_INTEGER
                 .IDCamion = CS_Constants.FIELD_VALUE_OTHER_BYTE
                 .Pesada_Otro.Camion_DominioChasis = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxCamion_DominioChasis.Text)
                 .Pesada_Otro.Camion_DominioAcoplado = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxCamion_DominioAcoplado.Text)
             Else
-                .Camion_IDEntidad = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxCamion.SelectedValue)
                 .IDCamion = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxCamion.SelectedValue)
                 If Not .Pesada_Otro Is Nothing Then
                     .Pesada_Otro.Camion_DominioChasis = ""
@@ -953,6 +951,9 @@
 
                 ' Calculo el acondicionamiento si corresponde
                 If mPesadaActual.Tipo = Constantes.PESADA_TIPO_ENTRADA AndAlso mPesadaActual.IDCosecha.HasValue AndAlso mPesadaActual.KilogramoNeto.HasValue AndAlso mPesadaActual.KilogramoNeto > 0 Then
+                    If mPesadaActual.Pesada_Acondicionamiento Is Nothing Then
+                        mPesadaActual.Pesada_Acondicionamiento = New Pesada_Acondicionamiento
+                    End If
                     If Not mPesadaActual.Pesada_Acondicionamiento.CalcularAcondicionamiento Then
                         If Not mPesadaActual.Pesada_Acondicionamiento.TarifaManual Then
                             mdbContext.Pesada_Acondicionamiento.Remove(mPesadaActual.Pesada_Acondicionamiento)

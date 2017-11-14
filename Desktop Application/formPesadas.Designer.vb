@@ -64,7 +64,6 @@ Partial Class formPesadas
         Me.buttonCopiar = New System.Windows.Forms.ToolStripButton()
         Me.buttonEliminar = New System.Windows.Forms.ToolStripButton()
         Me.buttonImprimir = New System.Windows.Forms.ToolStripSplitButton()
-        Me.menuitemImprimir_TicketPesada = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemImprimir_TicketPesadaReducido = New System.Windows.Forms.ToolStripMenuItem()
         Me.toolstripgroupPeriodo = New Syncfusion.Windows.Forms.Tools.ToolStripEx()
         Me.comboboxPeriodoTipo = New System.Windows.Forms.ToolStripComboBox()
@@ -82,6 +81,8 @@ Partial Class formPesadas
         Me.comboboxTitular = New System.Windows.Forms.ToolStripComboBox()
         Me.toolstripgroupProducto = New Syncfusion.Windows.Forms.Tools.ToolStripEx()
         Me.comboboxProducto = New System.Windows.Forms.ToolStripComboBox()
+        Me.toolstripgroupPlanta = New Syncfusion.Windows.Forms.Tools.ToolStripEx()
+        Me.comboboxPlanta = New System.Windows.Forms.ToolStripComboBox()
         Me.tooltripgroupPesadaTipo = New Syncfusion.Windows.Forms.Tools.ToolStripEx()
         Me.dropdownbuttonPesadaTipo = New System.Windows.Forms.ToolStripDropDownButton()
         Me.menuitemPesadaTipo_Entrada = New System.Windows.Forms.ToolStripMenuItem()
@@ -99,8 +100,6 @@ Partial Class formPesadas
         Me.toolstripgroupChofer = New Syncfusion.Windows.Forms.Tools.ToolStripEx()
         Me.comboboxChofer = New System.Windows.Forms.ToolStripComboBox()
         Me.toolstriptabFiltrosAvanzados = New Syncfusion.Windows.Forms.Tools.ToolStripTabItem()
-        Me.toolstripgroupPlanta = New Syncfusion.Windows.Forms.Tools.ToolStripEx()
-        Me.comboboxPlanta = New System.Windows.Forms.ToolStripComboBox()
         Me.statusstripMain.SuspendLayout()
         CType(Me.datagridviewMain, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.bindingsourceMain, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -112,12 +111,12 @@ Partial Class formPesadas
         Me.toolstripFiltrosBasicos.Panel.SuspendLayout()
         Me.toolstripgroupTitular.SuspendLayout()
         Me.toolstripgroupProducto.SuspendLayout()
+        Me.toolstripgroupPlanta.SuspendLayout()
         Me.tooltripgroupPesadaTipo.SuspendLayout()
         Me.toolstripgroupCosecha.SuspendLayout()
         Me.toolstripgroupOrigenDestino.SuspendLayout()
         Me.toolstripgroupTransportista.SuspendLayout()
         Me.toolstripgroupChofer.SuspendLayout()
-        Me.toolstripgroupPlanta.SuspendLayout()
         Me.SuspendLayout()
         '
         'statusstripMain
@@ -417,7 +416,7 @@ Partial Class formPesadas
         Me.toolstripgroupAcciones.Location = New System.Drawing.Point(0, 1)
         Me.toolstripgroupAcciones.Name = "toolstripgroupAcciones"
         Me.toolstripgroupAcciones.Padding = New System.Windows.Forms.Padding(0, 5, 0, 0)
-        Me.toolstripgroupAcciones.Size = New System.Drawing.Size(261, 69)
+        Me.toolstripgroupAcciones.Size = New System.Drawing.Size(292, 69)
         Me.toolstripgroupAcciones.TabIndex = 1
         Me.toolstripgroupAcciones.Text = "Acciones"
         '
@@ -463,7 +462,7 @@ Partial Class formPesadas
         '
         'buttonImprimir
         '
-        Me.buttonImprimir.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemImprimir_TicketPesada, Me.menuitemImprimir_TicketPesadaReducido})
+        Me.buttonImprimir.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemImprimir_TicketPesadaReducido})
         Me.buttonImprimir.Image = Global.CSPesaje.DesktopApplication.My.Resources.Resources.IMAGE_PRINT_32
         Me.buttonImprimir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonImprimir.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -472,17 +471,11 @@ Partial Class formPesadas
         Me.buttonImprimir.Text = "Imprimir"
         Me.buttonImprimir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         '
-        'menuitemImprimir_TicketPesada
-        '
-        Me.menuitemImprimir_TicketPesada.Name = "menuitemImprimir_TicketPesada"
-        Me.menuitemImprimir_TicketPesada.Size = New System.Drawing.Size(214, 22)
-        Me.menuitemImprimir_TicketPesada.Text = "Ticket de pesada"
-        '
         'menuitemImprimir_TicketPesadaReducido
         '
         Me.menuitemImprimir_TicketPesadaReducido.Name = "menuitemImprimir_TicketPesadaReducido"
-        Me.menuitemImprimir_TicketPesadaReducido.Size = New System.Drawing.Size(214, 22)
-        Me.menuitemImprimir_TicketPesadaReducido.Text = "Ticket de pesada (reducido)"
+        Me.menuitemImprimir_TicketPesadaReducido.Size = New System.Drawing.Size(152, 22)
+        Me.menuitemImprimir_TicketPesadaReducido.Text = "Ticket reducido"
         '
         'toolstripgroupPeriodo
         '
@@ -492,7 +485,7 @@ Partial Class formPesadas
         Me.toolstripgroupPeriodo.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolstripgroupPeriodo.Image = Nothing
         Me.toolstripgroupPeriodo.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.comboboxPeriodoTipo, Me.comboboxPeriodoValor, Me.labelFecha, Me.buttonFechaDesdeAnterior, Me.buttonFechaDesdeSiguiente, Me.buttonFechaDesdeHoy, Me.labelFechaY, Me.buttonFechaHastaAnterior, Me.buttonFechaHastaSiguiente, Me.buttonFechaHastaHoy})
-        Me.toolstripgroupPeriodo.Location = New System.Drawing.Point(263, 1)
+        Me.toolstripgroupPeriodo.Location = New System.Drawing.Point(294, 1)
         Me.toolstripgroupPeriodo.Name = "toolstripgroupPeriodo"
         Me.toolstripgroupPeriodo.Padding = New System.Windows.Forms.Padding(0, 5, 0, 0)
         Me.toolstripgroupPeriodo.ShowLauncher = True
@@ -645,6 +638,26 @@ Partial Class formPesadas
         Me.comboboxProducto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxProducto.Name = "comboboxProducto"
         Me.comboboxProducto.Size = New System.Drawing.Size(100, 47)
+        '
+        'toolstripgroupPlanta
+        '
+        Me.toolstripgroupPlanta.Dock = System.Windows.Forms.DockStyle.None
+        Me.toolstripgroupPlanta.Font = New System.Drawing.Font("Segoe UI", 8.25!)
+        Me.toolstripgroupPlanta.ForeColor = System.Drawing.Color.MidnightBlue
+        Me.toolstripgroupPlanta.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.toolstripgroupPlanta.Image = Nothing
+        Me.toolstripgroupPlanta.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.comboboxPlanta})
+        Me.toolstripgroupPlanta.Location = New System.Drawing.Point(270, 1)
+        Me.toolstripgroupPlanta.Name = "toolstripgroupPlanta"
+        Me.toolstripgroupPlanta.Size = New System.Drawing.Size(130, 69)
+        Me.toolstripgroupPlanta.TabIndex = 7
+        Me.toolstripgroupPlanta.Text = "Planta"
+        '
+        'comboboxPlanta
+        '
+        Me.comboboxPlanta.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxPlanta.Name = "comboboxPlanta"
+        Me.comboboxPlanta.Size = New System.Drawing.Size(121, 52)
         '
         'tooltripgroupPesadaTipo
         '
@@ -813,26 +826,6 @@ Partial Class formPesadas
         Me.toolstriptabFiltrosAvanzados.Tag = "1"
         Me.toolstriptabFiltrosAvanzados.Text = "Avanzados"
         '
-        'toolstripgroupPlanta
-        '
-        Me.toolstripgroupPlanta.Dock = System.Windows.Forms.DockStyle.None
-        Me.toolstripgroupPlanta.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.toolstripgroupPlanta.ForeColor = System.Drawing.Color.MidnightBlue
-        Me.toolstripgroupPlanta.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.toolstripgroupPlanta.Image = Nothing
-        Me.toolstripgroupPlanta.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.comboboxPlanta})
-        Me.toolstripgroupPlanta.Location = New System.Drawing.Point(270, 1)
-        Me.toolstripgroupPlanta.Name = "toolstripgroupPlanta"
-        Me.toolstripgroupPlanta.Size = New System.Drawing.Size(130, 69)
-        Me.toolstripgroupPlanta.TabIndex = 7
-        Me.toolstripgroupPlanta.Text = "Planta"
-        '
-        'comboboxPlanta
-        '
-        Me.comboboxPlanta.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboboxPlanta.Name = "comboboxPlanta"
-        Me.comboboxPlanta.Size = New System.Drawing.Size(121, 52)
-        '
         'formPesadas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -864,6 +857,8 @@ Partial Class formPesadas
         Me.toolstripgroupTitular.PerformLayout()
         Me.toolstripgroupProducto.ResumeLayout(False)
         Me.toolstripgroupProducto.PerformLayout()
+        Me.toolstripgroupPlanta.ResumeLayout(False)
+        Me.toolstripgroupPlanta.PerformLayout()
         Me.tooltripgroupPesadaTipo.ResumeLayout(False)
         Me.tooltripgroupPesadaTipo.PerformLayout()
         Me.toolstripgroupCosecha.ResumeLayout(False)
@@ -874,8 +869,6 @@ Partial Class formPesadas
         Me.toolstripgroupTransportista.PerformLayout()
         Me.toolstripgroupChofer.ResumeLayout(False)
         Me.toolstripgroupChofer.PerformLayout()
-        Me.toolstripgroupPlanta.ResumeLayout(False)
-        Me.toolstripgroupPlanta.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -925,7 +918,6 @@ Partial Class formPesadas
     Friend WithEvents toolstripgroupChofer As Syncfusion.Windows.Forms.Tools.ToolStripEx
     Friend WithEvents comboboxChofer As System.Windows.Forms.ToolStripComboBox
     Friend WithEvents toolstriptabFiltrosAvanzados As Syncfusion.Windows.Forms.Tools.ToolStripTabItem
-    Friend WithEvents menuitemImprimir_TicketPesada As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents menuitemImprimir_TicketPesadaReducido As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents columnIDPesada As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents columnFechaHoraInicio As System.Windows.Forms.DataGridViewTextBoxColumn

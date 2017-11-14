@@ -11,7 +11,7 @@
         Public Property ComprobanteNumero As String
         Public Property TitularNombre As String
         Public Property ProductoNombre As String
-        Public Property ProductoReporteNombre As String
+        Public Property Producto_TicketPesada_IDReporte As Short?
         Public Property TipoNombre As String
         Public Property CosechaNombre As String
         Public Property OrigenDestinoNombre As String
@@ -190,10 +190,10 @@
                                    From trg In Transportista_Group.DefaultIfEmpty
                                    Group Join ech In dbContext.Entidad On pe.Chofer_IDEntidad Equals ech.IDEntidad Into Chofer_Group = Group
                                    From chg In Chofer_Group.DefaultIfEmpty
-                                   Group Join ca In dbContext.Camion On pe.IDCamion Equals ca.IDCamion Into Camion_Group = Group
+                                   Group Join ca In dbContext.Camion On pe.Transportista_IDEntidad Equals ca.IDEntidad And pe.IDCamion Equals ca.IDCamion Into Camion_Group = Group
                                    From cag In Camion_Group.DefaultIfEmpty
                                    Where pe.FechaHoraInicio >= FechaDesde And pe.FechaHoraInicio <= FechaHasta
-                                   Select New GridRowData With {.IDPesada = pe.IDPesada, .FechaHoraInicio = pe.FechaHoraInicio, .FechaHoraFin = pe.FechaHoraFin, .ComprobanteNumero = pe.ComprobanteNumero, .TitularNombre = If(pe.Titular_IDEntidad = CS_Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Titular_Nombre, ent.Nombre), .ProductoNombre = If(pe.IDProducto = CS_Constants.FIELD_VALUE_OTHER_BYTE, pe_otg.Producto_Nombre, pr.Nombre), .ProductoReporteNombre = pr.ReporteNombre, .TipoNombre = pe.TipoNombre, .CosechaNombre = If(cog Is Nothing, "", cog.Nombre), .OrigenDestinoNombre = If(pe.IDOrigenDestino = CS_Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.OrigenDestino_Nombre, If(odg Is Nothing, "", odg.Nombre)), .KilogramoBruto = pe.KilogramoBruto, .KilogramoTara = pe.KilogramoTara, .KilogramoNeto = pe.KilogramoNeto, .Humedad = If(pe_ang Is Nothing, Nothing, pe_ang.Humedad), .Zaranda = If(pe_ang Is Nothing, Nothing, pe_ang.Zaranda), .KilogramoFinal = pe.KilogramoFinal, .TransportistaNombre = If(pe.Transportista_IDEntidad = CS_Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Transportista_Nombre, If(trg Is Nothing, "", trg.Nombre)), .ChoferNombre = If(pe.Chofer_IDEntidad = CS_Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Chofer_Nombre, If(chg Is Nothing, "", chg.Nombre)), .CamionNombreDominios = If(pe.IDCamion = CS_Constants.FIELD_VALUE_OTHER_BYTE, pe_otg.Camion_DominioChasis & If(pe_otg.Camion_DominioAcoplado Is Nothing, "", " - " & pe_otg.Camion_DominioAcoplado), If(cag Is Nothing, "", cag.NombreDominios))}).ToList
+                                   Select New GridRowData With {.IDPesada = pe.IDPesada, .FechaHoraInicio = pe.FechaHoraInicio, .FechaHoraFin = pe.FechaHoraFin, .ComprobanteNumero = pe.ComprobanteNumero, .TitularNombre = If(pe.Titular_IDEntidad = CS_Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Titular_Nombre, ent.Nombre), .ProductoNombre = If(pe.IDProducto = CS_Constants.FIELD_VALUE_OTHER_BYTE, pe_otg.Producto_Nombre, pr.Nombre), .Producto_TicketPesada_IDReporte = pr.TicketPesada_IDReporte, .TipoNombre = pe.TipoNombre, .CosechaNombre = If(cog Is Nothing, "", cog.Nombre), .OrigenDestinoNombre = If(pe.IDOrigenDestino = CS_Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.OrigenDestino_Nombre, If(odg Is Nothing, "", odg.Nombre)), .KilogramoBruto = pe.KilogramoBruto, .KilogramoTara = pe.KilogramoTara, .KilogramoNeto = pe.KilogramoNeto, .Humedad = If(pe_ang Is Nothing, Nothing, pe_ang.Humedad), .Zaranda = If(pe_ang Is Nothing, Nothing, pe_ang.Zaranda), .KilogramoFinal = pe.KilogramoFinal, .TransportistaNombre = If(pe.Transportista_IDEntidad = CS_Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Transportista_Nombre, If(trg Is Nothing, "", trg.Nombre)), .ChoferNombre = If(pe.Chofer_IDEntidad = CS_Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Chofer_Nombre, If(chg Is Nothing, "", chg.Nombre)), .CamionNombreDominios = If(pe.IDCamion = CS_Constants.FIELD_VALUE_OTHER_BYTE, pe_otg.Camion_DominioChasis & If(pe_otg.Camion_DominioAcoplado Is Nothing, "", " - " & pe_otg.Camion_DominioAcoplado), If(cag Is Nothing, "", cag.NombreDominios))}).ToList
             End Using
 
         Catch ex As Exception
@@ -330,36 +330,30 @@
     ' ///// Fecha Desde /////
     Private Sub FechaDesdeAnterior() Handles buttonFechaDesdeAnterior.Click
         CType(datetimepickerFechaDesdeHost.Control, DateTimePicker).Value = CType(datetimepickerFechaDesdeHost.Control, DateTimePicker).Value.AddDays(-1)
-        RefreshData()
     End Sub
 
     Private Sub FechaDesdeSiguiente() Handles buttonFechaDesdeSiguiente.Click
         CType(datetimepickerFechaDesdeHost.Control, DateTimePicker).Value = CType(datetimepickerFechaDesdeHost.Control, DateTimePicker).Value.AddDays(1)
-        RefreshData()
     End Sub
 
     Private Sub FechaDesdeHoy() Handles buttonFechaDesdeHoy.Click
         CType(datetimepickerFechaDesdeHost.Control, DateTimePicker).Value = DateAndTime.Today
-        RefreshData()
     End Sub
 
     ' ///// Fecha Hasta /////
     Private Sub FechaHastaAnterior() Handles buttonFechaHastaAnterior.Click
         CType(datetimepickerFechaHastaHost.Control, DateTimePicker).Value = CType(datetimepickerFechaHastaHost.Control, DateTimePicker).Value.AddDays(-1)
-        RefreshData()
     End Sub
 
     Private Sub FechaHastaSiguiente() Handles buttonFechaHastaSiguiente.Click
         CType(datetimepickerFechaHastaHost.Control, DateTimePicker).Value = CType(datetimepickerFechaHastaHost.Control, DateTimePicker).Value.AddDays(1)
-        RefreshData()
     End Sub
 
     Private Sub FechaHastaHoy() Handles buttonFechaHastaHoy.Click
         CType(datetimepickerFechaHastaHost.Control, DateTimePicker).Value = DateAndTime.Today
-        RefreshData()
     End Sub
 
-    Private Sub FechaCambiar() Handles datetimepickerFechaHastaHost.TextChanged, datetimepickerFechaHastaHost.TextChanged
+    Private Sub FechaCambiar() Handles datetimepickerFechaDesdeHost.TextChanged, datetimepickerFechaHastaHost.TextChanged
         RefreshData()
     End Sub
 
@@ -499,7 +493,7 @@
         End If
     End Sub
 
-    Private Sub Imprimir(sender As Object, e As EventArgs) Handles buttonImprimir.ButtonClick, menuitemImprimir_TicketPesada.Click
+    Private Sub Imprimir(sender As Object, e As EventArgs) Handles buttonImprimir.ButtonClick, menuitemImprimir_TicketPesadaReducido.Click
         Dim CurrentRow As GridRowData
 
         If datagridviewMain.CurrentRow Is Nothing Then
@@ -513,23 +507,33 @@
                 'End If
 
                 CurrentRow = CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData)
+                If Not CurrentRow.Producto_TicketPesada_IDReporte.HasValue Then
+                    MsgBox("No hay ningún Reporte especificado para este Producto.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                    Exit Sub
+                End If
 
                 Me.Cursor = Cursors.WaitCursor
 
                 datagridviewMain.Enabled = False
 
-                Dim ReporteActual As New Reporte
-                If ReporteActual.Open(My.Settings.ReportsPath & "\" & CurrentRow.ProductoReporteNombre) Then
-                    If ReporteActual.SetDatabaseConnection(pDatabase.DataSource, pDatabase.InitialCatalog, pDatabase.UserID, pDatabase.Password) Then
-                        ReporteActual.RecordSelectionFormula = "{Pesada.IDPesada} = " & CurrentRow.IDPesada
+                Using dbContext As New CSPesajeContext(True)
+                    Dim ReporteActual As New Reporte
 
-                        If sender.Equals(buttonImprimir) Then
-                            ReporteActual.ReportObject.PrintToPrinter(1, False, 1, 100)
-                        Else
-                            MiscFunctions.PreviewCrystalReport(ReporteActual, "Ticket Pesada N° " & Microsoft.VisualBasic.Strings.Format(CurrentRow.IDPesada, "N0"))
+                    ReporteActual = dbContext.Reporte.Find(CurrentRow.Producto_TicketPesada_IDReporte.Value)
+                    If Not ReporteActual Is Nothing Then
+                        ReporteActual.ReporteParametros.Single(Function(rp) rp.Nombre = "IDPesada").Valor = CurrentRow.IDPesada
+                        ReporteActual.ReporteParametros.Single(Function(rp) rp.Nombre = "EsReducido").Valor = sender.Equals(menuitemImprimir_TicketPesadaReducido)
+                        If ReporteActual.Open(My.Settings.ReportsPath & "\" & ReporteActual.Archivo) Then
+                            If ReporteActual.SetDatabaseConnection(pDatabase.DataSource, pDatabase.InitialCatalog, pDatabase.UserID, pDatabase.Password) Then
+                                If My.Settings.Report_Pesada_Preview = False Then
+                                    ReporteActual.ReportObject.PrintToPrinter(1, False, 1, 100)
+                                Else
+                                    MiscFunctions.PreviewCrystalReport(ReporteActual, "Ticket Pesada N° " & Microsoft.VisualBasic.Strings.Format(CurrentRow.IDPesada, "N0"))
+                                End If
+                            End If
                         End If
                     End If
-                End If
+                End Using
 
                 datagridviewMain.Enabled = True
 

@@ -142,7 +142,7 @@ Partial Public Class Pesada_Acondicionamiento
             ' - Filtrar las que coincida el rango de fechas con la fecha del movimiento o que no tengan un rango especificado
             listCosecha_Producto_Tarifa = listCosecha_Producto_Tarifa.Where(Function(cpt) (cpt.FechaDesde Is Nothing OrElse cpt.FechaDesde.Value <= FechaPesada) And (cpt.FechaHasta Is Nothing OrElse cpt.FechaHasta.Value >= FechaPesada)).ToList
             ' - Filtrar los que coincidan con la Planta
-            listCosecha_Producto_Tarifa = listCosecha_Producto_Tarifa.Where(Function(cpt) cpt.IDPlanta.Value = Me.Pesada.IDPlanta.Value).ToList
+            listCosecha_Producto_Tarifa = listCosecha_Producto_Tarifa.Where(Function(cpt) cpt.IDPlanta.HasValue = False OrElse cpt.IDPlanta.Value = Me.Pesada.IDPlanta.Value).ToList
             ' - Filtrar los que coincidan con la Entidad
             listCosecha_Producto_Tarifa = listCosecha_Producto_Tarifa.Where(Function(cpt) cpt.IDEntidad Is Nothing OrElse cpt.IDEntidad.Value = Me.Pesada.Titular_IDEntidad).ToList
             ' - Filtrar los que coincidan con el Origen/Destino
@@ -167,119 +167,123 @@ Partial Public Class Pesada_Acondicionamiento
                 Me.ParitariaTarifa = .TarifaParitariaImporte
                 Me.ParitariaImporte = CS_ValueTranslation.FromDoubleToRoundedCurrency((KilogramoNeto / 100) * Me.ParitariaTarifa)
 
-                ' Calculo el Zarandeo, Fumigado y Mezcla antes del Secado porque en las Escalas de Secado,
-                ' según el caso, tengo que poner en cero alguna de estas tarifas
+                ' Si tiene análisis cargado, calculo los servicios:
+                If Not Me.Pesada.Pesada_Analisis Is Nothing Then
 
-                ' Zarandeo
-                If Me.Pesada.Pesada_Analisis.Zaranda.HasValue Then
-                    Me.ZarandeoTarifa = .TarifaZarandeoImporte
-                    Me.ZarandeoImporte = CS_ValueTranslation.FromDoubleToRoundedCurrency((KilogramoNeto / 100) * Me.ZarandeoTarifa)
-                Else
-                    Me.ZarandeoTarifa = 0
-                    Me.ZarandeoImporte = 0
-                End If
+                    ' Calculo el Zarandeo, Fumigado y Mezcla antes del Secado porque en las Escalas de Secado,
+                    ' según el caso, tengo que poner en cero alguna de estas tarifas
 
-                ' Fumigado
-                If Me.Pesada.Pesada_Analisis.Fumigado.HasValue AndAlso Me.Pesada.Pesada_Analisis.Fumigado Then
-                    Me.FumigadoTarifa = .TarifaFumigadoImporte
-                    Me.FumigadoImporte = CS_ValueTranslation.FromDoubleToRoundedCurrency((KilogramoNeto / 100) * Me.FumigadoTarifa)
-                Else
-                    Me.FumigadoTarifa = 0
-                    Me.FumigadoImporte = 0
-                End If
-
-                ' Mezclado
-                If Me.Pesada.Pesada_Analisis.Mezclado.HasValue AndAlso Me.Pesada.Pesada_Analisis.Mezclado Then
-                    Me.MezclaTarifa = .TarifaMezclaImporte
-                    Me.MezclaImporte = CS_ValueTranslation.FromDoubleToRoundedCurrency((KilogramoNeto / 100) * Me.MezclaTarifa)
-                Else
-                    Me.MezclaTarifa = 0
-                    Me.MezclaImporte = 0
-                End If
-
-                ' Secado
-                If Me.Pesada.Producto.MermaHumedadBase.HasValue AndAlso Me.Pesada.Pesada_Analisis.Humedad.HasValue AndAlso Me.Pesada.Pesada_Analisis.Humedad > Me.Pesada.Producto.MermaHumedadBase Then
-                    ' Tarifa fija por Humedad
-                    Me.SecadoTarifa = Cosecha_Producto_TarifaActual.TarifaSecadoInicialImporte
-                    Me.SecadoImporte = CS_ValueTranslation.FromDoubleToRoundedCurrency((KilogramoNeto / 100) * Me.SecadoTarifa)
-
-                    ' Calcular tarifa por punto de exceso de Humedad
-                    If Me.Pesada.Pesada_Analisis.Humedad <= (Cosecha_Producto_TarifaActual.TarifaSecadoHumedadBase + Cosecha_Producto_TarifaActual.TarifaSecadoHumedadMargenLibre) Then
-                        Me.HumedadExcesoReal = 0
+                    ' Zarandeo
+                    If Me.Pesada.Pesada_Analisis.Zaranda.HasValue Then
+                        Me.ZarandeoTarifa = .TarifaZarandeoImporte
+                        Me.ZarandeoImporte = CS_ValueTranslation.FromDoubleToRoundedCurrency((KilogramoNeto / 100) * Me.ZarandeoTarifa)
                     Else
-                        Me.HumedadExcesoReal = Math.Round(Me.Pesada.Pesada_Analisis.Humedad.Value - Me.Pesada.Producto.MermaHumedadBase.Value, 1)
+                        Me.ZarandeoTarifa = 0
+                        Me.ZarandeoImporte = 0
                     End If
-                    Me.HumedadExcesoCalculo = Me.HumedadExcesoReal
 
-                    ' Redeondeo de punto
-                    Select Case Cosecha_Producto_TarifaActual.TarifaSecadoHumedadRedondeoPuntoTipo
-                        Case Constantes.PRODUCTO_TARIFA_SECADO_REDONDEOPUNTO_TIPO_NINGUNO
+                    ' Fumigado
+                    If Me.Pesada.Pesada_Analisis.Fumigado.HasValue AndAlso Me.Pesada.Pesada_Analisis.Fumigado Then
+                        Me.FumigadoTarifa = .TarifaFumigadoImporte
+                        Me.FumigadoImporte = CS_ValueTranslation.FromDoubleToRoundedCurrency((KilogramoNeto / 100) * Me.FumigadoTarifa)
+                    Else
+                        Me.FumigadoTarifa = 0
+                        Me.FumigadoImporte = 0
+                    End If
 
-                        Case Constantes.PRODUCTO_TARIFA_SECADO_REDONDEOPUNTO_TIPO_ENTERO
-                            Me.HumedadExcesoCalculo = Math.Round(Me.HumedadExcesoCalculo)
+                    ' Mezclado
+                    If Me.Pesada.Pesada_Analisis.Mezclado.HasValue AndAlso Me.Pesada.Pesada_Analisis.Mezclado Then
+                        Me.MezclaTarifa = .TarifaMezclaImporte
+                        Me.MezclaImporte = CS_ValueTranslation.FromDoubleToRoundedCurrency((KilogramoNeto / 100) * Me.MezclaTarifa)
+                    Else
+                        Me.MezclaTarifa = 0
+                        Me.MezclaImporte = 0
+                    End If
 
-                        Case Constantes.PRODUCTO_TARIFA_SECADO_REDONDEOPUNTO_TIPO_SUPERIOR
-                            If Me.HumedadExcesoCalculo > Fix(Me.HumedadExcesoCalculo) Then
-                                Me.HumedadExcesoCalculo = Fix(Me.HumedadExcesoCalculo) + 1
-                            End If
+                    ' Secado
+                    If Me.Pesada.Producto.MermaHumedadBase.HasValue AndAlso Me.Pesada.Pesada_Analisis.Humedad.HasValue AndAlso Me.Pesada.Pesada_Analisis.Humedad > Me.Pesada.Producto.MermaHumedadBase Then
+                        ' Tarifa fija por Humedad
+                        Me.SecadoTarifa = Cosecha_Producto_TarifaActual.TarifaSecadoInicialImporte
+                        Me.SecadoImporte = CS_ValueTranslation.FromDoubleToRoundedCurrency((KilogramoNeto / 100) * Me.SecadoTarifa)
 
-                        Case Constantes.PRODUCTO_TARIFA_SECADO_REDONDEOPUNTO_TIPO_INFERIOR
-                            If Me.HumedadExcesoCalculo > Fix(Me.HumedadExcesoCalculo) Then
-                                Me.HumedadExcesoCalculo = Fix(Me.HumedadExcesoCalculo)
-                            End If
-                    End Select
+                        ' Calcular tarifa por punto de exceso de Humedad
+                        If Me.Pesada.Pesada_Analisis.Humedad <= (Cosecha_Producto_TarifaActual.TarifaSecadoHumedadBase + Cosecha_Producto_TarifaActual.TarifaSecadoHumedadMargenLibre) Then
+                            Me.HumedadExcesoReal = 0
+                        Else
+                            Me.HumedadExcesoReal = Math.Round(Me.Pesada.Pesada_Analisis.Humedad.Value - Me.Pesada.Producto.MermaHumedadBase.Value, 1)
+                        End If
+                        Me.HumedadExcesoCalculo = Me.HumedadExcesoReal
 
-                    Select Case Cosecha_Producto_TarifaActual.TarifaSecadoTipo
-                        Case Constantes.PRODUCTO_TARIFA_SECADO_TIPO_FIJA
-                            Me.SecadoExcesoTarifa = Cosecha_Producto_TarifaActual.TarifaSecadoPuntoExcesoImporte
-                            Me.SecadoExcesoImporte = CS_ValueTranslation.FromDoubleToRoundedCurrency((KilogramoNeto / 100) * CSng(Me.HumedadExcesoCalculo) * Me.SecadoExcesoTarifa)
+                        ' Redeondeo de punto
+                        Select Case Cosecha_Producto_TarifaActual.TarifaSecadoHumedadRedondeoPuntoTipo
+                            Case Constantes.PRODUCTO_TARIFA_SECADO_REDONDEOPUNTO_TIPO_NINGUNO
 
-                        Case Constantes.PRODUCTO_TARIFA_SECADO_TIPO_ESCALA
-                            If Me.Pesada.Pesada_Analisis.Humedad >= Cosecha_Producto_TarifaActual.TarifaSecadoHumedadBase + Cosecha_Producto_TarifaActual.TarifaSecadoHumedadMargenLibre Then
-                                Dim Cosecha_Producto_TarifaEscalaActual As Cosecha_Producto_TarifaEscala
+                            Case Constantes.PRODUCTO_TARIFA_SECADO_REDONDEOPUNTO_TIPO_ENTERO
+                                Me.HumedadExcesoCalculo = Math.Round(Me.HumedadExcesoCalculo)
 
-                                Using dbContext As New CSPesajeContext(True)
-                                    Cosecha_Producto_TarifaEscalaActual = dbContext.Cosecha_Producto_TarifaEscala.Where(Function(cpte) cpte.IDCosecha = Me.Pesada.IDCosecha.Value And cpte.IDProducto = Me.Pesada.IDProducto And cpte.Indice = Me.TarifaIndice And cpte.HumedadExcesoInicio <= Me.HumedadExcesoReal).OrderByDescending(Function(cpte) cpte.HumedadExcesoInicio).First
-                                End Using
-                                If Cosecha_Producto_TarifaEscalaActual Is Nothing Then
-                                    Me.SecadoExcesoTarifa = 0
-                                    Me.SecadoExcesoImporte = 0
-                                Else
-                                    Select Case Cosecha_Producto_TarifaActual.TarifaSecadoTipo
-                                        Case Constantes.PRODUCTO_TARIFA_SECADO_TIPO_ESCALA_PORPUNTO
-                                        Case Constantes.PRODUCTO_TARIFA_SECADO_TIPO_ESCALA_COMPLETA
-                                            Me.SecadoExcesoTarifa = Cosecha_Producto_TarifaEscalaActual.Tarifa
-                                            Me.SecadoExcesoImporte = CS_ValueTranslation.FromDoubleToRoundedCurrency((KilogramoNeto / 100) * Me.HumedadExcesoCalculo * Me.SecadoExcesoTarifa)
-                                        Case Constantes.PRODUCTO_TARIFA_SECADO_TIPO_ESCALA_FIJO_SECADO
-                                            Me.SecadoExcesoTarifa = Cosecha_Producto_TarifaEscalaActual.Tarifa
-                                            Me.SecadoExcesoImporte = CS_ValueTranslation.FromDoubleToRoundedCurrency((KilogramoNeto / 100) * Me.SecadoExcesoTarifa)
-                                        Case Constantes.PRODUCTO_TARIFA_SECADO_TIPO_ESCALA_FIJO_SECADOYZARANDEO
-                                            Me.ZarandeoTarifa = 0
-                                            Me.ZarandeoImporte = 0
-                                            Me.SecadoExcesoTarifa = Cosecha_Producto_TarifaEscalaActual.Tarifa
-                                            Me.SecadoExcesoImporte = CS_ValueTranslation.FromDoubleToRoundedCurrency((KilogramoNeto / 100) * Me.SecadoExcesoTarifa)
-                                        Case Constantes.PRODUCTO_TARIFA_SECADO_TIPO_ESCALA_FIJO_TODOCONCEPTO
-                                            Me.ParitariaTarifa = 0
-                                            Me.ParitariaImporte = 0
-                                            Me.ZarandeoTarifa = 0
-                                            Me.ZarandeoImporte = 0
-                                            Me.FumigadoTarifa = 0
-                                            Me.FumigadoImporte = 0
-                                            Me.MezclaTarifa = 0
-                                            Me.MezclaImporte = 0
-                                            Me.SecadoExcesoTarifa = Cosecha_Producto_TarifaEscalaActual.Tarifa
-                                            Me.SecadoExcesoImporte = CS_ValueTranslation.FromDoubleToRoundedCurrency((KilogramoNeto / 100) * Me.SecadoExcesoTarifa)
-                                    End Select
+                            Case Constantes.PRODUCTO_TARIFA_SECADO_REDONDEOPUNTO_TIPO_SUPERIOR
+                                If Me.HumedadExcesoCalculo > Fix(Me.HumedadExcesoCalculo) Then
+                                    Me.HumedadExcesoCalculo = Fix(Me.HumedadExcesoCalculo) + 1
                                 End If
-                            End If
-                    End Select
-                Else
-                    Me.SecadoTarifa = 0
-                    Me.SecadoImporte = 0
-                    Me.HumedadExcesoReal = 0
-                    Me.HumedadExcesoCalculo = 0
-                    Me.SecadoExcesoTarifa = 0
-                    Me.SecadoExcesoImporte = 0
+
+                            Case Constantes.PRODUCTO_TARIFA_SECADO_REDONDEOPUNTO_TIPO_INFERIOR
+                                If Me.HumedadExcesoCalculo > Fix(Me.HumedadExcesoCalculo) Then
+                                    Me.HumedadExcesoCalculo = Fix(Me.HumedadExcesoCalculo)
+                                End If
+                        End Select
+
+                        Select Case Cosecha_Producto_TarifaActual.TarifaSecadoTipo
+                            Case Constantes.PRODUCTO_TARIFA_SECADO_TIPO_FIJA
+                                Me.SecadoExcesoTarifa = Cosecha_Producto_TarifaActual.TarifaSecadoPuntoExcesoImporte
+                                Me.SecadoExcesoImporte = CS_ValueTranslation.FromDoubleToRoundedCurrency((KilogramoNeto / 100) * CSng(Me.HumedadExcesoCalculo) * Me.SecadoExcesoTarifa)
+
+                            Case Constantes.PRODUCTO_TARIFA_SECADO_TIPO_ESCALA
+                                If Me.Pesada.Pesada_Analisis.Humedad >= Cosecha_Producto_TarifaActual.TarifaSecadoHumedadBase + Cosecha_Producto_TarifaActual.TarifaSecadoHumedadMargenLibre Then
+                                    Dim Cosecha_Producto_TarifaEscalaActual As Cosecha_Producto_TarifaEscala
+
+                                    Using dbContext As New CSPesajeContext(True)
+                                        Cosecha_Producto_TarifaEscalaActual = dbContext.Cosecha_Producto_TarifaEscala.Where(Function(cpte) cpte.IDCosecha = Me.Pesada.IDCosecha.Value And cpte.IDProducto = Me.Pesada.IDProducto And cpte.Indice = Me.TarifaIndice And cpte.HumedadExcesoInicio <= Me.HumedadExcesoReal).OrderByDescending(Function(cpte) cpte.HumedadExcesoInicio).First
+                                    End Using
+                                    If Cosecha_Producto_TarifaEscalaActual Is Nothing Then
+                                        Me.SecadoExcesoTarifa = 0
+                                        Me.SecadoExcesoImporte = 0
+                                    Else
+                                        Select Case Cosecha_Producto_TarifaActual.TarifaSecadoTipo
+                                            Case Constantes.PRODUCTO_TARIFA_SECADO_TIPO_ESCALA_PORPUNTO
+                                            Case Constantes.PRODUCTO_TARIFA_SECADO_TIPO_ESCALA_COMPLETA
+                                                Me.SecadoExcesoTarifa = Cosecha_Producto_TarifaEscalaActual.Tarifa
+                                                Me.SecadoExcesoImporte = CS_ValueTranslation.FromDoubleToRoundedCurrency((KilogramoNeto / 100) * Me.HumedadExcesoCalculo * Me.SecadoExcesoTarifa)
+                                            Case Constantes.PRODUCTO_TARIFA_SECADO_TIPO_ESCALA_FIJO_SECADO
+                                                Me.SecadoExcesoTarifa = Cosecha_Producto_TarifaEscalaActual.Tarifa
+                                                Me.SecadoExcesoImporte = CS_ValueTranslation.FromDoubleToRoundedCurrency((KilogramoNeto / 100) * Me.SecadoExcesoTarifa)
+                                            Case Constantes.PRODUCTO_TARIFA_SECADO_TIPO_ESCALA_FIJO_SECADOYZARANDEO
+                                                Me.ZarandeoTarifa = 0
+                                                Me.ZarandeoImporte = 0
+                                                Me.SecadoExcesoTarifa = Cosecha_Producto_TarifaEscalaActual.Tarifa
+                                                Me.SecadoExcesoImporte = CS_ValueTranslation.FromDoubleToRoundedCurrency((KilogramoNeto / 100) * Me.SecadoExcesoTarifa)
+                                            Case Constantes.PRODUCTO_TARIFA_SECADO_TIPO_ESCALA_FIJO_TODOCONCEPTO
+                                                Me.ParitariaTarifa = 0
+                                                Me.ParitariaImporte = 0
+                                                Me.ZarandeoTarifa = 0
+                                                Me.ZarandeoImporte = 0
+                                                Me.FumigadoTarifa = 0
+                                                Me.FumigadoImporte = 0
+                                                Me.MezclaTarifa = 0
+                                                Me.MezclaImporte = 0
+                                                Me.SecadoExcesoTarifa = Cosecha_Producto_TarifaEscalaActual.Tarifa
+                                                Me.SecadoExcesoImporte = CS_ValueTranslation.FromDoubleToRoundedCurrency((KilogramoNeto / 100) * Me.SecadoExcesoTarifa)
+                                        End Select
+                                    End If
+                                End If
+                        End Select
+                    Else
+                        Me.SecadoTarifa = 0
+                        Me.SecadoImporte = 0
+                        Me.HumedadExcesoReal = 0
+                        Me.HumedadExcesoCalculo = 0
+                        Me.SecadoExcesoTarifa = 0
+                        Me.SecadoExcesoImporte = 0
+                    End If
                 End If
 
                 ' Importe Total
@@ -329,7 +333,7 @@ Partial Public Class Reporte
         For Each ParametroActual As ReporteParametro In Me.ReporteParametros
             For Each ParameterFieldActual As ParameterField In ReportObject.ParameterFields
                 With ParameterFieldActual
-                    If CStr(IIf(.ParameterType = ParameterType.StoreProcedureParameter, "@", "")) & ParametroActual.IDParametro.TrimEnd = .ParameterFieldName Then
+                    If CStr(IIf(.ParameterType = ParameterType.StoreProcedureParameter, "@", "")) & ParametroActual.Nombre = .ParameterFieldName Then
                         Select Case ParametroActual.Tipo
                             'Case REPORTE_PARAMETRO_TIPO_COMPANY
                             '    .AddCurrentValue pParametro.CompanyName
@@ -439,7 +443,7 @@ Partial Public Class ReporteParametro
                             mValor = Me.ValorPredeterminadoFechaHora
                         End If
                     Case Constantes.REPORTE_PARAMETRO_TIPO_YEAR_MONTH_FROM, Constantes.REPORTE_PARAMETRO_TIPO_YEAR_MONTH_TO
-                    Case Constantes.REPORTE_PARAMETRO_TIPO_SINO
+                    Case Constantes.REPORTE_PARAMETRO_TIPO_BOOLEAN
                         If Not Me.ValorPredeterminadoSiNo Is Nothing Then
                             mValor = Me.ValorPredeterminadoSiNo
                         End If
@@ -477,7 +481,7 @@ Partial Public Class ReporteParametro
                         Return ""
                     Case Constantes.REPORTE_PARAMETRO_TIPO_YEAR_MONTH_TO
                         Return ""
-                    Case Constantes.REPORTE_PARAMETRO_TIPO_SINO
+                    Case Constantes.REPORTE_PARAMETRO_TIPO_BOOLEAN
                         If CBool(mValor) Then
                             Return My.Resources.STRING_YES
                         Else

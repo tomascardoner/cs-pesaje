@@ -20,7 +20,7 @@ Partial Public Class Producto
     Public Property UtilizaCosecha As Boolean
     Public Property UsoFrecuente As Boolean
     Public Property UltimoUso As Date
-    Public Property ReporteNombre As String
+    Public Property TicketPesada_IDReporte As Nullable(Of Short)
     Public Property EsActivo As Boolean
     Public Property IDUsuarioCreacion As Short
     Public Property FechaHoraCreacion As Date
@@ -34,5 +34,6 @@ Partial Public Class Producto
     Public Overridable Property UsuarioCreacion As Usuario
     Public Overridable Property UsuarioModificacion As Usuario
     Public Overridable Property Producto_Humedades As ICollection(Of Producto_Humedad) = New HashSet(Of Producto_Humedad)
+    Public Overridable Property Reporte As Reporte
 
 End Class

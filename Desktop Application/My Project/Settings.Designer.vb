@@ -192,21 +192,30 @@ Namespace My
             End Get
         End Property
         
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(), _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.Configuration.DefaultSettingValueAttribute("balanza")> _
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("balanza")>  _
         Public ReadOnly Property AutoLogon_Usuario() As String
             Get
-                Return CType(Me("AutoLogon_Usuario"), String)
+                Return CType(Me("AutoLogon_Usuario"),String)
             End Get
         End Property
-
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(), _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.Configuration.DefaultSettingValueAttribute("Z7OZfx3IvSrrzNuh+wGYmg==")> _
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Z7OZfx3IvSrrzNuh+wGYmg==")>  _
         Public ReadOnly Property AutoLogon_Password() As String
             Get
-                Return CType(Me("AutoLogon_Password"), String)
+                Return CType(Me("AutoLogon_Password"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+        Public ReadOnly Property Report_Pesada_Preview() As Boolean
+            Get
+                Return CType(Me("Report_Pesada_Preview"),Boolean)
             End Get
         End Property
     End Class

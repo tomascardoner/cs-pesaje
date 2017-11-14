@@ -57,5 +57,5 @@
     Friend Const REPORTE_PARAMETRO_TIPO_TIME As String = "TIME"
     Friend Const REPORTE_PARAMETRO_TIPO_YEAR_MONTH_FROM As String = "YMFR"
     Friend Const REPORTE_PARAMETRO_TIPO_YEAR_MONTH_TO As String = "YMTO"
-    Friend Const REPORTE_PARAMETRO_TIPO_SINO As String = "SINO"
+    Friend Const REPORTE_PARAMETRO_TIPO_BOOLEAN As String = "BOOL"
 End Module

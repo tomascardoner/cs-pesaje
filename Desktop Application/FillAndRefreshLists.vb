@@ -12,7 +12,7 @@
         MyBase.Finalize()
     End Sub
 
-    Public Class Camion_ListItem
+    Friend Class Camion_ListItem
         Public Property IDCamion As Byte
         Public Property Descripcion As String
     End Class

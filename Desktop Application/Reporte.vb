@@ -16,9 +16,10 @@ Partial Public Class Reporte
     Public Property Nombre As String
     Public Property Titulo As String
     Public Property Archivo As String
-    Public Property MostrarEnVisor As Boolean
+    Public Property MostrarEnVisor As Nullable(Of Boolean)
 
     Public Overridable Property ReporteParametros As ICollection(Of ReporteParametro) = New HashSet(Of ReporteParametro)
     Public Overridable Property ReporteGrupo As ReporteGrupo
+    Public Overridable Property Producto As ICollection(Of Producto) = New HashSet(Of Producto)
 
 End Class

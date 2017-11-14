@@ -183,7 +183,6 @@
           <Property Name="IDOrigenDestino" Type="int" />
           <Property Name="Transportista_IDEntidad" Type="int" />
           <Property Name="Chofer_IDEntidad" Type="int" />
-          <Property Name="Camion_IDEntidad" Type="int" />
           <Property Name="IDCamion" Type="tinyint" />
           <Property Name="Kilometro" Type="smallint" />
           <Property Name="KilogramoBruto" Type="int" />
@@ -279,7 +278,7 @@
           <Property Name="UtilizaCosecha" Type="bit" Nullable="false" />
           <Property Name="UsoFrecuente" Type="bit" Nullable="false" />
           <Property Name="UltimoUso" Type="date" Nullable="false" />
-          <Property Name="ReporteNombre" Type="varchar" MaxLength="100" />
+          <Property Name="TicketPesada_IDReporte" Type="smallint" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
@@ -333,7 +332,7 @@
           <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Titulo" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Archivo" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="MostrarEnVisor" Type="bit" Nullable="false" />
+          <Property Name="MostrarEnVisor" Type="bit" />
         </EntityType>
         <EntityType Name="ReporteGrupo">
           <Key>
@@ -342,6 +341,7 @@
           <Property Name="IDReporteGrupo" Type="tinyint" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
+          <Property Name="MostrarEnVisor" Type="bit" />
         </EntityType>
         <EntityType Name="ReporteParametro">
           <Key>
@@ -420,7 +420,7 @@
               <PropertyRef Name="IDCamion" />
             </Principal>
             <Dependent Role="Pesada">
-              <PropertyRef Name="Camion_IDEntidad" />
+              <PropertyRef Name="Transportista_IDEntidad" />
               <PropertyRef Name="IDCamion" />
             </Dependent>
           </ReferentialConstraint>
@@ -624,7 +624,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Pesada__Pesada_Acondicionamiento">
-          <End Role="Pesada" Type="Self.Pesada" Multiplicity="1" />
+          <End Role="Pesada" Type="Self.Pesada" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Pesada_Acondicionamiento" Type="Self.Pesada_Acondicionamiento" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Pesada">
@@ -636,7 +638,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Pesada__Pesada_Analisis">
-          <End Role="Pesada" Type="Self.Pesada" Multiplicity="1" />
+          <End Role="Pesada" Type="Self.Pesada" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Pesada_Analisis" Type="Self.Pesada_Analisis" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Pesada">
@@ -648,7 +652,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Pesada__Pesada_Otro">
-          <End Role="Pesada" Type="Self.Pesada" Multiplicity="1" />
+          <End Role="Pesada" Type="Self.Pesada" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Pesada_Otro" Type="Self.Pesada_Otro" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Pesada">
@@ -766,6 +772,18 @@
             </Principal>
             <Dependent Role="Localidad">
               <PropertyRef Name="IDProvincia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reporte__Producto">
+          <End Role="Reporte" Type="Self.Reporte" Multiplicity="0..1" />
+          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reporte">
+              <PropertyRef Name="IDReporte" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="TicketPesada_IDReporte" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1180,6 +1198,10 @@
             <End Role="Provincia" EntitySet="Provincia" />
             <End Role="Localidad" EntitySet="Localidad" />
           </AssociationSet>
+          <AssociationSet Name="FK__Reporte__Producto" Association="Self.FK__Reporte__Producto">
+            <End Role="Reporte" EntitySet="Reporte" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
           <AssociationSet Name="FK__Reporte__ReporteParametro" Association="Self.FK__Reporte__ReporteParametro">
             <End Role="Reporte" EntitySet="Reporte" />
             <End Role="ReporteParametro" EntitySet="ReporteParametro" />
@@ -1508,6 +1530,14 @@
             <End Role="OrigenDestino" EntitySet="OrigenDestino" />
             <End Role="Cosecha_Producto_Tarifa" EntitySet="Cosecha_Producto_Tarifa" />
           </AssociationSet>
+          <AssociationSet Name="FK__Camion__Pesada1" Association="CSPesajeModel.FK__Camion__Pesada1">
+            <End Role="Camion" EntitySet="Camion" />
+            <End Role="Pesada" EntitySet="Pesada" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reporte__Producto" Association="CSPesajeModel.FK__Reporte__Producto">
+            <End Role="Reporte" EntitySet="Reporte" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
         </EntityContainer>		
 		<EntityType Name="Camion">
           <Key>
@@ -1530,6 +1560,7 @@
           <NavigationProperty Name="UsuarioModificacion" Relationship="CSPesajeModel.FK__Usuario__Camion__Modificacion" FromRole="Camion" ToRole="Usuario" />
           <NavigationProperty Name="Transportista" Relationship="CSPesajeModel.FK__Entidad__Camion" FromRole="Camion" ToRole="Entidad" />
           <NavigationProperty Name="Pesadas" Relationship="CSPesajeModel.FK__Camion__Pesada" FromRole="Camion" ToRole="Pesada" />
+          <NavigationProperty Name="Pesada" Relationship="CSPesajeModel.FK__Camion__Pesada1" FromRole="Camion" ToRole="Pesada" />
         </EntityType>
         <EntityType Name="Cosecha">
           <Key>
@@ -1715,7 +1746,6 @@
           <Property Name="IDOrigenDestino" Type="Int32" />
           <Property Name="Transportista_IDEntidad" Type="Int32" />
           <Property Name="Chofer_IDEntidad" Type="Int32" />
-          <Property Name="Camion_IDEntidad" Type="Int32" />
           <Property Name="IDCamion" Type="Byte" />
           <Property Name="Kilometro" Type="Int16" />
           <Property Name="KilogramoBruto" Type="Int32" />
@@ -1739,6 +1769,7 @@
           <NavigationProperty Name="UsuarioCreacion" Relationship="CSPesajeModel.FK__Usuario__Pesada__Creacion" FromRole="Pesada" ToRole="Usuario" />
           <NavigationProperty Name="UsuarioModificacion" Relationship="CSPesajeModel.FK__Usuario__Pesada__Modificacion" FromRole="Pesada" ToRole="Usuario" />
           <NavigationProperty Name="Camion" Relationship="CSPesajeModel.FK__Camion__Pesada" FromRole="Pesada" ToRole="Camion" />
+          <NavigationProperty Name="Camion1" Relationship="CSPesajeModel.FK__Camion__Pesada1" FromRole="Pesada" ToRole="Camion" />
         </EntityType>
         <EntityType Name="Pesada_Acondicionamiento">
           <Key>
@@ -1831,7 +1862,7 @@
           <Property Name="UtilizaCosecha" Type="Boolean" Nullable="false" />
           <Property Name="UsoFrecuente" Type="Boolean" Nullable="false" />
           <Property Name="UltimoUso" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="ReporteNombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TicketPesada_IDReporte" Type="Int16" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
@@ -1844,6 +1875,7 @@
           <NavigationProperty Name="UsuarioCreacion" Relationship="CSPesajeModel.FK__Usuario__Producto__Creacion" FromRole="Producto" ToRole="Usuario" />
           <NavigationProperty Name="UsuarioModificacion" Relationship="CSPesajeModel.FK__Usuario__Producto__Modificacion" FromRole="Producto" ToRole="Usuario" />
           <NavigationProperty Name="Producto_Humedades" Relationship="CSPesajeModel.FK__Producto__Producto_Humedad" FromRole="Producto" ToRole="Producto_Humedad" />
+          <NavigationProperty Name="Reporte" Relationship="CSPesajeModel.FK__Reporte__Producto" FromRole="Producto" ToRole="Reporte" />
         </EntityType>
         <EntityType Name="Producto_Cosecha">
           <Key>
@@ -1889,9 +1921,10 @@
           <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Titulo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Archivo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="MostrarEnVisor" Type="Boolean" Nullable="false" />
+          <Property Name="MostrarEnVisor" Type="Boolean" />
           <NavigationProperty Name="ReporteParametros" Relationship="CSPesajeModel.FK__Reporte__ReporteParametro" FromRole="Reporte" ToRole="ReporteParametro" />
           <NavigationProperty Name="ReporteGrupo" Relationship="CSPesajeModel.FK__ReporteGrupo__Reporte" FromRole="Reporte" ToRole="ReporteGrupo" />
+          <NavigationProperty Name="Producto" Relationship="CSPesajeModel.FK__Reporte__Producto" FromRole="Reporte" ToRole="Producto" />
         </EntityType>
         <EntityType Name="ReporteGrupo">
           <Key>
@@ -1901,6 +1934,7 @@
           <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Reportes" Relationship="CSPesajeModel.FK__ReporteGrupo__Reporte" FromRole="ReporteGrupo" ToRole="Reporte" />
+          <Property Name="MostrarEnVisor" Type="Boolean" />
         </EntityType>
         <EntityType Name="ReporteParametro">
           <Key>
@@ -2612,7 +2646,7 @@
               <PropertyRef Name="IDCamion" />
             </Principal>
             <Dependent Role="Pesada">
-              <PropertyRef Name="Camion_IDEntidad" />
+              <PropertyRef Name="Transportista_IDEntidad" />
               <PropertyRef Name="IDCamion" />
             </Dependent>
           </ReferentialConstraint>
@@ -2638,6 +2672,32 @@
             </Principal>
             <Dependent Role="Cosecha_Producto_Tarifa">
               <PropertyRef Name="IDOrigenDestino" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Camion__Pesada1">
+          <End Type="CSPesajeModel.Camion" Role="Camion" Multiplicity="0..1" />
+          <End Type="CSPesajeModel.Pesada" Role="Pesada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Camion">
+              <PropertyRef Name="IDEntidad" />
+              <PropertyRef Name="IDCamion" />
+            </Principal>
+            <Dependent Role="Pesada">
+              <PropertyRef Name="Transportista_IDEntidad" />
+              <PropertyRef Name="IDCamion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reporte__Producto">
+          <End Type="CSPesajeModel.Reporte" Role="Reporte" Multiplicity="0..1" />
+          <End Type="CSPesajeModel.Producto" Role="Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reporte">
+              <PropertyRef Name="IDReporte" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="TicketPesada_IDReporte" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2800,7 +2860,6 @@
             <EntityTypeMapping TypeName="CSPesajeModel.Pesada">
               <MappingFragment StoreEntitySet="Pesada">
                 <ScalarProperty Name="ComprobanteNumeroTercero" ColumnName="ComprobanteNumeroTercero" />
-                <ScalarProperty Name="Camion_IDEntidad" ColumnName="Camion_IDEntidad" />
                 <ScalarProperty Name="TipoNombre" ColumnName="TipoNombre" />
                 <ScalarProperty Name="IDPesada" ColumnName="IDPesada" />
                 <ScalarProperty Name="FechaHoraInicio" ColumnName="FechaHoraInicio" />
@@ -2905,7 +2964,7 @@
           <EntitySetMapping Name="Producto">
             <EntityTypeMapping TypeName="CSPesajeModel.Producto">
               <MappingFragment StoreEntitySet="Producto">
-                <ScalarProperty Name="ReporteNombre" ColumnName="ReporteNombre" />
+                <ScalarProperty Name="TicketPesada_IDReporte" ColumnName="TicketPesada_IDReporte" />
                 <ScalarProperty Name="UtilizaCosecha" ColumnName="UtilizaCosecha" />
                 <ScalarProperty Name="IDProducto" ColumnName="IDProducto" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
@@ -2968,6 +3027,7 @@
           <EntitySetMapping Name="ReporteGrupo">
             <EntityTypeMapping TypeName="CSPesajeModel.ReporteGrupo">
               <MappingFragment StoreEntitySet="ReporteGrupo">
+                <ScalarProperty Name="MostrarEnVisor" ColumnName="MostrarEnVisor" />
                 <ScalarProperty Name="IDReporteGrupo" ColumnName="IDReporteGrupo" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
