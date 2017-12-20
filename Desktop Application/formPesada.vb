@@ -20,6 +20,8 @@
             With mPesadaActual
                 .FechaHoraInicio = DateAndTime.Now
                 .FechaHoraFin = .FechaHoraInicio
+                .EsVerificado = False
+                .EsActivo = True
                 .IDUsuarioCreacion = pUsuario.IDUsuario
                 .FechaHoraCreacion = DateAndTime.Now
                 .IDUsuarioModificacion = pUsuario.IDUsuario
@@ -361,7 +363,11 @@
             ' Kilogramos
             .KilogramoBruto = CS_ValueTranslation.FromControlTextBoxToObjectInteger(integertextboxKilogramoBruto.Text)
             .KilogramoTara = CS_ValueTranslation.FromControlTextBoxToObjectInteger(integertextboxKilogramoTara.Text)
-            .KilogramoNeto = CS_ValueTranslation.FromControlTextBoxToObjectInteger(integertextboxKilogramoNeto.Text)
+            If integertextboxKilogramoBruto.IsNull Or integertextboxKilogramoTara.IsNull Then
+                .KilogramoNeto = Nothing
+            Else
+                .KilogramoNeto = CInt(integertextboxKilogramoBruto.IntegerValue - integertextboxKilogramoTara.IntegerValue)
+            End If
 
             ' Análisis
             If doubletextboxHumedad.DoubleValue > 0 Or doubletextboxZaranda.DoubleValue > 0 Or checkboxFumigado.Checked Or integertextboxGranoVerde.IntegerValue > 0 Or integertextboxGranoDaniado.IntegerValue > 0 Or checkboxMezclado.Checked Or doubletextboxPesoHectolitrico.DoubleValue > 0 Or doubletextboxGluten.DoubleValue > 0 Then

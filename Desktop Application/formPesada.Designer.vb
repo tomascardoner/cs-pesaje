@@ -23,6 +23,7 @@ Partial Class formPesada
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(formPesada))
         Me.toolstripMain = New System.Windows.Forms.ToolStrip()
         Me.buttonCerrar = New System.Windows.Forms.ToolStripButton()
         Me.buttonEditar = New System.Windows.Forms.ToolStripButton()
@@ -124,6 +125,8 @@ Partial Class formPesada
         Me.labelZaranda = New System.Windows.Forms.Label()
         Me.doubletextboxHumedad = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
         Me.labelHumedad = New System.Windows.Forms.Label()
+        Me.buttonEsActivo = New System.Windows.Forms.ToolStripButton()
+        Me.buttonEsSincronizado = New System.Windows.Forms.ToolStripButton()
         Me.toolstripMain.SuspendLayout()
         Me.groupboxTransporte.SuspendLayout()
         CType(Me.integertextboxKilometro, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -148,7 +151,7 @@ Partial Class formPesada
         'toolstripMain
         '
         Me.toolstripMain.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.toolstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonCerrar, Me.buttonEditar, Me.buttonCancelar, Me.buttonGuardar})
+        Me.toolstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonCerrar, Me.buttonEditar, Me.buttonCancelar, Me.buttonGuardar, Me.buttonEsActivo, Me.buttonEsSincronizado})
         Me.toolstripMain.Location = New System.Drawing.Point(0, 0)
         Me.toolstripMain.Name = "toolstripMain"
         Me.toolstripMain.Size = New System.Drawing.Size(743, 39)
@@ -991,7 +994,7 @@ Partial Class formPesada
         Me.integertextboxKilogramoNeto.Location = New System.Drawing.Point(268, 26)
         Me.integertextboxKilogramoNeto.MaxValue = CType(99999, Long)
         Me.integertextboxKilogramoNeto.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
-        Me.integertextboxKilogramoNeto.MinValue = CType(0, Long)
+        Me.integertextboxKilogramoNeto.MinValue = CType(-99999, Long)
         Me.integertextboxKilogramoNeto.Name = "integertextboxKilogramoNeto"
         Me.integertextboxKilogramoNeto.NullString = ""
         Me.integertextboxKilogramoNeto.NumberNegativePattern = 0
@@ -1332,6 +1335,24 @@ Partial Class formPesada
         Me.labelHumedad.TabIndex = 0
         Me.labelHumedad.Text = "Humedad:"
         '
+        'buttonEsActivo
+        '
+        Me.buttonEsActivo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.buttonEsActivo.Image = CType(resources.GetObject("buttonEsActivo.Image"), System.Drawing.Image)
+        Me.buttonEsActivo.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonEsActivo.Name = "buttonEsActivo"
+        Me.buttonEsActivo.Size = New System.Drawing.Size(45, 36)
+        Me.buttonEsActivo.Text = "Activo"
+        '
+        'buttonEsSincronizado
+        '
+        Me.buttonEsSincronizado.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.buttonEsSincronizado.Image = CType(resources.GetObject("buttonEsSincronizado.Image"), System.Drawing.Image)
+        Me.buttonEsSincronizado.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonEsSincronizado.Name = "buttonEsSincronizado"
+        Me.buttonEsSincronizado.Size = New System.Drawing.Size(79, 36)
+        Me.buttonEsSincronizado.Text = "Sincronizado"
+        '
         'formPesada
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1485,4 +1506,6 @@ Partial Class formPesada
     Friend WithEvents maskedtextboxComprobanteNumeroTercero As System.Windows.Forms.MaskedTextBox
     Friend WithEvents integertextboxGranoDaniado As Syncfusion.Windows.Forms.Tools.IntegerTextBox
     Friend WithEvents integertextboxGranoVerde As Syncfusion.Windows.Forms.Tools.IntegerTextBox
+    Friend WithEvents buttonEsActivo As System.Windows.Forms.ToolStripButton
+    Friend WithEvents buttonEsSincronizado As System.Windows.Forms.ToolStripButton
 End Class

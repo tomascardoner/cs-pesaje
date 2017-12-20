@@ -9,9 +9,12 @@
         Public Property FechaHoraInicio As Date
         Public Property FechaHoraFin As Date?
         Public Property ComprobanteNumero As String
+        Public Property IDTitular As Integer
         Public Property TitularNombre As String
+        Public Property IDProducto As Byte
         Public Property ProductoNombre As String
         Public Property Producto_TicketPesada_IDReporte As Short?
+        Public Property IDPlanta As Byte?
         Public Property TipoNombre As String
         Public Property CosechaNombre As String
         Public Property OrigenDestinoNombre As String
@@ -48,10 +51,7 @@
 
         mSkipFilterData = True
 
-        InicializarFiltroDeFechas()
-
-        comboboxPeriodoTipo.Items.AddRange({"Día:", "Semana:", "Mes:", "Fecha"})
-        FiltroPeriodoMostrar()
+        InitializeFormAndControls()
 
         mSkipFilterData = False
 
@@ -61,11 +61,24 @@
         RefreshData()
     End Sub
 
+    Friend Sub InitializeFormAndControls()
+        ' Filtro de Fechas
+        InicializarFiltroDeFechas()
+        comboboxPeriodoTipo.Items.AddRange({"Día:", "Semana:", "Mes:", "Fecha"})
+        FiltroPeriodoMostrar()
+
+        ' Filtro de Productos
+        pFillAndRefreshLists.Entidad(comboboxTitular.ComboBox, Nothing, False, True, False, False, FIELD_VALUE_NOTSPECIFIED_INTEGER, False, True, False)
+        pFillAndRefreshLists.Producto(comboboxProducto.ComboBox, Nothing, False, False, True, False)
+        comboboxProducto.ComboBox.SelectedIndex = 0
+        pFillAndRefreshLists.Planta(comboboxPlanta.ComboBox, Nothing, FIELD_VALUE_NOTSPECIFIED_BYTE, True, False)
+    End Sub
+
     Private Sub Me_FormClosed() Handles Me.FormClosed
         mlistPesadaBase = Nothing
         mlistPesadaFiltradaYOrdenada = Nothing
     End Sub
-
+ 
     Private Sub InicializarFiltroDeFechas()
         ' Create a new ToolStripControlHost, passing in a control.
         datetimepickerFechaDesdeHost = New ToolStripControlHost(New DateTimePicker())
@@ -161,7 +174,9 @@
                         FechaHasta = CType(datetimepickerFechaDesdeHost.Control, DateTimePicker).Value
                     Case 1  ' posterior
                         FechaDesde = CType(datetimepickerFechaDesdeHost.Control, DateTimePicker).Value
-                        FechaHasta = Date.MaxValue
+                        ' A la Fecha Hasta, la asigno al valor máximo que puede existir, pero le resto un día y le sumo un segundo para contrarrestar la línea al final del Case,
+                        ' adónde a la Fecha Hasta se le suma un día y se le resta un segundo, con lo cual produciría un error porque al sumarle un día, se excedería del rango
+                        FechaHasta = Date.MaxValue.AddDays(-1).AddSeconds(1)
                     Case 2  ' anterior
                         FechaDesde = Date.MinValue
                         FechaHasta = CType(datetimepickerFechaDesdeHost.Control, DateTimePicker).Value
@@ -171,7 +186,7 @@
                 End Select
         End Select
         ' A la fecha hasta, le sumo un día y le resto un segundo, para que quede conformado por la fecha original y la hora 23:59:59
-        FechaHasta = FechaHasta.AddDays(1).AddSeconds(-1)
+        FechaHasta = FechaHasta.AddSeconds(-1).AddDays(1)
 
         Try
             Using dbContext As New CSPesajeContext(True)
@@ -193,7 +208,7 @@
                                    Group Join ca In dbContext.Camion On pe.Transportista_IDEntidad Equals ca.IDEntidad And pe.IDCamion Equals ca.IDCamion Into Camion_Group = Group
                                    From cag In Camion_Group.DefaultIfEmpty
                                    Where pe.FechaHoraInicio >= FechaDesde And pe.FechaHoraInicio <= FechaHasta
-                                   Select New GridRowData With {.IDPesada = pe.IDPesada, .FechaHoraInicio = pe.FechaHoraInicio, .FechaHoraFin = pe.FechaHoraFin, .ComprobanteNumero = pe.ComprobanteNumero, .TitularNombre = If(pe.Titular_IDEntidad = CS_Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Titular_Nombre, ent.Nombre), .ProductoNombre = If(pe.IDProducto = CS_Constants.FIELD_VALUE_OTHER_BYTE, pe_otg.Producto_Nombre, pr.Nombre), .Producto_TicketPesada_IDReporte = pr.TicketPesada_IDReporte, .TipoNombre = pe.TipoNombre, .CosechaNombre = If(cog Is Nothing, "", cog.Nombre), .OrigenDestinoNombre = If(pe.IDOrigenDestino = CS_Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.OrigenDestino_Nombre, If(odg Is Nothing, "", odg.Nombre)), .KilogramoBruto = pe.KilogramoBruto, .KilogramoTara = pe.KilogramoTara, .KilogramoNeto = pe.KilogramoNeto, .Humedad = If(pe_ang Is Nothing, Nothing, pe_ang.Humedad), .Zaranda = If(pe_ang Is Nothing, Nothing, pe_ang.Zaranda), .KilogramoFinal = pe.KilogramoFinal, .TransportistaNombre = If(pe.Transportista_IDEntidad = CS_Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Transportista_Nombre, If(trg Is Nothing, "", trg.Nombre)), .ChoferNombre = If(pe.Chofer_IDEntidad = CS_Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Chofer_Nombre, If(chg Is Nothing, "", chg.Nombre)), .CamionNombreDominios = If(pe.IDCamion = CS_Constants.FIELD_VALUE_OTHER_BYTE, pe_otg.Camion_DominioChasis & If(pe_otg.Camion_DominioAcoplado Is Nothing, "", " - " & pe_otg.Camion_DominioAcoplado), If(cag Is Nothing, "", cag.NombreDominios))}).ToList
+                                   Select New GridRowData With {.IDPesada = pe.IDPesada, .FechaHoraInicio = pe.FechaHoraInicio, .FechaHoraFin = pe.FechaHoraFin, .ComprobanteNumero = pe.ComprobanteNumero, .IDTitular = pe.Titular_IDEntidad, .TitularNombre = If(pe.Titular_IDEntidad = CS_Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Titular_Nombre, ent.Nombre), .IDProducto = pe.IDProducto, .ProductoNombre = If(pe.IDProducto = CS_Constants.FIELD_VALUE_OTHER_BYTE, pe_otg.Producto_Nombre, pr.Nombre), .Producto_TicketPesada_IDReporte = pr.TicketPesada_IDReporte, .IDPlanta = pe.IDPlanta, .TipoNombre = pe.TipoNombre, .CosechaNombre = If(cog Is Nothing, "", cog.Nombre), .OrigenDestinoNombre = If(pe.IDOrigenDestino = CS_Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.OrigenDestino_Nombre, If(odg Is Nothing, "", odg.Nombre)), .KilogramoBruto = pe.KilogramoBruto, .KilogramoTara = pe.KilogramoTara, .KilogramoNeto = pe.KilogramoNeto, .Humedad = If(pe_ang Is Nothing, Nothing, pe_ang.Humedad), .Zaranda = If(pe_ang Is Nothing, Nothing, pe_ang.Zaranda), .KilogramoFinal = pe.KilogramoFinal, .TransportistaNombre = If(pe.Transportista_IDEntidad = CS_Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Transportista_Nombre, If(trg Is Nothing, "", trg.Nombre)), .ChoferNombre = If(pe.Chofer_IDEntidad = CS_Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Chofer_Nombre, If(chg Is Nothing, "", chg.Nombre)), .CamionNombreDominios = If(pe.IDCamion = CS_Constants.FIELD_VALUE_OTHER_BYTE, pe_otg.Camion_DominioChasis & If(pe_otg.Camion_DominioAcoplado Is Nothing, "", " - " & pe_otg.Camion_DominioAcoplado), If(cag Is Nothing, "", cag.NombreDominios))}).ToList
             End Using
 
         Catch ex As Exception
@@ -250,6 +265,21 @@
                 '        mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, "", " AND ").ToString & "{Entidad.EsActivo} = 0"
                 '        mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(a) Not a.EsActivo).ToList
                 'End Select
+
+                ' Filtro por Entidad
+                If CInt(comboboxTitular.ComboBox.SelectedValue) <> FIELD_VALUE_ALL_INTEGER Then
+                    mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) p.IDTitular = CInt(comboboxTitular.ComboBox.SelectedValue)).ToList
+                End If
+
+                ' Filtro por Producto
+                If CInt(comboboxProducto.ComboBox.SelectedValue) <> FIELD_VALUE_ALL_BYTE Then
+                    mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) p.IDProducto = CByte(comboboxProducto.ComboBox.SelectedValue)).ToList
+                End If
+
+                ' Filtro por Planta
+                If CInt(comboboxPlanta.ComboBox.SelectedValue) <> FIELD_VALUE_ALL_BYTE Then
+                    mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) p.IDPlanta.Value = CByte(comboboxPlanta.ComboBox.SelectedValue)).ToList
+                End If
 
                 Select Case mlistPesadaFiltradaYOrdenada.Count
                     Case 0
@@ -358,6 +388,10 @@
     End Sub
 
     Private Sub PesadaTipo_Click() Handles menuitemPesadaTipo_Entrada.Click, menuitemPesadaTipo_Salida.Click, menuitemPesadaTipo_Ninguno.Click
+        FilterData()
+    End Sub
+
+    Private Sub FiltrosBasicos_Click() Handles comboboxTitular.SelectedIndexChanged, comboboxProducto.SelectedIndexChanged, comboboxPlanta.SelectedIndexChanged
         FilterData()
     End Sub
 

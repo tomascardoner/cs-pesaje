@@ -32,6 +32,8 @@ Partial Public Class Pesada
     Public Property KilogramoNeto As Nullable(Of Integer)
     Public Property KilogramoFinal As Nullable(Of Integer)
     Public Property Notas As String
+    Public Property EsVerificado As Boolean
+    Public Property EsActivo As Boolean
     Public Property IDUsuarioCreacion As Short
     Public Property FechaHoraCreacion As Date
     Public Property IDUsuarioModificacion As Short

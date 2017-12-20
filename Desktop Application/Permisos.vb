@@ -19,6 +19,8 @@
     Friend Const PESADA_EDITAR As String = "PESADA_EDITAR"
     Friend Const PESADA_ELIMINAR As String = "PESADA_ELIMINAR"
     Friend Const PESADA_IMPRIMIR As String = "PESADA_IMPRIMIR"
+    Friend Const PESADA_MOSTRAR_VERIFICADO As String = "PESADA_MOSTRAR_VERIFICADO"
+    Friend Const PESADA_MOSTRAR_ACTIVO As String = "PESADA_MOSTRAR_SINCRONIZADO"
 
     Friend Const REPORTE As String = "REPORTE"
 
@@ -74,6 +76,8 @@
             .Nodes.Add(PESADA_EDITAR, DESCRIPCION_EDITAR)
             .Nodes.Add(PESADA_ELIMINAR, DESCRIPCION_ELIMINAR)
             .Nodes.Add(PESADA_IMPRIMIR, DESCRIPCION_IMPRIMIR)
+            .Nodes.Add(PESADA_MOSTRAR_VERIFICADO, "Mostrar opciones de pesadas Verificadas.")
+            .Nodes.Add(PESADA_MOSTRAR_ACTIVO, "Mostrar opciones de pesadas Activas.")
         End With
 
         RootNode = Arbol.Nodes.Add(REPORTE, "Reportes")

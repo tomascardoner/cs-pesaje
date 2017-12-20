@@ -23,16 +23,16 @@ Partial Class formPesadas
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle111 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle112 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle113 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle114 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle115 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle116 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle117 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle118 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle119 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle120 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(formPesadas))
         Me.statusstripMain = New System.Windows.Forms.StatusStrip()
         Me.statuslabelMain = New System.Windows.Forms.ToolStripStatusLabel()
@@ -140,11 +140,11 @@ Partial Class formPesadas
         Me.datagridviewMain.AllowUserToDeleteRows = False
         Me.datagridviewMain.AllowUserToOrderColumns = True
         Me.datagridviewMain.AllowUserToResizeRows = False
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.GradientActiveCaption
-        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText
-        Me.datagridviewMain.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle111.BackColor = System.Drawing.SystemColors.GradientActiveCaption
+        DataGridViewCellStyle111.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle111.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
+        DataGridViewCellStyle111.SelectionForeColor = System.Drawing.SystemColors.WindowText
+        Me.datagridviewMain.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle111
         Me.datagridviewMain.AutoGenerateColumns = False
         Me.datagridviewMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.datagridviewMain.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnIDPesada, Me.columnFechaHoraInicio, Me.columnFechaHoraFin, Me.columnComprobanteNumero, Me.columnEntidadTitular, Me.columnProducto, Me.columnTipo, Me.columnCosecha, Me.columnOrigenDestino, Me.columnKilogramoBruto, Me.columnKilogramoTara, Me.columnKilogramoNeto, Me.columnHumedad, Me.columnZaranda, Me.columnKilogramoFinal, Me.columnEntidadTransportista, Me.columnChofer, Me.columnCamion})
@@ -164,10 +164,10 @@ Partial Class formPesadas
         '
         Me.columnIDPesada.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.columnIDPesada.DataPropertyName = "IDPesada"
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle2.Format = "N0"
-        DataGridViewCellStyle2.NullValue = Nothing
-        Me.columnIDPesada.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle112.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle112.Format = "N0"
+        DataGridViewCellStyle112.NullValue = Nothing
+        Me.columnIDPesada.DefaultCellStyle = DataGridViewCellStyle112
         Me.columnIDPesada.HeaderText = "Número"
         Me.columnIDPesada.Name = "columnIDPesada"
         Me.columnIDPesada.ReadOnly = True
@@ -177,10 +177,10 @@ Partial Class formPesadas
         '
         Me.columnFechaHoraInicio.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.columnFechaHoraInicio.DataPropertyName = "FechaHoraInicio"
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle3.Format = "g"
-        DataGridViewCellStyle3.NullValue = Nothing
-        Me.columnFechaHoraInicio.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle113.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle113.Format = "g"
+        DataGridViewCellStyle113.NullValue = Nothing
+        Me.columnFechaHoraInicio.DefaultCellStyle = DataGridViewCellStyle113
         Me.columnFechaHoraInicio.HeaderText = "Inicio"
         Me.columnFechaHoraInicio.Name = "columnFechaHoraInicio"
         Me.columnFechaHoraInicio.ReadOnly = True
@@ -190,10 +190,10 @@ Partial Class formPesadas
         '
         Me.columnFechaHoraFin.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.columnFechaHoraFin.DataPropertyName = "FechaHoraFin"
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle4.Format = "g"
-        DataGridViewCellStyle4.NullValue = Nothing
-        Me.columnFechaHoraFin.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle114.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle114.Format = "g"
+        DataGridViewCellStyle114.NullValue = Nothing
+        Me.columnFechaHoraFin.DefaultCellStyle = DataGridViewCellStyle114
         Me.columnFechaHoraFin.HeaderText = "Fin"
         Me.columnFechaHoraFin.Name = "columnFechaHoraFin"
         Me.columnFechaHoraFin.ReadOnly = True
@@ -257,10 +257,10 @@ Partial Class formPesadas
         '
         Me.columnKilogramoBruto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.columnKilogramoBruto.DataPropertyName = "KilogramoBruto"
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle5.Format = "N0"
-        DataGridViewCellStyle5.NullValue = Nothing
-        Me.columnKilogramoBruto.DefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle115.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle115.Format = "N0"
+        DataGridViewCellStyle115.NullValue = Nothing
+        Me.columnKilogramoBruto.DefaultCellStyle = DataGridViewCellStyle115
         Me.columnKilogramoBruto.HeaderText = "Kgs. Bruto"
         Me.columnKilogramoBruto.Name = "columnKilogramoBruto"
         Me.columnKilogramoBruto.ReadOnly = True
@@ -270,9 +270,9 @@ Partial Class formPesadas
         '
         Me.columnKilogramoTara.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.columnKilogramoTara.DataPropertyName = "KilogramoTara"
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle6.Format = "N0"
-        Me.columnKilogramoTara.DefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle116.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle116.Format = "N0"
+        Me.columnKilogramoTara.DefaultCellStyle = DataGridViewCellStyle116
         Me.columnKilogramoTara.HeaderText = "Kgs. Tara"
         Me.columnKilogramoTara.Name = "columnKilogramoTara"
         Me.columnKilogramoTara.ReadOnly = True
@@ -282,9 +282,9 @@ Partial Class formPesadas
         '
         Me.columnKilogramoNeto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.columnKilogramoNeto.DataPropertyName = "KilogramoNeto"
-        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle7.Format = "N0"
-        Me.columnKilogramoNeto.DefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle117.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle117.Format = "N0"
+        Me.columnKilogramoNeto.DefaultCellStyle = DataGridViewCellStyle117
         Me.columnKilogramoNeto.HeaderText = "Kgs. Neto"
         Me.columnKilogramoNeto.Name = "columnKilogramoNeto"
         Me.columnKilogramoNeto.ReadOnly = True
@@ -294,10 +294,10 @@ Partial Class formPesadas
         '
         Me.columnHumedad.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.columnHumedad.DataPropertyName = "Humedad"
-        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle8.Format = "N1"
-        DataGridViewCellStyle8.NullValue = Nothing
-        Me.columnHumedad.DefaultCellStyle = DataGridViewCellStyle8
+        DataGridViewCellStyle118.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle118.Format = "N1"
+        DataGridViewCellStyle118.NullValue = Nothing
+        Me.columnHumedad.DefaultCellStyle = DataGridViewCellStyle118
         Me.columnHumedad.HeaderText = "Hum."
         Me.columnHumedad.Name = "columnHumedad"
         Me.columnHumedad.ReadOnly = True
@@ -307,9 +307,9 @@ Partial Class formPesadas
         '
         Me.columnZaranda.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.columnZaranda.DataPropertyName = "Zaranda"
-        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle9.Format = "N1"
-        Me.columnZaranda.DefaultCellStyle = DataGridViewCellStyle9
+        DataGridViewCellStyle119.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle119.Format = "N1"
+        Me.columnZaranda.DefaultCellStyle = DataGridViewCellStyle119
         Me.columnZaranda.HeaderText = "Zar."
         Me.columnZaranda.Name = "columnZaranda"
         Me.columnZaranda.ReadOnly = True
@@ -319,9 +319,9 @@ Partial Class formPesadas
         '
         Me.columnKilogramoFinal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.columnKilogramoFinal.DataPropertyName = "KilogramoFinal"
-        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle10.Format = "N0"
-        Me.columnKilogramoFinal.DefaultCellStyle = DataGridViewCellStyle10
+        DataGridViewCellStyle120.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle120.Format = "N0"
+        Me.columnKilogramoFinal.DefaultCellStyle = DataGridViewCellStyle120
         Me.columnKilogramoFinal.HeaderText = "Kgs. Final"
         Me.columnKilogramoFinal.Name = "columnKilogramoFinal"
         Me.columnKilogramoFinal.ReadOnly = True
@@ -416,7 +416,7 @@ Partial Class formPesadas
         Me.toolstripgroupAcciones.Location = New System.Drawing.Point(0, 1)
         Me.toolstripgroupAcciones.Name = "toolstripgroupAcciones"
         Me.toolstripgroupAcciones.Padding = New System.Windows.Forms.Padding(0, 5, 0, 0)
-        Me.toolstripgroupAcciones.Size = New System.Drawing.Size(292, 69)
+        Me.toolstripgroupAcciones.Size = New System.Drawing.Size(261, 69)
         Me.toolstripgroupAcciones.TabIndex = 1
         Me.toolstripgroupAcciones.Text = "Acciones"
         '
@@ -485,7 +485,7 @@ Partial Class formPesadas
         Me.toolstripgroupPeriodo.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolstripgroupPeriodo.Image = Nothing
         Me.toolstripgroupPeriodo.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.comboboxPeriodoTipo, Me.comboboxPeriodoValor, Me.labelFecha, Me.buttonFechaDesdeAnterior, Me.buttonFechaDesdeSiguiente, Me.buttonFechaDesdeHoy, Me.labelFechaY, Me.buttonFechaHastaAnterior, Me.buttonFechaHastaSiguiente, Me.buttonFechaHastaHoy})
-        Me.toolstripgroupPeriodo.Location = New System.Drawing.Point(294, 1)
+        Me.toolstripgroupPeriodo.Location = New System.Drawing.Point(263, 1)
         Me.toolstripgroupPeriodo.Name = "toolstripgroupPeriodo"
         Me.toolstripgroupPeriodo.Padding = New System.Windows.Forms.Padding(0, 5, 0, 0)
         Me.toolstripgroupPeriodo.ShowLauncher = True
@@ -608,7 +608,7 @@ Partial Class formPesadas
         Me.toolstripgroupTitular.Location = New System.Drawing.Point(0, 1)
         Me.toolstripgroupTitular.Name = "toolstripgroupTitular"
         Me.toolstripgroupTitular.Padding = New System.Windows.Forms.Padding(0, 5, 0, 0)
-        Me.toolstripgroupTitular.Size = New System.Drawing.Size(158, 69)
+        Me.toolstripgroupTitular.Size = New System.Drawing.Size(208, 69)
         Me.toolstripgroupTitular.TabIndex = 1
         Me.toolstripgroupTitular.Text = "Titular"
         '
@@ -616,7 +616,7 @@ Partial Class formPesadas
         '
         Me.comboboxTitular.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxTitular.Name = "comboboxTitular"
-        Me.comboboxTitular.Size = New System.Drawing.Size(150, 47)
+        Me.comboboxTitular.Size = New System.Drawing.Size(200, 47)
         '
         'toolstripgroupProducto
         '
@@ -626,10 +626,10 @@ Partial Class formPesadas
         Me.toolstripgroupProducto.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolstripgroupProducto.Image = Nothing
         Me.toolstripgroupProducto.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.comboboxProducto})
-        Me.toolstripgroupProducto.Location = New System.Drawing.Point(160, 1)
+        Me.toolstripgroupProducto.Location = New System.Drawing.Point(210, 1)
         Me.toolstripgroupProducto.Name = "toolstripgroupProducto"
         Me.toolstripgroupProducto.Padding = New System.Windows.Forms.Padding(0, 5, 0, 0)
-        Me.toolstripgroupProducto.Size = New System.Drawing.Size(108, 69)
+        Me.toolstripgroupProducto.Size = New System.Drawing.Size(128, 69)
         Me.toolstripgroupProducto.TabIndex = 2
         Me.toolstripgroupProducto.Text = "Producto"
         '
@@ -637,7 +637,7 @@ Partial Class formPesadas
         '
         Me.comboboxProducto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxProducto.Name = "comboboxProducto"
-        Me.comboboxProducto.Size = New System.Drawing.Size(100, 47)
+        Me.comboboxProducto.Size = New System.Drawing.Size(120, 47)
         '
         'toolstripgroupPlanta
         '
@@ -647,9 +647,10 @@ Partial Class formPesadas
         Me.toolstripgroupPlanta.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolstripgroupPlanta.Image = Nothing
         Me.toolstripgroupPlanta.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.comboboxPlanta})
-        Me.toolstripgroupPlanta.Location = New System.Drawing.Point(270, 1)
+        Me.toolstripgroupPlanta.Location = New System.Drawing.Point(340, 1)
         Me.toolstripgroupPlanta.Name = "toolstripgroupPlanta"
-        Me.toolstripgroupPlanta.Size = New System.Drawing.Size(130, 69)
+        Me.toolstripgroupPlanta.Padding = New System.Windows.Forms.Padding(0, 5, 0, 0)
+        Me.toolstripgroupPlanta.Size = New System.Drawing.Size(138, 69)
         Me.toolstripgroupPlanta.TabIndex = 7
         Me.toolstripgroupPlanta.Text = "Planta"
         '
@@ -657,7 +658,7 @@ Partial Class formPesadas
         '
         Me.comboboxPlanta.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxPlanta.Name = "comboboxPlanta"
-        Me.comboboxPlanta.Size = New System.Drawing.Size(121, 52)
+        Me.comboboxPlanta.Size = New System.Drawing.Size(130, 47)
         '
         'tooltripgroupPesadaTipo
         '
@@ -667,7 +668,7 @@ Partial Class formPesadas
         Me.tooltripgroupPesadaTipo.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.tooltripgroupPesadaTipo.Image = Nothing
         Me.tooltripgroupPesadaTipo.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.dropdownbuttonPesadaTipo})
-        Me.tooltripgroupPesadaTipo.Location = New System.Drawing.Point(402, 1)
+        Me.tooltripgroupPesadaTipo.Location = New System.Drawing.Point(480, 1)
         Me.tooltripgroupPesadaTipo.Name = "tooltripgroupPesadaTipo"
         Me.tooltripgroupPesadaTipo.Padding = New System.Windows.Forms.Padding(0, 5, 0, 0)
         Me.tooltripgroupPesadaTipo.Size = New System.Drawing.Size(113, 69)
@@ -735,7 +736,7 @@ Partial Class formPesadas
         Me.toolstripgroupCosecha.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolstripgroupCosecha.Image = Nothing
         Me.toolstripgroupCosecha.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.comboboxCosecha})
-        Me.toolstripgroupCosecha.Location = New System.Drawing.Point(517, 1)
+        Me.toolstripgroupCosecha.Location = New System.Drawing.Point(595, 1)
         Me.toolstripgroupCosecha.Name = "toolstripgroupCosecha"
         Me.toolstripgroupCosecha.Padding = New System.Windows.Forms.Padding(0, 5, 0, 0)
         Me.toolstripgroupCosecha.Size = New System.Drawing.Size(108, 69)
@@ -756,7 +757,7 @@ Partial Class formPesadas
         Me.toolstripgroupOrigenDestino.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolstripgroupOrigenDestino.Image = Nothing
         Me.toolstripgroupOrigenDestino.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.comboboxOrigenDestino})
-        Me.toolstripgroupOrigenDestino.Location = New System.Drawing.Point(627, 1)
+        Me.toolstripgroupOrigenDestino.Location = New System.Drawing.Point(705, 1)
         Me.toolstripgroupOrigenDestino.Name = "toolstripgroupOrigenDestino"
         Me.toolstripgroupOrigenDestino.Padding = New System.Windows.Forms.Padding(0, 5, 0, 0)
         Me.toolstripgroupOrigenDestino.Size = New System.Drawing.Size(158, 69)
@@ -777,7 +778,7 @@ Partial Class formPesadas
         Me.toolstripgroupTransportista.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolstripgroupTransportista.Image = Nothing
         Me.toolstripgroupTransportista.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.comboboxTransportista})
-        Me.toolstripgroupTransportista.Location = New System.Drawing.Point(787, 1)
+        Me.toolstripgroupTransportista.Location = New System.Drawing.Point(865, 1)
         Me.toolstripgroupTransportista.Name = "toolstripgroupTransportista"
         Me.toolstripgroupTransportista.Padding = New System.Windows.Forms.Padding(0, 5, 0, 0)
         Me.toolstripgroupTransportista.Size = New System.Drawing.Size(129, 69)
@@ -798,7 +799,7 @@ Partial Class formPesadas
         Me.toolstripgroupChofer.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolstripgroupChofer.Image = Nothing
         Me.toolstripgroupChofer.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.comboboxChofer})
-        Me.toolstripgroupChofer.Location = New System.Drawing.Point(918, 1)
+        Me.toolstripgroupChofer.Location = New System.Drawing.Point(996, 1)
         Me.toolstripgroupChofer.Name = "toolstripgroupChofer"
         Me.toolstripgroupChofer.Padding = New System.Windows.Forms.Padding(0, 5, 0, 0)
         Me.toolstripgroupChofer.Size = New System.Drawing.Size(129, 69)

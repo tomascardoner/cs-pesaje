@@ -190,6 +190,8 @@
           <Property Name="KilogramoNeto" Type="int" />
           <Property Name="KilogramoFinal" Type="int" />
           <Property Name="Notas" Type="varchar(max)" />
+          <Property Name="EsVerificado" Type="bit" Nullable="false" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
           <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
@@ -775,18 +777,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Reporte__Producto">
-          <End Role="Reporte" Type="Self.Reporte" Multiplicity="0..1" />
-          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Reporte">
-              <PropertyRef Name="IDReporte" />
-            </Principal>
-            <Dependent Role="Producto">
-              <PropertyRef Name="TicketPesada_IDReporte" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Reporte__ReporteParametro">
           <End Role="Reporte" Type="Self.Reporte" Multiplicity="1" />
           <End Role="ReporteParametro" Type="Self.ReporteParametro" Multiplicity="*" />
@@ -1051,6 +1041,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Producto_Reporte">
+          <End Role="Reporte" Type="Self.Reporte" Multiplicity="0..1" />
+          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reporte">
+              <PropertyRef Name="IDReporte" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="TicketPesada_IDReporte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="CSPesajeModelStoreContainer">
           <EntitySet Name="Camion" EntityType="Self.Camion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cosecha" EntityType="Self.Cosecha" Schema="dbo" store:Type="Tables" />
@@ -1198,10 +1200,6 @@
             <End Role="Provincia" EntitySet="Provincia" />
             <End Role="Localidad" EntitySet="Localidad" />
           </AssociationSet>
-          <AssociationSet Name="FK__Reporte__Producto" Association="Self.FK__Reporte__Producto">
-            <End Role="Reporte" EntitySet="Reporte" />
-            <End Role="Producto" EntitySet="Producto" />
-          </AssociationSet>
           <AssociationSet Name="FK__Reporte__ReporteParametro" Association="Self.FK__Reporte__ReporteParametro">
             <End Role="Reporte" EntitySet="Reporte" />
             <End Role="ReporteParametro" EntitySet="ReporteParametro" />
@@ -1289,6 +1287,10 @@
           <AssociationSet Name="FK__UsuarioGrupo__UsuarioGrupoPermiso" Association="Self.FK__UsuarioGrupo__UsuarioGrupoPermiso">
             <End Role="UsuarioGrupo" EntitySet="UsuarioGrupo" />
             <End Role="UsuarioGrupoPermiso" EntitySet="UsuarioGrupoPermiso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Producto_Reporte" Association="Self.FK_Producto_Reporte">
+            <End Role="Reporte" EntitySet="Reporte" />
+            <End Role="Producto" EntitySet="Producto" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -1753,6 +1755,8 @@
           <Property Name="KilogramoNeto" Type="Int32" />
           <Property Name="KilogramoFinal" Type="Int32" />
           <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EsVerificado" Type="Boolean" Nullable="false" />
+          <Property Name="EsActivo" Type="Boolean" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
@@ -2859,6 +2863,8 @@
           <EntitySetMapping Name="Pesada">
             <EntityTypeMapping TypeName="CSPesajeModel.Pesada">
               <MappingFragment StoreEntitySet="Pesada">
+                <ScalarProperty Name="EsVerificado" ColumnName="EsVerificado" />
+                <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
                 <ScalarProperty Name="ComprobanteNumeroTercero" ColumnName="ComprobanteNumeroTercero" />
                 <ScalarProperty Name="TipoNombre" ColumnName="TipoNombre" />
                 <ScalarProperty Name="IDPesada" ColumnName="IDPesada" />
