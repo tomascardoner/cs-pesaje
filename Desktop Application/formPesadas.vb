@@ -19,6 +19,7 @@
         Public Property TipoNombre As String
         Public Property IDCosecha As Byte?
         Public Property CosechaNombre As String
+        Public Property IDOrigenDestino As Integer?
         Public Property OrigenDestinoNombre As String
         Public Property KilogramoBruto As Integer?
         Public Property KilogramoTara As Integer?
@@ -26,7 +27,9 @@
         Public Property Humedad As Decimal?
         Public Property Zaranda As Decimal?
         Public Property KilogramoFinal As Integer?
+        Public Property IDTransportista As Integer?
         Public Property TransportistaNombre As String
+        Public Property IDChofer As Integer?
         Public Property ChoferNombre As String
         Public Property CamionNombreDominios As String
         Public Property EsVerificado As Boolean
@@ -72,11 +75,12 @@
         FiltroPeriodoMostrar()
 
         ' Filtros Básicos
-        pFillAndRefreshLists.Entidad(comboboxTitular.ComboBox, Nothing, False, True, False, False, FIELD_VALUE_NOTSPECIFIED_INTEGER, False, True, False)
+        pFillAndRefreshLists.Entidad(comboboxTitular.ComboBox, Nothing, False, True, False, False, FIELD_VALUE_NOTSPECIFIED_INTEGER, False, True, True, False)
         pFillAndRefreshLists.Producto(comboboxProducto.ComboBox, Nothing, False, False, True, False)
         comboboxProducto.ComboBox.SelectedIndex = 0
         pFillAndRefreshLists.Planta(comboboxPlanta.ComboBox, Nothing, FIELD_VALUE_NOTSPECIFIED_BYTE, True, False)
         pFillAndRefreshLists.Cosecha(comboboxCosecha.ComboBox, Nothing, Nothing, DateTime.MinValue, True, False)
+        pFillAndRefreshLists.Entidad(comboboxTransportista.ComboBox, Nothing, False, False, True, False, FIELD_VALUE_NOTSPECIFIED_INTEGER, False, True, True, False)
 
         ' Filtros Avanzados
         comboboxEsVerificado.Items.AddRange({My.Resources.STRING_ITEM_ALL_MALE, My.Resources.STRING_YES, My.Resources.STRING_NO})
@@ -222,7 +226,7 @@
                                    Group Join ca In dbContext.Camion On pe.Transportista_IDEntidad Equals ca.IDEntidad And pe.IDCamion Equals ca.IDCamion Into Camion_Group = Group
                                    From cag In Camion_Group.DefaultIfEmpty
                                    Where pe.FechaHoraInicio >= FechaDesde And pe.FechaHoraInicio <= FechaHasta
-                                   Select New GridRowData With {.IDPesada = pe.IDPesada, .FechaHoraInicio = pe.FechaHoraInicio, .FechaHoraFin = pe.FechaHoraFin, .ComprobanteNumero = pe.ComprobanteNumero, .IDTitular = pe.Titular_IDEntidad, .TitularNombre = If(pe.Titular_IDEntidad = CS_Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Titular_Nombre, ent.Nombre), .IDProducto = pe.IDProducto, .ProductoNombre = If(pe.IDProducto = CS_Constants.FIELD_VALUE_OTHER_BYTE, pe_otg.Producto_Nombre, pr.Nombre), .Producto_TicketPesada_IDReporte = pr.TicketPesada_IDReporte, .IDPlanta = pe.IDPlanta, .Tipo = pe.Tipo, .TipoNombre = pe.TipoNombre, .IDCosecha = pe.IDCosecha, .CosechaNombre = If(cog Is Nothing, "", cog.Nombre), .OrigenDestinoNombre = If(pe.IDOrigenDestino = CS_Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.OrigenDestino_Nombre, If(odg Is Nothing, "", odg.Nombre)), .KilogramoBruto = pe.KilogramoBruto, .KilogramoTara = pe.KilogramoTara, .KilogramoNeto = pe.KilogramoNeto, .Humedad = If(pe_ang Is Nothing, Nothing, pe_ang.Humedad), .Zaranda = If(pe_ang Is Nothing, Nothing, pe_ang.Zaranda), .KilogramoFinal = pe.KilogramoFinal, .TransportistaNombre = If(pe.Transportista_IDEntidad = CS_Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Transportista_Nombre, If(trg Is Nothing, "", trg.Nombre)), .ChoferNombre = If(pe.Chofer_IDEntidad = CS_Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Chofer_Nombre, If(chg Is Nothing, "", chg.Nombre)), .CamionNombreDominios = If(pe.IDCamion = CS_Constants.FIELD_VALUE_OTHER_BYTE, pe_otg.Camion_DominioChasis & If(pe_otg.Camion_DominioAcoplado Is Nothing, "", " - " & pe_otg.Camion_DominioAcoplado), If(cag Is Nothing, "", cag.NombreDominios)), .EsVerificado = pe.EsVerificado, .EsActivo = pe.EsActivo}).ToList
+                                   Select New GridRowData With {.IDPesada = pe.IDPesada, .FechaHoraInicio = pe.FechaHoraInicio, .FechaHoraFin = pe.FechaHoraFin, .ComprobanteNumero = pe.ComprobanteNumero, .IDTitular = pe.Titular_IDEntidad, .TitularNombre = If(pe.Titular_IDEntidad = CS_Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Titular_Nombre, ent.Nombre), .IDProducto = pe.IDProducto, .ProductoNombre = If(pe.IDProducto = CS_Constants.FIELD_VALUE_OTHER_BYTE, pe_otg.Producto_Nombre, pr.Nombre), .Producto_TicketPesada_IDReporte = pr.TicketPesada_IDReporte, .IDPlanta = pe.IDPlanta, .Tipo = pe.Tipo, .TipoNombre = pe.TipoNombre, .IDCosecha = pe.IDCosecha, .CosechaNombre = If(cog Is Nothing, "", cog.Nombre), .IDOrigenDestino = pe.IDOrigenDestino, .OrigenDestinoNombre = If(pe.IDOrigenDestino = CS_Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.OrigenDestino_Nombre, If(odg Is Nothing, "", odg.Nombre)), .KilogramoBruto = pe.KilogramoBruto, .KilogramoTara = pe.KilogramoTara, .KilogramoNeto = pe.KilogramoNeto, .Humedad = If(pe_ang Is Nothing, Nothing, pe_ang.Humedad), .Zaranda = If(pe_ang Is Nothing, Nothing, pe_ang.Zaranda), .KilogramoFinal = pe.KilogramoFinal, .IDTransportista = pe.Transportista_IDEntidad, .TransportistaNombre = If(pe.Transportista_IDEntidad = CS_Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Transportista_Nombre, If(trg Is Nothing, "", trg.Nombre)), .IDChofer = pe.Chofer_IDEntidad, .ChoferNombre = If(pe.Chofer_IDEntidad = CS_Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Chofer_Nombre, If(chg Is Nothing, "", chg.Nombre)), .CamionNombreDominios = If(pe.IDCamion = CS_Constants.FIELD_VALUE_OTHER_BYTE, pe_otg.Camion_DominioChasis & If(pe_otg.Camion_DominioAcoplado Is Nothing, "", " - " & pe_otg.Camion_DominioAcoplado), If(cag Is Nothing, "", cag.NombreDominios)), .EsVerificado = pe.EsVerificado, .EsActivo = pe.EsActivo}).ToList
             End Using
 
         Catch ex As Exception
@@ -291,6 +295,21 @@
                 ' Filtro por Cosecha
                 If CInt(comboboxCosecha.ComboBox.SelectedValue) <> FIELD_VALUE_ALL_BYTE Then
                     mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) p.IDCosecha.Value = CByte(comboboxCosecha.ComboBox.SelectedValue)).ToList
+                End If
+
+                ' Filtro por OrigenDestino
+                If CInt(comboboxOrigenDestino.ComboBox.SelectedValue) <> FIELD_VALUE_ALL_INTEGER Then
+                    mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) p.IDOrigenDestino.HasValue AndAlso p.IDOrigenDestino.Value = CInt(comboboxOrigenDestino.ComboBox.SelectedValue)).ToList
+                End If
+
+                ' Filtro por Transportista
+                If CInt(comboboxTransportista.ComboBox.SelectedValue) <> FIELD_VALUE_ALL_INTEGER Then
+                    mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) p.IDTransportista.HasValue AndAlso p.IDTransportista.Value = CInt(comboboxTransportista.ComboBox.SelectedValue)).ToList
+                End If
+
+                ' Filtro por Chofer
+                If CInt(comboboxChofer.ComboBox.SelectedValue) <> FIELD_VALUE_ALL_INTEGER Then
+                    mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) p.IDChofer.HasValue AndAlso p.IDChofer.Value = CInt(comboboxChofer.ComboBox.SelectedValue)).ToList
                 End If
 
 
@@ -430,7 +449,7 @@
         FilterData()
     End Sub
 
-    Private Sub FiltrosBasicos_Click() Handles comboboxTitular.SelectedIndexChanged, comboboxProducto.SelectedIndexChanged, comboboxPlanta.SelectedIndexChanged, comboboxCosecha.SelectedIndexChanged
+    Private Sub FiltrosBasicos_Click() Handles comboboxProducto.SelectedIndexChanged, comboboxPlanta.SelectedIndexChanged, comboboxCosecha.SelectedIndexChanged, comboboxOrigenDestino.SelectedIndexChanged, comboboxChofer.SelectedIndexChanged
         FilterData()
     End Sub
 
@@ -446,6 +465,32 @@
         menuitemPesadaTipo_Ninguno.Checked = (CType(sender, ToolStripMenuItem) Is menuitemPesadaTipo_MarcarTodos)
 
         mSkipFilterData = False
+
+        FilterData()
+    End Sub
+
+    Private Sub Titular_Change() Handles comboboxTitular.SelectedIndexChanged
+        Dim SaveSkipFilterData As Boolean
+
+        SaveSkipFilterData = mSkipFilterData
+        mSkipFilterData = True
+
+        pFillAndRefreshLists.OrigenDestino(comboboxOrigenDestino.ComboBox, Nothing, True, CInt(comboboxTitular.ComboBox.SelectedValue), True, True, False)
+
+        mSkipFilterData = SaveSkipFilterData
+
+        FilterData()
+    End Sub
+
+    Private Sub Transportista_Change() Handles comboboxTransportista.SelectedIndexChanged
+        Dim SaveSkipFilterData As Boolean
+
+        SaveSkipFilterData = mSkipFilterData
+        mSkipFilterData = True
+
+        pFillAndRefreshLists.Entidad(comboboxChofer.ComboBox, Nothing, False, False, False, True, CInt(comboboxTransportista.ComboBox.SelectedValue), False, True, True, False)
+
+        mSkipFilterData = SaveSkipFilterData
 
         FilterData()
     End Sub

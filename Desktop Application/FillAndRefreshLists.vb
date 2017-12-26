@@ -118,16 +118,23 @@
         ComboBoxControl.DataSource = listItems
     End Sub
 
-    Friend Sub Entidad(ByRef ComboBoxControl As ComboBox, ByVal IDEntidadActual As Integer?, ByVal MostrarItemOtro As Boolean, ByVal EsTitular As Boolean, ByVal EsTransportista As Boolean, ByVal EsChofer As Boolean, ByVal IDTransportista As Integer, ByVal UsoFrecuente As Boolean, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
+    Friend Sub Entidad(ByRef ComboBoxControl As ComboBox, ByVal IDEntidadActual As Integer?, ByVal MostrarItemOtro As Boolean, ByVal EsTitular As Boolean, ByVal EsTransportista As Boolean, ByVal EsChofer As Boolean, ByVal IDTransportista As Integer, ByVal UsoFrecuente As Boolean, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_Otro As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
         Dim listItems As List(Of Entidad)
 
         ComboBoxControl.ValueMember = "IDEntidad"
         ComboBoxControl.DisplayMember = "Nombre"
 
         listItems = (From ent In mdbContext.Entidad
-                     Where (ent.IDEntidad <> CS_Constants.FIELD_VALUE_OTHER_INTEGER Or MostrarItemOtro) And ((IDEntidadActual.HasValue And ent.IDEntidad = IDEntidadActual.Value) Or (ent.EsActivo And ((EsTitular And ent.EsTitular) Or (EsTransportista And ent.EsTransportista) Or EsChofer And ent.EsChofer) And (ent.Transportista_IDEntidad = IDTransportista Or IDTransportista = CS_Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER) And (ent.UsoFrecuente Or Not UsoFrecuente)))
+                     Where (ent.IDEntidad <> CS_Constants.FIELD_VALUE_OTHER_INTEGER Or MostrarItemOtro) And ((IDEntidadActual.HasValue And ent.IDEntidad = IDEntidadActual.Value) Or (ent.EsActivo And ((EsTitular And ent.EsTitular) Or (EsTransportista And ent.EsTransportista) Or EsChofer And ent.EsChofer) And (ent.Transportista_IDEntidad = IDTransportista Or IDTransportista = CS_Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER Or IDTransportista = CS_Constants.FIELD_VALUE_ALL_INTEGER) And (ent.UsoFrecuente Or Not UsoFrecuente)))
                      Order By ent.Nombre
                      Select ent).ToList
+
+        If AgregarItem_Otro Then
+            Dim Item_Otro As New Entidad
+            Item_Otro.IDEntidad = FIELD_VALUE_OTHER_INTEGER
+            Item_Otro.Nombre = My.Resources.STRING_ITEM_OTHER_MALE
+            listItems.Insert(0, Item_Otro)
+        End If
 
         If AgregarItem_Todos Then
             Dim Item_Todos As New Entidad
@@ -311,32 +318,39 @@
         ComboBoxControl.DataSource = listItems
     End Sub
 
-    Friend Sub OrigenDestino(ByRef ComboBoxControl As ComboBox, ByVal IDOrigenDestino As Integer?, ByVal MostrarItemOtro As Boolean, ByVal IDEntidad As Integer, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
+    Friend Sub OrigenDestino(ByRef ComboBoxControl As ComboBox, ByVal IDOrigenDestino As Integer?, ByVal MostrarItemOtro As Boolean, ByVal IDEntidad As Integer, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_Otro As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
         Dim listItems As List(Of OrigenDestino)
 
         ComboBoxControl.ValueMember = "IDOrigenDestino"
         ComboBoxControl.DisplayMember = "Nombre"
 
-        If IDEntidad = CS_Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER Then
+        If IDEntidad = CS_Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER Or IDEntidad = CS_Constants.FIELD_VALUE_ALL_INTEGER Then
             listItems = mdbContext.OrigenDestino.Where(Function(od) (od.IDOrigenDestino <> CS_Constants.FIELD_VALUE_OTHER_INTEGER Or MostrarItemOtro) And (IDOrigenDestino.HasValue And od.IDOrigenDestino = IDOrigenDestino.Value) Or od.EsActivo).OrderBy(Function(od) od.Nombre).ToList
         Else
             listItems = (From ori In mdbContext.OrigenDestino
                              Join ent_ori In mdbContext.Entidad_OrigenDestino On ori.IDOrigenDestino Equals ent_ori.IDOrigenDestino
-                             Where (IDOrigenDestino.HasValue And ori.IDOrigenDestino = IDOrigenDestino.Value) Or ent_ori.IDEntidad = IDEntidad And ori.EsActivo
+                             Where (IDOrigenDestino.HasValue And ori.IDOrigenDestino = IDOrigenDestino.Value) Or (ent_ori.IDEntidad = IDEntidad And ori.EsActivo)
                              Order By ori.Nombre
                              Select ori).ToList
         End If
 
+        If AgregarItem_Otro Then
+            Dim Item_Otro As New OrigenDestino
+            Item_Otro.IDOrigenDestino = FIELD_VALUE_OTHER_INTEGER
+            Item_Otro.Nombre = My.Resources.STRING_ITEM_OTHER_MALE
+            listItems.Insert(0, Item_Otro)
+        End If
+
         If AgregarItem_Todos Then
             Dim Item_Todos As New OrigenDestino
-            Item_Todos.IDOrigenDestino = FIELD_VALUE_ALL_BYTE
+            Item_Todos.IDOrigenDestino = FIELD_VALUE_ALL_INTEGER
             Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_FEMALE
             listItems.Insert(0, Item_Todos)
         End If
 
         If AgregarItem_NoEspecifica Then
             Dim Item_NoEspecifica As New OrigenDestino
-            Item_NoEspecifica.IDOrigenDestino = FIELD_VALUE_NOTSPECIFIED_BYTE
+            Item_NoEspecifica.IDOrigenDestino = FIELD_VALUE_NOTSPECIFIED_INTEGER
             Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
             listItems.Insert(0, Item_NoEspecifica)
         End If

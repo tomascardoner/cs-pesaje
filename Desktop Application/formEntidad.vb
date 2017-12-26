@@ -72,7 +72,7 @@
     Friend Sub InitializeFormAndControls()
         SetAppearance()
 
-        pFillAndRefreshLists.Entidad(comboboxTransportista, mEntidadActual.Transportista_IDEntidad, False, False, True, False, 0, False, False, True)
+        pFillAndRefreshLists.Entidad(comboboxTransportista, mEntidadActual.Transportista_IDEntidad, False, False, True, False, 0, False, False, False, True)
         CargarCamiones()
     End Sub
 

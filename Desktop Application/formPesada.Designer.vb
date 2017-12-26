@@ -29,6 +29,7 @@ Partial Class formPesada
         Me.buttonEditar = New System.Windows.Forms.ToolStripButton()
         Me.buttonCancelar = New System.Windows.Forms.ToolStripButton()
         Me.buttonGuardar = New System.Windows.Forms.ToolStripButton()
+        Me.buttonEsActivo = New System.Windows.Forms.ToolStripButton()
         Me.tooltipMain = New System.Windows.Forms.ToolTip(Me.components)
         Me.labelOrigenDestino = New System.Windows.Forms.Label()
         Me.labelTitular = New System.Windows.Forms.Label()
@@ -125,8 +126,7 @@ Partial Class formPesada
         Me.labelZaranda = New System.Windows.Forms.Label()
         Me.doubletextboxHumedad = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
         Me.labelHumedad = New System.Windows.Forms.Label()
-        Me.buttonEsActivo = New System.Windows.Forms.ToolStripButton()
-        Me.buttonEsSincronizado = New System.Windows.Forms.ToolStripButton()
+        Me.buttonEsVerificado = New System.Windows.Forms.ToolStripButton()
         Me.toolstripMain.SuspendLayout()
         Me.groupboxTransporte.SuspendLayout()
         CType(Me.integertextboxKilometro, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -151,7 +151,7 @@ Partial Class formPesada
         'toolstripMain
         '
         Me.toolstripMain.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.toolstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonCerrar, Me.buttonEditar, Me.buttonCancelar, Me.buttonGuardar, Me.buttonEsActivo, Me.buttonEsSincronizado})
+        Me.toolstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonCerrar, Me.buttonEditar, Me.buttonCancelar, Me.buttonGuardar, Me.buttonEsVerificado, Me.buttonEsActivo})
         Me.toolstripMain.Location = New System.Drawing.Point(0, 0)
         Me.toolstripMain.Name = "toolstripMain"
         Me.toolstripMain.Size = New System.Drawing.Size(743, 39)
@@ -196,6 +196,15 @@ Partial Class formPesada
         Me.buttonGuardar.Name = "buttonGuardar"
         Me.buttonGuardar.Size = New System.Drawing.Size(85, 36)
         Me.buttonGuardar.Text = "Guardar"
+        '
+        'buttonEsActivo
+        '
+        Me.buttonEsActivo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.buttonEsActivo.Image = CType(resources.GetObject("buttonEsActivo.Image"), System.Drawing.Image)
+        Me.buttonEsActivo.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonEsActivo.Name = "buttonEsActivo"
+        Me.buttonEsActivo.Size = New System.Drawing.Size(45, 36)
+        Me.buttonEsActivo.Text = "Activo"
         '
         'labelOrigenDestino
         '
@@ -1335,23 +1344,14 @@ Partial Class formPesada
         Me.labelHumedad.TabIndex = 0
         Me.labelHumedad.Text = "Humedad:"
         '
-        'buttonEsActivo
+        'buttonEsVerificado
         '
-        Me.buttonEsActivo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.buttonEsActivo.Image = CType(resources.GetObject("buttonEsActivo.Image"), System.Drawing.Image)
-        Me.buttonEsActivo.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonEsActivo.Name = "buttonEsActivo"
-        Me.buttonEsActivo.Size = New System.Drawing.Size(45, 36)
-        Me.buttonEsActivo.Text = "Activo"
-        '
-        'buttonEsSincronizado
-        '
-        Me.buttonEsSincronizado.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.buttonEsSincronizado.Image = CType(resources.GetObject("buttonEsSincronizado.Image"), System.Drawing.Image)
-        Me.buttonEsSincronizado.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonEsSincronizado.Name = "buttonEsSincronizado"
-        Me.buttonEsSincronizado.Size = New System.Drawing.Size(79, 36)
-        Me.buttonEsSincronizado.Text = "Sincronizado"
+        Me.buttonEsVerificado.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.buttonEsVerificado.Image = CType(resources.GetObject("buttonEsVerificado.Image"), System.Drawing.Image)
+        Me.buttonEsVerificado.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonEsVerificado.Name = "buttonEsVerificado"
+        Me.buttonEsVerificado.Size = New System.Drawing.Size(63, 36)
+        Me.buttonEsVerificado.Text = "Verificado"
         '
         'formPesada
         '
@@ -1507,5 +1507,5 @@ Partial Class formPesada
     Friend WithEvents integertextboxGranoDaniado As Syncfusion.Windows.Forms.Tools.IntegerTextBox
     Friend WithEvents integertextboxGranoVerde As Syncfusion.Windows.Forms.Tools.IntegerTextBox
     Friend WithEvents buttonEsActivo As System.Windows.Forms.ToolStripButton
-    Friend WithEvents buttonEsSincronizado As System.Windows.Forms.ToolStripButton
+    Friend WithEvents buttonEsVerificado As System.Windows.Forms.ToolStripButton
 End Class
