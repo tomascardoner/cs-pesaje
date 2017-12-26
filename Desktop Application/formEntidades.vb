@@ -24,7 +24,7 @@
         mSkipFilterData = True
 
         comboboxActivo.Items.AddRange({My.Resources.STRING_ITEM_ALL_MALE, My.Resources.STRING_YES, My.Resources.STRING_NO})
-        comboboxActivo.SelectedIndex = 1
+        comboboxActivo.SelectedIndex = COMBOBOX_YESNO_YES_LISTINDEX
 
         mSkipFilterData = False
 
@@ -100,11 +100,11 @@
 
                 ' Filtro por Activo
                 Select Case comboboxActivo.SelectedIndex
-                    Case 0      ' Todos
-                    Case FILTER_ACTIVO_YES_LISTINDEX       ' Sí
+                    Case COMBOBOX_YESNO_ALL_LISTINDEX       ' Todos
+                    Case COMBOBOX_YESNO_YES_LISTINDEX       ' Sí
                         mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, "", " AND ").ToString & "{Entidad.EsActivo} = 1"
                         mlistEntidadFiltradaYOrdenada = mlistEntidadFiltradaYOrdenada.Where(Function(a) a.EsActivo).ToList
-                    Case FILTER_ACTIVO_NO_LISTINDEX       ' No
+                    Case COMBOBOX_YESNO_NO_LISTINDEX        ' No
                         mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, "", " AND ").ToString & "{Entidad.EsActivo} = 0"
                         mlistEntidadFiltradaYOrdenada = mlistEntidadFiltradaYOrdenada.Where(Function(a) Not a.EsActivo).ToList
                 End Select

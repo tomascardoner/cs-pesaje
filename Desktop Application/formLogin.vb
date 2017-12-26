@@ -47,8 +47,8 @@
             Exit Sub
         End If
 
-        If textboxNombre.TextLength < 4 Then
-            MsgBox("El Nombre del Usuario debe contener al menos 4 caracteres.", vbInformation, My.Application.Info.Title)
+        If textboxNombre.TextLength < CS_Parameter.GetIntegerAsByte(Parametros.USER_USERNAME_MINIMUM_LENGHT, 4) Then
+            MsgBox(String.Format("El Nombre del Usuario debe contener al menos {0} caracteres.", CS_Parameter.GetIntegerAsByte(Parametros.USER_USERNAME_MINIMUM_LENGHT, 4)), vbInformation, My.Application.Info.Title)
             textboxNombre.Focus()
             Exit Sub
         End If
@@ -58,18 +58,12 @@
             textboxPassword.Focus()
             Exit Sub
         End If
+        If textboxPassword.TextLength < CS_Parameter.GetIntegerAsByte(Parametros.USER_PASSWORD_MINIMUM_LENGHT, 8) Then
+            MsgBox(String.Format("La Contraseña debe contener al menos {0} caracteres.", CS_Parameter.GetIntegerAsByte(Parametros.USER_PASSWORD_MINIMUM_LENGHT, 8)), vbInformation, My.Application.Info.Title)
+            textboxPassword.Focus()
+            Exit Sub
+        End If
         If CS_Parameter.GetBoolean(Parametros.USER_PASSWORD_SECURE_REQUIRED, True) Then
-            If textboxPassword.TextLength < CS_Parameter.GetIntegerAsByte(Parametros.USER_PASSWORD_MINIMUM_LENGHT, 8) Then
-                MsgBox(String.Format("La Contraseña debe contener al menos {0} caracteres.", CS_Parameter.GetIntegerAsByte(Parametros.USER_PASSWORD_MINIMUM_LENGHT, 8)), vbInformation, My.Application.Info.Title)
-                textboxPassword.Focus()
-                Exit Sub
-            End If
-        Else
-            If textboxPassword.TextLength < 4 Then
-                MsgBox("La Contraseña debe contener al menos 4 caracteres.", vbInformation, My.Application.Info.Title)
-                textboxPassword.Focus()
-                Exit Sub
-            End If
         End If
 
         ' Está todo OK, busco el Usuario en la Base de Datos

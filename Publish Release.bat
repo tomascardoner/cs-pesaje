@@ -1,0 +1,1 @@
+xcopy "C:\Data\Cardoner Sistemas\Development\CS-Pesaje\2017\Solution\Desktop Application\bin\Debug\CSPesaje.exe" "C:\Users\Tomas\Dropbox\Cholila Agroindustrial S.R.L\CS-Pesaje 2017\Release\" /Y
