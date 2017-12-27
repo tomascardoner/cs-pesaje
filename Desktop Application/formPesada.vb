@@ -534,12 +534,14 @@
     End Sub
 
     Private Sub CosechaTodos() Handles checkboxCosechaTodos.CheckedChanged
-        If checkboxCosechaTodos.Checked Then
-            pFillAndRefreshLists.Cosecha(comboboxCosecha, mPesadaActual.IDCosecha, CS_Constants.FIELD_VALUE_NOTSPECIFIED_BYTE, CS_Constants.FIELD_VALUE_NOTSPECIFIED_DATE, False, False)
-        Else
-            pFillAndRefreshLists.Cosecha(comboboxCosecha, mPesadaActual.IDCosecha, CByte(comboboxProducto.SelectedValue), datetimepickerFechaInicio.Value, False, False)
+        If Not mPesadaActual Is Nothing Then
+            If checkboxCosechaTodos.Checked Then
+                pFillAndRefreshLists.Cosecha(comboboxCosecha, mPesadaActual.IDCosecha, CS_Constants.FIELD_VALUE_NOTSPECIFIED_BYTE, CS_Constants.FIELD_VALUE_NOTSPECIFIED_DATE, False, False)
+            Else
+                pFillAndRefreshLists.Cosecha(comboboxCosecha, mPesadaActual.IDCosecha, CByte(comboboxProducto.SelectedValue), datetimepickerFechaInicio.Value, False, False)
+            End If
+            CS_Control_ComboBox.SetSelectedValue(comboboxCosecha, SelectedItemOptions.NoneOrFirstIfUnique)
         End If
-        CS_Control_ComboBox.SetSelectedValue(comboboxCosecha, SelectedItemOptions.NoneOrFirstIfUnique)
     End Sub
 
     Private Sub TitularCargarLista()
@@ -1032,8 +1034,15 @@
 
             Try
                 ' Calculo mermas si corresponde
-                If Not mPesadaActual.Pesada_Analisis Is Nothing Then
-                    mPesadaActual.Pesada_Analisis.CalcularMermas()
+                If mPesadaActual.Tipo = PESADA_TIPO_ENTRADA Then
+                    If mPesadaActual.Pesada_Analisis Is Nothing Then
+                        mPesadaActual.Pesada_Analisis = New Pesada_Analisis
+                    End If
+                    mPesadaActual.Pesada_Analisis.CalcularMermas(mPesadaActual)
+                Else
+                    If Not mPesadaActual.Pesada_Analisis Is Nothing Then
+                        mdbContext.Pesada_Analisis.Remove(mPesadaActual.Pesada_Analisis)
+                    End If
                 End If
 
                 ' Calculo el acondicionamiento si corresponde

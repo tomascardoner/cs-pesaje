@@ -36,16 +36,16 @@ Partial Public Class OrigenDestino
 End Class
 
 Partial Public Class Pesada_Analisis
-    Public Sub CalcularMermas()
+    Public Sub CalcularMermas(ByRef PesadaActual As Pesada)
         Dim KilogramoNeto As Integer
         Dim KilogramoFinal As Integer
 
-        If Me.Pesada.KilogramoNeto.HasValue Then
-            KilogramoNeto = Me.Pesada.KilogramoNeto.Value
-            Select Case Me.Pesada.Tipo
+        If PesadaActual.KilogramoNeto.HasValue Then
+            KilogramoNeto = PesadaActual.KilogramoNeto.Value
+            Select Case PesadaActual.Tipo
                 Case Constantes.PESADA_TIPO_ENTRADA
                     KilogramoFinal = KilogramoNeto
-                    With Me.Pesada.Producto
+                    With PesadaActual.Producto
                         ' MERMA VOLÁTIL
                         If .MermaVolatil Is Nothing Then
                             ' El producto no especifica merma volátil
@@ -106,13 +106,13 @@ Partial Public Class Pesada_Analisis
                 Case Constantes.PESADA_TIPO_SALIDA
                     KilogramoFinal = -KilogramoNeto
             End Select
-            Me.Pesada.KilogramoFinal = KilogramoFinal
+            PesadaActual.KilogramoFinal = KilogramoFinal
         Else
             Me.MermaVolatilKilogramo = Nothing
             Me.MermaHumedadPorcentaje = Nothing
             Me.MermaHumedadKilogramo = Nothing
             Me.MermaZarandaKilogramo = Nothing
-            Me.Pesada.KilogramoFinal = Nothing
+            PesadaActual.KilogramoFinal = Nothing
         End If
     End Sub
 End Class
