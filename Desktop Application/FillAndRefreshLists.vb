@@ -263,7 +263,7 @@
         Else
             listItems = (From pl In mdbContext.Planta
                          Join pp In mdbContext.Producto_Planta On pl.IDPlanta Equals pp.IDPlanta
-                         Where (IDPlantaActual.HasValue And pl.IDPlanta = IDPlantaActual.Value) Or (pp.IDProducto = IDProducto And pl.EsActivo)
+                         Where pp.IDProducto = IDProducto And ((IDPlantaActual.HasValue And pl.IDPlanta = IDPlantaActual.Value) Or (pl.EsActivo))
                          Order By pl.Nombre
                          Select pl).ToList
         End If
@@ -296,7 +296,7 @@
         Else
             listItems = (From co In mdbContext.Cosecha
                          Join pc In mdbContext.Producto_Cosecha On co.IDCosecha Equals pc.IDCosecha
-                         Where (IDCosecha.HasValue And co.IDCosecha = IDCosecha.Value) Or (pc.IDProducto = IDProducto And pc.EsActivo And pc.Inicio <= Fecha And pc.Fin >= Fecha)
+                         Where pc.IDProducto = IDProducto And ((IDCosecha.HasValue And co.IDCosecha = IDCosecha.Value) Or (pc.EsActivo And pc.Inicio <= Fecha And pc.Fin >= Fecha))
                          Order By co.Nombre
                          Select co).ToList
         End If

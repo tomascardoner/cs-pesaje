@@ -41,7 +41,7 @@
 
     Private mFiltroPeriodoExpandido As Boolean = False
     Private mSkipFilterData As Boolean = False
-    Private mReportSelectionFormula As String
+    Private mRecordSelectionFormula As String
 
     Private mOrdenColumna As DataGridViewColumn
     Private mOrdenTipo As SortOrder
@@ -206,6 +206,9 @@
         ' A la fecha hasta, le sumo un día y le resto un segundo, para que quede conformado por la fecha original y la hora 23:59:59
         FechaHasta = FechaHasta.AddSeconds(-1).AddDays(1)
 
+        ' Preparo el filtro para los Reportes
+        mRecordSelectionFormula = String.Format("{{Pesada.FechaHoraInicio}} >= DateTime({0}, {1}, {2}, {3}, {4}, {5}) AND {{Pesada.FechaHoraInicio}} <= DateTime({6}, {7}, {8}, {9}, {10}, {11})", FechaDesde.Year, FechaDesde.Month, FechaDesde.Day, FechaDesde.Hour, FechaDesde.Minute, FechaDesde.Second, FechaHasta.Year, FechaHasta.Month, FechaHasta.Day, FechaHasta.Hour, FechaHasta.Minute, FechaHasta.Second)
+
         Try
             Using dbContext As New CSPesajeContext(True)
                 mlistPesadaBase = (From pe In dbContext.Pesada
@@ -265,7 +268,6 @@
 
             Try
                 ' Inicializo las variables
-                mReportSelectionFormula = ""
                 mlistPesadaFiltradaYOrdenada = mlistPesadaBase
 
 
@@ -275,41 +277,49 @@
                 ' Filtro por Titular
                 If CInt(comboboxTitular.ComboBox.SelectedValue) <> FIELD_VALUE_ALL_INTEGER Then
                     mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) p.IDTitular = CInt(comboboxTitular.ComboBox.SelectedValue)).ToList
+                    mRecordSelectionFormula &= String.Format(" AND {{Pesada.Titular_IDEntidad}} = {0}", comboboxTitular.ComboBox.SelectedValue)
                 End If
 
                 ' Filtro por Producto
                 If CInt(comboboxProducto.ComboBox.SelectedValue) <> FIELD_VALUE_ALL_BYTE Then
                     mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) p.IDProducto = CByte(comboboxProducto.ComboBox.SelectedValue)).ToList
+                    mRecordSelectionFormula &= String.Format(" AND {{Pesada.IDProducto}} = {0}", comboboxProducto.ComboBox.SelectedValue)
                 End If
 
                 ' Filtro por Planta
                 If CInt(comboboxPlanta.ComboBox.SelectedValue) <> FIELD_VALUE_ALL_BYTE Then
                     mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) p.IDPlanta.Value = CByte(comboboxPlanta.ComboBox.SelectedValue)).ToList
+                    mRecordSelectionFormula &= String.Format(" AND {{Pesada.IDPlanta}} = {0}", comboboxPlanta.ComboBox.SelectedValue)
                 End If
 
                 ' Filtro por Tipos de Pesada
                 If Not (menuitemPesadaTipo_Entrada.Checked And menuitemPesadaTipo_Salida.Checked And menuitemPesadaTipo_Ninguno.Checked) Then
                     mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) ((menuitemPesadaTipo_Entrada.Checked And p.Tipo = PESADA_TIPO_ENTRADA) Or (menuitemPesadaTipo_Salida.Checked And p.Tipo = PESADA_TIPO_SALIDA) Or (menuitemPesadaTipo_Ninguno.Checked And p.Tipo = PESADA_TIPO_NINGUNA))).ToList
+                    mRecordSelectionFormula &= String.Format(" AND (({0} AND {{Pesada.Tipo}} = {1}) OR ({0} AND {{Pesada.Tipo}} = {1}) OR ({0} AND {{Pesada.Tipo}} = {1}))", PESADA_TIPO_ENTRADA, menuitemPesadaTipo_Entrada.Checked, PESADA_TIPO_SALIDA, menuitemPesadaTipo_Salida.Checked, PESADA_TIPO_NINGUNA, menuitemPesadaTipo_Ninguno.Checked)
                 End If
 
                 ' Filtro por Cosecha
                 If CInt(comboboxCosecha.ComboBox.SelectedValue) <> FIELD_VALUE_ALL_BYTE Then
                     mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) p.IDCosecha.Value = CByte(comboboxCosecha.ComboBox.SelectedValue)).ToList
+                    mRecordSelectionFormula &= String.Format(" AND {{Pesada.IDCosecha}} = {0}", comboboxCosecha.ComboBox.SelectedValue)
                 End If
 
                 ' Filtro por OrigenDestino
                 If CInt(comboboxOrigenDestino.ComboBox.SelectedValue) <> FIELD_VALUE_ALL_INTEGER Then
                     mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) p.IDOrigenDestino.HasValue AndAlso p.IDOrigenDestino.Value = CInt(comboboxOrigenDestino.ComboBox.SelectedValue)).ToList
+                    mRecordSelectionFormula &= String.Format(" AND {{Pesada.IDOrigenDestino}} = {0}", comboboxOrigenDestino.ComboBox.SelectedValue)
                 End If
 
                 ' Filtro por Transportista
                 If CInt(comboboxTransportista.ComboBox.SelectedValue) <> FIELD_VALUE_ALL_INTEGER Then
                     mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) p.IDTransportista.HasValue AndAlso p.IDTransportista.Value = CInt(comboboxTransportista.ComboBox.SelectedValue)).ToList
+                    mRecordSelectionFormula &= String.Format(" AND {{Pesada.Transportista_IDEntidad}} = {0}", comboboxTransportista.ComboBox.SelectedValue)
                 End If
 
                 ' Filtro por Chofer
                 If CInt(comboboxChofer.ComboBox.SelectedValue) <> FIELD_VALUE_ALL_INTEGER Then
                     mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) p.IDChofer.HasValue AndAlso p.IDChofer.Value = CInt(comboboxChofer.ComboBox.SelectedValue)).ToList
+                    mRecordSelectionFormula &= String.Format(" AND {{Pesada.Chofer_IDEntidad}} = {0}", comboboxChofer.ComboBox.SelectedValue)
                 End If
 
 
@@ -318,24 +328,24 @@
 
                 ' Filtro por Verificado
                 Select Case comboboxEsVerificado.SelectedIndex
-                    Case COMBOBOX_YESNO_ALL_LISTINDEX      ' Todos
+                    Case COMBOBOX_YESNO_ALL_LISTINDEX       ' Todos
                     Case COMBOBOX_YESNO_YES_LISTINDEX       ' Sí
-                        'mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, "", " AND ").ToString & "{Entidad.EsVerificado} = 1"
                         mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) p.EsVerificado).ToList
-                    Case COMBOBOX_YESNO_NO_LISTINDEX       ' No
-                        'mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, "", " AND ").ToString & "{Entidad.EsActivo} = 0"
+                        mRecordSelectionFormula &= " AND {Pesada.EsVerificado}"
+                    Case COMBOBOX_YESNO_NO_LISTINDEX        ' No
                         mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) Not p.EsVerificado).ToList
+                        mRecordSelectionFormula &= " AND (NOT {Pesada.EsVerificado})"
                 End Select
 
                 ' Filtro por Activo
                 Select Case comboboxEsActivo.SelectedIndex
                     Case COMBOBOX_YESNO_ALL_LISTINDEX       ' Todos
                     Case COMBOBOX_YESNO_YES_LISTINDEX       ' Sí
-                        'mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, "", " AND ").ToString & "{Entidad.EsActivo} = 1"
                         mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) p.EsActivo).ToList
-                    Case COMBOBOX_YESNO_NO_LISTINDEX       ' No
-                        'mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, "", " AND ").ToString & "{Entidad.EsActivo} = 0"
+                        mRecordSelectionFormula &= " AND {Pesada.EsActivo}"
+                    Case COMBOBOX_YESNO_NO_LISTINDEX        ' No
                         mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) Not p.EsActivo).ToList
+                        mRecordSelectionFormula &= " AND (NOT {Pesada.EsActivo})"
                 End Select
 
 
@@ -615,7 +625,7 @@
         End If
     End Sub
 
-    Private Sub Imprimir(sender As Object, e As EventArgs) Handles buttonImprimir.ButtonClick, menuitemImprimir_TicketPesadaReducido.Click
+    Private Sub ImprimirTicketPesada(sender As Object, e As EventArgs) Handles buttonImprimir.ButtonClick, menuitemImprimir_TicketPesadaReducido.Click
         Dim CurrentRow As GridRowData
 
         If datagridviewMain.CurrentRow Is Nothing Then
@@ -661,6 +671,97 @@
 
                 Me.Cursor = Cursors.Default
             End If
+        End If
+    End Sub
+
+    Private Sub ImprimirReportes(sender As Object, e As EventArgs) Handles menuitemImprimir_ResumenExistencias.Click
+        If datagridviewMain.CurrentRow Is Nothing Then
+            MsgBox("No hay ninguna Pesada para imprimir.", vbInformation, My.Application.Info.Title)
+        Else
+            If Permisos.VerificarPermiso(Permisos.REPORTE) Then
+
+                Me.Cursor = Cursors.WaitCursor
+
+                datagridviewMain.Enabled = False
+
+                Using dbContext As New CSPesajeContext(True)
+                    Dim ReporteActual As New Reporte
+
+                    ReporteActual = dbContext.Reporte.Find(CInt(CType(sender, ToolStripMenuItem).Tag))
+                    If Not ReporteActual Is Nothing Then
+                        If ReporteActual.Open(My.Settings.ReportsPath & "\" & ReporteActual.Archivo) Then
+                            ReporteActual.RecordSelectionFormula = mRecordSelectionFormula
+                            If ReporteActual.SetDatabaseConnection(pDatabase.DataSource, pDatabase.InitialCatalog, pDatabase.UserID, pDatabase.Password) Then
+                                MiscFunctions.PreviewCrystalReport(ReporteActual, ReporteActual.Titulo)
+                            End If
+                        End If
+                    End If
+                End Using
+
+                datagridviewMain.Enabled = True
+
+                Me.Cursor = Cursors.Default
+            End If
+        End If
+    End Sub
+
+    Private Sub Tareas_CalcularMermas() Handles menuitemCalcularMermas.Click
+        If datagridviewMain.Rows.Count = 0 Then
+            MsgBox("No hay ninguna Pesada para calcular mermas.", vbInformation, My.Application.Info.Title)
+            Exit Sub
+        End If
+
+        If MsgBox(String.Format("Se calcularán las mermas para todas las entradas mostradas.{0}{0}¿Desea continuar?", vbCrLf), CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
+
+            Me.Cursor = Cursors.WaitCursor
+
+            datagridviewMain.Enabled = False
+
+            Try
+                Using dbContext = New CSPesajeContext(True)
+                    Dim PesadaActual As Pesada
+
+                    For Each DataRowActual As DataGridViewRow In datagridviewMain.Rows
+                        ' Muestro la fila de la grilla que voy a recalcular
+                        datagridviewMain.CurrentCell = DataRowActual.Cells(0)
+                        Application.DoEvents()
+
+                        ' Leo la Pesada actual de la base de datos
+                        PesadaActual = dbContext.Pesada.Find(CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDPesada)
+
+                        If PesadaActual.Tipo = PESADA_TIPO_ENTRADA Or PesadaActual.Tipo = PESADA_TIPO_SALIDA Then
+                            ' Recalculo mermas
+                            If PesadaActual.Pesada_Analisis Is Nothing Then
+                                PesadaActual.Pesada_Analisis = New Pesada_Analisis
+                            End If
+                            PesadaActual.Pesada_Analisis.CalcularMermas(PesadaActual)
+                        End If
+                    Next
+
+                    dbContext.SaveChanges()
+
+                    RefreshData()
+                End Using
+
+            Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
+                Me.Cursor = Cursors.Default
+                Select Case CS_Database_EF_SQL.TryDecodeDbUpdateException(dbuex)
+                End Select
+                datagridviewMain.Enabled = True
+                Me.Cursor = Cursors.Default
+                Exit Sub
+
+            Catch ex As Exception
+                CS_Error.ProcessError(ex, "Error al calcular mermas de la Pesada.")
+            End Try
+
+            If datagridviewMain.Rows.Count > 0 Then
+                datagridviewMain.CurrentCell = datagridviewMain.Rows(0).Cells(0)
+            End If
+
+            datagridviewMain.Enabled = True
+
+            Me.Cursor = Cursors.Default
         End If
     End Sub
 #End Region

@@ -65,6 +65,8 @@ Partial Class formPesadas
         Me.buttonEliminar = New System.Windows.Forms.ToolStripButton()
         Me.buttonImprimir = New System.Windows.Forms.ToolStripSplitButton()
         Me.menuitemImprimir_TicketPesadaReducido = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuitemSeparator1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.menuitemImprimir_ResumenExistencias = New System.Windows.Forms.ToolStripMenuItem()
         Me.toolstripgroupPeriodo = New Syncfusion.Windows.Forms.Tools.ToolStripEx()
         Me.comboboxPeriodoTipo = New System.Windows.Forms.ToolStripComboBox()
         Me.comboboxPeriodoValor = New System.Windows.Forms.ToolStripComboBox()
@@ -104,6 +106,9 @@ Partial Class formPesadas
         Me.comboboxEsVerificado = New System.Windows.Forms.ToolStripComboBox()
         Me.toolstripgroupEsActivo = New Syncfusion.Windows.Forms.Tools.ToolStripEx()
         Me.comboboxEsActivo = New System.Windows.Forms.ToolStripComboBox()
+        Me.toolstripgroupMenu = New Syncfusion.Windows.Forms.Tools.ToolStripEx()
+        Me.dropdownbuttonTareas = New System.Windows.Forms.ToolStripDropDownButton()
+        Me.menuitemCalcularMermas = New System.Windows.Forms.ToolStripMenuItem()
         Me.statusstripMain.SuspendLayout()
         CType(Me.datagridviewMain, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.bindingsourceMain, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -124,6 +129,7 @@ Partial Class formPesadas
         Me.toolstriptabFiltrosAvanzados.Panel.SuspendLayout()
         Me.toolstripgroupEsVerificado.SuspendLayout()
         Me.toolstripgroupEsActivo.SuspendLayout()
+        Me.toolstripgroupMenu.SuspendLayout()
         Me.SuspendLayout()
         '
         'statusstripMain
@@ -469,7 +475,7 @@ Partial Class formPesadas
         '
         'buttonImprimir
         '
-        Me.buttonImprimir.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemImprimir_TicketPesadaReducido})
+        Me.buttonImprimir.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemImprimir_TicketPesadaReducido, Me.menuitemSeparator1, Me.menuitemImprimir_ResumenExistencias})
         Me.buttonImprimir.Image = Global.CSPesaje.DesktopApplication.My.Resources.Resources.IMAGE_PRINT_32
         Me.buttonImprimir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonImprimir.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -481,8 +487,20 @@ Partial Class formPesadas
         'menuitemImprimir_TicketPesadaReducido
         '
         Me.menuitemImprimir_TicketPesadaReducido.Name = "menuitemImprimir_TicketPesadaReducido"
-        Me.menuitemImprimir_TicketPesadaReducido.Size = New System.Drawing.Size(152, 22)
+        Me.menuitemImprimir_TicketPesadaReducido.Size = New System.Drawing.Size(195, 22)
         Me.menuitemImprimir_TicketPesadaReducido.Text = "Ticket reducido"
+        '
+        'menuitemSeparator1
+        '
+        Me.menuitemSeparator1.Name = "menuitemSeparator1"
+        Me.menuitemSeparator1.Size = New System.Drawing.Size(192, 6)
+        '
+        'menuitemImprimir_ResumenExistencias
+        '
+        Me.menuitemImprimir_ResumenExistencias.Name = "menuitemImprimir_ResumenExistencias"
+        Me.menuitemImprimir_ResumenExistencias.Size = New System.Drawing.Size(195, 22)
+        Me.menuitemImprimir_ResumenExistencias.Tag = "5"
+        Me.menuitemImprimir_ResumenExistencias.Text = "Resumen de existencias"
         '
         'toolstripgroupPeriodo
         '
@@ -827,6 +845,7 @@ Partial Class formPesadas
         '
         Me.toolstriptabFiltrosAvanzados.Panel.Controls.Add(Me.toolstripgroupEsVerificado)
         Me.toolstriptabFiltrosAvanzados.Panel.Controls.Add(Me.toolstripgroupEsActivo)
+        Me.toolstriptabFiltrosAvanzados.Panel.Controls.Add(Me.toolstripgroupMenu)
         Me.toolstriptabFiltrosAvanzados.Panel.Name = "RibbonPanel3"
         Me.toolstriptabFiltrosAvanzados.Panel.ScrollPosition = 0
         Me.toolstriptabFiltrosAvanzados.Panel.TabIndex = 4
@@ -847,6 +866,7 @@ Partial Class formPesadas
         Me.toolstripgroupEsVerificado.Location = New System.Drawing.Point(0, 1)
         Me.toolstripgroupEsVerificado.Name = "toolstripgroupEsVerificado"
         Me.toolstripgroupEsVerificado.Padding = New System.Windows.Forms.Padding(0, 5, 0, 0)
+        Me.toolstripgroupEsVerificado.ShowLauncher = False
         Me.toolstripgroupEsVerificado.Size = New System.Drawing.Size(88, 69)
         Me.toolstripgroupEsVerificado.TabIndex = 6
         Me.toolstripgroupEsVerificado.Text = "Verificado"
@@ -855,7 +875,7 @@ Partial Class formPesadas
         '
         Me.comboboxEsVerificado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxEsVerificado.Name = "comboboxEsVerificado"
-        Me.comboboxEsVerificado.Size = New System.Drawing.Size(80, 46)
+        Me.comboboxEsVerificado.Size = New System.Drawing.Size(80, 47)
         '
         'toolstripgroupEsActivo
         '
@@ -868,6 +888,7 @@ Partial Class formPesadas
         Me.toolstripgroupEsActivo.Location = New System.Drawing.Point(90, 1)
         Me.toolstripgroupEsActivo.Name = "toolstripgroupEsActivo"
         Me.toolstripgroupEsActivo.Padding = New System.Windows.Forms.Padding(0, 5, 0, 0)
+        Me.toolstripgroupEsActivo.ShowLauncher = False
         Me.toolstripgroupEsActivo.Size = New System.Drawing.Size(88, 69)
         Me.toolstripgroupEsActivo.TabIndex = 5
         Me.toolstripgroupEsActivo.Text = "Activo"
@@ -876,7 +897,38 @@ Partial Class formPesadas
         '
         Me.comboboxEsActivo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxEsActivo.Name = "comboboxEsActivo"
-        Me.comboboxEsActivo.Size = New System.Drawing.Size(80, 46)
+        Me.comboboxEsActivo.Size = New System.Drawing.Size(80, 47)
+        '
+        'toolstripgroupMenu
+        '
+        Me.toolstripgroupMenu.AutoSize = False
+        Me.toolstripgroupMenu.Dock = System.Windows.Forms.DockStyle.None
+        Me.toolstripgroupMenu.Font = New System.Drawing.Font("Segoe UI", 8.25!)
+        Me.toolstripgroupMenu.ForeColor = System.Drawing.Color.MidnightBlue
+        Me.toolstripgroupMenu.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.toolstripgroupMenu.Image = Nothing
+        Me.toolstripgroupMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.dropdownbuttonTareas})
+        Me.toolstripgroupMenu.Location = New System.Drawing.Point(180, 1)
+        Me.toolstripgroupMenu.Name = "toolstripgroupMenu"
+        Me.toolstripgroupMenu.ShowLauncher = False
+        Me.toolstripgroupMenu.Size = New System.Drawing.Size(70, 69)
+        Me.toolstripgroupMenu.TabIndex = 7
+        '
+        'dropdownbuttonTareas
+        '
+        Me.dropdownbuttonTareas.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.dropdownbuttonTareas.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemCalcularMermas})
+        Me.dropdownbuttonTareas.Image = CType(resources.GetObject("dropdownbuttonTareas.Image"), System.Drawing.Image)
+        Me.dropdownbuttonTareas.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.dropdownbuttonTareas.Name = "dropdownbuttonTareas"
+        Me.dropdownbuttonTareas.Size = New System.Drawing.Size(51, 49)
+        Me.dropdownbuttonTareas.Text = "Tareas"
+        '
+        'menuitemCalcularMermas
+        '
+        Me.menuitemCalcularMermas.Name = "menuitemCalcularMermas"
+        Me.menuitemCalcularMermas.Size = New System.Drawing.Size(157, 22)
+        Me.menuitemCalcularMermas.Text = "Calcular mermas"
         '
         'formPesadas
         '
@@ -927,6 +979,8 @@ Partial Class formPesadas
         Me.toolstripgroupEsVerificado.PerformLayout()
         Me.toolstripgroupEsActivo.ResumeLayout(False)
         Me.toolstripgroupEsActivo.PerformLayout()
+        Me.toolstripgroupMenu.ResumeLayout(False)
+        Me.toolstripgroupMenu.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1001,4 +1055,9 @@ Partial Class formPesadas
     Friend WithEvents columnEntidadTransportista As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents columnChofer As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents columnCamion As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents toolstripgroupMenu As Syncfusion.Windows.Forms.Tools.ToolStripEx
+    Friend WithEvents dropdownbuttonTareas As System.Windows.Forms.ToolStripDropDownButton
+    Friend WithEvents menuitemCalcularMermas As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents menuitemSeparator1 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents menuitemImprimir_ResumenExistencias As System.Windows.Forms.ToolStripMenuItem
 End Class

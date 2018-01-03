@@ -47,9 +47,9 @@ Partial Public Class Pesada_Analisis
                     KilogramoFinal = KilogramoNeto
                     With PesadaActual.Producto
                         ' MERMA VOLÁTIL
-                        If .MermaVolatil Is Nothing Then
+                        If .MermaVolatil Is Nothing Or Not PesadaActual.Planta.AplicaMermaVolatil Then
                             ' El producto no especifica merma volátil
-                            Me.MermaVolatilKilogramo = Nothing
+                            Me.MermaVolatilKilogramo = 0
                         Else
                             Me.MermaVolatilKilogramo = CInt(KilogramoNeto * .MermaVolatil.Value / 100)
                         End If
