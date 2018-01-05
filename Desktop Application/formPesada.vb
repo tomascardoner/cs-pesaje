@@ -1053,7 +1053,7 @@
                     If mPesadaActual.Pesada_Acondicionamiento Is Nothing Then
                         mPesadaActual.Pesada_Acondicionamiento = New Pesada_Acondicionamiento
                     End If
-                    If Not mPesadaActual.Pesada_Acondicionamiento.CalcularAcondicionamiento Then
+                    If Not mPesadaActual.Pesada_Acondicionamiento.CalcularAcondicionamiento(mPesadaActual) Then
                         If Not mPesadaActual.Pesada_Acondicionamiento.TarifaManual Then
                             mdbContext.Pesada_Acondicionamiento.Remove(mPesadaActual.Pesada_Acondicionamiento)
                         End If

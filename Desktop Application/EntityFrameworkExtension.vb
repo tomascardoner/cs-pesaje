@@ -39,16 +39,25 @@ Partial Public Class Pesada_Analisis
     Public Sub CalcularMermas(ByRef PesadaActual As Pesada)
         Dim KilogramoNeto As Integer
         Dim KilogramoFinal As Integer
+        Dim ProductoActual As Producto
+        Dim PlantaActual As Planta
 
         If PesadaActual.KilogramoNeto.HasValue Then
             KilogramoNeto = PesadaActual.KilogramoNeto.Value
             Select Case PesadaActual.Tipo
                 Case Constantes.PESADA_TIPO_ENTRADA
                     KilogramoFinal = KilogramoNeto
-                    With PesadaActual.Producto
+
+                    ' Obtengo los datos del Producto y de la Planta
+                    Using dbContextDatos As New CSPesajeContext(True)
+                        ProductoActual = dbContextDatos.Producto.Find(PesadaActual.IDProducto)
+                        PlantaActual = dbContextDatos.Planta.Find(PesadaActual.IDPlanta)
+                    End Using
+
+                    With ProductoActual
                         ' MERMA VOLÁTIL
-                        If .MermaVolatil Is Nothing Or Not PesadaActual.Planta.AplicaMermaVolatil Then
-                            ' El producto no especifica merma volátil
+                        If .MermaVolatil Is Nothing Or Not PlantaActual.AplicaMermaVolatil Then
+                            ' El producto no especifica merma volátil o la planta no la aplica
                             Me.MermaVolatilKilogramo = 0
                         Else
                             Me.MermaVolatilKilogramo = CInt(KilogramoNeto * .MermaVolatil.Value / 100)
@@ -103,6 +112,9 @@ Partial Public Class Pesada_Analisis
                             End If
                         End If
                     End With
+                    ProductoActual = Nothing
+                    PlantaActual = Nothing
+
                 Case Constantes.PESADA_TIPO_SALIDA
                     KilogramoFinal = -KilogramoNeto
             End Select
@@ -118,35 +130,41 @@ Partial Public Class Pesada_Analisis
 End Class
 
 Partial Public Class Pesada_Acondicionamiento
-    Public Function CalcularAcondicionamiento() As Boolean
+    Public Function CalcularAcondicionamiento(ByRef PesadaActual As Pesada) As Boolean
         Dim Cosecha_Producto_TarifaActual As New Cosecha_Producto_Tarifa
+        Dim ProductoActual As Producto
+        Dim PesadaActualLocal As Pesada
+
+        PesadaActualLocal = PesadaActual
 
         ' Primero debo determinar que tarifa voy a aplicar
         If Me.TarifaManual Then
             ' Se especificó una tarifa manual, así que tomo esa para hacer el cálculo
-            Using dbContext As New CSPesajeContext(True)
-                Cosecha_Producto_TarifaActual = dbContext.Cosecha_Producto_Tarifa.Find(Me.Pesada.IDCosecha, Me.Pesada.IDProducto, Me.TarifaIndice)
+            Using dbContextDatos As New CSPesajeContext(True)
+                Cosecha_Producto_TarifaActual = dbContextDatos.Cosecha_Producto_Tarifa.Find(PesadaActual.IDCosecha, PesadaActual.IDProducto, Me.TarifaIndice)
+                ProductoActual = dbContextDatos.Producto.Find(PesadaActual.IDProducto)
             End Using
         Else
             ' Hay que buscar la tarifa que mejor aplique
             Dim listCosecha_Producto_Tarifa As List(Of Cosecha_Producto_Tarifa)
             Dim FechaPesada As Date
 
-            FechaPesada = CS_ValueTranslation.FromDateTimeToDate(Me.Pesada.FechaHoraInicio)
+            FechaPesada = CS_ValueTranslation.FromDateTimeToDate(PesadaActual.FechaHoraInicio)
 
-            Using dbContext As New CSPesajeContext(True)
-                listCosecha_Producto_Tarifa = dbContext.Cosecha_Producto_Tarifa.Where(Function(cpt) cpt.IDCosecha = Me.Pesada.IDCosecha.Value And cpt.IDProducto = Me.Pesada.IDProducto).ToList
+            Using dbContextDatos As New CSPesajeContext(True)
+                listCosecha_Producto_Tarifa = dbContextDatos.Cosecha_Producto_Tarifa.Where(Function(cpt) cpt.IDCosecha = PesadaActualLocal.IDCosecha.Value And cpt.IDProducto = PesadaActualLocal.IDProducto).ToList
+                ProductoActual = dbContextDatos.Producto.Find(PesadaActual.IDProducto)
             End Using
 
             ' Debo buscar en el siguiente orden
             ' - Filtrar las que coincida el rango de fechas con la fecha del movimiento o que no tengan un rango especificado
             listCosecha_Producto_Tarifa = listCosecha_Producto_Tarifa.Where(Function(cpt) (cpt.FechaDesde Is Nothing OrElse cpt.FechaDesde.Value <= FechaPesada) And (cpt.FechaHasta Is Nothing OrElse cpt.FechaHasta.Value >= FechaPesada)).ToList
             ' - Filtrar los que coincidan con la Planta
-            listCosecha_Producto_Tarifa = listCosecha_Producto_Tarifa.Where(Function(cpt) cpt.IDPlanta.HasValue = False OrElse cpt.IDPlanta.Value = Me.Pesada.IDPlanta.Value).ToList
+            listCosecha_Producto_Tarifa = listCosecha_Producto_Tarifa.Where(Function(cpt) cpt.IDPlanta.HasValue = False OrElse cpt.IDPlanta.Value = PesadaActualLocal.IDPlanta.Value).ToList
             ' - Filtrar los que coincidan con la Entidad
-            listCosecha_Producto_Tarifa = listCosecha_Producto_Tarifa.Where(Function(cpt) cpt.IDEntidad Is Nothing OrElse cpt.IDEntidad.Value = Me.Pesada.Titular_IDEntidad).ToList
+            listCosecha_Producto_Tarifa = listCosecha_Producto_Tarifa.Where(Function(cpt) cpt.IDEntidad Is Nothing OrElse cpt.IDEntidad.Value = PesadaActualLocal.Titular_IDEntidad).ToList
             ' - Filtrar los que coincidan con el Origen/Destino
-            listCosecha_Producto_Tarifa = listCosecha_Producto_Tarifa.Where(Function(cpt) cpt.IDOrigenDestino Is Nothing OrElse cpt.IDOrigenDestino.Value = Me.Pesada.IDOrigenDestino.Value).ToList
+            listCosecha_Producto_Tarifa = listCosecha_Producto_Tarifa.Where(Function(cpt) cpt.IDOrigenDestino Is Nothing OrElse cpt.IDOrigenDestino.Value = PesadaActualLocal.IDOrigenDestino.Value).ToList
             ' - Ordenar por Entidad DESC (para darle prioridad a las que especifican Entidad), OrigenDestino DESC, Indice
             listCosecha_Producto_Tarifa = listCosecha_Producto_Tarifa.OrderByDescending(Function(cpt) cpt.IDEntidad).OrderByDescending(Function(cpt) cpt.IDOrigenDestino).OrderBy(Function(cpt) cpt.Indice).ToList
             ' Seleccionar la primer tarifa
@@ -159,7 +177,7 @@ Partial Public Class Pesada_Acondicionamiento
             Return False
         Else
             Dim KilogramoNeto As Integer
-            KilogramoNeto = Me.Pesada.KilogramoNeto.Value
+            KilogramoNeto = PesadaActual.KilogramoNeto.Value
             With Cosecha_Producto_TarifaActual
                 Me.TarifaIndice = .Indice
 
@@ -168,13 +186,13 @@ Partial Public Class Pesada_Acondicionamiento
                 Me.ParitariaImporte = CS_ValueTranslation.FromDoubleToRoundedCurrency((KilogramoNeto / 100) * Me.ParitariaTarifa)
 
                 ' Si tiene análisis cargado, calculo los servicios:
-                If Not Me.Pesada.Pesada_Analisis Is Nothing Then
+                If Not PesadaActual.Pesada_Analisis Is Nothing Then
 
                     ' Calculo el Zarandeo, Fumigado y Mezcla antes del Secado porque en las Escalas de Secado,
                     ' según el caso, tengo que poner en cero alguna de estas tarifas
 
                     ' Zarandeo
-                    If Me.Pesada.Pesada_Analisis.Zaranda.HasValue Then
+                    If PesadaActual.Pesada_Analisis.Zaranda.HasValue Then
                         Me.ZarandeoTarifa = .TarifaZarandeoImporte
                         Me.ZarandeoImporte = CS_ValueTranslation.FromDoubleToRoundedCurrency((KilogramoNeto / 100) * Me.ZarandeoTarifa)
                     Else
@@ -183,7 +201,7 @@ Partial Public Class Pesada_Acondicionamiento
                     End If
 
                     ' Fumigado
-                    If Me.Pesada.Pesada_Analisis.Fumigado.HasValue AndAlso Me.Pesada.Pesada_Analisis.Fumigado Then
+                    If PesadaActual.Pesada_Analisis.Fumigado.HasValue AndAlso PesadaActual.Pesada_Analisis.Fumigado Then
                         Me.FumigadoTarifa = .TarifaFumigadoImporte
                         Me.FumigadoImporte = CS_ValueTranslation.FromDoubleToRoundedCurrency((KilogramoNeto / 100) * Me.FumigadoTarifa)
                     Else
@@ -192,7 +210,7 @@ Partial Public Class Pesada_Acondicionamiento
                     End If
 
                     ' Mezclado
-                    If Me.Pesada.Pesada_Analisis.Mezclado.HasValue AndAlso Me.Pesada.Pesada_Analisis.Mezclado Then
+                    If PesadaActual.Pesada_Analisis.Mezclado.HasValue AndAlso PesadaActual.Pesada_Analisis.Mezclado Then
                         Me.MezclaTarifa = .TarifaMezclaImporte
                         Me.MezclaImporte = CS_ValueTranslation.FromDoubleToRoundedCurrency((KilogramoNeto / 100) * Me.MezclaTarifa)
                     Else
@@ -201,16 +219,16 @@ Partial Public Class Pesada_Acondicionamiento
                     End If
 
                     ' Secado
-                    If Me.Pesada.Producto.MermaHumedadBase.HasValue AndAlso Me.Pesada.Pesada_Analisis.Humedad.HasValue AndAlso Me.Pesada.Pesada_Analisis.Humedad > Me.Pesada.Producto.MermaHumedadBase Then
+                    If ProductoActual.MermaHumedadBase.HasValue AndAlso PesadaActual.Pesada_Analisis.Humedad.HasValue AndAlso PesadaActual.Pesada_Analisis.Humedad > ProductoActual.MermaHumedadBase Then
                         ' Tarifa fija por Humedad
                         Me.SecadoTarifa = Cosecha_Producto_TarifaActual.TarifaSecadoInicialImporte
                         Me.SecadoImporte = CS_ValueTranslation.FromDoubleToRoundedCurrency((KilogramoNeto / 100) * Me.SecadoTarifa)
 
                         ' Calcular tarifa por punto de exceso de Humedad
-                        If Me.Pesada.Pesada_Analisis.Humedad <= (Cosecha_Producto_TarifaActual.TarifaSecadoHumedadBase + Cosecha_Producto_TarifaActual.TarifaSecadoHumedadMargenLibre) Then
+                        If PesadaActual.Pesada_Analisis.Humedad <= (Cosecha_Producto_TarifaActual.TarifaSecadoHumedadBase + Cosecha_Producto_TarifaActual.TarifaSecadoHumedadMargenLibre) Then
                             Me.HumedadExcesoReal = 0
                         Else
-                            Me.HumedadExcesoReal = Math.Round(Me.Pesada.Pesada_Analisis.Humedad.Value - Me.Pesada.Producto.MermaHumedadBase.Value, 1)
+                            Me.HumedadExcesoReal = Math.Round(PesadaActual.Pesada_Analisis.Humedad.Value - ProductoActual.MermaHumedadBase.Value, 1)
                         End If
                         Me.HumedadExcesoCalculo = Me.HumedadExcesoReal
 
@@ -238,11 +256,11 @@ Partial Public Class Pesada_Acondicionamiento
                                 Me.SecadoExcesoImporte = CS_ValueTranslation.FromDoubleToRoundedCurrency((KilogramoNeto / 100) * CSng(Me.HumedadExcesoCalculo) * Me.SecadoExcesoTarifa)
 
                             Case Constantes.PRODUCTO_TARIFA_SECADO_TIPO_ESCALA
-                                If Me.Pesada.Pesada_Analisis.Humedad >= Cosecha_Producto_TarifaActual.TarifaSecadoHumedadBase + Cosecha_Producto_TarifaActual.TarifaSecadoHumedadMargenLibre Then
+                                If PesadaActual.Pesada_Analisis.Humedad >= Cosecha_Producto_TarifaActual.TarifaSecadoHumedadBase + Cosecha_Producto_TarifaActual.TarifaSecadoHumedadMargenLibre Then
                                     Dim Cosecha_Producto_TarifaEscalaActual As Cosecha_Producto_TarifaEscala
 
                                     Using dbContext As New CSPesajeContext(True)
-                                        Cosecha_Producto_TarifaEscalaActual = dbContext.Cosecha_Producto_TarifaEscala.Where(Function(cpte) cpte.IDCosecha = Me.Pesada.IDCosecha.Value And cpte.IDProducto = Me.Pesada.IDProducto And cpte.Indice = Me.TarifaIndice And cpte.HumedadExcesoInicio <= Me.HumedadExcesoReal).OrderByDescending(Function(cpte) cpte.HumedadExcesoInicio).First
+                                        Cosecha_Producto_TarifaEscalaActual = dbContext.Cosecha_Producto_TarifaEscala.Where(Function(cpte) cpte.IDCosecha = PesadaActualLocal.IDCosecha.Value And cpte.IDProducto = PesadaActualLocal.IDProducto And cpte.Indice = Me.TarifaIndice And cpte.HumedadExcesoInicio <= Me.HumedadExcesoReal).OrderByDescending(Function(cpte) cpte.HumedadExcesoInicio).First
                                     End Using
                                     If Cosecha_Producto_TarifaEscalaActual Is Nothing Then
                                         Me.SecadoExcesoTarifa = 0
@@ -276,6 +294,9 @@ Partial Public Class Pesada_Acondicionamiento
                                     End If
                                 End If
                         End Select
+
+                        ProductoActual = Nothing
+                        PesadaActualLocal = Nothing
                     Else
                         Me.SecadoTarifa = 0
                         Me.SecadoImporte = 0
