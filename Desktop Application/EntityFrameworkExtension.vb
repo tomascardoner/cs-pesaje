@@ -322,11 +322,12 @@ Partial Public Class Reporte
 
     Friend Property RecordSelectionFormula() As String
         Get
+            mRecordSelectionFormula = ReportObject.RecordSelectionFormula
             Return mRecordSelectionFormula
         End Get
         Set(ByVal value As String)
             mRecordSelectionFormula = value
-            ReportObject.RecordSelectionFormula = value
+            ReportObject.RecordSelectionFormula = mRecordSelectionFormula
         End Set
     End Property
 

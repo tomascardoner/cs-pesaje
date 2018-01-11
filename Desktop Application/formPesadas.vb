@@ -295,7 +295,7 @@
                 ' Filtro por Tipos de Pesada
                 If Not (menuitemPesadaTipo_Entrada.Checked And menuitemPesadaTipo_Salida.Checked And menuitemPesadaTipo_Ninguno.Checked) Then
                     mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) ((menuitemPesadaTipo_Entrada.Checked And p.Tipo = PESADA_TIPO_ENTRADA) Or (menuitemPesadaTipo_Salida.Checked And p.Tipo = PESADA_TIPO_SALIDA) Or (menuitemPesadaTipo_Ninguno.Checked And p.Tipo = PESADA_TIPO_NINGUNA))).ToList
-                    mRecordSelectionFormula &= String.Format(" AND (({0} AND {{Pesada.Tipo}} = {1}) OR ({0} AND {{Pesada.Tipo}} = {1}) OR ({0} AND {{Pesada.Tipo}} = {1}))", PESADA_TIPO_ENTRADA, menuitemPesadaTipo_Entrada.Checked, PESADA_TIPO_SALIDA, menuitemPesadaTipo_Salida.Checked, PESADA_TIPO_NINGUNA, menuitemPesadaTipo_Ninguno.Checked)
+                    mRecordSelectionFormula &= String.Format(" AND (({0} AND {{Pesada.Tipo}} = '{1}') OR ({2} AND {{Pesada.Tipo}} = '{3}') OR ({4} AND {{Pesada.Tipo}} = '{5}'))", menuitemPesadaTipo_Entrada.Checked, PESADA_TIPO_ENTRADA, menuitemPesadaTipo_Salida.Checked, PESADA_TIPO_SALIDA, menuitemPesadaTipo_Ninguno.Checked, PESADA_TIPO_NINGUNA)
                 End If
 
                 ' Filtro por Cosecha
@@ -674,7 +674,7 @@
         End If
     End Sub
 
-    Private Sub ImprimirReportes(sender As Object, e As EventArgs) Handles menuitemImprimir_ResumenExistencias.Click
+    Private Sub ImprimirReportes(sender As Object, e As EventArgs) Handles menuitemImprimir_EntradasAcondicionamiento.Click, menuitemImprimir_ResumenExistencias.Click
         If datagridviewMain.CurrentRow Is Nothing Then
             MsgBox("No hay ninguna Pesada para imprimir.", vbInformation, My.Application.Info.Title)
         Else
@@ -690,7 +690,11 @@
                     ReporteActual = dbContext.Reporte.Find(CInt(CType(sender, ToolStripMenuItem).Tag))
                     If Not ReporteActual Is Nothing Then
                         If ReporteActual.Open(My.Settings.ReportsPath & "\" & ReporteActual.Archivo) Then
-                            ReporteActual.RecordSelectionFormula = mRecordSelectionFormula
+                            If ReporteActual.RecordSelectionFormula <> "" Then
+                                ReporteActual.RecordSelectionFormula &= " AND " & mRecordSelectionFormula
+                            Else
+                                ReporteActual.RecordSelectionFormula = mRecordSelectionFormula
+                            End If
                             If ReporteActual.SetDatabaseConnection(pDatabase.DataSource, pDatabase.InitialCatalog, pDatabase.UserID, pDatabase.Password) Then
                                 MiscFunctions.PreviewCrystalReport(ReporteActual, ReporteActual.Titulo)
                             End If
@@ -753,6 +757,66 @@
 
             Catch ex As Exception
                 CS_Error.ProcessError(ex, "Error al calcular mermas de la Pesada.")
+            End Try
+
+            If datagridviewMain.Rows.Count > 0 Then
+                datagridviewMain.CurrentCell = datagridviewMain.Rows(0).Cells(0)
+            End If
+
+            datagridviewMain.Enabled = True
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub Tareas_CalcularAcondicionamiento() Handles menuitemCalcularAcondicionamiento.Click
+        If datagridviewMain.Rows.Count = 0 Then
+            MsgBox("No hay ninguna Pesada para calcular el acondicionamiento.", vbInformation, My.Application.Info.Title)
+            Exit Sub
+        End If
+
+        If MsgBox(String.Format("Se calculará el acondicionamiento para todas las entradas mostradas.{0}{0}¿Desea continuar?", vbCrLf), CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
+
+            Me.Cursor = Cursors.WaitCursor
+
+            datagridviewMain.Enabled = False
+
+            Try
+                Using dbContext = New CSPesajeContext(True)
+                    Dim PesadaActual As Pesada
+
+                    For Each DataRowActual As DataGridViewRow In datagridviewMain.Rows
+                        ' Muestro la fila de la grilla que voy a recalcular
+                        datagridviewMain.CurrentCell = DataRowActual.Cells(0)
+                        Application.DoEvents()
+
+                        ' Leo la Pesada actual de la base de datos
+                        PesadaActual = dbContext.Pesada.Find(CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDPesada)
+
+                        If PesadaActual.Tipo = PESADA_TIPO_ENTRADA Then
+                            ' Recalculo acondicionamiento
+                            If PesadaActual.Pesada_Acondicionamiento Is Nothing Then
+                                PesadaActual.Pesada_Acondicionamiento = New Pesada_Acondicionamiento
+                            End If
+                            PesadaActual.Pesada_Acondicionamiento.CalcularAcondicionamiento(PesadaActual)
+                        End If
+                    Next
+
+                    dbContext.SaveChanges()
+
+                    RefreshData()
+                End Using
+
+            Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
+                Me.Cursor = Cursors.Default
+                Select Case CS_Database_EF_SQL.TryDecodeDbUpdateException(dbuex)
+                End Select
+                datagridviewMain.Enabled = True
+                Me.Cursor = Cursors.Default
+                Exit Sub
+
+            Catch ex As Exception
+                CS_Error.ProcessError(ex, "Error al calcular el acondicionamiento de la Pesada.")
             End Try
 
             If datagridviewMain.Rows.Count > 0 Then

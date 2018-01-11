@@ -602,17 +602,21 @@
 
         If checkboxTransportistaOtro.Checked Then
             maskedtextboxTransportistaCUIT.Text = ""
-            textboxTransportista.Focus()
         Else
             If Not comboboxTransportista.SelectedItem Is Nothing Then
                 maskedtextboxTransportistaCUIT.Text = CType(comboboxTransportista.SelectedItem, Entidad).CUIT_CUIL
             Else
                 maskedtextboxTransportistaCUIT.Text = ""
             End If
-            comboboxTransportista.Focus()
         End If
 
         checkboxCamionOtro.Checked = checkboxTransportistaOtro.Checked
+
+        If checkboxTransportistaOtro.Checked Then
+            textboxTransportista.Focus()
+        Else
+            comboboxTransportista.Focus()
+        End If
     End Sub
 
     Private Sub TransportistaCambio() Handles comboboxTransportista.SelectedValueChanged
