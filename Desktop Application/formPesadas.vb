@@ -41,7 +41,8 @@
 
     Private mFiltroPeriodoExpandido As Boolean = False
     Private mSkipFilterData As Boolean = False
-    Private mRecordSelectionFormula As String
+    Private mRecordSelectionFormula_Refresh As String
+    Private mRecordSelectionFormula_Filter As String
 
     Private mOrdenColumna As DataGridViewColumn
     Private mOrdenTipo As SortOrder
@@ -207,7 +208,7 @@
         FechaHasta = FechaHasta.AddSeconds(-1).AddDays(1)
 
         ' Preparo el filtro para los Reportes
-        mRecordSelectionFormula = String.Format("{{Pesada.FechaHoraInicio}} >= DateTime({0}, {1}, {2}, {3}, {4}, {5}) AND {{Pesada.FechaHoraInicio}} <= DateTime({6}, {7}, {8}, {9}, {10}, {11})", FechaDesde.Year, FechaDesde.Month, FechaDesde.Day, FechaDesde.Hour, FechaDesde.Minute, FechaDesde.Second, FechaHasta.Year, FechaHasta.Month, FechaHasta.Day, FechaHasta.Hour, FechaHasta.Minute, FechaHasta.Second)
+        mRecordSelectionFormula_Refresh = String.Format("{{Pesada.FechaHoraInicio}} >= DateTime({0}, {1}, {2}, {3}, {4}, {5}) AND {{Pesada.FechaHoraInicio}} <= DateTime({6}, {7}, {8}, {9}, {10}, {11})", FechaDesde.Year, FechaDesde.Month, FechaDesde.Day, FechaDesde.Hour, FechaDesde.Minute, FechaDesde.Second, FechaHasta.Year, FechaHasta.Month, FechaHasta.Day, FechaHasta.Hour, FechaHasta.Minute, FechaHasta.Second)
 
         Try
             Using dbContext As New CSPesajeContext(True)
@@ -273,53 +274,54 @@
 
                 ' FILTROS BÁSICOS
                 ' ===============
+                mRecordSelectionFormula_Filter = ""
 
                 ' Filtro por Titular
                 If CInt(comboboxTitular.ComboBox.SelectedValue) <> FIELD_VALUE_ALL_INTEGER Then
                     mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) p.IDTitular = CInt(comboboxTitular.ComboBox.SelectedValue)).ToList
-                    mRecordSelectionFormula &= String.Format(" AND {{Pesada.Titular_IDEntidad}} = {0}", comboboxTitular.ComboBox.SelectedValue)
+                    mRecordSelectionFormula_Filter &= String.Format(" AND {{Pesada.Titular_IDEntidad}} = {0}", comboboxTitular.ComboBox.SelectedValue)
                 End If
 
                 ' Filtro por Producto
                 If CInt(comboboxProducto.ComboBox.SelectedValue) <> FIELD_VALUE_ALL_BYTE Then
                     mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) p.IDProducto = CByte(comboboxProducto.ComboBox.SelectedValue)).ToList
-                    mRecordSelectionFormula &= String.Format(" AND {{Pesada.IDProducto}} = {0}", comboboxProducto.ComboBox.SelectedValue)
+                    mRecordSelectionFormula_Filter &= String.Format(" AND {{Pesada.IDProducto}} = {0}", comboboxProducto.ComboBox.SelectedValue)
                 End If
 
                 ' Filtro por Planta
                 If CInt(comboboxPlanta.ComboBox.SelectedValue) <> FIELD_VALUE_ALL_BYTE Then
                     mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) p.IDPlanta.Value = CByte(comboboxPlanta.ComboBox.SelectedValue)).ToList
-                    mRecordSelectionFormula &= String.Format(" AND {{Pesada.IDPlanta}} = {0}", comboboxPlanta.ComboBox.SelectedValue)
+                    mRecordSelectionFormula_Filter &= String.Format(" AND {{Pesada.IDPlanta}} = {0}", comboboxPlanta.ComboBox.SelectedValue)
                 End If
 
                 ' Filtro por Tipos de Pesada
                 If Not (menuitemPesadaTipo_Entrada.Checked And menuitemPesadaTipo_Salida.Checked And menuitemPesadaTipo_Ninguno.Checked) Then
                     mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) ((menuitemPesadaTipo_Entrada.Checked And p.Tipo = PESADA_TIPO_ENTRADA) Or (menuitemPesadaTipo_Salida.Checked And p.Tipo = PESADA_TIPO_SALIDA) Or (menuitemPesadaTipo_Ninguno.Checked And p.Tipo = PESADA_TIPO_NINGUNA))).ToList
-                    mRecordSelectionFormula &= String.Format(" AND (({0} AND {{Pesada.Tipo}} = '{1}') OR ({2} AND {{Pesada.Tipo}} = '{3}') OR ({4} AND {{Pesada.Tipo}} = '{5}'))", menuitemPesadaTipo_Entrada.Checked, PESADA_TIPO_ENTRADA, menuitemPesadaTipo_Salida.Checked, PESADA_TIPO_SALIDA, menuitemPesadaTipo_Ninguno.Checked, PESADA_TIPO_NINGUNA)
+                    mRecordSelectionFormula_Filter &= String.Format(" AND (({0} AND {{Pesada.Tipo}} = '{1}') OR ({2} AND {{Pesada.Tipo}} = '{3}') OR ({4} AND {{Pesada.Tipo}} = '{5}'))", menuitemPesadaTipo_Entrada.Checked, PESADA_TIPO_ENTRADA, menuitemPesadaTipo_Salida.Checked, PESADA_TIPO_SALIDA, menuitemPesadaTipo_Ninguno.Checked, PESADA_TIPO_NINGUNA)
                 End If
 
                 ' Filtro por Cosecha
                 If CInt(comboboxCosecha.ComboBox.SelectedValue) <> FIELD_VALUE_ALL_BYTE Then
                     mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) p.IDCosecha.Value = CByte(comboboxCosecha.ComboBox.SelectedValue)).ToList
-                    mRecordSelectionFormula &= String.Format(" AND {{Pesada.IDCosecha}} = {0}", comboboxCosecha.ComboBox.SelectedValue)
+                    mRecordSelectionFormula_Filter &= String.Format(" AND {{Pesada.IDCosecha}} = {0}", comboboxCosecha.ComboBox.SelectedValue)
                 End If
 
                 ' Filtro por OrigenDestino
                 If CInt(comboboxOrigenDestino.ComboBox.SelectedValue) <> FIELD_VALUE_ALL_INTEGER Then
                     mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) p.IDOrigenDestino.HasValue AndAlso p.IDOrigenDestino.Value = CInt(comboboxOrigenDestino.ComboBox.SelectedValue)).ToList
-                    mRecordSelectionFormula &= String.Format(" AND {{Pesada.IDOrigenDestino}} = {0}", comboboxOrigenDestino.ComboBox.SelectedValue)
+                    mRecordSelectionFormula_Filter &= String.Format(" AND {{Pesada.IDOrigenDestino}} = {0}", comboboxOrigenDestino.ComboBox.SelectedValue)
                 End If
 
                 ' Filtro por Transportista
                 If CInt(comboboxTransportista.ComboBox.SelectedValue) <> FIELD_VALUE_ALL_INTEGER Then
                     mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) p.IDTransportista.HasValue AndAlso p.IDTransportista.Value = CInt(comboboxTransportista.ComboBox.SelectedValue)).ToList
-                    mRecordSelectionFormula &= String.Format(" AND {{Pesada.Transportista_IDEntidad}} = {0}", comboboxTransportista.ComboBox.SelectedValue)
+                    mRecordSelectionFormula_Filter &= String.Format(" AND {{Pesada.Transportista_IDEntidad}} = {0}", comboboxTransportista.ComboBox.SelectedValue)
                 End If
 
                 ' Filtro por Chofer
                 If CInt(comboboxChofer.ComboBox.SelectedValue) <> FIELD_VALUE_ALL_INTEGER Then
                     mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) p.IDChofer.HasValue AndAlso p.IDChofer.Value = CInt(comboboxChofer.ComboBox.SelectedValue)).ToList
-                    mRecordSelectionFormula &= String.Format(" AND {{Pesada.Chofer_IDEntidad}} = {0}", comboboxChofer.ComboBox.SelectedValue)
+                    mRecordSelectionFormula_Filter &= String.Format(" AND {{Pesada.Chofer_IDEntidad}} = {0}", comboboxChofer.ComboBox.SelectedValue)
                 End If
 
 
@@ -331,10 +333,10 @@
                     Case COMBOBOX_YESNO_ALL_LISTINDEX       ' Todos
                     Case COMBOBOX_YESNO_YES_LISTINDEX       ' Sí
                         mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) p.EsVerificado).ToList
-                        mRecordSelectionFormula &= " AND {Pesada.EsVerificado}"
+                        mRecordSelectionFormula_Filter &= " AND {Pesada.EsVerificado}"
                     Case COMBOBOX_YESNO_NO_LISTINDEX        ' No
                         mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) Not p.EsVerificado).ToList
-                        mRecordSelectionFormula &= " AND (NOT {Pesada.EsVerificado})"
+                        mRecordSelectionFormula_Filter &= " AND (NOT {Pesada.EsVerificado})"
                 End Select
 
                 ' Filtro por Activo
@@ -342,10 +344,10 @@
                     Case COMBOBOX_YESNO_ALL_LISTINDEX       ' Todos
                     Case COMBOBOX_YESNO_YES_LISTINDEX       ' Sí
                         mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) p.EsActivo).ToList
-                        mRecordSelectionFormula &= " AND {Pesada.EsActivo}"
+                        mRecordSelectionFormula_Filter &= " AND {Pesada.EsActivo}"
                     Case COMBOBOX_YESNO_NO_LISTINDEX        ' No
                         mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) Not p.EsActivo).ToList
-                        mRecordSelectionFormula &= " AND (NOT {Pesada.EsActivo})"
+                        mRecordSelectionFormula_Filter &= " AND (NOT {Pesada.EsActivo})"
                 End Select
 
 
@@ -691,9 +693,9 @@
                     If Not ReporteActual Is Nothing Then
                         If ReporteActual.Open(My.Settings.ReportsPath & "\" & ReporteActual.Archivo) Then
                             If ReporteActual.RecordSelectionFormula <> "" Then
-                                ReporteActual.RecordSelectionFormula &= " AND " & mRecordSelectionFormula
+                                ReporteActual.RecordSelectionFormula &= " AND " & mRecordSelectionFormula_Refresh & mRecordSelectionFormula_Filter
                             Else
-                                ReporteActual.RecordSelectionFormula = mRecordSelectionFormula
+                                ReporteActual.RecordSelectionFormula = mRecordSelectionFormula_Refresh & mRecordSelectionFormula_Filter
                             End If
                             If ReporteActual.SetDatabaseConnection(pDatabase.DataSource, pDatabase.InitialCatalog, pDatabase.UserID, pDatabase.Password) Then
                                 MiscFunctions.PreviewCrystalReport(ReporteActual, ReporteActual.Titulo)
