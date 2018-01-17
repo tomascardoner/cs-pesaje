@@ -232,7 +232,7 @@ Partial Public Class Pesada_Acondicionamiento
                         End If
                         Me.HumedadExcesoCalculo = Me.HumedadExcesoReal
 
-                        ' Redeondeo de punto
+                        ' Redondeo de punto
                         Select Case Cosecha_Producto_TarifaActual.TarifaSecadoHumedadRedondeoPuntoTipo
                             Case Constantes.PRODUCTO_TARIFA_SECADO_REDONDEOPUNTO_TIPO_NINGUNO
 
@@ -266,7 +266,7 @@ Partial Public Class Pesada_Acondicionamiento
                                         Me.SecadoExcesoTarifa = 0
                                         Me.SecadoExcesoImporte = 0
                                     Else
-                                        Select Case Cosecha_Producto_TarifaActual.TarifaSecadoTipo
+                                        Select Case Cosecha_Producto_TarifaEscalaActual.Tipo
                                             Case Constantes.PRODUCTO_TARIFA_SECADO_TIPO_ESCALA_PORPUNTO
                                             Case Constantes.PRODUCTO_TARIFA_SECADO_TIPO_ESCALA_COMPLETA
                                                 Me.SecadoExcesoTarifa = Cosecha_Producto_TarifaEscalaActual.Tarifa
