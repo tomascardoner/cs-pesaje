@@ -14,18 +14,23 @@ Partial Public Class Pesada_Acondicionamiento
     Public Property IDPesada As Integer
     Public Property TarifaManual As Boolean
     Public Property TarifaIndice As Short
+    Public Property ParitariaAplica As Boolean
     Public Property ParitariaTarifa As Decimal
     Public Property ParitariaImporte As Decimal
     Public Property SecadoTarifa As Decimal
     Public Property SecadoImporte As Decimal
     Public Property HumedadExcesoReal As Decimal
     Public Property HumedadExcesoCalculo As Decimal
+    Public Property SecadoAplica As Boolean
     Public Property SecadoExcesoTarifa As Decimal
     Public Property SecadoExcesoImporte As Decimal
+    Public Property ZarandeoAplica As Boolean
     Public Property ZarandeoTarifa As Decimal
     Public Property ZarandeoImporte As Decimal
+    Public Property FumigadoAplica As Boolean
     Public Property FumigadoTarifa As Decimal
     Public Property FumigadoImporte As Decimal
+    Public Property MezclaAplica As Boolean
     Public Property MezclaTarifa As Decimal
     Public Property MezclaImporte As Decimal
     Public Property ImporteTotal As Decimal

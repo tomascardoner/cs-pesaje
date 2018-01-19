@@ -31,5 +31,6 @@ Partial Public Class OrigenDestino
     Public Overridable Property UsuarioCreacion As Usuario
     Public Overridable Property UsuarioModificacion As Usuario
     Public Overridable Property Cosecha_Producto_Tarifas As ICollection(Of Cosecha_Producto_Tarifa) = New HashSet(Of Cosecha_Producto_Tarifa)
+    Public Overridable Property Pesada As ICollection(Of Pesada) = New HashSet(Of Pesada)
 
 End Class

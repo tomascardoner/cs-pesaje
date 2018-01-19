@@ -23,13 +23,11 @@ Partial Class formPesada
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(formPesada))
         Me.toolstripMain = New System.Windows.Forms.ToolStrip()
         Me.buttonCerrar = New System.Windows.Forms.ToolStripButton()
         Me.buttonEditar = New System.Windows.Forms.ToolStripButton()
         Me.buttonCancelar = New System.Windows.Forms.ToolStripButton()
         Me.buttonGuardar = New System.Windows.Forms.ToolStripButton()
-        Me.buttonEsActivo = New System.Windows.Forms.ToolStripButton()
         Me.tooltipMain = New System.Windows.Forms.ToolTip(Me.components)
         Me.labelOrigenDestino = New System.Windows.Forms.Label()
         Me.labelTitular = New System.Windows.Forms.Label()
@@ -106,9 +104,6 @@ Partial Class formPesada
         Me.integertextboxKilogramoTara = New Syncfusion.Windows.Forms.Tools.IntegerTextBox()
         Me.labelKilogramoBruto = New System.Windows.Forms.Label()
         Me.integertextboxKilogramoBruto = New Syncfusion.Windows.Forms.Tools.IntegerTextBox()
-        Me.groupboxNotas = New System.Windows.Forms.GroupBox()
-        Me.textboxNotas = New System.Windows.Forms.TextBox()
-        Me.labelNotas = New System.Windows.Forms.Label()
         Me.groupboxAnalisis = New System.Windows.Forms.GroupBox()
         Me.integertextboxGranoDaniado = New Syncfusion.Windows.Forms.Tools.IntegerTextBox()
         Me.integertextboxGranoVerde = New Syncfusion.Windows.Forms.Tools.IntegerTextBox()
@@ -126,7 +121,34 @@ Partial Class formPesada
         Me.labelZaranda = New System.Windows.Forms.Label()
         Me.doubletextboxHumedad = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
         Me.labelHumedad = New System.Windows.Forms.Label()
-        Me.buttonEsVerificado = New System.Windows.Forms.ToolStripButton()
+        Me.tabcontrolNotasExtras = New CSPesaje.DesktopApplication.CS_Control_TabControl()
+        Me.tabpageNotas = New System.Windows.Forms.TabPage()
+        Me.groupboxNotas = New System.Windows.Forms.GroupBox()
+        Me.textboxNotas = New System.Windows.Forms.TextBox()
+        Me.tabpageExtras = New System.Windows.Forms.TabPage()
+        Me.groupboxTarifasaPLICA = New System.Windows.Forms.GroupBox()
+        Me.labelMezclaAplica = New System.Windows.Forms.Label()
+        Me.checkboxMezclaAplica = New System.Windows.Forms.CheckBox()
+        Me.labelFumigadoAplica = New System.Windows.Forms.Label()
+        Me.checkboxFumigadoAplica = New System.Windows.Forms.CheckBox()
+        Me.labelZarandeoAplica = New System.Windows.Forms.Label()
+        Me.checkboxZarandeoAplica = New System.Windows.Forms.CheckBox()
+        Me.labelSecadoAplica = New System.Windows.Forms.Label()
+        Me.checkboxSecadoAplica = New System.Windows.Forms.CheckBox()
+        Me.labelParitariaAplica = New System.Windows.Forms.Label()
+        Me.checkboxParitariaAplica = New System.Windows.Forms.CheckBox()
+        Me.groupboxMermasAplica = New System.Windows.Forms.GroupBox()
+        Me.labelMermaZarandaAplica = New System.Windows.Forms.Label()
+        Me.checkboxMermaZarandaAplica = New System.Windows.Forms.CheckBox()
+        Me.labelMermaHumedadAplica = New System.Windows.Forms.Label()
+        Me.checkboxMermaHumedadAplica = New System.Windows.Forms.CheckBox()
+        Me.labelMermaVolatilAplica = New System.Windows.Forms.Label()
+        Me.checkboxMermaVolatilAplica = New System.Windows.Forms.CheckBox()
+        Me.groupboxControl = New System.Windows.Forms.GroupBox()
+        Me.labelEsActivo = New System.Windows.Forms.Label()
+        Me.checkboxEsActivo = New System.Windows.Forms.CheckBox()
+        Me.labelEsVerificado = New System.Windows.Forms.Label()
+        Me.checkboxEsVerificado = New System.Windows.Forms.CheckBox()
         Me.toolstripMain.SuspendLayout()
         Me.groupboxTransporte.SuspendLayout()
         CType(Me.integertextboxKilometro, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -138,7 +160,6 @@ Partial Class formPesada
         CType(Me.integertextboxKilogramoNeto, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.integertextboxKilogramoTara, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.integertextboxKilogramoBruto, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.groupboxNotas.SuspendLayout()
         Me.groupboxAnalisis.SuspendLayout()
         CType(Me.integertextboxGranoDaniado, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.integertextboxGranoVerde, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -146,12 +167,19 @@ Partial Class formPesada
         CType(Me.doubletextboxPesoHectolitrico, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.doubletextboxZaranda, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.doubletextboxHumedad, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.tabcontrolNotasExtras.SuspendLayout()
+        Me.tabpageNotas.SuspendLayout()
+        Me.groupboxNotas.SuspendLayout()
+        Me.tabpageExtras.SuspendLayout()
+        Me.groupboxTarifasaPLICA.SuspendLayout()
+        Me.groupboxMermasAplica.SuspendLayout()
+        Me.groupboxControl.SuspendLayout()
         Me.SuspendLayout()
         '
         'toolstripMain
         '
         Me.toolstripMain.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.toolstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonCerrar, Me.buttonEditar, Me.buttonCancelar, Me.buttonGuardar, Me.buttonEsVerificado, Me.buttonEsActivo})
+        Me.toolstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonCerrar, Me.buttonEditar, Me.buttonCancelar, Me.buttonGuardar})
         Me.toolstripMain.Location = New System.Drawing.Point(0, 0)
         Me.toolstripMain.Name = "toolstripMain"
         Me.toolstripMain.Size = New System.Drawing.Size(743, 39)
@@ -196,15 +224,6 @@ Partial Class formPesada
         Me.buttonGuardar.Name = "buttonGuardar"
         Me.buttonGuardar.Size = New System.Drawing.Size(85, 36)
         Me.buttonGuardar.Text = "Guardar"
-        '
-        'buttonEsActivo
-        '
-        Me.buttonEsActivo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.buttonEsActivo.Image = CType(resources.GetObject("buttonEsActivo.Image"), System.Drawing.Image)
-        Me.buttonEsActivo.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonEsActivo.Name = "buttonEsActivo"
-        Me.buttonEsActivo.Size = New System.Drawing.Size(45, 36)
-        Me.buttonEsActivo.Text = "Activo"
         '
         'labelOrigenDestino
         '
@@ -1073,35 +1092,6 @@ Partial Class formPesada
         Me.integertextboxKilogramoBruto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.integertextboxKilogramoBruto.WordWrap = False
         '
-        'groupboxNotas
-        '
-        Me.groupboxNotas.Controls.Add(Me.textboxNotas)
-        Me.groupboxNotas.Controls.Add(Me.labelNotas)
-        Me.groupboxNotas.Location = New System.Drawing.Point(12, 385)
-        Me.groupboxNotas.Name = "groupboxNotas"
-        Me.groupboxNotas.Size = New System.Drawing.Size(722, 75)
-        Me.groupboxNotas.TabIndex = 6
-        Me.groupboxNotas.TabStop = False
-        '
-        'textboxNotas
-        '
-        Me.textboxNotas.Location = New System.Drawing.Point(92, 17)
-        Me.textboxNotas.MaxLength = 0
-        Me.textboxNotas.Multiline = True
-        Me.textboxNotas.Name = "textboxNotas"
-        Me.textboxNotas.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.textboxNotas.Size = New System.Drawing.Size(624, 48)
-        Me.textboxNotas.TabIndex = 1
-        '
-        'labelNotas
-        '
-        Me.labelNotas.AutoSize = True
-        Me.labelNotas.Location = New System.Drawing.Point(6, 20)
-        Me.labelNotas.Name = "labelNotas"
-        Me.labelNotas.Size = New System.Drawing.Size(38, 13)
-        Me.labelNotas.TabIndex = 0
-        Me.labelNotas.Text = "Notas:"
-        '
         'groupboxAnalisis
         '
         Me.groupboxAnalisis.Controls.Add(Me.integertextboxGranoDaniado)
@@ -1344,22 +1334,296 @@ Partial Class formPesada
         Me.labelHumedad.TabIndex = 0
         Me.labelHumedad.Text = "Humedad:"
         '
-        'buttonEsVerificado
+        'tabcontrolNotasExtras
         '
-        Me.buttonEsVerificado.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.buttonEsVerificado.Image = CType(resources.GetObject("buttonEsVerificado.Image"), System.Drawing.Image)
-        Me.buttonEsVerificado.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonEsVerificado.Name = "buttonEsVerificado"
-        Me.buttonEsVerificado.Size = New System.Drawing.Size(63, 36)
-        Me.buttonEsVerificado.Text = "Verificado"
+        Me.tabcontrolNotasExtras.Appearance = System.Windows.Forms.TabAppearance.FlatButtons
+        Me.tabcontrolNotasExtras.Controls.Add(Me.tabpageNotas)
+        Me.tabcontrolNotasExtras.Controls.Add(Me.tabpageExtras)
+        Me.tabcontrolNotasExtras.Location = New System.Drawing.Point(12, 386)
+        Me.tabcontrolNotasExtras.Name = "tabcontrolNotasExtras"
+        Me.tabcontrolNotasExtras.SelectedIndex = 0
+        Me.tabcontrolNotasExtras.Size = New System.Drawing.Size(719, 133)
+        Me.tabcontrolNotasExtras.TabIndex = 8
+        '
+        'tabpageNotas
+        '
+        Me.tabpageNotas.Controls.Add(Me.groupboxNotas)
+        Me.tabpageNotas.Location = New System.Drawing.Point(4, 25)
+        Me.tabpageNotas.Name = "tabpageNotas"
+        Me.tabpageNotas.Padding = New System.Windows.Forms.Padding(3)
+        Me.tabpageNotas.Size = New System.Drawing.Size(711, 104)
+        Me.tabpageNotas.TabIndex = 0
+        Me.tabpageNotas.Text = "Notas"
+        Me.tabpageNotas.UseVisualStyleBackColor = True
+        '
+        'groupboxNotas
+        '
+        Me.groupboxNotas.Controls.Add(Me.textboxNotas)
+        Me.groupboxNotas.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.groupboxNotas.Location = New System.Drawing.Point(3, 3)
+        Me.groupboxNotas.Name = "groupboxNotas"
+        Me.groupboxNotas.Size = New System.Drawing.Size(705, 98)
+        Me.groupboxNotas.TabIndex = 6
+        Me.groupboxNotas.TabStop = False
+        '
+        'textboxNotas
+        '
+        Me.textboxNotas.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.textboxNotas.Location = New System.Drawing.Point(3, 16)
+        Me.textboxNotas.MaxLength = 0
+        Me.textboxNotas.Multiline = True
+        Me.textboxNotas.Name = "textboxNotas"
+        Me.textboxNotas.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.textboxNotas.Size = New System.Drawing.Size(699, 79)
+        Me.textboxNotas.TabIndex = 1
+        '
+        'tabpageExtras
+        '
+        Me.tabpageExtras.Controls.Add(Me.groupboxTarifasaPLICA)
+        Me.tabpageExtras.Controls.Add(Me.groupboxMermasAplica)
+        Me.tabpageExtras.Controls.Add(Me.groupboxControl)
+        Me.tabpageExtras.Location = New System.Drawing.Point(4, 25)
+        Me.tabpageExtras.Name = "tabpageExtras"
+        Me.tabpageExtras.Padding = New System.Windows.Forms.Padding(3)
+        Me.tabpageExtras.Size = New System.Drawing.Size(711, 104)
+        Me.tabpageExtras.TabIndex = 1
+        Me.tabpageExtras.Text = "Extras"
+        Me.tabpageExtras.UseVisualStyleBackColor = True
+        '
+        'groupboxTarifasaPLICA
+        '
+        Me.groupboxTarifasaPLICA.Controls.Add(Me.labelMezclaAplica)
+        Me.groupboxTarifasaPLICA.Controls.Add(Me.checkboxMezclaAplica)
+        Me.groupboxTarifasaPLICA.Controls.Add(Me.labelFumigadoAplica)
+        Me.groupboxTarifasaPLICA.Controls.Add(Me.checkboxFumigadoAplica)
+        Me.groupboxTarifasaPLICA.Controls.Add(Me.labelZarandeoAplica)
+        Me.groupboxTarifasaPLICA.Controls.Add(Me.checkboxZarandeoAplica)
+        Me.groupboxTarifasaPLICA.Controls.Add(Me.labelSecadoAplica)
+        Me.groupboxTarifasaPLICA.Controls.Add(Me.checkboxSecadoAplica)
+        Me.groupboxTarifasaPLICA.Controls.Add(Me.labelParitariaAplica)
+        Me.groupboxTarifasaPLICA.Controls.Add(Me.checkboxParitariaAplica)
+        Me.groupboxTarifasaPLICA.Location = New System.Drawing.Point(210, 6)
+        Me.groupboxTarifasaPLICA.Name = "groupboxTarifasaPLICA"
+        Me.groupboxTarifasaPLICA.Size = New System.Drawing.Size(196, 89)
+        Me.groupboxTarifasaPLICA.TabIndex = 2
+        Me.groupboxTarifasaPLICA.TabStop = False
+        Me.groupboxTarifasaPLICA.Text = "Aplica tarifas:"
+        '
+        'labelMezclaAplica
+        '
+        Me.labelMezclaAplica.AutoSize = True
+        Me.labelMezclaAplica.Location = New System.Drawing.Point(101, 45)
+        Me.labelMezclaAplica.Name = "labelMezclaAplica"
+        Me.labelMezclaAplica.Size = New System.Drawing.Size(44, 13)
+        Me.labelMezclaAplica.TabIndex = 15
+        Me.labelMezclaAplica.Text = "Mezcla:"
+        '
+        'checkboxMezclaAplica
+        '
+        Me.checkboxMezclaAplica.AutoSize = True
+        Me.checkboxMezclaAplica.Location = New System.Drawing.Point(164, 45)
+        Me.checkboxMezclaAplica.Name = "checkboxMezclaAplica"
+        Me.checkboxMezclaAplica.Size = New System.Drawing.Size(15, 14)
+        Me.checkboxMezclaAplica.TabIndex = 14
+        Me.checkboxMezclaAplica.UseVisualStyleBackColor = True
+        '
+        'labelFumigadoAplica
+        '
+        Me.labelFumigadoAplica.AutoSize = True
+        Me.labelFumigadoAplica.Location = New System.Drawing.Point(101, 23)
+        Me.labelFumigadoAplica.Name = "labelFumigadoAplica"
+        Me.labelFumigadoAplica.Size = New System.Drawing.Size(56, 13)
+        Me.labelFumigadoAplica.TabIndex = 13
+        Me.labelFumigadoAplica.Text = "Fumigado:"
+        '
+        'checkboxFumigadoAplica
+        '
+        Me.checkboxFumigadoAplica.AutoSize = True
+        Me.checkboxFumigadoAplica.Location = New System.Drawing.Point(164, 23)
+        Me.checkboxFumigadoAplica.Name = "checkboxFumigadoAplica"
+        Me.checkboxFumigadoAplica.Size = New System.Drawing.Size(15, 14)
+        Me.checkboxFumigadoAplica.TabIndex = 12
+        Me.checkboxFumigadoAplica.UseVisualStyleBackColor = True
+        '
+        'labelZarandeoAplica
+        '
+        Me.labelZarandeoAplica.AutoSize = True
+        Me.labelZarandeoAplica.Location = New System.Drawing.Point(6, 65)
+        Me.labelZarandeoAplica.Name = "labelZarandeoAplica"
+        Me.labelZarandeoAplica.Size = New System.Drawing.Size(56, 13)
+        Me.labelZarandeoAplica.TabIndex = 11
+        Me.labelZarandeoAplica.Text = "Zarandeo:"
+        '
+        'checkboxZarandeoAplica
+        '
+        Me.checkboxZarandeoAplica.AutoSize = True
+        Me.checkboxZarandeoAplica.Location = New System.Drawing.Point(69, 65)
+        Me.checkboxZarandeoAplica.Name = "checkboxZarandeoAplica"
+        Me.checkboxZarandeoAplica.Size = New System.Drawing.Size(15, 14)
+        Me.checkboxZarandeoAplica.TabIndex = 10
+        Me.checkboxZarandeoAplica.UseVisualStyleBackColor = True
+        '
+        'labelSecadoAplica
+        '
+        Me.labelSecadoAplica.AutoSize = True
+        Me.labelSecadoAplica.Location = New System.Drawing.Point(6, 45)
+        Me.labelSecadoAplica.Name = "labelSecadoAplica"
+        Me.labelSecadoAplica.Size = New System.Drawing.Size(47, 13)
+        Me.labelSecadoAplica.TabIndex = 9
+        Me.labelSecadoAplica.Text = "Secado:"
+        '
+        'checkboxSecadoAplica
+        '
+        Me.checkboxSecadoAplica.AutoSize = True
+        Me.checkboxSecadoAplica.Location = New System.Drawing.Point(69, 45)
+        Me.checkboxSecadoAplica.Name = "checkboxSecadoAplica"
+        Me.checkboxSecadoAplica.Size = New System.Drawing.Size(15, 14)
+        Me.checkboxSecadoAplica.TabIndex = 8
+        Me.checkboxSecadoAplica.UseVisualStyleBackColor = True
+        '
+        'labelParitariaAplica
+        '
+        Me.labelParitariaAplica.AutoSize = True
+        Me.labelParitariaAplica.Location = New System.Drawing.Point(6, 23)
+        Me.labelParitariaAplica.Name = "labelParitariaAplica"
+        Me.labelParitariaAplica.Size = New System.Drawing.Size(48, 13)
+        Me.labelParitariaAplica.TabIndex = 7
+        Me.labelParitariaAplica.Text = "Paritaria:"
+        '
+        'checkboxParitariaAplica
+        '
+        Me.checkboxParitariaAplica.AutoSize = True
+        Me.checkboxParitariaAplica.Location = New System.Drawing.Point(69, 23)
+        Me.checkboxParitariaAplica.Name = "checkboxParitariaAplica"
+        Me.checkboxParitariaAplica.Size = New System.Drawing.Size(15, 14)
+        Me.checkboxParitariaAplica.TabIndex = 6
+        Me.checkboxParitariaAplica.UseVisualStyleBackColor = True
+        '
+        'groupboxMermasAplica
+        '
+        Me.groupboxMermasAplica.Controls.Add(Me.labelMermaZarandaAplica)
+        Me.groupboxMermasAplica.Controls.Add(Me.checkboxMermaZarandaAplica)
+        Me.groupboxMermasAplica.Controls.Add(Me.labelMermaHumedadAplica)
+        Me.groupboxMermasAplica.Controls.Add(Me.checkboxMermaHumedadAplica)
+        Me.groupboxMermasAplica.Controls.Add(Me.labelMermaVolatilAplica)
+        Me.groupboxMermasAplica.Controls.Add(Me.checkboxMermaVolatilAplica)
+        Me.groupboxMermasAplica.Location = New System.Drawing.Point(102, 6)
+        Me.groupboxMermasAplica.Name = "groupboxMermasAplica"
+        Me.groupboxMermasAplica.Size = New System.Drawing.Size(100, 89)
+        Me.groupboxMermasAplica.TabIndex = 1
+        Me.groupboxMermasAplica.TabStop = False
+        Me.groupboxMermasAplica.Text = "Aplica mermas:"
+        '
+        'labelMermaZarandaAplica
+        '
+        Me.labelMermaZarandaAplica.AutoSize = True
+        Me.labelMermaZarandaAplica.Location = New System.Drawing.Point(6, 65)
+        Me.labelMermaZarandaAplica.Name = "labelMermaZarandaAplica"
+        Me.labelMermaZarandaAplica.Size = New System.Drawing.Size(50, 13)
+        Me.labelMermaZarandaAplica.TabIndex = 11
+        Me.labelMermaZarandaAplica.Text = "Zaranda:"
+        '
+        'checkboxMermaZarandaAplica
+        '
+        Me.checkboxMermaZarandaAplica.AutoSize = True
+        Me.checkboxMermaZarandaAplica.Location = New System.Drawing.Point(69, 65)
+        Me.checkboxMermaZarandaAplica.Name = "checkboxMermaZarandaAplica"
+        Me.checkboxMermaZarandaAplica.Size = New System.Drawing.Size(15, 14)
+        Me.checkboxMermaZarandaAplica.TabIndex = 10
+        Me.checkboxMermaZarandaAplica.UseVisualStyleBackColor = True
+        '
+        'labelMermaHumedadAplica
+        '
+        Me.labelMermaHumedadAplica.AutoSize = True
+        Me.labelMermaHumedadAplica.Location = New System.Drawing.Point(6, 45)
+        Me.labelMermaHumedadAplica.Name = "labelMermaHumedadAplica"
+        Me.labelMermaHumedadAplica.Size = New System.Drawing.Size(56, 13)
+        Me.labelMermaHumedadAplica.TabIndex = 9
+        Me.labelMermaHumedadAplica.Text = "Humedad:"
+        '
+        'checkboxMermaHumedadAplica
+        '
+        Me.checkboxMermaHumedadAplica.AutoSize = True
+        Me.checkboxMermaHumedadAplica.Location = New System.Drawing.Point(69, 45)
+        Me.checkboxMermaHumedadAplica.Name = "checkboxMermaHumedadAplica"
+        Me.checkboxMermaHumedadAplica.Size = New System.Drawing.Size(15, 14)
+        Me.checkboxMermaHumedadAplica.TabIndex = 8
+        Me.checkboxMermaHumedadAplica.UseVisualStyleBackColor = True
+        '
+        'labelMermaVolatilAplica
+        '
+        Me.labelMermaVolatilAplica.AutoSize = True
+        Me.labelMermaVolatilAplica.Location = New System.Drawing.Point(6, 23)
+        Me.labelMermaVolatilAplica.Name = "labelMermaVolatilAplica"
+        Me.labelMermaVolatilAplica.Size = New System.Drawing.Size(38, 13)
+        Me.labelMermaVolatilAplica.TabIndex = 7
+        Me.labelMermaVolatilAplica.Text = "Volátil:"
+        '
+        'checkboxMermaVolatilAplica
+        '
+        Me.checkboxMermaVolatilAplica.AutoSize = True
+        Me.checkboxMermaVolatilAplica.Location = New System.Drawing.Point(69, 23)
+        Me.checkboxMermaVolatilAplica.Name = "checkboxMermaVolatilAplica"
+        Me.checkboxMermaVolatilAplica.Size = New System.Drawing.Size(15, 14)
+        Me.checkboxMermaVolatilAplica.TabIndex = 6
+        Me.checkboxMermaVolatilAplica.UseVisualStyleBackColor = True
+        '
+        'groupboxControl
+        '
+        Me.groupboxControl.Controls.Add(Me.labelEsActivo)
+        Me.groupboxControl.Controls.Add(Me.checkboxEsActivo)
+        Me.groupboxControl.Controls.Add(Me.labelEsVerificado)
+        Me.groupboxControl.Controls.Add(Me.checkboxEsVerificado)
+        Me.groupboxControl.Location = New System.Drawing.Point(5, 6)
+        Me.groupboxControl.Name = "groupboxControl"
+        Me.groupboxControl.Size = New System.Drawing.Size(91, 69)
+        Me.groupboxControl.TabIndex = 0
+        Me.groupboxControl.TabStop = False
+        Me.groupboxControl.Text = "Control:"
+        '
+        'labelEsActivo
+        '
+        Me.labelEsActivo.AutoSize = True
+        Me.labelEsActivo.Location = New System.Drawing.Point(1, 45)
+        Me.labelEsActivo.Name = "labelEsActivo"
+        Me.labelEsActivo.Size = New System.Drawing.Size(40, 13)
+        Me.labelEsActivo.TabIndex = 9
+        Me.labelEsActivo.Text = "Activo:"
+        '
+        'checkboxEsActivo
+        '
+        Me.checkboxEsActivo.AutoSize = True
+        Me.checkboxEsActivo.Location = New System.Drawing.Point(64, 45)
+        Me.checkboxEsActivo.Name = "checkboxEsActivo"
+        Me.checkboxEsActivo.Size = New System.Drawing.Size(15, 14)
+        Me.checkboxEsActivo.TabIndex = 8
+        Me.checkboxEsActivo.UseVisualStyleBackColor = True
+        '
+        'labelEsVerificado
+        '
+        Me.labelEsVerificado.AutoSize = True
+        Me.labelEsVerificado.Location = New System.Drawing.Point(1, 23)
+        Me.labelEsVerificado.Name = "labelEsVerificado"
+        Me.labelEsVerificado.Size = New System.Drawing.Size(57, 13)
+        Me.labelEsVerificado.TabIndex = 7
+        Me.labelEsVerificado.Text = "Verificado:"
+        '
+        'checkboxEsVerificado
+        '
+        Me.checkboxEsVerificado.AutoSize = True
+        Me.checkboxEsVerificado.Location = New System.Drawing.Point(64, 23)
+        Me.checkboxEsVerificado.Name = "checkboxEsVerificado"
+        Me.checkboxEsVerificado.Size = New System.Drawing.Size(15, 14)
+        Me.checkboxEsVerificado.TabIndex = 6
+        Me.checkboxEsVerificado.UseVisualStyleBackColor = True
         '
         'formPesada
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(743, 469)
+        Me.ClientSize = New System.Drawing.Size(743, 531)
+        Me.Controls.Add(Me.tabcontrolNotasExtras)
         Me.Controls.Add(Me.groupboxAnalisis)
-        Me.Controls.Add(Me.groupboxNotas)
         Me.Controls.Add(Me.groupboxKilogramo)
         Me.Controls.Add(Me.groupboxEncabezado)
         Me.Controls.Add(Me.groupboxProductoPlantaCosecha)
@@ -1391,8 +1655,6 @@ Partial Class formPesada
         CType(Me.integertextboxKilogramoNeto, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.integertextboxKilogramoTara, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.integertextboxKilogramoBruto, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.groupboxNotas.ResumeLayout(False)
-        Me.groupboxNotas.PerformLayout()
         Me.groupboxAnalisis.ResumeLayout(False)
         Me.groupboxAnalisis.PerformLayout()
         CType(Me.integertextboxGranoDaniado, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1401,6 +1663,17 @@ Partial Class formPesada
         CType(Me.doubletextboxPesoHectolitrico, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.doubletextboxZaranda, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.doubletextboxHumedad, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.tabcontrolNotasExtras.ResumeLayout(False)
+        Me.tabpageNotas.ResumeLayout(False)
+        Me.groupboxNotas.ResumeLayout(False)
+        Me.groupboxNotas.PerformLayout()
+        Me.tabpageExtras.ResumeLayout(False)
+        Me.groupboxTarifasaPLICA.ResumeLayout(False)
+        Me.groupboxTarifasaPLICA.PerformLayout()
+        Me.groupboxMermasAplica.ResumeLayout(False)
+        Me.groupboxMermasAplica.PerformLayout()
+        Me.groupboxControl.ResumeLayout(False)
+        Me.groupboxControl.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1466,7 +1739,6 @@ Partial Class formPesada
     Friend WithEvents maskedtextboxComprobanteNumero As System.Windows.Forms.MaskedTextBox
     Friend WithEvents labelComprobanteNumero As System.Windows.Forms.Label
     Friend WithEvents groupboxNotas As System.Windows.Forms.GroupBox
-    Friend WithEvents labelNotas As System.Windows.Forms.Label
     Friend WithEvents textboxNotas As System.Windows.Forms.TextBox
     Friend WithEvents groupboxAnalisis As System.Windows.Forms.GroupBox
     Friend WithEvents labelHumedad As System.Windows.Forms.Label
@@ -1506,6 +1778,30 @@ Partial Class formPesada
     Friend WithEvents maskedtextboxComprobanteNumeroTercero As System.Windows.Forms.MaskedTextBox
     Friend WithEvents integertextboxGranoDaniado As Syncfusion.Windows.Forms.Tools.IntegerTextBox
     Friend WithEvents integertextboxGranoVerde As Syncfusion.Windows.Forms.Tools.IntegerTextBox
-    Friend WithEvents buttonEsActivo As System.Windows.Forms.ToolStripButton
-    Friend WithEvents buttonEsVerificado As System.Windows.Forms.ToolStripButton
+    Friend WithEvents tabcontrolNotasExtras As CSPesaje.DesktopApplication.CS_Control_TabControl
+    Friend WithEvents tabpageNotas As System.Windows.Forms.TabPage
+    Friend WithEvents tabpageExtras As System.Windows.Forms.TabPage
+    Friend WithEvents groupboxControl As System.Windows.Forms.GroupBox
+    Friend WithEvents labelEsActivo As System.Windows.Forms.Label
+    Friend WithEvents checkboxEsActivo As System.Windows.Forms.CheckBox
+    Friend WithEvents labelEsVerificado As System.Windows.Forms.Label
+    Friend WithEvents checkboxEsVerificado As System.Windows.Forms.CheckBox
+    Friend WithEvents groupboxMermasAplica As System.Windows.Forms.GroupBox
+    Friend WithEvents labelMermaHumedadAplica As System.Windows.Forms.Label
+    Friend WithEvents checkboxMermaHumedadAplica As System.Windows.Forms.CheckBox
+    Friend WithEvents labelMermaVolatilAplica As System.Windows.Forms.Label
+    Friend WithEvents checkboxMermaVolatilAplica As System.Windows.Forms.CheckBox
+    Friend WithEvents labelMermaZarandaAplica As System.Windows.Forms.Label
+    Friend WithEvents checkboxMermaZarandaAplica As System.Windows.Forms.CheckBox
+    Friend WithEvents groupboxTarifasaPLICA As System.Windows.Forms.GroupBox
+    Friend WithEvents labelMezclaAplica As System.Windows.Forms.Label
+    Friend WithEvents checkboxMezclaAplica As System.Windows.Forms.CheckBox
+    Friend WithEvents labelFumigadoAplica As System.Windows.Forms.Label
+    Friend WithEvents checkboxFumigadoAplica As System.Windows.Forms.CheckBox
+    Friend WithEvents labelZarandeoAplica As System.Windows.Forms.Label
+    Friend WithEvents checkboxZarandeoAplica As System.Windows.Forms.CheckBox
+    Friend WithEvents labelSecadoAplica As System.Windows.Forms.Label
+    Friend WithEvents checkboxSecadoAplica As System.Windows.Forms.CheckBox
+    Friend WithEvents labelParitariaAplica As System.Windows.Forms.Label
+    Friend WithEvents checkboxParitariaAplica As System.Windows.Forms.CheckBox
 End Class

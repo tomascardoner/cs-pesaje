@@ -52,5 +52,6 @@ Partial Public Class Pesada
     Public Overridable Property UsuarioModificacion As Usuario
     Public Overridable Property Camion As Camion
     Public Overridable Property Camion1 As Camion
+    Public Overridable Property OrigenDestino As OrigenDestino
 
 End Class

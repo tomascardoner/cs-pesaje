@@ -135,8 +135,21 @@
         pFillAndRefreshLists.Producto(comboboxProducto, mPesadaActual.IDProducto, False, True, False, False)
         pFillAndRefreshLists.Entidad(comboboxTransportista, mPesadaActual.Transportista_IDEntidad, False, False, True, False, CS_Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER, True, False, False, True)
 
-        buttonEsVerificado.Visible = Permisos.VerificarPermiso(Permisos.PESADA_MOSTRAR_VERIFICADO, False)
-        buttonEsActivo.Visible = Permisos.VerificarPermiso(Permisos.PESADA_MOSTRAR_ACTIVO, False)
+        If Permisos.VerificarPermiso(Permisos.PESADA_MOSTRAR_EXTRAS, False) Then
+            tabcontrolNotasExtras.ShowTabPageByName(tabpageExtras.Name)
+        Else
+            tabcontrolNotasExtras.HideTabPageByName(tabpageExtras.Name)
+        End If
+
+        groupboxControl.Visible = (Permisos.VerificarPermiso(Permisos.PESADA_MOSTRAR_VERIFICADO, False) And Permisos.VerificarPermiso(Permisos.PESADA_MOSTRAR_ACTIVO, False))
+        labelEsVerificado.Visible = Permisos.VerificarPermiso(Permisos.PESADA_MOSTRAR_VERIFICADO, False)
+        checkboxEsVerificado.Visible = Permisos.VerificarPermiso(Permisos.PESADA_MOSTRAR_VERIFICADO, False)
+        labelEsActivo.Visible = Permisos.VerificarPermiso(Permisos.PESADA_MOSTRAR_ACTIVO, False)
+        checkboxEsActivo.Visible = Permisos.VerificarPermiso(Permisos.PESADA_MOSTRAR_ACTIVO, False)
+
+        groupboxMermasAplica.Visible = Permisos.VerificarPermiso(Permisos.PESADA_MOSTRAR_MERMASAPLICA, False)
+
+        groupboxTarifasaPLICA.Visible = Permisos.VerificarPermiso(Permisos.PESADA_MOSTRAR_TARIFASASAPLICA, False)
 
         buttonObtenerKilogramosBrutos.Visible = (pBalanzaConeccionHabilitada And mEditMode)
         buttonObtenerKilogramosTara.Visible = (pBalanzaConeccionHabilitada And mEditMode)
@@ -256,6 +269,10 @@
                 checkboxMezclado.CheckState = CheckState.Unchecked
                 doubletextboxPesoHectolitrico.Text = ""
                 doubletextboxGluten.Text = ""
+
+                checkboxMermaVolatilAplica.CheckState = CheckState.Checked
+                checkboxMermaHumedadAplica.CheckState = CheckState.Checked
+                checkboxMermaZarandaAplica.CheckState = CheckState.Checked
             Else
                 doubletextboxHumedad.Text = CS_ValueTranslation.FromObjectDecimalToControlTextBox(.Pesada_Analisis.Humedad)
                 doubletextboxZaranda.Text = CS_ValueTranslation.FromObjectDecimalToControlTextBox(.Pesada_Analisis.Zaranda)
@@ -265,14 +282,33 @@
                 checkboxMezclado.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.Pesada_Analisis.Mezclado)
                 doubletextboxPesoHectolitrico.Text = CS_ValueTranslation.FromObjectDecimalToControlTextBox(.Pesada_Analisis.PesoHectolitrico)
                 doubletextboxGluten.Text = CS_ValueTranslation.FromObjectDecimalToControlTextBox(.Pesada_Analisis.Gluten)
+
+                checkboxMermaVolatilAplica.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.Pesada_Analisis.MermaVolatilAplica)
+                checkboxMermaHumedadAplica.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.Pesada_Analisis.MermaHumedadAplica)
+                checkboxMermaZarandaAplica.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.Pesada_Analisis.MermaZarandaAplica)
+            End If
+
+            ' Tarifas
+            If .Pesada_Acondicionamiento Is Nothing Then
+                checkboxParitariaAplica.CheckState = CheckState.Checked
+                checkboxSecadoAplica.CheckState = CheckState.Checked
+                checkboxZarandeoAplica.CheckState = CheckState.Checked
+                checkboxFumigadoAplica.CheckState = CheckState.Checked
+                checkboxMezclaAplica.CheckState = CheckState.Checked
+            Else
+                checkboxParitariaAplica.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.Pesada_Acondicionamiento.ParitariaAplica)
+                checkboxSecadoAplica.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.Pesada_Acondicionamiento.SecadoAplica)
+                checkboxZarandeoAplica.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.Pesada_Acondicionamiento.ZarandeoAplica)
+                checkboxFumigadoAplica.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.Pesada_Acondicionamiento.FumigadoAplica)
+                checkboxMezclaAplica.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.Pesada_Acondicionamiento.MezclaAplica)
             End If
 
             ' Notas
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
 
             ' EsVerificado y EsActivo
-            buttonEsVerificado.Checked = .EsVerificado
-            buttonEsActivo.Checked = .EsActivo
+            checkboxEsVerificado.Checked = .EsVerificado
+            checkboxEsActivo.Checked = .EsActivo
         End With
     End Sub
 
@@ -389,9 +425,29 @@
                 .Pesada_Analisis.Mezclado = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxMezclado.CheckState)
                 .Pesada_Analisis.PesoHectolitrico = CS_ValueTranslation.FromControlTextBoxToObjectDecimal(doubletextboxPesoHectolitrico.Text)
                 .Pesada_Analisis.Gluten = CS_ValueTranslation.FromControlTextBoxToObjectDecimal(doubletextboxGluten.Text)
+
+                .Pesada_Analisis.MermaVolatilAplica = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxMermaVolatilAplica.CheckState)
+                .Pesada_Analisis.MermaHumedadAplica = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxMermaHumedadAplica.CheckState)
+                .Pesada_Analisis.MermaZarandaAplica = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxMermaZarandaAplica.CheckState)
             Else
                 If Not .Pesada_Analisis Is Nothing Then
                     mdbContext.Pesada_Analisis.Remove(.Pesada_Analisis)
+                End If
+            End If
+
+            ' Tarifas
+            If mPesadaActual.CorrespondeAcondicionamiento Then
+                If .Pesada_Acondicionamiento Is Nothing Then
+                    .Pesada_Acondicionamiento = New Pesada_Acondicionamiento
+                End If
+                .Pesada_Acondicionamiento.ParitariaAplica = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxParitariaAplica.CheckState)
+                .Pesada_Acondicionamiento.SecadoAplica = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxSecadoAplica.CheckState)
+                .Pesada_Acondicionamiento.ZarandeoAplica = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxZarandeoAplica.CheckState)
+                .Pesada_Acondicionamiento.FumigadoAplica = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxFumigadoAplica.CheckState)
+                .Pesada_Acondicionamiento.MezclaAplica = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxMezclaAplica.CheckState)
+            Else
+                If Not .Pesada_Acondicionamiento Is Nothing Then
+                    mdbContext.Pesada_Acondicionamiento.Remove(.Pesada_Acondicionamiento)
                 End If
             End If
 
@@ -399,8 +455,8 @@
             .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
 
             ' EsVerificado y EsActivo
-            .EsVerificado = buttonEsVerificado.Checked
-            .EsActivo = buttonEsActivo.Checked
+            .EsVerificado = checkboxEsVerificado.Checked
+            .EsActivo = checkboxEsActivo.Checked
 
             ' Otros
             If Not (checkboxProductoOtro.Checked Or checkboxTitularOtro.Checked Or checkboxOrigenDestinoOtro.Checked Or checkboxTransportistaOtro.Checked Or checkboxChoferOtro.Checked Or checkboxCamionOtro.Checked) Then
@@ -739,75 +795,75 @@
 #End Region
 
 #Region "Main Toolbar"
-    Private Sub Verificar_Click() Handles buttonEsVerificado.Click
-        mPesadaActual.EsVerificado = Not mPesadaActual.EsVerificado
+    'Private Sub Verificar_Click() Handles buttonEsVerificado.Click
+    '    mPesadaActual.EsVerificado = Not mPesadaActual.EsVerificado
 
-        If Not mEditMode Then
-            Try
-                ' Guardo los cambios
-                mdbContext.SaveChanges()
+    '    If Not mEditMode Then
+    '        Try
+    '            ' Guardo los cambios
+    '            mdbContext.SaveChanges()
 
-                ' Refresco la lista de Pesadas para mostrar los cambios
-                If CS_Form.MDIChild_IsLoaded(CType(formMDIMain, Form), "formPesadas") Then
-                    Dim formPesadas As formPesadas = CType(CS_Form.MDIChild_GetInstance(CType(formMDIMain, Form), "formPesadas"), formPesadas)
-                    formPesadas.RefreshData(mPesadaActual.IDPesada)
-                    formPesadas = Nothing
-                End If
+    '            ' Refresco la lista de Pesadas para mostrar los cambios
+    '            If CS_Form.MDIChild_IsLoaded(CType(formMDIMain, Form), "formPesadas") Then
+    '                Dim formPesadas As formPesadas = CType(CS_Form.MDIChild_GetInstance(CType(formMDIMain, Form), "formPesadas"), formPesadas)
+    '                formPesadas.RefreshData(mPesadaActual.IDPesada)
+    '                formPesadas = Nothing
+    '            End If
 
-            Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
-                Me.Cursor = Cursors.Default
-                Select Case CS_Database_EF_SQL.TryDecodeDbUpdateException(dbuex)
-                    Case Errors.DuplicatedEntity
-                        MsgBox("No se pueden guardar los cambios porque ya existe una Pesada con el mismo Número.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
-                    Case Errors.Unknown
-                        CS_Error.ProcessError(CType(dbuex, Exception), My.Resources.STRING_ERROR_SAVING_CHANGES)
-                End Select
-                Exit Sub
+    '        Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
+    '            Me.Cursor = Cursors.Default
+    '            Select Case CS_Database_EF_SQL.TryDecodeDbUpdateException(dbuex)
+    '                Case Errors.DuplicatedEntity
+    '                    MsgBox("No se pueden guardar los cambios porque ya existe una Pesada con el mismo Número.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+    '                Case Errors.Unknown
+    '                    CS_Error.ProcessError(CType(dbuex, Exception), My.Resources.STRING_ERROR_SAVING_CHANGES)
+    '            End Select
+    '            Exit Sub
 
-            Catch ex As Exception
-                Me.Cursor = Cursors.Default
-                CS_Error.ProcessError(ex, My.Resources.STRING_ERROR_SAVING_CHANGES)
-                Exit Sub
-            End Try
-        End If
+    '        Catch ex As Exception
+    '            Me.Cursor = Cursors.Default
+    '            CS_Error.ProcessError(ex, My.Resources.STRING_ERROR_SAVING_CHANGES)
+    '            Exit Sub
+    '        End Try
+    '    End If
 
-        buttonEsVerificado.Checked = mPesadaActual.EsVerificado
-    End Sub
+    '    checkboxEsVerificado.Checked = mPesadaActual.EsVerificado
+    'End Sub
 
-    Private Sub ActivarDesactivar() Handles buttonEsActivo.Click
-        mPesadaActual.EsActivo = Not mPesadaActual.EsActivo
+    'Private Sub ActivarDesactivar() Handles buttonEsActivo.Click
+    '    mPesadaActual.EsActivo = Not mPesadaActual.EsActivo
 
-        If Not mEditMode Then
-            Try
-                ' Guardo los cambios
-                mdbContext.SaveChanges()
+    '    If Not mEditMode Then
+    '        Try
+    '            ' Guardo los cambios
+    '            mdbContext.SaveChanges()
 
-                ' Refresco la lista de Pesadas para mostrar los cambios
-                If CS_Form.MDIChild_IsLoaded(CType(formMDIMain, Form), "formPesadas") Then
-                    Dim formPesadas As formPesadas = CType(CS_Form.MDIChild_GetInstance(CType(formMDIMain, Form), "formPesadas"), formPesadas)
-                    formPesadas.RefreshData(mPesadaActual.IDPesada)
-                    formPesadas = Nothing
-                End If
+    '            ' Refresco la lista de Pesadas para mostrar los cambios
+    '            If CS_Form.MDIChild_IsLoaded(CType(formMDIMain, Form), "formPesadas") Then
+    '                Dim formPesadas As formPesadas = CType(CS_Form.MDIChild_GetInstance(CType(formMDIMain, Form), "formPesadas"), formPesadas)
+    '                formPesadas.RefreshData(mPesadaActual.IDPesada)
+    '                formPesadas = Nothing
+    '            End If
 
-            Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
-                Me.Cursor = Cursors.Default
-                Select Case CS_Database_EF_SQL.TryDecodeDbUpdateException(dbuex)
-                    Case Errors.DuplicatedEntity
-                        MsgBox("No se pueden guardar los cambios porque ya existe una Pesada con el mismo Número.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
-                    Case Errors.Unknown
-                        CS_Error.ProcessError(CType(dbuex, Exception), My.Resources.STRING_ERROR_SAVING_CHANGES)
-                End Select
-                Exit Sub
+    '        Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
+    '            Me.Cursor = Cursors.Default
+    '            Select Case CS_Database_EF_SQL.TryDecodeDbUpdateException(dbuex)
+    '                Case Errors.DuplicatedEntity
+    '                    MsgBox("No se pueden guardar los cambios porque ya existe una Pesada con el mismo Número.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+    '                Case Errors.Unknown
+    '                    CS_Error.ProcessError(CType(dbuex, Exception), My.Resources.STRING_ERROR_SAVING_CHANGES)
+    '            End Select
+    '            Exit Sub
 
-            Catch ex As Exception
-                Me.Cursor = Cursors.Default
-                CS_Error.ProcessError(ex, My.Resources.STRING_ERROR_SAVING_CHANGES)
-                Exit Sub
-            End Try
-        End If
+    '        Catch ex As Exception
+    '            Me.Cursor = Cursors.Default
+    '            CS_Error.ProcessError(ex, My.Resources.STRING_ERROR_SAVING_CHANGES)
+    '            Exit Sub
+    '        End Try
+    '    End If
 
-        buttonEsActivo.Checked = mPesadaActual.EsActivo
-    End Sub
+    '    checkboxEsActivo.Checked = mPesadaActual.EsActivo
+    'End Sub
 
     Private Sub buttonEditar_Click() Handles buttonEditar.Click
         If Permisos.VerificarPermiso(Permisos.PESADA_EDITAR) Then

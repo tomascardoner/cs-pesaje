@@ -25,8 +25,8 @@ Partial Public Class Cosecha_Producto_Tarifa
     Public Property TarifaSecadoInicialPunto As Decimal
     Public Property TarifaSecadoInicialImporte As Decimal
     Public Property TarifaSecadoPuntoExcesoImporte As Decimal
-    Public Property TarifaSecadoHumedadBase As Nullable(Of Decimal)
-    Public Property TarifaSecadoHumedadMargenLibre As Nullable(Of Decimal)
+    Public Property TarifaSecadoHumedadBase As Decimal
+    Public Property TarifaSecadoHumedadMargenLibre As Decimal
     Public Property TarifaSecadoHumedadRedondeoPuntoTipo As String
     Public Property TarifaZarandeoImporte As Decimal
     Public Property TarifaFumigadoImporte As Decimal

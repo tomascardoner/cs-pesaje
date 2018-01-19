@@ -54,8 +54,8 @@
           <Property Name="TarifaSecadoInicialPunto" Type="decimal" Precision="3" Scale="1" Nullable="false" />
           <Property Name="TarifaSecadoInicialImporte" Type="money" Nullable="false" />
           <Property Name="TarifaSecadoPuntoExcesoImporte" Type="money" Nullable="false" />
-          <Property Name="TarifaSecadoHumedadBase" Type="decimal" Precision="3" Scale="1" />
-          <Property Name="TarifaSecadoHumedadMargenLibre" Type="decimal" Precision="1" Scale="1" />
+          <Property Name="TarifaSecadoHumedadBase" Type="decimal" Precision="3" Scale="1" Nullable="false" />
+          <Property Name="TarifaSecadoHumedadMargenLibre" Type="decimal" Precision="1" Scale="1" Nullable="false" />
           <Property Name="TarifaSecadoHumedadRedondeoPuntoTipo" Type="char" MaxLength="1" Nullable="false" />
           <Property Name="TarifaZarandeoImporte" Type="money" Nullable="false" />
           <Property Name="TarifaFumigadoImporte" Type="money" Nullable="false" />
@@ -204,18 +204,23 @@
           <Property Name="IDPesada" Type="int" Nullable="false" />
           <Property Name="TarifaManual" Type="bit" Nullable="false" />
           <Property Name="TarifaIndice" Type="smallint" Nullable="false" />
+          <Property Name="ParitariaAplica" Type="bit" Nullable="false" />
           <Property Name="ParitariaTarifa" Type="money" Nullable="false" />
           <Property Name="ParitariaImporte" Type="money" Nullable="false" />
+          <Property Name="SecadoAplica" Type="bit" Nullable="false" />
           <Property Name="SecadoTarifa" Type="money" Nullable="false" />
           <Property Name="SecadoImporte" Type="money" Nullable="false" />
           <Property Name="HumedadExcesoReal" Type="decimal" Precision="3" Scale="1" Nullable="false" />
           <Property Name="HumedadExcesoCalculo" Type="decimal" Precision="3" Scale="1" Nullable="false" />
           <Property Name="SecadoExcesoTarifa" Type="money" Nullable="false" />
           <Property Name="SecadoExcesoImporte" Type="money" Nullable="false" />
+          <Property Name="ZarandeoAplica" Type="bit" Nullable="false" />
           <Property Name="ZarandeoTarifa" Type="money" Nullable="false" />
           <Property Name="ZarandeoImporte" Type="money" Nullable="false" />
+          <Property Name="FumigadoAplica" Type="bit" Nullable="false" />
           <Property Name="FumigadoTarifa" Type="money" Nullable="false" />
           <Property Name="FumigadoImporte" Type="money" Nullable="false" />
+          <Property Name="MezclaAplica" Type="bit" Nullable="false" />
           <Property Name="MezclaTarifa" Type="money" Nullable="false" />
           <Property Name="MezclaImporte" Type="money" Nullable="false" />
           <Property Name="ImporteTotal" Type="money" Nullable="false" />
@@ -234,9 +239,12 @@
           <Property Name="Gluten" Type="decimal" Precision="3" Scale="1" />
           <Property Name="Fumigado" Type="bit" />
           <Property Name="Mezclado" Type="bit" />
+          <Property Name="MermaVolatilAplica" Type="bit" />
           <Property Name="MermaVolatilKilogramo" Type="int" />
+          <Property Name="MermaHumedadAplica" Type="bit" />
           <Property Name="MermaHumedadPorcentaje" Type="decimal" Precision="4" Scale="2" />
           <Property Name="MermaHumedadKilogramo" Type="int" />
+          <Property Name="MermaZarandaAplica" Type="bit" />
           <Property Name="MermaZarandaKilogramo" Type="int" />
         </EntityType>
         <EntityType Name="Pesada_Otro">
@@ -609,6 +617,18 @@
               <PropertyRef Name="IDOrigenDestino" />
             </Principal>
             <Dependent Role="Entidad_OrigenDestino">
+              <PropertyRef Name="IDOrigenDestino" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrigenDestino__Pesada">
+          <End Role="OrigenDestino" Type="Self.OrigenDestino" Multiplicity="0..1" />
+          <End Role="Pesada" Type="Self.Pesada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrigenDestino">
+              <PropertyRef Name="IDOrigenDestino" />
+            </Principal>
+            <Dependent Role="Pesada">
               <PropertyRef Name="IDOrigenDestino" />
             </Dependent>
           </ReferentialConstraint>
@@ -1148,6 +1168,10 @@
             <End Role="OrigenDestino" EntitySet="OrigenDestino" />
             <End Role="Entidad_OrigenDestino" EntitySet="Entidad_OrigenDestino" />
           </AssociationSet>
+          <AssociationSet Name="FK__OrigenDestino__Pesada" Association="Self.FK__OrigenDestino__Pesada">
+            <End Role="OrigenDestino" EntitySet="OrigenDestino" />
+            <End Role="Pesada" EntitySet="Pesada" />
+          </AssociationSet>
           <AssociationSet Name="FK__OrigenDestino_Entidad__Entidad" Association="Self.FK__OrigenDestino_Entidad__Entidad">
             <End Role="Entidad" EntitySet="Entidad" />
             <End Role="Entidad_OrigenDestino" EntitySet="Entidad_OrigenDestino" />
@@ -1540,6 +1564,10 @@
             <End Role="Reporte" EntitySet="Reporte" />
             <End Role="Producto" EntitySet="Producto" />
           </AssociationSet>
+          <AssociationSet Name="FK__OrigenDestino__Pesada" Association="CSPesajeModel.FK__OrigenDestino__Pesada">
+            <End Role="OrigenDestino" EntitySet="OrigenDestino" />
+            <End Role="Pesada" EntitySet="Pesada" />
+          </AssociationSet>
         </EntityContainer>		
 		<EntityType Name="Camion">
           <Key>
@@ -1601,8 +1629,8 @@
           <Property Name="TarifaSecadoInicialPunto" Type="Decimal" Precision="3" Scale="1" Nullable="false" />
           <Property Name="TarifaSecadoInicialImporte" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="TarifaSecadoPuntoExcesoImporte" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <Property Name="TarifaSecadoHumedadBase" Type="Decimal" Precision="3" Scale="1" />
-          <Property Name="TarifaSecadoHumedadMargenLibre" Type="Decimal" Precision="1" Scale="1" />
+          <Property Name="TarifaSecadoHumedadBase" Type="Decimal" Precision="3" Scale="1" Nullable="false" />
+          <Property Name="TarifaSecadoHumedadMargenLibre" Type="Decimal" Precision="1" Scale="1" Nullable="false" />
           <Property Name="TarifaSecadoHumedadRedondeoPuntoTipo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="TarifaZarandeoImporte" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="TarifaFumigadoImporte" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
@@ -1716,6 +1744,7 @@
           <NavigationProperty Name="UsuarioCreacion" Relationship="CSPesajeModel.FK__Usuario__OrigenDestino__Creacion" FromRole="OrigenDestino" ToRole="Usuario" />
           <NavigationProperty Name="UsuarioModificacion" Relationship="CSPesajeModel.FK__Usuario__OrigenDestino__Modificacion" FromRole="OrigenDestino" ToRole="Usuario" />
           <NavigationProperty Name="Cosecha_Producto_Tarifas" Relationship="CSPesajeModel.FK__OrigenDestino__Cosecha_Producto_Tarifa" FromRole="OrigenDestino" ToRole="Cosecha_Producto_Tarifa" />
+          <NavigationProperty Name="Pesada" Relationship="CSPesajeModel.FK__OrigenDestino__Pesada" FromRole="OrigenDestino" ToRole="Pesada" />
         </EntityType>
         <EntityType Name="Parametro">
           <Key>
@@ -1774,6 +1803,7 @@
           <NavigationProperty Name="UsuarioModificacion" Relationship="CSPesajeModel.FK__Usuario__Pesada__Modificacion" FromRole="Pesada" ToRole="Usuario" />
           <NavigationProperty Name="Camion" Relationship="CSPesajeModel.FK__Camion__Pesada" FromRole="Pesada" ToRole="Camion" />
           <NavigationProperty Name="Camion1" Relationship="CSPesajeModel.FK__Camion__Pesada1" FromRole="Pesada" ToRole="Camion" />
+          <NavigationProperty Name="OrigenDestino" Relationship="CSPesajeModel.FK__OrigenDestino__Pesada" FromRole="Pesada" ToRole="OrigenDestino" />
         </EntityType>
         <EntityType Name="Pesada_Acondicionamiento">
           <Key>
@@ -1782,18 +1812,23 @@
           <Property Name="IDPesada" Type="Int32" Nullable="false" />
           <Property Name="TarifaManual" Type="Boolean" Nullable="false" />
           <Property Name="TarifaIndice" Type="Int16" Nullable="false" />
+          <Property Name="ParitariaAplica" Type="Boolean" Nullable="false" />
           <Property Name="ParitariaTarifa" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="ParitariaImporte" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="SecadoTarifa" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="SecadoImporte" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="HumedadExcesoReal" Type="Decimal" Precision="3" Scale="1" Nullable="false" />
           <Property Name="HumedadExcesoCalculo" Type="Decimal" Precision="3" Scale="1" Nullable="false" />
+          <Property Name="SecadoAplica" Type="Boolean" Nullable="false" />
           <Property Name="SecadoExcesoTarifa" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="SecadoExcesoImporte" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="ZarandeoAplica" Type="Boolean" Nullable="false" />
           <Property Name="ZarandeoTarifa" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="ZarandeoImporte" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="FumigadoAplica" Type="Boolean" Nullable="false" />
           <Property Name="FumigadoTarifa" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="FumigadoImporte" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="MezclaAplica" Type="Boolean" Nullable="false" />
           <Property Name="MezclaTarifa" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="MezclaImporte" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="ImporteTotal" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
@@ -1812,9 +1847,12 @@
           <Property Name="PesoHectolitrico" Type="Decimal" Precision="3" Scale="1" />
           <Property Name="Gluten" Type="Decimal" Precision="3" Scale="1" />
           <Property Name="Fumigado" Type="Boolean" />
+          <Property Name="MermaVolatilAplica" Type="Boolean" />
           <Property Name="MermaVolatilKilogramo" Type="Int32" />
+          <Property Name="MermaHumedadAplica" Type="Boolean" />
           <Property Name="MermaHumedadPorcentaje" Type="Decimal" Precision="4" Scale="2" />
           <Property Name="MermaHumedadKilogramo" Type="Int32" />
+          <Property Name="MermaZarandaAplica" Type="Boolean" />
           <Property Name="MermaZarandaKilogramo" Type="Int32" />
           <NavigationProperty Name="Pesada" Relationship="CSPesajeModel.FK__Pesada__Pesada_Analisis" FromRole="Pesada_Analisis" ToRole="Pesada" />
           <Property Name="Mezclado" Type="Boolean" />
@@ -2705,6 +2743,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__OrigenDestino__Pesada">
+          <End Type="CSPesajeModel.OrigenDestino" Role="OrigenDestino" Multiplicity="0..1" />
+          <End Type="CSPesajeModel.Pesada" Role="Pesada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrigenDestino">
+              <PropertyRef Name="IDOrigenDestino" />
+            </Principal>
+            <Dependent Role="Pesada">
+              <PropertyRef Name="IDOrigenDestino" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2896,6 +2946,11 @@
           <EntitySetMapping Name="Pesada_Acondicionamiento">
             <EntityTypeMapping TypeName="CSPesajeModel.Pesada_Acondicionamiento">
               <MappingFragment StoreEntitySet="Pesada_Acondicionamiento">
+                <ScalarProperty Name="MezclaAplica" ColumnName="MezclaAplica" />
+                <ScalarProperty Name="FumigadoAplica" ColumnName="FumigadoAplica" />
+                <ScalarProperty Name="ZarandeoAplica" ColumnName="ZarandeoAplica" />
+                <ScalarProperty Name="SecadoAplica" ColumnName="SecadoAplica" />
+                <ScalarProperty Name="ParitariaAplica" ColumnName="ParitariaAplica" />
                 <ScalarProperty Name="TarifaManual" ColumnName="TarifaManual" />
                 <ScalarProperty Name="IDPesada" ColumnName="IDPesada" />
                 <ScalarProperty Name="TarifaIndice" ColumnName="TarifaIndice" />
@@ -2921,6 +2976,9 @@
           <EntitySetMapping Name="Pesada_Analisis">
             <EntityTypeMapping TypeName="CSPesajeModel.Pesada_Analisis">
               <MappingFragment StoreEntitySet="Pesada_Analisis">
+                <ScalarProperty Name="MermaZarandaAplica" ColumnName="MermaZarandaAplica" />
+                <ScalarProperty Name="MermaHumedadAplica" ColumnName="MermaHumedadAplica" />
+                <ScalarProperty Name="MermaVolatilAplica" ColumnName="MermaVolatilAplica" />
                 <ScalarProperty Name="Mezclado" ColumnName="Mezclado" />
                 <ScalarProperty Name="IDPesada" ColumnName="IDPesada" />
                 <ScalarProperty Name="Humedad" ColumnName="Humedad" />

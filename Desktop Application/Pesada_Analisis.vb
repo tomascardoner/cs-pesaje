@@ -19,9 +19,12 @@ Partial Public Class Pesada_Analisis
     Public Property PesoHectolitrico As Nullable(Of Decimal)
     Public Property Gluten As Nullable(Of Decimal)
     Public Property Fumigado As Nullable(Of Boolean)
+    Public Property MermaVolatilAplica As Nullable(Of Boolean)
     Public Property MermaVolatilKilogramo As Nullable(Of Integer)
+    Public Property MermaHumedadAplica As Nullable(Of Boolean)
     Public Property MermaHumedadPorcentaje As Nullable(Of Decimal)
     Public Property MermaHumedadKilogramo As Nullable(Of Integer)
+    Public Property MermaZarandaAplica As Nullable(Of Boolean)
     Public Property MermaZarandaKilogramo As Nullable(Of Integer)
     Public Property Mezclado As Nullable(Of Boolean)
 
