@@ -117,7 +117,7 @@
                 MiscFunctions.UserLoggedIn()
             End Using
         ElseIf My.Settings.AutoLogon_Usuario <> "" Then
-            ' Se especifica un Usaurio de Auto Logon, por lo tanto, se procederá a verificar la información de Logon
+            ' Se especifica un Usuario de Auto Logon, por lo tanto, se procederá a verificar la información de Logon
             Using dbcontext As New CSPesajeContext(True)
                 pUsuario = dbcontext.Usuario.Where(Function(us) us.Nombre = My.Settings.AutoLogon_Usuario).FirstOrDefault
                 If pUsuario Is Nothing Then

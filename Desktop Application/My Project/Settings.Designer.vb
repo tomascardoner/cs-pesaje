@@ -140,7 +140,7 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("localhost")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("192.168.20.201")>  _
         Public ReadOnly Property DBConnection_Datasource() As String
             Get
                 Return CType(Me("DBConnection_Datasource"),String)
@@ -194,7 +194,7 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("balanza")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("administrador")>  _
         Public ReadOnly Property AutoLogon_Usuario() As String
             Get
                 Return CType(Me("AutoLogon_Usuario"),String)
@@ -203,7 +203,7 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Z7OZfx3IvSrrzNuh+wGYmg==")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("43ubKjbAQCxR+foIcEK/PcLRw0VHFqfd")>  _
         Public ReadOnly Property AutoLogon_Password() As String
             Get
                 Return CType(Me("AutoLogon_Password"),String)

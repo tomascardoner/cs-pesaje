@@ -81,6 +81,9 @@
             .Nodes.Add(PESADA_IMPRIMIR, DESCRIPCION_IMPRIMIR)
             .Nodes.Add(PESADA_MOSTRAR_VERIFICADO, "Mostrar opciones de pesadas Verificadas.")
             .Nodes.Add(PESADA_MOSTRAR_ACTIVO, "Mostrar opciones de pesadas Activas.")
+            .Nodes.Add(PESADA_MOSTRAR_EXTRAS, "Mostrar opciones de Extras.")
+            .Nodes.Add(PESADA_MOSTRAR_MERMASAPLICA, "Mostrar opciones de aplicación de mermas.")
+            .Nodes.Add(PESADA_MOSTRAR_TARIFASASAPLICA, "Mostrar opciones de aplicación de tarifas.")
         End With
 
         RootNode = Arbol.Nodes.Add(REPORTE, "Reportes")
