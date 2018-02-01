@@ -122,16 +122,16 @@
         textboxNotas.ReadOnly = Not mEditMode
 
         ' Extras
-        checkboxEsVerificado.Enabled = Not mEditMode
-        checkboxEsActivo.Enabled = Not mEditMode
-        checkboxMermaVolatilAplica.Enabled = Not mEditMode
-        checkboxMermaHumedadAplica.Enabled = Not mEditMode
-        checkboxMermaZarandaAplica.Enabled = Not mEditMode
-        checkboxParitariaAplica.Enabled = Not mEditMode
-        checkboxSecadoAplica.Enabled = Not mEditMode
-        checkboxZarandeoAplica.Enabled = Not mEditMode
-        checkboxFumigadoAplica.Enabled = Not mEditMode
-        checkboxMezclaAplica.Enabled = Not mEditMode
+        checkboxEsVerificado.Enabled = mEditMode
+        checkboxEsActivo.Enabled = mEditMode
+        checkboxMermaVolatilAplica.Enabled = mEditMode
+        checkboxMermaHumedadAplica.Enabled = mEditMode
+        checkboxMermaZarandaAplica.Enabled = mEditMode
+        checkboxParitariaAplica.Enabled = mEditMode
+        checkboxSecadoAplica.Enabled = mEditMode
+        checkboxZarandeoAplica.Enabled = mEditMode
+        checkboxFumigadoAplica.Enabled = mEditMode
+        checkboxMezclaAplica.Enabled = mEditMode
     End Sub
 
     Friend Sub InitializeFormAndControls()
