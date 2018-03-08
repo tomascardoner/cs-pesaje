@@ -85,9 +85,9 @@
 
         ' Filtros Avanzados
         comboboxEsVerificado.Items.AddRange({My.Resources.STRING_ITEM_ALL_MALE, My.Resources.STRING_YES, My.Resources.STRING_NO})
-        comboboxEsVerificado.SelectedIndex = COMBOBOX_YESNO_ALL_LISTINDEX
+        comboboxEsVerificado.SelectedIndex = COMBOBOX_ALLYESNO_ALL_LISTINDEX
         comboboxEsActivo.Items.AddRange({My.Resources.STRING_ITEM_ALL_MALE, My.Resources.STRING_YES, My.Resources.STRING_NO})
-        comboboxEsActivo.SelectedIndex = COMBOBOX_YESNO_YES_LISTINDEX
+        comboboxEsActivo.SelectedIndex = COMBOBOX_ALLYESNO_YES_LISTINDEX
 
         toolstriptabFiltrosAvanzados.Visible = (Permisos.VerificarPermiso(Permisos.PESADA_MOSTRAR_VERIFICADO, False) Or Permisos.VerificarPermiso(Permisos.PESADA_MOSTRAR_ACTIVO, False))
     End Sub
@@ -330,22 +330,22 @@
 
                 ' Filtro por Verificado
                 Select Case comboboxEsVerificado.SelectedIndex
-                    Case COMBOBOX_YESNO_ALL_LISTINDEX       ' Todos
-                    Case COMBOBOX_YESNO_YES_LISTINDEX       ' Sí
+                    Case COMBOBOX_ALLYESNO_ALL_LISTINDEX       ' Todos
+                    Case COMBOBOX_ALLYESNO_YES_LISTINDEX       ' Sí
                         mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) p.EsVerificado).ToList
                         mRecordSelectionFormula_Filter &= " AND {Pesada.EsVerificado}"
-                    Case COMBOBOX_YESNO_NO_LISTINDEX        ' No
+                    Case COMBOBOX_ALLYESNO_NO_LISTINDEX        ' No
                         mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) Not p.EsVerificado).ToList
                         mRecordSelectionFormula_Filter &= " AND (NOT {Pesada.EsVerificado})"
                 End Select
 
                 ' Filtro por Activo
                 Select Case comboboxEsActivo.SelectedIndex
-                    Case COMBOBOX_YESNO_ALL_LISTINDEX       ' Todos
-                    Case COMBOBOX_YESNO_YES_LISTINDEX       ' Sí
+                    Case COMBOBOX_ALLYESNO_ALL_LISTINDEX       ' Todos
+                    Case COMBOBOX_ALLYESNO_YES_LISTINDEX       ' Sí
                         mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) p.EsActivo).ToList
                         mRecordSelectionFormula_Filter &= " AND {Pesada.EsActivo}"
-                    Case COMBOBOX_YESNO_NO_LISTINDEX        ' No
+                    Case COMBOBOX_ALLYESNO_NO_LISTINDEX        ' No
                         mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) Not p.EsActivo).ToList
                         mRecordSelectionFormula_Filter &= " AND (NOT {Pesada.EsActivo})"
                 End Select

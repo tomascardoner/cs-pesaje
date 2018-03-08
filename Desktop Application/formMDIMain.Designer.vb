@@ -49,7 +49,7 @@ Partial Class formMDIMain
         Me.panelMain = New System.Windows.Forms.TableLayoutPanel()
         Me.toolstripMain = New System.Windows.Forms.ToolStrip()
         Me.dropdownbuttonTablas = New System.Windows.Forms.ToolStripDropDownButton()
-        Me.menutitemTablas_Entidades = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuitemTablas_Entidades = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemTablas_Productos = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemTablas_Cosechas = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemTablas_GruposUsuarios = New System.Windows.Forms.ToolStripMenuItem()
@@ -58,6 +58,7 @@ Partial Class formMDIMain
         Me.buttonPesadas = New System.Windows.Forms.ToolStripButton()
         Me.buttonReportes = New System.Windows.Forms.ToolStripButton()
         Me.textboxKilogramo = New System.Windows.Forms.TextBox()
+        Me.menuitemTablas_Tarifas = New System.Windows.Forms.ToolStripMenuItem()
         Me.statusstripMain.SuspendLayout()
         Me.menustripMain.SuspendLayout()
         Me.panelMain.SuspendLayout()
@@ -242,7 +243,7 @@ Partial Class formMDIMain
         '
         'dropdownbuttonTablas
         '
-        Me.dropdownbuttonTablas.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menutitemTablas_Entidades, Me.menuitemTablas_Productos, Me.menuitemTablas_Cosechas, Me.menuitemTablas_GruposUsuarios, Me.menuitemTablas_Usuarios, Me.menuitemTablas_Permisos})
+        Me.dropdownbuttonTablas.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemTablas_Entidades, Me.menuitemTablas_Productos, Me.menuitemTablas_Cosechas, Me.menuitemTablas_GruposUsuarios, Me.menuitemTablas_Usuarios, Me.menuitemTablas_Permisos, Me.menuitemTablas_Tarifas})
         Me.dropdownbuttonTablas.Image = Global.CSPesaje.DesktopApplication.My.Resources.Resources.IMAGE_TABLAS_32
         Me.dropdownbuttonTablas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.dropdownbuttonTablas.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
@@ -251,11 +252,11 @@ Partial Class formMDIMain
         Me.dropdownbuttonTablas.Size = New System.Drawing.Size(85, 36)
         Me.dropdownbuttonTablas.Text = "Tablas"
         '
-        'menutitemTablas_Entidades
+        'menuitemTablas_Entidades
         '
-        Me.menutitemTablas_Entidades.Name = "menutitemTablas_Entidades"
-        Me.menutitemTablas_Entidades.Size = New System.Drawing.Size(176, 22)
-        Me.menutitemTablas_Entidades.Text = "Entidades"
+        Me.menuitemTablas_Entidades.Name = "menuitemTablas_Entidades"
+        Me.menuitemTablas_Entidades.Size = New System.Drawing.Size(176, 22)
+        Me.menuitemTablas_Entidades.Text = "Entidades"
         '
         'menuitemTablas_Productos
         '
@@ -320,6 +321,12 @@ Partial Class formMDIMain
         Me.textboxKilogramo.TabIndex = 3
         Me.textboxKilogramo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
+        'menuitemTablas_Tarifas
+        '
+        Me.menuitemTablas_Tarifas.Name = "menuitemTablas_Tarifas"
+        Me.menuitemTablas_Tarifas.Size = New System.Drawing.Size(176, 22)
+        Me.menuitemTablas_Tarifas.Text = "Tarifas"
+        '
         'formMDIMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -374,7 +381,7 @@ Partial Class formMDIMain
     Friend WithEvents panelMain As System.Windows.Forms.TableLayoutPanel
     Friend WithEvents toolstripMain As System.Windows.Forms.ToolStrip
     Friend WithEvents dropdownbuttonTablas As System.Windows.Forms.ToolStripDropDownButton
-    Friend WithEvents menutitemTablas_Entidades As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents menuitemTablas_Entidades As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents menuitemTablas_Productos As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents menuitemTablas_Cosechas As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents menuitemTablas_GruposUsuarios As System.Windows.Forms.ToolStripMenuItem
@@ -383,4 +390,5 @@ Partial Class formMDIMain
     Friend WithEvents buttonPesadas As System.Windows.Forms.ToolStripButton
     Friend WithEvents buttonReportes As System.Windows.Forms.ToolStripButton
     Friend WithEvents textboxKilogramo As System.Windows.Forms.TextBox
+    Friend WithEvents menuitemTablas_Tarifas As System.Windows.Forms.ToolStripMenuItem
 End Class

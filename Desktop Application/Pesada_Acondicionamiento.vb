@@ -30,9 +30,9 @@ Partial Public Class Pesada_Acondicionamiento
     Public Property FumigadoAplica As Boolean
     Public Property FumigadoTarifa As Decimal
     Public Property FumigadoImporte As Decimal
-    Public Property MezclaAplica As Boolean
-    Public Property MezclaTarifa As Decimal
-    Public Property MezclaImporte As Decimal
+    Public Property MezcladoAplica As Boolean
+    Public Property MezcladoTarifa As Decimal
+    Public Property MezcladoImporte As Decimal
     Public Property ImporteTotal As Decimal
     Public Property FechaLiquidacion As Nullable(Of Date)
 

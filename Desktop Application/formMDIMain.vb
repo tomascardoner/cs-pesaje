@@ -107,7 +107,7 @@
 #End Region
 
 #Region "Left Toolbar - Tablas"
-    Private Sub Entidades() Handles menutitemTablas_Entidades.Click
+    Private Sub Entidades() Handles menuitemTablas_Entidades.Click
         If Permisos.VerificarPermiso(Permisos.ENTIDAD) Then
             Me.Cursor = Cursors.WaitCursor
 

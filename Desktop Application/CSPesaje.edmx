@@ -220,9 +220,9 @@
           <Property Name="FumigadoAplica" Type="bit" Nullable="false" />
           <Property Name="FumigadoTarifa" Type="money" Nullable="false" />
           <Property Name="FumigadoImporte" Type="money" Nullable="false" />
-          <Property Name="MezclaAplica" Type="bit" Nullable="false" />
-          <Property Name="MezclaTarifa" Type="money" Nullable="false" />
-          <Property Name="MezclaImporte" Type="money" Nullable="false" />
+          <Property Name="MezcladoAplica" Type="bit" Nullable="false" />
+          <Property Name="MezcladoTarifa" Type="money" Nullable="false" />
+          <Property Name="MezcladoImporte" Type="money" Nullable="false" />
           <Property Name="ImporteTotal" Type="money" Nullable="false" />
           <Property Name="FechaLiquidacion" Type="date" />
         </EntityType>
@@ -1828,9 +1828,9 @@
           <Property Name="FumigadoAplica" Type="Boolean" Nullable="false" />
           <Property Name="FumigadoTarifa" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="FumigadoImporte" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <Property Name="MezclaAplica" Type="Boolean" Nullable="false" />
-          <Property Name="MezclaTarifa" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <Property Name="MezclaImporte" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="MezcladoAplica" Type="Boolean" Nullable="false" />
+          <Property Name="MezcladoTarifa" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="MezcladoImporte" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <Property Name="ImporteTotal" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="FechaLiquidacion" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Pesada" Relationship="CSPesajeModel.FK__Pesada__Pesada_Acondicionamiento" FromRole="Pesada_Acondicionamiento" ToRole="Pesada" />
@@ -2946,7 +2946,9 @@
           <EntitySetMapping Name="Pesada_Acondicionamiento">
             <EntityTypeMapping TypeName="CSPesajeModel.Pesada_Acondicionamiento">
               <MappingFragment StoreEntitySet="Pesada_Acondicionamiento">
-                <ScalarProperty Name="MezclaAplica" ColumnName="MezclaAplica" />
+                <ScalarProperty Name="MezcladoImporte" ColumnName="MezcladoImporte" />
+                <ScalarProperty Name="MezcladoTarifa" ColumnName="MezcladoTarifa" />
+                <ScalarProperty Name="MezcladoAplica" ColumnName="MezcladoAplica" />
                 <ScalarProperty Name="FumigadoAplica" ColumnName="FumigadoAplica" />
                 <ScalarProperty Name="ZarandeoAplica" ColumnName="ZarandeoAplica" />
                 <ScalarProperty Name="SecadoAplica" ColumnName="SecadoAplica" />
@@ -2966,8 +2968,6 @@
                 <ScalarProperty Name="ZarandeoImporte" ColumnName="ZarandeoImporte" />
                 <ScalarProperty Name="FumigadoTarifa" ColumnName="FumigadoTarifa" />
                 <ScalarProperty Name="FumigadoImporte" ColumnName="FumigadoImporte" />
-                <ScalarProperty Name="MezclaTarifa" ColumnName="MezclaTarifa" />
-                <ScalarProperty Name="MezclaImporte" ColumnName="MezclaImporte" />
                 <ScalarProperty Name="ImporteTotal" ColumnName="ImporteTotal" />
                 <ScalarProperty Name="FechaLiquidacion" ColumnName="FechaLiquidacion" />
               </MappingFragment>

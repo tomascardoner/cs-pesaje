@@ -44,6 +44,12 @@ Partial Public Class Pesada
 End Class
 
 Partial Public Class Pesada_Analisis
+    Public Sub New()
+        Me.MermaVolatilAplica = True
+        Me.MermaHumedadAplica = True
+        Me.MermaZarandaAplica = True
+    End Sub
+
     Public Sub CalcularMermas(ByRef PesadaActual As Pesada)
         Dim KilogramoNeto As Integer
         Dim KilogramoFinal As Integer
@@ -120,6 +126,14 @@ Partial Public Class Pesada_Analisis
 End Class
 
 Partial Public Class Pesada_Acondicionamiento
+    Public Sub New()
+        Me.ParitariaAplica = True
+        Me.SecadoAplica = True
+        Me.ZarandeoAplica = True
+        Me.FumigadoAplica = True
+        Me.MezcladoAplica = True
+    End Sub
+
     Public Function CalcularAcondicionamiento(ByRef PesadaActual As Pesada) As Boolean
         Dim Cosecha_Producto_TarifaActual As New Cosecha_Producto_Tarifa
         Dim ProductoActual As Producto
@@ -205,12 +219,12 @@ Partial Public Class Pesada_Acondicionamiento
                     End If
 
                     ' Mezclado
-                    If PesadaActual.Pesada_Analisis.Mezclado.HasValue AndAlso PesadaActual.Pesada_Analisis.Mezclado AndAlso Me.MezclaAplica Then
-                        Me.MezclaTarifa = .TarifaMezclaImporte
-                        Me.MezclaImporte = CS_ValueTranslation.FromDoubleToRoundedCurrency((KilogramoNeto / 100) * Me.MezclaTarifa)
+                    If PesadaActual.Pesada_Analisis.Mezclado.HasValue AndAlso PesadaActual.Pesada_Analisis.Mezclado AndAlso Me.MezcladoAplica Then
+                        Me.MezcladoTarifa = .TarifaMezclaImporte
+                        Me.MezcladoImporte = CS_ValueTranslation.FromDoubleToRoundedCurrency((KilogramoNeto / 100) * Me.MezcladoTarifa)
                     Else
-                        Me.MezclaTarifa = 0
-                        Me.MezclaImporte = 0
+                        Me.MezcladoTarifa = 0
+                        Me.MezcladoImporte = 0
                     End If
 
                     ' Secado
@@ -281,8 +295,8 @@ Partial Public Class Pesada_Acondicionamiento
                                                 Me.ZarandeoImporte = 0
                                                 Me.FumigadoTarifa = 0
                                                 Me.FumigadoImporte = 0
-                                                Me.MezclaTarifa = 0
-                                                Me.MezclaImporte = 0
+                                                Me.MezcladoTarifa = 0
+                                                Me.MezcladoImporte = 0
                                                 Me.SecadoExcesoTarifa = Cosecha_Producto_TarifaEscalaActual.Tarifa
                                                 Me.SecadoExcesoImporte = CS_ValueTranslation.FromDoubleToRoundedCurrency((KilogramoNeto / 100) * Me.SecadoExcesoTarifa)
                                         End Select
@@ -303,7 +317,7 @@ Partial Public Class Pesada_Acondicionamiento
                 End If
 
                 ' Importe Total
-                Me.ImporteTotal = Me.ParitariaImporte + Me.SecadoImporte + Me.SecadoExcesoImporte + Me.ZarandeoImporte + Me.FumigadoImporte + Me.MezclaImporte
+                Me.ImporteTotal = Me.ParitariaImporte + Me.SecadoImporte + Me.SecadoExcesoImporte + Me.ZarandeoImporte + Me.FumigadoImporte + Me.MezcladoImporte
             End With
             Return True
         End If

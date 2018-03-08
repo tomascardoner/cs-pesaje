@@ -24,7 +24,7 @@
         mSkipFilterData = True
 
         comboboxActivo.Items.AddRange({My.Resources.STRING_ITEM_ALL_MALE, My.Resources.STRING_YES, My.Resources.STRING_NO})
-        comboboxActivo.SelectedIndex = COMBOBOX_YESNO_YES_LISTINDEX
+        comboboxActivo.SelectedIndex = COMBOBOX_ALLYESNO_YES_LISTINDEX
 
         mSkipFilterData = False
 
@@ -46,7 +46,7 @@
 
         Try
             Using dbContext As New CSPesajeContext(True)
-                mlistEntidadBase = dbContext.Entidad.ToList
+                mlistEntidadBase = dbContext.Entidad.Where(Function(e) e.IDEntidad <> CS_Constants.FIELD_VALUE_OTHER_INTEGER).ToList
             End Using
 
         Catch ex As Exception
@@ -100,11 +100,11 @@
 
                 ' Filtro por Activo
                 Select Case comboboxActivo.SelectedIndex
-                    Case COMBOBOX_YESNO_ALL_LISTINDEX       ' Todos
-                    Case COMBOBOX_YESNO_YES_LISTINDEX       ' Sí
+                    Case COMBOBOX_ALLYESNO_ALL_LISTINDEX        ' Todos
+                    Case COMBOBOX_ALLYESNO_YES_LISTINDEX        ' Sí
                         mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, "", " AND ").ToString & "{Entidad.EsActivo} = 1"
                         mlistEntidadFiltradaYOrdenada = mlistEntidadFiltradaYOrdenada.Where(Function(a) a.EsActivo).ToList
-                    Case COMBOBOX_YESNO_NO_LISTINDEX        ' No
+                    Case COMBOBOX_ALLYESNO_NO_LISTINDEX         ' No
                         mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, "", " AND ").ToString & "{Entidad.EsActivo} = 0"
                         mlistEntidadFiltradaYOrdenada = mlistEntidadFiltradaYOrdenada.Where(Function(a) Not a.EsActivo).ToList
                 End Select

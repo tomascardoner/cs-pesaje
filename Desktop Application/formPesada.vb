@@ -312,7 +312,7 @@
                 checkboxSecadoAplica.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.Pesada_Acondicionamiento.SecadoAplica)
                 checkboxZarandeoAplica.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.Pesada_Acondicionamiento.ZarandeoAplica)
                 checkboxFumigadoAplica.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.Pesada_Acondicionamiento.FumigadoAplica)
-                checkboxMezclaAplica.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.Pesada_Acondicionamiento.MezclaAplica)
+                checkboxMezclaAplica.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.Pesada_Acondicionamiento.MezcladoAplica)
             End If
 
             ' Notas
@@ -456,7 +456,7 @@
                 .Pesada_Acondicionamiento.SecadoAplica = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxSecadoAplica.CheckState)
                 .Pesada_Acondicionamiento.ZarandeoAplica = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxZarandeoAplica.CheckState)
                 .Pesada_Acondicionamiento.FumigadoAplica = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxFumigadoAplica.CheckState)
-                .Pesada_Acondicionamiento.MezclaAplica = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxMezclaAplica.CheckState)
+                .Pesada_Acondicionamiento.MezcladoAplica = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxMezclaAplica.CheckState)
             Else
                 If Not .Pesada_Acondicionamiento Is Nothing Then
                     mdbContext.Pesada_Acondicionamiento.Remove(.Pesada_Acondicionamiento)

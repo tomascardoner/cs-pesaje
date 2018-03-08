@@ -15,7 +15,7 @@
         <EntityTypeShape EntityType="CSPesajeModel.OrigenDestino" Width="1.5" PointX="6" PointY="19.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CSPesajeModel.Parametro" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CSPesajeModel.Pesada" Width="1.5" PointX="13.5" PointY="27.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="CSPesajeModel.Pesada_Acondicionamiento" Width="1.5" PointX="15.75" PointY="25.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSPesajeModel.Pesada_Acondicionamiento" Width="1.5" PointX="15.75" PointY="24.25" IsExpanded="true" />
         <EntityTypeShape EntityType="CSPesajeModel.Pesada_Analisis" Width="1.5" PointX="15.75" PointY="30.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CSPesajeModel.Pesada_Otro" Width="1.5" PointX="15.75" PointY="35.25" IsExpanded="true" />
         <EntityTypeShape EntityType="CSPesajeModel.Planta" Width="1.5" PointX="3" PointY="33.5" IsExpanded="true" />
