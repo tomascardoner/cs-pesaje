@@ -1107,17 +1107,13 @@
             Try
                 ' Calculo mermas si corresponde
                 Select mPesadaActual.Tipo
-                    Case PESADA_TIPO_ENTRADA
+                    Case PESADA_TIPO_ENTRADA, PESADA_TIPO_NINGUNA
                         If mPesadaActual.Pesada_Analisis Is Nothing Then
                             mPesadaActual.Pesada_Analisis = New Pesada_Analisis
                         End If
                         mPesadaActual.Pesada_Analisis.CalcularMermas(mPesadaActual)
                     Case PESADA_TIPO_SALIDA
                         mPesadaActual.KilogramoFinal = -mPesadaActual.KilogramoNeto
-                    Case Else
-                        If Not mPesadaActual.Pesada_Analisis Is Nothing Then
-                            mdbContext.Pesada_Analisis.Remove(mPesadaActual.Pesada_Analisis)
-                        End If
                 End Select
 
                 ' Calculo el acondicionamiento si corresponde

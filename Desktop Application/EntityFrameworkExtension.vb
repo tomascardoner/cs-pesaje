@@ -59,7 +59,7 @@ Partial Public Class Pesada_Analisis
         If PesadaActual.KilogramoNeto.HasValue Then
             KilogramoNeto = PesadaActual.KilogramoNeto.Value
             Select Case PesadaActual.Tipo
-                Case Constantes.PESADA_TIPO_ENTRADA
+                Case Constantes.PESADA_TIPO_ENTRADA, Constantes.PESADA_TIPO_NINGUNA
                     KilogramoFinal = KilogramoNeto
 
                     ' Obtengo los datos del Producto y de la Planta
