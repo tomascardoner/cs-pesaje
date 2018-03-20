@@ -28,6 +28,5 @@ Partial Public Class Camion
     Public Overridable Property UsuarioModificacion As Usuario
     Public Overridable Property Transportista As Entidad
     Public Overridable Property Pesadas As ICollection(Of Pesada) = New HashSet(Of Pesada)
-    Public Overridable Property Pesada As ICollection(Of Pesada) = New HashSet(Of Pesada)
 
 End Class

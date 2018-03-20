@@ -269,7 +269,7 @@ Partial Public Class Pesada_Acondicionamiento
                                     Dim Cosecha_Producto_TarifaEscalaActual As Cosecha_Producto_TarifaEscala
 
                                     Using dbContext As New CSPesajeContext(True)
-                                        Cosecha_Producto_TarifaEscalaActual = dbContext.Cosecha_Producto_TarifaEscala.Where(Function(cpte) cpte.IDCosecha = PesadaActualLocal.IDCosecha.Value And cpte.IDProducto = PesadaActualLocal.IDProducto And cpte.Indice = Me.TarifaIndice And cpte.HumedadExcesoInicio <= Me.HumedadExcesoReal).OrderByDescending(Function(cpte) cpte.HumedadExcesoInicio).First
+                                        Cosecha_Producto_TarifaEscalaActual = dbContext.Cosecha_Producto_TarifaEscala.Where(Function(cpte) cpte.IDCosecha = PesadaActualLocal.IDCosecha.Value And cpte.IDProducto = PesadaActualLocal.IDProducto And cpte.Indice = Me.TarifaIndice And cpte.HumedadExcesoInicio <= Me.HumedadExcesoReal).OrderByDescending(Function(cpte) cpte.HumedadExcesoInicio).FirstOrDefault
                                     End Using
                                     If Cosecha_Producto_TarifaEscalaActual Is Nothing Then
                                         Me.SecadoExcesoTarifa = 0

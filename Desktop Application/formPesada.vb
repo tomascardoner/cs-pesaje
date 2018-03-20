@@ -403,10 +403,12 @@
                 End If
             End If
             If checkboxCamionOtro.Checked Then
+                .Camion_IDEntidad = CS_Constants.FIELD_VALUE_OTHER_INTEGER
                 .IDCamion = CS_Constants.FIELD_VALUE_OTHER_BYTE
                 .Pesada_Otro.Camion_DominioChasis = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxCamion_DominioChasis.Text)
                 .Pesada_Otro.Camion_DominioAcoplado = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxCamion_DominioAcoplado.Text)
             Else
+                .Camion_IDEntidad = CS_ValueTranslation.FromControlComboBoxToObjectInteger(comboboxTransportista.SelectedValue)
                 .IDCamion = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxCamion.SelectedValue)
                 If Not .Pesada_Otro Is Nothing Then
                     .Pesada_Otro.Camion_DominioChasis = ""
@@ -740,7 +742,7 @@
         If checkboxChoferTodos.Checked Then
             pFillAndRefreshLists.Entidad(comboboxChofer, mPesadaActual.Chofer_IDEntidad, False, False, False, True, CS_Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER, False, False, False, True)
         Else
-            pFillAndRefreshLists.Entidad(comboboxChofer, mPesadaActual.Chofer_IDEntidad, False, False, False, True, CInt(comboboxTransportista.SelectedValue), True, False, False, True)
+            pFillAndRefreshLists.Entidad(comboboxChofer, mPesadaActual.Chofer_IDEntidad, False, False, False, True, CInt(comboboxTransportista.SelectedValue), False, False, False, True)
         End If
         comboboxChofer.Focus()
     End Sub

@@ -18,6 +18,7 @@
         If mIsNew Then
             mEntidadActual = New Entidad
             With mEntidadActual
+                .UsoFrecuente = True
                 .EsActivo = True
                 .IDUsuarioCreacion = pUsuario.IDUsuario
                 .FechaHoraCreacion = Now
@@ -211,10 +212,10 @@
         ' Generar el ID de la Entidad nueva
         If mIsNew Then
             Using dbcMaxID As New CSPesajeContext(True)
-                If dbcMaxID.Entidad.Count = 0 Then
+                If dbcMaxID.Entidad.Where(Function(e) e.IDEntidad <> CS_Constants.FIELD_VALUE_OTHER_INTEGER).Count = 0 Then
                     mEntidadActual.IDEntidad = 1
                 Else
-                    mEntidadActual.IDEntidad = dbcMaxID.Entidad.Max(Function(ent) ent.IDEntidad) + 1
+                    mEntidadActual.IDEntidad = dbcMaxID.Entidad.Where(Function(e) e.IDEntidad <> CS_Constants.FIELD_VALUE_OTHER_INTEGER).Max(Function(ent) ent.IDEntidad) + 1
                 End If
             End Using
         End If

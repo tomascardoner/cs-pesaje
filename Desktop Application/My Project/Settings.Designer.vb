@@ -140,7 +140,7 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("192.168.20.201")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("localhost")>  _
         Public ReadOnly Property DBConnection_Datasource() As String
             Get
                 Return CType(Me("DBConnection_Datasource"),String)
