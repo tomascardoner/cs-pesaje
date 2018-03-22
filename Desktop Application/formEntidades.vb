@@ -139,6 +139,12 @@
                 Else
                     mlistEntidadFiltradaYOrdenada = mlistEntidadFiltradaYOrdenada.OrderByDescending(Function(col) col.Nombre).ToList
                 End If
+            Case columnCUIT_CUIL.Name
+                If mOrdenTipo = SortOrder.Ascending Then
+                    mlistEntidadFiltradaYOrdenada = mlistEntidadFiltradaYOrdenada.OrderBy(Function(col) col.CUIT_CUIL).ToList
+                Else
+                    mlistEntidadFiltradaYOrdenada = mlistEntidadFiltradaYOrdenada.OrderByDescending(Function(col) col.CUIT_CUIL).ToList
+                End If
         End Select
         bindingsourceMain.DataSource = mlistEntidadFiltradaYOrdenada
 
@@ -212,7 +218,7 @@
 
         ClickedColumn = CType(datagridviewMain.Columns(e.ColumnIndex), DataGridViewColumn)
 
-        If ClickedColumn.Name = columnNombre.Name Then
+        If ClickedColumn.Name = columnNombre.Name Or ClickedColumn.Name = columnCUIT_CUIL.Name Then
             If ClickedColumn Is mOrdenColumna Then
                 ' La columna clickeada es la misma por la que ya estaba ordenado, así que cambio la dirección del orden
                 If mOrdenTipo = SortOrder.Ascending Then

@@ -122,6 +122,21 @@
         End If
     End Sub
 
+    Private Sub Camiones() Handles menuitemTablas_Camiones.Click
+        If Permisos.VerificarPermiso(Permisos.CAMION) Then
+            Me.Cursor = Cursors.WaitCursor
+
+            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formCamiones, Form))
+            formCamiones.Show()
+            If formCamiones.WindowState = FormWindowState.Minimized Then
+                formCamiones.WindowState = FormWindowState.Normal
+            End If
+            formCamiones.Focus()
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
     Private Sub UsuarioGrupoPermisos() Handles menuitemTablas_Permisos.Click
         If Permisos.VerificarPermiso(Permisos.USUARIOGRUPO) Then
             Me.Cursor = Cursors.WaitCursor

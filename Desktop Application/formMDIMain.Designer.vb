@@ -55,10 +55,11 @@ Partial Class formMDIMain
         Me.menuitemTablas_GruposUsuarios = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemTablas_Usuarios = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemTablas_Permisos = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuitemTablas_Tarifas = New System.Windows.Forms.ToolStripMenuItem()
         Me.buttonPesadas = New System.Windows.Forms.ToolStripButton()
         Me.buttonReportes = New System.Windows.Forms.ToolStripButton()
         Me.textboxKilogramo = New System.Windows.Forms.TextBox()
-        Me.menuitemTablas_Tarifas = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuitemTablas_Camiones = New System.Windows.Forms.ToolStripMenuItem()
         Me.statusstripMain.SuspendLayout()
         Me.menustripMain.SuspendLayout()
         Me.panelMain.SuspendLayout()
@@ -243,7 +244,7 @@ Partial Class formMDIMain
         '
         'dropdownbuttonTablas
         '
-        Me.dropdownbuttonTablas.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemTablas_Entidades, Me.menuitemTablas_Productos, Me.menuitemTablas_Cosechas, Me.menuitemTablas_GruposUsuarios, Me.menuitemTablas_Usuarios, Me.menuitemTablas_Permisos, Me.menuitemTablas_Tarifas})
+        Me.dropdownbuttonTablas.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemTablas_Entidades, Me.menuitemTablas_Camiones, Me.menuitemTablas_Productos, Me.menuitemTablas_Cosechas, Me.menuitemTablas_GruposUsuarios, Me.menuitemTablas_Usuarios, Me.menuitemTablas_Permisos, Me.menuitemTablas_Tarifas})
         Me.dropdownbuttonTablas.Image = Global.CSPesaje.DesktopApplication.My.Resources.Resources.IMAGE_TABLAS_32
         Me.dropdownbuttonTablas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.dropdownbuttonTablas.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
@@ -288,6 +289,12 @@ Partial Class formMDIMain
         Me.menuitemTablas_Permisos.Size = New System.Drawing.Size(176, 22)
         Me.menuitemTablas_Permisos.Text = "Permisos"
         '
+        'menuitemTablas_Tarifas
+        '
+        Me.menuitemTablas_Tarifas.Name = "menuitemTablas_Tarifas"
+        Me.menuitemTablas_Tarifas.Size = New System.Drawing.Size(176, 22)
+        Me.menuitemTablas_Tarifas.Text = "Tarifas"
+        '
         'buttonPesadas
         '
         Me.buttonPesadas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -321,11 +328,11 @@ Partial Class formMDIMain
         Me.textboxKilogramo.TabIndex = 3
         Me.textboxKilogramo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
-        'menuitemTablas_Tarifas
+        'menuitemTablas_Camiones
         '
-        Me.menuitemTablas_Tarifas.Name = "menuitemTablas_Tarifas"
-        Me.menuitemTablas_Tarifas.Size = New System.Drawing.Size(176, 22)
-        Me.menuitemTablas_Tarifas.Text = "Tarifas"
+        Me.menuitemTablas_Camiones.Name = "menuitemTablas_Camiones"
+        Me.menuitemTablas_Camiones.Size = New System.Drawing.Size(176, 22)
+        Me.menuitemTablas_Camiones.Text = "Camiones"
         '
         'formMDIMain
         '
@@ -391,4 +398,5 @@ Partial Class formMDIMain
     Friend WithEvents buttonReportes As System.Windows.Forms.ToolStripButton
     Friend WithEvents textboxKilogramo As System.Windows.Forms.TextBox
     Friend WithEvents menuitemTablas_Tarifas As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents menuitemTablas_Camiones As System.Windows.Forms.ToolStripMenuItem
 End Class

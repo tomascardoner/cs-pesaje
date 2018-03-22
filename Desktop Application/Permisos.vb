@@ -10,6 +10,12 @@
     Friend Const ENTIDAD_ELIMINAR As String = "ENTIDAD_ELIMINAR"
     Friend Const ENTIDAD_IMPRIMIR As String = "ENTIDAD_IMPRIMIR"
 
+    Friend Const CAMION As String = "CAMION"
+    Friend Const CAMION_AGREGAR As String = "CAMION_AGREGAR"
+    Friend Const CAMION_EDITAR As String = "CAMION_EDITAR"
+    Friend Const CAMION_ELIMINAR As String = "CAMION_ELIMINAR"
+    Friend Const CAMION_IMPRIMIR As String = "CAMION_IMPRIMIR"
+
     Friend Const PESADA As String = "PESADA"
     Friend Const PESADA_AGREGAR As String = "PESADA_AGREGAR"
     Friend Const PESADA_AGREGAR_HORA_ANTERIOR As String = "PESADA_AGREGAR_HORA_ANTERIOR"

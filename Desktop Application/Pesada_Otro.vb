@@ -14,7 +14,8 @@ Partial Public Class Pesada_Otro
     Public Property IDPesada As Integer
     Public Property Producto_Nombre As String
     Public Property Titular_Nombre As String
-    Public Property OrigenDestino_Nombre As String
+    Public Property Origen_Nombre As String
+    Public Property Destino_Nombre As String
     Public Property Transportista_Nombre As String
     Public Property Transportista_CUIT As String
     Public Property Chofer_Nombre As String

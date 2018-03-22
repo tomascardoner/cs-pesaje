@@ -45,7 +45,8 @@ Partial Class formPesadas
         Me.columnProducto = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnTipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnCosecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnOrigenDestino = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnOrigen = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnDestino = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnKilogramoBruto = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnKilogramoTara = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnKilogramoNeto = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -96,8 +97,8 @@ Partial Class formPesadas
         Me.menuitemPesadaTipo_DesmarcarTodos = New System.Windows.Forms.ToolStripMenuItem()
         Me.toolstripgroupCosecha = New Syncfusion.Windows.Forms.Tools.ToolStripEx()
         Me.comboboxCosecha = New System.Windows.Forms.ToolStripComboBox()
-        Me.toolstripgroupOrigenDestino = New Syncfusion.Windows.Forms.Tools.ToolStripEx()
-        Me.comboboxOrigenDestino = New System.Windows.Forms.ToolStripComboBox()
+        Me.toolstripgroupOrigen = New Syncfusion.Windows.Forms.Tools.ToolStripEx()
+        Me.comboboxOrigen = New System.Windows.Forms.ToolStripComboBox()
         Me.toolstripgroupTransportista = New Syncfusion.Windows.Forms.Tools.ToolStripEx()
         Me.comboboxTransportista = New System.Windows.Forms.ToolStripComboBox()
         Me.toolstripgroupChofer = New Syncfusion.Windows.Forms.Tools.ToolStripEx()
@@ -111,6 +112,8 @@ Partial Class formPesadas
         Me.dropdownbuttonTareas = New System.Windows.Forms.ToolStripDropDownButton()
         Me.menuitemCalcularMermas = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemCalcularAcondicionamiento = New System.Windows.Forms.ToolStripMenuItem()
+        Me.toolstripgroupDestino = New Syncfusion.Windows.Forms.Tools.ToolStripEx()
+        Me.comboboxDestino = New System.Windows.Forms.ToolStripComboBox()
         Me.statusstripMain.SuspendLayout()
         CType(Me.datagridviewMain, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.bindingsourceMain, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -125,13 +128,14 @@ Partial Class formPesadas
         Me.toolstripgroupPlanta.SuspendLayout()
         Me.tooltripgroupPesadaTipo.SuspendLayout()
         Me.toolstripgroupCosecha.SuspendLayout()
-        Me.toolstripgroupOrigenDestino.SuspendLayout()
+        Me.toolstripgroupOrigen.SuspendLayout()
         Me.toolstripgroupTransportista.SuspendLayout()
         Me.toolstripgroupChofer.SuspendLayout()
         Me.toolstriptabFiltrosAvanzados.Panel.SuspendLayout()
         Me.toolstripgroupEsVerificado.SuspendLayout()
         Me.toolstripgroupEsActivo.SuspendLayout()
         Me.toolstripgroupMenu.SuspendLayout()
+        Me.toolstripgroupDestino.SuspendLayout()
         Me.SuspendLayout()
         '
         'statusstripMain
@@ -162,7 +166,7 @@ Partial Class formPesadas
         Me.datagridviewMain.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.datagridviewMain.AutoGenerateColumns = False
         Me.datagridviewMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.datagridviewMain.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnIDPesada, Me.columnFechaHoraInicio, Me.columnFechaHoraFin, Me.columnComprobanteNumero, Me.columnEntidadTitular, Me.columnProducto, Me.columnTipo, Me.columnCosecha, Me.columnOrigenDestino, Me.columnKilogramoBruto, Me.columnKilogramoTara, Me.columnKilogramoNeto, Me.columnHumedad, Me.columnZaranda, Me.columnKilogramoFinal, Me.columnEntidadTransportista, Me.columnChofer, Me.columnCamion})
+        Me.datagridviewMain.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnIDPesada, Me.columnFechaHoraInicio, Me.columnFechaHoraFin, Me.columnComprobanteNumero, Me.columnEntidadTitular, Me.columnProducto, Me.columnTipo, Me.columnCosecha, Me.columnOrigen, Me.columnDestino, Me.columnKilogramoBruto, Me.columnKilogramoTara, Me.columnKilogramoNeto, Me.columnHumedad, Me.columnZaranda, Me.columnKilogramoFinal, Me.columnEntidadTransportista, Me.columnChofer, Me.columnCamion})
         Me.datagridviewMain.DataSource = Me.bindingsourceMain
         Me.datagridviewMain.Dock = System.Windows.Forms.DockStyle.Fill
         Me.datagridviewMain.Location = New System.Drawing.Point(0, 125)
@@ -259,14 +263,23 @@ Partial Class formPesadas
         Me.columnCosecha.ReadOnly = True
         Me.columnCosecha.Width = 74
         '
-        'columnOrigenDestino
+        'columnOrigen
         '
-        Me.columnOrigenDestino.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnOrigenDestino.DataPropertyName = "OrigenDestinoNombre"
-        Me.columnOrigenDestino.HeaderText = "Origen / Destino"
-        Me.columnOrigenDestino.Name = "columnOrigenDestino"
-        Me.columnOrigenDestino.ReadOnly = True
-        Me.columnOrigenDestino.Width = 101
+        Me.columnOrigen.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnOrigen.DataPropertyName = "OrigenNombre"
+        Me.columnOrigen.HeaderText = "Origen"
+        Me.columnOrigen.Name = "columnOrigen"
+        Me.columnOrigen.ReadOnly = True
+        Me.columnOrigen.Width = 63
+        '
+        'columnDestino
+        '
+        Me.columnDestino.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnDestino.DataPropertyName = "DestinoNombre"
+        Me.columnDestino.HeaderText = "Destino"
+        Me.columnDestino.Name = "columnDestino"
+        Me.columnDestino.ReadOnly = True
+        Me.columnDestino.Width = 68
         '
         'columnKilogramoBruto
         '
@@ -279,7 +292,7 @@ Partial Class formPesadas
         Me.columnKilogramoBruto.HeaderText = "Kgs. Bruto"
         Me.columnKilogramoBruto.Name = "columnKilogramoBruto"
         Me.columnKilogramoBruto.ReadOnly = True
-        Me.columnKilogramoBruto.Width = 75
+        Me.columnKilogramoBruto.Width = 81
         '
         'columnKilogramoTara
         '
@@ -291,7 +304,7 @@ Partial Class formPesadas
         Me.columnKilogramoTara.HeaderText = "Kgs. Tara"
         Me.columnKilogramoTara.Name = "columnKilogramoTara"
         Me.columnKilogramoTara.ReadOnly = True
-        Me.columnKilogramoTara.Width = 72
+        Me.columnKilogramoTara.Width = 78
         '
         'columnKilogramoNeto
         '
@@ -303,7 +316,7 @@ Partial Class formPesadas
         Me.columnKilogramoNeto.HeaderText = "Kgs. Neto"
         Me.columnKilogramoNeto.Name = "columnKilogramoNeto"
         Me.columnKilogramoNeto.ReadOnly = True
-        Me.columnKilogramoNeto.Width = 73
+        Me.columnKilogramoNeto.Width = 79
         '
         'columnHumedad
         '
@@ -340,7 +353,7 @@ Partial Class formPesadas
         Me.columnKilogramoFinal.HeaderText = "Kgs. Final"
         Me.columnKilogramoFinal.Name = "columnKilogramoFinal"
         Me.columnKilogramoFinal.ReadOnly = True
-        Me.columnKilogramoFinal.Width = 72
+        Me.columnKilogramoFinal.Width = 78
         '
         'columnEntidadTransportista
         '
@@ -618,7 +631,8 @@ Partial Class formPesadas
         Me.toolstriptabFiltrosBasicos.Panel.Controls.Add(Me.toolstripgroupPlanta)
         Me.toolstriptabFiltrosBasicos.Panel.Controls.Add(Me.tooltripgroupPesadaTipo)
         Me.toolstriptabFiltrosBasicos.Panel.Controls.Add(Me.toolstripgroupCosecha)
-        Me.toolstriptabFiltrosBasicos.Panel.Controls.Add(Me.toolstripgroupOrigenDestino)
+        Me.toolstriptabFiltrosBasicos.Panel.Controls.Add(Me.toolstripgroupOrigen)
+        Me.toolstriptabFiltrosBasicos.Panel.Controls.Add(Me.toolstripgroupDestino)
         Me.toolstriptabFiltrosBasicos.Panel.Controls.Add(Me.toolstripgroupTransportista)
         Me.toolstriptabFiltrosBasicos.Panel.Controls.Add(Me.toolstripgroupChofer)
         Me.toolstriptabFiltrosBasicos.Panel.Name = "RibbonPanel2"
@@ -783,26 +797,26 @@ Partial Class formPesadas
         Me.comboboxCosecha.Name = "comboboxCosecha"
         Me.comboboxCosecha.Size = New System.Drawing.Size(100, 47)
         '
-        'toolstripgroupOrigenDestino
+        'toolstripgroupOrigen
         '
-        Me.toolstripgroupOrigenDestino.Dock = System.Windows.Forms.DockStyle.None
-        Me.toolstripgroupOrigenDestino.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.toolstripgroupOrigenDestino.ForeColor = System.Drawing.Color.MidnightBlue
-        Me.toolstripgroupOrigenDestino.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.toolstripgroupOrigenDestino.Image = Nothing
-        Me.toolstripgroupOrigenDestino.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.comboboxOrigenDestino})
-        Me.toolstripgroupOrigenDestino.Location = New System.Drawing.Point(705, 1)
-        Me.toolstripgroupOrigenDestino.Name = "toolstripgroupOrigenDestino"
-        Me.toolstripgroupOrigenDestino.Padding = New System.Windows.Forms.Padding(0, 5, 0, 0)
-        Me.toolstripgroupOrigenDestino.Size = New System.Drawing.Size(178, 69)
-        Me.toolstripgroupOrigenDestino.TabIndex = 4
-        Me.toolstripgroupOrigenDestino.Text = "Orígen / Destino"
+        Me.toolstripgroupOrigen.Dock = System.Windows.Forms.DockStyle.None
+        Me.toolstripgroupOrigen.Font = New System.Drawing.Font("Segoe UI", 8.25!)
+        Me.toolstripgroupOrigen.ForeColor = System.Drawing.Color.MidnightBlue
+        Me.toolstripgroupOrigen.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.toolstripgroupOrigen.Image = Nothing
+        Me.toolstripgroupOrigen.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.comboboxOrigen})
+        Me.toolstripgroupOrigen.Location = New System.Drawing.Point(705, 1)
+        Me.toolstripgroupOrigen.Name = "toolstripgroupOrigen"
+        Me.toolstripgroupOrigen.Padding = New System.Windows.Forms.Padding(0, 5, 0, 0)
+        Me.toolstripgroupOrigen.Size = New System.Drawing.Size(178, 69)
+        Me.toolstripgroupOrigen.TabIndex = 4
+        Me.toolstripgroupOrigen.Text = "Orígen"
         '
-        'comboboxOrigenDestino
+        'comboboxOrigen
         '
-        Me.comboboxOrigenDestino.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboboxOrigenDestino.Name = "comboboxOrigenDestino"
-        Me.comboboxOrigenDestino.Size = New System.Drawing.Size(170, 47)
+        Me.comboboxOrigen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxOrigen.Name = "comboboxOrigen"
+        Me.comboboxOrigen.Size = New System.Drawing.Size(170, 47)
         '
         'toolstripgroupTransportista
         '
@@ -812,7 +826,7 @@ Partial Class formPesadas
         Me.toolstripgroupTransportista.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolstripgroupTransportista.Image = Nothing
         Me.toolstripgroupTransportista.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.comboboxTransportista})
-        Me.toolstripgroupTransportista.Location = New System.Drawing.Point(885, 1)
+        Me.toolstripgroupTransportista.Location = New System.Drawing.Point(1065, 1)
         Me.toolstripgroupTransportista.Name = "toolstripgroupTransportista"
         Me.toolstripgroupTransportista.Padding = New System.Windows.Forms.Padding(0, 5, 0, 0)
         Me.toolstripgroupTransportista.Size = New System.Drawing.Size(208, 69)
@@ -833,7 +847,7 @@ Partial Class formPesadas
         Me.toolstripgroupChofer.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolstripgroupChofer.Image = Nothing
         Me.toolstripgroupChofer.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.comboboxChofer})
-        Me.toolstripgroupChofer.Location = New System.Drawing.Point(1095, 1)
+        Me.toolstripgroupChofer.Location = New System.Drawing.Point(1275, 1)
         Me.toolstripgroupChofer.Name = "toolstripgroupChofer"
         Me.toolstripgroupChofer.Padding = New System.Windows.Forms.Padding(0, 5, 0, 0)
         Me.toolstripgroupChofer.Size = New System.Drawing.Size(129, 69)
@@ -945,6 +959,27 @@ Partial Class formPesadas
         Me.menuitemCalcularAcondicionamiento.Size = New System.Drawing.Size(217, 22)
         Me.menuitemCalcularAcondicionamiento.Text = "Calcular acondicionamiento"
         '
+        'toolstripgroupDestino
+        '
+        Me.toolstripgroupDestino.Dock = System.Windows.Forms.DockStyle.None
+        Me.toolstripgroupDestino.Font = New System.Drawing.Font("Segoe UI", 8.25!)
+        Me.toolstripgroupDestino.ForeColor = System.Drawing.Color.MidnightBlue
+        Me.toolstripgroupDestino.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.toolstripgroupDestino.Image = Nothing
+        Me.toolstripgroupDestino.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.comboboxDestino})
+        Me.toolstripgroupDestino.Location = New System.Drawing.Point(885, 1)
+        Me.toolstripgroupDestino.Name = "toolstripgroupDestino"
+        Me.toolstripgroupDestino.Padding = New System.Windows.Forms.Padding(0, 5, 0, 0)
+        Me.toolstripgroupDestino.Size = New System.Drawing.Size(178, 69)
+        Me.toolstripgroupDestino.TabIndex = 8
+        Me.toolstripgroupDestino.Text = "Destino"
+        '
+        'comboboxDestino
+        '
+        Me.comboboxDestino.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxDestino.Name = "comboboxDestino"
+        Me.comboboxDestino.Size = New System.Drawing.Size(170, 47)
+        '
         'formPesadas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -982,8 +1017,8 @@ Partial Class formPesadas
         Me.tooltripgroupPesadaTipo.PerformLayout()
         Me.toolstripgroupCosecha.ResumeLayout(False)
         Me.toolstripgroupCosecha.PerformLayout()
-        Me.toolstripgroupOrigenDestino.ResumeLayout(False)
-        Me.toolstripgroupOrigenDestino.PerformLayout()
+        Me.toolstripgroupOrigen.ResumeLayout(False)
+        Me.toolstripgroupOrigen.PerformLayout()
         Me.toolstripgroupTransportista.ResumeLayout(False)
         Me.toolstripgroupTransportista.PerformLayout()
         Me.toolstripgroupChofer.ResumeLayout(False)
@@ -996,6 +1031,8 @@ Partial Class formPesadas
         Me.toolstripgroupEsActivo.PerformLayout()
         Me.toolstripgroupMenu.ResumeLayout(False)
         Me.toolstripgroupMenu.PerformLayout()
+        Me.toolstripgroupDestino.ResumeLayout(False)
+        Me.toolstripgroupDestino.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1038,8 +1075,8 @@ Partial Class formPesadas
     Friend WithEvents comboboxProducto As System.Windows.Forms.ToolStripComboBox
     Friend WithEvents toolstripgroupCosecha As Syncfusion.Windows.Forms.Tools.ToolStripEx
     Friend WithEvents comboboxCosecha As System.Windows.Forms.ToolStripComboBox
-    Friend WithEvents toolstripgroupOrigenDestino As Syncfusion.Windows.Forms.Tools.ToolStripEx
-    Friend WithEvents comboboxOrigenDestino As System.Windows.Forms.ToolStripComboBox
+    Friend WithEvents toolstripgroupOrigen As Syncfusion.Windows.Forms.Tools.ToolStripEx
+    Friend WithEvents comboboxOrigen As System.Windows.Forms.ToolStripComboBox
     Friend WithEvents toolstripgroupTransportista As Syncfusion.Windows.Forms.Tools.ToolStripEx
     Friend WithEvents comboboxTransportista As System.Windows.Forms.ToolStripComboBox
     Friend WithEvents toolstripgroupChofer As Syncfusion.Windows.Forms.Tools.ToolStripEx
@@ -1052,6 +1089,13 @@ Partial Class formPesadas
     Friend WithEvents comboboxEsVerificado As System.Windows.Forms.ToolStripComboBox
     Friend WithEvents toolstripgroupEsActivo As Syncfusion.Windows.Forms.Tools.ToolStripEx
     Friend WithEvents comboboxEsActivo As System.Windows.Forms.ToolStripComboBox
+    Friend WithEvents toolstripgroupMenu As Syncfusion.Windows.Forms.Tools.ToolStripEx
+    Friend WithEvents dropdownbuttonTareas As System.Windows.Forms.ToolStripDropDownButton
+    Friend WithEvents menuitemCalcularMermas As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents menuitemSeparator1 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents menuitemImprimir_ResumenExistencias As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents menuitemImprimir_EntradasAcondicionamiento As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents menuitemCalcularAcondicionamiento As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents columnIDPesada As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents columnFechaHoraInicio As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents columnFechaHoraFin As System.Windows.Forms.DataGridViewTextBoxColumn
@@ -1060,7 +1104,8 @@ Partial Class formPesadas
     Friend WithEvents columnProducto As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents columnTipo As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents columnCosecha As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents columnOrigenDestino As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents columnOrigen As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents columnDestino As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents columnKilogramoBruto As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents columnKilogramoTara As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents columnKilogramoNeto As System.Windows.Forms.DataGridViewTextBoxColumn
@@ -1070,11 +1115,6 @@ Partial Class formPesadas
     Friend WithEvents columnEntidadTransportista As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents columnChofer As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents columnCamion As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents toolstripgroupMenu As Syncfusion.Windows.Forms.Tools.ToolStripEx
-    Friend WithEvents dropdownbuttonTareas As System.Windows.Forms.ToolStripDropDownButton
-    Friend WithEvents menuitemCalcularMermas As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents menuitemSeparator1 As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents menuitemImprimir_ResumenExistencias As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents menuitemImprimir_EntradasAcondicionamiento As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents menuitemCalcularAcondicionamiento As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents toolstripgroupDestino As Syncfusion.Windows.Forms.Tools.ToolStripEx
+    Friend WithEvents comboboxDestino As System.Windows.Forms.ToolStripComboBox
 End Class

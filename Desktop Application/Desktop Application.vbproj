@@ -185,6 +185,18 @@
     </Compile>
     <Compile Include="EntityFrameworkExtension.vb" />
     <Compile Include="FillAndRefreshLists.vb" />
+    <Compile Include="formCamion.designer.vb">
+      <DependentUpon>formCamion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formCamion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formCamiones.designer.vb">
+      <DependentUpon>formCamiones.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formCamiones.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="formPesada.Designer.vb">
       <DependentUpon>formPesada.vb</DependentUpon>
     </Compile>
@@ -356,6 +368,12 @@
     <EmbeddedResource Include="C:\Users\Tomas\Dropbox\Cardoner Sistemas\Framework\Visual Basic .NET\CS_ErrorMessageBox.resx">
       <Link>CS_ErrorMessageBox.resx</Link>
       <DependentUpon>CS_ErrorMessageBox.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formCamion.resx">
+      <DependentUpon>formCamion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formCamiones.resx">
+      <DependentUpon>formCamiones.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formPesada.resx">
       <DependentUpon>formPesada.vb</DependentUpon>

@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class formEntidades
+Partial Class formCamiones
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -23,7 +23,6 @@ Partial Class formEntidades
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(formEntidades))
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.toolstripButtons = New System.Windows.Forms.ToolStrip()
         Me.buttonAgregar = New System.Windows.Forms.ToolStripButton()
@@ -35,33 +34,23 @@ Partial Class formEntidades
         Me.statuslabelMain = New System.Windows.Forms.ToolStripStatusLabel()
         Me.bindingsourceMain = New System.Windows.Forms.BindingSource(Me.components)
         Me.panelToolbars = New System.Windows.Forms.FlowLayoutPanel()
-        Me.toolstripBuscar = New System.Windows.Forms.ToolStrip()
-        Me.labelBuscar = New System.Windows.Forms.ToolStripLabel()
-        Me.textboxBuscar = New System.Windows.Forms.ToolStripTextBox()
-        Me.buttonBuscarBorrar = New System.Windows.Forms.ToolStripButton()
-        Me.toolstripEntidadTipo = New System.Windows.Forms.ToolStrip()
-        Me.dropdownbuttonEntidadTipos = New System.Windows.Forms.ToolStripDropDownButton()
-        Me.menuitemEntidadTipo_Titular = New System.Windows.Forms.ToolStripMenuItem()
-        Me.menuitemEntidadTipo_Transportista = New System.Windows.Forms.ToolStripMenuItem()
-        Me.menuitemEntidadTipo_Chofer = New System.Windows.Forms.ToolStripMenuItem()
-        Me.separatorMarcarTodos = New System.Windows.Forms.ToolStripSeparator()
-        Me.menuitemMarcarTodos = New System.Windows.Forms.ToolStripMenuItem()
-        Me.menuitemDesmarcarTodos = New System.Windows.Forms.ToolStripMenuItem()
+        Me.toolstripTransportista = New System.Windows.Forms.ToolStrip()
+        Me.labelTransportista = New System.Windows.Forms.ToolStripLabel()
+        Me.comboboxTransportista = New System.Windows.Forms.ToolStripComboBox()
         Me.toolstripActivo = New System.Windows.Forms.ToolStrip()
         Me.labelActivo = New System.Windows.Forms.ToolStripLabel()
         Me.comboboxActivo = New System.Windows.Forms.ToolStripComboBox()
         Me.datagridviewMain = New System.Windows.Forms.DataGridView()
+        Me.columnTransportista = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnNombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnCUIT_CUIL = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnEsTitular = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.columnEsTransportista = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.columnEsChofer = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.columnDominioChasis = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnDominioAcoplado = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnEsActivo = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.toolstripButtons.SuspendLayout()
         Me.statusstripMain.SuspendLayout()
         CType(Me.bindingsourceMain, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panelToolbars.SuspendLayout()
-        Me.toolstripBuscar.SuspendLayout()
-        Me.toolstripEntidadTipo.SuspendLayout()
+        Me.toolstripTransportista.SuspendLayout()
         Me.toolstripActivo.SuspendLayout()
         CType(Me.datagridviewMain, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -140,8 +129,7 @@ Partial Class formEntidades
         Me.panelToolbars.AutoSize = True
         Me.panelToolbars.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.panelToolbars.Controls.Add(Me.toolstripButtons)
-        Me.panelToolbars.Controls.Add(Me.toolstripBuscar)
-        Me.panelToolbars.Controls.Add(Me.toolstripEntidadTipo)
+        Me.panelToolbars.Controls.Add(Me.toolstripTransportista)
         Me.panelToolbars.Controls.Add(Me.toolstripActivo)
         Me.panelToolbars.Dock = System.Windows.Forms.DockStyle.Top
         Me.panelToolbars.Location = New System.Drawing.Point(0, 0)
@@ -149,108 +137,37 @@ Partial Class formEntidades
         Me.panelToolbars.Size = New System.Drawing.Size(905, 39)
         Me.panelToolbars.TabIndex = 2
         '
-        'toolstripBuscar
+        'toolstripTransportista
         '
-        Me.toolstripBuscar.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.toolstripBuscar.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.toolstripBuscar.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelBuscar, Me.textboxBuscar, Me.buttonBuscarBorrar})
-        Me.toolstripBuscar.Location = New System.Drawing.Point(348, 0)
-        Me.toolstripBuscar.Name = "toolstripBuscar"
-        Me.toolstripBuscar.Size = New System.Drawing.Size(193, 39)
-        Me.toolstripBuscar.TabIndex = 2
+        Me.toolstripTransportista.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.toolstripTransportista.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.toolstripTransportista.ImageScalingSize = New System.Drawing.Size(20, 20)
+        Me.toolstripTransportista.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelTransportista, Me.comboboxTransportista})
+        Me.toolstripTransportista.Location = New System.Drawing.Point(348, 0)
+        Me.toolstripTransportista.Name = "toolstripTransportista"
+        Me.toolstripTransportista.Size = New System.Drawing.Size(283, 39)
+        Me.toolstripTransportista.TabIndex = 4
         '
-        'labelBuscar
+        'labelTransportista
         '
-        Me.labelBuscar.Name = "labelBuscar"
-        Me.labelBuscar.Size = New System.Drawing.Size(45, 36)
-        Me.labelBuscar.Text = "Buscar:"
+        Me.labelTransportista.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.labelTransportista.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.labelTransportista.Name = "labelTransportista"
+        Me.labelTransportista.Size = New System.Drawing.Size(78, 36)
+        Me.labelTransportista.Text = "Transportista:"
         '
-        'textboxBuscar
+        'comboboxTransportista
         '
-        Me.textboxBuscar.MaxLength = 100
-        Me.textboxBuscar.Name = "textboxBuscar"
-        Me.textboxBuscar.Size = New System.Drawing.Size(120, 39)
-        '
-        'buttonBuscarBorrar
-        '
-        Me.buttonBuscarBorrar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.buttonBuscarBorrar.Image = Global.CSPesaje.DesktopApplication.My.Resources.Resources.IMAGE_CLOSE_16
-        Me.buttonBuscarBorrar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonBuscarBorrar.Name = "buttonBuscarBorrar"
-        Me.buttonBuscarBorrar.Size = New System.Drawing.Size(23, 36)
-        Me.buttonBuscarBorrar.ToolTipText = "Limpiar búsqueda"
-        '
-        'toolstripEntidadTipo
-        '
-        Me.toolstripEntidadTipo.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.toolstripEntidadTipo.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.toolstripEntidadTipo.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.toolstripEntidadTipo.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.dropdownbuttonEntidadTipos})
-        Me.toolstripEntidadTipo.Location = New System.Drawing.Point(541, 0)
-        Me.toolstripEntidadTipo.Name = "toolstripEntidadTipo"
-        Me.toolstripEntidadTipo.Size = New System.Drawing.Size(111, 39)
-        Me.toolstripEntidadTipo.TabIndex = 4
-        '
-        'dropdownbuttonEntidadTipos
-        '
-        Me.dropdownbuttonEntidadTipos.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.dropdownbuttonEntidadTipos.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemEntidadTipo_Titular, Me.menuitemEntidadTipo_Transportista, Me.menuitemEntidadTipo_Chofer, Me.separatorMarcarTodos, Me.menuitemMarcarTodos, Me.menuitemDesmarcarTodos})
-        Me.dropdownbuttonEntidadTipos.Image = CType(resources.GetObject("dropdownbuttonEntidadTipos.Image"), System.Drawing.Image)
-        Me.dropdownbuttonEntidadTipos.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.dropdownbuttonEntidadTipos.Name = "dropdownbuttonEntidadTipos"
-        Me.dropdownbuttonEntidadTipos.Size = New System.Drawing.Size(108, 36)
-        Me.dropdownbuttonEntidadTipos.Text = "Tipos de Entidad"
-        '
-        'menuitemEntidadTipo_Titular
-        '
-        Me.menuitemEntidadTipo_Titular.Checked = True
-        Me.menuitemEntidadTipo_Titular.CheckOnClick = True
-        Me.menuitemEntidadTipo_Titular.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.menuitemEntidadTipo_Titular.Name = "menuitemEntidadTipo_Titular"
-        Me.menuitemEntidadTipo_Titular.Size = New System.Drawing.Size(163, 22)
-        Me.menuitemEntidadTipo_Titular.Text = "Titular"
-        '
-        'menuitemEntidadTipo_Transportista
-        '
-        Me.menuitemEntidadTipo_Transportista.Checked = True
-        Me.menuitemEntidadTipo_Transportista.CheckOnClick = True
-        Me.menuitemEntidadTipo_Transportista.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.menuitemEntidadTipo_Transportista.Name = "menuitemEntidadTipo_Transportista"
-        Me.menuitemEntidadTipo_Transportista.Size = New System.Drawing.Size(163, 22)
-        Me.menuitemEntidadTipo_Transportista.Text = "Transportista"
-        '
-        'menuitemEntidadTipo_Chofer
-        '
-        Me.menuitemEntidadTipo_Chofer.Checked = True
-        Me.menuitemEntidadTipo_Chofer.CheckOnClick = True
-        Me.menuitemEntidadTipo_Chofer.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.menuitemEntidadTipo_Chofer.Name = "menuitemEntidadTipo_Chofer"
-        Me.menuitemEntidadTipo_Chofer.Size = New System.Drawing.Size(163, 22)
-        Me.menuitemEntidadTipo_Chofer.Text = "Chofer"
-        '
-        'separatorMarcarTodos
-        '
-        Me.separatorMarcarTodos.Name = "separatorMarcarTodos"
-        Me.separatorMarcarTodos.Size = New System.Drawing.Size(160, 6)
-        '
-        'menuitemMarcarTodos
-        '
-        Me.menuitemMarcarTodos.Name = "menuitemMarcarTodos"
-        Me.menuitemMarcarTodos.Size = New System.Drawing.Size(163, 22)
-        Me.menuitemMarcarTodos.Text = "Marcar todos"
-        '
-        'menuitemDesmarcarTodos
-        '
-        Me.menuitemDesmarcarTodos.Name = "menuitemDesmarcarTodos"
-        Me.menuitemDesmarcarTodos.Size = New System.Drawing.Size(163, 22)
-        Me.menuitemDesmarcarTodos.Text = "Desmarcar todos"
+        Me.comboboxTransportista.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxTransportista.Name = "comboboxTransportista"
+        Me.comboboxTransportista.Size = New System.Drawing.Size(200, 39)
         '
         'toolstripActivo
         '
         Me.toolstripActivo.Dock = System.Windows.Forms.DockStyle.Fill
         Me.toolstripActivo.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolstripActivo.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelActivo, Me.comboboxActivo})
-        Me.toolstripActivo.Location = New System.Drawing.Point(652, 0)
+        Me.toolstripActivo.Location = New System.Drawing.Point(631, 0)
         Me.toolstripActivo.Name = "toolstripActivo"
         Me.toolstripActivo.Size = New System.Drawing.Size(124, 39)
         Me.toolstripActivo.TabIndex = 3
@@ -280,7 +197,7 @@ Partial Class formEntidades
         Me.datagridviewMain.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.datagridviewMain.AutoGenerateColumns = False
         Me.datagridviewMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.datagridviewMain.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnNombre, Me.columnCUIT_CUIL, Me.columnEsTitular, Me.columnEsTransportista, Me.columnEsChofer})
+        Me.datagridviewMain.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnTransportista, Me.columnNombre, Me.columnDominioChasis, Me.columnDominioAcoplado, Me.columnEsActivo})
         Me.datagridviewMain.DataSource = Me.bindingsourceMain
         Me.datagridviewMain.Dock = System.Windows.Forms.DockStyle.Fill
         Me.datagridviewMain.Location = New System.Drawing.Point(0, 39)
@@ -293,6 +210,16 @@ Partial Class formEntidades
         Me.datagridviewMain.Size = New System.Drawing.Size(905, 308)
         Me.datagridviewMain.TabIndex = 3
         '
+        'columnTransportista
+        '
+        Me.columnTransportista.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnTransportista.DataPropertyName = "TransportistaNombre"
+        Me.columnTransportista.HeaderText = "Transportista"
+        Me.columnTransportista.Name = "columnTransportista"
+        Me.columnTransportista.ReadOnly = True
+        Me.columnTransportista.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic
+        Me.columnTransportista.Width = 93
+        '
         'columnNombre
         '
         Me.columnNombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
@@ -303,44 +230,36 @@ Partial Class formEntidades
         Me.columnNombre.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic
         Me.columnNombre.Width = 69
         '
-        'columnCUIT_CUIL
+        'columnDominioChasis
         '
-        Me.columnCUIT_CUIL.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnCUIT_CUIL.DataPropertyName = "CUIT_CUIL"
-        Me.columnCUIT_CUIL.HeaderText = "CUIT / CUIL"
-        Me.columnCUIT_CUIL.Name = "columnCUIT_CUIL"
-        Me.columnCUIT_CUIL.ReadOnly = True
-        Me.columnCUIT_CUIL.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic
-        Me.columnCUIT_CUIL.Width = 92
+        Me.columnDominioChasis.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnDominioChasis.DataPropertyName = "DominioChasis"
+        Me.columnDominioChasis.HeaderText = "Chasis"
+        Me.columnDominioChasis.Name = "columnDominioChasis"
+        Me.columnDominioChasis.ReadOnly = True
+        Me.columnDominioChasis.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic
+        Me.columnDominioChasis.Width = 63
         '
-        'columnEsTitular
+        'columnDominioAcoplado
         '
-        Me.columnEsTitular.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnEsTitular.DataPropertyName = "EsTitular"
-        Me.columnEsTitular.HeaderText = "Titular"
-        Me.columnEsTitular.Name = "columnEsTitular"
-        Me.columnEsTitular.ReadOnly = True
-        Me.columnEsTitular.Width = 42
+        Me.columnDominioAcoplado.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnDominioAcoplado.DataPropertyName = "DominioAcoplado"
+        Me.columnDominioAcoplado.HeaderText = "Acoplado"
+        Me.columnDominioAcoplado.Name = "columnDominioAcoplado"
+        Me.columnDominioAcoplado.ReadOnly = True
+        Me.columnDominioAcoplado.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic
+        Me.columnDominioAcoplado.Width = 77
         '
-        'columnEsTransportista
+        'columnEsActivo
         '
-        Me.columnEsTransportista.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnEsTransportista.DataPropertyName = "EsTransportista"
-        Me.columnEsTransportista.HeaderText = "Transportista"
-        Me.columnEsTransportista.Name = "columnEsTransportista"
-        Me.columnEsTransportista.ReadOnly = True
-        Me.columnEsTransportista.Width = 74
+        Me.columnEsActivo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnEsActivo.DataPropertyName = "EsActivo"
+        Me.columnEsActivo.HeaderText = "Activo"
+        Me.columnEsActivo.Name = "columnEsActivo"
+        Me.columnEsActivo.ReadOnly = True
+        Me.columnEsActivo.Width = 43
         '
-        'columnEsChofer
-        '
-        Me.columnEsChofer.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnEsChofer.DataPropertyName = "EsChofer"
-        Me.columnEsChofer.HeaderText = "Chofer"
-        Me.columnEsChofer.Name = "columnEsChofer"
-        Me.columnEsChofer.ReadOnly = True
-        Me.columnEsChofer.Width = 44
-        '
-        'formEntidades
+        'formCamiones
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -349,9 +268,9 @@ Partial Class formEntidades
         Me.Controls.Add(Me.panelToolbars)
         Me.Controls.Add(Me.statusstripMain)
         Me.KeyPreview = True
-        Me.Name = "formEntidades"
+        Me.Name = "formCamiones"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
-        Me.Text = "Entidades"
+        Me.Text = "Camiones"
         Me.toolstripButtons.ResumeLayout(False)
         Me.toolstripButtons.PerformLayout()
         Me.statusstripMain.ResumeLayout(False)
@@ -359,10 +278,8 @@ Partial Class formEntidades
         CType(Me.bindingsourceMain, System.ComponentModel.ISupportInitialize).EndInit()
         Me.panelToolbars.ResumeLayout(False)
         Me.panelToolbars.PerformLayout()
-        Me.toolstripBuscar.ResumeLayout(False)
-        Me.toolstripBuscar.PerformLayout()
-        Me.toolstripEntidadTipo.ResumeLayout(False)
-        Me.toolstripEntidadTipo.PerformLayout()
+        Me.toolstripTransportista.ResumeLayout(False)
+        Me.toolstripTransportista.PerformLayout()
         Me.toolstripActivo.ResumeLayout(False)
         Me.toolstripActivo.PerformLayout()
         CType(Me.datagridviewMain, System.ComponentModel.ISupportInitialize).EndInit()
@@ -378,27 +295,18 @@ Partial Class formEntidades
     Friend WithEvents statuslabelMain As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents bindingsourceMain As System.Windows.Forms.BindingSource
     Friend WithEvents panelToolbars As System.Windows.Forms.FlowLayoutPanel
-    Friend WithEvents toolstripBuscar As System.Windows.Forms.ToolStrip
     Friend WithEvents toolstripActivo As System.Windows.Forms.ToolStrip
-    Friend WithEvents labelBuscar As System.Windows.Forms.ToolStripLabel
-    Friend WithEvents textboxBuscar As System.Windows.Forms.ToolStripTextBox
-    Friend WithEvents buttonBuscarBorrar As System.Windows.Forms.ToolStripButton
     Friend WithEvents labelActivo As System.Windows.Forms.ToolStripLabel
     Friend WithEvents comboboxActivo As System.Windows.Forms.ToolStripComboBox
     Friend WithEvents buttonImprimir As System.Windows.Forms.ToolStripSplitButton
     Friend WithEvents menuitemImprimirListado As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents toolstripEntidadTipo As System.Windows.Forms.ToolStrip
-    Friend WithEvents dropdownbuttonEntidadTipos As System.Windows.Forms.ToolStripDropDownButton
-    Friend WithEvents menuitemEntidadTipo_Titular As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents menuitemEntidadTipo_Transportista As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents menuitemEntidadTipo_Chofer As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents separatorMarcarTodos As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents menuitemMarcarTodos As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents menuitemDesmarcarTodos As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents toolstripTransportista As System.Windows.Forms.ToolStrip
     Friend WithEvents datagridviewMain As System.Windows.Forms.DataGridView
+    Friend WithEvents labelTransportista As System.Windows.Forms.ToolStripLabel
+    Friend WithEvents comboboxTransportista As System.Windows.Forms.ToolStripComboBox
+    Friend WithEvents columnTransportista As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents columnNombre As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents columnCUIT_CUIL As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents columnEsTitular As System.Windows.Forms.DataGridViewCheckBoxColumn
-    Friend WithEvents columnEsTransportista As System.Windows.Forms.DataGridViewCheckBoxColumn
-    Friend WithEvents columnEsChofer As System.Windows.Forms.DataGridViewCheckBoxColumn
+    Friend WithEvents columnDominioChasis As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents columnDominioAcoplado As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents columnEsActivo As System.Windows.Forms.DataGridViewCheckBoxColumn
 End Class

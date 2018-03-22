@@ -22,7 +22,8 @@ Partial Public Class Pesada
     Public Property Tipo As String
     Public Property TipoNombre As String
     Public Property Titular_IDEntidad As Integer
-    Public Property IDOrigenDestino As Nullable(Of Integer)
+    Public Property IDOrigen As Nullable(Of Integer)
+    Public Property IDDestino As Nullable(Of Integer)
     Public Property Transportista_IDEntidad As Nullable(Of Integer)
     Public Property Chofer_IDEntidad As Nullable(Of Integer)
     Public Property Camion_IDEntidad As Nullable(Of Integer)
@@ -51,7 +52,8 @@ Partial Public Class Pesada
     Public Overridable Property Producto As Producto
     Public Overridable Property UsuarioCreacion As Usuario
     Public Overridable Property UsuarioModificacion As Usuario
-    Public Overridable Property OrigenDestino As OrigenDestino
     Public Overridable Property Camion As Camion
+    Public Overridable Property OrigenDestino1 As OrigenDestino
+    Public Overridable Property OrigenDestino11 As OrigenDestino
 
 End Class

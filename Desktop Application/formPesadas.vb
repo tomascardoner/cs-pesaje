@@ -19,8 +19,10 @@
         Public Property TipoNombre As String
         Public Property IDCosecha As Byte?
         Public Property CosechaNombre As String
-        Public Property IDOrigenDestino As Integer?
-        Public Property OrigenDestinoNombre As String
+        Public Property IDOrigen As Integer?
+        Public Property OrigenNombre As String
+        Public Property IDDestino As Integer?
+        Public Property DestinoNombre As String
         Public Property KilogramoBruto As Integer?
         Public Property KilogramoTara As Integer?
         Public Property KilogramoNeto As Integer?
@@ -217,8 +219,10 @@
                                    Join pr In dbContext.Producto On pe.IDProducto Equals pr.IDProducto
                                    Group Join co In dbContext.Cosecha On pe.IDCosecha Equals co.IDCosecha Into Cosecha_Group = Group
                                    From cog In Cosecha_Group.DefaultIfEmpty
-                                   Group Join od In dbContext.OrigenDestino On pe.IDOrigenDestino Equals od.IDOrigenDestino Into OrigenDestino_Group = Group
-                                   From odg In OrigenDestino_Group.DefaultIfEmpty
+                                   Group Join od In dbContext.OrigenDestino On pe.IDOrigen Equals od.IDOrigenDestino Into Origen_Group = Group
+                                   From og In Origen_Group.DefaultIfEmpty
+                                   Group Join od In dbContext.OrigenDestino On pe.IDDestino Equals od.IDOrigenDestino Into Destino_Group = Group
+                                   From dg In Destino_Group.DefaultIfEmpty
                                    Group Join pe_ot In dbContext.Pesada_Otro On pe.IDPesada Equals pe_ot.IDPesada Into Pesada_Otro_Group = Group
                                    From pe_otg In Pesada_Otro_Group.DefaultIfEmpty
                                    Group Join pe_an In dbContext.Pesada_Analisis On pe.IDPesada Equals pe_an.IDPesada Into Pesada_Analisis_Group = Group
@@ -230,7 +234,7 @@
                                    Group Join ca In dbContext.Camion On pe.Transportista_IDEntidad Equals ca.IDEntidad And pe.IDCamion Equals ca.IDCamion Into Camion_Group = Group
                                    From cag In Camion_Group.DefaultIfEmpty
                                    Where pe.FechaHoraInicio >= FechaDesde And pe.FechaHoraInicio <= FechaHasta
-                                   Select New GridRowData With {.IDPesada = pe.IDPesada, .FechaHoraInicio = pe.FechaHoraInicio, .FechaHoraFin = pe.FechaHoraFin, .ComprobanteNumero = pe.ComprobanteNumero, .IDTitular = pe.Titular_IDEntidad, .TitularNombre = If(pe.Titular_IDEntidad = CS_Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Titular_Nombre, ent.Nombre), .IDProducto = pe.IDProducto, .ProductoNombre = If(pe.IDProducto = CS_Constants.FIELD_VALUE_OTHER_BYTE, pe_otg.Producto_Nombre, pr.Nombre), .Producto_TicketPesada_IDReporte = pr.TicketPesada_IDReporte, .IDPlanta = pe.IDPlanta, .Tipo = pe.Tipo, .TipoNombre = pe.TipoNombre, .IDCosecha = pe.IDCosecha, .CosechaNombre = If(cog Is Nothing, "", cog.Nombre), .IDOrigenDestino = pe.IDOrigenDestino, .OrigenDestinoNombre = If(pe.IDOrigenDestino = CS_Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.OrigenDestino_Nombre, If(odg Is Nothing, "", odg.Nombre)), .KilogramoBruto = pe.KilogramoBruto, .KilogramoTara = pe.KilogramoTara, .KilogramoNeto = pe.KilogramoNeto, .Humedad = If(pe_ang Is Nothing, Nothing, pe_ang.Humedad), .Zaranda = If(pe_ang Is Nothing, Nothing, pe_ang.Zaranda), .KilogramoFinal = pe.KilogramoFinal, .IDTransportista = pe.Transportista_IDEntidad, .TransportistaNombre = If(pe.Transportista_IDEntidad = CS_Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Transportista_Nombre, If(trg Is Nothing, "", trg.Nombre)), .IDChofer = pe.Chofer_IDEntidad, .ChoferNombre = If(pe.Chofer_IDEntidad = CS_Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Chofer_Nombre, If(chg Is Nothing, "", chg.Nombre)), .CamionNombreDominios = If(pe.IDCamion = CS_Constants.FIELD_VALUE_OTHER_BYTE, pe_otg.Camion_DominioChasis & If(pe_otg.Camion_DominioAcoplado Is Nothing, "", " - " & pe_otg.Camion_DominioAcoplado), If(cag Is Nothing, "", cag.NombreDominios)), .EsVerificado = pe.EsVerificado, .EsActivo = pe.EsActivo}).ToList
+                                   Select New GridRowData With {.IDPesada = pe.IDPesada, .FechaHoraInicio = pe.FechaHoraInicio, .FechaHoraFin = pe.FechaHoraFin, .ComprobanteNumero = pe.ComprobanteNumero, .IDTitular = pe.Titular_IDEntidad, .TitularNombre = If(pe.Titular_IDEntidad = CS_Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Titular_Nombre, ent.Nombre), .IDProducto = pe.IDProducto, .ProductoNombre = If(pe.IDProducto = CS_Constants.FIELD_VALUE_OTHER_BYTE, pe_otg.Producto_Nombre, pr.Nombre), .Producto_TicketPesada_IDReporte = pr.TicketPesada_IDReporte, .IDPlanta = pe.IDPlanta, .Tipo = pe.Tipo, .TipoNombre = pe.TipoNombre, .IDCosecha = pe.IDCosecha, .CosechaNombre = If(cog Is Nothing, "", cog.Nombre), .IDOrigen = pe.IDOrigen, .OrigenNombre = If(pe.IDOrigen = CS_Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Origen_Nombre, If(og Is Nothing, "", og.Nombre)), .IDDestino = pe.IDDestino, .DestinoNombre = If(pe.IDDestino = CS_Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Destino_Nombre, If(dg Is Nothing, "", dg.Nombre)), .KilogramoBruto = pe.KilogramoBruto, .KilogramoTara = pe.KilogramoTara, .KilogramoNeto = pe.KilogramoNeto, .Humedad = If(pe_ang Is Nothing, Nothing, pe_ang.Humedad), .Zaranda = If(pe_ang Is Nothing, Nothing, pe_ang.Zaranda), .KilogramoFinal = pe.KilogramoFinal, .IDTransportista = pe.Transportista_IDEntidad, .TransportistaNombre = If(pe.Transportista_IDEntidad = CS_Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Transportista_Nombre, If(trg Is Nothing, "", trg.Nombre)), .IDChofer = pe.Chofer_IDEntidad, .ChoferNombre = If(pe.Chofer_IDEntidad = CS_Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Chofer_Nombre, If(chg Is Nothing, "", chg.Nombre)), .CamionNombreDominios = If(pe.IDCamion = CS_Constants.FIELD_VALUE_OTHER_BYTE, pe_otg.Camion_DominioChasis & If(pe_otg.Camion_DominioAcoplado Is Nothing, "", " - " & pe_otg.Camion_DominioAcoplado), If(cag Is Nothing, "", cag.NombreDominios)), .EsVerificado = pe.EsVerificado, .EsActivo = pe.EsActivo}).ToList
             End Using
 
         Catch ex As Exception
@@ -306,10 +310,16 @@
                     mRecordSelectionFormula_Filter &= String.Format(" AND {{Pesada.IDCosecha}} = {0}", comboboxCosecha.ComboBox.SelectedValue)
                 End If
 
-                ' Filtro por OrigenDestino
-                If CInt(comboboxOrigenDestino.ComboBox.SelectedValue) <> FIELD_VALUE_ALL_INTEGER Then
-                    mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) p.IDOrigenDestino.HasValue AndAlso p.IDOrigenDestino.Value = CInt(comboboxOrigenDestino.ComboBox.SelectedValue)).ToList
-                    mRecordSelectionFormula_Filter &= String.Format(" AND {{Pesada.IDOrigenDestino}} = {0}", comboboxOrigenDestino.ComboBox.SelectedValue)
+                ' Filtro por Origen
+                If CInt(comboboxOrigen.ComboBox.SelectedValue) <> FIELD_VALUE_ALL_INTEGER Then
+                    mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) p.IDOrigen.HasValue AndAlso p.IDOrigen.Value = CInt(comboboxOrigen.ComboBox.SelectedValue)).ToList
+                    mRecordSelectionFormula_Filter &= String.Format(" AND {{Pesada.IDOrigen}} = {0}", comboboxOrigen.ComboBox.SelectedValue)
+                End If
+
+                ' Filtro por Destino
+                If CInt(comboboxDestino.ComboBox.SelectedValue) <> FIELD_VALUE_ALL_INTEGER Then
+                    mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) p.IDDestino.HasValue AndAlso p.IDDestino.Value = CInt(comboboxDestino.ComboBox.SelectedValue)).ToList
+                    mRecordSelectionFormula_Filter &= String.Format(" AND {{Pesada.IDDestino}} = {0}", comboboxDestino.ComboBox.SelectedValue)
                 End If
 
                 ' Filtro por Transportista
@@ -461,7 +471,7 @@
         FilterData()
     End Sub
 
-    Private Sub FiltrosBasicos_Click() Handles comboboxProducto.SelectedIndexChanged, comboboxPlanta.SelectedIndexChanged, comboboxCosecha.SelectedIndexChanged, comboboxOrigenDestino.SelectedIndexChanged, comboboxChofer.SelectedIndexChanged
+    Private Sub FiltrosBasicos_Click() Handles comboboxProducto.SelectedIndexChanged, comboboxPlanta.SelectedIndexChanged, comboboxCosecha.SelectedIndexChanged, comboboxOrigen.SelectedIndexChanged, comboboxChofer.SelectedIndexChanged
         FilterData()
     End Sub
 
@@ -487,7 +497,8 @@
         SaveSkipFilterData = mSkipFilterData
         mSkipFilterData = True
 
-        pFillAndRefreshLists.OrigenDestino(comboboxOrigenDestino.ComboBox, Nothing, True, CInt(comboboxTitular.ComboBox.SelectedValue), True, True, False)
+        pFillAndRefreshLists.OrigenDestino(comboboxOrigen.ComboBox, Nothing, True, CInt(comboboxTitular.ComboBox.SelectedValue), True, True, False)
+        pFillAndRefreshLists.OrigenDestino(comboboxDestino.ComboBox, Nothing, True, CInt(comboboxTitular.ComboBox.SelectedValue), True, True, False)
 
         mSkipFilterData = SaveSkipFilterData
 

@@ -83,8 +83,9 @@
         <AssociationConnector Association="CSPesajeModel.FK__Entidad__Cosecha_Producto_Tarifa" />
         <AssociationConnector Association="CSPesajeModel.FK__OrigenDestino__Cosecha_Producto_Tarifa" />
         <AssociationConnector Association="CSPesajeModel.FK__Reporte__Producto" />
-        <AssociationConnector Association="CSPesajeModel.FK__OrigenDestino__Pesada" />
         <AssociationConnector Association="CSPesajeModel.FK__Camion__Pesada" />
+        <AssociationConnector Association="CSPesajeModel.FK__OrigenDestino__Pesada__Destino" />
+        <AssociationConnector Association="CSPesajeModel.FK__OrigenDestino__Pesada__Origen" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

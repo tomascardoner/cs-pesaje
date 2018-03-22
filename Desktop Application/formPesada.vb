@@ -82,10 +82,14 @@
         comboboxTitular.Enabled = mEditMode
         textboxTitular.ReadOnly = Not mEditMode
         checkboxTitularTodos.Visible = mEditMode
-        checkboxOrigenDestinoOtro.Visible = mEditMode
-        comboboxOrigenDestino.Enabled = mEditMode
-        textboxOrigenDestino.ReadOnly = Not mEditMode
-        checkboxOrigenDestinoTodos.Visible = mEditMode
+        checkboxOrigenOtro.Visible = ((radiobuttonEntrada.Checked Or radiobuttonNinguno.Checked) And mEditMode)
+        comboboxOrigen.Visible = (radiobuttonEntrada.Checked Or radiobuttonNinguno.Checked) And Not checkboxOrigenOtro.Checked
+        textboxOrigenOtro.Visible = (radiobuttonEntrada.Checked Or radiobuttonNinguno.Checked) And checkboxOrigenOtro.Checked
+        checkboxOrigenTodos.Visible = (radiobuttonEntrada.Checked Or radiobuttonNinguno.Checked) And Not checkboxOrigenOtro.Checked
+        checkboxDestinoOtro.Visible = ((radiobuttonSalida.Checked Or radiobuttonNinguno.Checked) And mEditMode)
+        comboboxDestino.Visible = (radiobuttonSalida.Checked Or radiobuttonNinguno.Checked) And Not checkboxDestinoOtro.Checked
+        textboxDestinoOtro.Visible = (radiobuttonSalida.Checked Or radiobuttonNinguno.Checked) And checkboxDestinoOtro.Checked
+        checkboxDestinoTodos.Visible = (radiobuttonSalida.Checked Or radiobuttonNinguno.Checked) And Not checkboxDestinoOtro.Checked
 
         ' Transporte
         checkboxTransportistaOtro.Visible = mEditMode
@@ -139,7 +143,8 @@
 
         ProductoOtro()
         TitularOtro()
-        OrigenDestinoOtro()
+        OrigenOtro()
+        DestinoOtro()
         TransportistaOtro()
         ChoferOtro()
         CamionOtro()
@@ -161,7 +166,7 @@
 
         groupboxMermasAplica.Visible = Permisos.VerificarPermiso(Permisos.PESADA_MOSTRAR_MERMASAPLICA, False)
 
-        groupboxTarifasaPLICA.Visible = Permisos.VerificarPermiso(Permisos.PESADA_MOSTRAR_TARIFASASAPLICA, False)
+        groupboxTarifasAplica.Visible = Permisos.VerificarPermiso(Permisos.PESADA_MOSTRAR_TARIFASASAPLICA, False)
 
         buttonObtenerKilogramosBrutos.Visible = (pBalanzaConeccionHabilitada And mEditMode)
         buttonObtenerKilogramosTara.Visible = (pBalanzaConeccionHabilitada And mEditMode)
@@ -170,7 +175,8 @@
     Friend Sub SetAppearance()
         textboxProducto.Width = comboboxProducto.Width
         textboxTitular.Width = comboboxTitular.Width
-        textboxOrigenDestino.Width = comboboxOrigenDestino.Width
+        textboxOrigenOtro.Width = comboboxOrigen.Width
+        textboxDestinoOtro.Width = comboboxDestino.Width
         textboxTransportista.Width = comboboxTransportista.Width
         textboxChofer.Width = comboboxChofer.Width
     End Sub
@@ -199,7 +205,7 @@
             maskedtextboxComprobanteNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.ComprobanteNumero)
             maskedtextboxComprobanteNumeroTercero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.ComprobanteNumeroTercero)
 
-            ' Producto - Planta - Cosecha
+            ' Producto - Planta - Tipo - Cosecha
             If .IDProducto = CS_Constants.FIELD_VALUE_OTHER_BYTE Then
                 checkboxProductoOtro.Checked = True
                 textboxProducto.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Pesada_Otro.Producto_Nombre)
@@ -208,7 +214,8 @@
                 textboxProducto.Text = ""
             End If
             CS_Control_ComboBox.SetSelectedValue(comboboxPlanta, SelectedItemOptions.Value, .IDPlanta, CS_Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
-            Select .Tipo
+            TipoTodos()
+            Select Case .Tipo
                 Case Constantes.PESADA_TIPO_ENTRADA
                     radiobuttonEntrada.Checked = True
                     radiobuttonEntrada.Visible = True
@@ -221,7 +228,7 @@
             End Select
             CS_Control_ComboBox.SetSelectedValue(comboboxCosecha, SelectedItemOptions.Value, .IDCosecha, CS_Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
 
-            ' Titular - Origen/Destino
+            ' Titular - Origen - Destino
             If .Titular_IDEntidad = CS_Constants.FIELD_VALUE_OTHER_INTEGER Then
                 checkboxTitularOtro.Checked = True
                 textboxTitular.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Pesada_Otro.Titular_Nombre)
@@ -229,12 +236,19 @@
                 CS_Control_ComboBox.SetSelectedValue(comboboxTitular, SelectedItemOptions.Value, .Titular_IDEntidad)
                 textboxTitular.Text = ""
             End If
-            If .IDOrigenDestino = CS_Constants.FIELD_VALUE_OTHER_INTEGER Then
-                checkboxOrigenDestinoOtro.Checked = True
-                textboxOrigenDestino.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Pesada_Otro.OrigenDestino_Nombre)
+            If .IDOrigen = CS_Constants.FIELD_VALUE_OTHER_INTEGER Then
+                checkboxOrigenOtro.Checked = True
+                textboxOrigenOtro.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Pesada_Otro.Origen_Nombre)
             Else
-                CS_Control_ComboBox.SetSelectedValue(comboboxOrigenDestino, SelectedItemOptions.ValueOrFirst, .IDOrigenDestino)
-                textboxOrigenDestino.Text = ""
+                CS_Control_ComboBox.SetSelectedValue(comboboxOrigen, SelectedItemOptions.ValueOrFirst, .IDOrigen)
+                textboxOrigenOtro.Text = ""
+            End If
+            If .IDDestino = CS_Constants.FIELD_VALUE_OTHER_INTEGER Then
+                checkboxDestinoOtro.Checked = True
+                textboxDestinoOtro.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Pesada_Otro.Destino_Nombre)
+            Else
+                CS_Control_ComboBox.SetSelectedValue(comboboxDestino, SelectedItemOptions.ValueOrFirst, .IDDestino)
+                textboxDestinoOtro.Text = ""
             End If
 
             ' Transporte
@@ -327,7 +341,7 @@
     Friend Sub SetDataFromControlsToObject()
         With mPesadaActual
             ' Si hay algún item Otro especificado, me aseguro que exista el objeto correspondiente
-            If checkboxProductoOtro.Checked Or checkboxTitularOtro.Checked Or checkboxOrigenDestinoOtro.Checked Or checkboxTransportistaOtro.Checked Or checkboxChoferOtro.Checked Or checkboxCamionOtro.Checked Then
+            If checkboxProductoOtro.Checked Or checkboxTitularOtro.Checked Or checkboxOrigenOtro.Checked Or checkboxTransportistaOtro.Checked Or checkboxChoferOtro.Checked Or checkboxCamionOtro.Checked Then
                 If .Pesada_Otro Is Nothing Then
                     .Pesada_Otro = New Pesada_Otro
                 End If
@@ -359,7 +373,7 @@
             End If
             .IDCosecha = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxCosecha.SelectedValue)
 
-            ' Titular - Origen/Destino
+            ' Titular - Origen - Destino
             If checkboxTitularOtro.Checked Then
                 .Titular_IDEntidad = CS_Constants.FIELD_VALUE_OTHER_INTEGER
                 .Pesada_Otro.Titular_Nombre = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxTitular.Text)
@@ -369,13 +383,41 @@
                     .Pesada_Otro.Titular_Nombre = ""
                 End If
             End If
-            If checkboxOrigenDestinoOtro.Checked Then
-                .IDOrigenDestino = CS_Constants.FIELD_VALUE_OTHER_INTEGER
-                .Pesada_Otro.OrigenDestino_Nombre = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxOrigenDestino.Text)
+            If labelOrigen.Visible Then
+                If checkboxOrigenOtro.Checked Then
+                    .IDOrigen = CS_Constants.FIELD_VALUE_OTHER_INTEGER
+                    .Pesada_Otro.Origen_Nombre = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxOrigenOtro.Text)
+                Else
+                    .IDOrigen = CS_ValueTranslation.FromControlComboBoxToObjectInteger(comboboxOrigen.SelectedValue)
+                    If Not .Pesada_Otro Is Nothing Then
+                        .Pesada_Otro.Origen_Nombre = ""
+                    End If
+                End If
             Else
-                .IDOrigenDestino = CS_ValueTranslation.FromControlComboBoxToObjectInteger(comboboxOrigenDestino.SelectedValue)
-                If Not .Pesada_Otro Is Nothing Then
-                    .Pesada_Otro.OrigenDestino_Nombre = ""
+                .IDOrigen = Nothing
+                If checkboxOrigenOtro.Checked Then
+                    If Not .Pesada_Otro Is Nothing Then
+                        .Pesada_Otro.Origen_Nombre = ""
+                    End If
+                End If
+            End If
+
+            If labelDestino.Visible Then
+                If checkboxOrigenOtro.Checked Then
+                    .IDDestino = CS_Constants.FIELD_VALUE_OTHER_INTEGER
+                    .Pesada_Otro.Destino_Nombre = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxDestinoOtro.Text)
+                Else
+                    .IDDestino = CS_ValueTranslation.FromControlComboBoxToObjectInteger(comboboxDestino.SelectedValue)
+                    If Not .Pesada_Otro Is Nothing Then
+                        .Pesada_Otro.Destino_Nombre = ""
+                    End If
+                End If
+            Else
+                .IDDestino = Nothing
+                If checkboxDestinoOtro.Checked Then
+                    If Not .Pesada_Otro Is Nothing Then
+                        .Pesada_Otro.Destino_Nombre = ""
+                    End If
                 End If
             End If
 
@@ -473,7 +515,7 @@
             .EsActivo = checkboxEsActivo.Checked
 
             ' Otros
-            If Not (checkboxProductoOtro.Checked Or checkboxTitularOtro.Checked Or checkboxOrigenDestinoOtro.Checked Or checkboxTransportistaOtro.Checked Or checkboxChoferOtro.Checked Or checkboxCamionOtro.Checked) Then
+            If Not (checkboxProductoOtro.Checked Or checkboxTitularOtro.Checked Or checkboxOrigenOtro.Checked Or checkboxTransportistaOtro.Checked Or checkboxChoferOtro.Checked Or checkboxCamionOtro.Checked) Then
                 If Not .Pesada_Otro Is Nothing Then
                     mdbContext.Pesada_Otro.Remove(.Pesada_Otro)
                 End If
@@ -553,16 +595,19 @@
     End Sub
 
     Private Sub TipoCambio() Handles radiobuttonEntrada.CheckedChanged, radiobuttonSalida.CheckedChanged, radiobuttonNinguno.CheckedChanged
-        If radiobuttonEntrada.Checked Then
-            labelOrigenDestino.Text = "Origen:"
-        ElseIf radiobuttonSalida.Checked Then
-            labelOrigenDestino.Text = "Destino:"
-        ElseIf radiobuttonNinguno.Checked Then
-            labelOrigenDestino.Text = "Origen/Destino:"
-        Else
-            labelOrigenDestino.Text = "Origen/Destino:"
-        End If
+        Dim IDOrigenSave As Integer
+        Dim IDDestinoSave As Integer
+
+        IDOrigenSave = CInt(comboboxOrigen.SelectedValue)
+        IDDestinoSave = CInt(comboboxDestino.SelectedValue)
+
         TitularCargarLista()
+
+        OrigenOtro()
+        DestinoOtro()
+
+        CS_Control_ComboBox.SetSelectedValue(comboboxOrigen, SelectedItemOptions.ValueOrFirst, IDOrigenSave)
+        CS_Control_ComboBox.SetSelectedValue(comboboxDestino, SelectedItemOptions.ValueOrFirst, IDDestinoSave)
     End Sub
 
     Private Sub TipoTodos() Handles checkboxTipoTodos.CheckedChanged
@@ -595,8 +640,6 @@
                 radiobuttonEntrada.Checked = False
                 radiobuttonSalida.Checked = False
                 radiobuttonNinguno.Checked = False
-
-                TitularCargarLista()
             End If
         End If
 
@@ -636,9 +679,11 @@
 
     Private Sub TitularCambio() Handles comboboxTitular.SelectedValueChanged
         If Not comboboxTitular.SelectedItem Is Nothing Then
-            ' Origen / Destino
-            pFillAndRefreshLists.OrigenDestino(comboboxOrigenDestino, mPesadaActual.IDOrigenDestino, False, CInt(comboboxTitular.SelectedValue), False, False, True)
-            CS_Control_ComboBox.SetSelectedValue(comboboxOrigenDestino, SelectedItemOptions.First)
+            ' Origen - Destino
+            pFillAndRefreshLists.OrigenDestino(comboboxOrigen, mPesadaActual.IDOrigen, False, CInt(comboboxTitular.SelectedValue), False, False, True)
+            CS_Control_ComboBox.SetSelectedValue(comboboxOrigen, SelectedItemOptions.First)
+            pFillAndRefreshLists.OrigenDestino(comboboxDestino, mPesadaActual.IDDestino, False, CInt(comboboxTitular.SelectedValue), False, False, True)
+            CS_Control_ComboBox.SetSelectedValue(comboboxDestino, SelectedItemOptions.First)
         End If
     End Sub
 
@@ -647,20 +692,41 @@
         comboboxTitular.Focus()
     End Sub
 
-    Private Sub OrigenDestinoOtro() Handles checkboxOrigenDestinoOtro.CheckedChanged
-        comboboxOrigenDestino.Visible = Not checkboxOrigenDestinoOtro.Checked
-        textboxOrigenDestino.Visible = checkboxOrigenDestinoOtro.Checked
-        checkboxOrigenDestinoTodos.Visible = Not checkboxOrigenDestinoOtro.Checked
+    Private Sub OrigenOtro() Handles checkboxOrigenOtro.CheckedChanged
+        labelOrigen.Visible = (radiobuttonEntrada.Checked Or radiobuttonNinguno.Checked)
+        checkboxOrigenOtro.Visible = ((radiobuttonEntrada.Checked Or radiobuttonNinguno.Checked) And mEditMode)
+        comboboxOrigen.Visible = (radiobuttonEntrada.Checked Or radiobuttonNinguno.Checked) And Not checkboxOrigenOtro.Checked
+        textboxOrigenOtro.Visible = (radiobuttonEntrada.Checked Or radiobuttonNinguno.Checked) And checkboxOrigenOtro.Checked
+        checkboxOrigenTodos.Visible = (radiobuttonEntrada.Checked Or radiobuttonNinguno.Checked) And Not checkboxOrigenOtro.Checked
 
-        If checkboxOrigenDestinoOtro.Checked Then
-            textboxOrigenDestino.Focus()
+        If checkboxOrigenOtro.Checked Then
+            textboxOrigenOtro.Focus()
         Else
-            comboboxOrigenDestino.Focus()
+            comboboxOrigen.Focus()
         End If
     End Sub
 
-    Private Sub OrigenDestinoCambio() Handles comboboxOrigenDestino.SelectedValueChanged
-        If Not comboboxOrigenDestino.SelectedItem Is Nothing Then
+    Private Sub OrigenCambio() Handles comboboxOrigen.SelectedValueChanged
+        If Not comboboxOrigen.SelectedItem Is Nothing Then
+        End If
+    End Sub
+
+    Private Sub DestinoOtro() Handles checkboxDestinoOtro.CheckedChanged
+        labelDestino.Visible = (radiobuttonSalida.Checked Or radiobuttonNinguno.Checked)
+        checkboxDestinoOtro.Visible = ((radiobuttonSalida.Checked Or radiobuttonNinguno.Checked) And mEditMode)
+        comboboxDestino.Visible = (radiobuttonSalida.Checked Or radiobuttonNinguno.Checked) And Not checkboxDestinoOtro.Checked
+        textboxDestinoOtro.Visible = (radiobuttonSalida.Checked Or radiobuttonNinguno.Checked) And checkboxDestinoOtro.Checked
+        checkboxDestinoTodos.Visible = (radiobuttonSalida.Checked Or radiobuttonNinguno.Checked) And Not checkboxDestinoOtro.Checked
+
+        If checkboxDestinoOtro.Checked Then
+            textboxDestinoOtro.Focus()
+        Else
+            comboboxDestino.Focus()
+        End If
+    End Sub
+
+    Private Sub DestinoCambio() Handles comboboxDestino.SelectedValueChanged
+        If Not comboboxDestino.SelectedItem Is Nothing Then
         End If
     End Sub
 
@@ -679,8 +745,6 @@
                 maskedtextboxTransportistaCUIT.Text = ""
             End If
         End If
-
-        checkboxCamionOtro.Checked = checkboxTransportistaOtro.Checked
 
         If checkboxTransportistaOtro.Checked Then
             textboxTransportista.Focus()
@@ -803,7 +867,7 @@
         'End If
     End Sub
 
-    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxProducto.GotFocus, textboxTitular.GotFocus, textboxOrigenDestino.GotFocus, textboxTransportista.GotFocus, textboxChofer.GotFocus, textboxCamion_DominioChasis.GotFocus, textboxCamion_DominioAcoplado.GotFocus, textboxNotas.GotFocus
+    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxProducto.GotFocus, textboxTitular.GotFocus, textboxOrigenOtro.GotFocus, textboxTransportista.GotFocus, textboxChofer.GotFocus, textboxCamion_DominioChasis.GotFocus, textboxCamion_DominioAcoplado.GotFocus, textboxNotas.GotFocus
         CType(sender, TextBox).SelectAll()
     End Sub
 #End Region
@@ -1005,16 +1069,16 @@
         End If
 
         ' Origen/Destino
-        If checkboxOrigenDestinoOtro.Checked Then
-            If textboxOrigenDestino.Text.Trim.Length = 0 Then
-                MsgBox(String.Format("Debe especificar el {0}.", labelOrigenDestino.Text.Substring(0, labelOrigenDestino.Text.Length - 2)), MsgBoxStyle.Information, My.Application.Info.Title)
-                textboxOrigenDestino.Focus()
+        If checkboxOrigenOtro.Checked Then
+            If textboxOrigenOtro.Text.Trim.Length = 0 Then
+                MsgBox(String.Format("Debe especificar el {0}.", labelOrigen.Text.Substring(0, labelOrigen.Text.Length - 2)), MsgBoxStyle.Information, My.Application.Info.Title)
+                textboxOrigenOtro.Focus()
                 Exit Sub
             End If
         Else
-            If comboboxOrigenDestino.SelectedValue Is Nothing Then
-                MsgBox(String.Format("Debe especificar el {0}.", labelOrigenDestino.Text.Substring(0, labelOrigenDestino.Text.Length - 2)), MsgBoxStyle.Information, My.Application.Info.Title)
-                comboboxOrigenDestino.Focus()
+            If comboboxOrigen.SelectedValue Is Nothing Then
+                MsgBox(String.Format("Debe especificar el {0}.", labelOrigen.Text.Substring(0, labelOrigen.Text.Length - 2)), MsgBoxStyle.Information, My.Application.Info.Title)
+                comboboxOrigen.Focus()
                 Exit Sub
             End If
         End If
@@ -1108,7 +1172,7 @@
 
             Try
                 ' Calculo mermas si corresponde
-                Select mPesadaActual.Tipo
+                Select Case mPesadaActual.Tipo
                     Case PESADA_TIPO_ENTRADA, PESADA_TIPO_NINGUNA
                         If mPesadaActual.Pesada_Analisis Is Nothing Then
                             mPesadaActual.Pesada_Analisis = New Pesada_Analisis
