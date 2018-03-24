@@ -13,6 +13,7 @@
     Private mlistOrigenDestinoFiltradaYOrdenada As List(Of GridRowData)
 
     Private mSkipFilterData As Boolean = False
+    Private mBusquedaAplicada As Boolean = False
     Private mReportSelectionFormula As String
 
     Private mOrdenColumna As DataGridViewColumn
@@ -99,6 +100,11 @@
                 mReportSelectionFormula = ""
                 mlistOrigenDestinoFiltradaYOrdenada = mlistOrigenDestinoBase
 
+                ' Filtro por Búsqueda en Nombre
+                If mBusquedaAplicada Then
+                    mlistOrigenDestinoFiltradaYOrdenada = mlistOrigenDestinoFiltradaYOrdenada.Where(Function(p) p.Nombre.ToLower.Contains(textboxBuscar.Text.ToLower.Trim)).ToList
+                End If
+
                 ' Filtro por Activo
                 Select Case comboboxActivo.SelectedIndex
                     Case COMBOBOX_ALLYESNO_ALL_LISTINDEX        ' Todos
@@ -161,6 +167,45 @@
 #End Region
 
 #Region "Controls behavior"
+    Private Sub Me_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
+        If Not textboxBuscar.Focused Then
+            If Char.IsLetter(e.KeyChar) Then
+                For Each RowCurrent As DataGridViewRow In datagridviewMain.Rows
+                    If RowCurrent.Cells(columnNombre.Name).Value.ToString.StartsWith(e.KeyChar, StringComparison.CurrentCultureIgnoreCase) Then
+                        RowCurrent.Cells(columnNombre.Name).Selected = True
+                        datagridviewMain.Focus()
+                        Exit For
+                    End If
+                Next
+            End If
+        End If
+    End Sub
+
+    Private Sub textboxBuscar_GotFocus() Handles textboxBuscar.GotFocus
+        textboxBuscar.SelectAll()
+    End Sub
+
+    Private Sub textboxBuscar_KeyPress(sender As Object, e As KeyPressEventArgs) Handles textboxBuscar.KeyPress
+        If e.KeyChar = ChrW(Keys.Return) Then
+            If textboxBuscar.Text.Trim.Length < 3 Then
+                MsgBox("Se deben especificar al menos 3 letras para buscar.", MsgBoxStyle.Information, My.Application.Info.Title)
+                textboxBuscar.Focus()
+            Else
+                mBusquedaAplicada = True
+                FilterData()
+            End If
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub buttonBuscarBorrar_Click() Handles buttonBuscarBorrar.Click
+        If mBusquedaAplicada Then
+            textboxBuscar.Clear()
+            mBusquedaAplicada = False
+            FilterData()
+        End If
+    End Sub
+
     Private Sub EsActivoCambio() Handles comboboxActivo.SelectedIndexChanged
         FilterData()
     End Sub

@@ -59,8 +59,8 @@
         comboboxDomicilioProvincia.Enabled = mEditMode
         comboboxDomicilioLocalidad.Enabled = mEditMode
         textboxDomicilioCodigoPostal.ReadOnly = (mEditMode = False)
-        textboxUbicacionLatitud.ReadOnly = (mEditMode = False)
-        textboxUbicacionLongitud.ReadOnly = (mEditMode = False)
+        doubletextboxLatitud.ReadOnly = (mEditMode = False)
+        doubletextboxLongitud.ReadOnly = (mEditMode = False)
         textboxNotas.ReadOnly = (mEditMode = False)
         checkboxEsActivo.Enabled = mEditMode
     End Sub
@@ -96,6 +96,8 @@
             CS_Control_ComboBox.SetSelectedValue(comboboxDomicilioProvincia, SelectedItemOptions.Value, .IDProvincia, FIELD_VALUE_NOTSPECIFIED_BYTE)
             CS_Control_ComboBox.SetSelectedValue(comboboxDomicilioLocalidad, SelectedItemOptions.Value, .IDLocalidad, FIELD_VALUE_NOTSPECIFIED_SHORT)
             textboxDomicilioCodigoPostal.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.CodigoPostal)
+            doubletextboxLatitud.Text = CS_ValueTranslation.FromObjectDecimalToControlTextBox(.UbicacionLatitud)
+            doubletextboxLongitud.Text = CS_ValueTranslation.FromObjectDecimalToControlTextBox(.UbicacionLongitud)
 
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
@@ -128,6 +130,8 @@
             .IDProvincia = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxDomicilioProvincia.SelectedValue, FIELD_VALUE_NOTSPECIFIED_BYTE)
             .IDLocalidad = CS_ValueTranslation.FromControlComboBoxToObjectShort(comboboxDomicilioLocalidad.SelectedValue, FIELD_VALUE_NOTSPECIFIED_SHORT)
             .CodigoPostal = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxDomicilioCodigoPostal.Text)
+            .UbicacionLatitud = CS_ValueTranslation.FromControlTextBoxToObjectDecimal(doubletextboxLatitud.Text)
+            .UbicacionLongitud = CS_ValueTranslation.FromControlTextBoxToObjectDecimal(doubletextboxLongitud.Text)
         End With
     End Sub
 #End Region
@@ -137,7 +141,7 @@
         CType(sender, TextBox).SelectAll()
     End Sub
 
-    Private Sub DomicilioProvincia_SelectedValueChanged() Handles comboboxDomicilioProvincia.SelectedValueChanged
+    Private Sub DomicilioProvincia_SelectedValueChanged(sender As Object, e As EventArgs) Handles comboboxDomicilioProvincia.SelectedValueChanged
         If comboboxDomicilioProvincia.SelectedValue Is Nothing Then
             pFillAndRefreshLists.Localidad(comboboxDomicilioLocalidad, 0, True)
             comboboxDomicilioLocalidad.SelectedIndex = 0
@@ -149,12 +153,27 @@
         End If
     End Sub
 
-    Private Sub DomicilioLocalidad_SelectedValueChanged() Handles comboboxDomicilioLocalidad.SelectedValueChanged
+    Private Sub DomicilioLocalidad_SelectedValueChanged(sender As Object, e As EventArgs) Handles comboboxDomicilioLocalidad.SelectedValueChanged
         If Not comboboxDomicilioLocalidad.SelectedValue Is Nothing Then
             textboxDomicilioCodigoPostal.Text = CType(comboboxDomicilioLocalidad.SelectedItem, Localidad).CodigoPostal
         End If
     End Sub
 
+    Private Sub buttonAbrirEnGoogleMaps_Click(sender As Object, e As EventArgs) Handles buttonAbrirEnGoogleMaps.Click
+        Dim LinkString As String
+
+        If doubletextboxLatitud.Text <> "" And doubletextboxLongitud.Text <> "" Then
+            LinkString = CS_Parameter.GetString(Parametros.MAPS_GOOGLEMAPS_LOCATIONLINK)
+            LinkString = LinkString.Replace(Constantes.MAPAS_LINK_PARAMETRO_ZOOM, CS_Parameter.GetIntegerAsByte(Parametros.MAPS_GOOGLEMAPS_ZOOMDEFAULT).ToString)
+            LinkString = LinkString.Replace(Constantes.MAPAS_LINK_PARAMETRO_LATITUD, doubletextboxLatitud.DoubleValue.ToString.Replace(",", "."))
+            LinkString = LinkString.Replace(Constantes.MAPAS_LINK_PARAMETRO_LONGITUD, doubletextboxLongitud.DoubleValue.ToString.Replace(",", "."))
+
+            Process.Start(LinkString)
+        End If
+    End Sub
+
+    Private Sub buttonAbrirEnGoogleEarth_Click(sender As Object, e As EventArgs) Handles buttonAbrirEnGoogleEarth.Click
+    End Sub
 #End Region
 
 #Region "Main Toolbar"
@@ -183,7 +202,7 @@
                 If dbcMaxID.OrigenDestino.Where(Function(e) e.IDOrigenDestino <> CS_Constants.FIELD_VALUE_OTHER_INTEGER).Count = 0 Then
                     mOrigenDestinoActual.IDOrigenDestino = 1
                 Else
-                    mOrigenDestinoActual.IDOrigenDestino = CByte(dbcMaxID.OrigenDestino.Where(Function(e) e.IDOrigenDestino <> CS_Constants.FIELD_VALUE_OTHER_BYTE).Max(Function(ent) ent.IDOrigenDestino) + 1)
+                    mOrigenDestinoActual.IDOrigenDestino = CByte(dbcMaxID.OrigenDestino.Where(Function(e) e.IDOrigenDestino <> CS_Constants.FIELD_VALUE_OTHER_INTEGER).Max(Function(ent) ent.IDOrigenDestino) + 1)
                 End If
             End Using
         End If

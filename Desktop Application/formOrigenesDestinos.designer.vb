@@ -23,7 +23,7 @@ Partial Class formOrigenesDestinos
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.toolstripButtons = New System.Windows.Forms.ToolStrip()
         Me.buttonAgregar = New System.Windows.Forms.ToolStripButton()
         Me.buttonEditar = New System.Windows.Forms.ToolStripButton()
@@ -42,12 +42,17 @@ Partial Class formOrigenesDestinos
         Me.columnDomicilio = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnLocalidad = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnEsActivo = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.toolstripBuscar = New System.Windows.Forms.ToolStrip()
+        Me.labelBuscar = New System.Windows.Forms.ToolStripLabel()
+        Me.textboxBuscar = New System.Windows.Forms.ToolStripTextBox()
+        Me.buttonBuscarBorrar = New System.Windows.Forms.ToolStripButton()
         Me.toolstripButtons.SuspendLayout()
         Me.statusstripMain.SuspendLayout()
         CType(Me.bindingsourceMain, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panelToolbars.SuspendLayout()
         Me.toolstripActivo.SuspendLayout()
         CType(Me.datagridviewMain, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.toolstripBuscar.SuspendLayout()
         Me.SuspendLayout()
         '
         'toolstripButtons
@@ -124,6 +129,7 @@ Partial Class formOrigenesDestinos
         Me.panelToolbars.AutoSize = True
         Me.panelToolbars.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.panelToolbars.Controls.Add(Me.toolstripButtons)
+        Me.panelToolbars.Controls.Add(Me.toolstripBuscar)
         Me.panelToolbars.Controls.Add(Me.toolstripActivo)
         Me.panelToolbars.Dock = System.Windows.Forms.DockStyle.Top
         Me.panelToolbars.Location = New System.Drawing.Point(0, 0)
@@ -136,7 +142,7 @@ Partial Class formOrigenesDestinos
         Me.toolstripActivo.Dock = System.Windows.Forms.DockStyle.Fill
         Me.toolstripActivo.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolstripActivo.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelActivo, Me.comboboxActivo})
-        Me.toolstripActivo.Location = New System.Drawing.Point(348, 0)
+        Me.toolstripActivo.Location = New System.Drawing.Point(541, 0)
         Me.toolstripActivo.Name = "toolstripActivo"
         Me.toolstripActivo.Size = New System.Drawing.Size(124, 39)
         Me.toolstripActivo.TabIndex = 3
@@ -159,11 +165,11 @@ Partial Class formOrigenesDestinos
         Me.datagridviewMain.AllowUserToDeleteRows = False
         Me.datagridviewMain.AllowUserToOrderColumns = True
         Me.datagridviewMain.AllowUserToResizeRows = False
-        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.GradientActiveCaption
-        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.WindowText
-        Me.datagridviewMain.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.GradientActiveCaption
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText
+        Me.datagridviewMain.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.datagridviewMain.AutoGenerateColumns = False
         Me.datagridviewMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.datagridviewMain.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnNombre, Me.columnDomicilio, Me.columnLocalidad, Me.columnEsActivo})
@@ -218,6 +224,37 @@ Partial Class formOrigenesDestinos
         Me.columnEsActivo.ReadOnly = True
         Me.columnEsActivo.Width = 43
         '
+        'toolstripBuscar
+        '
+        Me.toolstripBuscar.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.toolstripBuscar.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.toolstripBuscar.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelBuscar, Me.textboxBuscar, Me.buttonBuscarBorrar})
+        Me.toolstripBuscar.Location = New System.Drawing.Point(348, 0)
+        Me.toolstripBuscar.Name = "toolstripBuscar"
+        Me.toolstripBuscar.Size = New System.Drawing.Size(193, 39)
+        Me.toolstripBuscar.TabIndex = 4
+        '
+        'labelBuscar
+        '
+        Me.labelBuscar.Name = "labelBuscar"
+        Me.labelBuscar.Size = New System.Drawing.Size(45, 36)
+        Me.labelBuscar.Text = "Buscar:"
+        '
+        'textboxBuscar
+        '
+        Me.textboxBuscar.MaxLength = 100
+        Me.textboxBuscar.Name = "textboxBuscar"
+        Me.textboxBuscar.Size = New System.Drawing.Size(120, 39)
+        '
+        'buttonBuscarBorrar
+        '
+        Me.buttonBuscarBorrar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.buttonBuscarBorrar.Image = Global.CSPesaje.DesktopApplication.My.Resources.Resources.IMAGE_CLOSE_16
+        Me.buttonBuscarBorrar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonBuscarBorrar.Name = "buttonBuscarBorrar"
+        Me.buttonBuscarBorrar.Size = New System.Drawing.Size(23, 36)
+        Me.buttonBuscarBorrar.ToolTipText = "Limpiar búsqueda"
+        '
         'formOrigenesDestinos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -240,6 +277,8 @@ Partial Class formOrigenesDestinos
         Me.toolstripActivo.ResumeLayout(False)
         Me.toolstripActivo.PerformLayout()
         CType(Me.datagridviewMain, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.toolstripBuscar.ResumeLayout(False)
+        Me.toolstripBuscar.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -262,4 +301,8 @@ Partial Class formOrigenesDestinos
     Friend WithEvents columnDomicilio As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents columnLocalidad As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents columnEsActivo As System.Windows.Forms.DataGridViewCheckBoxColumn
+    Friend WithEvents toolstripBuscar As System.Windows.Forms.ToolStrip
+    Friend WithEvents labelBuscar As System.Windows.Forms.ToolStripLabel
+    Friend WithEvents textboxBuscar As System.Windows.Forms.ToolStripTextBox
+    Friend WithEvents buttonBuscarBorrar As System.Windows.Forms.ToolStripButton
 End Class

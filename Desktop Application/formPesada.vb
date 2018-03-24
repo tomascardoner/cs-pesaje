@@ -403,7 +403,7 @@
             End If
 
             If labelDestino.Visible Then
-                If checkboxOrigenOtro.Checked Then
+                If checkboxDestinoOtro.Checked Then
                     .IDDestino = CS_Constants.FIELD_VALUE_OTHER_INTEGER
                     .Pesada_Otro.Destino_Nombre = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxDestinoOtro.Text)
                 Else

@@ -154,7 +154,7 @@
 #End Region
 
 #Region "Controls behavior"
-    Private Sub formEntidads_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
+    Private Sub Me_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
         If Not textboxBuscar.Focused Then
             If Char.IsLetter(e.KeyChar) Then
                 For Each RowCurrent As DataGridViewRow In datagridviewMain.Rows
@@ -209,7 +209,7 @@
         End If
     End Sub
 
-    Private Sub comboboxActivo_SelectedIndexChanged() Handles comboboxActivo.SelectedIndexChanged
+    Private Sub EsActivoCambio() Handles comboboxActivo.SelectedIndexChanged
         FilterData()
     End Sub
 

@@ -1749,8 +1749,8 @@
           <Property Name="IDProvincia" Type="Byte" />
           <Property Name="IDLocalidad" Type="Int16" />
           <Property Name="CodigoPostal" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
-          <Property Name="UbicacionLatitud" Type="Decimal" Precision="10" Scale="6" />
-          <Property Name="UbicacionLongitud" Type="Decimal" Precision="10" Scale="6" />
+          <Property Name="UbicacionLatitud" Type="Decimal" Precision="8" Scale="6" />
+          <Property Name="UbicacionLongitud" Type="Decimal" Precision="9" Scale="6" />
           <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
