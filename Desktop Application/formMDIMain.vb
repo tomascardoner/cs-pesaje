@@ -137,6 +137,21 @@
         End If
     End Sub
 
+    Private Sub OrigenesDestinos() Handles menuitemTablas_OrigenesDestinos.Click
+        If Permisos.VerificarPermiso(Permisos.ORIGENDESTINO) Then
+            Me.Cursor = Cursors.WaitCursor
+
+            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formOrigenesDestinos, Form))
+            formOrigenesDestinos.Show()
+            If formOrigenesDestinos.WindowState = FormWindowState.Minimized Then
+                formOrigenesDestinos.WindowState = FormWindowState.Normal
+            End If
+            formOrigenesDestinos.Focus()
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
     Private Sub UsuarioGrupoPermisos() Handles menuitemTablas_Permisos.Click
         If Permisos.VerificarPermiso(Permisos.USUARIOGRUPO) Then
             Me.Cursor = Cursors.WaitCursor

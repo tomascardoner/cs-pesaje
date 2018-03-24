@@ -109,10 +109,6 @@
     Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxIDCamion.GotFocus, textboxNombre.GotFocus
         CType(sender, TextBox).SelectAll()
     End Sub
-
-    Private Sub MaskedTextBoxs_GotFocus(sender As Object, e As EventArgs)
-        CType(sender, MaskedTextBox).SelectAll()
-    End Sub
 #End Region
 
 #Region "Main Toolbar"

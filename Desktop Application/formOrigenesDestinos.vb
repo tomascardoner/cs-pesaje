@@ -1,18 +1,16 @@
-﻿Public Class formCamiones
+﻿Public Class formOrigenesDestinos
 
 #Region "Declarations"
     Friend Class GridRowData
-        Public Property IDEntidad As Integer
-        Public Property TransportistaNombre As String
-        Public Property IDCamion As Byte
+        Public Property IDOrigenDestino As Integer
         Public Property Nombre As String
-        Public Property DominioChasis As String
-        Public Property DominioAcoplado As String
+        Public Property Domicilio As String
+        Public Property LocalidadNombre As String
         Public Property EsActivo As Boolean
     End Class
 
-    Private mlistCamionBase As List(Of GridRowData)
-    Private mlistCamionFiltradaYOrdenada As List(Of GridRowData)
+    Private mlistOrigenDestinoBase As List(Of GridRowData)
+    Private mlistOrigenDestinoFiltradaYOrdenada As List(Of GridRowData)
 
     Private mSkipFilterData As Boolean = False
     Private mReportSelectionFormula As String
@@ -32,39 +30,38 @@
 
         mSkipFilterData = True
 
-        pFillAndRefreshLists.Entidad(comboboxTransportista.ComboBox, Nothing, False, False, True, False, 0, False, True, False, False)
-
         comboboxActivo.Items.AddRange({My.Resources.STRING_ITEM_ALL_MALE, My.Resources.STRING_YES, My.Resources.STRING_NO})
         comboboxActivo.SelectedIndex = COMBOBOX_ALLYESNO_YES_LISTINDEX
 
         mSkipFilterData = False
 
-        mOrdenColumna = columnTransportista
+        mOrdenColumna = columnNombre
         mOrdenTipo = SortOrder.Ascending
 
         RefreshData()
     End Sub
 
     Private Sub Me_FormClosed() Handles Me.FormClosed
-        mlistCamionBase = Nothing
-        mlistCamionFiltradaYOrdenada = Nothing
+        mlistOrigenDestinoBase = Nothing
+        mlistOrigenDestinoFiltradaYOrdenada = Nothing
     End Sub
 #End Region
 
 #Region "Load and Set Data"
-    Friend Sub RefreshData(Optional ByVal PositionIDCamion As Integer = 0, Optional ByVal RestoreCurrentPosition As Boolean = False)
+    Friend Sub RefreshData(Optional ByVal PositionIDOrigenDestino As Integer = 0, Optional ByVal RestoreCurrentPosition As Boolean = False)
         Me.Cursor = Cursors.WaitCursor
 
         Try
             Using dbContext As New CSPesajeContext(True)
-                mlistCamionBase = (From c In dbContext.Camion
-                                   Join e In dbContext.Entidad On c.IDEntidad Equals e.IDEntidad
-                                   Where c.IDCamion <> CS_Constants.FIELD_VALUE_OTHER_BYTE
-                                   Select New GridRowData With {.IDEntidad = c.IDEntidad, .TransportistaNombre = e.Nombre, .IDCamion = c.IDCamion, .Nombre = c.Nombre, .DominioChasis = c.DominioChasis, .DominioAcoplado = c.DominioAcoplado, .EsActivo = c.EsActivo}).ToList
+                mlistOrigenDestinoBase = (From od In dbContext.OrigenDestino
+                                          Group Join l In dbContext.Localidad On od.IDProvincia Equals l.IDProvincia And od.IDLocalidad Equals l.IDLocalidad Into Localidad_Group = Group
+                                          From lg In Localidad_Group.DefaultIfEmpty
+                                          Where od.IDOrigenDestino <> CS_Constants.FIELD_VALUE_OTHER_INTEGER
+                                          Select New GridRowData With {.IDOrigenDestino = od.IDOrigenDestino, .Nombre = od.Nombre, .Domicilio = od.Domicilio, .LocalidadNombre = If(od.IDProvincia Is Nothing, "", lg.Nombre), .EsActivo = od.EsActivo}).ToList
             End Using
 
         Catch ex As Exception
-            CS_Error.ProcessError(ex, "Error al leer los Camiones.")
+            CS_Error.ProcessError(ex, "Error al leer los Orígenes-Destinos.")
             Me.Cursor = Cursors.Default
             Exit Sub
         End Try
@@ -73,17 +70,17 @@
 
         If RestoreCurrentPosition Then
             If datagridviewMain.CurrentRow Is Nothing Then
-                PositionIDCamion = 0
+                PositionIDOrigenDestino = 0
             Else
-                PositionIDCamion = CType(datagridviewMain.CurrentRow.DataBoundItem, Camion).IDCamion
+                PositionIDOrigenDestino = CType(datagridviewMain.CurrentRow.DataBoundItem, OrigenDestino).IDOrigenDestino
             End If
         End If
 
         FilterData()
 
-        If PositionIDCamion <> 0 Then
+        If PositionIDOrigenDestino <> 0 Then
             For Each CurrentRowChecked As DataGridViewRow In datagridviewMain.Rows
-                If CType(CurrentRowChecked.DataBoundItem, GridRowData).IDCamion = PositionIDCamion Then
+                If CType(CurrentRowChecked.DataBoundItem, GridRowData).IDOrigenDestino = PositionIDOrigenDestino Then
                     datagridviewMain.CurrentCell = CurrentRowChecked.Cells(columnNombre.Name)
                     Exit For
                 End If
@@ -100,31 +97,26 @@
             Try
                 ' Inicializo las variables
                 mReportSelectionFormula = ""
-                mlistCamionFiltradaYOrdenada = mlistCamionBase
-
-                ' Filtro por Transportista
-                If CInt(comboboxTransportista.ComboBox.SelectedValue) <> FIELD_VALUE_ALL_INTEGER Then
-                    mlistCamionFiltradaYOrdenada = mlistCamionFiltradaYOrdenada.Where(Function(cam) cam.IDEntidad = CInt(comboboxTransportista.ComboBox.SelectedValue)).ToList
-                End If
+                mlistOrigenDestinoFiltradaYOrdenada = mlistOrigenDestinoBase
 
                 ' Filtro por Activo
                 Select Case comboboxActivo.SelectedIndex
                     Case COMBOBOX_ALLYESNO_ALL_LISTINDEX        ' Todos
                     Case COMBOBOX_ALLYESNO_YES_LISTINDEX        ' Sí
-                        mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, "", " AND ").ToString & "{Camion.EsActivo} = 1"
-                        mlistCamionFiltradaYOrdenada = mlistCamionFiltradaYOrdenada.Where(Function(a) a.EsActivo).ToList
+                        mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, "", " AND ").ToString & "{OrigenDestino.EsActivo} = 1"
+                        mlistOrigenDestinoFiltradaYOrdenada = mlistOrigenDestinoFiltradaYOrdenada.Where(Function(a) a.EsActivo).ToList
                     Case COMBOBOX_ALLYESNO_NO_LISTINDEX         ' No
-                        mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, "", " AND ").ToString & "{Camion.EsActivo} = 0"
-                        mlistCamionFiltradaYOrdenada = mlistCamionFiltradaYOrdenada.Where(Function(a) Not a.EsActivo).ToList
+                        mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, "", " AND ").ToString & "{OrigenDestino.EsActivo} = 0"
+                        mlistOrigenDestinoFiltradaYOrdenada = mlistOrigenDestinoFiltradaYOrdenada.Where(Function(a) Not a.EsActivo).ToList
                 End Select
 
-                Select Case mlistCamionFiltradaYOrdenada.Count
+                Select Case mlistOrigenDestinoFiltradaYOrdenada.Count
                     Case 0
-                        statuslabelMain.Text = String.Format("No hay Camiones para mostrar.")
+                        statuslabelMain.Text = String.Format("No hay Orígenes-Destinos para mostrar.")
                     Case 1
-                        statuslabelMain.Text = String.Format("Se muestra 1 Camión.")
+                        statuslabelMain.Text = String.Format("Se muestra 1 Origen-Destino.")
                     Case Else
-                        statuslabelMain.Text = String.Format("Se muestran {0} Camiones.", mlistCamionFiltradaYOrdenada.Count)
+                        statuslabelMain.Text = String.Format("Se muestran {0} Orígenes-Destinos.", mlistOrigenDestinoFiltradaYOrdenada.Count)
                 End Select
 
             Catch ex As Exception
@@ -142,32 +134,26 @@
     Private Sub OrderData()
         ' Realizo las rutinas de ordenamiento
         Select Case mOrdenColumna.Name
-            Case columnTransportista.Name
-                If mOrdenTipo = SortOrder.Ascending Then
-                    mlistCamionFiltradaYOrdenada = mlistCamionFiltradaYOrdenada.OrderBy(Function(col) col.TransportistaNombre).ThenBy(Function(col) col.Nombre).ToList
-                Else
-                    mlistCamionFiltradaYOrdenada = mlistCamionFiltradaYOrdenada.OrderByDescending(Function(col) col.TransportistaNombre).ThenByDescending(Function(col) col.Nombre).ToList
-                End If
             Case columnNombre.Name
                 If mOrdenTipo = SortOrder.Ascending Then
-                    mlistCamionFiltradaYOrdenada = mlistCamionFiltradaYOrdenada.OrderBy(Function(col) col.Nombre).ToList
+                    mlistOrigenDestinoFiltradaYOrdenada = mlistOrigenDestinoFiltradaYOrdenada.OrderBy(Function(col) col.Nombre).ToList
                 Else
-                    mlistCamionFiltradaYOrdenada = mlistCamionFiltradaYOrdenada.OrderByDescending(Function(col) col.Nombre).ToList
+                    mlistOrigenDestinoFiltradaYOrdenada = mlistOrigenDestinoFiltradaYOrdenada.OrderByDescending(Function(col) col.Nombre).ToList
                 End If
-            Case columnDominioChasis.Name
+            Case columnDomicilio.Name
                 If mOrdenTipo = SortOrder.Ascending Then
-                    mlistCamionFiltradaYOrdenada = mlistCamionFiltradaYOrdenada.OrderBy(Function(col) col.DominioChasis).ToList
+                    mlistOrigenDestinoFiltradaYOrdenada = mlistOrigenDestinoFiltradaYOrdenada.OrderBy(Function(col) col.Domicilio).ThenBy(Function(col) col.Nombre).ToList
                 Else
-                    mlistCamionFiltradaYOrdenada = mlistCamionFiltradaYOrdenada.OrderByDescending(Function(col) col.DominioChasis).ToList
+                    mlistOrigenDestinoFiltradaYOrdenada = mlistOrigenDestinoFiltradaYOrdenada.OrderByDescending(Function(col) col.Domicilio).ThenByDescending(Function(col) col.Nombre).ToList
                 End If
-            Case columnDominioAcoplado.Name
+            Case columnLocalidad.Name
                 If mOrdenTipo = SortOrder.Ascending Then
-                    mlistCamionFiltradaYOrdenada = mlistCamionFiltradaYOrdenada.OrderBy(Function(col) col.DominioAcoplado).ToList
+                    mlistOrigenDestinoFiltradaYOrdenada = mlistOrigenDestinoFiltradaYOrdenada.OrderBy(Function(col) col.LocalidadNombre).ThenBy(Function(col) col.Nombre).ToList
                 Else
-                    mlistCamionFiltradaYOrdenada = mlistCamionFiltradaYOrdenada.OrderByDescending(Function(col) col.DominioAcoplado).ToList
+                    mlistOrigenDestinoFiltradaYOrdenada = mlistOrigenDestinoFiltradaYOrdenada.OrderByDescending(Function(col) col.LocalidadNombre).ThenByDescending(Function(col) col.Nombre).ToList
                 End If
         End Select
-        bindingsourceMain.DataSource = mlistCamionFiltradaYOrdenada
+        bindingsourceMain.DataSource = mlistOrigenDestinoFiltradaYOrdenada
 
         ' Muestro el ícono de orden en la columna correspondiente
         mOrdenColumna.HeaderCell.SortGlyphDirection = mOrdenTipo
@@ -175,10 +161,6 @@
 #End Region
 
 #Region "Controls behavior"
-    Private Sub TransportistaCambio() Handles comboboxTransportista.SelectedIndexChanged
-        FilterData()
-    End Sub
-
     Private Sub EsActivoCambio() Handles comboboxActivo.SelectedIndexChanged
         FilterData()
     End Sub
@@ -188,7 +170,7 @@
 
         ClickedColumn = CType(datagridviewMain.Columns(e.ColumnIndex), DataGridViewColumn)
 
-        If ClickedColumn.Name = columnTransportista.Name Or ClickedColumn.Name = columnNombre.Name Or ClickedColumn.Name = columnDominioChasis.Name Or ClickedColumn.Name = columnDominioAcoplado.Name Then
+        If ClickedColumn.Name = columnNombre.Name Or ClickedColumn.Name = columnDomicilio.Name Or ClickedColumn.Name = columnLocalidad.Name Then
             If ClickedColumn Is mOrdenColumna Then
                 ' La columna clickeada es la misma por la que ya estaba ordenado, así que cambio la dirección del orden
                 If mOrdenTipo = SortOrder.Ascending Then
@@ -216,17 +198,12 @@
 
 #Region "Main Toolbar"
     Private Sub Agregar_Click() Handles buttonAgregar.Click
-        If Permisos.VerificarPermiso(Permisos.CAMION_AGREGAR) Then
+        If Permisos.VerificarPermiso(Permisos.ORIGENDESTINO_AGREGAR) Then
             Me.Cursor = Cursors.WaitCursor
 
             datagridviewMain.Enabled = False
 
-            Dim IDEntidadFiltro As Integer
-            IDEntidadFiltro = CInt(comboboxTransportista.ComboBox.SelectedValue)
-            If IDEntidadFiltro = CS_Constants.FIELD_VALUE_OTHER_INTEGER Then
-                IDEntidadFiltro = 0
-            End If
-            formCamion.LoadAndShow(True, Me, IDEntidadFiltro, 0)
+            formOrigenDestino.LoadAndShow(True, Me, 0)
 
             datagridviewMain.Enabled = True
 
@@ -236,16 +213,16 @@
 
     Private Sub Editar_Click() Handles buttonEditar.Click
         If datagridviewMain.CurrentRow Is Nothing Then
-            MsgBox("No hay ningún Camión para editar.", vbInformation, My.Application.Info.Title)
+            MsgBox("No hay ningún Origen-Destino para editar.", vbInformation, My.Application.Info.Title)
         Else
-            If Permisos.VerificarPermiso(Permisos.CAMION_EDITAR) Then
+            If Permisos.VerificarPermiso(Permisos.ORIGENDESTINO_EDITAR) Then
                 Me.Cursor = Cursors.WaitCursor
 
                 datagridviewMain.Enabled = False
 
                 Dim GridRowDataActual As GridRowData
                 GridRowDataActual = CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData)
-                formCamion.LoadAndShow(True, Me, GridRowDataActual.IDEntidad, GridRowDataActual.IDCamion)
+                formOrigenDestino.LoadAndShow(True, Me, GridRowDataActual.IDOrigenDestino)
                 GridRowDataActual = Nothing
 
                 datagridviewMain.Enabled = True
@@ -257,24 +234,24 @@
 
     Private Sub Eliminar_Click() Handles buttonEliminar.Click
         If datagridviewMain.CurrentRow Is Nothing Then
-            MsgBox("No hay ningún Camión para eliminar.", vbInformation, My.Application.Info.Title)
+            MsgBox("No hay ningún Origen-Destino para eliminar.", vbInformation, My.Application.Info.Title)
         Else
-            If Permisos.VerificarPermiso(Permisos.CAMION_ELIMINAR) Then
+            If Permisos.VerificarPermiso(Permisos.OrigenDestino_ELIMINAR) Then
                 Dim GridRowDataActual As GridRowData
                 GridRowDataActual = CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData)
 
                 Dim Mensaje As String
-                Mensaje = String.Format("Se eliminará el Camión seleccionado.{0}{0}Transportista: {1}{0}Camión: {2}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, GridRowDataActual.TransportistaNombre, GridRowDataActual.Nombre)
+                Mensaje = String.Format("Se eliminará el Origen-Destino seleccionado.{0}{0}Nombre: {1}{0}Domicilio: {2}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, GridRowDataActual.Nombre, GridRowDataActual.Domicilio)
                 If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
                     Me.Cursor = Cursors.WaitCursor
 
                     Try
                         Using dbContext = New CSPesajeContext(True)
-                            Dim CamionActual As Camion
-                            CamionActual = dbContext.Camion.Find(GridRowDataActual.IDEntidad, GridRowDataActual.IDCamion)
+                            Dim OrigenDestinoActual As OrigenDestino
+                            OrigenDestinoActual = dbContext.OrigenDestino.Find(GridRowDataActual.IDOrigenDestino)
 
-                            dbContext.Camion.Attach(CamionActual)
-                            dbContext.Camion.Remove(CamionActual)
+                            dbContext.OrigenDestino.Attach(OrigenDestinoActual)
+                            dbContext.OrigenDestino.Remove(OrigenDestinoActual)
                             dbContext.SaveChanges()
                         End Using
 
@@ -282,12 +259,12 @@
                         Me.Cursor = Cursors.Default
                         Select Case CS_Database_EF_SQL.TryDecodeDbUpdateException(dbuex)
                             Case Errors.RelatedEntity
-                                MsgBox("No se puede eliminar el Camión porque tiene datos relacionados.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                                MsgBox("No se puede eliminar el Origen-Destino porque tiene datos relacionados.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                         End Select
                         Exit Sub
 
                     Catch ex As Exception
-                        CS_Error.ProcessError(ex, "Error al eliminar el Camión.")
+                        CS_Error.ProcessError(ex, "Error al eliminar el Origen-Destino.")
                     End Try
 
                     RefreshData()
@@ -302,7 +279,7 @@
 
     Private Sub Ver() Handles datagridviewMain.DoubleClick
         If datagridviewMain.CurrentRow Is Nothing Then
-            MsgBox("No hay ningún Camión para ver.", vbInformation, My.Application.Info.Title)
+            MsgBox("No hay ningún Origen-Destino para ver.", vbInformation, My.Application.Info.Title)
         Else
             Me.Cursor = Cursors.WaitCursor
 
@@ -310,7 +287,7 @@
 
             Dim GridRowDataActual As GridRowData
             GridRowDataActual = CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData)
-            formCamion.LoadAndShow(False, Me, GridRowDataActual.IDEntidad, GridRowDataActual.IDCamion)
+            formOrigenDestino.LoadAndShow(False, Me, GridRowDataActual.IDOrigenDestino)
             GridRowDataActual = Nothing
 
             datagridviewMain.Enabled = True
@@ -321,9 +298,9 @@
 
     Private Sub Imprimir_Listado() Handles menuitemImprimirListado.Click
         If datagridviewMain.CurrentRow Is Nothing Then
-            MsgBox("No hay ningún Camión para imprimir el Listado.", vbInformation, My.Application.Info.Title)
+            MsgBox("No hay ningún Origen-Destino para imprimir el Listado.", vbInformation, My.Application.Info.Title)
         Else
-            If Permisos.VerificarPermiso(Permisos.CAMION_IMPRIMIR) Then
+            If Permisos.VerificarPermiso(Permisos.OrigenDestino_IMPRIMIR) Then
                 Me.Cursor = Cursors.WaitCursor
 
                 datagridviewMain.Enabled = False
@@ -333,7 +310,7 @@
                     If ReporteActual.SetDatabaseConnection(pDatabase.DataSource, pDatabase.InitialCatalog, pDatabase.UserID, pDatabase.Password) Then
                         ReporteActual.RecordSelectionFormula = mReportSelectionFormula
 
-                        MiscFunctions.PreviewCrystalReport(ReporteActual, "Listado de Camiones")
+                        MiscFunctions.PreviewCrystalReport(ReporteActual, "Listado de Orígenes-Destinos")
                     End If
                 End If
 

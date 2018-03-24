@@ -16,6 +16,12 @@
     Friend Const CAMION_ELIMINAR As String = "CAMION_ELIMINAR"
     Friend Const CAMION_IMPRIMIR As String = "CAMION_IMPRIMIR"
 
+    Friend Const ORIGENDESTINO As String = "ORIGENDESTINO"
+    Friend Const ORIGENDESTINO_AGREGAR As String = "ORIGENDESTINO_AGREGAR"
+    Friend Const ORIGENDESTINO_EDITAR As String = "ORIGENDESTINO_EDITAR"
+    Friend Const ORIGENDESTINO_ELIMINAR As String = "ORIGENDESTINO_ELIMINAR"
+    Friend Const ORIGENDESTINO_IMPRIMIR As String = "ORIGENDESTINO_IMPRIMIR"
+
     Friend Const PESADA As String = "PESADA"
     Friend Const PESADA_AGREGAR As String = "PESADA_AGREGAR"
     Friend Const PESADA_AGREGAR_HORA_ANTERIOR As String = "PESADA_AGREGAR_HORA_ANTERIOR"
@@ -73,6 +79,22 @@
             .Nodes.Add(ENTIDAD_EDITAR, DESCRIPCION_EDITAR)
             .Nodes.Add(ENTIDAD_ELIMINAR, DESCRIPCION_ELIMINAR)
             .Nodes.Add(ENTIDAD_IMPRIMIR, DESCRIPCION_IMPRIMIR)
+        End With
+
+        RootNode = Arbol.Nodes.Add(CAMION, "Camiones")
+        With RootNode
+            .Nodes.Add(CAMION_AGREGAR, DESCRIPCION_AGREGAR)
+            .Nodes.Add(CAMION_EDITAR, DESCRIPCION_EDITAR)
+            .Nodes.Add(CAMION_ELIMINAR, DESCRIPCION_ELIMINAR)
+            .Nodes.Add(CAMION_IMPRIMIR, DESCRIPCION_IMPRIMIR)
+        End With
+
+        RootNode = Arbol.Nodes.Add(ORIGENDESTINO, "Orígenes-Destinos")
+        With RootNode
+            .Nodes.Add(ORIGENDESTINO_AGREGAR, DESCRIPCION_AGREGAR)
+            .Nodes.Add(ORIGENDESTINO_EDITAR, DESCRIPCION_EDITAR)
+            .Nodes.Add(ORIGENDESTINO_ELIMINAR, DESCRIPCION_ELIMINAR)
+            .Nodes.Add(ORIGENDESTINO_IMPRIMIR, DESCRIPCION_IMPRIMIR)
         End With
 
         RootNode = Arbol.Nodes.Add(PESADA, "Pesadas")

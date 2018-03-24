@@ -197,6 +197,18 @@
     <Compile Include="formCamiones.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="formOrigenDestino.designer.vb">
+      <DependentUpon>formOrigenDestino.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formOrigenDestino.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formOrigenesDestinos.designer.vb">
+      <DependentUpon>formOrigenesDestinos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formOrigenesDestinos.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="formPesada.Designer.vb">
       <DependentUpon>formPesada.vb</DependentUpon>
     </Compile>
@@ -374,6 +386,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="formCamiones.resx">
       <DependentUpon>formCamiones.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formOrigenDestino.resx">
+      <DependentUpon>formOrigenDestino.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formOrigenesDestinos.resx">
+      <DependentUpon>formOrigenesDestinos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formPesada.resx">
       <DependentUpon>formPesada.vb</DependentUpon>
