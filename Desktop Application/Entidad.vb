@@ -20,6 +20,7 @@ Partial Public Class Entidad
     Public Property Transportista_IDEntidad As Nullable(Of Integer)
     Public Property IDCamion As Nullable(Of Byte)
     Public Property UsoFrecuente As Boolean
+    Public Property Notas As String
     Public Property EsActivo As Boolean
     Public Property IDUsuarioCreacion As Short
     Public Property FechaHoraCreacion As Date

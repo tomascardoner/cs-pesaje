@@ -34,6 +34,10 @@ Partial Class formOrigenesDestinos
         Me.statuslabelMain = New System.Windows.Forms.ToolStripStatusLabel()
         Me.bindingsourceMain = New System.Windows.Forms.BindingSource(Me.components)
         Me.panelToolbars = New System.Windows.Forms.FlowLayoutPanel()
+        Me.toolstripBuscar = New System.Windows.Forms.ToolStrip()
+        Me.labelBuscar = New System.Windows.Forms.ToolStripLabel()
+        Me.textboxBuscar = New System.Windows.Forms.ToolStripTextBox()
+        Me.buttonBuscarBorrar = New System.Windows.Forms.ToolStripButton()
         Me.toolstripActivo = New System.Windows.Forms.ToolStrip()
         Me.labelActivo = New System.Windows.Forms.ToolStripLabel()
         Me.comboboxActivo = New System.Windows.Forms.ToolStripComboBox()
@@ -42,17 +46,13 @@ Partial Class formOrigenesDestinos
         Me.columnDomicilio = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnLocalidad = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnEsActivo = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.toolstripBuscar = New System.Windows.Forms.ToolStrip()
-        Me.labelBuscar = New System.Windows.Forms.ToolStripLabel()
-        Me.textboxBuscar = New System.Windows.Forms.ToolStripTextBox()
-        Me.buttonBuscarBorrar = New System.Windows.Forms.ToolStripButton()
         Me.toolstripButtons.SuspendLayout()
         Me.statusstripMain.SuspendLayout()
         CType(Me.bindingsourceMain, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panelToolbars.SuspendLayout()
+        Me.toolstripBuscar.SuspendLayout()
         Me.toolstripActivo.SuspendLayout()
         CType(Me.datagridviewMain, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.toolstripBuscar.SuspendLayout()
         Me.SuspendLayout()
         '
         'toolstripButtons
@@ -136,6 +136,37 @@ Partial Class formOrigenesDestinos
         Me.panelToolbars.Name = "panelToolbars"
         Me.panelToolbars.Size = New System.Drawing.Size(905, 39)
         Me.panelToolbars.TabIndex = 2
+        '
+        'toolstripBuscar
+        '
+        Me.toolstripBuscar.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.toolstripBuscar.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.toolstripBuscar.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelBuscar, Me.textboxBuscar, Me.buttonBuscarBorrar})
+        Me.toolstripBuscar.Location = New System.Drawing.Point(348, 0)
+        Me.toolstripBuscar.Name = "toolstripBuscar"
+        Me.toolstripBuscar.Size = New System.Drawing.Size(193, 39)
+        Me.toolstripBuscar.TabIndex = 4
+        '
+        'labelBuscar
+        '
+        Me.labelBuscar.Name = "labelBuscar"
+        Me.labelBuscar.Size = New System.Drawing.Size(45, 36)
+        Me.labelBuscar.Text = "Buscar:"
+        '
+        'textboxBuscar
+        '
+        Me.textboxBuscar.MaxLength = 100
+        Me.textboxBuscar.Name = "textboxBuscar"
+        Me.textboxBuscar.Size = New System.Drawing.Size(120, 39)
+        '
+        'buttonBuscarBorrar
+        '
+        Me.buttonBuscarBorrar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.buttonBuscarBorrar.Image = Global.CSPesaje.DesktopApplication.My.Resources.Resources.IMAGE_CLOSE_16
+        Me.buttonBuscarBorrar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonBuscarBorrar.Name = "buttonBuscarBorrar"
+        Me.buttonBuscarBorrar.Size = New System.Drawing.Size(23, 36)
+        Me.buttonBuscarBorrar.ToolTipText = "Limpiar búsqueda"
         '
         'toolstripActivo
         '
@@ -224,37 +255,6 @@ Partial Class formOrigenesDestinos
         Me.columnEsActivo.ReadOnly = True
         Me.columnEsActivo.Width = 43
         '
-        'toolstripBuscar
-        '
-        Me.toolstripBuscar.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.toolstripBuscar.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.toolstripBuscar.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelBuscar, Me.textboxBuscar, Me.buttonBuscarBorrar})
-        Me.toolstripBuscar.Location = New System.Drawing.Point(348, 0)
-        Me.toolstripBuscar.Name = "toolstripBuscar"
-        Me.toolstripBuscar.Size = New System.Drawing.Size(193, 39)
-        Me.toolstripBuscar.TabIndex = 4
-        '
-        'labelBuscar
-        '
-        Me.labelBuscar.Name = "labelBuscar"
-        Me.labelBuscar.Size = New System.Drawing.Size(45, 36)
-        Me.labelBuscar.Text = "Buscar:"
-        '
-        'textboxBuscar
-        '
-        Me.textboxBuscar.MaxLength = 100
-        Me.textboxBuscar.Name = "textboxBuscar"
-        Me.textboxBuscar.Size = New System.Drawing.Size(120, 39)
-        '
-        'buttonBuscarBorrar
-        '
-        Me.buttonBuscarBorrar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.buttonBuscarBorrar.Image = Global.CSPesaje.DesktopApplication.My.Resources.Resources.IMAGE_CLOSE_16
-        Me.buttonBuscarBorrar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonBuscarBorrar.Name = "buttonBuscarBorrar"
-        Me.buttonBuscarBorrar.Size = New System.Drawing.Size(23, 36)
-        Me.buttonBuscarBorrar.ToolTipText = "Limpiar búsqueda"
-        '
         'formOrigenesDestinos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -274,11 +274,11 @@ Partial Class formOrigenesDestinos
         CType(Me.bindingsourceMain, System.ComponentModel.ISupportInitialize).EndInit()
         Me.panelToolbars.ResumeLayout(False)
         Me.panelToolbars.PerformLayout()
+        Me.toolstripBuscar.ResumeLayout(False)
+        Me.toolstripBuscar.PerformLayout()
         Me.toolstripActivo.ResumeLayout(False)
         Me.toolstripActivo.PerformLayout()
         CType(Me.datagridviewMain, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.toolstripBuscar.ResumeLayout(False)
-        Me.toolstripBuscar.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

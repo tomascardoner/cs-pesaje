@@ -92,6 +92,7 @@
           <Property Name="Transportista_IDEntidad" Type="int" />
           <Property Name="IDCamion" Type="tinyint" />
           <Property Name="UsoFrecuente" Type="bit" Nullable="false" />
+          <Property Name="Notas" Type="varchar(max)" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
@@ -143,8 +144,8 @@
           <Property Name="IDProvincia" Type="tinyint" />
           <Property Name="IDLocalidad" Type="smallint" />
           <Property Name="CodigoPostal" Type="varchar" MaxLength="8" />
-          <Property Name="UbicacionLatitud" Type="decimal" Precision="10" Scale="6" />
-          <Property Name="UbicacionLongitud" Type="decimal" Precision="10" Scale="6" />
+          <Property Name="UbicacionLatitud" Type="decimal" Precision="8" Scale="6" />
+          <Property Name="UbicacionLongitud" Type="decimal" Precision="9" Scale="6" />
           <Property Name="Notas" Type="varchar(max)" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
@@ -502,6 +503,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Destino__Pesada__Destino">
+          <End Role="OrigenDestino" Type="Self.OrigenDestino" Multiplicity="0..1" />
+          <End Role="Pesada" Type="Self.Pesada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrigenDestino">
+              <PropertyRef Name="IDOrigenDestino" />
+            </Principal>
+            <Dependent Role="Pesada">
+              <PropertyRef Name="IDDestino" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Destino__Pesada__Origen">
+          <End Role="OrigenDestino" Type="Self.OrigenDestino" Multiplicity="0..1" />
+          <End Role="Pesada" Type="Self.Pesada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrigenDestino">
+              <PropertyRef Name="IDOrigenDestino" />
+            </Principal>
+            <Dependent Role="Pesada">
+              <PropertyRef Name="IDOrigen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Entidad__Camion">
           <End Role="Entidad" Type="Self.Entidad" Multiplicity="1" />
           <End Role="Camion" Type="Self.Camion" Multiplicity="*" />
@@ -621,30 +646,6 @@
             </Principal>
             <Dependent Role="Entidad_OrigenDestino">
               <PropertyRef Name="IDOrigenDestino" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__OrigenDestino__Pesada__Destino">
-          <End Role="OrigenDestino" Type="Self.OrigenDestino" Multiplicity="0..1" />
-          <End Role="Pesada" Type="Self.Pesada" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="OrigenDestino">
-              <PropertyRef Name="IDOrigenDestino" />
-            </Principal>
-            <Dependent Role="Pesada">
-              <PropertyRef Name="IDDestino" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__OrigenDestino__Pesada__Origen">
-          <End Role="OrigenDestino" Type="Self.OrigenDestino" Multiplicity="0..1" />
-          <End Role="Pesada" Type="Self.Pesada" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="OrigenDestino">
-              <PropertyRef Name="IDOrigenDestino" />
-            </Principal>
-            <Dependent Role="Pesada">
-              <PropertyRef Name="IDOrigen" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1143,6 +1144,14 @@
             <End Role="Cosecha_Producto_Tarifa" EntitySet="Cosecha_Producto_Tarifa" />
             <End Role="Cosecha_Producto_TarifaEscala" EntitySet="Cosecha_Producto_TarifaEscala" />
           </AssociationSet>
+          <AssociationSet Name="FK__Destino__Pesada__Destino" Association="Self.FK__Destino__Pesada__Destino">
+            <End Role="OrigenDestino" EntitySet="OrigenDestino" />
+            <End Role="Pesada" EntitySet="Pesada" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Destino__Pesada__Origen" Association="Self.FK__Destino__Pesada__Origen">
+            <End Role="OrigenDestino" EntitySet="OrigenDestino" />
+            <End Role="Pesada" EntitySet="Pesada" />
+          </AssociationSet>
           <AssociationSet Name="FK__Entidad__Camion" Association="Self.FK__Entidad__Camion">
             <End Role="Entidad" EntitySet="Entidad" />
             <End Role="Camion" EntitySet="Camion" />
@@ -1182,14 +1191,6 @@
           <AssociationSet Name="FK__OrigenDestino__Entidad_OrigenDestino" Association="Self.FK__OrigenDestino__Entidad_OrigenDestino">
             <End Role="OrigenDestino" EntitySet="OrigenDestino" />
             <End Role="Entidad_OrigenDestino" EntitySet="Entidad_OrigenDestino" />
-          </AssociationSet>
-          <AssociationSet Name="FK__OrigenDestino__Pesada__Destino" Association="Self.FK__OrigenDestino__Pesada__Destino">
-            <End Role="OrigenDestino" EntitySet="OrigenDestino" />
-            <End Role="Pesada" EntitySet="Pesada" />
-          </AssociationSet>
-          <AssociationSet Name="FK__OrigenDestino__Pesada__Origen" Association="Self.FK__OrigenDestino__Pesada__Origen">
-            <End Role="OrigenDestino" EntitySet="OrigenDestino" />
-            <End Role="Pesada" EntitySet="Pesada" />
           </AssociationSet>
           <AssociationSet Name="FK__OrigenDestino_Entidad__Entidad" Association="Self.FK__OrigenDestino_Entidad__Entidad">
             <End Role="Entidad" EntitySet="Entidad" />
@@ -1692,6 +1693,7 @@
           <Property Name="Transportista_IDEntidad" Type="Int32" />
           <Property Name="IDCamion" Type="Byte" />
           <Property Name="UsoFrecuente" Type="Boolean" Nullable="false" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
@@ -2856,6 +2858,7 @@
           <EntitySetMapping Name="Entidad">
             <EntityTypeMapping TypeName="CSPesajeModel.Entidad">
               <MappingFragment StoreEntitySet="Entidad">
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
                 <ScalarProperty Name="UsoFrecuente" ColumnName="UsoFrecuente" />
                 <ScalarProperty Name="IDEntidad" ColumnName="IDEntidad" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />

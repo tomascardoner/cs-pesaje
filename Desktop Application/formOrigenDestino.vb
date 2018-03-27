@@ -61,6 +61,7 @@
         textboxDomicilioCodigoPostal.ReadOnly = (mEditMode = False)
         doubletextboxLatitud.ReadOnly = (mEditMode = False)
         doubletextboxLongitud.ReadOnly = (mEditMode = False)
+
         textboxNotas.ReadOnly = (mEditMode = False)
         checkboxEsActivo.Enabled = mEditMode
     End Sub
@@ -124,7 +125,6 @@
 
     Friend Sub SetDataFromControlsToObject()
         With mOrigenDestinoActual
-            .EsActivo = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxEsActivo.CheckState)
             .Nombre = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNombre.Text)
             .Domicilio = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxDomicilio.Text)
             .IDProvincia = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxDomicilioProvincia.SelectedValue, FIELD_VALUE_NOTSPECIFIED_BYTE)
@@ -132,6 +132,9 @@
             .CodigoPostal = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxDomicilioCodigoPostal.Text)
             .UbicacionLatitud = CS_ValueTranslation.FromControlTextBoxToObjectDecimal(doubletextboxLatitud.Text)
             .UbicacionLongitud = CS_ValueTranslation.FromControlTextBoxToObjectDecimal(doubletextboxLongitud.Text)
+
+            .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
+            .EsActivo = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxEsActivo.CheckState)
         End With
     End Sub
 #End Region

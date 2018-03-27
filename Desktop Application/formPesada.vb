@@ -208,7 +208,11 @@
             ' Producto - Planta - Tipo - Cosecha
             If .IDProducto = CS_Constants.FIELD_VALUE_OTHER_BYTE Then
                 checkboxProductoOtro.Checked = True
-                textboxProducto.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Pesada_Otro.Producto_Nombre)
+                If .Pesada_Otro Is Nothing Then
+                    textboxProducto.Text = ""
+                Else
+                    textboxProducto.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Pesada_Otro.Producto_Nombre)
+                End If
             Else
                 CS_Control_ComboBox.SetSelectedValue(comboboxProducto, SelectedItemOptions.Value, .IDProducto)
                 textboxProducto.Text = ""
@@ -231,21 +235,34 @@
             ' Titular - Origen - Destino
             If .Titular_IDEntidad = CS_Constants.FIELD_VALUE_OTHER_INTEGER Then
                 checkboxTitularOtro.Checked = True
-                textboxTitular.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Pesada_Otro.Titular_Nombre)
+                If .Pesada_Otro Is Nothing Then
+                    textboxTitular.Text = ""
+                Else
+                    textboxTitular.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Pesada_Otro.Titular_Nombre)
+                End If
             Else
                 CS_Control_ComboBox.SetSelectedValue(comboboxTitular, SelectedItemOptions.Value, .Titular_IDEntidad)
                 textboxTitular.Text = ""
             End If
             If .IDOrigen = CS_Constants.FIELD_VALUE_OTHER_INTEGER Then
                 checkboxOrigenOtro.Checked = True
-                textboxOrigenOtro.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Pesada_Otro.Origen_Nombre)
+                If .Pesada_Otro Is Nothing Then
+                    textboxOrigenOtro.Text = ""
+                Else
+                    textboxOrigenOtro.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Pesada_Otro.Origen_Nombre)
+                End If
             Else
                 CS_Control_ComboBox.SetSelectedValue(comboboxOrigen, SelectedItemOptions.ValueOrFirst, .IDOrigen)
                 textboxOrigenOtro.Text = ""
             End If
             If .IDDestino = CS_Constants.FIELD_VALUE_OTHER_INTEGER Then
                 checkboxDestinoOtro.Checked = True
-                textboxDestinoOtro.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Pesada_Otro.Destino_Nombre)
+                If .Pesada_Otro Is Nothing Then
+                    textboxDestinoOtro.Text = ""
+                Else
+                    textboxDestinoOtro.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Pesada_Otro.Destino_Nombre)
+                End If
+
             Else
                 CS_Control_ComboBox.SetSelectedValue(comboboxDestino, SelectedItemOptions.ValueOrFirst, .IDDestino)
                 textboxDestinoOtro.Text = ""
@@ -254,8 +271,14 @@
             ' Transporte
             If .Transportista_IDEntidad = CS_Constants.FIELD_VALUE_OTHER_INTEGER Then
                 checkboxTransportistaOtro.Checked = True
-                textboxTransportista.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Pesada_Otro.Transportista_Nombre)
-                maskedtextboxTransportistaCUIT.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Pesada_Otro.Transportista_CUIT)
+                checkboxDestinoOtro.Checked = True
+                If .Pesada_Otro Is Nothing Then
+                    textboxTransportista.Text = ""
+                    maskedtextboxTransportistaCUIT.Text = ""
+                Else
+                    textboxTransportista.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Pesada_Otro.Transportista_Nombre)
+                    maskedtextboxTransportistaCUIT.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Pesada_Otro.Transportista_CUIT)
+                End If
             Else
                 textboxTransportista.Text = ""
                 maskedtextboxTransportistaCUIT.Text = ""
@@ -263,8 +286,13 @@
             End If
             If .Chofer_IDEntidad = CS_Constants.FIELD_VALUE_OTHER_INTEGER Then
                 checkboxChoferOtro.Checked = True
-                textboxChofer.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Pesada_Otro.Chofer_Nombre)
-                maskedtextboxChoferCUIT_CUIL.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Pesada_Otro.Chofer_CUIT_CUIL)
+                If .Pesada_Otro Is Nothing Then
+                    textboxChofer.Text = ""
+                    maskedtextboxChoferCUIT_CUIL.Text = ""
+                Else
+                    textboxChofer.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Pesada_Otro.Chofer_Nombre)
+                    maskedtextboxChoferCUIT_CUIL.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Pesada_Otro.Chofer_CUIT_CUIL)
+                End If
             Else
                 textboxChofer.Text = ""
                 maskedtextboxChoferCUIT_CUIL.Text = ""
@@ -272,8 +300,13 @@
             End If
             If .IDCamion = CS_Constants.FIELD_VALUE_OTHER_BYTE Then
                 checkboxCamionOtro.Checked = True
-                textboxCamion_DominioChasis.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Pesada_Otro.Camion_DominioChasis)
-                textboxCamion_DominioAcoplado.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Pesada_Otro.Camion_DominioAcoplado)
+                If .Pesada_Otro Is Nothing Then
+                    textboxCamion_DominioChasis.Text = ""
+                    textboxCamion_DominioAcoplado.Text = ""
+                Else
+                    textboxCamion_DominioChasis.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Pesada_Otro.Camion_DominioChasis)
+                    textboxCamion_DominioAcoplado.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Pesada_Otro.Camion_DominioAcoplado)
+                End If
             Else
                 textboxCamion_DominioChasis.Text = ""
                 textboxCamion_DominioAcoplado.Text = ""
@@ -341,7 +374,7 @@
     Friend Sub SetDataFromControlsToObject()
         With mPesadaActual
             ' Si hay algún item Otro especificado, me aseguro que exista el objeto correspondiente
-            If checkboxProductoOtro.Checked Or checkboxTitularOtro.Checked Or checkboxOrigenOtro.Checked Or checkboxTransportistaOtro.Checked Or checkboxChoferOtro.Checked Or checkboxCamionOtro.Checked Then
+            If checkboxProductoOtro.Checked Or checkboxTitularOtro.Checked Or checkboxOrigenOtro.Checked Or checkboxDestinoOtro.Checked Or checkboxTransportistaOtro.Checked Or checkboxChoferOtro.Checked Or checkboxCamionOtro.Checked Then
                 If .Pesada_Otro Is Nothing Then
                     .Pesada_Otro = New Pesada_Otro
                 End If
@@ -515,7 +548,7 @@
             .EsActivo = checkboxEsActivo.Checked
 
             ' Otros
-            If Not (checkboxProductoOtro.Checked Or checkboxTitularOtro.Checked Or checkboxOrigenOtro.Checked Or checkboxTransportistaOtro.Checked Or checkboxChoferOtro.Checked Or checkboxCamionOtro.Checked) Then
+            If Not (checkboxProductoOtro.Checked Or checkboxTitularOtro.Checked Or checkboxOrigenOtro.Checked Or checkboxDestinoOtro.Checked Or checkboxTransportistaOtro.Checked Or checkboxChoferOtro.Checked Or checkboxCamionOtro.Checked) Then
                 If Not .Pesada_Otro Is Nothing Then
                     mdbContext.Pesada_Otro.Remove(.Pesada_Otro)
                 End If

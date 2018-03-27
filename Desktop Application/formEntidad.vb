@@ -68,6 +68,9 @@
         labelCamion.Visible = checkboxTipoChofer.Checked
         comboboxCamion.Visible = checkboxTipoChofer.Checked
         comboboxCamion.Enabled = (checkboxTipoChofer.Checked And mEditMode)
+
+        textboxNotas.ReadOnly = (mEditMode = False)
+        checkboxEsActivo.Enabled = mEditMode
     End Sub
 
     Friend Sub InitializeFormAndControls()
@@ -78,6 +81,11 @@
     End Sub
 
     Friend Sub SetAppearance()
+        If (Not mEntidadActual.EsTitular) Or mEditMode Then
+            tabcontrolMain.HideTabPageByName(tabpageOrigenesDestinos.Name)
+        Else
+            tabcontrolMain.ShowTabPageByName(tabpageOrigenesDestinos.Name)
+        End If
     End Sub
 
     Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
@@ -111,12 +119,39 @@
                 comboboxTransportista.SelectedIndex = 0
                 CargarCamiones()
             End If
+
+            ' Datos de la pestaña Notas y Auditoría
+            textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
+            checkboxEsActivo.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.EsActivo)
+            If .IDEntidad = 0 Then
+                textboxIDEntidad.Text = My.Resources.STRING_ITEM_NEW_MALE
+            Else
+                textboxIDEntidad.Text = String.Format(.IDEntidad.ToString, "G")
+            End If
+            textboxFechaHoraCreacion.Text = .FechaHoraCreacion.ToShortDateString & " " & .FechaHoraCreacion.ToShortTimeString
+            If .UsuarioCreacion Is Nothing Then
+                textboxUsuarioCreacion.Text = ""
+            Else
+                textboxUsuarioCreacion.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.UsuarioCreacion.Descripcion)
+            End If
+            textboxFechaHoraModificacion.Text = .FechaHoraModificacion.ToShortDateString & " " & .FechaHoraModificacion.ToShortTimeString
+            If .UsuarioModificacion Is Nothing Then
+                textboxUsuarioModificacion.Text = ""
+            Else
+                textboxUsuarioModificacion.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.UsuarioModificacion.Descripcion)
+            End If
+
+            If mEditMode Then
+                datagridviewOrigenesDestinosNoIncluidos.DataSource = Nothing
+                datagridviewOrigenesDestinosIncluidos.DataSource = Nothing
+            Else
+                Refresh_OrigenesDestinos()
+            End If
         End With
     End Sub
 
     Friend Sub SetDataFromControlsToObject()
         With mEntidadActual
-            .EsActivo = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxEsActivo.CheckState)
             .Nombre = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNombre.Text)
             .EsTitular = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxTipoTitular.CheckState)
             .EsTransportista = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxTipoTransportista.CheckState)
@@ -130,7 +165,40 @@
                 .Transportista_IDEntidad = Nothing
                 .IDCamion = Nothing
             End If
+
+            .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
+            .EsActivo = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxEsActivo.CheckState)
         End With
+    End Sub
+
+    Friend Sub Refresh_OrigenesDestinos()
+        Dim listOrigenesDestinosNoIncluidos As List(Of OrigenDestino)
+        Dim listOrigenesDestinosTodos As List(Of OrigenDestino)
+        Dim listOrigenesDestinosIncluidos As List(Of OrigenDestino)
+
+        Me.Cursor = Cursors.WaitCursor
+
+        Using dbContext As New CSPesajeContext(True)
+            listOrigenesDestinosIncluidos = (From od In dbContext.OrigenDestino
+                                             Join e_od In dbContext.Entidad_OrigenDestino On od.IDOrigenDestino Equals e_od.IDOrigenDestino
+                                             Where e_od.IDEntidad = mEntidadActual.IDEntidad And od.EsActivo
+                                             Order By od.Nombre
+                                             Select od).ToList
+
+            listOrigenesDestinosTodos = (From od In dbContext.OrigenDestino
+                                         Where od.EsActivo
+                                         Order By od.Nombre
+                                         Select od).ToList
+
+            listOrigenesDestinosNoIncluidos = (From odt In listOrigenesDestinosTodos
+                                              Where Not listOrigenesDestinosIncluidos.Any(Function(od) od.IDOrigenDestino = odt.IDOrigenDestino)).ToList
+
+        End Using
+
+        bindingsourceOrigenesDestinosInlcuidos.DataSource = listOrigenesDestinosIncluidos
+        bindingsourceOrigenesDestinosNoInlcuidos.DataSource = listOrigenesDestinosNoIncluidos
+
+        Me.Cursor = Cursors.Default
     End Sub
 
     Friend Sub CargarCamiones()
@@ -140,7 +208,7 @@
 #End Region
 
 #Region "Controls behavior"
-    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxIDEntidad.GotFocus, textboxNombre.GotFocus
+    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxNombre.GotFocus
         CType(sender, TextBox).SelectAll()
     End Sub
 
@@ -156,11 +224,57 @@
         CargarCamiones()
         comboboxCamion.Focus()
     End Sub
+
+    Private Sub OrigenDestinoAgregar() Handles buttonOrigenesDestinosAgregar.Click
+        If mEntidadActual.EsTitular And Not mEditMode Then
+            If datagridviewOrigenesDestinosNoIncluidos.CurrentRow Is Nothing Then
+                MsgBox("No hay ningún Origen-Destino no incluído para agregar.", vbInformation, My.Application.Info.Title)
+            Else
+                Using dbContext As New CSPesajeContext(True)
+                    Dim Entidad_OrigenDestino_Nueva As New Entidad_OrigenDestino
+                    With Entidad_OrigenDestino_Nueva
+                        .IDOrigenDestino = CType(datagridviewOrigenesDestinosNoIncluidos.CurrentRow.DataBoundItem, OrigenDestino).IDOrigenDestino
+                        .IDUsuarioCreacion = pUsuario.IDUsuario
+                        .FechaHoraCreacion = Now
+                        .IDUsuarioModificacion = pUsuario.IDUsuario
+                        .FechaHoraModificacion = Entidad_OrigenDestino_Nueva.FechaHoraCreacion
+                        .EsActivo = True
+                    End With
+
+                    Dim EntidadActual As Entidad
+                    EntidadActual = dbContext.Entidad.Find(mEntidadActual.IDEntidad)
+                    EntidadActual.Entidades_OrigenesDestinos.Add(Entidad_OrigenDestino_Nueva)
+
+                    dbContext.SaveChanges()
+                End Using
+
+                Refresh_OrigenesDestinos()
+            End If
+        End If
+    End Sub
+
+    Private Sub OrigenDestinoEliminar() Handles buttonOrigenesDestinosEliminar.Click
+        If mEntidadActual.EsTitular And Not mEditMode Then
+            If datagridviewOrigenesDestinosIncluidos.CurrentRow Is Nothing Then
+                MsgBox("No hay ningún Origen-Destino incluído para eliminar.", vbInformation, My.Application.Info.Title)
+            Else
+                Using dbContext As New CSPesajeContext(True)
+                    Dim Entidad_OrigenDestino_Eliminar As New Entidad_OrigenDestino
+                    Entidad_OrigenDestino_Eliminar = dbContext.Entidad_OrigenDestino.Find(mEntidadActual.IDEntidad, CType(datagridviewOrigenesDestinosIncluidos.CurrentRow.DataBoundItem, OrigenDestino).IDOrigenDestino)
+                    dbContext.Entidad_OrigenDestino.Remove(Entidad_OrigenDestino_Eliminar)
+                    dbContext.SaveChanges()
+                End Using
+
+                Refresh_OrigenesDestinos()
+            End If
+        End If
+    End Sub
+
 #End Region
 
 #Region "Main Toolbar"
     Private Sub buttonEditar_Click() Handles buttonEditar.Click
-        If Permisos.VerificarPermiso(Permisos.Entidad_EDITAR) Then
+        If Permisos.VerificarPermiso(Permisos.ENTIDAD_EDITAR) Then
             mEditMode = True
             ChangeMode()
         End If
