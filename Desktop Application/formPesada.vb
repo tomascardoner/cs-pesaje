@@ -76,6 +76,7 @@
         groupboxTipo.Enabled = mEditMode
         checkboxTipoTodos.Visible = mEditMode
         comboboxCosecha.Enabled = mEditMode
+        checkboxCosechaTodos.Visible = mEditMode
 
         ' Titular
         checkboxTitularOtro.Visible = mEditMode
@@ -84,12 +85,14 @@
         checkboxTitularTodos.Visible = mEditMode
         checkboxOrigenOtro.Visible = ((radiobuttonEntrada.Checked Or radiobuttonNinguno.Checked) And mEditMode)
         comboboxOrigen.Visible = (radiobuttonEntrada.Checked Or radiobuttonNinguno.Checked) And Not checkboxOrigenOtro.Checked
+        comboboxOrigen.Enabled = mEditMode
         textboxOrigenOtro.Visible = (radiobuttonEntrada.Checked Or radiobuttonNinguno.Checked) And checkboxOrigenOtro.Checked
-        checkboxOrigenTodos.Visible = (radiobuttonEntrada.Checked Or radiobuttonNinguno.Checked) And Not checkboxOrigenOtro.Checked
+        checkboxOrigenTodos.Visible = (mEditMode And (radiobuttonEntrada.Checked Or radiobuttonNinguno.Checked) And Not checkboxOrigenOtro.Checked)
         checkboxDestinoOtro.Visible = ((radiobuttonSalida.Checked Or radiobuttonNinguno.Checked) And mEditMode)
         comboboxDestino.Visible = (radiobuttonSalida.Checked Or radiobuttonNinguno.Checked) And Not checkboxDestinoOtro.Checked
+        comboboxDestino.Enabled = mEditMode
         textboxDestinoOtro.Visible = (radiobuttonSalida.Checked Or radiobuttonNinguno.Checked) And checkboxDestinoOtro.Checked
-        checkboxDestinoTodos.Visible = (radiobuttonSalida.Checked Or radiobuttonNinguno.Checked) And Not checkboxDestinoOtro.Checked
+        checkboxDestinoTodos.Visible = (mEditMode And (radiobuttonSalida.Checked Or radiobuttonNinguno.Checked) And Not checkboxDestinoOtro.Checked)
 
         ' Transporte
         checkboxTransportistaOtro.Visible = mEditMode
@@ -271,7 +274,6 @@
             ' Transporte
             If .Transportista_IDEntidad = CS_Constants.FIELD_VALUE_OTHER_INTEGER Then
                 checkboxTransportistaOtro.Checked = True
-                checkboxDestinoOtro.Checked = True
                 If .Pesada_Otro Is Nothing Then
                     textboxTransportista.Text = ""
                     maskedtextboxTransportistaCUIT.Text = ""
@@ -900,7 +902,7 @@
         'End If
     End Sub
 
-    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxProducto.GotFocus, textboxTitular.GotFocus, textboxOrigenOtro.GotFocus, textboxTransportista.GotFocus, textboxChofer.GotFocus, textboxCamion_DominioChasis.GotFocus, textboxCamion_DominioAcoplado.GotFocus, textboxNotas.GotFocus
+    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxProducto.GotFocus, textboxTitular.GotFocus, textboxOrigenOtro.GotFocus, textboxTransportista.GotFocus, textboxChofer.GotFocus, textboxCamion_DominioChasis.GotFocus, textboxCamion_DominioAcoplado.GotFocus
         CType(sender, TextBox).SelectAll()
     End Sub
 #End Region

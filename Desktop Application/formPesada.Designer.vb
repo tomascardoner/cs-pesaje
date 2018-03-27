@@ -128,8 +128,6 @@ Partial Class formPesada
         Me.labelHumedad = New System.Windows.Forms.Label()
         Me.tabcontrolNotasExtras = New CSPesaje.DesktopApplication.CS_Control_TabControl()
         Me.tabpageNotas = New System.Windows.Forms.TabPage()
-        Me.groupboxNotas = New System.Windows.Forms.GroupBox()
-        Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.tabpageExtras = New System.Windows.Forms.TabPage()
         Me.groupboxTarifasAplica = New System.Windows.Forms.GroupBox()
         Me.labelMezclaAplica = New System.Windows.Forms.Label()
@@ -154,6 +152,7 @@ Partial Class formPesada
         Me.checkboxEsActivo = New System.Windows.Forms.CheckBox()
         Me.labelEsVerificado = New System.Windows.Forms.Label()
         Me.checkboxEsVerificado = New System.Windows.Forms.CheckBox()
+        Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.toolstripMain.SuspendLayout()
         Me.groupboxTransporte.SuspendLayout()
         CType(Me.integertextboxKilometro, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -174,7 +173,6 @@ Partial Class formPesada
         CType(Me.doubletextboxHumedad, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tabcontrolNotasExtras.SuspendLayout()
         Me.tabpageNotas.SuspendLayout()
-        Me.groupboxNotas.SuspendLayout()
         Me.tabpageExtras.SuspendLayout()
         Me.groupboxTarifasAplica.SuspendLayout()
         Me.groupboxMermasAplica.SuspendLayout()
@@ -1412,7 +1410,7 @@ Partial Class formPesada
         '
         'tabpageNotas
         '
-        Me.tabpageNotas.Controls.Add(Me.groupboxNotas)
+        Me.tabpageNotas.Controls.Add(Me.textboxNotas)
         Me.tabpageNotas.Location = New System.Drawing.Point(4, 25)
         Me.tabpageNotas.Name = "tabpageNotas"
         Me.tabpageNotas.Padding = New System.Windows.Forms.Padding(3)
@@ -1420,27 +1418,6 @@ Partial Class formPesada
         Me.tabpageNotas.TabIndex = 0
         Me.tabpageNotas.Text = "Notas"
         Me.tabpageNotas.UseVisualStyleBackColor = True
-        '
-        'groupboxNotas
-        '
-        Me.groupboxNotas.Controls.Add(Me.textboxNotas)
-        Me.groupboxNotas.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.groupboxNotas.Location = New System.Drawing.Point(3, 3)
-        Me.groupboxNotas.Name = "groupboxNotas"
-        Me.groupboxNotas.Size = New System.Drawing.Size(705, 98)
-        Me.groupboxNotas.TabIndex = 6
-        Me.groupboxNotas.TabStop = False
-        '
-        'textboxNotas
-        '
-        Me.textboxNotas.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.textboxNotas.Location = New System.Drawing.Point(3, 16)
-        Me.textboxNotas.MaxLength = 0
-        Me.textboxNotas.Multiline = True
-        Me.textboxNotas.Name = "textboxNotas"
-        Me.textboxNotas.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.textboxNotas.Size = New System.Drawing.Size(699, 79)
-        Me.textboxNotas.TabIndex = 1
         '
         'tabpageExtras
         '
@@ -1682,6 +1659,17 @@ Partial Class formPesada
         Me.checkboxEsVerificado.TabIndex = 6
         Me.checkboxEsVerificado.UseVisualStyleBackColor = True
         '
+        'textboxNotas
+        '
+        Me.textboxNotas.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.textboxNotas.Location = New System.Drawing.Point(3, 3)
+        Me.textboxNotas.MaxLength = 0
+        Me.textboxNotas.Multiline = True
+        Me.textboxNotas.Name = "textboxNotas"
+        Me.textboxNotas.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.textboxNotas.Size = New System.Drawing.Size(705, 98)
+        Me.textboxNotas.TabIndex = 2
+        '
         'formPesada
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1730,8 +1718,7 @@ Partial Class formPesada
         CType(Me.doubletextboxHumedad, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tabcontrolNotasExtras.ResumeLayout(False)
         Me.tabpageNotas.ResumeLayout(False)
-        Me.groupboxNotas.ResumeLayout(False)
-        Me.groupboxNotas.PerformLayout()
+        Me.tabpageNotas.PerformLayout()
         Me.tabpageExtras.ResumeLayout(False)
         Me.groupboxTarifasAplica.ResumeLayout(False)
         Me.groupboxTarifasAplica.PerformLayout()
@@ -1803,8 +1790,6 @@ Partial Class formPesada
     Friend WithEvents labelCamion_DominioAcoplado As System.Windows.Forms.Label
     Friend WithEvents maskedtextboxComprobanteNumero As System.Windows.Forms.MaskedTextBox
     Friend WithEvents labelComprobanteNumero As System.Windows.Forms.Label
-    Friend WithEvents groupboxNotas As System.Windows.Forms.GroupBox
-    Friend WithEvents textboxNotas As System.Windows.Forms.TextBox
     Friend WithEvents groupboxAnalisis As System.Windows.Forms.GroupBox
     Friend WithEvents labelHumedad As System.Windows.Forms.Label
     Friend WithEvents doubletextboxHumedad As Syncfusion.Windows.Forms.Tools.DoubleTextBox
@@ -1874,4 +1859,5 @@ Partial Class formPesada
     Friend WithEvents labelDestino As System.Windows.Forms.Label
     Friend WithEvents textboxDestinoOtro As System.Windows.Forms.TextBox
     Friend WithEvents comboboxDestino As System.Windows.Forms.ComboBox
+    Friend WithEvents textboxNotas As System.Windows.Forms.TextBox
 End Class
