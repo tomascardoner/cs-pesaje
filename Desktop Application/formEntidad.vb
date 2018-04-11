@@ -112,9 +112,9 @@
             maskedtextboxCUIT_CUIL.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.CUIT_CUIL)
 
             If .EsChofer Then
-                CS_Control_ComboBox.SetSelectedValue(comboboxTransportista, SelectedItemOptions.ValueOrFirst, .Transportista_IDEntidad)
+                CS_ComboBox.SetSelectedValue(comboboxTransportista, SelectedItemOptions.ValueOrFirst, .Transportista_IDEntidad)
                 CargarCamiones()
-                CS_Control_ComboBox.SetSelectedValue(comboboxCamion, SelectedItemOptions.ValueOrFirst, .IDCamion)
+                CS_ComboBox.SetSelectedValue(comboboxCamion, SelectedItemOptions.ValueOrFirst, .IDCamion)
             Else
                 comboboxTransportista.SelectedIndex = 0
                 CargarCamiones()

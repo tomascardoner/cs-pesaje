@@ -87,7 +87,7 @@
                 textboxIDCamion.Text = String.Format(.IDCamion.ToString, "G")
             End If
             checkboxEsActivo.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.EsActivo)
-            CS_Control_ComboBox.SetSelectedValue(comboboxTransportista, SelectedItemOptions.ValueOrFirstIfUnique, .IDEntidad)
+            CS_ComboBox.SetSelectedValue(comboboxTransportista, SelectedItemOptions.ValueOrFirstIfUnique, .IDEntidad)
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
             textboxDominioChasis.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DominioChasis)
             textboxDominioAcoplado.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DominioAcoplado)

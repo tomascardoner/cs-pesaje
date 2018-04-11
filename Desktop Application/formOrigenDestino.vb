@@ -94,8 +94,8 @@
             checkboxEsActivo.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.EsActivo)
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
             textboxDomicilio.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Domicilio)
-            CS_Control_ComboBox.SetSelectedValue(comboboxDomicilioProvincia, SelectedItemOptions.Value, .IDProvincia, FIELD_VALUE_NOTSPECIFIED_BYTE)
-            CS_Control_ComboBox.SetSelectedValue(comboboxDomicilioLocalidad, SelectedItemOptions.Value, .IDLocalidad, FIELD_VALUE_NOTSPECIFIED_SHORT)
+            CS_ComboBox.SetSelectedValue(comboboxDomicilioProvincia, SelectedItemOptions.Value, .IDProvincia, FIELD_VALUE_NOTSPECIFIED_BYTE)
+            CS_ComboBox.SetSelectedValue(comboboxDomicilioLocalidad, SelectedItemOptions.Value, .IDLocalidad, FIELD_VALUE_NOTSPECIFIED_SHORT)
             textboxDomicilioCodigoPostal.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.CodigoPostal)
             doubletextboxLatitud.Text = CS_ValueTranslation.FromObjectDecimalToControlTextBox(.UbicacionLatitud)
             doubletextboxLongitud.Text = CS_ValueTranslation.FromObjectDecimalToControlTextBox(.UbicacionLongitud)
@@ -151,7 +151,7 @@
         Else
             pFillAndRefreshLists.Localidad(comboboxDomicilioLocalidad, CByte(comboboxDomicilioProvincia.SelectedValue), True)
             If CByte(comboboxDomicilioProvincia.SelectedValue) = CS_Parameter.GetIntegerAsByte(Parametros.DEFAULT_PROVINCIA_ID) Then
-                CS_Control_ComboBox.SetSelectedValue(comboboxDomicilioLocalidad, SelectedItemOptions.ValueOrFirst, CS_Parameter.GetIntegerAsShort(Parametros.DEFAULT_LOCALIDAD_ID))
+                CS_ComboBox.SetSelectedValue(comboboxDomicilioLocalidad, SelectedItemOptions.ValueOrFirst, CS_Parameter.GetIntegerAsShort(Parametros.DEFAULT_LOCALIDAD_ID))
             End If
         End If
     End Sub

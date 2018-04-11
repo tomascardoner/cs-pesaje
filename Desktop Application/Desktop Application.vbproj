@@ -101,14 +101,14 @@
     <Compile Include="..\..\..\..\..\..\..\Users\Tomas\Dropbox\Cardoner Sistemas\Framework\Visual Basic .NET\CS_AFIP.vb">
       <Link>CS_AFIP.vb</Link>
     </Compile>
+    <Compile Include="..\..\..\..\..\..\..\Users\Tomas\Dropbox\Cardoner Sistemas\Framework\Visual Basic .NET\CS_ComboBox.vb">
+      <Link>CS_ComboBox.vb</Link>
+    </Compile>
     <Compile Include="..\..\..\..\..\..\..\Users\Tomas\Dropbox\Cardoner Sistemas\Framework\Visual Basic .NET\CS_Database_EF_SQL.vb">
       <Link>CS_Database_EF_SQL.vb</Link>
     </Compile>
     <Compile Include="C:\Users\Tomas\Dropbox\Cardoner Sistemas\Framework\Visual Basic .NET\CS_Constants.vb">
       <Link>CS_Constants.vb</Link>
-    </Compile>
-    <Compile Include="C:\Users\Tomas\Dropbox\Cardoner Sistemas\Framework\Visual Basic .NET\CS_Control_ComboBox.vb">
-      <Link>CS_Control_ComboBox.vb</Link>
     </Compile>
     <Compile Include="C:\Users\Tomas\Dropbox\Cardoner Sistemas\Framework\Visual Basic .NET\CS_Control_TabControl.vb">
       <Link>CS_Control_TabControl.vb</Link>

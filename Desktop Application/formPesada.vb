@@ -217,10 +217,10 @@
                     textboxProducto.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Pesada_Otro.Producto_Nombre)
                 End If
             Else
-                CS_Control_ComboBox.SetSelectedValue(comboboxProducto, SelectedItemOptions.Value, .IDProducto)
+                CS_ComboBox.SetSelectedValue(comboboxProducto, SelectedItemOptions.Value, .IDProducto)
                 textboxProducto.Text = ""
             End If
-            CS_Control_ComboBox.SetSelectedValue(comboboxPlanta, SelectedItemOptions.Value, .IDPlanta, CS_Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
+            CS_ComboBox.SetSelectedValue(comboboxPlanta, SelectedItemOptions.Value, .IDPlanta, CS_Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
             TipoTodos()
             Select Case .Tipo
                 Case Constantes.PESADA_TIPO_ENTRADA
@@ -233,7 +233,7 @@
                     radiobuttonNinguno.Checked = True
                     radiobuttonNinguno.Visible = True
             End Select
-            CS_Control_ComboBox.SetSelectedValue(comboboxCosecha, SelectedItemOptions.Value, .IDCosecha, CS_Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
+            CS_ComboBox.SetSelectedValue(comboboxCosecha, SelectedItemOptions.Value, .IDCosecha, CS_Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
 
             ' Titular - Origen - Destino
             If .Titular_IDEntidad = CS_Constants.FIELD_VALUE_OTHER_INTEGER Then
@@ -244,7 +244,7 @@
                     textboxTitular.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Pesada_Otro.Titular_Nombre)
                 End If
             Else
-                CS_Control_ComboBox.SetSelectedValue(comboboxTitular, SelectedItemOptions.Value, .Titular_IDEntidad)
+                CS_ComboBox.SetSelectedValue(comboboxTitular, SelectedItemOptions.Value, .Titular_IDEntidad)
                 textboxTitular.Text = ""
             End If
             If .IDOrigen = CS_Constants.FIELD_VALUE_OTHER_INTEGER Then
@@ -255,7 +255,7 @@
                     textboxOrigenOtro.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Pesada_Otro.Origen_Nombre)
                 End If
             Else
-                CS_Control_ComboBox.SetSelectedValue(comboboxOrigen, SelectedItemOptions.ValueOrFirst, .IDOrigen)
+                CS_ComboBox.SetSelectedValue(comboboxOrigen, SelectedItemOptions.ValueOrFirst, .IDOrigen)
                 textboxOrigenOtro.Text = ""
             End If
             If .IDDestino = CS_Constants.FIELD_VALUE_OTHER_INTEGER Then
@@ -267,7 +267,7 @@
                 End If
 
             Else
-                CS_Control_ComboBox.SetSelectedValue(comboboxDestino, SelectedItemOptions.ValueOrFirst, .IDDestino)
+                CS_ComboBox.SetSelectedValue(comboboxDestino, SelectedItemOptions.ValueOrFirst, .IDDestino)
                 textboxDestinoOtro.Text = ""
             End If
 
@@ -284,7 +284,7 @@
             Else
                 textboxTransportista.Text = ""
                 maskedtextboxTransportistaCUIT.Text = ""
-                CS_Control_ComboBox.SetSelectedValue(comboboxTransportista, SelectedItemOptions.ValueOrFirst, .Transportista_IDEntidad)
+                CS_ComboBox.SetSelectedValue(comboboxTransportista, SelectedItemOptions.ValueOrFirst, .Transportista_IDEntidad)
             End If
             If .Chofer_IDEntidad = CS_Constants.FIELD_VALUE_OTHER_INTEGER Then
                 checkboxChoferOtro.Checked = True
@@ -298,7 +298,7 @@
             Else
                 textboxChofer.Text = ""
                 maskedtextboxChoferCUIT_CUIL.Text = ""
-                CS_Control_ComboBox.SetSelectedValue(comboboxChofer, SelectedItemOptions.ValueOrFirst, .Chofer_IDEntidad)
+                CS_ComboBox.SetSelectedValue(comboboxChofer, SelectedItemOptions.ValueOrFirst, .Chofer_IDEntidad)
             End If
             If .IDCamion = CS_Constants.FIELD_VALUE_OTHER_BYTE Then
                 checkboxCamionOtro.Checked = True
@@ -312,7 +312,7 @@
             Else
                 textboxCamion_DominioChasis.Text = ""
                 textboxCamion_DominioAcoplado.Text = ""
-                CS_Control_ComboBox.SetSelectedValue(comboboxCamion, SelectedItemOptions.ValueOrFirst, .IDCamion)
+                CS_ComboBox.SetSelectedValue(comboboxCamion, SelectedItemOptions.ValueOrFirst, .IDCamion)
             End If
             integertextboxKilometro.Text = CS_ValueTranslation.FromObjectIntegerToControlTextBox(.Kilometro)
 
@@ -607,7 +607,7 @@
         If Not comboboxProducto.SelectedItem Is Nothing Then
             ' Planta
             pFillAndRefreshLists.Planta(comboboxPlanta, mPesadaActual.IDPlanta, CByte(comboboxProducto.SelectedValue), False, False)
-            CS_Control_ComboBox.SetSelectedValue(comboboxPlanta, SelectedItemOptions.NoneOrFirstIfUnique)
+            CS_ComboBox.SetSelectedValue(comboboxPlanta, SelectedItemOptions.NoneOrFirstIfUnique)
 
             ' Cosecha
             labelCosecha.Visible = CType(comboboxProducto.SelectedItem, Producto).UtilizaCosecha
@@ -641,8 +641,8 @@
         OrigenOtro()
         DestinoOtro()
 
-        CS_Control_ComboBox.SetSelectedValue(comboboxOrigen, SelectedItemOptions.ValueOrFirst, IDOrigenSave)
-        CS_Control_ComboBox.SetSelectedValue(comboboxDestino, SelectedItemOptions.ValueOrFirst, IDDestinoSave)
+        CS_ComboBox.SetSelectedValue(comboboxOrigen, SelectedItemOptions.ValueOrFirst, IDOrigenSave)
+        CS_ComboBox.SetSelectedValue(comboboxDestino, SelectedItemOptions.ValueOrFirst, IDDestinoSave)
     End Sub
 
     Private Sub TipoTodos() Handles checkboxTipoTodos.CheckedChanged
@@ -688,7 +688,7 @@
             Else
                 pFillAndRefreshLists.Cosecha(comboboxCosecha, mPesadaActual.IDCosecha, CByte(comboboxProducto.SelectedValue), datetimepickerFechaInicio.Value, False, False)
             End If
-            CS_Control_ComboBox.SetSelectedValue(comboboxCosecha, SelectedItemOptions.NoneOrFirstIfUnique)
+            CS_ComboBox.SetSelectedValue(comboboxCosecha, SelectedItemOptions.NoneOrFirstIfUnique)
         End If
     End Sub
 
@@ -716,9 +716,9 @@
         If Not comboboxTitular.SelectedItem Is Nothing Then
             ' Origen - Destino
             pFillAndRefreshLists.OrigenDestino(comboboxOrigen, mPesadaActual.IDOrigen, False, CInt(comboboxTitular.SelectedValue), False, False, True)
-            CS_Control_ComboBox.SetSelectedValue(comboboxOrigen, SelectedItemOptions.First)
+            CS_ComboBox.SetSelectedValue(comboboxOrigen, SelectedItemOptions.First)
             pFillAndRefreshLists.OrigenDestino(comboboxDestino, mPesadaActual.IDDestino, False, CInt(comboboxTitular.SelectedValue), False, False, True)
-            CS_Control_ComboBox.SetSelectedValue(comboboxDestino, SelectedItemOptions.First)
+            CS_ComboBox.SetSelectedValue(comboboxDestino, SelectedItemOptions.First)
         End If
     End Sub
 
@@ -795,11 +795,11 @@
             ChoferTodos()
 
             If CInt(comboboxTransportista.SelectedValue) = CS_Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER Then
-                CS_Control_ComboBox.SetSelectedValue(comboboxCamion, SelectedItemOptions.First)
-                CS_Control_ComboBox.SetSelectedValue(comboboxChofer, SelectedItemOptions.First)
+                CS_ComboBox.SetSelectedValue(comboboxCamion, SelectedItemOptions.First)
+                CS_ComboBox.SetSelectedValue(comboboxChofer, SelectedItemOptions.First)
             Else
-                CS_Control_ComboBox.SetSelectedValue(comboboxCamion, SelectedItemOptions.First)
-                CS_Control_ComboBox.SetSelectedValue(comboboxChofer, SelectedItemOptions.First)
+                CS_ComboBox.SetSelectedValue(comboboxCamion, SelectedItemOptions.First)
+                CS_ComboBox.SetSelectedValue(comboboxChofer, SelectedItemOptions.First)
             End If
         End If
     End Sub
@@ -832,7 +832,7 @@
         If Not comboboxChofer.SelectedItem Is Nothing Then
             maskedtextboxChoferCUIT_CUIL.Text = CType(comboboxChofer.SelectedItem, Entidad).CUIT_CUIL
             If CType(comboboxChofer.SelectedItem, Entidad).IDCamion.HasValue Then
-                CS_Control_ComboBox.SetSelectedValue(comboboxCamion, SelectedItemOptions.ValueOrFirst, CType(comboboxChofer.SelectedItem, Entidad).IDCamion)
+                CS_ComboBox.SetSelectedValue(comboboxCamion, SelectedItemOptions.ValueOrFirst, CType(comboboxChofer.SelectedItem, Entidad).IDCamion)
             End If
         End If
     End Sub
