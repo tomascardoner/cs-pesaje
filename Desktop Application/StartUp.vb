@@ -60,7 +60,7 @@
         End If
 
         ' Verifico que la Base de Datos corresponda a esta Aplicación a través del GUID guardado en los Parámetros
-        If CS_Parameter.GetString(Parametros.APPLICATION_DATABASE_GUID) <> Constantes.APPLICATION_DATABASE_GUID Then
+        If CS_Parameter_System.GetString(Parametros.APPLICATION_DATABASE_GUID) <> Constantes.APPLICATION_DATABASE_GUID Then
             MsgBox("La Base de Datos especificada no corresponde a esta aplicación.", MsgBoxStyle.Critical, My.Application.Info.Title)
             formSplashScreen.Close()
             formSplashScreen.Dispose()
@@ -70,7 +70,7 @@
 
         ' Muestro el Nombre de la Compañía a la que está licenciada la Aplicación
         Dim LicenseDecrypter As New CS_Encrypt_TripleDES(CS_Constants.ENCRYPTION_PASSWORD)
-        pLicensedTo = LicenseDecrypter.Decrypt(CS_Parameter.GetString(Parametros.LICENSE_COMPANY_NAME, ""))
+        pLicensedTo = LicenseDecrypter.Decrypt(CS_Parameter_System.GetString(Parametros.LICENSE_COMPANY_NAME, ""))
         LicenseDecrypter = Nothing
         formSplashScreen.labelLicensedTo.Text = pLicensedTo
         Application.DoEvents()

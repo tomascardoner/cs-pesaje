@@ -140,6 +140,23 @@
 #End Region
 
 #Region "Controls behavior"
+    Private Sub FormKeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
+        Select Case e.KeyChar
+            Case Microsoft.VisualBasic.ChrW(Keys.Return)
+                If mEditMode Then
+                    buttonGuardar.PerformClick()
+                Else
+                    buttonCerrar.PerformClick()
+                End If
+            Case Microsoft.VisualBasic.ChrW(Keys.Escape)
+                If mEditMode Then
+                    buttonCancelar.PerformClick()
+                Else
+                    buttonCerrar.PerformClick()
+                End If
+        End Select
+    End Sub
+
     Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxNombre.GotFocus
         CType(sender, TextBox).SelectAll()
     End Sub
@@ -150,8 +167,8 @@
             comboboxDomicilioLocalidad.SelectedIndex = 0
         Else
             pFillAndRefreshLists.Localidad(comboboxDomicilioLocalidad, CByte(comboboxDomicilioProvincia.SelectedValue), True)
-            If CByte(comboboxDomicilioProvincia.SelectedValue) = CS_Parameter.GetIntegerAsByte(Parametros.DEFAULT_PROVINCIA_ID) Then
-                CS_ComboBox.SetSelectedValue(comboboxDomicilioLocalidad, SelectedItemOptions.ValueOrFirst, CS_Parameter.GetIntegerAsShort(Parametros.DEFAULT_LOCALIDAD_ID))
+            If CByte(comboboxDomicilioProvincia.SelectedValue) = CS_Parameter_System.GetIntegerAsByte(Parametros.DEFAULT_PROVINCIA_ID) Then
+                CS_ComboBox.SetSelectedValue(comboboxDomicilioLocalidad, SelectedItemOptions.ValueOrFirst, CS_Parameter_System.GetIntegerAsShort(Parametros.DEFAULT_LOCALIDAD_ID))
             End If
         End If
     End Sub
@@ -166,8 +183,8 @@
         Dim LinkString As String
 
         If doubletextboxLatitud.Text <> "" And doubletextboxLongitud.Text <> "" Then
-            LinkString = CS_Parameter.GetString(Parametros.MAPS_GOOGLEMAPS_LOCATIONLINK)
-            LinkString = LinkString.Replace(Constantes.MAPAS_LINK_PARAMETRO_ZOOM, CS_Parameter.GetIntegerAsByte(Parametros.MAPS_GOOGLEMAPS_ZOOMDEFAULT).ToString)
+            LinkString = CS_Parameter_System.GetString(Parametros.MAPS_GOOGLEMAPS_LOCATIONLINK)
+            LinkString = LinkString.Replace(Constantes.MAPAS_LINK_PARAMETRO_ZOOM, CS_Parameter_System.GetIntegerAsByte(Parametros.MAPS_GOOGLEMAPS_ZOOMDEFAULT).ToString)
             LinkString = LinkString.Replace(Constantes.MAPAS_LINK_PARAMETRO_LATITUD, doubletextboxLatitud.DoubleValue.ToString.Replace(",", "."))
             LinkString = LinkString.Replace(Constantes.MAPAS_LINK_PARAMETRO_LONGITUD, doubletextboxLongitud.DoubleValue.ToString.Replace(",", "."))
 

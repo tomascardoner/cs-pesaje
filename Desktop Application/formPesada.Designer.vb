@@ -66,11 +66,11 @@ Partial Class formPesada
         Me.labelTransportista = New System.Windows.Forms.Label()
         Me.comboboxCamion = New System.Windows.Forms.ComboBox()
         Me.groupboxTitular = New System.Windows.Forms.GroupBox()
-        Me.textboxDestinoOtro = New System.Windows.Forms.TextBox()
+        Me.textboxDestino = New System.Windows.Forms.TextBox()
         Me.comboboxDestino = New System.Windows.Forms.ComboBox()
         Me.textboxTitular = New System.Windows.Forms.TextBox()
         Me.comboboxTitular = New System.Windows.Forms.ComboBox()
-        Me.textboxOrigenOtro = New System.Windows.Forms.TextBox()
+        Me.textboxOrigen = New System.Windows.Forms.TextBox()
         Me.comboboxOrigen = New System.Windows.Forms.ComboBox()
         Me.groupboxProductoPlantaCosecha = New System.Windows.Forms.GroupBox()
         Me.labelTipo = New System.Windows.Forms.Label()
@@ -128,6 +128,7 @@ Partial Class formPesada
         Me.labelHumedad = New System.Windows.Forms.Label()
         Me.tabcontrolNotasExtras = New CSPesaje.DesktopApplication.CS_Control_TabControl()
         Me.tabpageNotas = New System.Windows.Forms.TabPage()
+        Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.tabpageExtras = New System.Windows.Forms.TabPage()
         Me.groupboxTarifasAplica = New System.Windows.Forms.GroupBox()
         Me.labelMezclaAplica = New System.Windows.Forms.Label()
@@ -152,7 +153,6 @@ Partial Class formPesada
         Me.checkboxEsActivo = New System.Windows.Forms.CheckBox()
         Me.labelEsVerificado = New System.Windows.Forms.Label()
         Me.checkboxEsVerificado = New System.Windows.Forms.CheckBox()
-        Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.toolstripMain.SuspendLayout()
         Me.groupboxTransporte.SuspendLayout()
         CType(Me.integertextboxKilometro, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -655,7 +655,7 @@ Partial Class formPesada
         Me.groupboxTitular.Controls.Add(Me.checkboxDestinoTodos)
         Me.groupboxTitular.Controls.Add(Me.checkboxDestinoOtro)
         Me.groupboxTitular.Controls.Add(Me.labelDestino)
-        Me.groupboxTitular.Controls.Add(Me.textboxDestinoOtro)
+        Me.groupboxTitular.Controls.Add(Me.textboxDestino)
         Me.groupboxTitular.Controls.Add(Me.comboboxDestino)
         Me.groupboxTitular.Controls.Add(Me.checkboxTitularTodos)
         Me.groupboxTitular.Controls.Add(Me.checkboxTitularOtro)
@@ -665,7 +665,7 @@ Partial Class formPesada
         Me.groupboxTitular.Controls.Add(Me.labelOrigen)
         Me.groupboxTitular.Controls.Add(Me.comboboxTitular)
         Me.groupboxTitular.Controls.Add(Me.labelTitular)
-        Me.groupboxTitular.Controls.Add(Me.textboxOrigenOtro)
+        Me.groupboxTitular.Controls.Add(Me.textboxOrigen)
         Me.groupboxTitular.Controls.Add(Me.comboboxOrigen)
         Me.groupboxTitular.Location = New System.Drawing.Point(12, 308)
         Me.groupboxTitular.Name = "groupboxTitular"
@@ -673,13 +673,13 @@ Partial Class formPesada
         Me.groupboxTitular.TabIndex = 2
         Me.groupboxTitular.TabStop = False
         '
-        'textboxDestinoOtro
+        'textboxDestino
         '
-        Me.textboxDestinoOtro.Location = New System.Drawing.Point(116, 67)
-        Me.textboxDestinoOtro.MaxLength = 50
-        Me.textboxDestinoOtro.Name = "textboxDestinoOtro"
-        Me.textboxDestinoOtro.Size = New System.Drawing.Size(158, 20)
-        Me.textboxDestinoOtro.TabIndex = 13
+        Me.textboxDestino.Location = New System.Drawing.Point(116, 67)
+        Me.textboxDestino.MaxLength = 50
+        Me.textboxDestino.Name = "textboxDestino"
+        Me.textboxDestino.Size = New System.Drawing.Size(158, 20)
+        Me.textboxDestino.TabIndex = 13
         '
         'comboboxDestino
         '
@@ -707,13 +707,13 @@ Partial Class formPesada
         Me.comboboxTitular.Size = New System.Drawing.Size(209, 21)
         Me.comboboxTitular.TabIndex = 1
         '
-        'textboxOrigenOtro
+        'textboxOrigen
         '
-        Me.textboxOrigenOtro.Location = New System.Drawing.Point(116, 40)
-        Me.textboxOrigenOtro.MaxLength = 50
-        Me.textboxOrigenOtro.Name = "textboxOrigenOtro"
-        Me.textboxOrigenOtro.Size = New System.Drawing.Size(158, 20)
-        Me.textboxOrigenOtro.TabIndex = 8
+        Me.textboxOrigen.Location = New System.Drawing.Point(116, 40)
+        Me.textboxOrigen.MaxLength = 50
+        Me.textboxOrigen.Name = "textboxOrigen"
+        Me.textboxOrigen.Size = New System.Drawing.Size(158, 20)
+        Me.textboxOrigen.TabIndex = 8
         '
         'comboboxOrigen
         '
@@ -1419,6 +1419,17 @@ Partial Class formPesada
         Me.tabpageNotas.Text = "Notas"
         Me.tabpageNotas.UseVisualStyleBackColor = True
         '
+        'textboxNotas
+        '
+        Me.textboxNotas.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.textboxNotas.Location = New System.Drawing.Point(3, 3)
+        Me.textboxNotas.MaxLength = 0
+        Me.textboxNotas.Multiline = True
+        Me.textboxNotas.Name = "textboxNotas"
+        Me.textboxNotas.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.textboxNotas.Size = New System.Drawing.Size(705, 98)
+        Me.textboxNotas.TabIndex = 2
+        '
         'tabpageExtras
         '
         Me.tabpageExtras.Controls.Add(Me.groupboxTarifasAplica)
@@ -1659,17 +1670,6 @@ Partial Class formPesada
         Me.checkboxEsVerificado.TabIndex = 6
         Me.checkboxEsVerificado.UseVisualStyleBackColor = True
         '
-        'textboxNotas
-        '
-        Me.textboxNotas.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.textboxNotas.Location = New System.Drawing.Point(3, 3)
-        Me.textboxNotas.MaxLength = 0
-        Me.textboxNotas.Multiline = True
-        Me.textboxNotas.Name = "textboxNotas"
-        Me.textboxNotas.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.textboxNotas.Size = New System.Drawing.Size(705, 98)
-        Me.textboxNotas.TabIndex = 2
-        '
         'formPesada
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1684,12 +1684,13 @@ Partial Class formPesada
         Me.Controls.Add(Me.groupboxTransporte)
         Me.Controls.Add(Me.toolstripMain)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.KeyPreview = True
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "formPesada"
         Me.ShowIcon = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
-        Me.Text = "Detalle de la Entidad"
+        Me.Text = "Detalle de la Pesada"
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()
         Me.groupboxTransporte.ResumeLayout(False)
@@ -1779,7 +1780,7 @@ Partial Class formPesada
     Friend WithEvents textboxProducto As System.Windows.Forms.TextBox
     Friend WithEvents labelTransportistaCUIT As System.Windows.Forms.Label
     Friend WithEvents textboxTransportista As System.Windows.Forms.TextBox
-    Friend WithEvents textboxOrigenOtro As System.Windows.Forms.TextBox
+    Friend WithEvents textboxOrigen As System.Windows.Forms.TextBox
     Friend WithEvents textboxTitular As System.Windows.Forms.TextBox
     Friend WithEvents maskedtextboxTransportistaCUIT As System.Windows.Forms.MaskedTextBox
     Friend WithEvents maskedtextboxChoferCUIT_CUIL As System.Windows.Forms.MaskedTextBox
@@ -1857,7 +1858,7 @@ Partial Class formPesada
     Friend WithEvents checkboxDestinoTodos As System.Windows.Forms.CheckBox
     Friend WithEvents checkboxDestinoOtro As System.Windows.Forms.CheckBox
     Friend WithEvents labelDestino As System.Windows.Forms.Label
-    Friend WithEvents textboxDestinoOtro As System.Windows.Forms.TextBox
+    Friend WithEvents textboxDestino As System.Windows.Forms.TextBox
     Friend WithEvents comboboxDestino As System.Windows.Forms.ComboBox
     Friend WithEvents textboxNotas As System.Windows.Forms.TextBox
 End Class

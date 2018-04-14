@@ -86,12 +86,14 @@
         checkboxOrigenOtro.Visible = ((radiobuttonEntrada.Checked Or radiobuttonNinguno.Checked) And mEditMode)
         comboboxOrigen.Visible = (radiobuttonEntrada.Checked Or radiobuttonNinguno.Checked) And Not checkboxOrigenOtro.Checked
         comboboxOrigen.Enabled = mEditMode
-        textboxOrigenOtro.Visible = (radiobuttonEntrada.Checked Or radiobuttonNinguno.Checked) And checkboxOrigenOtro.Checked
+        textboxOrigen.ReadOnly = Not mEditMode
+        textboxOrigen.Visible = (radiobuttonEntrada.Checked Or radiobuttonNinguno.Checked) And checkboxOrigenOtro.Checked
         checkboxOrigenTodos.Visible = (mEditMode And (radiobuttonEntrada.Checked Or radiobuttonNinguno.Checked) And Not checkboxOrigenOtro.Checked)
         checkboxDestinoOtro.Visible = ((radiobuttonSalida.Checked Or radiobuttonNinguno.Checked) And mEditMode)
         comboboxDestino.Visible = (radiobuttonSalida.Checked Or radiobuttonNinguno.Checked) And Not checkboxDestinoOtro.Checked
         comboboxDestino.Enabled = mEditMode
-        textboxDestinoOtro.Visible = (radiobuttonSalida.Checked Or radiobuttonNinguno.Checked) And checkboxDestinoOtro.Checked
+        textboxDestino.ReadOnly = Not mEditMode
+        textboxDestino.Visible = (radiobuttonSalida.Checked Or radiobuttonNinguno.Checked) And checkboxDestinoOtro.Checked
         checkboxDestinoTodos.Visible = (mEditMode And (radiobuttonSalida.Checked Or radiobuttonNinguno.Checked) And Not checkboxDestinoOtro.Checked)
 
         ' Transporte
@@ -178,8 +180,8 @@
     Friend Sub SetAppearance()
         textboxProducto.Width = comboboxProducto.Width
         textboxTitular.Width = comboboxTitular.Width
-        textboxOrigenOtro.Width = comboboxOrigen.Width
-        textboxDestinoOtro.Width = comboboxDestino.Width
+        textboxOrigen.Width = comboboxOrigen.Width
+        textboxDestino.Width = comboboxDestino.Width
         textboxTransportista.Width = comboboxTransportista.Width
         textboxChofer.Width = comboboxChofer.Width
     End Sub
@@ -250,25 +252,25 @@
             If .IDOrigen = CS_Constants.FIELD_VALUE_OTHER_INTEGER Then
                 checkboxOrigenOtro.Checked = True
                 If .Pesada_Otro Is Nothing Then
-                    textboxOrigenOtro.Text = ""
+                    textboxOrigen.Text = ""
                 Else
-                    textboxOrigenOtro.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Pesada_Otro.Origen_Nombre)
+                    textboxOrigen.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Pesada_Otro.Origen_Nombre)
                 End If
             Else
                 CS_ComboBox.SetSelectedValue(comboboxOrigen, SelectedItemOptions.ValueOrFirst, .IDOrigen)
-                textboxOrigenOtro.Text = ""
+                textboxOrigen.Text = ""
             End If
             If .IDDestino = CS_Constants.FIELD_VALUE_OTHER_INTEGER Then
                 checkboxDestinoOtro.Checked = True
                 If .Pesada_Otro Is Nothing Then
-                    textboxDestinoOtro.Text = ""
+                    textboxDestino.Text = ""
                 Else
-                    textboxDestinoOtro.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Pesada_Otro.Destino_Nombre)
+                    textboxDestino.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Pesada_Otro.Destino_Nombre)
                 End If
 
             Else
                 CS_ComboBox.SetSelectedValue(comboboxDestino, SelectedItemOptions.ValueOrFirst, .IDDestino)
-                textboxDestinoOtro.Text = ""
+                textboxDestino.Text = ""
             End If
 
             ' Transporte
@@ -421,7 +423,7 @@
             If labelOrigen.Visible Then
                 If checkboxOrigenOtro.Checked Then
                     .IDOrigen = CS_Constants.FIELD_VALUE_OTHER_INTEGER
-                    .Pesada_Otro.Origen_Nombre = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxOrigenOtro.Text)
+                    .Pesada_Otro.Origen_Nombre = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxOrigen.Text)
                 Else
                     .IDOrigen = CS_ValueTranslation.FromControlComboBoxToObjectInteger(comboboxOrigen.SelectedValue)
                     If Not .Pesada_Otro Is Nothing Then
@@ -440,7 +442,7 @@
             If labelDestino.Visible Then
                 If checkboxDestinoOtro.Checked Then
                     .IDDestino = CS_Constants.FIELD_VALUE_OTHER_INTEGER
-                    .Pesada_Otro.Destino_Nombre = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxDestinoOtro.Text)
+                    .Pesada_Otro.Destino_Nombre = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxDestino.Text)
                 Else
                     .IDDestino = CS_ValueTranslation.FromControlComboBoxToObjectInteger(comboboxDestino.SelectedValue)
                     If Not .Pesada_Otro Is Nothing Then
@@ -560,6 +562,23 @@
 #End Region
 
 #Region "Controls behavior"
+    Private Sub FormKeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
+        Select Case e.KeyChar
+            Case Microsoft.VisualBasic.ChrW(Keys.Return)
+                If mEditMode Then
+                    buttonGuardar.PerformClick()
+                Else
+                    buttonCerrar.PerformClick()
+                End If
+            Case Microsoft.VisualBasic.ChrW(Keys.Escape)
+                If mEditMode Then
+                    buttonCancelar.PerformClick()
+                Else
+                    buttonCerrar.PerformClick()
+                End If
+        End Select
+    End Sub
+
     Private Sub FechaInicioCambio() Handles datetimepickerFechaInicio.ValueChanged
         CosechaTodos()
     End Sub
@@ -731,11 +750,11 @@
         labelOrigen.Visible = (radiobuttonEntrada.Checked Or radiobuttonNinguno.Checked)
         checkboxOrigenOtro.Visible = ((radiobuttonEntrada.Checked Or radiobuttonNinguno.Checked) And mEditMode)
         comboboxOrigen.Visible = (radiobuttonEntrada.Checked Or radiobuttonNinguno.Checked) And Not checkboxOrigenOtro.Checked
-        textboxOrigenOtro.Visible = (radiobuttonEntrada.Checked Or radiobuttonNinguno.Checked) And checkboxOrigenOtro.Checked
+        textboxOrigen.Visible = (radiobuttonEntrada.Checked Or radiobuttonNinguno.Checked) And checkboxOrigenOtro.Checked
         checkboxOrigenTodos.Visible = (radiobuttonEntrada.Checked Or radiobuttonNinguno.Checked) And Not checkboxOrigenOtro.Checked
 
         If checkboxOrigenOtro.Checked Then
-            textboxOrigenOtro.Focus()
+            textboxOrigen.Focus()
         Else
             comboboxOrigen.Focus()
         End If
@@ -750,11 +769,11 @@
         labelDestino.Visible = (radiobuttonSalida.Checked Or radiobuttonNinguno.Checked)
         checkboxDestinoOtro.Visible = ((radiobuttonSalida.Checked Or radiobuttonNinguno.Checked) And mEditMode)
         comboboxDestino.Visible = (radiobuttonSalida.Checked Or radiobuttonNinguno.Checked) And Not checkboxDestinoOtro.Checked
-        textboxDestinoOtro.Visible = (radiobuttonSalida.Checked Or radiobuttonNinguno.Checked) And checkboxDestinoOtro.Checked
+        textboxDestino.Visible = (radiobuttonSalida.Checked Or radiobuttonNinguno.Checked) And checkboxDestinoOtro.Checked
         checkboxDestinoTodos.Visible = (radiobuttonSalida.Checked Or radiobuttonNinguno.Checked) And Not checkboxDestinoOtro.Checked
 
         If checkboxDestinoOtro.Checked Then
-            textboxDestinoOtro.Focus()
+            textboxDestino.Focus()
         Else
             comboboxDestino.Focus()
         End If
@@ -902,7 +921,7 @@
         'End If
     End Sub
 
-    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxProducto.GotFocus, textboxTitular.GotFocus, textboxOrigenOtro.GotFocus, textboxTransportista.GotFocus, textboxChofer.GotFocus, textboxCamion_DominioChasis.GotFocus, textboxCamion_DominioAcoplado.GotFocus
+    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxProducto.GotFocus, textboxTitular.GotFocus, textboxOrigen.GotFocus, textboxTransportista.GotFocus, textboxChofer.GotFocus, textboxCamion_DominioChasis.GotFocus, textboxCamion_DominioAcoplado.GotFocus
         CType(sender, TextBox).SelectAll()
     End Sub
 #End Region
@@ -1002,7 +1021,7 @@
             End If
         ElseIf DateDiff(DateInterval.Day, DateTime.Now, datetimepickerFechaInicio.Value) = 0 Then
             ' La fecha de la pesada es igual a la actual
-            If DateDiff(DateInterval.Minute, DateTime.Now, datetimepickerFechaInicio.Value) < -CS_Parameter.GetIntegerAsInteger(Parametros.PESADA_HORA_INICIOACTUAL_DIFERENCIAMAXIMA_MINUTOS) Then
+            If DateDiff(DateInterval.Minute, DateTime.Now, datetimepickerFechaInicio.Value) < -CS_Parameter_System.GetIntegerAsInteger(Parametros.PESADA_HORA_INICIOACTUAL_DIFERENCIAMAXIMA_MINUTOS) Then
                 ' La hora de la pesada es anterior a la actual en más de X minutos
                 If Not Permisos.VerificarPermiso(Permisos.PESADA_AGREGAR_HORA_ANTERIOR, False) Then
                     MsgBox("La hora de inicio no debe ser menor a la hora actual.", MsgBoxStyle.Information, My.Application.Info.Title)
@@ -1010,10 +1029,10 @@
                     Exit Sub
                 End If
             End If
-        ElseIf DateDiff(DateInterval.Day, DateTime.Now, datetimepickerFechaInicio.Value) >= -CS_Parameter.GetIntegerAsInteger(Parametros.PESADA_FECHA_INICIOACTUAL_ANTERIOR_DIFERENCIAMAXIMA_DIAS) Then
+        ElseIf DateDiff(DateInterval.Day, DateTime.Now, datetimepickerFechaInicio.Value) >= -CS_Parameter_System.GetIntegerAsInteger(Parametros.PESADA_FECHA_INICIOACTUAL_ANTERIOR_DIFERENCIAMAXIMA_DIAS) Then
             ' La fecha de la pesada es menos de X días anterior a la fecha actual
             If Not (Permisos.VerificarPermiso(Permisos.PESADA_AGREGAR_FECHA_ANTERIOR_XDIAS, False) Or Permisos.VerificarPermiso(Permisos.PESADA_AGREGAR_FECHA_ANTERIOR, False)) Then
-                MsgBox(String.Format("La fecha de inicio de la pesada no debe ser menor en {0} días a la fecha actual.", CS_Parameter.GetIntegerAsInteger(Parametros.PESADA_FECHA_INICIOACTUAL_ANTERIOR_DIFERENCIAMAXIMA_DIAS)), MsgBoxStyle.Information, My.Application.Info.Title)
+                MsgBox(String.Format("La fecha de inicio de la pesada no debe ser menor en {0} días a la fecha actual.", CS_Parameter_System.GetIntegerAsInteger(Parametros.PESADA_FECHA_INICIOACTUAL_ANTERIOR_DIFERENCIAMAXIMA_DIAS)), MsgBoxStyle.Information, My.Application.Info.Title)
                 datetimepickerFechaInicio.Focus()
                 Exit Sub
             End If
@@ -1031,9 +1050,9 @@
             MsgBox("La fecha/hora de fin de la pesada no debe ser menor a la fecha/hora de inicio.", MsgBoxStyle.Information, My.Application.Info.Title)
             datetimepickerFechaFin.Focus()
             Exit Sub
-        ElseIf DateDiff(DateInterval.Day, datetimepickerFechaInicio.Value, datetimepickerFechaFin.Value) > CS_Parameter.GetIntegerAsInteger(Parametros.PESADA_FECHA_INICIOFIN_DIFERENCIAMAXIMA_DIAS) Then
+        ElseIf DateDiff(DateInterval.Day, datetimepickerFechaInicio.Value, datetimepickerFechaFin.Value) > CS_Parameter_System.GetIntegerAsInteger(Parametros.PESADA_FECHA_INICIOFIN_DIFERENCIAMAXIMA_DIAS) Then
             ' La fecha de fin de la pesada es posterior en más de x días a la fecha de inicio
-            MsgBox(String.Format("La fecha de fin de la pesada no debe ser mayor en {0} días a la fecha de inicio.", CS_Parameter.GetIntegerAsInteger(Parametros.PESADA_FECHA_INICIOFIN_DIFERENCIAMAXIMA_DIAS)), MsgBoxStyle.Information, My.Application.Info.Title)
+            MsgBox(String.Format("La fecha de fin de la pesada no debe ser mayor en {0} días a la fecha de inicio.", CS_Parameter_System.GetIntegerAsInteger(Parametros.PESADA_FECHA_INICIOFIN_DIFERENCIAMAXIMA_DIAS)), MsgBoxStyle.Information, My.Application.Info.Title)
             datetimepickerFechaFin.Focus()
             Exit Sub
         End If
@@ -1105,9 +1124,9 @@
 
         ' Origen/Destino
         If checkboxOrigenOtro.Checked Then
-            If textboxOrigenOtro.Text.Trim.Length = 0 Then
+            If textboxOrigen.Text.Trim.Length = 0 Then
                 MsgBox(String.Format("Debe especificar el {0}.", labelOrigen.Text.Substring(0, labelOrigen.Text.Length - 2)), MsgBoxStyle.Information, My.Application.Info.Title)
-                textboxOrigenOtro.Focus()
+                textboxOrigen.Focus()
                 Exit Sub
             End If
         Else

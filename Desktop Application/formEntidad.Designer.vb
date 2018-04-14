@@ -27,8 +27,8 @@ Partial Class formEntidad
         Dim labelEsActivo As System.Windows.Forms.Label
         Dim labelModificacion As System.Windows.Forms.Label
         Dim labelCreacion As System.Windows.Forms.Label
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.labelNombre = New System.Windows.Forms.Label()
         Me.textboxNombre = New System.Windows.Forms.TextBox()
         Me.toolstripMain = New System.Windows.Forms.ToolStrip()
@@ -468,11 +468,11 @@ Partial Class formEntidad
         Me.datagridviewOrigenesDestinosIncluidos.AllowUserToDeleteRows = False
         Me.datagridviewOrigenesDestinosIncluidos.AllowUserToOrderColumns = True
         Me.datagridviewOrigenesDestinosIncluidos.AllowUserToResizeRows = False
-        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.GradientActiveCaption
-        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.WindowText
-        Me.datagridviewOrigenesDestinosIncluidos.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.GradientActiveCaption
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText
+        Me.datagridviewOrigenesDestinosIncluidos.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.datagridviewOrigenesDestinosIncluidos.AutoGenerateColumns = False
         Me.datagridviewOrigenesDestinosIncluidos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.datagridviewOrigenesDestinosIncluidos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1})
@@ -503,11 +503,11 @@ Partial Class formEntidad
         Me.datagridviewOrigenesDestinosNoIncluidos.AllowUserToDeleteRows = False
         Me.datagridviewOrigenesDestinosNoIncluidos.AllowUserToOrderColumns = True
         Me.datagridviewOrigenesDestinosNoIncluidos.AllowUserToResizeRows = False
-        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.GradientActiveCaption
-        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.WindowText
-        Me.datagridviewOrigenesDestinosNoIncluidos.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.GradientActiveCaption
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.WindowText
+        Me.datagridviewOrigenesDestinosNoIncluidos.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle2
         Me.datagridviewOrigenesDestinosNoIncluidos.AutoGenerateColumns = False
         Me.datagridviewOrigenesDestinosNoIncluidos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.datagridviewOrigenesDestinosNoIncluidos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnNombre})
@@ -585,6 +585,7 @@ Partial Class formEntidad
         Me.Controls.Add(Me.tabcontrolMain)
         Me.Controls.Add(Me.toolstripMain)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.KeyPreview = True
         Me.MaximizeBox = False
         Me.Name = "formEntidad"
         Me.ShowIcon = False

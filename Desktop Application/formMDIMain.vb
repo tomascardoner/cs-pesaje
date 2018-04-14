@@ -63,9 +63,6 @@
 #End Region
 
 #Region "Menu Debug"
-    Private Sub Debug_ShowTestForm() Handles menuitemDebug_ShowTestForm.Click
-        formTest.ShowDialog()
-    End Sub
 
 #End Region
 

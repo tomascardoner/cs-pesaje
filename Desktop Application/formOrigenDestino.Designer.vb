@@ -469,6 +469,7 @@ Partial Class formOrigenDestino
         Me.Controls.Add(Me.tabcontrolMain)
         Me.Controls.Add(Me.toolstripMain)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.KeyPreview = True
         Me.MaximizeBox = False
         Me.Name = "formOrigenDestino"
         Me.ShowIcon = False

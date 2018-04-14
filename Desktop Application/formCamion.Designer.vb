@@ -222,6 +222,7 @@ Partial Class formCamion
         Me.Controls.Add(Me.labelNombre)
         Me.Controls.Add(Me.textboxNombre)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.KeyPreview = True
         Me.MaximizeBox = False
         Me.Name = "formCamion"
         Me.ShowIcon = False

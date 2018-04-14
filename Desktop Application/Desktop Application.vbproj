@@ -107,6 +107,9 @@
     <Compile Include="..\..\..\..\..\..\..\Users\Tomas\Dropbox\Cardoner Sistemas\Framework\Visual Basic .NET\CS_Database_EF_SQL.vb">
       <Link>CS_Database_EF_SQL.vb</Link>
     </Compile>
+    <Compile Include="..\..\..\..\..\..\..\Users\Tomas\Dropbox\Cardoner Sistemas\Framework\Visual Basic .NET\CS_Parameter_System.vb">
+      <Link>CS_Parameter_System.vb</Link>
+    </Compile>
     <Compile Include="C:\Users\Tomas\Dropbox\Cardoner Sistemas\Framework\Visual Basic .NET\CS_Constants.vb">
       <Link>CS_Constants.vb</Link>
     </Compile>
@@ -144,9 +147,6 @@
     </Compile>
     <Compile Include="C:\Users\Tomas\Dropbox\Cardoner Sistemas\Framework\Visual Basic .NET\CS_Instance.vb">
       <Link>CS_Instance.vb</Link>
-    </Compile>
-    <Compile Include="C:\Users\Tomas\Dropbox\Cardoner Sistemas\Framework\Visual Basic .NET\CS_Parameter.vb">
-      <Link>CS_Parameter.vb</Link>
     </Compile>
     <Compile Include="C:\Users\Tomas\Dropbox\Cardoner Sistemas\Framework\Visual Basic .NET\CS_ValueTranslation.vb">
       <Link>CS_ValueTranslation.vb</Link>
@@ -219,12 +219,6 @@
       <DependentUpon>formPesadaAsistente.vb</DependentUpon>
     </Compile>
     <Compile Include="formPesadaAsistente.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="formTest.Designer.vb">
-      <DependentUpon>formTest.vb</DependentUpon>
-    </Compile>
-    <Compile Include="formTest.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="formAboutBox.designer.vb">
@@ -398,9 +392,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="formPesadaAsistente.resx">
       <DependentUpon>formPesadaAsistente.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="formTest.resx">
-      <DependentUpon>formTest.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formAboutBox.resx">
       <DependentUpon>formAboutBox.vb</DependentUpon>

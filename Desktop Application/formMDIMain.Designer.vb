@@ -43,7 +43,6 @@ Partial Class formMDIMain
         Me.menuitemVentana_EncajarEnVentana = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemVentana_SeparadorListaVentanas = New System.Windows.Forms.ToolStripSeparator()
         Me.menuitemDebug = New System.Windows.Forms.ToolStripMenuItem()
-        Me.menuitemDebug_ShowTestForm = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemAyuda = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemAyuda_AcercaDe = New System.Windows.Forms.ToolStripMenuItem()
         Me.panelMain = New System.Windows.Forms.TableLayoutPanel()
@@ -51,6 +50,7 @@ Partial Class formMDIMain
         Me.dropdownbuttonTablas = New System.Windows.Forms.ToolStripDropDownButton()
         Me.menuitemTablas_Entidades = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemTablas_Camiones = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuitemTablas_OrigenesDestinos = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemTablas_Productos = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemTablas_Cosechas = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemTablas_GruposUsuarios = New System.Windows.Forms.ToolStripMenuItem()
@@ -60,7 +60,6 @@ Partial Class formMDIMain
         Me.buttonPesadas = New System.Windows.Forms.ToolStripButton()
         Me.buttonReportes = New System.Windows.Forms.ToolStripButton()
         Me.textboxKilogramo = New System.Windows.Forms.TextBox()
-        Me.menuitemTablas_OrigenesDestinos = New System.Windows.Forms.ToolStripMenuItem()
         Me.statusstripMain.SuspendLayout()
         Me.menustripMain.SuspendLayout()
         Me.panelMain.SuspendLayout()
@@ -190,17 +189,10 @@ Partial Class formMDIMain
         '
         'menuitemDebug
         '
-        Me.menuitemDebug.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemDebug_ShowTestForm})
         Me.menuitemDebug.Name = "menuitemDebug"
         Me.menuitemDebug.Size = New System.Drawing.Size(54, 20)
         Me.menuitemDebug.Text = "Debug"
         Me.menuitemDebug.Visible = False
-        '
-        'menuitemDebug_ShowTestForm
-        '
-        Me.menuitemDebug_ShowTestForm.Name = "menuitemDebug_ShowTestForm"
-        Me.menuitemDebug_ShowTestForm.Size = New System.Drawing.Size(217, 22)
-        Me.menuitemDebug_ShowTestForm.Text = "Mostrar ventana de Testing"
         '
         'menuitemAyuda
         '
@@ -212,7 +204,7 @@ Partial Class formMDIMain
         'menuitemAyuda_AcercaDe
         '
         Me.menuitemAyuda_AcercaDe.Name = "menuitemAyuda_AcercaDe"
-        Me.menuitemAyuda_AcercaDe.Size = New System.Drawing.Size(135, 22)
+        Me.menuitemAyuda_AcercaDe.Size = New System.Drawing.Size(152, 22)
         Me.menuitemAyuda_AcercaDe.Text = "&Acerca de..."
         '
         'panelMain
@@ -265,6 +257,12 @@ Partial Class formMDIMain
         Me.menuitemTablas_Camiones.Name = "menuitemTablas_Camiones"
         Me.menuitemTablas_Camiones.Size = New System.Drawing.Size(176, 22)
         Me.menuitemTablas_Camiones.Text = "Camiones"
+        '
+        'menuitemTablas_OrigenesDestinos
+        '
+        Me.menuitemTablas_OrigenesDestinos.Name = "menuitemTablas_OrigenesDestinos"
+        Me.menuitemTablas_OrigenesDestinos.Size = New System.Drawing.Size(176, 22)
+        Me.menuitemTablas_OrigenesDestinos.Text = "Orígenes-Destinos"
         '
         'menuitemTablas_Productos
         '
@@ -335,12 +333,6 @@ Partial Class formMDIMain
         Me.textboxKilogramo.TabIndex = 3
         Me.textboxKilogramo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
-        'menuitemTablas_OrigenesDestinos
-        '
-        Me.menuitemTablas_OrigenesDestinos.Name = "menuitemTablas_OrigenesDestinos"
-        Me.menuitemTablas_OrigenesDestinos.Size = New System.Drawing.Size(176, 22)
-        Me.menuitemTablas_OrigenesDestinos.Text = "Orígenes-Destinos"
-        '
         'formMDIMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -391,7 +383,6 @@ Partial Class formMDIMain
     Friend WithEvents menuitemAyuda_AcercaDe As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents menuitemVentana_SeparadorListaVentanas As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents menuitemDebug As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents menuitemDebug_ShowTestForm As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents panelMain As System.Windows.Forms.TableLayoutPanel
     Friend WithEvents toolstripMain As System.Windows.Forms.ToolStrip
     Friend WithEvents dropdownbuttonTablas As System.Windows.Forms.ToolStripDropDownButton

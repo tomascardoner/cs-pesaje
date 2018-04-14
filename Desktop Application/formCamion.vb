@@ -106,6 +106,23 @@
 #End Region
 
 #Region "Controls behavior"
+    Private Sub FormKeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
+        Select Case e.KeyChar
+            Case Microsoft.VisualBasic.ChrW(Keys.Return)
+                If mEditMode Then
+                    buttonGuardar.PerformClick()
+                Else
+                    buttonCerrar.PerformClick()
+                End If
+            Case Microsoft.VisualBasic.ChrW(Keys.Escape)
+                If mEditMode Then
+                    buttonCancelar.PerformClick()
+                Else
+                    buttonCerrar.PerformClick()
+                End If
+        End Select
+    End Sub
+
     Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxIDCamion.GotFocus, textboxNombre.GotFocus
         CType(sender, TextBox).SelectAll()
     End Sub
