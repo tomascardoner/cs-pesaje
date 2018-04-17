@@ -101,7 +101,7 @@ Partial Class formEntidad
         'labelEsActivo
         '
         labelEsActivo.AutoSize = True
-        labelEsActivo.Location = New System.Drawing.Point(8, 98)
+        labelEsActivo.Location = New System.Drawing.Point(8, 235)
         labelEsActivo.Name = "labelEsActivo"
         labelEsActivo.Size = New System.Drawing.Size(40, 13)
         labelEsActivo.TabIndex = 35
@@ -110,7 +110,7 @@ Partial Class formEntidad
         'labelModificacion
         '
         labelModificacion.AutoSize = True
-        labelModificacion.Location = New System.Drawing.Point(8, 173)
+        labelModificacion.Location = New System.Drawing.Point(8, 310)
         labelModificacion.Name = "labelModificacion"
         labelModificacion.Size = New System.Drawing.Size(102, 13)
         labelModificacion.TabIndex = 43
@@ -119,7 +119,7 @@ Partial Class formEntidad
         'labelCreacion
         '
         labelCreacion.AutoSize = True
-        labelCreacion.Location = New System.Drawing.Point(8, 147)
+        labelCreacion.Location = New System.Drawing.Point(8, 284)
         labelCreacion.Name = "labelCreacion"
         labelCreacion.Size = New System.Drawing.Size(52, 13)
         labelCreacion.TabIndex = 40
@@ -148,7 +148,7 @@ Partial Class formEntidad
         Me.toolstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonCerrar, Me.buttonEditar, Me.buttonCancelar, Me.buttonGuardar})
         Me.toolstripMain.Location = New System.Drawing.Point(0, 0)
         Me.toolstripMain.Name = "toolstripMain"
-        Me.toolstripMain.Size = New System.Drawing.Size(551, 39)
+        Me.toolstripMain.Size = New System.Drawing.Size(552, 39)
         Me.toolstripMain.TabIndex = 1
         '
         'buttonCerrar
@@ -313,7 +313,7 @@ Partial Class formEntidad
         Me.tabcontrolMain.Location = New System.Drawing.Point(12, 42)
         Me.tabcontrolMain.Name = "tabcontrolMain"
         Me.tabcontrolMain.SelectedIndex = 0
-        Me.tabcontrolMain.Size = New System.Drawing.Size(529, 229)
+        Me.tabcontrolMain.Size = New System.Drawing.Size(528, 362)
         Me.tabcontrolMain.TabIndex = 0
         '
         'tabpageGeneral
@@ -336,7 +336,7 @@ Partial Class formEntidad
         Me.tabpageGeneral.Location = New System.Drawing.Point(4, 25)
         Me.tabpageGeneral.Name = "tabpageGeneral"
         Me.tabpageGeneral.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageGeneral.Size = New System.Drawing.Size(521, 200)
+        Me.tabpageGeneral.Size = New System.Drawing.Size(520, 333)
         Me.tabpageGeneral.TabIndex = 0
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
@@ -358,7 +358,7 @@ Partial Class formEntidad
         Me.tabpageNotasAuditoria.Location = New System.Drawing.Point(4, 25)
         Me.tabpageNotasAuditoria.Name = "tabpageNotasAuditoria"
         Me.tabpageNotasAuditoria.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageNotasAuditoria.Size = New System.Drawing.Size(521, 200)
+        Me.tabpageNotasAuditoria.Size = New System.Drawing.Size(520, 333)
         Me.tabpageNotasAuditoria.TabIndex = 1
         Me.tabpageNotasAuditoria.Text = "Notas y Auditoría"
         Me.tabpageNotasAuditoria.UseVisualStyleBackColor = True
@@ -366,7 +366,7 @@ Partial Class formEntidad
         'checkboxEsActivo
         '
         Me.checkboxEsActivo.AutoSize = True
-        Me.checkboxEsActivo.Location = New System.Drawing.Point(124, 98)
+        Me.checkboxEsActivo.Location = New System.Drawing.Point(124, 235)
         Me.checkboxEsActivo.Name = "checkboxEsActivo"
         Me.checkboxEsActivo.Size = New System.Drawing.Size(15, 14)
         Me.checkboxEsActivo.TabIndex = 36
@@ -375,7 +375,7 @@ Partial Class formEntidad
         'labelIDEntidad
         '
         Me.labelIDEntidad.AutoSize = True
-        Me.labelIDEntidad.Location = New System.Drawing.Point(8, 121)
+        Me.labelIDEntidad.Location = New System.Drawing.Point(8, 258)
         Me.labelIDEntidad.Name = "labelIDEntidad"
         Me.labelIDEntidad.Size = New System.Drawing.Size(76, 13)
         Me.labelIDEntidad.TabIndex = 34
@@ -383,7 +383,7 @@ Partial Class formEntidad
         '
         'textboxIDEntidad
         '
-        Me.textboxIDEntidad.Location = New System.Drawing.Point(124, 118)
+        Me.textboxIDEntidad.Location = New System.Drawing.Point(124, 255)
         Me.textboxIDEntidad.MaxLength = 10
         Me.textboxIDEntidad.Name = "textboxIDEntidad"
         Me.textboxIDEntidad.ReadOnly = True
@@ -394,7 +394,7 @@ Partial Class formEntidad
         '
         'textboxUsuarioModificacion
         '
-        Me.textboxUsuarioModificacion.Location = New System.Drawing.Point(251, 170)
+        Me.textboxUsuarioModificacion.Location = New System.Drawing.Point(251, 307)
         Me.textboxUsuarioModificacion.MaxLength = 50
         Me.textboxUsuarioModificacion.Name = "textboxUsuarioModificacion"
         Me.textboxUsuarioModificacion.ReadOnly = True
@@ -403,7 +403,7 @@ Partial Class formEntidad
         '
         'textboxUsuarioCreacion
         '
-        Me.textboxUsuarioCreacion.Location = New System.Drawing.Point(251, 144)
+        Me.textboxUsuarioCreacion.Location = New System.Drawing.Point(251, 281)
         Me.textboxUsuarioCreacion.MaxLength = 50
         Me.textboxUsuarioCreacion.Name = "textboxUsuarioCreacion"
         Me.textboxUsuarioCreacion.ReadOnly = True
@@ -412,7 +412,7 @@ Partial Class formEntidad
         '
         'textboxFechaHoraModificacion
         '
-        Me.textboxFechaHoraModificacion.Location = New System.Drawing.Point(124, 170)
+        Me.textboxFechaHoraModificacion.Location = New System.Drawing.Point(124, 307)
         Me.textboxFechaHoraModificacion.MaxLength = 0
         Me.textboxFechaHoraModificacion.Name = "textboxFechaHoraModificacion"
         Me.textboxFechaHoraModificacion.ReadOnly = True
@@ -421,7 +421,7 @@ Partial Class formEntidad
         '
         'textboxFechaHoraCreacion
         '
-        Me.textboxFechaHoraCreacion.Location = New System.Drawing.Point(124, 144)
+        Me.textboxFechaHoraCreacion.Location = New System.Drawing.Point(124, 281)
         Me.textboxFechaHoraCreacion.MaxLength = 0
         Me.textboxFechaHoraCreacion.Name = "textboxFechaHoraCreacion"
         Me.textboxFechaHoraCreacion.ReadOnly = True
@@ -435,7 +435,7 @@ Partial Class formEntidad
         Me.textboxNotas.Multiline = True
         Me.textboxNotas.Name = "textboxNotas"
         Me.textboxNotas.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.textboxNotas.Size = New System.Drawing.Size(386, 86)
+        Me.textboxNotas.Size = New System.Drawing.Size(386, 223)
         Me.textboxNotas.TabIndex = 38
         '
         'labelNotas
@@ -457,7 +457,7 @@ Partial Class formEntidad
         Me.tabpageOrigenesDestinos.Location = New System.Drawing.Point(4, 25)
         Me.tabpageOrigenesDestinos.Name = "tabpageOrigenesDestinos"
         Me.tabpageOrigenesDestinos.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageOrigenesDestinos.Size = New System.Drawing.Size(521, 200)
+        Me.tabpageOrigenesDestinos.Size = New System.Drawing.Size(520, 333)
         Me.tabpageOrigenesDestinos.TabIndex = 2
         Me.tabpageOrigenesDestinos.Text = "Orígenes-Destinos"
         Me.tabpageOrigenesDestinos.UseVisualStyleBackColor = True
@@ -473,6 +473,8 @@ Partial Class formEntidad
         DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
         DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText
         Me.datagridviewOrigenesDestinosIncluidos.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        Me.datagridviewOrigenesDestinosIncluidos.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.datagridviewOrigenesDestinosIncluidos.AutoGenerateColumns = False
         Me.datagridviewOrigenesDestinosIncluidos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.datagridviewOrigenesDestinosIncluidos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1})
@@ -484,7 +486,7 @@ Partial Class formEntidad
         Me.datagridviewOrigenesDestinosIncluidos.RowHeadersVisible = False
         Me.datagridviewOrigenesDestinosIncluidos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.datagridviewOrigenesDestinosIncluidos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datagridviewOrigenesDestinosIncluidos.Size = New System.Drawing.Size(225, 166)
+        Me.datagridviewOrigenesDestinosIncluidos.Size = New System.Drawing.Size(225, 299)
         Me.datagridviewOrigenesDestinosIncluidos.TabIndex = 6
         '
         'DataGridViewTextBoxColumn1
@@ -508,6 +510,8 @@ Partial Class formEntidad
         DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
         DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.WindowText
         Me.datagridviewOrigenesDestinosNoIncluidos.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle2
+        Me.datagridviewOrigenesDestinosNoIncluidos.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.datagridviewOrigenesDestinosNoIncluidos.AutoGenerateColumns = False
         Me.datagridviewOrigenesDestinosNoIncluidos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.datagridviewOrigenesDestinosNoIncluidos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnNombre})
@@ -519,7 +523,7 @@ Partial Class formEntidad
         Me.datagridviewOrigenesDestinosNoIncluidos.RowHeadersVisible = False
         Me.datagridviewOrigenesDestinosNoIncluidos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.datagridviewOrigenesDestinosNoIncluidos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datagridviewOrigenesDestinosNoIncluidos.Size = New System.Drawing.Size(225, 166)
+        Me.datagridviewOrigenesDestinosNoIncluidos.Size = New System.Drawing.Size(225, 299)
         Me.datagridviewOrigenesDestinosNoIncluidos.TabIndex = 5
         '
         'columnNombre
@@ -554,7 +558,7 @@ Partial Class formEntidad
         '
         Me.panelOrigenesDestinosButtons.Controls.Add(Me.buttonOrigenesDestinosEliminar)
         Me.panelOrigenesDestinosButtons.Controls.Add(Me.buttonOrigenesDestinosAgregar)
-        Me.panelOrigenesDestinosButtons.Location = New System.Drawing.Point(235, 84)
+        Me.panelOrigenesDestinosButtons.Location = New System.Drawing.Point(235, 153)
         Me.panelOrigenesDestinosButtons.Name = "panelOrigenesDestinosButtons"
         Me.panelOrigenesDestinosButtons.Size = New System.Drawing.Size(51, 56)
         Me.panelOrigenesDestinosButtons.TabIndex = 2
@@ -581,7 +585,7 @@ Partial Class formEntidad
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(551, 281)
+        Me.ClientSize = New System.Drawing.Size(552, 416)
         Me.Controls.Add(Me.tabcontrolMain)
         Me.Controls.Add(Me.toolstripMain)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle

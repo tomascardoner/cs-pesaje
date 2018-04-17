@@ -474,7 +474,7 @@ Partial Class formOrigenDestino
         Me.Name = "formOrigenDestino"
         Me.ShowIcon = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
-        Me.Text = "Detalle de la OrigenDestino"
+        Me.Text = "Detalle del Origen-Destino"
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()
         Me.tabcontrolMain.ResumeLayout(False)
