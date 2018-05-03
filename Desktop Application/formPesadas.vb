@@ -470,7 +470,7 @@
         FilterData()
     End Sub
 
-    Private Sub FiltrosBasicos_Click() Handles comboboxProducto.SelectedIndexChanged, comboboxPlanta.SelectedIndexChanged, comboboxCosecha.SelectedIndexChanged, comboboxOrigen.SelectedIndexChanged, comboboxChofer.SelectedIndexChanged
+    Private Sub FiltrosBasicos_Click() Handles comboboxProducto.SelectedIndexChanged, comboboxPlanta.SelectedIndexChanged, comboboxCosecha.SelectedIndexChanged, comboboxOrigen.SelectedIndexChanged, comboboxDestino.SelectedIndexChanged, comboboxChofer.SelectedIndexChanged
         FilterData()
     End Sub
 
