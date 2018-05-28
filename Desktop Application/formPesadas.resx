@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <metadata name="statusstripMain.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>896, 46</value>
+    <value>179, 56</value>
   </metadata>
   <metadata name="columnIDPesada.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -181,25 +181,40 @@
     <value />
   </metadata>
   <metadata name="toolstripgroupAcciones.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 85</value>
+    <value>481, 56</value>
   </metadata>
   <metadata name="toolstripgroupPeriodo.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>196, 85</value>
+    <value>660, 56</value>
   </metadata>
   <metadata name="toolstriptabFiltrosBasicos.TabGroup" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
   </metadata>
   <metadata name="toolstripgroupTitular.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1083, 7</value>
+    <value>514, 17</value>
   </metadata>
   <metadata name="toolstripgroupProducto.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>556, 85</value>
+    <value>1020, 56</value>
   </metadata>
   <metadata name="toolstripgroupPlanta.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>193, 46</value>
+    <value>854, 17</value>
   </metadata>
   <metadata name="tooltripgroupPesadaTipo.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>369, 85</value>
+    <value>833, 56</value>
+  </metadata>
+  <metadata name="toolstripgroupCosecha.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>678, 17</value>
+  </metadata>
+  <metadata name="toolstripgroupOrigen.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>174, 17</value>
+  </metadata>
+  <metadata name="toolstripgroupDestino.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>342, 17</value>
+  </metadata>
+  <metadata name="toolstripgroupTransportista.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>1194, 17</value>
+  </metadata>
+  <metadata name="toolstripgroupChofer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>314, 56</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="dropdownbuttonPesadaTipo.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -217,32 +232,17 @@
         TgDQASA1MVpwzwAAAABJRU5ErkJggg==
 </value>
   </data>
-  <metadata name="toolstripgroupCosecha.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 46</value>
-  </metadata>
-  <metadata name="toolstripgroupOrigen.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>678, 0</value>
-  </metadata>
-  <metadata name="toolstripgroupDestino.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>754, 7</value>
-  </metadata>
-  <metadata name="toolstripgroupTransportista.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>533, 46</value>
-  </metadata>
-  <metadata name="toolstripgroupChofer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1031, 46</value>
-  </metadata>
   <metadata name="toolstriptabFiltrosAvanzados.TabGroup" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
   </metadata>
   <metadata name="toolstripgroupEsVerificado.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>736, 85</value>
+    <value>1200, 56</value>
   </metadata>
   <metadata name="toolstripgroupEsActivo.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>357, 46</value>
+    <value>1018, 17</value>
   </metadata>
   <metadata name="toolstripgroupMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>734, 46</value>
+    <value>17, 56</value>
   </metadata>
   <data name="dropdownbuttonTareas.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

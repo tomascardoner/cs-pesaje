@@ -39,6 +39,7 @@
             Me.WindowState = FormWindowState.Normal
         End If
         Me.Focus()
+        textboxNombre.Focus()
 
         mIsLoading = False
 

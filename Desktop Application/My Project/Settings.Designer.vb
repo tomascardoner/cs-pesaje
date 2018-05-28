@@ -138,12 +138,12 @@ Namespace My
             End Get
         End Property
         
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("192.168.20.201")>  _
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(), _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.Configuration.DefaultSettingValueAttribute("localhost")> _
         Public ReadOnly Property DBConnection_Datasource() As String
             Get
-                Return CType(Me("DBConnection_Datasource"),String)
+                Return CType(Me("DBConnection_Datasource"), String)
             End Get
         End Property
         
@@ -213,9 +213,9 @@ Namespace My
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
-        Public ReadOnly Property Report_Pesada_Preview() As Boolean
+        Public ReadOnly Property Reporte_Pesada_Previsualizar() As Boolean
             Get
-                Return CType(Me("Report_Pesada_Preview"),Boolean)
+                Return CType(Me("Reporte_Pesada_Previsualizar"),Boolean)
             End Get
         End Property
     End Class

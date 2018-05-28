@@ -400,7 +400,7 @@
                     .Pesada_Otro.Producto_Nombre = ""
                 End If
             End If
-            .IDPlanta = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxPlanta.SelectedValue).Value
+            .IDPlanta = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxPlanta.SelectedValue)
             If radiobuttonEntrada.Checked Then
                 .Tipo = Constantes.PESADA_TIPO_ENTRADA
             ElseIf radiobuttonSalida.Checked Then

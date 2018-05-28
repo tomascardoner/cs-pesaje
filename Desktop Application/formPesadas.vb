@@ -75,6 +75,22 @@
         InicializarFiltroDeFechas()
         comboboxPeriodoTipo.Items.AddRange({"Día:", "Semana:", "Mes:", "Fecha"})
         FiltroPeriodoMostrar()
+        labelFechaDesdeDiaSemana.Text = CType(datetimepickerFechaDesdeHost.Control, DateTimePicker).Value.ToString("dddd")
+
+        ' Reportes
+        Using dbContext As New CSPesajeContext(True)
+            Dim listReportes As List(Of Reporte)
+            Dim ReporteGrupoID As Byte = CS_Parameter_System.GetIntegerAsByte(Parametros.REPORTEGRUPO_PESADAS_REPORTES_ID)
+
+            listReportes = dbContext.Reporte.Where(Function(r) r.IDReporteGrupo = ReporteGrupoID).OrderBy(Function(r) r.Nombre).ToList
+
+            For Each ReporteActual As Reporte In listReportes
+                Dim menuitemNew As New ToolStripMenuItem(ReporteActual.Nombre, Nothing, New EventHandler(AddressOf ImprimirReportes), "menuitemImprimir_" & ReporteActual.Archivo.Replace(" ", "_"))
+                menuitemNew.Tag = ReporteActual.IDReporte
+
+                buttonImprimir.DropDownItems.Add(menuitemNew)
+            Next
+        End Using
 
         ' Filtros Básicos
         pFillAndRefreshLists.Entidad(comboboxTitular.ComboBox, Nothing, False, True, False, False, FIELD_VALUE_NOTSPECIFIED_INTEGER, False, True, True, False)
@@ -97,7 +113,7 @@
         mlistPesadaBase = Nothing
         mlistPesadaFiltradaYOrdenada = Nothing
     End Sub
- 
+
     Private Sub InicializarFiltroDeFechas()
         ' Create a new ToolStripControlHost, passing in a control.
         datetimepickerFechaDesdeHost = New ToolStripControlHost(New DateTimePicker())
@@ -421,6 +437,7 @@
 
     Private Sub PeriodoValorSeleccionar() Handles comboboxPeriodoValor.SelectedIndexChanged
         ' Fecha Desde
+        labelFechaDesdeDiaSemana.Visible = (comboboxPeriodoTipo.SelectedIndex = 3)
         buttonFechaDesdeAnterior.Visible = (comboboxPeriodoTipo.SelectedIndex = 3)
         datetimepickerFechaDesdeHost.Visible = (comboboxPeriodoTipo.SelectedIndex = 3)
         buttonFechaDesdeSiguiente.Visible = (comboboxPeriodoTipo.SelectedIndex = 3)
@@ -463,6 +480,7 @@
     End Sub
 
     Private Sub FechaCambiar() Handles datetimepickerFechaDesdeHost.TextChanged, datetimepickerFechaHastaHost.TextChanged
+        labelFechaDesdeDiaSemana.Text = CType(datetimepickerFechaDesdeHost.Control, DateTimePicker).Value.ToString("dddd")
         RefreshData()
     End Sub
 
@@ -669,7 +687,7 @@
                         ReporteActual.ReporteParametros.Single(Function(rp) rp.Nombre = "EsReducido").Valor = sender.Equals(menuitemImprimir_TicketPesadaReducido)
                         If ReporteActual.Open(My.Settings.ReportsPath & "\" & ReporteActual.Archivo) Then
                             If ReporteActual.SetDatabaseConnection(pDatabase.DataSource, pDatabase.InitialCatalog, pDatabase.UserID, pDatabase.Password) Then
-                                If My.Settings.Report_Pesada_Preview = False Then
+                                If My.Settings.Reporte_Pesada_Previsualizar = False Then
                                     ReporteActual.ReportObject.PrintToPrinter(1, False, 1, 100)
                                 Else
                                     MiscFunctions.PreviewCrystalReport(ReporteActual, "Ticket Pesada N° " & Microsoft.VisualBasic.Strings.Format(CurrentRow.IDPesada, "N0"))
@@ -686,7 +704,7 @@
         End If
     End Sub
 
-    Private Sub ImprimirReportes(sender As Object, e As EventArgs) Handles menuitemImprimir_EntradasAcondicionamiento.Click, menuitemImprimir_ResumenExistencias.Click
+    Private Sub ImprimirReportes(sender As Object, e As EventArgs)
         If datagridviewMain.CurrentRow Is Nothing Then
             MsgBox("No hay ninguna Pesada para imprimir.", vbInformation, My.Application.Info.Title)
         Else
