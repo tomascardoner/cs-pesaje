@@ -11,6 +11,7 @@
 
     Friend Sub Main()
         Dim StartupTime As Date
+        Dim DataSourceIndex As Integer
 
         System.Windows.Forms.Cursor.Current = Cursors.AppStarting
 
@@ -32,16 +33,84 @@
         formSplashScreen.labelStatus.Text = "Obteniendo los parámetros de conexión a la Base de datos..."
         Application.DoEvents()
 
+        ' Si hay más de un DataSource especificado, muestro la ventana de selección
+        If My.Settings.DBConnection_Datasource.Contains(CS_Constants.STRING_LIST_SEPARATOR) Then
+            CS_Database_SelectSource.comboboxDataSource.Items.AddRange(My.Settings.DBConnection_Datasource.Split(CChar(CS_Constants.STRING_LIST_SEPARATOR)))
+            If Not CS_Database_SelectSource.ShowDialog(formMDIMain) = DialogResult.OK Then
+                Application.Exit()
+                My.Application.Log.WriteEntry("La Aplicación ha finalizado porque el Usuario no ha seleccionado el origen de los datos.", TraceEventType.Warning)
+                Exit Sub
+            End If
+            DataSourceIndex = CS_Database_SelectSource.comboboxDataSource.SelectedIndex
+            CS_Database_SelectSource.Close()
+            CS_Database_SelectSource.Dispose()
+        Else
+            DataSourceIndex = -1
+        End If
+
         ' Obtengo el Connection String para las conexiones de ADO .NET
         pDatabase = New CS_Database_SQL
         pDatabase.ApplicationName = My.Application.Info.Title
-        pDatabase.DataSource = My.Settings.DBConnection_Datasource
-        pDatabase.InitialCatalog = My.Settings.DBConnection_Database
-        pDatabase.UserID = My.Settings.DBConnection_UserID
-        ' Desencripto la contraseña de la conexión a la base de datos que está en el archivo app.config
-        Dim PasswordDecrypter As New CS_Encrypt_TripleDES(CS_Constants.ENCRYPTION_PASSWORD)
-        pDatabase.Password = PasswordDecrypter.Decrypt(My.Settings.DBConnection_Password)
-        PasswordDecrypter = Nothing
+        If DataSourceIndex > -1 Then
+            pDatabase.DataSource = My.Settings.DBConnection_Datasource.Split(CChar(CS_Constants.STRING_LIST_SEPARATOR)).ElementAt(DataSourceIndex)
+            ' Database
+            If My.Settings.DBConnection_Database.Contains(CS_Constants.STRING_LIST_SEPARATOR) Then
+                Dim aDatabase() As String
+                aDatabase = My.Settings.DBConnection_Database.Split(CChar(CS_Constants.STRING_LIST_SEPARATOR))
+                If aDatabase.GetUpperBound(0) >= DataSourceIndex Then
+                    pDatabase.InitialCatalog = aDatabase(DataSourceIndex)
+                Else
+                    pDatabase.InitialCatalog = ""
+                End If
+                aDatabase = Nothing
+            Else
+                pDatabase.InitialCatalog = My.Settings.DBConnection_Database
+            End If
+            ' UserID
+            If My.Settings.DBConnection_UserID.Contains(CS_Constants.STRING_LIST_SEPARATOR) Then
+                Dim aUserID() As String
+                aUserID = My.Settings.DBConnection_UserID.Split(CChar(CS_Constants.STRING_LIST_SEPARATOR))
+                If aUserID.GetUpperBound(0) >= DataSourceIndex Then
+                    pDatabase.UserID = aUserID(DataSourceIndex)
+                Else
+                    pDatabase.UserID = ""
+                End If
+                aUserID = Nothing
+            Else
+                pDatabase.UserID = My.Settings.DBConnection_UserID
+            End If
+            ' Password
+            Dim PasswordEncrypted As String
+            If My.Settings.DBConnection_Password.Contains(CS_Constants.STRING_LIST_SEPARATOR) Then
+                Dim aPassword() As String
+                aPassword = My.Settings.DBConnection_Password.Split(CChar(CS_Constants.STRING_LIST_SEPARATOR))
+                If aPassword.GetUpperBound(0) >= DataSourceIndex Then
+                    PasswordEncrypted = aPassword(DataSourceIndex)
+                Else
+                    PasswordEncrypted = ""
+                End If
+                aPassword = Nothing
+            Else
+                PasswordEncrypted = My.Settings.DBConnection_Password
+            End If
+            ' Desencripto la contraseña de la conexión a la base de datos que está en el archivo app.config
+            If PasswordEncrypted.Length > 0 Then
+                Dim PasswordDecrypter As New CS_Encrypt_TripleDES(CS_Constants.ENCRYPTION_PASSWORD)
+                pDatabase.Password = PasswordDecrypter.Decrypt(PasswordEncrypted)
+                PasswordDecrypter = Nothing
+            Else
+                pDatabase.Password = ""
+            End If
+            PasswordEncrypted = Nothing
+        Else
+            pDatabase.DataSource = My.Settings.DBConnection_Datasource
+            pDatabase.InitialCatalog = My.Settings.DBConnection_Database
+            pDatabase.UserID = My.Settings.DBConnection_UserID
+            ' Desencripto la contraseña de la conexión a la base de datos que está en el archivo app.config
+            Dim PasswordDecrypter As New CS_Encrypt_TripleDES(CS_Constants.ENCRYPTION_PASSWORD)
+            pDatabase.Password = PasswordDecrypter.Decrypt(My.Settings.DBConnection_Password)
+            PasswordDecrypter = Nothing
+        End If
         pDatabase.MultipleActiveResultsets = True
         pDatabase.WorkstationID = My.Computer.Name
         pDatabase.CreateConnectionString()

@@ -2,7 +2,7 @@
     Private mIntentos As Integer = 0
     Private mdbContext As CSPesajeContext
 
-    Private Sub formLogin_Load() Handles Me.Load
+    Private Sub Me_Load() Handles Me.Load
         mdbContext = New CSPesajeContext(True)
 
         If My.Settings.ShowLastUserLoggedIn Then
@@ -16,7 +16,7 @@
         End If
     End Sub
 
-    Private Sub formLogin_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
+    Private Sub Me_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
         If e.KeyChar = ChrW(Keys.Return) Then
             buttonAceptar_Click()
         ElseIf e.KeyChar = ChrW(Keys.Escape) Then
@@ -24,7 +24,7 @@
         End If
     End Sub
 
-    Private Sub formLogin_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
+    Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
         mdbContext.Dispose()
     End Sub
 

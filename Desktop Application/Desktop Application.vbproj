@@ -177,6 +177,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CSPesaje.tt</DependentUpon>
     </Compile>
+    <Compile Include="CS_Database_SelectSource.Designer.vb">
+      <DependentUpon>CS_Database_SelectSource.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CS_Database_SelectSource.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Entidad.vb">
       <DependentUpon>CSPesaje.tt</DependentUpon>
     </Compile>
@@ -378,6 +384,9 @@
       <Link>CS_ErrorMessageBox.resx</Link>
       <DependentUpon>CS_ErrorMessageBox.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CS_Database_SelectSource.resx">
+      <DependentUpon>CS_Database_SelectSource.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="formCamion.resx">
       <DependentUpon>formCamion.vb</DependentUpon>
     </EmbeddedResource>
@@ -571,6 +580,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\justice-balance-icon_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DatabaseSearch48.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -309,7 +309,7 @@
 
                 ' Filtro por Planta
                 If CInt(comboboxPlanta.ComboBox.SelectedValue) <> FIELD_VALUE_ALL_BYTE Then
-                    mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) p.IDPlanta.Value = CByte(comboboxPlanta.ComboBox.SelectedValue)).ToList
+                    mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) p.IDPlanta.HasValue AndAlso p.IDPlanta.Value = CByte(comboboxPlanta.ComboBox.SelectedValue)).ToList
                     mRecordSelectionFormula_Filter &= String.Format(" AND {{Pesada.IDPlanta}} = {0}", comboboxPlanta.ComboBox.SelectedValue)
                 End If
 

@@ -266,28 +266,58 @@ Partial Public Class Pesada_Acondicionamiento
 
                             Case Constantes.PRODUCTO_TARIFA_SECADO_TIPO_ESCALA
                                 If PesadaActual.Pesada_Analisis.Humedad >= Cosecha_Producto_TarifaActual.TarifaSecadoHumedadBase + Cosecha_Producto_TarifaActual.TarifaSecadoHumedadMargenLibre Then
+                                    Dim listCosecha_Producto_TarifaEscala As List(Of Cosecha_Producto_TarifaEscala)
                                     Dim Cosecha_Producto_TarifaEscalaActual As Cosecha_Producto_TarifaEscala
 
                                     Using dbContext As New CSPesajeContext(True)
-                                        Cosecha_Producto_TarifaEscalaActual = dbContext.Cosecha_Producto_TarifaEscala.Where(Function(cpte) cpte.IDCosecha = PesadaActualLocal.IDCosecha.Value And cpte.IDProducto = PesadaActualLocal.IDProducto And cpte.Indice = Me.TarifaIndice And cpte.HumedadExcesoInicio <= Me.HumedadExcesoReal).OrderByDescending(Function(cpte) cpte.HumedadExcesoInicio).FirstOrDefault
+                                        listCosecha_Producto_TarifaEscala = dbContext.Cosecha_Producto_TarifaEscala.Where(Function(cpte) cpte.IDCosecha = PesadaActualLocal.IDCosecha.Value And cpte.IDProducto = PesadaActualLocal.IDProducto And cpte.Indice = Me.TarifaIndice And cpte.HumedadExcesoInicio <= Me.HumedadExcesoCalculo).OrderByDescending(Function(cpte) cpte.HumedadExcesoInicio).ToList
                                     End Using
-                                    If Cosecha_Producto_TarifaEscalaActual Is Nothing Then
+
+                                    If listCosecha_Producto_TarifaEscala.Count = 0 Then
                                         Me.SecadoExcesoTarifa = 0
                                         Me.SecadoExcesoImporte = 0
                                     Else
+                                        ' Selecciono la primer escala para comenzar y ver de que tipo es
+                                        Cosecha_Producto_TarifaEscalaActual = listCosecha_Producto_TarifaEscala.First
+
                                         Select Case Cosecha_Producto_TarifaEscalaActual.Tipo
                                             Case Constantes.PRODUCTO_TARIFA_SECADO_TIPO_ESCALA_PORPUNTO
+                                                Dim HumedadExcesoACalcular As Decimal
+                                                Dim HumedadLimiteSuperior As Decimal
+                                                Dim EscalaCount As Integer
+
+                                                EscalaCount = 0
+                                                HumedadLimiteSuperior = Me.HumedadExcesoCalculo
+                                                Me.SecadoExcesoTarifa = 0
+                                                Me.SecadoExcesoImporte = 0
+                                                For Each Cosecha_Producto_TarifaEscalaActual In listCosecha_Producto_TarifaEscala
+                                                    HumedadExcesoACalcular = HumedadLimiteSuperior - Cosecha_Producto_TarifaEscalaActual.HumedadExcesoInicio
+                                                    If HumedadExcesoACalcular = 0 Then
+                                                        Continue For
+                                                    End If
+                                                    EscalaCount += 1
+                                                    Me.SecadoExcesoTarifa += Cosecha_Producto_TarifaEscalaActual.Tarifa
+                                                    Me.SecadoExcesoImporte += CS_ValueTranslation.FromDoubleToRoundedCurrency((Me.Pesada.KilogramoNeto.Value / 100) * HumedadExcesoACalcular * Cosecha_Producto_TarifaEscalaActual.Tarifa)
+                                                    HumedadLimiteSuperior = Cosecha_Producto_TarifaEscalaActual.HumedadExcesoInicio
+                                                Next
+                                                If Me.SecadoExcesoTarifa > 0 Then
+                                                    Me.SecadoExcesoTarifa = Me.SecadoExcesoTarifa / EscalaCount
+                                                End If
+
                                             Case Constantes.PRODUCTO_TARIFA_SECADO_TIPO_ESCALA_COMPLETA
                                                 Me.SecadoExcesoTarifa = Cosecha_Producto_TarifaEscalaActual.Tarifa
                                                 Me.SecadoExcesoImporte = CS_ValueTranslation.FromDoubleToRoundedCurrency((KilogramoNeto / 100) * Me.HumedadExcesoCalculo * Me.SecadoExcesoTarifa)
+
                                             Case Constantes.PRODUCTO_TARIFA_SECADO_TIPO_ESCALA_FIJO_SECADO
                                                 Me.SecadoExcesoTarifa = Cosecha_Producto_TarifaEscalaActual.Tarifa
                                                 Me.SecadoExcesoImporte = CS_ValueTranslation.FromDoubleToRoundedCurrency((KilogramoNeto / 100) * Me.SecadoExcesoTarifa)
+
                                             Case Constantes.PRODUCTO_TARIFA_SECADO_TIPO_ESCALA_FIJO_SECADOYZARANDEO
                                                 Me.ZarandeoTarifa = 0
                                                 Me.ZarandeoImporte = 0
                                                 Me.SecadoExcesoTarifa = Cosecha_Producto_TarifaEscalaActual.Tarifa
                                                 Me.SecadoExcesoImporte = CS_ValueTranslation.FromDoubleToRoundedCurrency((KilogramoNeto / 100) * Me.SecadoExcesoTarifa)
+
                                             Case Constantes.PRODUCTO_TARIFA_SECADO_TIPO_ESCALA_FIJO_TODOCONCEPTO
                                                 Me.ParitariaTarifa = 0
                                                 Me.ParitariaImporte = 0
