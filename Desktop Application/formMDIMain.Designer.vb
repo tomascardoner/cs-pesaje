@@ -204,7 +204,7 @@ Partial Class formMDIMain
         'menuitemAyuda_AcercaDe
         '
         Me.menuitemAyuda_AcercaDe.Name = "menuitemAyuda_AcercaDe"
-        Me.menuitemAyuda_AcercaDe.Size = New System.Drawing.Size(152, 22)
+        Me.menuitemAyuda_AcercaDe.Size = New System.Drawing.Size(135, 22)
         Me.menuitemAyuda_AcercaDe.Text = "&Acerca de..."
         '
         'panelMain
@@ -231,7 +231,7 @@ Partial Class formMDIMain
         Me.toolstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.dropdownbuttonTablas, Me.buttonPesadas, Me.buttonReportes})
         Me.toolstripMain.Location = New System.Drawing.Point(0, 0)
         Me.toolstripMain.Name = "toolstripMain"
-        Me.toolstripMain.Size = New System.Drawing.Size(230, 39)
+        Me.toolstripMain.Size = New System.Drawing.Size(262, 39)
         Me.toolstripMain.TabIndex = 2
         Me.toolstripMain.Text = "Principal"
         '
@@ -302,11 +302,12 @@ Partial Class formMDIMain
         '
         'buttonPesadas
         '
+        Me.buttonPesadas.Image = Global.CSPesaje.DesktopApplication.My.Resources.Resources.IMAGE_PESADAS_32
         Me.buttonPesadas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonPesadas.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonPesadas.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonPesadas.Name = "buttonPesadas"
-        Me.buttonPesadas.Size = New System.Drawing.Size(53, 36)
+        Me.buttonPesadas.Size = New System.Drawing.Size(85, 36)
         Me.buttonPesadas.Text = "Pesadas"
         '
         'buttonReportes

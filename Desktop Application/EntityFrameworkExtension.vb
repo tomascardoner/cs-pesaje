@@ -140,6 +140,9 @@ Partial Public Class Pesada_Acondicionamiento
         Dim PesadaActualLocal As Pesada
 
         PesadaActualLocal = PesadaActual
+        If Not PesadaActual.KilogramoNeto.HasValue Then
+            Return True
+        End If
 
         ' Primero debo determinar que tarifa voy a aplicar
         If Me.TarifaManual Then
@@ -182,6 +185,7 @@ Partial Public Class Pesada_Acondicionamiento
         Else
             Dim KilogramoNeto As Integer
             KilogramoNeto = PesadaActual.KilogramoNeto.Value
+
             With Cosecha_Producto_TarifaActual
                 Me.TarifaIndice = .Indice
 
