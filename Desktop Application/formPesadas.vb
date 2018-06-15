@@ -321,7 +321,7 @@
 
                 ' Filtro por Cosecha
                 If CInt(comboboxCosecha.ComboBox.SelectedValue) <> FIELD_VALUE_ALL_BYTE Then
-                    mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) p.IDCosecha.Value = CByte(comboboxCosecha.ComboBox.SelectedValue)).ToList
+                    mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) p.IDCosecha.HasValue AndAlso p.IDCosecha.Value = CByte(comboboxCosecha.ComboBox.SelectedValue)).ToList
                     mRecordSelectionFormula_Filter &= String.Format(" AND {{Pesada.IDCosecha}} = {0}", comboboxCosecha.ComboBox.SelectedValue)
                 End If
 

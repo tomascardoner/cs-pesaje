@@ -45,7 +45,7 @@
           <Property Name="Indice" Type="smallint" Nullable="false" />
           <Property Name="IDPlanta" Type="tinyint" />
           <Property Name="IDEntidad" Type="int" />
-          <Property Name="IDOrigenDestino" Type="int" />
+          <Property Name="IDOrigen" Type="int" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="FechaDesde" Type="date" />
           <Property Name="FechaHasta" Type="date" />
@@ -633,7 +633,7 @@
               <PropertyRef Name="IDOrigenDestino" />
             </Principal>
             <Dependent Role="Cosecha_Producto_Tarifa">
-              <PropertyRef Name="IDOrigenDestino" />
+              <PropertyRef Name="IDOrigen" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1639,7 +1639,7 @@
           <Property Name="Indice" Type="Int16" Nullable="false" />
           <Property Name="IDPlanta" Type="Byte" />
           <Property Name="IDEntidad" Type="Int32" />
-          <Property Name="IDOrigenDestino" Type="Int32" />
+          <Property Name="IDOrigen" Type="Int32" />
           <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="FechaDesde" Type="DateTime" Precision="0" />
           <Property Name="FechaHasta" Type="DateTime" Precision="0" />
@@ -2723,7 +2723,7 @@
               <PropertyRef Name="IDOrigenDestino" />
             </Principal>
             <Dependent Role="Cosecha_Producto_Tarifa">
-              <PropertyRef Name="IDOrigenDestino" />
+              <PropertyRef Name="IDOrigen" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2821,7 +2821,7 @@
                 <ScalarProperty Name="Indice" ColumnName="Indice" />
                 <ScalarProperty Name="IDPlanta" ColumnName="IDPlanta" />
                 <ScalarProperty Name="IDEntidad" ColumnName="IDEntidad" />
-                <ScalarProperty Name="IDOrigenDestino" ColumnName="IDOrigenDestino" />
+                <ScalarProperty Name="IDOrigen" ColumnName="IDOrigen" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="FechaDesde" ColumnName="FechaDesde" />
                 <ScalarProperty Name="FechaHasta" ColumnName="FechaHasta" />

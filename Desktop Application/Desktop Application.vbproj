@@ -110,6 +110,14 @@
     <Compile Include="..\..\..\..\..\..\..\Users\Tomas\Dropbox\Cardoner Sistemas\Framework\Visual Basic .NET\CS_Database_EF_SQL.vb">
       <Link>CS_Database_EF_SQL.vb</Link>
     </Compile>
+    <Compile Include="..\..\..\..\..\..\..\Users\Tomas\Dropbox\Cardoner Sistemas\Framework\Visual Basic .NET\CS_Database_SelectSource.designer.vb">
+      <Link>CS_Database_SelectSource.designer.vb</Link>
+      <DependentUpon>CS_Database_SelectSource.vb</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\..\..\..\..\..\Users\Tomas\Dropbox\Cardoner Sistemas\Framework\Visual Basic .NET\CS_Database_SelectSource.vb">
+      <Link>CS_Database_SelectSource.vb</Link>
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="..\..\..\..\..\..\..\Users\Tomas\Dropbox\Cardoner Sistemas\Framework\Visual Basic .NET\CS_Parameter_System.vb">
       <Link>CS_Parameter_System.vb</Link>
     </Compile>
@@ -176,12 +184,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CSPesaje.tt</DependentUpon>
-    </Compile>
-    <Compile Include="CS_Database_SelectSource.Designer.vb">
-      <DependentUpon>CS_Database_SelectSource.vb</DependentUpon>
-    </Compile>
-    <Compile Include="CS_Database_SelectSource.vb">
-      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Entidad.vb">
       <DependentUpon>CSPesaje.tt</DependentUpon>
@@ -380,12 +382,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="..\..\..\..\..\..\..\Users\Tomas\Dropbox\Cardoner Sistemas\Framework\Visual Basic .NET\CS_Database_SelectSource.resx">
+      <Link>CS_Database_SelectSource.resx</Link>
+      <DependentUpon>CS_Database_SelectSource.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="C:\Users\Tomas\Dropbox\Cardoner Sistemas\Framework\Visual Basic .NET\CS_ErrorMessageBox.resx">
       <Link>CS_ErrorMessageBox.resx</Link>
       <DependentUpon>CS_ErrorMessageBox.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CS_Database_SelectSource.resx">
-      <DependentUpon>CS_Database_SelectSource.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formCamion.resx">
       <DependentUpon>formCamion.vb</DependentUpon>

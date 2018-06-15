@@ -16,7 +16,7 @@ Partial Public Class Cosecha_Producto_Tarifa
     Public Property Indice As Short
     Public Property IDPlanta As Nullable(Of Byte)
     Public Property IDEntidad As Nullable(Of Integer)
-    Public Property IDOrigenDestino As Nullable(Of Integer)
+    Public Property IDOrigen As Nullable(Of Integer)
     Public Property Nombre As String
     Public Property FechaDesde As Nullable(Of Date)
     Public Property FechaHasta As Nullable(Of Date)
