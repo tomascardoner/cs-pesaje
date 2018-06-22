@@ -400,12 +400,31 @@
     Private Sub OrderData()
         ' Realizo las rutinas de ordenamiento
         Select Case mOrdenColumna.Name
-            'Case columnNombre.Name
-            '    If mOrdenTipo = SortOrder.Ascending Then
-            '        mlistEntidadFiltradaYOrdenada = mlistEntidadFiltradaYOrdenada.OrderBy(Function(col) col.Nombre).ToList
-            '    Else
-            '        mlistEntidadFiltradaYOrdenada = mlistEntidadFiltradaYOrdenada.OrderByDescending(Function(col) col.Nombre).ToList
-            '    End If
+            Case columnIDPesada.Name
+                If mOrdenTipo = SortOrder.Ascending Then
+                    mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.OrderBy(Function(col) col.IDPesada).ToList
+                Else
+                    mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.OrderByDescending(Function(col) col.IDPesada).ToList
+                End If
+            Case columnComprobanteNumero.Name
+                If mOrdenTipo = SortOrder.Ascending Then
+                    mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.OrderBy(Function(col) col.ComprobanteNumero).ThenBy(Function(col) col.IDPesada).ToList
+                Else
+                    mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.OrderByDescending(Function(col) col.ComprobanteNumero).ThenByDescending(Function(col) col.IDPesada).ToList
+                End If
+            Case columnFechaHoraInicio.Name
+                If mOrdenTipo = SortOrder.Ascending Then
+                    mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.OrderBy(Function(col) col.FechaHoraInicio).ToList
+                Else
+                    mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.OrderByDescending(Function(col) col.FechaHoraInicio).ToList
+                End If
+            Case columnKilogramoNeto.Name
+                If mOrdenTipo = SortOrder.Ascending Then
+                    mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.OrderBy(Function(col) col.KilogramoNeto).ThenBy(Function(col) col.FechaHoraInicio).ToList
+                Else
+                    mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.OrderByDescending(Function(col) col.KilogramoNeto).ThenByDescending(Function(col) col.FechaHoraInicio).ToList
+                End If
+
         End Select
         bindingsourceMain.DataSource = mlistPesadaFiltradaYOrdenada
 
@@ -540,26 +559,26 @@
 
         ClickedColumn = CType(datagridviewMain.Columns(e.ColumnIndex), DataGridViewColumn)
 
-        'If ClickedColumn.Name = columnNombre.Name Then
-        '    If ClickedColumn Is mOrdenColumna Then
-        '        ' La columna clickeada es la misma por la que ya estaba ordenado, así que cambio la dirección del orden
-        '        If mOrdenTipo = SortOrder.Ascending Then
-        '            mOrdenTipo = SortOrder.Descending
-        '        Else
-        '            mOrdenTipo = SortOrder.Ascending
-        '        End If
-        '    Else
-        '        ' La columna clickeada es diferencte a la que ya estaba ordenada.
-        '        ' En primer lugar saco el ícono de orden de la columna vieja
-        '        If Not mOrdenColumna Is Nothing Then
-        '            mOrdenColumna.HeaderCell.SortGlyphDirection = SortOrder.None
-        '        End If
+        If ClickedColumn.Name = columnIDPesada.Name Or ClickedColumn.Name = columnComprobanteNumero.Name Or ClickedColumn.Name = columnFechaHoraInicio.Name Or ClickedColumn.Name = columnKilogramoNeto.Name Then
+            If ClickedColumn Is mOrdenColumna Then
+                ' La columna clickeada es la misma por la que ya estaba ordenado, así que cambio la dirección del orden
+                If mOrdenTipo = SortOrder.Ascending Then
+                    mOrdenTipo = SortOrder.Descending
+                Else
+                    mOrdenTipo = SortOrder.Ascending
+                End If
+            Else
+                ' La columna clickeada es diferencte a la que ya estaba ordenada.
+                ' En primer lugar saco el ícono de orden de la columna vieja
+                If Not mOrdenColumna Is Nothing Then
+                    mOrdenColumna.HeaderCell.SortGlyphDirection = SortOrder.None
+                End If
 
-        '        ' Ahora preparo todo para la nueva columna
-        '        mOrdenTipo = SortOrder.Ascending
-        '        mOrdenColumna = ClickedColumn
-        '    End If
-        'End If
+                ' Ahora preparo todo para la nueva columna
+                mOrdenTipo = SortOrder.Ascending
+                mOrdenColumna = ClickedColumn
+            End If
+        End If
 
         OrderData()
     End Sub
