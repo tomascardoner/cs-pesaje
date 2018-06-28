@@ -94,7 +94,7 @@
 
         ' Filtros Básicos
         pFillAndRefreshLists.Entidad(comboboxTitular.ComboBox, Nothing, False, True, False, False, FIELD_VALUE_NOTSPECIFIED_INTEGER, False, True, True, False)
-        pFillAndRefreshLists.Producto(comboboxProducto.ComboBox, Nothing, False, False, True, False)
+        pFillAndRefreshLists.Producto(comboboxProducto.ComboBox, Nothing, True, False, True, False)
         comboboxProducto.ComboBox.SelectedIndex = 0
         pFillAndRefreshLists.Planta(comboboxPlanta.ComboBox, Nothing, FIELD_VALUE_NOTSPECIFIED_BYTE, True, False)
         pFillAndRefreshLists.Cosecha(comboboxCosecha.ComboBox, Nothing, Nothing, DateTime.MinValue, True, False)

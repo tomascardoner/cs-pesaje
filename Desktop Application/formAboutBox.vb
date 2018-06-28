@@ -12,12 +12,12 @@
 
         NewItem = New ListViewItem
         NewItem.Text = "DB - DataSource"
-        NewItem.SubItems.Add(My.Settings.DBConnection_Datasource)
+        NewItem.SubItems.Add(pDatabase.DataSource)
         listviewPropiedades.Items.Add(NewItem)
 
         NewItem = New ListViewItem
         NewItem.Text = "DB - Database"
-        NewItem.SubItems.Add(My.Settings.DBConnection_Database)
+        NewItem.SubItems.Add(pDatabase.InitialCatalog)
         listviewPropiedades.Items.Add(NewItem)
 
         NewItem = New ListViewItem

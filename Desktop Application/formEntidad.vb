@@ -182,12 +182,12 @@
         Using dbContext As New CSPesajeContext(True)
             listOrigenesDestinosIncluidos = (From od In dbContext.OrigenDestino
                                              Join e_od In dbContext.Entidad_OrigenDestino On od.IDOrigenDestino Equals e_od.IDOrigenDestino
-                                             Where e_od.IDEntidad = mEntidadActual.IDEntidad And od.EsActivo
+                                             Where e_od.IDEntidad = mEntidadActual.IDEntidad And od.EsActivo And od.IDOrigenDestino <> CS_Constants.FIELD_VALUE_OTHER_INTEGER
                                              Order By od.Nombre
                                              Select od).ToList
 
             listOrigenesDestinosTodos = (From od In dbContext.OrigenDestino
-                                         Where od.EsActivo
+                                         Where od.EsActivo And od.IDOrigenDestino <> CS_Constants.FIELD_VALUE_OTHER_INTEGER
                                          Order By od.Nombre
                                          Select od).ToList
 
