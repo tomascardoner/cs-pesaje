@@ -95,8 +95,17 @@
             End If
             ' Desencripto la contraseña de la conexión a la base de datos que está en el archivo app.config
             If PasswordEncrypted.Length > 0 Then
-                Dim PasswordDecrypter As New CS_Encrypt_TripleDES(CS_Constants.ENCRYPTION_PASSWORD)
-                pDatabase.Password = PasswordDecrypter.Decrypt(PasswordEncrypted)
+                Dim PasswordDecrypter As New CS_Encrypt_TripleDES(CS_Constants.PUBLIC_ENCRYPTION_PASSWORD)
+                Dim DecryptedPassword As String = ""
+                If Not PasswordDecrypter.Decrypt(PasswordEncrypted, DecryptedPassword) Then
+                    MsgBox("La contraseña de conexión a la base de datos es incorrecta.", MsgBoxStyle.Critical, My.Application.Info.Title)
+                    formSplashScreen.Close()
+                    formSplashScreen.Dispose()
+                    TerminateApplication()
+                    PasswordDecrypter = Nothing
+                    Exit Sub
+                End If
+                pDatabase.Password = DecryptedPassword
                 PasswordDecrypter = Nothing
             Else
                 pDatabase.Password = ""
@@ -107,8 +116,17 @@
             pDatabase.InitialCatalog = My.Settings.DBConnection_Database
             pDatabase.UserID = My.Settings.DBConnection_UserID
             ' Desencripto la contraseña de la conexión a la base de datos que está en el archivo app.config
-            Dim PasswordDecrypter As New CS_Encrypt_TripleDES(CS_Constants.ENCRYPTION_PASSWORD)
-            pDatabase.Password = PasswordDecrypter.Decrypt(My.Settings.DBConnection_Password)
+            Dim PasswordDecrypter As New CS_Encrypt_TripleDES(CS_Constants.PUBLIC_ENCRYPTION_PASSWORD)
+            Dim DecryptedPassword As String = ""
+            If Not PasswordDecrypter.Decrypt(My.Settings.DBConnection_Password, DecryptedPassword) Then
+                MsgBox("La contraseña de conexión a la base de datos es incorrecta.", MsgBoxStyle.Critical, My.Application.Info.Title)
+                formSplashScreen.Close()
+                formSplashScreen.Dispose()
+                TerminateApplication()
+                PasswordDecrypter = Nothing
+                Exit Sub
+            End If
+            pDatabase.Password = DecryptedPassword
             PasswordDecrypter = Nothing
         End If
         pDatabase.MultipleActiveResultsets = True
@@ -138,8 +156,17 @@
         End If
 
         ' Muestro el Nombre de la Compañía a la que está licenciada la Aplicación
-        Dim LicenseDecrypter As New CS_Encrypt_TripleDES(CS_Constants.ENCRYPTION_PASSWORD)
-        pLicensedTo = LicenseDecrypter.Decrypt(CS_Parameter_System.GetString(Parametros.LICENSE_COMPANY_NAME, ""))
+        Dim LicenseDecrypter As New CS_Encrypt_TripleDES(Constantes.APPLICATION_LICENSE_PASSWORD)
+        Dim DecryptedLicense As String = ""
+        If Not LicenseDecrypter.Decrypt(CS_Parameter_System.GetString(Parametros.LICENSE_COMPANY_NAME, "EMPTY"), DecryptedLicense) Then
+            MsgBox("La Licencia especificada no es válida.", MsgBoxStyle.Critical, My.Application.Info.Title)
+            formSplashScreen.Close()
+            formSplashScreen.Dispose()
+            TerminateApplication()
+            LicenseDecrypter = Nothing
+            Exit Sub
+        End If
+        pLicensedTo = DecryptedLicense
         LicenseDecrypter = Nothing
         formSplashScreen.labelLicensedTo.Text = pLicensedTo
         Application.DoEvents()
@@ -194,8 +221,13 @@
                     My.Application.Log.WriteEntry("La Aplicación ha finalizado porque el Usuario especificado en Auto-Logon no existe.", TraceEventType.Warning)
                     Exit Sub
                 End If
-                Dim UserPasswordDecrypter As New CS_Encrypt_TripleDES(CS_Constants.ENCRYPTION_PASSWORD)
-                If String.Compare(UserPasswordDecrypter.Decrypt(My.Settings.AutoLogon_Password), pUsuario.Password, False) <> 0 Then
+                Dim UserPasswordDecrypter As New CS_Encrypt_TripleDES(CS_Constants.PUBLIC_ENCRYPTION_PASSWORD)
+                Dim DecryptedPassword As String = ""
+                If Not UserPasswordDecrypter.Decrypt(My.Settings.AutoLogon_Password, DecryptedPassword) Then
+                    MsgBox("La contraseña de conexión a la base de datos es incorrecta.", MsgBoxStyle.Critical, My.Application.Info.Title)
+                    formSplashScreen.Close()
+                    formSplashScreen.Dispose()
+                    TerminateApplication()
                     UserPasswordDecrypter = Nothing
                     Application.Exit()
                     My.Application.Log.WriteEntry("La Aplicación ha finalizado porque el Password especificado en el Auto-Logon es incorrecto.", TraceEventType.Warning)
