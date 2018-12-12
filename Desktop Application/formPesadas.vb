@@ -344,11 +344,11 @@
                 End If
 
                 ' Filtro por Chofer
+                ' TODO: BUG: Cuando el combobox de Chofer está oculto porque no entra en la ventana, no refresca los items al cambiar el Transportista
                 If CInt(comboboxChofer.ComboBox.SelectedValue) <> FIELD_VALUE_ALL_INTEGER Then
                     mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) p.IDChofer.HasValue AndAlso p.IDChofer.Value = CInt(comboboxChofer.ComboBox.SelectedValue)).ToList
                     mRecordSelectionFormula_Filter &= String.Format(" AND {{Pesada.Chofer_IDEntidad}} = {0}", comboboxChofer.ComboBox.SelectedValue)
                 End If
-
 
                 ' FILTROS AVANZADOS
                 ' =================
