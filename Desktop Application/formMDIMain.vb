@@ -99,6 +99,7 @@
 #Region "Menu Ayuda"
     Private Sub menuitemAyuda_AcercaDe_Click(sender As Object, e As EventArgs) Handles menuitemAyuda_AcercaDe.Click
         formAboutBox.ShowDialog(Me)
+        formAboutBox.Dispose()
     End Sub
 
 #End Region

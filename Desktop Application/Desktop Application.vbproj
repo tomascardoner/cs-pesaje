@@ -51,7 +51,7 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Resources\Application.ico</ApplicationIcon>
+    <ApplicationIcon>ApplicationIcon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
@@ -106,6 +106,9 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\..\..\framework-vbnet\CS_Icon.vb">
+      <Link>CS_Icon.vb</Link>
+    </Compile>
     <Compile Include="C:\Data\Cardoner Sistemas\Development\framework-vbnet\CS_AFIP.vb">
       <Link>CS_AFIP.vb</Link>
     </Compile>
@@ -569,12 +572,6 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Application.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\justice-balance-icon_256.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\costado2.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -597,6 +594,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Toolbox-icon_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ApplicationIcon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
