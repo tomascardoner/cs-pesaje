@@ -164,6 +164,22 @@
             Me.Cursor = Cursors.Default
         End If
     End Sub
+
+    Private Sub Tarifas() Handles menuitemTablas_Tarifas.Click
+        If Permisos.VerificarPermiso(Permisos.TARIFA) Then
+            Me.Cursor = Cursors.WaitCursor
+
+            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formTarifas, Form))
+            formTarifas.Show()
+            If formTarifas.WindowState = FormWindowState.Minimized Then
+                formTarifas.WindowState = FormWindowState.Normal
+            End If
+            formTarifas.Focus()
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
 #End Region
 
 #Region "Left Toolbar - Pesadas"

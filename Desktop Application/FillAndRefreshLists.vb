@@ -285,20 +285,24 @@
         ComboBoxControl.DataSource = listItems
     End Sub
 
-    Friend Sub Cosecha(ByRef ComboBoxControl As ComboBox, ByVal IDCosecha As Byte?, ByVal IDProducto As Byte, ByVal Fecha As Date, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
+    Friend Sub Cosecha(ByRef ComboBoxControl As ComboBox, ByVal IDCosecha As Byte?, ByVal IDProducto As Byte, ByVal Fecha As Date, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean, Optional InvertirOrden As Boolean = False)
         Dim listItems As List(Of Cosecha)
 
         ComboBoxControl.ValueMember = "IDCosecha"
         ComboBoxControl.DisplayMember = "Nombre"
 
         If IDProducto = CS_Constants.FIELD_VALUE_NOTSPECIFIED_BYTE Then
-            listItems = mdbContext.Cosecha.Where(Function(co) (IDCosecha.HasValue And co.IDCosecha = IDCosecha.Value) Or co.EsActivo).OrderBy(Function(co) co.Nombre).ToList
+            listItems = mdbContext.Cosecha.Where(Function(co) (IDCosecha.HasValue And co.IDCosecha = IDCosecha.Value) Or co.EsActivo).ToList
         Else
             listItems = (From co In mdbContext.Cosecha
                          Join pc In mdbContext.Producto_Cosecha On co.IDCosecha Equals pc.IDCosecha
                          Where pc.IDProducto = IDProducto And ((IDCosecha.HasValue And co.IDCosecha = IDCosecha.Value) Or (pc.EsActivo And pc.Inicio <= Fecha And pc.Fin >= Fecha))
-                         Order By co.Nombre
                          Select co).ToList
+        End If
+        If InvertirOrden Then
+            listItems = listItems.OrderByDescending(Function(co) co.Nombre).ToList
+        Else
+            listItems = listItems.OrderBy(Function(co) co.Nombre).ToList
         End If
 
         If AgregarItem_Todos Then

@@ -216,6 +216,18 @@
     <Compile Include="formCamiones.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="formTarifa.Designer.vb">
+      <DependentUpon>formTarifa.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formTarifa.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formTarifas.Designer.vb">
+      <DependentUpon>formTarifas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formTarifas.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="formOrigenDestino.designer.vb">
       <DependentUpon>formOrigenDestino.vb</DependentUpon>
     </Compile>
@@ -403,6 +415,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="formCamiones.resx">
       <DependentUpon>formCamiones.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formTarifa.resx">
+      <DependentUpon>formTarifa.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formTarifas.resx">
+      <DependentUpon>formTarifas.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formOrigenDestino.resx">
       <DependentUpon>formOrigenDestino.vb</DependentUpon>

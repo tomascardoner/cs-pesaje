@@ -11,8 +11,8 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyTitle("CS-Pesaje 2017")> 
 <Assembly: AssemblyDescription("Sistema de registración de pesadas de balanza")> 
 <Assembly: AssemblyCompany("Cardoner Sistemas")> 
-<Assembly: AssemblyProduct("CS-Pesaje")> 
-<Assembly: AssemblyCopyright("© 2017-2018 Cardoner Sistemas. Reservados todos los derechos.")> 
+<Assembly: AssemblyProduct("CS-Pesaje")>
+<Assembly: AssemblyCopyright("© 2017-2019 Cardoner Sistemas. Reservados todos los derechos.")>
 <Assembly: AssemblyTrademark("® CS-Pesaje 2017")> 
 
 <Assembly: ComVisible(False)>
