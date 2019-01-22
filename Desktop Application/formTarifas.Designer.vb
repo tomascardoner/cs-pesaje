@@ -23,10 +23,11 @@ Partial Class formTarifas
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.toolstripButtons = New System.Windows.Forms.ToolStrip()
         Me.buttonAgregar = New System.Windows.Forms.ToolStripButton()
+        Me.buttonCopiar = New System.Windows.Forms.ToolStripButton()
         Me.buttonEditar = New System.Windows.Forms.ToolStripButton()
         Me.buttonEliminar = New System.Windows.Forms.ToolStripButton()
         Me.statusstripMain = New System.Windows.Forms.StatusStrip()
@@ -60,11 +61,11 @@ Partial Class formTarifas
         '
         Me.toolstripButtons.Dock = System.Windows.Forms.DockStyle.Fill
         Me.toolstripButtons.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.toolstripButtons.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonAgregar, Me.buttonEditar, Me.buttonEliminar})
+        Me.toolstripButtons.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonAgregar, Me.buttonCopiar, Me.buttonEditar, Me.buttonEliminar})
         Me.toolstripButtons.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow
         Me.toolstripButtons.Location = New System.Drawing.Point(0, 0)
         Me.toolstripButtons.Name = "toolstripButtons"
-        Me.toolstripButtons.Size = New System.Drawing.Size(247, 39)
+        Me.toolstripButtons.Size = New System.Drawing.Size(356, 39)
         Me.toolstripButtons.TabIndex = 0
         '
         'buttonAgregar
@@ -75,6 +76,15 @@ Partial Class formTarifas
         Me.buttonAgregar.Name = "buttonAgregar"
         Me.buttonAgregar.Size = New System.Drawing.Size(85, 36)
         Me.buttonAgregar.Text = "Agregar"
+        '
+        'buttonCopiar
+        '
+        Me.buttonCopiar.Image = Global.CSPesaje.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_COPY_32
+        Me.buttonCopiar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.buttonCopiar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonCopiar.Name = "buttonCopiar"
+        Me.buttonCopiar.Size = New System.Drawing.Size(78, 36)
+        Me.buttonCopiar.Text = "Copiar"
         '
         'buttonEditar
         '
@@ -127,9 +137,9 @@ Partial Class formTarifas
         Me.toolstripCosecha.Dock = System.Windows.Forms.DockStyle.Fill
         Me.toolstripCosecha.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolstripCosecha.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelCosecha, Me.comboboxCosecha})
-        Me.toolstripCosecha.Location = New System.Drawing.Point(247, 0)
+        Me.toolstripCosecha.Location = New System.Drawing.Point(356, 0)
         Me.toolstripCosecha.Name = "toolstripCosecha"
-        Me.toolstripCosecha.Size = New System.Drawing.Size(193, 39)
+        Me.toolstripCosecha.Size = New System.Drawing.Size(160, 39)
         Me.toolstripCosecha.TabIndex = 3
         '
         'labelCosecha
@@ -149,7 +159,7 @@ Partial Class formTarifas
         Me.toolstripProducto.Dock = System.Windows.Forms.DockStyle.Fill
         Me.toolstripProducto.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolstripProducto.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelProducto, Me.comboboxProducto})
-        Me.toolstripProducto.Location = New System.Drawing.Point(440, 0)
+        Me.toolstripProducto.Location = New System.Drawing.Point(516, 0)
         Me.toolstripProducto.Name = "toolstripProducto"
         Me.toolstripProducto.Size = New System.Drawing.Size(184, 39)
         Me.toolstripProducto.TabIndex = 4
@@ -172,11 +182,11 @@ Partial Class formTarifas
         Me.datagridviewMain.AllowUserToDeleteRows = False
         Me.datagridviewMain.AllowUserToOrderColumns = True
         Me.datagridviewMain.AllowUserToResizeRows = False
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.GradientActiveCaption
-        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText
-        Me.datagridviewMain.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.GradientActiveCaption
+        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.WindowText
+        Me.datagridviewMain.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle3
         Me.datagridviewMain.AutoGenerateColumns = False
         Me.datagridviewMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.datagridviewMain.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnCosecha, Me.columnProducto, Me.columnIndice, Me.columnPlanta, Me.columnEntidad, Me.columnOrigen, Me.columnNombre})
@@ -214,8 +224,8 @@ Partial Class formTarifas
         '
         Me.columnIndice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.columnIndice.DataPropertyName = "Indice"
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        Me.columnIndice.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.columnIndice.DefaultCellStyle = DataGridViewCellStyle4
         Me.columnIndice.HeaderText = "Indice"
         Me.columnIndice.Name = "columnIndice"
         Me.columnIndice.ReadOnly = True
@@ -307,4 +317,5 @@ Partial Class formTarifas
     Friend WithEvents columnEntidad As DataGridViewTextBoxColumn
     Friend WithEvents columnOrigen As DataGridViewTextBoxColumn
     Friend WithEvents columnNombre As DataGridViewTextBoxColumn
+    Friend WithEvents buttonCopiar As ToolStripButton
 End Class

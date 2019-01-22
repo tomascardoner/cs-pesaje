@@ -703,9 +703,9 @@
     Private Sub CosechaTodos() Handles checkboxCosechaTodos.CheckedChanged
         If Not mPesadaActual Is Nothing Then
             If checkboxCosechaTodos.Checked Then
-                pFillAndRefreshLists.Cosecha(comboboxCosecha, mPesadaActual.IDCosecha, CS_Constants.FIELD_VALUE_NOTSPECIFIED_BYTE, CS_Constants.FIELD_VALUE_NOTSPECIFIED_DATE, False, False)
+                pFillAndRefreshLists.Cosecha(comboboxCosecha, mPesadaActual.IDCosecha, CS_Constants.FIELD_VALUE_NOTSPECIFIED_BYTE, CS_Constants.FIELD_VALUE_NOTSPECIFIED_DATE, False, False, True)
             Else
-                pFillAndRefreshLists.Cosecha(comboboxCosecha, mPesadaActual.IDCosecha, CByte(comboboxProducto.SelectedValue), datetimepickerFechaInicio.Value, False, False)
+                pFillAndRefreshLists.Cosecha(comboboxCosecha, mPesadaActual.IDCosecha, CByte(comboboxProducto.SelectedValue), datetimepickerFechaInicio.Value, False, False, True)
             End If
             CS_ComboBox.SetSelectedValue(comboboxCosecha, SelectedItemOptions.NoneOrFirstIfUnique)
         End If

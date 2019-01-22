@@ -218,6 +218,29 @@
         End If
     End Sub
 
+    Private Sub Copiar_Click() Handles buttonCopiar.Click
+        If datagridviewMain.CurrentRow Is Nothing Then
+            MsgBox("No hay ninguna Tarifa para copiar.", vbInformation, My.Application.Info.Title)
+        Else
+            If Permisos.VerificarPermiso(Permisos.TARIFA_AGREGAR) Then
+                Me.Cursor = Cursors.WaitCursor
+
+                datagridviewMain.Enabled = False
+
+                Dim GridRowDataActual As GridRowData
+                GridRowDataActual = CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData)
+
+                formTarifa.LoadAndShow(True, Me, GridRowDataActual.IDCosecha, GridRowDataActual.IDProducto, GridRowDataActual.Indice)
+
+                GridRowDataActual = Nothing
+
+                datagridviewMain.Enabled = True
+
+                Me.Cursor = Cursors.Default
+            End If
+        End If
+    End Sub
+
     Private Sub Editar_Click() Handles buttonEditar.Click
         If datagridviewMain.CurrentRow Is Nothing Then
             MsgBox("No hay ninguna Tarifa para editar.", vbInformation, My.Application.Info.Title)
@@ -304,6 +327,10 @@
 
             Me.Cursor = Cursors.Default
         End If
+    End Sub
+
+    Private Sub Editar_Click(sender As Object, e As EventArgs) Handles buttonEditar.Click
+
     End Sub
 
 #End Region
