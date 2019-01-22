@@ -22,6 +22,8 @@ Partial Class formTarifa
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.toolstripMain = New System.Windows.Forms.ToolStrip()
         Me.buttonCerrar = New System.Windows.Forms.ToolStripButton()
         Me.buttonEditar = New System.Windows.Forms.ToolStripButton()
@@ -41,6 +43,7 @@ Partial Class formTarifa
         Me.comboboxPlanta = New System.Windows.Forms.ComboBox()
         Me.labelPlanta = New System.Windows.Forms.Label()
         Me.groupboxGeneralRequeridos = New System.Windows.Forms.GroupBox()
+        Me.buttonIndiceObtener = New System.Windows.Forms.Button()
         Me.textboxNombre = New System.Windows.Forms.TextBox()
         Me.labelNombre = New System.Windows.Forms.Label()
         Me.comboboxCosecha = New System.Windows.Forms.ComboBox()
@@ -49,47 +52,56 @@ Partial Class formTarifa
         Me.labelIndice = New System.Windows.Forms.Label()
         Me.comboboxProducto = New System.Windows.Forms.ComboBox()
         Me.labelProducto = New System.Windows.Forms.Label()
-        Me.tabpageSecadoEscala = New System.Windows.Forms.TabPage()
         Me.tabpageTarifas = New System.Windows.Forms.TabPage()
-        Me.groupboxTarifasVarias = New System.Windows.Forms.GroupBox()
-        Me.labelParitariaImporte = New System.Windows.Forms.Label()
-        Me.doubletextboxParitariaImporte = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
-        Me.doubletextboxZarandeoImporte = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
-        Me.labelZarandeoImporte = New System.Windows.Forms.Label()
-        Me.doubletextboxFumigadoImporte = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
-        Me.labelFumigadoImporte = New System.Windows.Forms.Label()
-        Me.doubletextboxMezcladoImporte = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
-        Me.labelMezcladoImporte = New System.Windows.Forms.Label()
         Me.groupboxTarifasSecado = New System.Windows.Forms.GroupBox()
+        Me.currencytextboxTarifaSecadoPuntoExcesoImporte = New Syncfusion.Windows.Forms.Tools.CurrencyTextBox()
+        Me.groupboxTarifasSecadoRedondeoPuntoTipo = New System.Windows.Forms.GroupBox()
+        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoInferior = New System.Windows.Forms.RadioButton()
+        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoSuperior = New System.Windows.Forms.RadioButton()
+        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoEntero = New System.Windows.Forms.RadioButton()
+        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoNinguno = New System.Windows.Forms.RadioButton()
+        Me.doubletextboxTarifaSecadoMargenLibre = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
+        Me.labelTarifaSecadoMargenLibre = New System.Windows.Forms.Label()
+        Me.doubletextboxTarifaSecadoHumedadBase = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
+        Me.labelTarifaSecadoHumedadBase = New System.Windows.Forms.Label()
+        Me.labelTarifaSecadoPuntoExcesoImporte = New System.Windows.Forms.Label()
+        Me.groupboxTarifasSecadoInicial = New System.Windows.Forms.GroupBox()
+        Me.currencytextboxTarifaSecadoInicialImporte = New Syncfusion.Windows.Forms.Tools.CurrencyTextBox()
+        Me.doubletextboxTarifaSecadoInicialPunto = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
+        Me.labelTarifaSecadoInicialImporte = New System.Windows.Forms.Label()
+        Me.labelTarifaSecadoInicialPunto = New System.Windows.Forms.Label()
+        Me.groupboxTarifasSecadoSecadoTipo = New System.Windows.Forms.GroupBox()
         Me.radiobuttonSecadoTipoFijo = New System.Windows.Forms.RadioButton()
         Me.radiobuttonSecadoTipoEscala = New System.Windows.Forms.RadioButton()
-        Me.groupboxTarifasSecadoSecadoTipo = New System.Windows.Forms.GroupBox()
-        Me.doubletextboxSecadoInicialPunto = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
-        Me.labelSecadoInicialPunto = New System.Windows.Forms.Label()
-        Me.doubletextboxSecadoInicialImporte = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
-        Me.labelSecadoInicialImporte = New System.Windows.Forms.Label()
-        Me.groupboxTarifasSecadoInicial = New System.Windows.Forms.GroupBox()
-        Me.labelTarifasSecadoExcesoImporte = New System.Windows.Forms.Label()
-        Me.doubletextboxTarifasSecadoExcesoImporte = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
-        Me.doubletextboxTarifasSecadoHumedadBase = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
-        Me.labelSecadoHumedadBase = New System.Windows.Forms.Label()
-        Me.doubletextboxTarifasSecadoMargenLibre = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
-        Me.labelTarifasSecadoMargenLibre = New System.Windows.Forms.Label()
-        Me.groupboxTarifasSecadoRedondeoPuntoTipo = New System.Windows.Forms.GroupBox()
-        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoNinguno = New System.Windows.Forms.RadioButton()
-        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoEntero = New System.Windows.Forms.RadioButton()
-        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoSuperior = New System.Windows.Forms.RadioButton()
-        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoInferior = New System.Windows.Forms.RadioButton()
+        Me.groupboxTarifasVarias = New System.Windows.Forms.GroupBox()
+        Me.currencytextboxTarifaMezcladoImporte = New Syncfusion.Windows.Forms.Tools.CurrencyTextBox()
+        Me.currencytextboxTarifaFumigadoImporte = New Syncfusion.Windows.Forms.Tools.CurrencyTextBox()
+        Me.currencytextboxTarifaZarandeo = New Syncfusion.Windows.Forms.Tools.CurrencyTextBox()
+        Me.currencytextboxTarifaParitariaImporte = New Syncfusion.Windows.Forms.Tools.CurrencyTextBox()
+        Me.labelTarifaMezcladoImporte = New System.Windows.Forms.Label()
+        Me.labelTarifaFumigadoImporte = New System.Windows.Forms.Label()
+        Me.labelTarifaZarandeoImporte = New System.Windows.Forms.Label()
+        Me.labelTarifaParitariaImporte = New System.Windows.Forms.Label()
         Me.tabpageAlmacenaje = New System.Windows.Forms.TabPage()
-        Me.radiobuttonAlmacenajeTipoDiasGraciaFijo = New System.Windows.Forms.RadioButton()
-        Me.radiobuttonAlmacenajeTipoDiasGraciaSiRetiraAntes = New System.Windows.Forms.RadioButton()
-        Me.radiobuttonAlmacenajeTipoFechaFija = New System.Windows.Forms.RadioButton()
-        Me.groupboxAlmacenajeTipo = New System.Windows.Forms.GroupBox()
-        Me.labelAlmacenajeDiaGracia = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.doubletextboxAlmacenajePorcentajeMensual = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
-        Me.labelAlmacenajePorcentajeMensual = New System.Windows.Forms.Label()
+        Me.percenttextboxAlmacenajePorcentajeMensual = New Syncfusion.Windows.Forms.Tools.PercentTextBox()
+        Me.integertextboxAlmacenajeDiaGracia = New Syncfusion.Windows.Forms.Tools.IntegerTextBox()
         Me.datetimepickerAlmacenajeInicio = New System.Windows.Forms.DateTimePicker()
+        Me.labelAlmacenajePorcentajeMensual = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.labelAlmacenajeDiaGracia = New System.Windows.Forms.Label()
+        Me.groupboxAlmacenajeTipo = New System.Windows.Forms.GroupBox()
+        Me.radiobuttonAlmacenajeTipoDiasGraciaFijo = New System.Windows.Forms.RadioButton()
+        Me.radiobuttonAlmacenajeTipoFechaFija = New System.Windows.Forms.RadioButton()
+        Me.radiobuttonAlmacenajeTipoDiasGraciaSiRetiraAntes = New System.Windows.Forms.RadioButton()
+        Me.tabpageSecadoEscala = New System.Windows.Forms.TabPage()
+        Me.datagridviewTarifaSecadoEscala = New System.Windows.Forms.DataGridView()
+        Me.toolstripDetalle = New System.Windows.Forms.ToolStrip()
+        Me.buttonDetalle_Editar = New System.Windows.Forms.ToolStripButton()
+        Me.buttonDetalle_Eliminar = New System.Windows.Forms.ToolStripButton()
+        Me.buttonDetalle_Agregar = New System.Windows.Forms.ToolStripButton()
+        Me.columnHumedadExcesoInicio = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnTipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnTarifa = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.toolstripMain.SuspendLayout()
         Me.tabcontrolMain.SuspendLayout()
         Me.tabpageGeneral.SuspendLayout()
@@ -97,23 +109,27 @@ Partial Class formTarifa
         Me.groupboxGeneralRequeridos.SuspendLayout()
         CType(Me.updownIndice, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tabpageTarifas.SuspendLayout()
-        Me.groupboxTarifasVarias.SuspendLayout()
-        CType(Me.doubletextboxParitariaImporte, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.doubletextboxZarandeoImporte, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.doubletextboxFumigadoImporte, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.doubletextboxMezcladoImporte, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.groupboxTarifasSecado.SuspendLayout()
-        Me.groupboxTarifasSecadoSecadoTipo.SuspendLayout()
-        CType(Me.doubletextboxSecadoInicialPunto, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.doubletextboxSecadoInicialImporte, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.groupboxTarifasSecadoInicial.SuspendLayout()
-        CType(Me.doubletextboxTarifasSecadoExcesoImporte, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.doubletextboxTarifasSecadoHumedadBase, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.doubletextboxTarifasSecadoMargenLibre, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.currencytextboxTarifaSecadoPuntoExcesoImporte, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.groupboxTarifasSecadoRedondeoPuntoTipo.SuspendLayout()
+        CType(Me.doubletextboxTarifaSecadoMargenLibre, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.doubletextboxTarifaSecadoHumedadBase, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.groupboxTarifasSecadoInicial.SuspendLayout()
+        CType(Me.currencytextboxTarifaSecadoInicialImporte, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.doubletextboxTarifaSecadoInicialPunto, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.groupboxTarifasSecadoSecadoTipo.SuspendLayout()
+        Me.groupboxTarifasVarias.SuspendLayout()
+        CType(Me.currencytextboxTarifaMezcladoImporte, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.currencytextboxTarifaFumigadoImporte, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.currencytextboxTarifaZarandeo, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.currencytextboxTarifaParitariaImporte, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tabpageAlmacenaje.SuspendLayout()
+        CType(Me.percenttextboxAlmacenajePorcentajeMensual, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.integertextboxAlmacenajeDiaGracia, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.groupboxAlmacenajeTipo.SuspendLayout()
-        CType(Me.doubletextboxAlmacenajePorcentajeMensual, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.tabpageSecadoEscala.SuspendLayout()
+        CType(Me.datagridviewTarifaSecadoEscala, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.toolstripDetalle.SuspendLayout()
         Me.SuspendLayout()
         '
         'toolstripMain
@@ -173,8 +189,8 @@ Partial Class formTarifa
         Me.tabcontrolMain.Appearance = System.Windows.Forms.TabAppearance.FlatButtons
         Me.tabcontrolMain.Controls.Add(Me.tabpageGeneral)
         Me.tabcontrolMain.Controls.Add(Me.tabpageTarifas)
-        Me.tabcontrolMain.Controls.Add(Me.tabpageSecadoEscala)
         Me.tabcontrolMain.Controls.Add(Me.tabpageAlmacenaje)
+        Me.tabcontrolMain.Controls.Add(Me.tabpageSecadoEscala)
         Me.tabcontrolMain.Location = New System.Drawing.Point(12, 42)
         Me.tabcontrolMain.Name = "tabcontrolMain"
         Me.tabcontrolMain.SelectedIndex = 0
@@ -309,6 +325,7 @@ Partial Class formTarifa
         '
         Me.groupboxGeneralRequeridos.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.groupboxGeneralRequeridos.Controls.Add(Me.buttonIndiceObtener)
         Me.groupboxGeneralRequeridos.Controls.Add(Me.textboxNombre)
         Me.groupboxGeneralRequeridos.Controls.Add(Me.labelNombre)
         Me.groupboxGeneralRequeridos.Controls.Add(Me.comboboxCosecha)
@@ -324,6 +341,15 @@ Partial Class formTarifa
         Me.groupboxGeneralRequeridos.TabIndex = 0
         Me.groupboxGeneralRequeridos.TabStop = False
         Me.groupboxGeneralRequeridos.Text = "Requeridos:"
+        '
+        'buttonIndiceObtener
+        '
+        Me.buttonIndiceObtener.Location = New System.Drawing.Point(132, 72)
+        Me.buttonIndiceObtener.Name = "buttonIndiceObtener"
+        Me.buttonIndiceObtener.Size = New System.Drawing.Size(64, 22)
+        Me.buttonIndiceObtener.TabIndex = 8
+        Me.buttonIndiceObtener.Text = "Obtener"
+        Me.buttonIndiceObtener.UseVisualStyleBackColor = True
         '
         'textboxNombre
         '
@@ -396,17 +422,6 @@ Partial Class formTarifa
         Me.labelProducto.TabIndex = 2
         Me.labelProducto.Text = "Producto:"
         '
-        'tabpageSecadoEscala
-        '
-        Me.tabpageSecadoEscala.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.tabpageSecadoEscala.Location = New System.Drawing.Point(4, 25)
-        Me.tabpageSecadoEscala.Name = "tabpageSecadoEscala"
-        Me.tabpageSecadoEscala.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageSecadoEscala.Size = New System.Drawing.Size(364, 309)
-        Me.tabpageSecadoEscala.TabIndex = 1
-        Me.tabpageSecadoEscala.Text = "Escalas de Secado"
-        Me.tabpageSecadoEscala.UseVisualStyleBackColor = True
-        '
         'tabpageTarifas
         '
         Me.tabpageTarifas.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -420,160 +435,17 @@ Partial Class formTarifa
         Me.tabpageTarifas.Text = "Tarifas"
         Me.tabpageTarifas.UseVisualStyleBackColor = True
         '
-        'groupboxTarifasVarias
-        '
-        Me.groupboxTarifasVarias.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.groupboxTarifasVarias.Controls.Add(Me.doubletextboxMezcladoImporte)
-        Me.groupboxTarifasVarias.Controls.Add(Me.labelMezcladoImporte)
-        Me.groupboxTarifasVarias.Controls.Add(Me.doubletextboxFumigadoImporte)
-        Me.groupboxTarifasVarias.Controls.Add(Me.labelFumigadoImporte)
-        Me.groupboxTarifasVarias.Controls.Add(Me.doubletextboxZarandeoImporte)
-        Me.groupboxTarifasVarias.Controls.Add(Me.labelZarandeoImporte)
-        Me.groupboxTarifasVarias.Controls.Add(Me.doubletextboxParitariaImporte)
-        Me.groupboxTarifasVarias.Controls.Add(Me.labelParitariaImporte)
-        Me.groupboxTarifasVarias.Location = New System.Drawing.Point(6, 6)
-        Me.groupboxTarifasVarias.Name = "groupboxTarifasVarias"
-        Me.groupboxTarifasVarias.Size = New System.Drawing.Size(350, 75)
-        Me.groupboxTarifasVarias.TabIndex = 0
-        Me.groupboxTarifasVarias.TabStop = False
-        Me.groupboxTarifasVarias.Text = "Varias:"
-        '
-        'labelParitariaImporte
-        '
-        Me.labelParitariaImporte.AutoSize = True
-        Me.labelParitariaImporte.Location = New System.Drawing.Point(6, 22)
-        Me.labelParitariaImporte.Name = "labelParitariaImporte"
-        Me.labelParitariaImporte.Size = New System.Drawing.Size(86, 13)
-        Me.labelParitariaImporte.TabIndex = 0
-        Me.labelParitariaImporte.Text = "Importe Paritaria:"
-        '
-        'doubletextboxParitariaImporte
-        '
-        Me.doubletextboxParitariaImporte.AllowNull = True
-        Me.doubletextboxParitariaImporte.BackGroundColor = System.Drawing.SystemColors.Window
-        Me.doubletextboxParitariaImporte.BeforeTouchSize = New System.Drawing.Size(39, 20)
-        Me.doubletextboxParitariaImporte.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.doubletextboxParitariaImporte.DoubleValue = 0R
-        Me.doubletextboxParitariaImporte.Location = New System.Drawing.Point(106, 19)
-        Me.doubletextboxParitariaImporte.MaxValue = 100.0R
-        Me.doubletextboxParitariaImporte.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
-        Me.doubletextboxParitariaImporte.MinValue = 0R
-        Me.doubletextboxParitariaImporte.Name = "doubletextboxParitariaImporte"
-        Me.doubletextboxParitariaImporte.NullString = ""
-        Me.doubletextboxParitariaImporte.NumberDecimalDigits = 1
-        Me.doubletextboxParitariaImporte.NumberNegativePattern = 0
-        Me.doubletextboxParitariaImporte.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.SetNullString
-        Me.doubletextboxParitariaImporte.Size = New System.Drawing.Size(39, 20)
-        Me.doubletextboxParitariaImporte.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
-        Me.doubletextboxParitariaImporte.TabIndex = 2
-        Me.doubletextboxParitariaImporte.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.doubletextboxParitariaImporte.WordWrap = False
-        '
-        'doubletextboxZarandeoImporte
-        '
-        Me.doubletextboxZarandeoImporte.AllowNull = True
-        Me.doubletextboxZarandeoImporte.BackGroundColor = System.Drawing.SystemColors.Window
-        Me.doubletextboxZarandeoImporte.BeforeTouchSize = New System.Drawing.Size(39, 20)
-        Me.doubletextboxZarandeoImporte.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.doubletextboxZarandeoImporte.DoubleValue = 0R
-        Me.doubletextboxZarandeoImporte.Location = New System.Drawing.Point(106, 45)
-        Me.doubletextboxZarandeoImporte.MaxValue = 40.0R
-        Me.doubletextboxZarandeoImporte.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
-        Me.doubletextboxZarandeoImporte.MinValue = 0R
-        Me.doubletextboxZarandeoImporte.Name = "doubletextboxZarandeoImporte"
-        Me.doubletextboxZarandeoImporte.NullString = ""
-        Me.doubletextboxZarandeoImporte.NumberDecimalDigits = 1
-        Me.doubletextboxZarandeoImporte.NumberNegativePattern = 0
-        Me.doubletextboxZarandeoImporte.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.SetNullString
-        Me.doubletextboxZarandeoImporte.Size = New System.Drawing.Size(39, 20)
-        Me.doubletextboxZarandeoImporte.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
-        Me.doubletextboxZarandeoImporte.TabIndex = 4
-        Me.doubletextboxZarandeoImporte.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.doubletextboxZarandeoImporte.WordWrap = False
-        '
-        'labelZarandeoImporte
-        '
-        Me.labelZarandeoImporte.AutoSize = True
-        Me.labelZarandeoImporte.Location = New System.Drawing.Point(6, 48)
-        Me.labelZarandeoImporte.Name = "labelZarandeoImporte"
-        Me.labelZarandeoImporte.Size = New System.Drawing.Size(94, 13)
-        Me.labelZarandeoImporte.TabIndex = 3
-        Me.labelZarandeoImporte.Text = "Importe Zarandeo:"
-        '
-        'doubletextboxFumigadoImporte
-        '
-        Me.doubletextboxFumigadoImporte.AllowNull = True
-        Me.doubletextboxFumigadoImporte.BackGroundColor = System.Drawing.SystemColors.Window
-        Me.doubletextboxFumigadoImporte.BeforeTouchSize = New System.Drawing.Size(39, 20)
-        Me.doubletextboxFumigadoImporte.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.doubletextboxFumigadoImporte.DoubleValue = 0R
-        Me.doubletextboxFumigadoImporte.Location = New System.Drawing.Point(269, 19)
-        Me.doubletextboxFumigadoImporte.MaxValue = 40.0R
-        Me.doubletextboxFumigadoImporte.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
-        Me.doubletextboxFumigadoImporte.MinValue = 0R
-        Me.doubletextboxFumigadoImporte.Name = "doubletextboxFumigadoImporte"
-        Me.doubletextboxFumigadoImporte.NullString = ""
-        Me.doubletextboxFumigadoImporte.NumberDecimalDigits = 1
-        Me.doubletextboxFumigadoImporte.NumberNegativePattern = 0
-        Me.doubletextboxFumigadoImporte.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.SetNullString
-        Me.doubletextboxFumigadoImporte.Size = New System.Drawing.Size(39, 20)
-        Me.doubletextboxFumigadoImporte.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
-        Me.doubletextboxFumigadoImporte.TabIndex = 6
-        Me.doubletextboxFumigadoImporte.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.doubletextboxFumigadoImporte.WordWrap = False
-        '
-        'labelFumigadoImporte
-        '
-        Me.labelFumigadoImporte.AutoSize = True
-        Me.labelFumigadoImporte.Location = New System.Drawing.Point(169, 22)
-        Me.labelFumigadoImporte.Name = "labelFumigadoImporte"
-        Me.labelFumigadoImporte.Size = New System.Drawing.Size(94, 13)
-        Me.labelFumigadoImporte.TabIndex = 5
-        Me.labelFumigadoImporte.Text = "Importe Fumigado:"
-        '
-        'doubletextboxMezcladoImporte
-        '
-        Me.doubletextboxMezcladoImporte.AllowNull = True
-        Me.doubletextboxMezcladoImporte.BackGroundColor = System.Drawing.SystemColors.Window
-        Me.doubletextboxMezcladoImporte.BeforeTouchSize = New System.Drawing.Size(39, 20)
-        Me.doubletextboxMezcladoImporte.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.doubletextboxMezcladoImporte.DoubleValue = 0R
-        Me.doubletextboxMezcladoImporte.Location = New System.Drawing.Point(269, 45)
-        Me.doubletextboxMezcladoImporte.MaxValue = 40.0R
-        Me.doubletextboxMezcladoImporte.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
-        Me.doubletextboxMezcladoImporte.MinValue = 0R
-        Me.doubletextboxMezcladoImporte.Name = "doubletextboxMezcladoImporte"
-        Me.doubletextboxMezcladoImporte.NullString = ""
-        Me.doubletextboxMezcladoImporte.NumberDecimalDigits = 1
-        Me.doubletextboxMezcladoImporte.NumberNegativePattern = 0
-        Me.doubletextboxMezcladoImporte.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.SetNullString
-        Me.doubletextboxMezcladoImporte.Size = New System.Drawing.Size(39, 20)
-        Me.doubletextboxMezcladoImporte.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
-        Me.doubletextboxMezcladoImporte.TabIndex = 8
-        Me.doubletextboxMezcladoImporte.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.doubletextboxMezcladoImporte.WordWrap = False
-        '
-        'labelMezcladoImporte
-        '
-        Me.labelMezcladoImporte.AutoSize = True
-        Me.labelMezcladoImporte.Location = New System.Drawing.Point(169, 48)
-        Me.labelMezcladoImporte.Name = "labelMezcladoImporte"
-        Me.labelMezcladoImporte.Size = New System.Drawing.Size(94, 13)
-        Me.labelMezcladoImporte.TabIndex = 7
-        Me.labelMezcladoImporte.Text = "Importe Mezclado:"
-        '
         'groupboxTarifasSecado
         '
         Me.groupboxTarifasSecado.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.groupboxTarifasSecado.Controls.Add(Me.currencytextboxTarifaSecadoPuntoExcesoImporte)
         Me.groupboxTarifasSecado.Controls.Add(Me.groupboxTarifasSecadoRedondeoPuntoTipo)
-        Me.groupboxTarifasSecado.Controls.Add(Me.doubletextboxTarifasSecadoMargenLibre)
-        Me.groupboxTarifasSecado.Controls.Add(Me.labelTarifasSecadoMargenLibre)
-        Me.groupboxTarifasSecado.Controls.Add(Me.doubletextboxTarifasSecadoHumedadBase)
-        Me.groupboxTarifasSecado.Controls.Add(Me.labelSecadoHumedadBase)
-        Me.groupboxTarifasSecado.Controls.Add(Me.labelTarifasSecadoExcesoImporte)
-        Me.groupboxTarifasSecado.Controls.Add(Me.doubletextboxTarifasSecadoExcesoImporte)
+        Me.groupboxTarifasSecado.Controls.Add(Me.doubletextboxTarifaSecadoMargenLibre)
+        Me.groupboxTarifasSecado.Controls.Add(Me.labelTarifaSecadoMargenLibre)
+        Me.groupboxTarifasSecado.Controls.Add(Me.doubletextboxTarifaSecadoHumedadBase)
+        Me.groupboxTarifasSecado.Controls.Add(Me.labelTarifaSecadoHumedadBase)
+        Me.groupboxTarifasSecado.Controls.Add(Me.labelTarifaSecadoPuntoExcesoImporte)
         Me.groupboxTarifasSecado.Controls.Add(Me.groupboxTarifasSecadoInicial)
         Me.groupboxTarifasSecado.Controls.Add(Me.groupboxTarifasSecadoSecadoTipo)
         Me.groupboxTarifasSecado.Location = New System.Drawing.Point(6, 87)
@@ -582,6 +454,228 @@ Partial Class formTarifa
         Me.groupboxTarifasSecado.TabIndex = 1
         Me.groupboxTarifasSecado.TabStop = False
         Me.groupboxTarifasSecado.Text = "Secado:"
+        '
+        'currencytextboxTarifaSecadoPuntoExcesoImporte
+        '
+        Me.currencytextboxTarifaSecadoPuntoExcesoImporte.BeforeTouchSize = New System.Drawing.Size(39, 20)
+        Me.currencytextboxTarifaSecadoPuntoExcesoImporte.CurrentCultureRefresh = True
+        Me.currencytextboxTarifaSecadoPuntoExcesoImporte.DecimalValue = New Decimal(New Integer() {0, 0, 0, 131072})
+        Me.currencytextboxTarifaSecadoPuntoExcesoImporte.Location = New System.Drawing.Point(160, 71)
+        Me.currencytextboxTarifaSecadoPuntoExcesoImporte.MaxValue = New Decimal(New Integer() {99999, 0, 0, 131072})
+        Me.currencytextboxTarifaSecadoPuntoExcesoImporte.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
+        Me.currencytextboxTarifaSecadoPuntoExcesoImporte.MinValue = New Decimal(New Integer() {0, 0, 0, 0})
+        Me.currencytextboxTarifaSecadoPuntoExcesoImporte.Name = "currencytextboxTarifaSecadoPuntoExcesoImporte"
+        Me.currencytextboxTarifaSecadoPuntoExcesoImporte.NullString = ""
+        Me.currencytextboxTarifaSecadoPuntoExcesoImporte.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.KeepFocus
+        Me.currencytextboxTarifaSecadoPuntoExcesoImporte.Size = New System.Drawing.Size(55, 20)
+        Me.currencytextboxTarifaSecadoPuntoExcesoImporte.TabIndex = 3
+        Me.currencytextboxTarifaSecadoPuntoExcesoImporte.Text = "$ 0,00"
+        Me.currencytextboxTarifaSecadoPuntoExcesoImporte.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.currencytextboxTarifaSecadoPuntoExcesoImporte.WordWrap = False
+        '
+        'groupboxTarifasSecadoRedondeoPuntoTipo
+        '
+        Me.groupboxTarifasSecadoRedondeoPuntoTipo.Controls.Add(Me.radiobuttonTarifasSecadoRedondeoPuntoTipoInferior)
+        Me.groupboxTarifasSecadoRedondeoPuntoTipo.Controls.Add(Me.radiobuttonTarifasSecadoRedondeoPuntoTipoSuperior)
+        Me.groupboxTarifasSecadoRedondeoPuntoTipo.Controls.Add(Me.radiobuttonTarifasSecadoRedondeoPuntoTipoEntero)
+        Me.groupboxTarifasSecadoRedondeoPuntoTipo.Controls.Add(Me.radiobuttonTarifasSecadoRedondeoPuntoTipoNinguno)
+        Me.groupboxTarifasSecadoRedondeoPuntoTipo.Location = New System.Drawing.Point(6, 150)
+        Me.groupboxTarifasSecadoRedondeoPuntoTipo.Name = "groupboxTarifasSecadoRedondeoPuntoTipo"
+        Me.groupboxTarifasSecadoRedondeoPuntoTipo.Size = New System.Drawing.Size(332, 44)
+        Me.groupboxTarifasSecadoRedondeoPuntoTipo.TabIndex = 8
+        Me.groupboxTarifasSecadoRedondeoPuntoTipo.TabStop = False
+        Me.groupboxTarifasSecadoRedondeoPuntoTipo.Text = "Tipo de redondeo por punto:"
+        '
+        'radiobuttonTarifasSecadoRedondeoPuntoTipoInferior
+        '
+        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoInferior.AutoSize = True
+        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoInferior.Location = New System.Drawing.Point(212, 19)
+        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoInferior.Name = "radiobuttonTarifasSecadoRedondeoPuntoTipoInferior"
+        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoInferior.Size = New System.Drawing.Size(57, 17)
+        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoInferior.TabIndex = 3
+        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoInferior.TabStop = True
+        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoInferior.Text = "Inferior"
+        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoInferior.UseVisualStyleBackColor = True
+        '
+        'radiobuttonTarifasSecadoRedondeoPuntoTipoSuperior
+        '
+        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoSuperior.AutoSize = True
+        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoSuperior.Location = New System.Drawing.Point(142, 19)
+        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoSuperior.Name = "radiobuttonTarifasSecadoRedondeoPuntoTipoSuperior"
+        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoSuperior.Size = New System.Drawing.Size(64, 17)
+        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoSuperior.TabIndex = 2
+        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoSuperior.TabStop = True
+        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoSuperior.Text = "Superior"
+        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoSuperior.UseVisualStyleBackColor = True
+        '
+        'radiobuttonTarifasSecadoRedondeoPuntoTipoEntero
+        '
+        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoEntero.AutoSize = True
+        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoEntero.Location = New System.Drawing.Point(80, 19)
+        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoEntero.Name = "radiobuttonTarifasSecadoRedondeoPuntoTipoEntero"
+        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoEntero.Size = New System.Drawing.Size(56, 17)
+        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoEntero.TabIndex = 1
+        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoEntero.TabStop = True
+        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoEntero.Text = "Entero"
+        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoEntero.UseVisualStyleBackColor = True
+        '
+        'radiobuttonTarifasSecadoRedondeoPuntoTipoNinguno
+        '
+        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoNinguno.AutoSize = True
+        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoNinguno.Location = New System.Drawing.Point(7, 19)
+        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoNinguno.Name = "radiobuttonTarifasSecadoRedondeoPuntoTipoNinguno"
+        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoNinguno.Size = New System.Drawing.Size(65, 17)
+        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoNinguno.TabIndex = 0
+        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoNinguno.TabStop = True
+        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoNinguno.Text = "Ninguno"
+        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoNinguno.UseVisualStyleBackColor = True
+        '
+        'doubletextboxTarifaSecadoMargenLibre
+        '
+        Me.doubletextboxTarifaSecadoMargenLibre.BeforeTouchSize = New System.Drawing.Size(39, 20)
+        Me.doubletextboxTarifaSecadoMargenLibre.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.doubletextboxTarifaSecadoMargenLibre.DoubleValue = 0R
+        Me.doubletextboxTarifaSecadoMargenLibre.Location = New System.Drawing.Point(160, 124)
+        Me.doubletextboxTarifaSecadoMargenLibre.MaxValue = 0.9R
+        Me.doubletextboxTarifaSecadoMargenLibre.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
+        Me.doubletextboxTarifaSecadoMargenLibre.MinValue = 0R
+        Me.doubletextboxTarifaSecadoMargenLibre.Name = "doubletextboxTarifaSecadoMargenLibre"
+        Me.doubletextboxTarifaSecadoMargenLibre.NullString = ""
+        Me.doubletextboxTarifaSecadoMargenLibre.NumberDecimalDigits = 1
+        Me.doubletextboxTarifaSecadoMargenLibre.NumberNegativePattern = 0
+        Me.doubletextboxTarifaSecadoMargenLibre.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.SetNullString
+        Me.doubletextboxTarifaSecadoMargenLibre.Size = New System.Drawing.Size(39, 20)
+        Me.doubletextboxTarifaSecadoMargenLibre.TabIndex = 7
+        Me.doubletextboxTarifaSecadoMargenLibre.Text = "0,0"
+        Me.doubletextboxTarifaSecadoMargenLibre.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.doubletextboxTarifaSecadoMargenLibre.WordWrap = False
+        '
+        'labelTarifaSecadoMargenLibre
+        '
+        Me.labelTarifaSecadoMargenLibre.AutoSize = True
+        Me.labelTarifaSecadoMargenLibre.Location = New System.Drawing.Point(6, 128)
+        Me.labelTarifaSecadoMargenLibre.Name = "labelTarifaSecadoMargenLibre"
+        Me.labelTarifaSecadoMargenLibre.Size = New System.Drawing.Size(72, 13)
+        Me.labelTarifaSecadoMargenLibre.TabIndex = 6
+        Me.labelTarifaSecadoMargenLibre.Text = "Margen Libre:"
+        '
+        'doubletextboxTarifaSecadoHumedadBase
+        '
+        Me.doubletextboxTarifaSecadoHumedadBase.BeforeTouchSize = New System.Drawing.Size(39, 20)
+        Me.doubletextboxTarifaSecadoHumedadBase.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.doubletextboxTarifaSecadoHumedadBase.DoubleValue = 0R
+        Me.doubletextboxTarifaSecadoHumedadBase.Location = New System.Drawing.Point(160, 98)
+        Me.doubletextboxTarifaSecadoHumedadBase.MaxValue = 40.0R
+        Me.doubletextboxTarifaSecadoHumedadBase.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
+        Me.doubletextboxTarifaSecadoHumedadBase.MinValue = 0R
+        Me.doubletextboxTarifaSecadoHumedadBase.Name = "doubletextboxTarifaSecadoHumedadBase"
+        Me.doubletextboxTarifaSecadoHumedadBase.NullString = ""
+        Me.doubletextboxTarifaSecadoHumedadBase.NumberDecimalDigits = 1
+        Me.doubletextboxTarifaSecadoHumedadBase.NumberNegativePattern = 0
+        Me.doubletextboxTarifaSecadoHumedadBase.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.SetNullString
+        Me.doubletextboxTarifaSecadoHumedadBase.Size = New System.Drawing.Size(39, 20)
+        Me.doubletextboxTarifaSecadoHumedadBase.TabIndex = 5
+        Me.doubletextboxTarifaSecadoHumedadBase.Text = "0,0"
+        Me.doubletextboxTarifaSecadoHumedadBase.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.doubletextboxTarifaSecadoHumedadBase.WordWrap = False
+        '
+        'labelTarifaSecadoHumedadBase
+        '
+        Me.labelTarifaSecadoHumedadBase.AutoSize = True
+        Me.labelTarifaSecadoHumedadBase.Location = New System.Drawing.Point(6, 102)
+        Me.labelTarifaSecadoHumedadBase.Name = "labelTarifaSecadoHumedadBase"
+        Me.labelTarifaSecadoHumedadBase.Size = New System.Drawing.Size(83, 13)
+        Me.labelTarifaSecadoHumedadBase.TabIndex = 4
+        Me.labelTarifaSecadoHumedadBase.Text = "Humedad Base:"
+        '
+        'labelTarifaSecadoPuntoExcesoImporte
+        '
+        Me.labelTarifaSecadoPuntoExcesoImporte.AutoSize = True
+        Me.labelTarifaSecadoPuntoExcesoImporte.Location = New System.Drawing.Point(6, 74)
+        Me.labelTarifaSecadoPuntoExcesoImporte.Name = "labelTarifaSecadoPuntoExcesoImporte"
+        Me.labelTarifaSecadoPuntoExcesoImporte.Size = New System.Drawing.Size(145, 13)
+        Me.labelTarifaSecadoPuntoExcesoImporte.TabIndex = 2
+        Me.labelTarifaSecadoPuntoExcesoImporte.Text = "Importe por punto de exceso:"
+        '
+        'groupboxTarifasSecadoInicial
+        '
+        Me.groupboxTarifasSecadoInicial.Controls.Add(Me.currencytextboxTarifaSecadoInicialImporte)
+        Me.groupboxTarifasSecadoInicial.Controls.Add(Me.doubletextboxTarifaSecadoInicialPunto)
+        Me.groupboxTarifasSecadoInicial.Controls.Add(Me.labelTarifaSecadoInicialImporte)
+        Me.groupboxTarifasSecadoInicial.Controls.Add(Me.labelTarifaSecadoInicialPunto)
+        Me.groupboxTarifasSecadoInicial.Location = New System.Drawing.Point(131, 19)
+        Me.groupboxTarifasSecadoInicial.Name = "groupboxTarifasSecadoInicial"
+        Me.groupboxTarifasSecadoInicial.Size = New System.Drawing.Size(213, 46)
+        Me.groupboxTarifasSecadoInicial.TabIndex = 1
+        Me.groupboxTarifasSecadoInicial.TabStop = False
+        Me.groupboxTarifasSecadoInicial.Text = "Inicial:"
+        '
+        'currencytextboxTarifaSecadoInicialImporte
+        '
+        Me.currencytextboxTarifaSecadoInicialImporte.BeforeTouchSize = New System.Drawing.Size(39, 20)
+        Me.currencytextboxTarifaSecadoInicialImporte.CurrentCultureRefresh = True
+        Me.currencytextboxTarifaSecadoInicialImporte.DecimalValue = New Decimal(New Integer() {0, 0, 0, 131072})
+        Me.currencytextboxTarifaSecadoInicialImporte.Location = New System.Drawing.Point(152, 19)
+        Me.currencytextboxTarifaSecadoInicialImporte.MaxValue = New Decimal(New Integer() {99999, 0, 0, 131072})
+        Me.currencytextboxTarifaSecadoInicialImporte.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
+        Me.currencytextboxTarifaSecadoInicialImporte.MinValue = New Decimal(New Integer() {0, 0, 0, 0})
+        Me.currencytextboxTarifaSecadoInicialImporte.Name = "currencytextboxTarifaSecadoInicialImporte"
+        Me.currencytextboxTarifaSecadoInicialImporte.NullString = ""
+        Me.currencytextboxTarifaSecadoInicialImporte.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.KeepFocus
+        Me.currencytextboxTarifaSecadoInicialImporte.Size = New System.Drawing.Size(55, 20)
+        Me.currencytextboxTarifaSecadoInicialImporte.TabIndex = 3
+        Me.currencytextboxTarifaSecadoInicialImporte.Text = "$ 0,00"
+        Me.currencytextboxTarifaSecadoInicialImporte.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.currencytextboxTarifaSecadoInicialImporte.WordWrap = False
+        '
+        'doubletextboxTarifaSecadoInicialPunto
+        '
+        Me.doubletextboxTarifaSecadoInicialPunto.BeforeTouchSize = New System.Drawing.Size(39, 20)
+        Me.doubletextboxTarifaSecadoInicialPunto.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.doubletextboxTarifaSecadoInicialPunto.DoubleValue = 0R
+        Me.doubletextboxTarifaSecadoInicialPunto.Location = New System.Drawing.Point(50, 19)
+        Me.doubletextboxTarifaSecadoInicialPunto.MaxValue = 99.9R
+        Me.doubletextboxTarifaSecadoInicialPunto.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
+        Me.doubletextboxTarifaSecadoInicialPunto.MinValue = 0R
+        Me.doubletextboxTarifaSecadoInicialPunto.Name = "doubletextboxTarifaSecadoInicialPunto"
+        Me.doubletextboxTarifaSecadoInicialPunto.NullString = ""
+        Me.doubletextboxTarifaSecadoInicialPunto.NumberDecimalDigits = 1
+        Me.doubletextboxTarifaSecadoInicialPunto.NumberNegativePattern = 0
+        Me.doubletextboxTarifaSecadoInicialPunto.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.KeepFocus
+        Me.doubletextboxTarifaSecadoInicialPunto.Size = New System.Drawing.Size(39, 20)
+        Me.doubletextboxTarifaSecadoInicialPunto.TabIndex = 1
+        Me.doubletextboxTarifaSecadoInicialPunto.Text = "0,0"
+        Me.doubletextboxTarifaSecadoInicialPunto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.doubletextboxTarifaSecadoInicialPunto.WordWrap = False
+        '
+        'labelTarifaSecadoInicialImporte
+        '
+        Me.labelTarifaSecadoInicialImporte.AutoSize = True
+        Me.labelTarifaSecadoInicialImporte.Location = New System.Drawing.Point(101, 22)
+        Me.labelTarifaSecadoInicialImporte.Name = "labelTarifaSecadoInicialImporte"
+        Me.labelTarifaSecadoInicialImporte.Size = New System.Drawing.Size(45, 13)
+        Me.labelTarifaSecadoInicialImporte.TabIndex = 2
+        Me.labelTarifaSecadoInicialImporte.Text = "Importe:"
+        '
+        'labelTarifaSecadoInicialPunto
+        '
+        Me.labelTarifaSecadoInicialPunto.AutoSize = True
+        Me.labelTarifaSecadoInicialPunto.Location = New System.Drawing.Point(6, 22)
+        Me.labelTarifaSecadoInicialPunto.Name = "labelTarifaSecadoInicialPunto"
+        Me.labelTarifaSecadoInicialPunto.Size = New System.Drawing.Size(38, 13)
+        Me.labelTarifaSecadoInicialPunto.TabIndex = 0
+        Me.labelTarifaSecadoInicialPunto.Text = "Punto:"
+        '
+        'groupboxTarifasSecadoSecadoTipo
+        '
+        Me.groupboxTarifasSecadoSecadoTipo.Controls.Add(Me.radiobuttonSecadoTipoFijo)
+        Me.groupboxTarifasSecadoSecadoTipo.Controls.Add(Me.radiobuttonSecadoTipoEscala)
+        Me.groupboxTarifasSecadoSecadoTipo.Location = New System.Drawing.Point(6, 19)
+        Me.groupboxTarifasSecadoSecadoTipo.Name = "groupboxTarifasSecadoSecadoTipo"
+        Me.groupboxTarifasSecadoSecadoTipo.Size = New System.Drawing.Size(119, 46)
+        Me.groupboxTarifasSecadoSecadoTipo.TabIndex = 0
+        Me.groupboxTarifasSecadoSecadoTipo.TabStop = False
+        Me.groupboxTarifasSecadoSecadoTipo.Text = "Tipo de Tarifa:"
         '
         'radiobuttonSecadoTipoFijo
         '
@@ -600,252 +694,144 @@ Partial Class formTarifa
         Me.radiobuttonSecadoTipoEscala.Location = New System.Drawing.Point(54, 20)
         Me.radiobuttonSecadoTipoEscala.Name = "radiobuttonSecadoTipoEscala"
         Me.radiobuttonSecadoTipoEscala.Size = New System.Drawing.Size(57, 17)
-        Me.radiobuttonSecadoTipoEscala.TabIndex = 2
+        Me.radiobuttonSecadoTipoEscala.TabIndex = 1
         Me.radiobuttonSecadoTipoEscala.TabStop = True
         Me.radiobuttonSecadoTipoEscala.Text = "Escala"
         Me.radiobuttonSecadoTipoEscala.UseVisualStyleBackColor = True
         '
-        'groupboxTarifasSecadoSecadoTipo
+        'groupboxTarifasVarias
         '
-        Me.groupboxTarifasSecadoSecadoTipo.Controls.Add(Me.radiobuttonSecadoTipoFijo)
-        Me.groupboxTarifasSecadoSecadoTipo.Controls.Add(Me.radiobuttonSecadoTipoEscala)
-        Me.groupboxTarifasSecadoSecadoTipo.Location = New System.Drawing.Point(6, 19)
-        Me.groupboxTarifasSecadoSecadoTipo.Name = "groupboxTarifasSecadoSecadoTipo"
-        Me.groupboxTarifasSecadoSecadoTipo.Size = New System.Drawing.Size(119, 46)
-        Me.groupboxTarifasSecadoSecadoTipo.TabIndex = 4
-        Me.groupboxTarifasSecadoSecadoTipo.TabStop = False
-        Me.groupboxTarifasSecadoSecadoTipo.Text = "Tipo de Tarifa:"
+        Me.groupboxTarifasVarias.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.groupboxTarifasVarias.Controls.Add(Me.currencytextboxTarifaMezcladoImporte)
+        Me.groupboxTarifasVarias.Controls.Add(Me.currencytextboxTarifaFumigadoImporte)
+        Me.groupboxTarifasVarias.Controls.Add(Me.currencytextboxTarifaZarandeo)
+        Me.groupboxTarifasVarias.Controls.Add(Me.currencytextboxTarifaParitariaImporte)
+        Me.groupboxTarifasVarias.Controls.Add(Me.labelTarifaMezcladoImporte)
+        Me.groupboxTarifasVarias.Controls.Add(Me.labelTarifaFumigadoImporte)
+        Me.groupboxTarifasVarias.Controls.Add(Me.labelTarifaZarandeoImporte)
+        Me.groupboxTarifasVarias.Controls.Add(Me.labelTarifaParitariaImporte)
+        Me.groupboxTarifasVarias.Location = New System.Drawing.Point(6, 6)
+        Me.groupboxTarifasVarias.Name = "groupboxTarifasVarias"
+        Me.groupboxTarifasVarias.Size = New System.Drawing.Size(350, 75)
+        Me.groupboxTarifasVarias.TabIndex = 0
+        Me.groupboxTarifasVarias.TabStop = False
+        Me.groupboxTarifasVarias.Text = "Varias:"
         '
-        'doubletextboxSecadoInicialPunto
+        'currencytextboxTarifaMezcladoImporte
         '
-        Me.doubletextboxSecadoInicialPunto.AllowNull = True
-        Me.doubletextboxSecadoInicialPunto.BackGroundColor = System.Drawing.SystemColors.Window
-        Me.doubletextboxSecadoInicialPunto.BeforeTouchSize = New System.Drawing.Size(39, 20)
-        Me.doubletextboxSecadoInicialPunto.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.doubletextboxSecadoInicialPunto.DoubleValue = 0R
-        Me.doubletextboxSecadoInicialPunto.Location = New System.Drawing.Point(50, 19)
-        Me.doubletextboxSecadoInicialPunto.MaxValue = 100.0R
-        Me.doubletextboxSecadoInicialPunto.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
-        Me.doubletextboxSecadoInicialPunto.MinValue = 0R
-        Me.doubletextboxSecadoInicialPunto.Name = "doubletextboxSecadoInicialPunto"
-        Me.doubletextboxSecadoInicialPunto.NullString = ""
-        Me.doubletextboxSecadoInicialPunto.NumberDecimalDigits = 1
-        Me.doubletextboxSecadoInicialPunto.NumberNegativePattern = 0
-        Me.doubletextboxSecadoInicialPunto.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.SetNullString
-        Me.doubletextboxSecadoInicialPunto.Size = New System.Drawing.Size(39, 20)
-        Me.doubletextboxSecadoInicialPunto.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
-        Me.doubletextboxSecadoInicialPunto.TabIndex = 6
-        Me.doubletextboxSecadoInicialPunto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.doubletextboxSecadoInicialPunto.WordWrap = False
+        Me.currencytextboxTarifaMezcladoImporte.BeforeTouchSize = New System.Drawing.Size(39, 20)
+        Me.currencytextboxTarifaMezcladoImporte.CurrentCultureRefresh = True
+        Me.currencytextboxTarifaMezcladoImporte.DecimalValue = New Decimal(New Integer() {0, 0, 0, 131072})
+        Me.currencytextboxTarifaMezcladoImporte.Location = New System.Drawing.Point(231, 45)
+        Me.currencytextboxTarifaMezcladoImporte.MaxValue = New Decimal(New Integer() {99999, 0, 0, 131072})
+        Me.currencytextboxTarifaMezcladoImporte.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
+        Me.currencytextboxTarifaMezcladoImporte.MinValue = New Decimal(New Integer() {0, 0, 0, 0})
+        Me.currencytextboxTarifaMezcladoImporte.Name = "currencytextboxTarifaMezcladoImporte"
+        Me.currencytextboxTarifaMezcladoImporte.NullString = ""
+        Me.currencytextboxTarifaMezcladoImporte.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.KeepFocus
+        Me.currencytextboxTarifaMezcladoImporte.Size = New System.Drawing.Size(55, 20)
+        Me.currencytextboxTarifaMezcladoImporte.TabIndex = 7
+        Me.currencytextboxTarifaMezcladoImporte.Text = "$ 0,00"
+        Me.currencytextboxTarifaMezcladoImporte.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.currencytextboxTarifaMezcladoImporte.WordWrap = False
         '
-        'labelSecadoInicialPunto
+        'currencytextboxTarifaFumigadoImporte
         '
-        Me.labelSecadoInicialPunto.AutoSize = True
-        Me.labelSecadoInicialPunto.Location = New System.Drawing.Point(6, 22)
-        Me.labelSecadoInicialPunto.Name = "labelSecadoInicialPunto"
-        Me.labelSecadoInicialPunto.Size = New System.Drawing.Size(38, 13)
-        Me.labelSecadoInicialPunto.TabIndex = 5
-        Me.labelSecadoInicialPunto.Text = "Punto:"
+        Me.currencytextboxTarifaFumigadoImporte.BeforeTouchSize = New System.Drawing.Size(39, 20)
+        Me.currencytextboxTarifaFumigadoImporte.CurrentCultureRefresh = True
+        Me.currencytextboxTarifaFumigadoImporte.DecimalValue = New Decimal(New Integer() {0, 0, 0, 131072})
+        Me.currencytextboxTarifaFumigadoImporte.Location = New System.Drawing.Point(231, 19)
+        Me.currencytextboxTarifaFumigadoImporte.MaxValue = New Decimal(New Integer() {99999, 0, 0, 131072})
+        Me.currencytextboxTarifaFumigadoImporte.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
+        Me.currencytextboxTarifaFumigadoImporte.MinValue = New Decimal(New Integer() {0, 0, 0, 0})
+        Me.currencytextboxTarifaFumigadoImporte.Name = "currencytextboxTarifaFumigadoImporte"
+        Me.currencytextboxTarifaFumigadoImporte.NullString = ""
+        Me.currencytextboxTarifaFumigadoImporte.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.KeepFocus
+        Me.currencytextboxTarifaFumigadoImporte.Size = New System.Drawing.Size(55, 20)
+        Me.currencytextboxTarifaFumigadoImporte.TabIndex = 5
+        Me.currencytextboxTarifaFumigadoImporte.Text = "$ 0,00"
+        Me.currencytextboxTarifaFumigadoImporte.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.currencytextboxTarifaFumigadoImporte.WordWrap = False
         '
-        'doubletextboxSecadoInicialImporte
+        'currencytextboxTarifaZarandeo
         '
-        Me.doubletextboxSecadoInicialImporte.AllowNull = True
-        Me.doubletextboxSecadoInicialImporte.BackGroundColor = System.Drawing.SystemColors.Window
-        Me.doubletextboxSecadoInicialImporte.BeforeTouchSize = New System.Drawing.Size(39, 20)
-        Me.doubletextboxSecadoInicialImporte.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.doubletextboxSecadoInicialImporte.DoubleValue = 0R
-        Me.doubletextboxSecadoInicialImporte.Location = New System.Drawing.Point(168, 19)
-        Me.doubletextboxSecadoInicialImporte.MaxValue = 100.0R
-        Me.doubletextboxSecadoInicialImporte.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
-        Me.doubletextboxSecadoInicialImporte.MinValue = 0R
-        Me.doubletextboxSecadoInicialImporte.Name = "doubletextboxSecadoInicialImporte"
-        Me.doubletextboxSecadoInicialImporte.NullString = ""
-        Me.doubletextboxSecadoInicialImporte.NumberDecimalDigits = 1
-        Me.doubletextboxSecadoInicialImporte.NumberNegativePattern = 0
-        Me.doubletextboxSecadoInicialImporte.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.SetNullString
-        Me.doubletextboxSecadoInicialImporte.Size = New System.Drawing.Size(39, 20)
-        Me.doubletextboxSecadoInicialImporte.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
-        Me.doubletextboxSecadoInicialImporte.TabIndex = 8
-        Me.doubletextboxSecadoInicialImporte.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.doubletextboxSecadoInicialImporte.WordWrap = False
+        Me.currencytextboxTarifaZarandeo.BeforeTouchSize = New System.Drawing.Size(39, 20)
+        Me.currencytextboxTarifaZarandeo.CurrentCultureRefresh = True
+        Me.currencytextboxTarifaZarandeo.DecimalValue = New Decimal(New Integer() {0, 0, 0, 131072})
+        Me.currencytextboxTarifaZarandeo.Location = New System.Drawing.Point(68, 45)
+        Me.currencytextboxTarifaZarandeo.MaxValue = New Decimal(New Integer() {99999, 0, 0, 131072})
+        Me.currencytextboxTarifaZarandeo.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
+        Me.currencytextboxTarifaZarandeo.MinValue = New Decimal(New Integer() {0, 0, 0, 0})
+        Me.currencytextboxTarifaZarandeo.Name = "currencytextboxTarifaZarandeo"
+        Me.currencytextboxTarifaZarandeo.NullString = ""
+        Me.currencytextboxTarifaZarandeo.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.KeepFocus
+        Me.currencytextboxTarifaZarandeo.Size = New System.Drawing.Size(55, 20)
+        Me.currencytextboxTarifaZarandeo.TabIndex = 3
+        Me.currencytextboxTarifaZarandeo.Text = "$ 0,00"
+        Me.currencytextboxTarifaZarandeo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.currencytextboxTarifaZarandeo.WordWrap = False
         '
-        'labelSecadoInicialImporte
+        'currencytextboxTarifaParitariaImporte
         '
-        Me.labelSecadoInicialImporte.AutoSize = True
-        Me.labelSecadoInicialImporte.Location = New System.Drawing.Point(109, 22)
-        Me.labelSecadoInicialImporte.Name = "labelSecadoInicialImporte"
-        Me.labelSecadoInicialImporte.Size = New System.Drawing.Size(45, 13)
-        Me.labelSecadoInicialImporte.TabIndex = 7
-        Me.labelSecadoInicialImporte.Text = "Importe:"
+        Me.currencytextboxTarifaParitariaImporte.BeforeTouchSize = New System.Drawing.Size(39, 20)
+        Me.currencytextboxTarifaParitariaImporte.CurrentCultureRefresh = True
+        Me.currencytextboxTarifaParitariaImporte.DecimalValue = New Decimal(New Integer() {0, 0, 0, 131072})
+        Me.currencytextboxTarifaParitariaImporte.Location = New System.Drawing.Point(68, 19)
+        Me.currencytextboxTarifaParitariaImporte.MaxValue = New Decimal(New Integer() {99999, 0, 0, 131072})
+        Me.currencytextboxTarifaParitariaImporte.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
+        Me.currencytextboxTarifaParitariaImporte.MinValue = New Decimal(New Integer() {0, 0, 0, 0})
+        Me.currencytextboxTarifaParitariaImporte.Name = "currencytextboxTarifaParitariaImporte"
+        Me.currencytextboxTarifaParitariaImporte.NullString = ""
+        Me.currencytextboxTarifaParitariaImporte.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.KeepFocus
+        Me.currencytextboxTarifaParitariaImporte.Size = New System.Drawing.Size(55, 20)
+        Me.currencytextboxTarifaParitariaImporte.TabIndex = 1
+        Me.currencytextboxTarifaParitariaImporte.Text = "$ 0,00"
+        Me.currencytextboxTarifaParitariaImporte.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.currencytextboxTarifaParitariaImporte.WordWrap = False
         '
-        'groupboxTarifasSecadoInicial
+        'labelTarifaMezcladoImporte
         '
-        Me.groupboxTarifasSecadoInicial.Controls.Add(Me.doubletextboxSecadoInicialPunto)
-        Me.groupboxTarifasSecadoInicial.Controls.Add(Me.labelSecadoInicialImporte)
-        Me.groupboxTarifasSecadoInicial.Controls.Add(Me.doubletextboxSecadoInicialImporte)
-        Me.groupboxTarifasSecadoInicial.Controls.Add(Me.labelSecadoInicialPunto)
-        Me.groupboxTarifasSecadoInicial.Location = New System.Drawing.Point(131, 19)
-        Me.groupboxTarifasSecadoInicial.Name = "groupboxTarifasSecadoInicial"
-        Me.groupboxTarifasSecadoInicial.Size = New System.Drawing.Size(213, 46)
-        Me.groupboxTarifasSecadoInicial.TabIndex = 9
-        Me.groupboxTarifasSecadoInicial.TabStop = False
-        Me.groupboxTarifasSecadoInicial.Text = "Inicial:"
+        Me.labelTarifaMezcladoImporte.AutoSize = True
+        Me.labelTarifaMezcladoImporte.Location = New System.Drawing.Point(169, 48)
+        Me.labelTarifaMezcladoImporte.Name = "labelTarifaMezcladoImporte"
+        Me.labelTarifaMezcladoImporte.Size = New System.Drawing.Size(56, 13)
+        Me.labelTarifaMezcladoImporte.TabIndex = 6
+        Me.labelTarifaMezcladoImporte.Text = "Mezclado:"
         '
-        'labelTarifasSecadoExcesoImporte
+        'labelTarifaFumigadoImporte
         '
-        Me.labelTarifasSecadoExcesoImporte.AutoSize = True
-        Me.labelTarifasSecadoExcesoImporte.Location = New System.Drawing.Point(6, 76)
-        Me.labelTarifasSecadoExcesoImporte.Name = "labelTarifasSecadoExcesoImporte"
-        Me.labelTarifasSecadoExcesoImporte.Size = New System.Drawing.Size(145, 13)
-        Me.labelTarifasSecadoExcesoImporte.TabIndex = 10
-        Me.labelTarifasSecadoExcesoImporte.Text = "Importe por punto de exceso:"
+        Me.labelTarifaFumigadoImporte.AutoSize = True
+        Me.labelTarifaFumigadoImporte.Location = New System.Drawing.Point(169, 22)
+        Me.labelTarifaFumigadoImporte.Name = "labelTarifaFumigadoImporte"
+        Me.labelTarifaFumigadoImporte.Size = New System.Drawing.Size(56, 13)
+        Me.labelTarifaFumigadoImporte.TabIndex = 4
+        Me.labelTarifaFumigadoImporte.Text = "Fumigado:"
         '
-        'doubletextboxTarifasSecadoExcesoImporte
+        'labelTarifaZarandeoImporte
         '
-        Me.doubletextboxTarifasSecadoExcesoImporte.AllowNull = True
-        Me.doubletextboxTarifasSecadoExcesoImporte.BackGroundColor = System.Drawing.SystemColors.Window
-        Me.doubletextboxTarifasSecadoExcesoImporte.BeforeTouchSize = New System.Drawing.Size(39, 20)
-        Me.doubletextboxTarifasSecadoExcesoImporte.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.doubletextboxTarifasSecadoExcesoImporte.DoubleValue = 0R
-        Me.doubletextboxTarifasSecadoExcesoImporte.Location = New System.Drawing.Point(160, 72)
-        Me.doubletextboxTarifasSecadoExcesoImporte.MaxValue = 100.0R
-        Me.doubletextboxTarifasSecadoExcesoImporte.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
-        Me.doubletextboxTarifasSecadoExcesoImporte.MinValue = 0R
-        Me.doubletextboxTarifasSecadoExcesoImporte.Name = "doubletextboxTarifasSecadoExcesoImporte"
-        Me.doubletextboxTarifasSecadoExcesoImporte.NullString = ""
-        Me.doubletextboxTarifasSecadoExcesoImporte.NumberDecimalDigits = 1
-        Me.doubletextboxTarifasSecadoExcesoImporte.NumberNegativePattern = 0
-        Me.doubletextboxTarifasSecadoExcesoImporte.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.SetNullString
-        Me.doubletextboxTarifasSecadoExcesoImporte.Size = New System.Drawing.Size(39, 20)
-        Me.doubletextboxTarifasSecadoExcesoImporte.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
-        Me.doubletextboxTarifasSecadoExcesoImporte.TabIndex = 11
-        Me.doubletextboxTarifasSecadoExcesoImporte.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.doubletextboxTarifasSecadoExcesoImporte.WordWrap = False
+        Me.labelTarifaZarandeoImporte.AutoSize = True
+        Me.labelTarifaZarandeoImporte.Location = New System.Drawing.Point(6, 48)
+        Me.labelTarifaZarandeoImporte.Name = "labelTarifaZarandeoImporte"
+        Me.labelTarifaZarandeoImporte.Size = New System.Drawing.Size(56, 13)
+        Me.labelTarifaZarandeoImporte.TabIndex = 2
+        Me.labelTarifaZarandeoImporte.Text = "Zarandeo:"
         '
-        'doubletextboxTarifasSecadoHumedadBase
+        'labelTarifaParitariaImporte
         '
-        Me.doubletextboxTarifasSecadoHumedadBase.AllowNull = True
-        Me.doubletextboxTarifasSecadoHumedadBase.BackGroundColor = System.Drawing.SystemColors.Window
-        Me.doubletextboxTarifasSecadoHumedadBase.BeforeTouchSize = New System.Drawing.Size(39, 20)
-        Me.doubletextboxTarifasSecadoHumedadBase.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.doubletextboxTarifasSecadoHumedadBase.DoubleValue = 0R
-        Me.doubletextboxTarifasSecadoHumedadBase.Location = New System.Drawing.Point(160, 98)
-        Me.doubletextboxTarifasSecadoHumedadBase.MaxValue = 40.0R
-        Me.doubletextboxTarifasSecadoHumedadBase.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
-        Me.doubletextboxTarifasSecadoHumedadBase.MinValue = 0R
-        Me.doubletextboxTarifasSecadoHumedadBase.Name = "doubletextboxTarifasSecadoHumedadBase"
-        Me.doubletextboxTarifasSecadoHumedadBase.NullString = ""
-        Me.doubletextboxTarifasSecadoHumedadBase.NumberDecimalDigits = 1
-        Me.doubletextboxTarifasSecadoHumedadBase.NumberNegativePattern = 0
-        Me.doubletextboxTarifasSecadoHumedadBase.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.SetNullString
-        Me.doubletextboxTarifasSecadoHumedadBase.Size = New System.Drawing.Size(39, 20)
-        Me.doubletextboxTarifasSecadoHumedadBase.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
-        Me.doubletextboxTarifasSecadoHumedadBase.TabIndex = 13
-        Me.doubletextboxTarifasSecadoHumedadBase.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.doubletextboxTarifasSecadoHumedadBase.WordWrap = False
-        '
-        'labelSecadoHumedadBase
-        '
-        Me.labelSecadoHumedadBase.AutoSize = True
-        Me.labelSecadoHumedadBase.Location = New System.Drawing.Point(6, 102)
-        Me.labelSecadoHumedadBase.Name = "labelSecadoHumedadBase"
-        Me.labelSecadoHumedadBase.Size = New System.Drawing.Size(83, 13)
-        Me.labelSecadoHumedadBase.TabIndex = 12
-        Me.labelSecadoHumedadBase.Text = "Humedad Base:"
-        '
-        'doubletextboxTarifasSecadoMargenLibre
-        '
-        Me.doubletextboxTarifasSecadoMargenLibre.AllowNull = True
-        Me.doubletextboxTarifasSecadoMargenLibre.BackGroundColor = System.Drawing.SystemColors.Window
-        Me.doubletextboxTarifasSecadoMargenLibre.BeforeTouchSize = New System.Drawing.Size(39, 20)
-        Me.doubletextboxTarifasSecadoMargenLibre.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.doubletextboxTarifasSecadoMargenLibre.DoubleValue = 0R
-        Me.doubletextboxTarifasSecadoMargenLibre.Location = New System.Drawing.Point(160, 124)
-        Me.doubletextboxTarifasSecadoMargenLibre.MaxValue = 40.0R
-        Me.doubletextboxTarifasSecadoMargenLibre.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
-        Me.doubletextboxTarifasSecadoMargenLibre.MinValue = 0R
-        Me.doubletextboxTarifasSecadoMargenLibre.Name = "doubletextboxTarifasSecadoMargenLibre"
-        Me.doubletextboxTarifasSecadoMargenLibre.NullString = ""
-        Me.doubletextboxTarifasSecadoMargenLibre.NumberDecimalDigits = 1
-        Me.doubletextboxTarifasSecadoMargenLibre.NumberNegativePattern = 0
-        Me.doubletextboxTarifasSecadoMargenLibre.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.SetNullString
-        Me.doubletextboxTarifasSecadoMargenLibre.Size = New System.Drawing.Size(39, 20)
-        Me.doubletextboxTarifasSecadoMargenLibre.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
-        Me.doubletextboxTarifasSecadoMargenLibre.TabIndex = 15
-        Me.doubletextboxTarifasSecadoMargenLibre.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.doubletextboxTarifasSecadoMargenLibre.WordWrap = False
-        '
-        'labelTarifasSecadoMargenLibre
-        '
-        Me.labelTarifasSecadoMargenLibre.AutoSize = True
-        Me.labelTarifasSecadoMargenLibre.Location = New System.Drawing.Point(6, 128)
-        Me.labelTarifasSecadoMargenLibre.Name = "labelTarifasSecadoMargenLibre"
-        Me.labelTarifasSecadoMargenLibre.Size = New System.Drawing.Size(72, 13)
-        Me.labelTarifasSecadoMargenLibre.TabIndex = 14
-        Me.labelTarifasSecadoMargenLibre.Text = "Margen Libre:"
-        '
-        'groupboxTarifasSecadoRedondeoPuntoTipo
-        '
-        Me.groupboxTarifasSecadoRedondeoPuntoTipo.Controls.Add(Me.radiobuttonTarifasSecadoRedondeoPuntoTipoInferior)
-        Me.groupboxTarifasSecadoRedondeoPuntoTipo.Controls.Add(Me.radiobuttonTarifasSecadoRedondeoPuntoTipoSuperior)
-        Me.groupboxTarifasSecadoRedondeoPuntoTipo.Controls.Add(Me.radiobuttonTarifasSecadoRedondeoPuntoTipoEntero)
-        Me.groupboxTarifasSecadoRedondeoPuntoTipo.Controls.Add(Me.radiobuttonTarifasSecadoRedondeoPuntoTipoNinguno)
-        Me.groupboxTarifasSecadoRedondeoPuntoTipo.Location = New System.Drawing.Point(6, 150)
-        Me.groupboxTarifasSecadoRedondeoPuntoTipo.Name = "groupboxTarifasSecadoRedondeoPuntoTipo"
-        Me.groupboxTarifasSecadoRedondeoPuntoTipo.Size = New System.Drawing.Size(332, 44)
-        Me.groupboxTarifasSecadoRedondeoPuntoTipo.TabIndex = 17
-        Me.groupboxTarifasSecadoRedondeoPuntoTipo.TabStop = False
-        Me.groupboxTarifasSecadoRedondeoPuntoTipo.Text = "Tipo de redondeo por punto:"
-        '
-        'radiobuttonTarifasSecadoRedondeoPuntoTipoNinguno
-        '
-        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoNinguno.AutoSize = True
-        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoNinguno.Location = New System.Drawing.Point(7, 19)
-        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoNinguno.Name = "radiobuttonTarifasSecadoRedondeoPuntoTipoNinguno"
-        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoNinguno.Size = New System.Drawing.Size(65, 17)
-        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoNinguno.TabIndex = 1
-        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoNinguno.TabStop = True
-        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoNinguno.Text = "Ninguno"
-        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoNinguno.UseVisualStyleBackColor = True
-        '
-        'radiobuttonTarifasSecadoRedondeoPuntoTipoEntero
-        '
-        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoEntero.AutoSize = True
-        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoEntero.Location = New System.Drawing.Point(80, 19)
-        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoEntero.Name = "radiobuttonTarifasSecadoRedondeoPuntoTipoEntero"
-        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoEntero.Size = New System.Drawing.Size(56, 17)
-        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoEntero.TabIndex = 2
-        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoEntero.TabStop = True
-        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoEntero.Text = "Entero"
-        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoEntero.UseVisualStyleBackColor = True
-        '
-        'radiobuttonTarifasSecadoRedondeoPuntoTipoSuperior
-        '
-        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoSuperior.AutoSize = True
-        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoSuperior.Location = New System.Drawing.Point(142, 19)
-        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoSuperior.Name = "radiobuttonTarifasSecadoRedondeoPuntoTipoSuperior"
-        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoSuperior.Size = New System.Drawing.Size(64, 17)
-        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoSuperior.TabIndex = 3
-        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoSuperior.TabStop = True
-        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoSuperior.Text = "Superior"
-        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoSuperior.UseVisualStyleBackColor = True
-        '
-        'radiobuttonTarifasSecadoRedondeoPuntoTipoInferior
-        '
-        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoInferior.AutoSize = True
-        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoInferior.Location = New System.Drawing.Point(212, 19)
-        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoInferior.Name = "radiobuttonTarifasSecadoRedondeoPuntoTipoInferior"
-        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoInferior.Size = New System.Drawing.Size(57, 17)
-        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoInferior.TabIndex = 4
-        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoInferior.TabStop = True
-        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoInferior.Text = "Inferior"
-        Me.radiobuttonTarifasSecadoRedondeoPuntoTipoInferior.UseVisualStyleBackColor = True
+        Me.labelTarifaParitariaImporte.AutoSize = True
+        Me.labelTarifaParitariaImporte.Location = New System.Drawing.Point(6, 22)
+        Me.labelTarifaParitariaImporte.Name = "labelTarifaParitariaImporte"
+        Me.labelTarifaParitariaImporte.Size = New System.Drawing.Size(48, 13)
+        Me.labelTarifaParitariaImporte.TabIndex = 0
+        Me.labelTarifaParitariaImporte.Text = "Paritaria:"
         '
         'tabpageAlmacenaje
         '
         Me.tabpageAlmacenaje.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.tabpageAlmacenaje.Controls.Add(Me.percenttextboxAlmacenajePorcentajeMensual)
+        Me.tabpageAlmacenaje.Controls.Add(Me.integertextboxAlmacenajeDiaGracia)
         Me.tabpageAlmacenaje.Controls.Add(Me.datetimepickerAlmacenajeInicio)
-        Me.tabpageAlmacenaje.Controls.Add(Me.doubletextboxAlmacenajePorcentajeMensual)
         Me.tabpageAlmacenaje.Controls.Add(Me.labelAlmacenajePorcentajeMensual)
         Me.tabpageAlmacenaje.Controls.Add(Me.Label2)
         Me.tabpageAlmacenaje.Controls.Add(Me.labelAlmacenajeDiaGracia)
@@ -858,6 +844,87 @@ Partial Class formTarifa
         Me.tabpageAlmacenaje.Text = "Almacenaje"
         Me.tabpageAlmacenaje.UseVisualStyleBackColor = True
         '
+        'percenttextboxAlmacenajePorcentajeMensual
+        '
+        Me.percenttextboxAlmacenajePorcentajeMensual.BeforeTouchSize = New System.Drawing.Size(39, 20)
+        Me.percenttextboxAlmacenajePorcentajeMensual.DoubleValue = 0R
+        Me.percenttextboxAlmacenajePorcentajeMensual.Location = New System.Drawing.Point(122, 133)
+        Me.percenttextboxAlmacenajePorcentajeMensual.MaxValue = 5.0R
+        Me.percenttextboxAlmacenajePorcentajeMensual.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
+        Me.percenttextboxAlmacenajePorcentajeMensual.MinValue = 0R
+        Me.percenttextboxAlmacenajePorcentajeMensual.Name = "percenttextboxAlmacenajePorcentajeMensual"
+        Me.percenttextboxAlmacenajePorcentajeMensual.NullString = ""
+        Me.percenttextboxAlmacenajePorcentajeMensual.Size = New System.Drawing.Size(52, 20)
+        Me.percenttextboxAlmacenajePorcentajeMensual.TabIndex = 6
+        Me.percenttextboxAlmacenajePorcentajeMensual.Text = "0,00 %"
+        Me.percenttextboxAlmacenajePorcentajeMensual.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.percenttextboxAlmacenajePorcentajeMensual.WordWrap = False
+        '
+        'integertextboxAlmacenajeDiaGracia
+        '
+        Me.integertextboxAlmacenajeDiaGracia.AllowNull = True
+        Me.integertextboxAlmacenajeDiaGracia.BeforeTouchSize = New System.Drawing.Size(39, 20)
+        Me.integertextboxAlmacenajeDiaGracia.IntegerValue = CType(1, Long)
+        Me.integertextboxAlmacenajeDiaGracia.Location = New System.Drawing.Point(122, 81)
+        Me.integertextboxAlmacenajeDiaGracia.MaxValue = CType(999, Long)
+        Me.integertextboxAlmacenajeDiaGracia.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
+        Me.integertextboxAlmacenajeDiaGracia.MinValue = CType(1, Long)
+        Me.integertextboxAlmacenajeDiaGracia.Name = "integertextboxAlmacenajeDiaGracia"
+        Me.integertextboxAlmacenajeDiaGracia.NullString = ""
+        Me.integertextboxAlmacenajeDiaGracia.Size = New System.Drawing.Size(39, 20)
+        Me.integertextboxAlmacenajeDiaGracia.TabIndex = 2
+        Me.integertextboxAlmacenajeDiaGracia.Text = "1"
+        Me.integertextboxAlmacenajeDiaGracia.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'datetimepickerAlmacenajeInicio
+        '
+        Me.datetimepickerAlmacenajeInicio.Checked = False
+        Me.datetimepickerAlmacenajeInicio.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.datetimepickerAlmacenajeInicio.Location = New System.Drawing.Point(122, 107)
+        Me.datetimepickerAlmacenajeInicio.Name = "datetimepickerAlmacenajeInicio"
+        Me.datetimepickerAlmacenajeInicio.ShowCheckBox = True
+        Me.datetimepickerAlmacenajeInicio.Size = New System.Drawing.Size(123, 20)
+        Me.datetimepickerAlmacenajeInicio.TabIndex = 4
+        '
+        'labelAlmacenajePorcentajeMensual
+        '
+        Me.labelAlmacenajePorcentajeMensual.AutoSize = True
+        Me.labelAlmacenajePorcentajeMensual.Location = New System.Drawing.Point(6, 137)
+        Me.labelAlmacenajePorcentajeMensual.Name = "labelAlmacenajePorcentajeMensual"
+        Me.labelAlmacenajePorcentajeMensual.Size = New System.Drawing.Size(103, 13)
+        Me.labelAlmacenajePorcentajeMensual.TabIndex = 5
+        Me.labelAlmacenajePorcentajeMensual.Text = "Porcentaje mensual:"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(6, 111)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(35, 13)
+        Me.Label2.TabIndex = 3
+        Me.Label2.Text = "Inicio:"
+        '
+        'labelAlmacenajeDiaGracia
+        '
+        Me.labelAlmacenajeDiaGracia.AutoSize = True
+        Me.labelAlmacenajeDiaGracia.Location = New System.Drawing.Point(6, 85)
+        Me.labelAlmacenajeDiaGracia.Name = "labelAlmacenajeDiaGracia"
+        Me.labelAlmacenajeDiaGracia.Size = New System.Drawing.Size(80, 13)
+        Me.labelAlmacenajeDiaGracia.TabIndex = 1
+        Me.labelAlmacenajeDiaGracia.Text = "Días de gracia:"
+        '
+        'groupboxAlmacenajeTipo
+        '
+        Me.groupboxAlmacenajeTipo.Controls.Add(Me.radiobuttonAlmacenajeTipoDiasGraciaFijo)
+        Me.groupboxAlmacenajeTipo.Controls.Add(Me.radiobuttonAlmacenajeTipoFechaFija)
+        Me.groupboxAlmacenajeTipo.Controls.Add(Me.radiobuttonAlmacenajeTipoDiasGraciaSiRetiraAntes)
+        Me.groupboxAlmacenajeTipo.Location = New System.Drawing.Point(6, 6)
+        Me.groupboxAlmacenajeTipo.Name = "groupboxAlmacenajeTipo"
+        Me.groupboxAlmacenajeTipo.Size = New System.Drawing.Size(352, 69)
+        Me.groupboxAlmacenajeTipo.TabIndex = 0
+        Me.groupboxAlmacenajeTipo.TabStop = False
+        Me.groupboxAlmacenajeTipo.Text = "Tipo:"
+        '
         'radiobuttonAlmacenajeTipoDiasGraciaFijo
         '
         Me.radiobuttonAlmacenajeTipoDiasGraciaFijo.AutoSize = True
@@ -869,98 +936,136 @@ Partial Class formTarifa
         Me.radiobuttonAlmacenajeTipoDiasGraciaFijo.Text = "Días de gracia fijos"
         Me.radiobuttonAlmacenajeTipoDiasGraciaFijo.UseVisualStyleBackColor = True
         '
-        'radiobuttonAlmacenajeTipoDiasGraciaSiRetiraAntes
-        '
-        Me.radiobuttonAlmacenajeTipoDiasGraciaSiRetiraAntes.AutoSize = True
-        Me.radiobuttonAlmacenajeTipoDiasGraciaSiRetiraAntes.Location = New System.Drawing.Point(128, 19)
-        Me.radiobuttonAlmacenajeTipoDiasGraciaSiRetiraAntes.Name = "radiobuttonAlmacenajeTipoDiasGraciaSiRetiraAntes"
-        Me.radiobuttonAlmacenajeTipoDiasGraciaSiRetiraAntes.Size = New System.Drawing.Size(160, 17)
-        Me.radiobuttonAlmacenajeTipoDiasGraciaSiRetiraAntes.TabIndex = 2
-        Me.radiobuttonAlmacenajeTipoDiasGraciaSiRetiraAntes.TabStop = True
-        Me.radiobuttonAlmacenajeTipoDiasGraciaSiRetiraAntes.Text = "Días de gracia si retira antes"
-        Me.radiobuttonAlmacenajeTipoDiasGraciaSiRetiraAntes.UseVisualStyleBackColor = True
-        '
         'radiobuttonAlmacenajeTipoFechaFija
         '
         Me.radiobuttonAlmacenajeTipoFechaFija.AutoSize = True
         Me.radiobuttonAlmacenajeTipoFechaFija.Location = New System.Drawing.Point(6, 42)
         Me.radiobuttonAlmacenajeTipoFechaFija.Name = "radiobuttonAlmacenajeTipoFechaFija"
         Me.radiobuttonAlmacenajeTipoFechaFija.Size = New System.Drawing.Size(71, 17)
-        Me.radiobuttonAlmacenajeTipoFechaFija.TabIndex = 3
+        Me.radiobuttonAlmacenajeTipoFechaFija.TabIndex = 2
         Me.radiobuttonAlmacenajeTipoFechaFija.TabStop = True
         Me.radiobuttonAlmacenajeTipoFechaFija.Text = "Fecha fija"
         Me.radiobuttonAlmacenajeTipoFechaFija.UseVisualStyleBackColor = True
         '
-        'groupboxAlmacenajeTipo
+        'radiobuttonAlmacenajeTipoDiasGraciaSiRetiraAntes
         '
-        Me.groupboxAlmacenajeTipo.Controls.Add(Me.radiobuttonAlmacenajeTipoDiasGraciaFijo)
-        Me.groupboxAlmacenajeTipo.Controls.Add(Me.radiobuttonAlmacenajeTipoFechaFija)
-        Me.groupboxAlmacenajeTipo.Controls.Add(Me.radiobuttonAlmacenajeTipoDiasGraciaSiRetiraAntes)
-        Me.groupboxAlmacenajeTipo.Location = New System.Drawing.Point(6, 6)
-        Me.groupboxAlmacenajeTipo.Name = "groupboxAlmacenajeTipo"
-        Me.groupboxAlmacenajeTipo.Size = New System.Drawing.Size(352, 69)
-        Me.groupboxAlmacenajeTipo.TabIndex = 4
-        Me.groupboxAlmacenajeTipo.TabStop = False
-        Me.groupboxAlmacenajeTipo.Text = "Tipo:"
+        Me.radiobuttonAlmacenajeTipoDiasGraciaSiRetiraAntes.AutoSize = True
+        Me.radiobuttonAlmacenajeTipoDiasGraciaSiRetiraAntes.Location = New System.Drawing.Point(128, 19)
+        Me.radiobuttonAlmacenajeTipoDiasGraciaSiRetiraAntes.Name = "radiobuttonAlmacenajeTipoDiasGraciaSiRetiraAntes"
+        Me.radiobuttonAlmacenajeTipoDiasGraciaSiRetiraAntes.Size = New System.Drawing.Size(160, 17)
+        Me.radiobuttonAlmacenajeTipoDiasGraciaSiRetiraAntes.TabIndex = 1
+        Me.radiobuttonAlmacenajeTipoDiasGraciaSiRetiraAntes.TabStop = True
+        Me.radiobuttonAlmacenajeTipoDiasGraciaSiRetiraAntes.Text = "Días de gracia si retira antes"
+        Me.radiobuttonAlmacenajeTipoDiasGraciaSiRetiraAntes.UseVisualStyleBackColor = True
         '
-        'labelAlmacenajeDiaGracia
+        'tabpageSecadoEscala
         '
-        Me.labelAlmacenajeDiaGracia.AutoSize = True
-        Me.labelAlmacenajeDiaGracia.Location = New System.Drawing.Point(13, 84)
-        Me.labelAlmacenajeDiaGracia.Name = "labelAlmacenajeDiaGracia"
-        Me.labelAlmacenajeDiaGracia.Size = New System.Drawing.Size(80, 13)
-        Me.labelAlmacenajeDiaGracia.TabIndex = 5
-        Me.labelAlmacenajeDiaGracia.Text = "Días de gracia:"
+        Me.tabpageSecadoEscala.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.tabpageSecadoEscala.Controls.Add(Me.datagridviewTarifaSecadoEscala)
+        Me.tabpageSecadoEscala.Controls.Add(Me.toolstripDetalle)
+        Me.tabpageSecadoEscala.Location = New System.Drawing.Point(4, 25)
+        Me.tabpageSecadoEscala.Name = "tabpageSecadoEscala"
+        Me.tabpageSecadoEscala.Padding = New System.Windows.Forms.Padding(3)
+        Me.tabpageSecadoEscala.Size = New System.Drawing.Size(364, 309)
+        Me.tabpageSecadoEscala.TabIndex = 1
+        Me.tabpageSecadoEscala.Text = "Escalas de Secado"
+        Me.tabpageSecadoEscala.UseVisualStyleBackColor = True
         '
-        'Label2
+        'datagridviewTarifaSecadoEscala
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(13, 127)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(35, 13)
-        Me.Label2.TabIndex = 7
-        Me.Label2.Text = "Inicio:"
+        Me.datagridviewTarifaSecadoEscala.AllowUserToAddRows = False
+        Me.datagridviewTarifaSecadoEscala.AllowUserToDeleteRows = False
+        Me.datagridviewTarifaSecadoEscala.AllowUserToResizeColumns = False
+        Me.datagridviewTarifaSecadoEscala.AllowUserToResizeRows = False
+        Me.datagridviewTarifaSecadoEscala.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.datagridviewTarifaSecadoEscala.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnHumedadExcesoInicio, Me.columnTipo, Me.columnTarifa})
+        Me.datagridviewTarifaSecadoEscala.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.datagridviewTarifaSecadoEscala.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
+        Me.datagridviewTarifaSecadoEscala.Location = New System.Drawing.Point(90, 3)
+        Me.datagridviewTarifaSecadoEscala.Name = "datagridviewTarifaSecadoEscala"
+        Me.datagridviewTarifaSecadoEscala.ReadOnly = True
+        Me.datagridviewTarifaSecadoEscala.RowHeadersVisible = False
+        Me.datagridviewTarifaSecadoEscala.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
+        Me.datagridviewTarifaSecadoEscala.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.datagridviewTarifaSecadoEscala.Size = New System.Drawing.Size(269, 301)
+        Me.datagridviewTarifaSecadoEscala.TabIndex = 0
         '
-        'doubletextboxAlmacenajePorcentajeMensual
+        'toolstripDetalle
         '
-        Me.doubletextboxAlmacenajePorcentajeMensual.AllowNull = True
-        Me.doubletextboxAlmacenajePorcentajeMensual.BackGroundColor = System.Drawing.SystemColors.Window
-        Me.doubletextboxAlmacenajePorcentajeMensual.BeforeTouchSize = New System.Drawing.Size(39, 20)
-        Me.doubletextboxAlmacenajePorcentajeMensual.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.doubletextboxAlmacenajePorcentajeMensual.DoubleValue = 0R
-        Me.doubletextboxAlmacenajePorcentajeMensual.Location = New System.Drawing.Point(122, 155)
-        Me.doubletextboxAlmacenajePorcentajeMensual.MaxValue = 100.0R
-        Me.doubletextboxAlmacenajePorcentajeMensual.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
-        Me.doubletextboxAlmacenajePorcentajeMensual.MinValue = 0R
-        Me.doubletextboxAlmacenajePorcentajeMensual.Name = "doubletextboxAlmacenajePorcentajeMensual"
-        Me.doubletextboxAlmacenajePorcentajeMensual.NullString = ""
-        Me.doubletextboxAlmacenajePorcentajeMensual.NumberDecimalDigits = 1
-        Me.doubletextboxAlmacenajePorcentajeMensual.NumberNegativePattern = 0
-        Me.doubletextboxAlmacenajePorcentajeMensual.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.SetNullString
-        Me.doubletextboxAlmacenajePorcentajeMensual.Size = New System.Drawing.Size(39, 20)
-        Me.doubletextboxAlmacenajePorcentajeMensual.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
-        Me.doubletextboxAlmacenajePorcentajeMensual.TabIndex = 9
-        Me.doubletextboxAlmacenajePorcentajeMensual.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.doubletextboxAlmacenajePorcentajeMensual.WordWrap = False
+        Me.toolstripDetalle.Dock = System.Windows.Forms.DockStyle.Left
+        Me.toolstripDetalle.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.toolstripDetalle.ImageScalingSize = New System.Drawing.Size(20, 20)
+        Me.toolstripDetalle.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonDetalle_Agregar, Me.buttonDetalle_Editar, Me.buttonDetalle_Eliminar})
+        Me.toolstripDetalle.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
+        Me.toolstripDetalle.Location = New System.Drawing.Point(3, 3)
+        Me.toolstripDetalle.Name = "toolstripDetalle"
+        Me.toolstripDetalle.Size = New System.Drawing.Size(87, 301)
+        Me.toolstripDetalle.TabIndex = 6
         '
-        'labelAlmacenajePorcentajeMensual
+        'buttonDetalle_Editar
         '
-        Me.labelAlmacenajePorcentajeMensual.AutoSize = True
-        Me.labelAlmacenajePorcentajeMensual.Location = New System.Drawing.Point(13, 160)
-        Me.labelAlmacenajePorcentajeMensual.Name = "labelAlmacenajePorcentajeMensual"
-        Me.labelAlmacenajePorcentajeMensual.Size = New System.Drawing.Size(103, 13)
-        Me.labelAlmacenajePorcentajeMensual.TabIndex = 8
-        Me.labelAlmacenajePorcentajeMensual.Text = "Porcentaje mensual:"
+        Me.buttonDetalle_Editar.Image = Global.CSPesaje.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_EDIT_32
+        Me.buttonDetalle_Editar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.buttonDetalle_Editar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.buttonDetalle_Editar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonDetalle_Editar.Name = "buttonDetalle_Editar"
+        Me.buttonDetalle_Editar.Size = New System.Drawing.Size(84, 36)
+        Me.buttonDetalle_Editar.Text = "Editar"
         '
-        'datetimepickerAlmacenajeInicio
+        'buttonDetalle_Eliminar
         '
-        Me.datetimepickerAlmacenajeInicio.Checked = False
-        Me.datetimepickerAlmacenajeInicio.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.datetimepickerAlmacenajeInicio.Location = New System.Drawing.Point(122, 123)
-        Me.datetimepickerAlmacenajeInicio.Name = "datetimepickerAlmacenajeInicio"
-        Me.datetimepickerAlmacenajeInicio.ShowCheckBox = True
-        Me.datetimepickerAlmacenajeInicio.Size = New System.Drawing.Size(123, 20)
-        Me.datetimepickerAlmacenajeInicio.TabIndex = 10
+        Me.buttonDetalle_Eliminar.Image = Global.CSPesaje.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_DELETE_32
+        Me.buttonDetalle_Eliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.buttonDetalle_Eliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.buttonDetalle_Eliminar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonDetalle_Eliminar.Name = "buttonDetalle_Eliminar"
+        Me.buttonDetalle_Eliminar.Size = New System.Drawing.Size(84, 36)
+        Me.buttonDetalle_Eliminar.Text = "Eliminar"
+        '
+        'buttonDetalle_Agregar
+        '
+        Me.buttonDetalle_Agregar.Image = Global.CSPesaje.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_ADD_32
+        Me.buttonDetalle_Agregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.buttonDetalle_Agregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.buttonDetalle_Agregar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonDetalle_Agregar.Name = "buttonDetalle_Agregar"
+        Me.buttonDetalle_Agregar.Size = New System.Drawing.Size(84, 36)
+        Me.buttonDetalle_Agregar.Text = "Agregar"
+        '
+        'columnHumedadExcesoInicio
+        '
+        Me.columnHumedadExcesoInicio.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnHumedadExcesoInicio.DataPropertyName = "HumedadExcesoInicio"
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle1.Format = "N2"
+        DataGridViewCellStyle1.NullValue = Nothing
+        Me.columnHumedadExcesoInicio.DefaultCellStyle = DataGridViewCellStyle1
+        Me.columnHumedadExcesoInicio.HeaderText = "Exceso Inicio"
+        Me.columnHumedadExcesoInicio.Name = "columnHumedadExcesoInicio"
+        Me.columnHumedadExcesoInicio.ReadOnly = True
+        Me.columnHumedadExcesoInicio.Width = 95
+        '
+        'columnTipo
+        '
+        Me.columnTipo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnTipo.DataPropertyName = "TipoNombre"
+        Me.columnTipo.HeaderText = "Tipo"
+        Me.columnTipo.Name = "columnTipo"
+        Me.columnTipo.ReadOnly = True
+        Me.columnTipo.Width = 53
+        '
+        'columnTarifa
+        '
+        Me.columnTarifa.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnTarifa.DataPropertyName = "Tarifa"
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle2.Format = "C2"
+        DataGridViewCellStyle2.NullValue = Nothing
+        Me.columnTarifa.DefaultCellStyle = DataGridViewCellStyle2
+        Me.columnTarifa.HeaderText = "Tarifa"
+        Me.columnTarifa.Name = "columnTarifa"
+        Me.columnTarifa.ReadOnly = True
+        Me.columnTarifa.Width = 59
         '
         'formTarifa
         '
@@ -986,30 +1091,36 @@ Partial Class formTarifa
         Me.groupboxGeneralRequeridos.PerformLayout()
         CType(Me.updownIndice, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tabpageTarifas.ResumeLayout(False)
-        Me.groupboxTarifasVarias.ResumeLayout(False)
-        Me.groupboxTarifasVarias.PerformLayout()
-        CType(Me.doubletextboxParitariaImporte, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.doubletextboxZarandeoImporte, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.doubletextboxFumigadoImporte, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.doubletextboxMezcladoImporte, System.ComponentModel.ISupportInitialize).EndInit()
         Me.groupboxTarifasSecado.ResumeLayout(False)
         Me.groupboxTarifasSecado.PerformLayout()
-        Me.groupboxTarifasSecadoSecadoTipo.ResumeLayout(False)
-        Me.groupboxTarifasSecadoSecadoTipo.PerformLayout()
-        CType(Me.doubletextboxSecadoInicialPunto, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.doubletextboxSecadoInicialImporte, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.groupboxTarifasSecadoInicial.ResumeLayout(False)
-        Me.groupboxTarifasSecadoInicial.PerformLayout()
-        CType(Me.doubletextboxTarifasSecadoExcesoImporte, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.doubletextboxTarifasSecadoHumedadBase, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.doubletextboxTarifasSecadoMargenLibre, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.currencytextboxTarifaSecadoPuntoExcesoImporte, System.ComponentModel.ISupportInitialize).EndInit()
         Me.groupboxTarifasSecadoRedondeoPuntoTipo.ResumeLayout(False)
         Me.groupboxTarifasSecadoRedondeoPuntoTipo.PerformLayout()
+        CType(Me.doubletextboxTarifaSecadoMargenLibre, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.doubletextboxTarifaSecadoHumedadBase, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.groupboxTarifasSecadoInicial.ResumeLayout(False)
+        Me.groupboxTarifasSecadoInicial.PerformLayout()
+        CType(Me.currencytextboxTarifaSecadoInicialImporte, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.doubletextboxTarifaSecadoInicialPunto, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.groupboxTarifasSecadoSecadoTipo.ResumeLayout(False)
+        Me.groupboxTarifasSecadoSecadoTipo.PerformLayout()
+        Me.groupboxTarifasVarias.ResumeLayout(False)
+        Me.groupboxTarifasVarias.PerformLayout()
+        CType(Me.currencytextboxTarifaMezcladoImporte, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.currencytextboxTarifaFumigadoImporte, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.currencytextboxTarifaZarandeo, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.currencytextboxTarifaParitariaImporte, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tabpageAlmacenaje.ResumeLayout(False)
         Me.tabpageAlmacenaje.PerformLayout()
+        CType(Me.percenttextboxAlmacenajePorcentajeMensual, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.integertextboxAlmacenajeDiaGracia, System.ComponentModel.ISupportInitialize).EndInit()
         Me.groupboxAlmacenajeTipo.ResumeLayout(False)
         Me.groupboxAlmacenajeTipo.PerformLayout()
-        CType(Me.doubletextboxAlmacenajePorcentajeMensual, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.tabpageSecadoEscala.ResumeLayout(False)
+        Me.tabpageSecadoEscala.PerformLayout()
+        CType(Me.datagridviewTarifaSecadoEscala, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.toolstripDetalle.ResumeLayout(False)
+        Me.toolstripDetalle.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1045,29 +1156,23 @@ Partial Class formTarifa
     Friend WithEvents labelFechaHasta As Label
     Friend WithEvents tabpageTarifas As TabPage
     Friend WithEvents groupboxTarifasVarias As GroupBox
-    Friend WithEvents labelParitariaImporte As Label
-    Friend WithEvents doubletextboxParitariaImporte As Syncfusion.Windows.Forms.Tools.DoubleTextBox
-    Friend WithEvents doubletextboxMezcladoImporte As Syncfusion.Windows.Forms.Tools.DoubleTextBox
-    Friend WithEvents labelMezcladoImporte As Label
-    Friend WithEvents doubletextboxFumigadoImporte As Syncfusion.Windows.Forms.Tools.DoubleTextBox
-    Friend WithEvents labelFumigadoImporte As Label
-    Friend WithEvents doubletextboxZarandeoImporte As Syncfusion.Windows.Forms.Tools.DoubleTextBox
-    Friend WithEvents labelZarandeoImporte As Label
+    Friend WithEvents labelTarifaParitariaImporte As Label
+    Friend WithEvents labelTarifaMezcladoImporte As Label
+    Friend WithEvents labelTarifaFumigadoImporte As Label
+    Friend WithEvents labelTarifaZarandeoImporte As Label
     Friend WithEvents groupboxTarifasSecado As GroupBox
     Friend WithEvents radiobuttonSecadoTipoEscala As RadioButton
     Friend WithEvents radiobuttonSecadoTipoFijo As RadioButton
     Friend WithEvents groupboxTarifasSecadoSecadoTipo As GroupBox
-    Friend WithEvents doubletextboxSecadoInicialPunto As Syncfusion.Windows.Forms.Tools.DoubleTextBox
-    Friend WithEvents labelSecadoInicialPunto As Label
-    Friend WithEvents doubletextboxSecadoInicialImporte As Syncfusion.Windows.Forms.Tools.DoubleTextBox
-    Friend WithEvents labelSecadoInicialImporte As Label
+    Friend WithEvents doubletextboxTarifaSecadoInicialPunto As Syncfusion.Windows.Forms.Tools.DoubleTextBox
+    Friend WithEvents labelTarifaSecadoInicialPunto As Label
+    Friend WithEvents labelTarifaSecadoInicialImporte As Label
     Friend WithEvents groupboxTarifasSecadoInicial As GroupBox
-    Friend WithEvents doubletextboxTarifasSecadoHumedadBase As Syncfusion.Windows.Forms.Tools.DoubleTextBox
-    Friend WithEvents labelSecadoHumedadBase As Label
-    Friend WithEvents labelTarifasSecadoExcesoImporte As Label
-    Friend WithEvents doubletextboxTarifasSecadoExcesoImporte As Syncfusion.Windows.Forms.Tools.DoubleTextBox
-    Friend WithEvents doubletextboxTarifasSecadoMargenLibre As Syncfusion.Windows.Forms.Tools.DoubleTextBox
-    Friend WithEvents labelTarifasSecadoMargenLibre As Label
+    Friend WithEvents doubletextboxTarifaSecadoHumedadBase As Syncfusion.Windows.Forms.Tools.DoubleTextBox
+    Friend WithEvents labelTarifaSecadoHumedadBase As Label
+    Friend WithEvents labelTarifaSecadoPuntoExcesoImporte As Label
+    Friend WithEvents doubletextboxTarifaSecadoMargenLibre As Syncfusion.Windows.Forms.Tools.DoubleTextBox
+    Friend WithEvents labelTarifaSecadoMargenLibre As Label
     Friend WithEvents groupboxTarifasSecadoRedondeoPuntoTipo As GroupBox
     Friend WithEvents radiobuttonTarifasSecadoRedondeoPuntoTipoInferior As RadioButton
     Friend WithEvents radiobuttonTarifasSecadoRedondeoPuntoTipoSuperior As RadioButton
@@ -1078,9 +1183,25 @@ Partial Class formTarifa
     Friend WithEvents radiobuttonAlmacenajeTipoDiasGraciaSiRetiraAntes As RadioButton
     Friend WithEvents radiobuttonAlmacenajeTipoFechaFija As RadioButton
     Friend WithEvents groupboxAlmacenajeTipo As GroupBox
-    Friend WithEvents doubletextboxAlmacenajePorcentajeMensual As Syncfusion.Windows.Forms.Tools.DoubleTextBox
     Friend WithEvents labelAlmacenajePorcentajeMensual As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents labelAlmacenajeDiaGracia As Label
     Friend WithEvents datetimepickerAlmacenajeInicio As DateTimePicker
+    Friend WithEvents integertextboxAlmacenajeDiaGracia As Syncfusion.Windows.Forms.Tools.IntegerTextBox
+    Friend WithEvents percenttextboxAlmacenajePorcentajeMensual As Syncfusion.Windows.Forms.Tools.PercentTextBox
+    Friend WithEvents buttonIndiceObtener As Button
+    Friend WithEvents currencytextboxTarifaParitariaImporte As Syncfusion.Windows.Forms.Tools.CurrencyTextBox
+    Friend WithEvents currencytextboxTarifaMezcladoImporte As Syncfusion.Windows.Forms.Tools.CurrencyTextBox
+    Friend WithEvents currencytextboxTarifaFumigadoImporte As Syncfusion.Windows.Forms.Tools.CurrencyTextBox
+    Friend WithEvents currencytextboxTarifaZarandeo As Syncfusion.Windows.Forms.Tools.CurrencyTextBox
+    Friend WithEvents currencytextboxTarifaSecadoInicialImporte As Syncfusion.Windows.Forms.Tools.CurrencyTextBox
+    Friend WithEvents currencytextboxTarifaSecadoPuntoExcesoImporte As Syncfusion.Windows.Forms.Tools.CurrencyTextBox
+    Friend WithEvents datagridviewTarifaSecadoEscala As DataGridView
+    Friend WithEvents toolstripDetalle As ToolStrip
+    Friend WithEvents buttonDetalle_Agregar As ToolStripButton
+    Friend WithEvents buttonDetalle_Editar As ToolStripButton
+    Friend WithEvents buttonDetalle_Eliminar As ToolStripButton
+    Friend WithEvents columnHumedadExcesoInicio As DataGridViewTextBoxColumn
+    Friend WithEvents columnTipo As DataGridViewTextBoxColumn
+    Friend WithEvents columnTarifa As DataGridViewTextBoxColumn
 End Class

@@ -25,6 +25,7 @@
         Else
             mCosecha_Producto_TarifaActual = mdbContext.Cosecha_Producto_Tarifa.Find(IDCosecha, IDProducto, Indice)
         End If
+        buttonIndiceObtener.Visible = mIsNew
 
         'Me.MdiParent = formMDIMain
         CS_Form.CenterToParent(ParentForm, Me)
@@ -46,23 +47,51 @@
             Exit Sub
         End If
 
+        ' Toolbar
         buttonGuardar.Visible = mEditMode
         buttonCancelar.Visible = mEditMode
         buttonEditar.Visible = Not mEditMode
         buttonCerrar.Visible = Not mEditMode
 
-        ' Requeridos
-        comboboxCosecha.Enabled = mEditMode
-        comboboxProducto.Enabled = mEditMode
-        updownIndice.Enabled = mEditMode
+        ' General - Requeridos
+        comboboxCosecha.Enabled = mIsNew
+        comboboxProducto.Enabled = mIsNew
+        updownIndice.Enabled = mIsNew
         textboxNombre.ReadOnly = Not mEditMode
 
-        ' Opcionales
+        ' General - Opcionales
         comboboxPlanta.Enabled = mEditMode
         comboboxEntidad.Enabled = mEditMode
         comboboxOrigen.Enabled = mEditMode
         datetimepickerFechaDesde.Enabled = mEditMode
         datetimepickerFechaHasta.Enabled = mEditMode
+
+        ' Tarifas - Varias
+        currencytextboxTarifaParitariaImporte.ReadOnly = Not mEditMode
+        currencytextboxTarifaZarandeo.ReadOnly = Not mEditMode
+        currencytextboxTarifaFumigadoImporte.ReadOnly = Not mEditMode
+        currencytextboxTarifaMezcladoImporte.ReadOnly = Not mEditMode
+
+        ' Tarifas - Secado
+        radiobuttonSecadoTipoFijo.Enabled = mEditMode
+        radiobuttonSecadoTipoEscala.Enabled = mEditMode
+        doubletextboxTarifaSecadoInicialPunto.ReadOnly = Not mEditMode
+        currencytextboxTarifaSecadoInicialImporte.ReadOnly = Not mEditMode
+        currencytextboxTarifaSecadoPuntoExcesoImporte.ReadOnly = Not mEditMode
+        doubletextboxTarifaSecadoHumedadBase.ReadOnly = Not mEditMode
+        doubletextboxTarifaSecadoMargenLibre.ReadOnly = Not mEditMode
+        radiobuttonTarifasSecadoRedondeoPuntoTipoNinguno.Enabled = mEditMode
+        radiobuttonTarifasSecadoRedondeoPuntoTipoEntero.Enabled = mEditMode
+        radiobuttonTarifasSecadoRedondeoPuntoTipoSuperior.Enabled = mEditMode
+        radiobuttonTarifasSecadoRedondeoPuntoTipoInferior.Enabled = mEditMode
+
+        ' Almacenaje
+        radiobuttonAlmacenajeTipoDiasGraciaFijo.Enabled = mEditMode
+        radiobuttonAlmacenajeTipoDiasGraciaSiRetiraAntes.Enabled = mEditMode
+        radiobuttonAlmacenajeTipoFechaFija.Enabled = mEditMode
+        integertextboxAlmacenajeDiaGracia.ReadOnly = Not mEditMode
+        datetimepickerAlmacenajeInicio.Enabled = mEditMode
+        percenttextboxAlmacenajePorcentajeMensual.ReadOnly = Not mEditMode
     End Sub
 
     Friend Sub InitializeFormAndControls()
@@ -70,7 +99,10 @@
 
         pFillAndRefreshLists.Cosecha(comboboxCosecha, mCosecha_Producto_TarifaActual.IDCosecha, CS_Constants.FIELD_VALUE_NOTSPECIFIED_BYTE, DateTime.MinValue, False, False, True)
         pFillAndRefreshLists.Producto(comboboxProducto, mCosecha_Producto_TarifaActual.IDProducto, False, True, False, False)
-        'pFillAndRefreshLists.Entidad(comboboxTransportista, mCosecha_Producto_TarifaActual.Transportista_IDEntidad, False, False, True, False, CS_Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER, True, False, False, True)
+
+        pFillAndRefreshLists.Planta(comboboxPlanta, mCosecha_Producto_TarifaActual.IDPlanta, CS_Constants.FIELD_VALUE_NOTSPECIFIED_BYTE, False, True)
+        pFillAndRefreshLists.Entidad(comboboxEntidad, mCosecha_Producto_TarifaActual.IDEntidad, False, False, True, False, CS_Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER, True, False, False, True)
+        pFillAndRefreshLists.OrigenDestino(comboboxOrigen, mCosecha_Producto_TarifaActual.IDOrigen, False, CS_Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER, False, False, True)
     End Sub
 
     Friend Sub SetAppearance()
@@ -87,29 +119,56 @@
 #Region "Load and Set Data"
     Friend Sub SetDataFromObjectToControls()
         With mCosecha_Producto_TarifaActual
-            ' Requeridos
+            ' General - Requeridos
             CS_ComboBox.SetSelectedValue(comboboxCosecha, SelectedItemOptions.Value, .IDCosecha, CS_Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
             CS_ComboBox.SetSelectedValue(comboboxProducto, SelectedItemOptions.Value, .IDProducto)
             updownIndice.Value = CS_ValueTranslation.FromObjectShortToControlUpDown(.Indice)
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
 
-            ' Opcionales
-            CS_ComboBox.SetSelectedValue(comboboxPlanta, SelectedItemOptions.Value, .IDPlanta, CS_Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
-            CS_ComboBox.SetSelectedValue(comboboxEntidad, SelectedItemOptions.Value, .IDEntidad)
+            ' General - Opcionales
+            CS_ComboBox.SetSelectedValue(comboboxPlanta, SelectedItemOptions.ValueOrFirst, .IDPlanta, CS_Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
+            CS_ComboBox.SetSelectedValue(comboboxEntidad, SelectedItemOptions.ValueOrFirst, .IDEntidad)
             CS_ComboBox.SetSelectedValue(comboboxOrigen, SelectedItemOptions.ValueOrFirst, .IDOrigen)
             datetimepickerFechaDesde.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.FechaDesde, datetimepickerFechaDesde)
             datetimepickerFechaHasta.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.FechaHasta, datetimepickerFechaHasta)
+
+            ' Tarifas - Varias
+            currencytextboxTarifaParitariaImporte.DecimalValue = .TarifaParitariaImporte
+            currencytextboxTarifaZarandeo.DecimalValue = .TarifaZarandeoImporte
+            currencytextboxTarifaFumigadoImporte.DecimalValue = .TarifaFumigadoImporte
+            currencytextboxTarifaMezcladoImporte.DecimalValue = .TarifaMezclaImporte
+
+            ' Tarifas - Secado
+            radiobuttonSecadoTipoFijo.Checked = (.TarifaSecadoTipo = Constantes.PRODUCTO_TARIFA_SECADO_TIPO_FIJA)
+            radiobuttonSecadoTipoEscala.Checked = (.TarifaSecadoTipo = Constantes.PRODUCTO_TARIFA_SECADO_TIPO_ESCALA)
+            doubletextboxTarifaSecadoInicialPunto.DoubleValue = .TarifaSecadoInicialPunto
+            currencytextboxTarifaSecadoInicialImporte.DecimalValue = .TarifaSecadoInicialImporte
+            currencytextboxTarifaSecadoPuntoExcesoImporte.DecimalValue = .TarifaSecadoPuntoExcesoImporte
+            doubletextboxTarifaSecadoHumedadBase.DoubleValue = .TarifaSecadoHumedadBase
+            doubletextboxTarifaSecadoMargenLibre.DoubleValue = .TarifaSecadoHumedadMargenLibre
+            radiobuttonTarifasSecadoRedondeoPuntoTipoNinguno.Checked = (.TarifaSecadoHumedadRedondeoPuntoTipo = Constantes.PRODUCTO_TARIFA_SECADO_REDONDEOPUNTO_TIPO_NINGUNO)
+            radiobuttonTarifasSecadoRedondeoPuntoTipoEntero.Checked = (.TarifaSecadoHumedadRedondeoPuntoTipo = Constantes.PRODUCTO_TARIFA_SECADO_REDONDEOPUNTO_TIPO_ENTERO)
+            radiobuttonTarifasSecadoRedondeoPuntoTipoSuperior.Checked = (.TarifaSecadoHumedadRedondeoPuntoTipo = Constantes.PRODUCTO_TARIFA_SECADO_REDONDEOPUNTO_TIPO_SUPERIOR)
+            radiobuttonTarifasSecadoRedondeoPuntoTipoInferior.Checked = (.TarifaSecadoHumedadRedondeoPuntoTipo = Constantes.PRODUCTO_TARIFA_SECADO_REDONDEOPUNTO_TIPO_INFERIOR)
+
+            ' Almacenaje
+            radiobuttonAlmacenajeTipoDiasGraciaFijo.Checked = (.AlmacenajeTipo = Constantes.ALMACENAJE_TIPO_DIAS_GRACIA_FIJO)
+            radiobuttonAlmacenajeTipoDiasGraciaSiRetiraAntes.Checked = (.AlmacenajeTipo = Constantes.ALMACENAJE_TIPO_DIAS_GRACIA_SI_RETIRA_ANTES)
+            radiobuttonAlmacenajeTipoFechaFija.Checked = (.AlmacenajeTipo = Constantes.ALMACENAJE_TIPO_FECHA_FIJA)
+            integertextboxAlmacenajeDiaGracia.BindableValue = .AlmacenajeDiaGracia
+            datetimepickerAlmacenajeInicio.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.AlmacenajeInicio, datetimepickerAlmacenajeInicio)
+            percenttextboxAlmacenajePorcentajeMensual.PercentValue = .AlmacenajePorcentajeMensual
         End With
     End Sub
 
     Friend Sub SetDataFromControlsToObject()
         With mCosecha_Producto_TarifaActual
-            ' Requeridos
+            ' General - Requeridos
             .IDCosecha = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxCosecha.SelectedValue).Value
             .IDProducto = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxProducto.SelectedValue).Value
             .Indice = CS_ValueTranslation.FromControlUpDownToObjectShort(updownIndice.Value).Value
 
-            ' Opcionales
+            ' General - Opcionales
             .IDPlanta = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxPlanta.SelectedValue)
             .IDEntidad = CS_ValueTranslation.FromControlComboBoxToObjectInteger(comboboxEntidad.SelectedValue).Value
             .IDOrigen = CS_ValueTranslation.FromControlComboBoxToObjectInteger(comboboxOrigen.SelectedValue)
@@ -140,6 +199,8 @@
     Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxNombre.GotFocus
         CType(sender, TextBox).SelectAll()
     End Sub
+
+
 #End Region
 
 #Region "Main Toolbar"
@@ -279,6 +340,7 @@
             Me.Close()
         End If
     End Sub
+
 #End Region
 
 #Region "Extra stuff"
