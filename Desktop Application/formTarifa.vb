@@ -92,6 +92,9 @@
         integertextboxAlmacenajeDiaGracia.ReadOnly = Not mEditMode
         datetimepickerAlmacenajeInicio.Enabled = mEditMode
         percenttextboxAlmacenajePorcentajeMensual.ReadOnly = Not mEditMode
+
+        ' Escalas de Secado
+        toolstripEscala.Enabled = mEditMode
     End Sub
 
     Friend Sub InitializeFormAndControls()
@@ -141,6 +144,7 @@
             ' Tarifas - Secado
             radiobuttonSecadoTipoFijo.Checked = (.TarifaSecadoTipo = Constantes.PRODUCTO_TARIFA_SECADO_TIPO_FIJA)
             radiobuttonSecadoTipoEscala.Checked = (.TarifaSecadoTipo = Constantes.PRODUCTO_TARIFA_SECADO_TIPO_ESCALA)
+            SecadoTipoEscala_CheckedChanged(Nothing, New EventArgs())
             doubletextboxTarifaSecadoInicialPunto.DoubleValue = .TarifaSecadoInicialPunto
             currencytextboxTarifaSecadoInicialImporte.DecimalValue = .TarifaSecadoInicialImporte
             currencytextboxTarifaSecadoPuntoExcesoImporte.DecimalValue = .TarifaSecadoPuntoExcesoImporte
@@ -159,6 +163,8 @@
             datetimepickerAlmacenajeInicio.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.AlmacenajeInicio, datetimepickerAlmacenajeInicio)
             percenttextboxAlmacenajePorcentajeMensual.PercentValue = .AlmacenajePorcentajeMensual
         End With
+
+        RefreshData_SecadoEscalas()
     End Sub
 
     Friend Sub SetDataFromControlsToObject()
@@ -167,14 +173,97 @@
             .IDCosecha = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxCosecha.SelectedValue).Value
             .IDProducto = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxProducto.SelectedValue).Value
             .Indice = CS_ValueTranslation.FromControlUpDownToObjectShort(updownIndice.Value).Value
+            .Nombre = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNombre.Text)
 
             ' General - Opcionales
             .IDPlanta = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxPlanta.SelectedValue)
-            .IDEntidad = CS_ValueTranslation.FromControlComboBoxToObjectInteger(comboboxEntidad.SelectedValue).Value
+            .IDEntidad = CS_ValueTranslation.FromControlComboBoxToObjectInteger(comboboxEntidad.SelectedValue)
             .IDOrigen = CS_ValueTranslation.FromControlComboBoxToObjectInteger(comboboxOrigen.SelectedValue)
-            .FechaDesde = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerFechaDesde.Value, datetimepickerFechaDesde.Checked).Value
-            .FechaHasta = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerFechaHasta.Value, datetimepickerFechaHasta.Checked).Value
+            .FechaDesde = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerFechaDesde.Value, datetimepickerFechaDesde.Checked)
+            .FechaHasta = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerFechaHasta.Value, datetimepickerFechaHasta.Checked)
+
+            ' Tarifas - Varias
+            .TarifaParitariaImporte = currencytextboxTarifaParitariaImporte.DecimalValue
+            .TarifaZarandeoImporte = currencytextboxTarifaZarandeo.DecimalValue
+            .TarifaFumigadoImporte = currencytextboxTarifaFumigadoImporte.DecimalValue
+            .TarifaMezclaImporte = currencytextboxTarifaMezcladoImporte.DecimalValue
+
+            ' Tarifas - Secado
+            If radiobuttonSecadoTipoFijo.Checked Then
+                .TarifaSecadoTipo = Constantes.PRODUCTO_TARIFA_SECADO_TIPO_FIJA
+            ElseIf radiobuttonSecadoTipoEscala.Checked Then
+                .TarifaSecadoTipo = Constantes.PRODUCTO_TARIFA_SECADO_TIPO_ESCALA
+            Else
+                Throw New Exception("No se ha seleccionado el Tipo de Secado")
+            End If
+            .TarifaSecadoInicialPunto = Convert.ToDecimal(doubletextboxTarifaSecadoInicialPunto.DoubleValue)
+            .TarifaSecadoInicialImporte = currencytextboxTarifaSecadoInicialImporte.DecimalValue
+            .TarifaSecadoPuntoExcesoImporte = currencytextboxTarifaSecadoPuntoExcesoImporte.DecimalValue
+            .TarifaSecadoHumedadBase = Convert.ToDecimal(doubletextboxTarifaSecadoHumedadBase.DoubleValue)
+            .TarifaSecadoHumedadMargenLibre = Convert.ToDecimal(doubletextboxTarifaSecadoMargenLibre.DoubleValue)
+            If radiobuttonTarifasSecadoRedondeoPuntoTipoNinguno.Checked Then
+                .TarifaSecadoHumedadRedondeoPuntoTipo = Constantes.PRODUCTO_TARIFA_SECADO_REDONDEOPUNTO_TIPO_NINGUNO
+            ElseIf radiobuttonTarifasSecadoRedondeoPuntoTipoEntero.Checked Then
+                .TarifaSecadoHumedadRedondeoPuntoTipo = Constantes.PRODUCTO_TARIFA_SECADO_REDONDEOPUNTO_TIPO_ENTERO
+            ElseIf radiobuttonTarifasSecadoRedondeoPuntoTipoSuperior.Checked Then
+                .TarifaSecadoHumedadRedondeoPuntoTipo = Constantes.PRODUCTO_TARIFA_SECADO_REDONDEOPUNTO_TIPO_SUPERIOR
+            ElseIf radiobuttonTarifasSecadoRedondeoPuntoTipoInferior.Checked Then
+                .TarifaSecadoHumedadRedondeoPuntoTipo = Constantes.PRODUCTO_TARIFA_SECADO_REDONDEOPUNTO_TIPO_INFERIOR
+            Else
+                Throw New Exception("No se ha seleccionado el Tipo de Redondeo por Punto para el Secado")
+            End If
+
+            ' Almacenaje
+            If radiobuttonAlmacenajeTipoDiasGraciaFijo.Checked Then
+                .AlmacenajeTipo = Constantes.ALMACENAJE_TIPO_DIAS_GRACIA_FIJO
+            ElseIf radiobuttonAlmacenajeTipoDiasGraciaSiRetiraAntes.Checked Then
+                .AlmacenajeTipo = Constantes.ALMACENAJE_TIPO_DIAS_GRACIA_SI_RETIRA_ANTES
+            ElseIf radiobuttonAlmacenajeTipoFechaFija.Checked Then
+                .AlmacenajeTipo = Constantes.ALMACENAJE_TIPO_FECHA_FIJA
+            Else
+                Throw New Exception("No se ha seleccionado el Tipo de Almacenaje")
+            End If
+            .AlmacenajeDiaGracia = CS_ValueTranslation.FromControlSyncfusionIntegerTextBoxToObjectShort(integertextboxAlmacenajeDiaGracia.BindableValue)
+            .AlmacenajeInicio = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerAlmacenajeInicio.Value, datetimepickerAlmacenajeInicio.Checked)
+            .AlmacenajePorcentajeMensual = Convert.ToDecimal(percenttextboxAlmacenajePorcentajeMensual.PercentValue)
         End With
+    End Sub
+
+    Friend Sub RefreshData_SecadoEscalas(Optional ByVal PositionHumedadExcesoInicio As Decimal = 0, Optional ByVal RestoreCurrentPosition As Boolean = False)
+        Dim listSecadoEscalas As List(Of Cosecha_Producto_TarifaEscala)
+
+        If RestoreCurrentPosition Then
+            If datagridviewTarifaSecadoEscala.CurrentRow Is Nothing Then
+                PositionHumedadExcesoInicio = 0
+            Else
+                PositionHumedadExcesoInicio = CType(datagridviewTarifaSecadoEscala.CurrentRow.DataBoundItem, Cosecha_Producto_TarifaEscala).HumedadExcesoInicio
+            End If
+        End If
+
+        Me.Cursor = Cursors.WaitCursor
+
+        Try
+            listSecadoEscalas = mCosecha_Producto_TarifaActual.Cosecha_Producto_TarifaEscala.ToList()
+
+            datagridviewTarifaSecadoEscala.AutoGenerateColumns = False
+            datagridviewTarifaSecadoEscala.DataSource = listSecadoEscalas
+
+        Catch ex As Exception
+            CS_Error.ProcessError(ex, "Error al leer las Escalas de Tarifas de Secado.")
+            Me.Cursor = Cursors.Default
+            Exit Sub
+        End Try
+
+        Me.Cursor = Cursors.Default
+
+        If PositionHumedadExcesoInicio <> 0 Then
+            For Each CurrentRowChecked As DataGridViewRow In datagridviewTarifaSecadoEscala.Rows
+                If CType(datagridviewTarifaSecadoEscala.CurrentRow.DataBoundItem, Cosecha_Producto_TarifaEscala).HumedadExcesoInicio = PositionHumedadExcesoInicio Then
+                    datagridviewTarifaSecadoEscala.CurrentCell = CurrentRowChecked.Cells(0)
+                    Exit For
+                End If
+            Next
+        End If
     End Sub
 #End Region
 
@@ -196,15 +285,31 @@
         End Select
     End Sub
 
+    Private Sub IndiceObtener(sender As Object, e As EventArgs) Handles buttonIndiceObtener.Click
+        If Not (comboboxCosecha.SelectedValue Is Nothing Or comboboxProducto.SelectedValue Is Nothing) Then
+            Dim IDCosecha As Byte = Convert.ToByte(comboboxCosecha.SelectedValue)
+            Dim IDProducto As Byte = Convert.ToByte(comboboxProducto.SelectedValue)
+
+            updownIndice.Value = mdbContext.Cosecha_Producto_Tarifa.Where(Function(cpt) cpt.IDCosecha = IDCosecha And cpt.IDProducto = IDProducto).Max(Function(cpt) cpt.Indice) + Convert.ToInt16(1)
+        End If
+    End Sub
+
     Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxNombre.GotFocus
         CType(sender, TextBox).SelectAll()
     End Sub
 
+    Private Sub SecadoTipoEscala_CheckedChanged(sender As Object, e As EventArgs) Handles radiobuttonSecadoTipoEscala.CheckedChanged
+        If radiobuttonSecadoTipoEscala.Checked Then
+            tabcontrolMain.ShowTabPageByName(tabpageSecadoEscala.Name)
+        Else
+            tabcontrolMain.HideTabPageByName(tabpageSecadoEscala.Name)
+        End If
+    End Sub
 
 #End Region
 
 #Region "Main Toolbar"
-    Private Sub buttonEditar_Click() Handles buttonEditar.Click
+    Private Sub Editar_Click() Handles buttonEditar.Click
         If Permisos.VerificarPermiso(Permisos.TARIFA_EDITAR) Then
             mEditMode = True
             ChangeMode()
@@ -215,12 +320,13 @@
         Me.Close()
     End Sub
 
-    Private Sub buttonGuardar_Click() Handles buttonGuardar.Click
+    Private Sub Guardar_Click() Handles buttonGuardar.Click
         ' Verificar que estén todos los campos con datos coherentes
 
         ' Cosecha
         If comboboxCosecha.SelectedItem Is Nothing Then
             MsgBox("Debe especificar la Cosecha.", MsgBoxStyle.Information, My.Application.Info.Title)
+            tabcontrolMain.SelectedTab = tabpageGeneral
             comboboxCosecha.Focus()
             Exit Sub
         End If
@@ -228,6 +334,7 @@
         ' Producto
         If comboboxProducto.SelectedValue Is Nothing Then
             MsgBox("Debe especificar el Producto.", MsgBoxStyle.Information, My.Application.Info.Title)
+            tabcontrolMain.SelectedTab = tabpageGeneral
             comboboxProducto.Focus()
             Exit Sub
         End If
@@ -235,6 +342,7 @@
         ' Indice
         If updownIndice.Value < 1 Then
             MsgBox("El Índice debe ser mayor o igual a 1.", MsgBoxStyle.Information, My.Application.Info.Title)
+            tabcontrolMain.SelectedTab = tabpageGeneral
             updownIndice.Focus()
             Exit Sub
         End If
@@ -242,102 +350,163 @@
         ' Nombre
         If textboxNombre.Text.Trim().Length = 0 Then
             MsgBox("Debe especificar el Nombre.", MsgBoxStyle.Information, My.Application.Info.Title)
+            tabcontrolMain.SelectedTab = tabpageGeneral
             textboxNombre.Focus()
             Exit Sub
         End If
 
         ' Fecha desde y hasta
-        If DateDiff(DateInterval.Day, datetimepickerFechaDesde.Value, datetimepickerFechaHasta.Value) > 0 Then
-            MsgBox("La fecha hasta debe ser posterior a la fecha desde.", MsgBoxStyle.Information, My.Application.Info.Title)
-            datetimepickerFechaHasta.Focus()
+        If datetimepickerFechaDesde.Checked And datetimepickerFechaHasta.Checked Then
+            If DateDiff(DateInterval.Day, datetimepickerFechaDesde.Value, datetimepickerFechaHasta.Value) > 0 Then
+                MsgBox("La fecha hasta debe ser posterior a la fecha desde.", MsgBoxStyle.Information, My.Application.Info.Title)
+                tabcontrolMain.SelectedTab = tabpageGeneral
+                datetimepickerFechaHasta.Focus()
+                Exit Sub
+            End If
+        End If
+
+        ' Tipo de Tarifa de Secado
+        If Not (radiobuttonSecadoTipoFijo.Checked Or radiobuttonSecadoTipoEscala.Checked) Then
+            MsgBox("Deber especificar el Tipo de Tarifa de Secado.", MsgBoxStyle.Information, My.Application.Info.Title)
+            tabcontrolMain.SelectedTab = tabpageTarifas
             Exit Sub
         End If
 
+        ' Tipo de Redondeo de Punto de Secado
+        If Not (radiobuttonTarifasSecadoRedondeoPuntoTipoNinguno.Checked Or radiobuttonTarifasSecadoRedondeoPuntoTipoEntero.Checked Or radiobuttonTarifasSecadoRedondeoPuntoTipoSuperior.Checked Or radiobuttonTarifasSecadoRedondeoPuntoTipoInferior.Checked) Then
+            MsgBox("Deber especificar el Tipo de Redondeo por Punto de Secado.", MsgBoxStyle.Information, My.Application.Info.Title)
+            tabcontrolMain.SelectedTab = tabpageTarifas
+            Exit Sub
+        End If
 
-        '    ' Generar el ID de la Cosecha_Producto_Tarifa nueva
-        '    If mIsNew Then
-        '        ' El nuevo ID se calcula tomando el valor de la función Now, al cual le restamos el valor
-        '        ' correspondiente a los días transcurridos entre el 01/01/1899 y el 01/01/2017 porque no son relevantes
-        '        ' y si no, la conversión a Long excede el límite dando error de Overflow.
-        '        ' Además, multiplicamos por 100.000 para que los segundos formen parte del componente entero
-        '        mCosecha_Producto_TarifaActual.IDCosecha_Producto_Tarifa = CInt(CDbl(DateAndTime.Now.ToOADate - DateAndTime.DateSerial(2017, 1, 1).ToOADate) * 100000)
-        '    End If
+        ' Tipo de Almacenaje
+        If Not (radiobuttonAlmacenajeTipoDiasGraciaFijo.Checked Or radiobuttonAlmacenajeTipoDiasGraciaSiRetiraAntes.Checked Or radiobuttonAlmacenajeTipoFechaFija.Checked) Then
+            MsgBox("Deber especificar el Tipo de Almacenaje.", MsgBoxStyle.Information, My.Application.Info.Title)
+            tabcontrolMain.SelectedTab = tabpageAlmacenaje
+            Exit Sub
+        End If
 
-        '    ' Paso los datos desde los controles al Objecto de EF
-        '    SetDataFromControlsToObject()
+        ' Paso los datos desde los controles al Objecto de EF
+        SetDataFromControlsToObject()
 
-        '    If mdbContext.ChangeTracker.HasChanges Then
+        If mdbContext.ChangeTracker.HasChanges Then
 
-        '        Me.Cursor = Cursors.WaitCursor
+            Me.Cursor = Cursors.WaitCursor
 
-        '        mCosecha_Producto_TarifaActual.IDUsuarioModificacion = pUsuario.IDUsuario
-        '        mCosecha_Producto_TarifaActual.FechaHoraModificacion = Now
+            Try
+                ' Guardo los cambios
+                mdbContext.SaveChanges()
 
-        '        Try
-        '            ' Calculo mermas si corresponde
-        '            Select Case mCosecha_Producto_TarifaActual.Tipo
-        '                Case Cosecha_Producto_Tarifa_TIPO_ENTRADA, Cosecha_Producto_Tarifa_TIPO_NINGUNA
-        '                    If mCosecha_Producto_TarifaActual.Cosecha_Producto_Tarifa_Analisis Is Nothing Then
-        '                        mCosecha_Producto_TarifaActual.Cosecha_Producto_Tarifa_Analisis = New Cosecha_Producto_Tarifa_Analisis
-        '                    End If
-        '                    mCosecha_Producto_TarifaActual.Cosecha_Producto_Tarifa_Analisis.CalcularMermas(mCosecha_Producto_TarifaActual)
-        '                Case Cosecha_Producto_Tarifa_TIPO_SALIDA
-        '                    mCosecha_Producto_TarifaActual.KilogramoFinal = -mCosecha_Producto_TarifaActual.KilogramoNeto
-        '            End Select
+                ' Refresco la lista de Cosecha_Producto_Tarifas para mostrar los cambios
+                If CS_Form.MDIChild_IsLoaded(CType(formMDIMain, Form), "formTarifas") Then
+                    Dim formTarifas As formTarifas = CType(CS_Form.MDIChild_GetInstance(CType(formMDIMain, Form), "formTarifas"), formTarifas)
+                    formTarifas.RefreshData(mCosecha_Producto_TarifaActual.IDCosecha, mCosecha_Producto_TarifaActual.IDProducto, mCosecha_Producto_TarifaActual.Indice)
+                    formTarifas = Nothing
+                End If
 
-        '            ' Calculo el acondicionamiento si corresponde
-        '            If mCosecha_Producto_TarifaActual.Tipo = Constantes.Cosecha_Producto_Tarifa_TIPO_ENTRADA AndAlso mCosecha_Producto_TarifaActual.IDCosecha.HasValue AndAlso mCosecha_Producto_TarifaActual.KilogramoNeto.HasValue AndAlso mCosecha_Producto_TarifaActual.KilogramoNeto > 0 Then
-        '                If mCosecha_Producto_TarifaActual.Cosecha_Producto_Tarifa_Acondicionamiento Is Nothing Then
-        '                    mCosecha_Producto_TarifaActual.Cosecha_Producto_Tarifa_Acondicionamiento = New Cosecha_Producto_Tarifa_Acondicionamiento
-        '                End If
-        '                If Not mCosecha_Producto_TarifaActual.Cosecha_Producto_Tarifa_Acondicionamiento.CalcularAcondicionamiento(mCosecha_Producto_TarifaActual) Then
-        '                    If Not mCosecha_Producto_TarifaActual.Cosecha_Producto_Tarifa_Acondicionamiento.TarifaManual Then
-        '                        mdbContext.Cosecha_Producto_Tarifa_Acondicionamiento.Remove(mCosecha_Producto_TarifaActual.Cosecha_Producto_Tarifa_Acondicionamiento)
-        '                    End If
-        '                End If
-        '            Else
-        '                If Not mCosecha_Producto_TarifaActual.Cosecha_Producto_Tarifa_Acondicionamiento Is Nothing Then
-        '                    mdbContext.Cosecha_Producto_Tarifa_Acondicionamiento.Remove(mCosecha_Producto_TarifaActual.Cosecha_Producto_Tarifa_Acondicionamiento)
-        '                End If
-        '            End If
+            Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
+                Me.Cursor = Cursors.Default
+                Select Case CS_Database_EF_SQL.TryDecodeDbUpdateException(dbuex)
+                    Case Errors.DuplicatedEntity, Errors.PrimaryKeyViolation
+                        MsgBox("No se pueden guardar los cambios porque ya existe una Tarifa para la misma Cosecha y Producto con el mismo Índice.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                    Case Errors.Unknown
+                        CS_Error.ProcessError(CType(dbuex, Exception), My.Resources.STRING_ERROR_SAVING_CHANGES)
+                End Select
+                Exit Sub
 
-        '            ' Guardo los cambios
-        '            mdbContext.SaveChanges()
+            Catch ex As Exception
+                Me.Cursor = Cursors.Default
 
-        '            ' Refresco la lista de Cosecha_Producto_Tarifas para mostrar los cambios
-        '            If CS_Form.MDIChild_IsLoaded(CType(formMDIMain, Form), "formCosecha_Producto_Tarifas") Then
-        '                Dim formCosecha_Producto_Tarifas As formCosecha_Producto_Tarifas = CType(CS_Form.MDIChild_GetInstance(CType(formMDIMain, Form), "formCosecha_Producto_Tarifas"), formCosecha_Producto_Tarifas)
-        '                formCosecha_Producto_Tarifas.RefreshData(mCosecha_Producto_TarifaActual.IDCosecha_Producto_Tarifa)
-        '                formCosecha_Producto_Tarifas = Nothing
-        '            End If
+                CS_Error.ProcessError(ex, My.Resources.STRING_ERROR_SAVING_CHANGES)
+                Exit Sub
+            End Try
+        End If
 
-        '        Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
-        '            Me.Cursor = Cursors.Default
-        '            Select Case CS_Database_EF_SQL.TryDecodeDbUpdateException(dbuex)
-        '                Case Errors.DuplicatedEntity
-        '                    MsgBox("No se pueden guardar los cambios porque ya existe una Cosecha_Producto_Tarifa con el mismo Número.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
-        '                Case Errors.Unknown
-        '                    CS_Error.ProcessError(CType(dbuex, Exception), My.Resources.STRING_ERROR_SAVING_CHANGES)
-        '            End Select
-        '            Exit Sub
-
-        '        Catch ex As Exception
-        '            Me.Cursor = Cursors.Default
-        '            CS_Error.ProcessError(ex, My.Resources.STRING_ERROR_SAVING_CHANGES)
-        '            Exit Sub
-        '        End Try
-        '    End If
-
-        '    Me.Close()
+        Me.Close()
     End Sub
 
-    Private Sub buttonCancelar_Click() Handles buttonCancelar.Click
+    Private Sub Cancelar_Click() Handles buttonCancelar.Click
         If mdbContext.ChangeTracker.HasChanges Then
             If MsgBox("Ha realizado cambios en los datos y seleccionó cancelar, los cambios se perderán." & vbCr & vbCr & "¿Confirma la pérdida de los cambios?", CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
                 Me.Close()
             End If
         Else
             Me.Close()
+        End If
+    End Sub
+
+#End Region
+
+#Region "Escalas Toolbar"
+    Private Sub Escala_Agregar(sender As Object, e As EventArgs) Handles buttonEscala_Agregar.Click
+        Me.Cursor = Cursors.WaitCursor
+
+        datagridviewTarifaSecadoEscala.Enabled = False
+
+        Dim Cosecha_Producto_TarifaEscalaNuevo As New Cosecha_Producto_TarifaEscala
+        formTarifaSecadoEscala.LoadAndShow(True, True, Me, mCosecha_Producto_TarifaActual, Cosecha_Producto_TarifaEscalaNuevo)
+
+        datagridviewTarifaSecadoEscala.Enabled = True
+
+        Me.Cursor = Cursors.Default
+    End Sub
+
+    Private Sub MedioPago_Editar(sender As Object, e As EventArgs) Handles buttonEscala_Editar.Click
+        If datagridviewTarifaSecadoEscala.CurrentRow Is Nothing Then
+            MsgBox("No hay ninguna Escala de Tarifa para editar.", vbInformation, My.Application.Info.Title)
+        Else
+            Me.Cursor = Cursors.WaitCursor
+
+            datagridviewTarifaSecadoEscala.Enabled = False
+
+            Dim Cosecha_Producto_TarifaEscala_Actual As Cosecha_Producto_TarifaEscala
+
+            Cosecha_Producto_TarifaEscala_Actual = CType(datagridviewTarifaSecadoEscala.SelectedRows(0).DataBoundItem, Cosecha_Producto_TarifaEscala)
+            formTarifaSecadoEscala.LoadAndShow(True, True, Me, mCosecha_Producto_TarifaActual, Cosecha_Producto_TarifaEscala_Actual)
+
+            datagridviewTarifaSecadoEscala.Enabled = True
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub MedioPago_Eliminar(sender As Object, e As EventArgs) Handles buttonEscala_Eliminar.Click
+        If datagridviewTarifaSecadoEscala.CurrentRow Is Nothing Then
+            MsgBox("No hay ninguna Escala de Tarifa para eliminar.", vbInformation, My.Application.Info.Title)
+        Else
+            Dim Cosecha_Producto_TarifaEscala_Eliminar As Cosecha_Producto_TarifaEscala
+            Cosecha_Producto_TarifaEscala_Eliminar = CType(datagridviewTarifaSecadoEscala.SelectedRows(0).DataBoundItem, Cosecha_Producto_TarifaEscala)
+
+            Dim Mensaje As String
+            Mensaje = String.Format("Se eliminará la Escala de Tarifa seleccionada.{0}{0}Exceso de humedad inicial: {1}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, Cosecha_Producto_TarifaEscala_Eliminar.HumedadExcesoInicio)
+            If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
+                Me.Cursor = Cursors.WaitCursor
+
+                mCosecha_Producto_TarifaActual.Cosecha_Producto_TarifaEscala.Remove(Cosecha_Producto_TarifaEscala_Eliminar)
+
+                RefreshData_SecadoEscalas()
+
+                Me.Cursor = Cursors.Default
+            End If
+        End If
+    End Sub
+
+    Private Sub MedioPago_Ver(sender As Object, e As EventArgs) Handles datagridviewTarifaSecadoEscala.DoubleClick
+        If datagridviewTarifaSecadoEscala.CurrentRow Is Nothing Then
+            MsgBox("No hay ninguna Escala de Tarifa para ver.", vbInformation, My.Application.Info.Title)
+        Else
+            Me.Cursor = Cursors.WaitCursor
+
+            datagridviewTarifaSecadoEscala.Enabled = False
+
+            Dim Cosecha_Producto_TarifaEscala_Actual As Cosecha_Producto_TarifaEscala
+
+            Cosecha_Producto_TarifaEscala_Actual = CType(datagridviewTarifaSecadoEscala.SelectedRows(0).DataBoundItem, Cosecha_Producto_TarifaEscala)
+            formTarifaSecadoEscala.LoadAndShow(mEditMode, False, Me, mCosecha_Producto_TarifaActual, Cosecha_Producto_TarifaEscala_Actual)
+
+            datagridviewTarifaSecadoEscala.Enabled = True
+
+            Me.Cursor = Cursors.Default
         End If
     End Sub
 

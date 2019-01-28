@@ -23,6 +23,27 @@ Partial Public Class CSPesajeContext
     End Sub
 End Class
 
+Partial Public Class Cosecha_Producto_TarifaEscala
+    Public ReadOnly Property TipoNombre() As String
+        Get
+            Select Case Tipo
+                Case Constantes.PRODUCTO_TARIFA_SECADO_TIPO_ESCALA_PORPUNTO
+                    Return "Por punto"
+                Case Constantes.PRODUCTO_TARIFA_SECADO_TIPO_ESCALA_COMPLETA
+                    Return "Completa"
+                Case Constantes.PRODUCTO_TARIFA_SECADO_TIPO_ESCALA_FIJO_SECADO
+                    Return "Importe de Secado fijo"
+                Case Constantes.PRODUCTO_TARIFA_SECADO_TIPO_ESCALA_FIJO_SECADOYZARANDEO
+                    Return "Importe de Secado y Zarandeo fijo"
+                Case Constantes.PRODUCTO_TARIFA_SECADO_TIPO_ESCALA_FIJO_TODOCONCEPTO
+                    Return "Importe fijo por todo concepto"
+                Case Else
+                    Return ""
+            End Select
+        End Get
+    End Property
+End Class
+
 Partial Public Class OrigenDestino
     Public ReadOnly Property DomicilioCompleto() As String
         Get

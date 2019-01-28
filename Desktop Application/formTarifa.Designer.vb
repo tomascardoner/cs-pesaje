@@ -95,13 +95,13 @@ Partial Class formTarifa
         Me.radiobuttonAlmacenajeTipoDiasGraciaSiRetiraAntes = New System.Windows.Forms.RadioButton()
         Me.tabpageSecadoEscala = New System.Windows.Forms.TabPage()
         Me.datagridviewTarifaSecadoEscala = New System.Windows.Forms.DataGridView()
-        Me.toolstripDetalle = New System.Windows.Forms.ToolStrip()
-        Me.buttonDetalle_Editar = New System.Windows.Forms.ToolStripButton()
-        Me.buttonDetalle_Eliminar = New System.Windows.Forms.ToolStripButton()
-        Me.buttonDetalle_Agregar = New System.Windows.Forms.ToolStripButton()
         Me.columnHumedadExcesoInicio = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnTipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnTarifa = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.toolstripEscala = New System.Windows.Forms.ToolStrip()
+        Me.buttonEscala_Agregar = New System.Windows.Forms.ToolStripButton()
+        Me.buttonEscala_Editar = New System.Windows.Forms.ToolStripButton()
+        Me.buttonEscala_Eliminar = New System.Windows.Forms.ToolStripButton()
         Me.toolstripMain.SuspendLayout()
         Me.tabcontrolMain.SuspendLayout()
         Me.tabpageGeneral.SuspendLayout()
@@ -129,7 +129,7 @@ Partial Class formTarifa
         Me.groupboxAlmacenajeTipo.SuspendLayout()
         Me.tabpageSecadoEscala.SuspendLayout()
         CType(Me.datagridviewTarifaSecadoEscala, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.toolstripDetalle.SuspendLayout()
+        Me.toolstripEscala.SuspendLayout()
         Me.SuspendLayout()
         '
         'toolstripMain
@@ -864,16 +864,16 @@ Partial Class formTarifa
         '
         Me.integertextboxAlmacenajeDiaGracia.AllowNull = True
         Me.integertextboxAlmacenajeDiaGracia.BeforeTouchSize = New System.Drawing.Size(39, 20)
-        Me.integertextboxAlmacenajeDiaGracia.IntegerValue = CType(1, Long)
+        Me.integertextboxAlmacenajeDiaGracia.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.integertextboxAlmacenajeDiaGracia.IntegerValue = CType(0, Long)
         Me.integertextboxAlmacenajeDiaGracia.Location = New System.Drawing.Point(122, 81)
         Me.integertextboxAlmacenajeDiaGracia.MaxValue = CType(999, Long)
         Me.integertextboxAlmacenajeDiaGracia.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
-        Me.integertextboxAlmacenajeDiaGracia.MinValue = CType(1, Long)
+        Me.integertextboxAlmacenajeDiaGracia.MinValue = CType(0, Long)
         Me.integertextboxAlmacenajeDiaGracia.Name = "integertextboxAlmacenajeDiaGracia"
         Me.integertextboxAlmacenajeDiaGracia.NullString = ""
         Me.integertextboxAlmacenajeDiaGracia.Size = New System.Drawing.Size(39, 20)
         Me.integertextboxAlmacenajeDiaGracia.TabIndex = 2
-        Me.integertextboxAlmacenajeDiaGracia.Text = "1"
         Me.integertextboxAlmacenajeDiaGracia.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'datetimepickerAlmacenajeInicio
@@ -962,7 +962,7 @@ Partial Class formTarifa
         '
         Me.tabpageSecadoEscala.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.tabpageSecadoEscala.Controls.Add(Me.datagridviewTarifaSecadoEscala)
-        Me.tabpageSecadoEscala.Controls.Add(Me.toolstripDetalle)
+        Me.tabpageSecadoEscala.Controls.Add(Me.toolstripEscala)
         Me.tabpageSecadoEscala.Location = New System.Drawing.Point(4, 25)
         Me.tabpageSecadoEscala.Name = "tabpageSecadoEscala"
         Me.tabpageSecadoEscala.Padding = New System.Windows.Forms.Padding(3)
@@ -989,48 +989,6 @@ Partial Class formTarifa
         Me.datagridviewTarifaSecadoEscala.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.datagridviewTarifaSecadoEscala.Size = New System.Drawing.Size(269, 301)
         Me.datagridviewTarifaSecadoEscala.TabIndex = 0
-        '
-        'toolstripDetalle
-        '
-        Me.toolstripDetalle.Dock = System.Windows.Forms.DockStyle.Left
-        Me.toolstripDetalle.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.toolstripDetalle.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.toolstripDetalle.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonDetalle_Agregar, Me.buttonDetalle_Editar, Me.buttonDetalle_Eliminar})
-        Me.toolstripDetalle.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
-        Me.toolstripDetalle.Location = New System.Drawing.Point(3, 3)
-        Me.toolstripDetalle.Name = "toolstripDetalle"
-        Me.toolstripDetalle.Size = New System.Drawing.Size(87, 301)
-        Me.toolstripDetalle.TabIndex = 6
-        '
-        'buttonDetalle_Editar
-        '
-        Me.buttonDetalle_Editar.Image = Global.CSPesaje.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_EDIT_32
-        Me.buttonDetalle_Editar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.buttonDetalle_Editar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.buttonDetalle_Editar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonDetalle_Editar.Name = "buttonDetalle_Editar"
-        Me.buttonDetalle_Editar.Size = New System.Drawing.Size(84, 36)
-        Me.buttonDetalle_Editar.Text = "Editar"
-        '
-        'buttonDetalle_Eliminar
-        '
-        Me.buttonDetalle_Eliminar.Image = Global.CSPesaje.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_DELETE_32
-        Me.buttonDetalle_Eliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.buttonDetalle_Eliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.buttonDetalle_Eliminar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonDetalle_Eliminar.Name = "buttonDetalle_Eliminar"
-        Me.buttonDetalle_Eliminar.Size = New System.Drawing.Size(84, 36)
-        Me.buttonDetalle_Eliminar.Text = "Eliminar"
-        '
-        'buttonDetalle_Agregar
-        '
-        Me.buttonDetalle_Agregar.Image = Global.CSPesaje.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_ADD_32
-        Me.buttonDetalle_Agregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.buttonDetalle_Agregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.buttonDetalle_Agregar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonDetalle_Agregar.Name = "buttonDetalle_Agregar"
-        Me.buttonDetalle_Agregar.Size = New System.Drawing.Size(84, 36)
-        Me.buttonDetalle_Agregar.Text = "Agregar"
         '
         'columnHumedadExcesoInicio
         '
@@ -1066,6 +1024,48 @@ Partial Class formTarifa
         Me.columnTarifa.Name = "columnTarifa"
         Me.columnTarifa.ReadOnly = True
         Me.columnTarifa.Width = 59
+        '
+        'toolstripEscala
+        '
+        Me.toolstripEscala.Dock = System.Windows.Forms.DockStyle.Left
+        Me.toolstripEscala.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.toolstripEscala.ImageScalingSize = New System.Drawing.Size(20, 20)
+        Me.toolstripEscala.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonEscala_Agregar, Me.buttonEscala_Editar, Me.buttonEscala_Eliminar})
+        Me.toolstripEscala.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
+        Me.toolstripEscala.Location = New System.Drawing.Point(3, 3)
+        Me.toolstripEscala.Name = "toolstripEscala"
+        Me.toolstripEscala.Size = New System.Drawing.Size(87, 301)
+        Me.toolstripEscala.TabIndex = 6
+        '
+        'buttonEscala_Agregar
+        '
+        Me.buttonEscala_Agregar.Image = Global.CSPesaje.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_ADD_32
+        Me.buttonEscala_Agregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.buttonEscala_Agregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.buttonEscala_Agregar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonEscala_Agregar.Name = "buttonEscala_Agregar"
+        Me.buttonEscala_Agregar.Size = New System.Drawing.Size(84, 36)
+        Me.buttonEscala_Agregar.Text = "Agregar"
+        '
+        'buttonEscala_Editar
+        '
+        Me.buttonEscala_Editar.Image = Global.CSPesaje.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_EDIT_32
+        Me.buttonEscala_Editar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.buttonEscala_Editar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.buttonEscala_Editar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonEscala_Editar.Name = "buttonEscala_Editar"
+        Me.buttonEscala_Editar.Size = New System.Drawing.Size(84, 36)
+        Me.buttonEscala_Editar.Text = "Editar"
+        '
+        'buttonEscala_Eliminar
+        '
+        Me.buttonEscala_Eliminar.Image = Global.CSPesaje.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_DELETE_32
+        Me.buttonEscala_Eliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.buttonEscala_Eliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.buttonEscala_Eliminar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonEscala_Eliminar.Name = "buttonEscala_Eliminar"
+        Me.buttonEscala_Eliminar.Size = New System.Drawing.Size(84, 36)
+        Me.buttonEscala_Eliminar.Text = "Eliminar"
         '
         'formTarifa
         '
@@ -1119,8 +1119,8 @@ Partial Class formTarifa
         Me.tabpageSecadoEscala.ResumeLayout(False)
         Me.tabpageSecadoEscala.PerformLayout()
         CType(Me.datagridviewTarifaSecadoEscala, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.toolstripDetalle.ResumeLayout(False)
-        Me.toolstripDetalle.PerformLayout()
+        Me.toolstripEscala.ResumeLayout(False)
+        Me.toolstripEscala.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1197,10 +1197,10 @@ Partial Class formTarifa
     Friend WithEvents currencytextboxTarifaSecadoInicialImporte As Syncfusion.Windows.Forms.Tools.CurrencyTextBox
     Friend WithEvents currencytextboxTarifaSecadoPuntoExcesoImporte As Syncfusion.Windows.Forms.Tools.CurrencyTextBox
     Friend WithEvents datagridviewTarifaSecadoEscala As DataGridView
-    Friend WithEvents toolstripDetalle As ToolStrip
-    Friend WithEvents buttonDetalle_Agregar As ToolStripButton
-    Friend WithEvents buttonDetalle_Editar As ToolStripButton
-    Friend WithEvents buttonDetalle_Eliminar As ToolStripButton
+    Friend WithEvents toolstripEscala As ToolStrip
+    Friend WithEvents buttonEscala_Agregar As ToolStripButton
+    Friend WithEvents buttonEscala_Editar As ToolStripButton
+    Friend WithEvents buttonEscala_Eliminar As ToolStripButton
     Friend WithEvents columnHumedadExcesoInicio As DataGridViewTextBoxColumn
     Friend WithEvents columnTipo As DataGridViewTextBoxColumn
     Friend WithEvents columnTarifa As DataGridViewTextBoxColumn

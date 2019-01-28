@@ -223,20 +223,20 @@
             MsgBox("No hay ninguna Tarifa para copiar.", vbInformation, My.Application.Info.Title)
         Else
             If Permisos.VerificarPermiso(Permisos.TARIFA_AGREGAR) Then
-                Me.Cursor = Cursors.WaitCursor
+                'Me.Cursor = Cursors.WaitCursor
 
-                datagridviewMain.Enabled = False
+                'datagridviewMain.Enabled = False
 
-                Dim GridRowDataActual As GridRowData
-                GridRowDataActual = CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData)
+                'Dim GridRowDataActual As GridRowData
+                'GridRowDataActual = CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData)
 
-                formTarifa.LoadAndShow(True, Me, GridRowDataActual.IDCosecha, GridRowDataActual.IDProducto, GridRowDataActual.Indice)
+                'formTarifa.LoadAndShow(True, Me, GridRowDataActual.IDCosecha, GridRowDataActual.IDProducto, GridRowDataActual.Indice)
 
-                GridRowDataActual = Nothing
+                'GridRowDataActual = Nothing
 
-                datagridviewMain.Enabled = True
+                'datagridviewMain.Enabled = True
 
-                Me.Cursor = Cursors.Default
+                'Me.Cursor = Cursors.Default
             End If
         End If
     End Sub
