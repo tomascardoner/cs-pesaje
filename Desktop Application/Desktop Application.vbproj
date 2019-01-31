@@ -136,14 +136,6 @@
       <Link>CS_Control_TabControl.vb</Link>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="C:\Data\Cardoner Sistemas\Development\framework-vbnet\CS_Control_Textbox_Currency.vb">
-      <Link>CS_Control_Textbox_Currency.vb</Link>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="C:\Data\Cardoner Sistemas\Development\framework-vbnet\CS_Control_Textbox_Number.vb">
-      <Link>CS_Control_Textbox_Number.vb</Link>
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="C:\Data\Cardoner Sistemas\Development\framework-vbnet\CS_Database_SQL.vb">
       <Link>CS_Database_SQL.vb</Link>
     </Compile>
