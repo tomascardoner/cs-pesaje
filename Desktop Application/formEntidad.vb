@@ -59,6 +59,10 @@
         checkboxEsActivo.Enabled = mEditMode
         textboxNombre.ReadOnly = (mEditMode = False)
         maskedtextboxCUIT_CUIL.ReadOnly = (mEditMode = False)
+        textboxDomicilio.ReadOnly = (mEditMode = False)
+        comboboxDomicilioProvincia.Enabled = mEditMode
+        comboboxDomicilioLocalidad.Enabled = mEditMode
+        textboxDomicilioCodigoPostal.ReadOnly = (mEditMode = False)
         checkboxTipoTitular.Enabled = mEditMode
         checkboxTipoTransportista.Enabled = mEditMode
         checkboxTipoChofer.Enabled = mEditMode
@@ -77,6 +81,7 @@
     Friend Sub InitializeFormAndControls()
         SetAppearance()
 
+        pFillAndRefreshLists.Provincia(comboboxDomicilioProvincia, True)
         pFillAndRefreshLists.Entidad(comboboxTransportista, mEntidadActual.Transportista_IDEntidad, False, False, True, False, 0, False, False, False, True)
         CargarCamiones()
     End Sub
@@ -107,10 +112,15 @@
             End If
             checkboxEsActivo.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.EsActivo)
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
+            maskedtextboxCUIT_CUIL.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.CUIT_CUIL)
+            textboxDomicilio.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Domicilio)
+            CS_ComboBox.SetSelectedValue(comboboxDomicilioProvincia, SelectedItemOptions.Value, .IDProvincia, FIELD_VALUE_NOTSPECIFIED_BYTE)
+            CS_ComboBox.SetSelectedValue(comboboxDomicilioLocalidad, SelectedItemOptions.Value, .IDLocalidad, FIELD_VALUE_NOTSPECIFIED_SHORT)
+            textboxDomicilioCodigoPostal.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.CodigoPostal)
+
             checkboxTipoTitular.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.EsTitular)
             checkboxTipoTransportista.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.EsTransportista)
             checkboxTipoChofer.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.EsChofer)
-            maskedtextboxCUIT_CUIL.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.CUIT_CUIL)
 
             If .EsChofer Then
                 CS_ComboBox.SetSelectedValue(comboboxTransportista, SelectedItemOptions.ValueOrFirst, .Transportista_IDEntidad)
@@ -154,10 +164,15 @@
     Friend Sub SetDataFromControlsToObject()
         With mEntidadActual
             .Nombre = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNombre.Text)
+            .CUIT_CUIL = CS_ValueTranslation.FromControlTextBoxToObjectString(maskedtextboxCUIT_CUIL.Text)
+            .Domicilio = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxDomicilio.Text)
+            .IDProvincia = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxDomicilioProvincia.SelectedValue, FIELD_VALUE_NOTSPECIFIED_BYTE)
+            .IDLocalidad = CS_ValueTranslation.FromControlComboBoxToObjectShort(comboboxDomicilioLocalidad.SelectedValue, FIELD_VALUE_NOTSPECIFIED_SHORT)
+            .CodigoPostal = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxDomicilioCodigoPostal.Text)
+
             .EsTitular = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxTipoTitular.CheckState)
             .EsTransportista = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxTipoTransportista.CheckState)
             .EsChofer = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxTipoChofer.CheckState)
-            .CUIT_CUIL = CS_ValueTranslation.FromControlTextBoxToObjectString(maskedtextboxCUIT_CUIL.Text)
 
             If .EsChofer Then
                 .Transportista_IDEntidad = CS_ValueTranslation.FromControlComboBoxToObjectInteger(comboboxTransportista.SelectedValue)
@@ -234,6 +249,24 @@
         CType(sender, MaskedTextBox).SelectAll()
     End Sub
 
+    Private Sub DomicilioProvincia_SelectedValueChanged(sender As Object, e As EventArgs) Handles comboboxDomicilioProvincia.SelectedValueChanged
+        If comboboxDomicilioProvincia.SelectedValue Is Nothing Then
+            pFillAndRefreshLists.Localidad(comboboxDomicilioLocalidad, 0, True)
+            comboboxDomicilioLocalidad.SelectedIndex = 0
+        Else
+            pFillAndRefreshLists.Localidad(comboboxDomicilioLocalidad, CByte(comboboxDomicilioProvincia.SelectedValue), True)
+            If CByte(comboboxDomicilioProvincia.SelectedValue) = CS_Parameter_System.GetIntegerAsByte(Parametros.DEFAULT_PROVINCIA_ID) Then
+                CS_ComboBox.SetSelectedValue(comboboxDomicilioLocalidad, SelectedItemOptions.ValueOrFirst, CS_Parameter_System.GetIntegerAsShort(Parametros.DEFAULT_LOCALIDAD_ID))
+            End If
+        End If
+    End Sub
+
+    Private Sub DomicilioLocalidad_SelectedValueChanged(sender As Object, e As EventArgs) Handles comboboxDomicilioLocalidad.SelectedValueChanged
+        If Not comboboxDomicilioLocalidad.SelectedValue Is Nothing Then
+            textboxDomicilioCodigoPostal.Text = CType(comboboxDomicilioLocalidad.SelectedItem, Localidad).CodigoPostal
+        End If
+    End Sub
+
     Private Sub Chofer_Click() Handles checkboxTipoChofer.CheckedChanged
         ChangeMode()
     End Sub
@@ -291,18 +324,18 @@
 #End Region
 
 #Region "Main Toolbar"
-    Private Sub buttonEditar_Click() Handles buttonEditar.Click
+    Private Sub Editar_Click() Handles buttonEditar.Click
         If Permisos.VerificarPermiso(Permisos.ENTIDAD_EDITAR) Then
             mEditMode = True
             ChangeMode()
         End If
     End Sub
 
-    Private Sub buttonCerrar_Click() Handles buttonCerrar.Click
+    Private Sub Cerrar_Click() Handles buttonCerrar.Click
         Me.Close()
     End Sub
 
-    Private Sub buttonGuardar_Click() Handles buttonGuardar.Click
+    Private Sub Guardar_Click() Handles buttonGuardar.Click
         ' Verificar que estén todos los campos con datos coherentes
         If textboxNombre.Text.Trim.Length = 0 Then
             MsgBox("Debe ingresar el Nombre.", MsgBoxStyle.Information, My.Application.Info.Title)

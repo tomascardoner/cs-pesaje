@@ -13,6 +13,7 @@ Imports System.Collections.Generic
 Partial Public Class OrigenDestino
     Public Property IDOrigenDestino As Integer
     Public Property Nombre As String
+    Public Property CUIT_CUIL As String
     Public Property Domicilio As String
     Public Property IDProvincia As Nullable(Of Byte)
     Public Property IDLocalidad As Nullable(Of Short)

@@ -56,6 +56,7 @@
         buttonCerrar.Visible = (mEditMode = False)
 
         textboxNombre.ReadOnly = (mEditMode = False)
+        maskedtextboxCUIT_CUIL.ReadOnly = (mEditMode = False)
         textboxDomicilio.ReadOnly = (mEditMode = False)
         comboboxDomicilioProvincia.Enabled = mEditMode
         comboboxDomicilioLocalidad.Enabled = mEditMode
@@ -94,6 +95,7 @@
             End If
             checkboxEsActivo.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.EsActivo)
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
+            maskedtextboxCUIT_CUIL.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.CUIT_CUIL)
             textboxDomicilio.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Domicilio)
             CS_ComboBox.SetSelectedValue(comboboxDomicilioProvincia, SelectedItemOptions.Value, .IDProvincia, FIELD_VALUE_NOTSPECIFIED_BYTE)
             CS_ComboBox.SetSelectedValue(comboboxDomicilioLocalidad, SelectedItemOptions.Value, .IDLocalidad, FIELD_VALUE_NOTSPECIFIED_SHORT)
@@ -127,6 +129,7 @@
     Friend Sub SetDataFromControlsToObject()
         With mOrigenDestinoActual
             .Nombre = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNombre.Text)
+            .CUIT_CUIL = CS_ValueTranslation.FromControlTextBoxToObjectString(maskedtextboxCUIT_CUIL.Text)
             .Domicilio = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxDomicilio.Text)
             .IDProvincia = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxDomicilioProvincia.SelectedValue, FIELD_VALUE_NOTSPECIFIED_BYTE)
             .IDLocalidad = CS_ValueTranslation.FromControlComboBoxToObjectShort(comboboxDomicilioLocalidad.SelectedValue, FIELD_VALUE_NOTSPECIFIED_SHORT)
@@ -180,7 +183,7 @@
         End If
     End Sub
 
-    Private Sub buttonAbrirEnGoogleMaps_Click(sender As Object, e As EventArgs) Handles buttonAbrirEnGoogleMaps.Click
+    Private Sub AbrirEnGoogleMaps_Click(sender As Object, e As EventArgs) Handles buttonAbrirEnGoogleMaps.Click
         Dim LinkString As String
 
         If doubletextboxLatitud.Text <> "" And doubletextboxLongitud.Text <> "" Then
@@ -193,28 +196,42 @@
         End If
     End Sub
 
-    Private Sub buttonAbrirEnGoogleEarth_Click(sender As Object, e As EventArgs) Handles buttonAbrirEnGoogleEarth.Click
+    Private Sub AbrirEnGoogleEarth_Click(sender As Object, e As EventArgs) Handles buttonAbrirEnGoogleEarth.Click
     End Sub
 #End Region
 
 #Region "Main Toolbar"
-    Private Sub buttonEditar_Click() Handles buttonEditar.Click
-        If Permisos.VerificarPermiso(Permisos.OrigenDestino_EDITAR) Then
+    Private Sub Editar_Click() Handles buttonEditar.Click
+        If Permisos.VerificarPermiso(Permisos.ORIGENDESTINO_EDITAR) Then
             mEditMode = True
             ChangeMode()
         End If
     End Sub
 
-    Private Sub buttonCerrar_Click() Handles buttonCerrar.Click
+    Private Sub Cerrar_Click() Handles buttonCerrar.Click
         Me.Close()
     End Sub
 
-    Private Sub buttonGuardar_Click() Handles buttonGuardar.Click
+    Private Sub Guardar_Click() Handles buttonGuardar.Click
         ' Verificar que estén todos los campos con datos coherentes
         If textboxNombre.Text.Trim.Length = 0 Then
             MsgBox("Debe ingresar el Nombre.", MsgBoxStyle.Information, My.Application.Info.Title)
             textboxNombre.Focus()
             Exit Sub
+        End If
+
+        ' Verifico el Número de CUIT / CUIL
+        If maskedtextboxCUIT_CUIL.Text.Trim.Length > 0 Then
+            If maskedtextboxCUIT_CUIL.Text.Trim.Length < 11 Then
+                MsgBox("El Número de CUIT / CUIL debe contener 11 dígitos (sin contar los guiones).", MsgBoxStyle.Information, My.Application.Info.Title)
+                maskedtextboxCUIT_CUIL.Focus()
+                Exit Sub
+            End If
+            If Not CS_AFIP.VerificarCUIT(maskedtextboxCUIT_CUIL.Text) Then
+                MsgBox("El Número de CUIT / CUIL ingresado es incorrecto.", MsgBoxStyle.Information, My.Application.Info.Title)
+                maskedtextboxCUIT_CUIL.Focus()
+                Exit Sub
+            End If
         End If
 
         ' Generar el ID del Origen-Destino nuevo

@@ -18,5 +18,6 @@ Partial Public Class Localidad
 
     Public Overridable Property OrigenesDestinos As ICollection(Of OrigenDestino) = New HashSet(Of OrigenDestino)
     Public Overridable Property Provincia As Provincia
+    Public Overridable Property Entidades As ICollection(Of Entidad) = New HashSet(Of Entidad)
 
 End Class

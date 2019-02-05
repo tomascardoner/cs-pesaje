@@ -14,6 +14,10 @@ Partial Public Class Entidad
     Public Property IDEntidad As Integer
     Public Property Nombre As String
     Public Property CUIT_CUIL As String
+    Public Property Domicilio As String
+    Public Property IDProvincia As Nullable(Of Byte)
+    Public Property IDLocalidad As Nullable(Of Short)
+    Public Property CodigoPostal As String
     Public Property EsTitular As Boolean
     Public Property EsTransportista As Boolean
     Public Property EsChofer As Boolean
@@ -39,5 +43,6 @@ Partial Public Class Entidad
     Public Overridable Property Camiones As ICollection(Of Camion) = New HashSet(Of Camion)
     Public Overridable Property Entidad_Productos_Plantas As ICollection(Of Entidad_Producto_Planta) = New HashSet(Of Entidad_Producto_Planta)
     Public Overridable Property Cosecha_Producto_Tarifas As ICollection(Of Cosecha_Producto_Tarifa) = New HashSet(Of Cosecha_Producto_Tarifa)
+    Public Overridable Property Localidad As Localidad
 
 End Class

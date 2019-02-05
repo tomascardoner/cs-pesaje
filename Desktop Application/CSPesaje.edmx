@@ -86,6 +86,10 @@
           <Property Name="IDEntidad" Type="int" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="CUIT_CUIL" Type="char" MaxLength="11" />
+          <Property Name="Domicilio" Type="varchar" MaxLength="100" />
+          <Property Name="IDProvincia" Type="tinyint" />
+          <Property Name="IDLocalidad" Type="smallint" />
+          <Property Name="CodigoPostal" Type="varchar" MaxLength="8" />
           <Property Name="EsTitular" Type="bit" Nullable="false" />
           <Property Name="EsTransportista" Type="bit" Nullable="false" />
           <Property Name="EsChofer" Type="bit" Nullable="false" />
@@ -140,6 +144,7 @@
           </Key>
           <Property Name="IDOrigenDestino" Type="int" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CUIT_CUIL" Type="char" MaxLength="11" />
           <Property Name="Domicilio" Type="varchar" MaxLength="100" />
           <Property Name="IDProvincia" Type="tinyint" />
           <Property Name="IDLocalidad" Type="smallint" />
@@ -608,6 +613,20 @@
             </Principal>
             <Dependent Role="Pesada">
               <PropertyRef Name="Transportista_IDEntidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Localidad__Entidad">
+          <End Role="Localidad" Type="Self.Localidad" Multiplicity="0..1" />
+          <End Role="Entidad" Type="Self.Entidad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Localidad">
+              <PropertyRef Name="IDProvincia" />
+              <PropertyRef Name="IDLocalidad" />
+            </Principal>
+            <Dependent Role="Entidad">
+              <PropertyRef Name="IDProvincia" />
+              <PropertyRef Name="IDLocalidad" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1180,6 +1199,10 @@
             <End Role="Entidad" EntitySet="Entidad" />
             <End Role="Pesada" EntitySet="Pesada" />
           </AssociationSet>
+          <AssociationSet Name="FK__Localidad__Entidad" Association="Self.FK__Localidad__Entidad">
+            <End Role="Localidad" EntitySet="Localidad" />
+            <End Role="Entidad" EntitySet="Entidad" />
+          </AssociationSet>
           <AssociationSet Name="FK__Localidad__OrigenDestino" Association="Self.FK__Localidad__OrigenDestino">
             <End Role="Localidad" EntitySet="Localidad" />
             <End Role="OrigenDestino" EntitySet="OrigenDestino" />
@@ -1588,6 +1611,10 @@
             <End Role="OrigenDestino" EntitySet="OrigenDestino" />
             <End Role="Pesada" EntitySet="Pesada" />
           </AssociationSet>
+          <AssociationSet Name="FK__Localidad__Entidad" Association="CSPesajeModel.FK__Localidad__Entidad">
+            <End Role="Localidad" EntitySet="Localidad" />
+            <End Role="Entidad" EntitySet="Entidad" />
+          </AssociationSet>
         </EntityContainer>		
 		<EntityType Name="Camion">
           <Key>
@@ -1687,6 +1714,10 @@
           <Property Name="IDEntidad" Type="Int32" Nullable="false" />
           <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CUIT_CUIL" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="Domicilio" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IDProvincia" Type="Byte" />
+          <Property Name="IDLocalidad" Type="Int16" />
+          <Property Name="CodigoPostal" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
           <Property Name="EsTitular" Type="Boolean" Nullable="false" />
           <Property Name="EsTransportista" Type="Boolean" Nullable="false" />
           <Property Name="EsChofer" Type="Boolean" Nullable="false" />
@@ -1711,6 +1742,7 @@
           <NavigationProperty Name="Camiones" Relationship="CSPesajeModel.FK__Entidad__Camion" FromRole="Entidad" ToRole="Camion" />
           <NavigationProperty Name="Entidad_Productos_Plantas" Relationship="CSPesajeModel.FK__Entidad__Entidad_Producto_Planta" FromRole="Entidad" ToRole="Entidad_Producto_Planta" />
           <NavigationProperty Name="Cosecha_Producto_Tarifas" Relationship="CSPesajeModel.FK__Entidad__Cosecha_Producto_Tarifa" FromRole="Entidad" ToRole="Cosecha_Producto_Tarifa" />
+          <NavigationProperty Name="Localidad" Relationship="CSPesajeModel.FK__Localidad__Entidad" FromRole="Entidad" ToRole="Localidad" />
         </EntityType>
         <EntityType Name="Entidad_OrigenDestino">
           <Key>
@@ -1740,6 +1772,7 @@
           <Property Name="CodigoPostal" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="OrigenesDestinos" Relationship="CSPesajeModel.FK__Localidad__OrigenDestino" FromRole="Localidad" ToRole="OrigenDestino" />
           <NavigationProperty Name="Provincia" Relationship="CSPesajeModel.FK__Provincia__Localidad" FromRole="Localidad" ToRole="Provincia" />
+          <NavigationProperty Name="Entidades" Relationship="CSPesajeModel.FK__Localidad__Entidad" FromRole="Localidad" ToRole="Entidad" />
         </EntityType>
         <EntityType Name="OrigenDestino">
           <Key>
@@ -1747,6 +1780,7 @@
           </Key>
           <Property Name="IDOrigenDestino" Type="Int32" Nullable="false" />
           <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CUIT_CUIL" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
           <Property Name="Domicilio" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="IDProvincia" Type="Byte" />
           <Property Name="IDLocalidad" Type="Int16" />
@@ -2777,6 +2811,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Localidad__Entidad">
+          <End Type="CSPesajeModel.Localidad" Role="Localidad" Multiplicity="0..1" />
+          <End Type="CSPesajeModel.Entidad" Role="Entidad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Localidad">
+              <PropertyRef Name="IDProvincia" />
+              <PropertyRef Name="IDLocalidad" />
+            </Principal>
+            <Dependent Role="Entidad">
+              <PropertyRef Name="IDProvincia" />
+              <PropertyRef Name="IDLocalidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2858,6 +2906,10 @@
           <EntitySetMapping Name="Entidad">
             <EntityTypeMapping TypeName="CSPesajeModel.Entidad">
               <MappingFragment StoreEntitySet="Entidad">
+                <ScalarProperty Name="CodigoPostal" ColumnName="CodigoPostal" />
+                <ScalarProperty Name="IDLocalidad" ColumnName="IDLocalidad" />
+                <ScalarProperty Name="IDProvincia" ColumnName="IDProvincia" />
+                <ScalarProperty Name="Domicilio" ColumnName="Domicilio" />
                 <ScalarProperty Name="Notas" ColumnName="Notas" />
                 <ScalarProperty Name="UsoFrecuente" ColumnName="UsoFrecuente" />
                 <ScalarProperty Name="IDEntidad" ColumnName="IDEntidad" />
@@ -2902,6 +2954,7 @@
           <EntitySetMapping Name="OrigenDestino">
             <EntityTypeMapping TypeName="CSPesajeModel.OrigenDestino">
               <MappingFragment StoreEntitySet="OrigenDestino">
+                <ScalarProperty Name="CUIT_CUIL" ColumnName="CUIT_CUIL" />
                 <ScalarProperty Name="IDOrigenDestino" ColumnName="IDOrigenDestino" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Domicilio" ColumnName="Domicilio" />

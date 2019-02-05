@@ -86,6 +86,7 @@
         <AssociationConnector Association="CSPesajeModel.FK__Camion__Pesada" />
         <AssociationConnector Association="CSPesajeModel.FK__OrigenDestino__Pesada__Destino" />
         <AssociationConnector Association="CSPesajeModel.FK__OrigenDestino__Pesada__Origen" />
+        <AssociationConnector Association="CSPesajeModel.FK__Localidad__Entidad" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

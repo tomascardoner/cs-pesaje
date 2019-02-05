@@ -60,6 +60,8 @@ Partial Class formOrigenDestino
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
         Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.labelNotas = New System.Windows.Forms.Label()
+        Me.labelCUIT_CUIL = New System.Windows.Forms.Label()
+        Me.maskedtextboxCUIT_CUIL = New System.Windows.Forms.MaskedTextBox()
         labelUbicacionLongitud = New System.Windows.Forms.Label()
         labelUbicacionLatitud = New System.Windows.Forms.Label()
         labelDomicilioCodigoPostal = New System.Windows.Forms.Label()
@@ -79,52 +81,52 @@ Partial Class formOrigenDestino
         'labelUbicacionLongitud
         '
         labelUbicacionLongitud.AutoSize = True
-        labelUbicacionLongitud.Location = New System.Drawing.Point(6, 167)
+        labelUbicacionLongitud.Location = New System.Drawing.Point(6, 193)
         labelUbicacionLongitud.Name = "labelUbicacionLongitud"
         labelUbicacionLongitud.Size = New System.Drawing.Size(51, 13)
-        labelUbicacionLongitud.TabIndex = 12
+        labelUbicacionLongitud.TabIndex = 14
         labelUbicacionLongitud.Text = "Longitud:"
         '
         'labelUbicacionLatitud
         '
         labelUbicacionLatitud.AutoSize = True
-        labelUbicacionLatitud.Location = New System.Drawing.Point(6, 141)
+        labelUbicacionLatitud.Location = New System.Drawing.Point(6, 167)
         labelUbicacionLatitud.Name = "labelUbicacionLatitud"
         labelUbicacionLatitud.Size = New System.Drawing.Size(42, 13)
-        labelUbicacionLatitud.TabIndex = 10
+        labelUbicacionLatitud.TabIndex = 12
         labelUbicacionLatitud.Text = "Latitud:"
         '
         'labelDomicilioCodigoPostal
         '
         labelDomicilioCodigoPostal.AutoSize = True
-        labelDomicilioCodigoPostal.Location = New System.Drawing.Point(6, 115)
+        labelDomicilioCodigoPostal.Location = New System.Drawing.Point(6, 141)
         labelDomicilioCodigoPostal.Name = "labelDomicilioCodigoPostal"
         labelDomicilioCodigoPostal.Size = New System.Drawing.Size(59, 13)
-        labelDomicilioCodigoPostal.TabIndex = 8
+        labelDomicilioCodigoPostal.TabIndex = 10
         labelDomicilioCodigoPostal.Text = "Cód. Post.:"
         '
         'labelDomicilioProvincia
         '
         labelDomicilioProvincia.AutoSize = True
-        labelDomicilioProvincia.Location = New System.Drawing.Point(6, 61)
+        labelDomicilioProvincia.Location = New System.Drawing.Point(6, 87)
         labelDomicilioProvincia.Name = "labelDomicilioProvincia"
         labelDomicilioProvincia.Size = New System.Drawing.Size(54, 13)
-        labelDomicilioProvincia.TabIndex = 4
+        labelDomicilioProvincia.TabIndex = 6
         labelDomicilioProvincia.Text = "Provincia:"
         '
         'labelDomicilioLocalidad
         '
         labelDomicilioLocalidad.AutoSize = True
-        labelDomicilioLocalidad.Location = New System.Drawing.Point(6, 88)
+        labelDomicilioLocalidad.Location = New System.Drawing.Point(6, 114)
         labelDomicilioLocalidad.Name = "labelDomicilioLocalidad"
         labelDomicilioLocalidad.Size = New System.Drawing.Size(56, 13)
-        labelDomicilioLocalidad.TabIndex = 6
+        labelDomicilioLocalidad.TabIndex = 8
         labelDomicilioLocalidad.Text = "Localidad:"
         '
         'labelEsActivo
         '
         labelEsActivo.AutoSize = True
-        labelEsActivo.Location = New System.Drawing.Point(6, 98)
+        labelEsActivo.Location = New System.Drawing.Point(6, 122)
         labelEsActivo.Name = "labelEsActivo"
         labelEsActivo.Size = New System.Drawing.Size(40, 13)
         labelEsActivo.TabIndex = 10
@@ -133,7 +135,7 @@ Partial Class formOrigenDestino
         'labelModificacion
         '
         labelModificacion.AutoSize = True
-        labelModificacion.Location = New System.Drawing.Point(6, 173)
+        labelModificacion.Location = New System.Drawing.Point(6, 197)
         labelModificacion.Name = "labelModificacion"
         labelModificacion.Size = New System.Drawing.Size(102, 13)
         labelModificacion.TabIndex = 31
@@ -142,7 +144,7 @@ Partial Class formOrigenDestino
         'labelCreacion
         '
         labelCreacion.AutoSize = True
-        labelCreacion.Location = New System.Drawing.Point(6, 147)
+        labelCreacion.Location = New System.Drawing.Point(6, 171)
         labelCreacion.Name = "labelCreacion"
         labelCreacion.Size = New System.Drawing.Size(52, 13)
         labelCreacion.TabIndex = 28
@@ -154,7 +156,7 @@ Partial Class formOrigenDestino
         Me.toolstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonCerrar, Me.buttonEditar, Me.buttonCancelar, Me.buttonGuardar})
         Me.toolstripMain.Location = New System.Drawing.Point(0, 0)
         Me.toolstripMain.Name = "toolstripMain"
-        Me.toolstripMain.Size = New System.Drawing.Size(544, 39)
+        Me.toolstripMain.Size = New System.Drawing.Size(549, 39)
         Me.toolstripMain.TabIndex = 1
         '
         'buttonCerrar
@@ -205,11 +207,13 @@ Partial Class formOrigenDestino
         Me.tabcontrolMain.Location = New System.Drawing.Point(12, 42)
         Me.tabcontrolMain.Name = "tabcontrolMain"
         Me.tabcontrolMain.SelectedIndex = 0
-        Me.tabcontrolMain.Size = New System.Drawing.Size(525, 225)
+        Me.tabcontrolMain.Size = New System.Drawing.Size(525, 249)
         Me.tabcontrolMain.TabIndex = 0
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.labelCUIT_CUIL)
+        Me.TabPage1.Controls.Add(Me.maskedtextboxCUIT_CUIL)
         Me.TabPage1.Controls.Add(Me.buttonAbrirEnGoogleEarth)
         Me.TabPage1.Controls.Add(Me.buttonAbrirEnGoogleMaps)
         Me.TabPage1.Controls.Add(Me.doubletextboxLongitud)
@@ -229,14 +233,14 @@ Partial Class formOrigenDestino
         Me.TabPage1.Location = New System.Drawing.Point(4, 25)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(517, 196)
+        Me.TabPage1.Size = New System.Drawing.Size(517, 220)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "General"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
         'buttonAbrirEnGoogleEarth
         '
-        Me.buttonAbrirEnGoogleEarth.Location = New System.Drawing.Point(308, 138)
+        Me.buttonAbrirEnGoogleEarth.Location = New System.Drawing.Point(308, 164)
         Me.buttonAbrirEnGoogleEarth.Name = "buttonAbrirEnGoogleEarth"
         Me.buttonAbrirEnGoogleEarth.Size = New System.Drawing.Size(131, 46)
         Me.buttonAbrirEnGoogleEarth.TabIndex = 17
@@ -246,7 +250,7 @@ Partial Class formOrigenDestino
         '
         'buttonAbrirEnGoogleMaps
         '
-        Me.buttonAbrirEnGoogleMaps.Location = New System.Drawing.Point(171, 138)
+        Me.buttonAbrirEnGoogleMaps.Location = New System.Drawing.Point(171, 164)
         Me.buttonAbrirEnGoogleMaps.Name = "buttonAbrirEnGoogleMaps"
         Me.buttonAbrirEnGoogleMaps.Size = New System.Drawing.Size(131, 46)
         Me.buttonAbrirEnGoogleMaps.TabIndex = 16
@@ -256,11 +260,11 @@ Partial Class formOrigenDestino
         'doubletextboxLongitud
         '
         Me.doubletextboxLongitud.AllowNull = True
-        Me.doubletextboxLongitud.BackGroundColor = System.Drawing.SystemColors.Window
         Me.doubletextboxLongitud.BeforeTouchSize = New System.Drawing.Size(78, 20)
         Me.doubletextboxLongitud.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.doubletextboxLongitud.DoubleValue = 0.0R
-        Me.doubletextboxLongitud.Location = New System.Drawing.Point(87, 164)
+        Me.doubletextboxLongitud.DoubleValue = 0R
+        Me.doubletextboxLongitud.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.doubletextboxLongitud.Location = New System.Drawing.Point(87, 190)
         Me.doubletextboxLongitud.MaxValue = 180.0R
         Me.doubletextboxLongitud.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
         Me.doubletextboxLongitud.MinValue = -180.0R
@@ -269,7 +273,6 @@ Partial Class formOrigenDestino
         Me.doubletextboxLongitud.NumberDecimalDigits = 6
         Me.doubletextboxLongitud.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.SetNullString
         Me.doubletextboxLongitud.Size = New System.Drawing.Size(78, 20)
-        Me.doubletextboxLongitud.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
         Me.doubletextboxLongitud.TabIndex = 15
         Me.doubletextboxLongitud.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.doubletextboxLongitud.WordWrap = False
@@ -277,11 +280,11 @@ Partial Class formOrigenDestino
         'doubletextboxLatitud
         '
         Me.doubletextboxLatitud.AllowNull = True
-        Me.doubletextboxLatitud.BackGroundColor = System.Drawing.SystemColors.Window
         Me.doubletextboxLatitud.BeforeTouchSize = New System.Drawing.Size(78, 20)
         Me.doubletextboxLatitud.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.doubletextboxLatitud.DoubleValue = 0.0R
-        Me.doubletextboxLatitud.Location = New System.Drawing.Point(87, 138)
+        Me.doubletextboxLatitud.DoubleValue = 0R
+        Me.doubletextboxLatitud.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.doubletextboxLatitud.Location = New System.Drawing.Point(87, 164)
         Me.doubletextboxLatitud.MaxValue = 90.0R
         Me.doubletextboxLatitud.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
         Me.doubletextboxLatitud.MinValue = -90.0R
@@ -290,70 +293,69 @@ Partial Class formOrigenDestino
         Me.doubletextboxLatitud.NumberDecimalDigits = 6
         Me.doubletextboxLatitud.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.SetNullString
         Me.doubletextboxLatitud.Size = New System.Drawing.Size(78, 20)
-        Me.doubletextboxLatitud.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
-        Me.doubletextboxLatitud.TabIndex = 14
+        Me.doubletextboxLatitud.TabIndex = 13
         Me.doubletextboxLatitud.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.doubletextboxLatitud.WordWrap = False
         '
         'textboxNombre
         '
-        Me.textboxNombre.Location = New System.Drawing.Point(87, 6)
+        Me.textboxNombre.Location = New System.Drawing.Point(87, 32)
         Me.textboxNombre.MaxLength = 50
         Me.textboxNombre.Name = "textboxNombre"
         Me.textboxNombre.Size = New System.Drawing.Size(283, 20)
-        Me.textboxNombre.TabIndex = 1
+        Me.textboxNombre.TabIndex = 3
         '
         'comboboxDomicilioLocalidad
         '
         Me.comboboxDomicilioLocalidad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxDomicilioLocalidad.FormattingEnabled = True
-        Me.comboboxDomicilioLocalidad.Location = New System.Drawing.Point(87, 85)
+        Me.comboboxDomicilioLocalidad.Location = New System.Drawing.Point(87, 111)
         Me.comboboxDomicilioLocalidad.Name = "comboboxDomicilioLocalidad"
         Me.comboboxDomicilioLocalidad.Size = New System.Drawing.Size(424, 21)
-        Me.comboboxDomicilioLocalidad.TabIndex = 7
+        Me.comboboxDomicilioLocalidad.TabIndex = 9
         '
         'labelNombre
         '
         Me.labelNombre.AutoSize = True
-        Me.labelNombre.Location = New System.Drawing.Point(6, 9)
+        Me.labelNombre.Location = New System.Drawing.Point(6, 35)
         Me.labelNombre.Name = "labelNombre"
         Me.labelNombre.Size = New System.Drawing.Size(47, 13)
-        Me.labelNombre.TabIndex = 0
+        Me.labelNombre.TabIndex = 2
         Me.labelNombre.Text = "Nombre:"
         '
         'comboboxDomicilioProvincia
         '
         Me.comboboxDomicilioProvincia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxDomicilioProvincia.FormattingEnabled = True
-        Me.comboboxDomicilioProvincia.Location = New System.Drawing.Point(87, 58)
+        Me.comboboxDomicilioProvincia.Location = New System.Drawing.Point(87, 84)
         Me.comboboxDomicilioProvincia.Name = "comboboxDomicilioProvincia"
         Me.comboboxDomicilioProvincia.Size = New System.Drawing.Size(424, 21)
-        Me.comboboxDomicilioProvincia.TabIndex = 5
+        Me.comboboxDomicilioProvincia.TabIndex = 7
         '
         'textboxDomicilio
         '
-        Me.textboxDomicilio.Location = New System.Drawing.Point(87, 32)
+        Me.textboxDomicilio.Location = New System.Drawing.Point(87, 58)
         Me.textboxDomicilio.MaxLength = 100
         Me.textboxDomicilio.Name = "textboxDomicilio"
         Me.textboxDomicilio.Size = New System.Drawing.Size(425, 20)
-        Me.textboxDomicilio.TabIndex = 3
+        Me.textboxDomicilio.TabIndex = 5
         '
         'labelDomicilio
         '
         Me.labelDomicilio.AutoSize = True
-        Me.labelDomicilio.Location = New System.Drawing.Point(6, 35)
+        Me.labelDomicilio.Location = New System.Drawing.Point(6, 61)
         Me.labelDomicilio.Name = "labelDomicilio"
         Me.labelDomicilio.Size = New System.Drawing.Size(52, 13)
-        Me.labelDomicilio.TabIndex = 2
+        Me.labelDomicilio.TabIndex = 4
         Me.labelDomicilio.Text = "Domicilio:"
         '
         'textboxDomicilioCodigoPostal
         '
-        Me.textboxDomicilioCodigoPostal.Location = New System.Drawing.Point(87, 112)
+        Me.textboxDomicilioCodigoPostal.Location = New System.Drawing.Point(87, 138)
         Me.textboxDomicilioCodigoPostal.MaxLength = 8
         Me.textboxDomicilioCodigoPostal.Name = "textboxDomicilioCodigoPostal"
         Me.textboxDomicilioCodigoPostal.Size = New System.Drawing.Size(50, 20)
-        Me.textboxDomicilioCodigoPostal.TabIndex = 9
+        Me.textboxDomicilioCodigoPostal.TabIndex = 11
         '
         'tabpageNotasAuditoria
         '
@@ -372,7 +374,7 @@ Partial Class formOrigenDestino
         Me.tabpageNotasAuditoria.Location = New System.Drawing.Point(4, 25)
         Me.tabpageNotasAuditoria.Name = "tabpageNotasAuditoria"
         Me.tabpageNotasAuditoria.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageNotasAuditoria.Size = New System.Drawing.Size(517, 196)
+        Me.tabpageNotasAuditoria.Size = New System.Drawing.Size(517, 220)
         Me.tabpageNotasAuditoria.TabIndex = 1
         Me.tabpageNotasAuditoria.Text = "Notas y Auditoría"
         Me.tabpageNotasAuditoria.UseVisualStyleBackColor = True
@@ -380,7 +382,7 @@ Partial Class formOrigenDestino
         'checkboxEsActivo
         '
         Me.checkboxEsActivo.AutoSize = True
-        Me.checkboxEsActivo.Location = New System.Drawing.Point(122, 98)
+        Me.checkboxEsActivo.Location = New System.Drawing.Point(122, 122)
         Me.checkboxEsActivo.Name = "checkboxEsActivo"
         Me.checkboxEsActivo.Size = New System.Drawing.Size(15, 14)
         Me.checkboxEsActivo.TabIndex = 11
@@ -389,7 +391,7 @@ Partial Class formOrigenDestino
         'labelIDOrigenDestino
         '
         Me.labelIDOrigenDestino.AutoSize = True
-        Me.labelIDOrigenDestino.Location = New System.Drawing.Point(6, 121)
+        Me.labelIDOrigenDestino.Location = New System.Drawing.Point(6, 145)
         Me.labelIDOrigenDestino.Name = "labelIDOrigenDestino"
         Me.labelIDOrigenDestino.Size = New System.Drawing.Size(110, 13)
         Me.labelIDOrigenDestino.TabIndex = 0
@@ -397,7 +399,7 @@ Partial Class formOrigenDestino
         '
         'textboxIDOrigenDestino
         '
-        Me.textboxIDOrigenDestino.Location = New System.Drawing.Point(122, 118)
+        Me.textboxIDOrigenDestino.Location = New System.Drawing.Point(122, 142)
         Me.textboxIDOrigenDestino.MaxLength = 10
         Me.textboxIDOrigenDestino.Name = "textboxIDOrigenDestino"
         Me.textboxIDOrigenDestino.ReadOnly = True
@@ -408,7 +410,7 @@ Partial Class formOrigenDestino
         '
         'textboxUsuarioModificacion
         '
-        Me.textboxUsuarioModificacion.Location = New System.Drawing.Point(249, 170)
+        Me.textboxUsuarioModificacion.Location = New System.Drawing.Point(249, 194)
         Me.textboxUsuarioModificacion.MaxLength = 50
         Me.textboxUsuarioModificacion.Name = "textboxUsuarioModificacion"
         Me.textboxUsuarioModificacion.ReadOnly = True
@@ -417,7 +419,7 @@ Partial Class formOrigenDestino
         '
         'textboxUsuarioCreacion
         '
-        Me.textboxUsuarioCreacion.Location = New System.Drawing.Point(249, 144)
+        Me.textboxUsuarioCreacion.Location = New System.Drawing.Point(249, 168)
         Me.textboxUsuarioCreacion.MaxLength = 50
         Me.textboxUsuarioCreacion.Name = "textboxUsuarioCreacion"
         Me.textboxUsuarioCreacion.ReadOnly = True
@@ -426,7 +428,7 @@ Partial Class formOrigenDestino
         '
         'textboxFechaHoraModificacion
         '
-        Me.textboxFechaHoraModificacion.Location = New System.Drawing.Point(122, 170)
+        Me.textboxFechaHoraModificacion.Location = New System.Drawing.Point(122, 194)
         Me.textboxFechaHoraModificacion.MaxLength = 0
         Me.textboxFechaHoraModificacion.Name = "textboxFechaHoraModificacion"
         Me.textboxFechaHoraModificacion.ReadOnly = True
@@ -435,7 +437,7 @@ Partial Class formOrigenDestino
         '
         'textboxFechaHoraCreacion
         '
-        Me.textboxFechaHoraCreacion.Location = New System.Drawing.Point(122, 144)
+        Me.textboxFechaHoraCreacion.Location = New System.Drawing.Point(122, 168)
         Me.textboxFechaHoraCreacion.MaxLength = 0
         Me.textboxFechaHoraCreacion.Name = "textboxFechaHoraCreacion"
         Me.textboxFechaHoraCreacion.ReadOnly = True
@@ -449,7 +451,7 @@ Partial Class formOrigenDestino
         Me.textboxNotas.Multiline = True
         Me.textboxNotas.Name = "textboxNotas"
         Me.textboxNotas.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.textboxNotas.Size = New System.Drawing.Size(386, 86)
+        Me.textboxNotas.Size = New System.Drawing.Size(386, 110)
         Me.textboxNotas.TabIndex = 25
         '
         'labelNotas
@@ -461,11 +463,34 @@ Partial Class formOrigenDestino
         Me.labelNotas.TabIndex = 24
         Me.labelNotas.Text = "Notas:"
         '
+        'labelCUIT_CUIL
+        '
+        Me.labelCUIT_CUIL.AutoSize = True
+        Me.labelCUIT_CUIL.Location = New System.Drawing.Point(6, 9)
+        Me.labelCUIT_CUIL.Name = "labelCUIT_CUIL"
+        Me.labelCUIT_CUIL.Size = New System.Drawing.Size(70, 13)
+        Me.labelCUIT_CUIL.TabIndex = 0
+        Me.labelCUIT_CUIL.Text = "CUIT / CUIL:"
+        Me.tooltipMain.SetToolTip(Me.labelCUIT_CUIL, "Ingrese el Número de Documento sin utilizar puntos.")
+        '
+        'maskedtextboxCUIT_CUIL
+        '
+        Me.maskedtextboxCUIT_CUIL.AllowPromptAsInput = False
+        Me.maskedtextboxCUIT_CUIL.AsciiOnly = True
+        Me.maskedtextboxCUIT_CUIL.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
+        Me.maskedtextboxCUIT_CUIL.HidePromptOnLeave = True
+        Me.maskedtextboxCUIT_CUIL.Location = New System.Drawing.Point(87, 6)
+        Me.maskedtextboxCUIT_CUIL.Mask = "00-00000000-0"
+        Me.maskedtextboxCUIT_CUIL.Name = "maskedtextboxCUIT_CUIL"
+        Me.maskedtextboxCUIT_CUIL.Size = New System.Drawing.Size(90, 20)
+        Me.maskedtextboxCUIT_CUIL.TabIndex = 1
+        Me.maskedtextboxCUIT_CUIL.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
+        '
         'formOrigenDestino
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(544, 277)
+        Me.ClientSize = New System.Drawing.Size(549, 300)
         Me.Controls.Add(Me.tabcontrolMain)
         Me.Controls.Add(Me.toolstripMain)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
@@ -517,4 +542,6 @@ Partial Class formOrigenDestino
     Friend WithEvents doubletextboxLatitud As Syncfusion.Windows.Forms.Tools.DoubleTextBox
     Friend WithEvents buttonAbrirEnGoogleMaps As System.Windows.Forms.Button
     Friend WithEvents buttonAbrirEnGoogleEarth As System.Windows.Forms.Button
+    Friend WithEvents labelCUIT_CUIL As Label
+    Friend WithEvents maskedtextboxCUIT_CUIL As MaskedTextBox
 End Class
