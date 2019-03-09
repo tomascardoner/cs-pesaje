@@ -27,7 +27,7 @@
         End If
         buttonIndiceObtener.Visible = mIsNew
 
-        'Me.MdiParent = formMDIMain
+        'Me.MdiParent = pFormMDIMain
         CS_Form.CenterToParent(ParentForm, Me)
         InitializeFormAndControls()
         SetDataFromObjectToControls()
@@ -398,8 +398,8 @@
                 mdbContext.SaveChanges()
 
                 ' Refresco la lista de Cosecha_Producto_Tarifas para mostrar los cambios
-                If CS_Form.MDIChild_IsLoaded(CType(formMDIMain, Form), "formTarifas") Then
-                    Dim formTarifas As formTarifas = CType(CS_Form.MDIChild_GetInstance(CType(formMDIMain, Form), "formTarifas"), formTarifas)
+                If CS_Form.MDIChild_IsLoaded(CType(pFormMDIMain, Form), "formTarifas") Then
+                    Dim formTarifas As formTarifas = CType(CS_Form.MDIChild_GetInstance(CType(pFormMDIMain, Form), "formTarifas"), formTarifas)
                     formTarifas.RefreshData(mCosecha_Producto_TarifaActual.IDCosecha, mCosecha_Producto_TarifaActual.IDProducto, mCosecha_Producto_TarifaActual.Indice)
                     formTarifas = Nothing
                 End If

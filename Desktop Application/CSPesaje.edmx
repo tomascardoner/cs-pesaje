@@ -14,6 +14,7 @@
           <Property Name="IDCamion" Type="tinyint" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" />
           <Property Name="DominioChasis" Type="varchar" MaxLength="7" />
+          <Property Name="DominioChasisExtra" Type="varchar" MaxLength="7" />
           <Property Name="DominioAcoplado" Type="varchar" MaxLength="7" />
           <Property Name="NombreDominios" Type="varchar" MaxLength="72" StoreGeneratedPattern="Computed" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
@@ -269,6 +270,7 @@
           <Property Name="Chofer_Nombre" Type="varchar" MaxLength="50" />
           <Property Name="Chofer_CUIT_CUIL" Type="char" MaxLength="11" />
           <Property Name="Camion_DominioChasis" Type="varchar" MaxLength="7" />
+          <Property Name="Camion_DominioChasisExtra" Type="varchar" MaxLength="7" />
           <Property Name="Camion_DominioAcoplado" Type="varchar" MaxLength="7" />
         </EntityType>
         <EntityType Name="Planta">
@@ -1625,6 +1627,7 @@
           <Property Name="IDCamion" Type="Byte" Nullable="false" />
           <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="DominioChasis" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
+          <Property Name="DominioChasisExtra" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
           <Property Name="DominioAcoplado" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
           <Property Name="NombreDominios" Type="String" MaxLength="72" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
@@ -1928,6 +1931,7 @@
           <Property Name="Chofer_Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Chofer_CUIT_CUIL" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
           <Property Name="Camion_DominioChasis" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
+          <Property Name="Camion_DominioChasisExtra" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
           <Property Name="Camion_DominioAcoplado" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Pesada" Relationship="CSPesajeModel.FK__Pesada__Pesada_Otro" FromRole="Pesada_Otro" ToRole="Pesada" />
         </EntityType>
@@ -2834,6 +2838,7 @@
           <EntitySetMapping Name="Camion">
             <EntityTypeMapping TypeName="CSPesajeModel.Camion">
               <MappingFragment StoreEntitySet="Camion">
+                <ScalarProperty Name="DominioChasisExtra" ColumnName="DominioChasisExtra" />
                 <ScalarProperty Name="NombreDominios" ColumnName="NombreDominios" />
                 <ScalarProperty Name="IDEntidad" ColumnName="IDEntidad" />
                 <ScalarProperty Name="IDCamion" ColumnName="IDCamion" />
@@ -3076,6 +3081,7 @@
           <EntitySetMapping Name="Pesada_Otro">
             <EntityTypeMapping TypeName="CSPesajeModel.Pesada_Otro">
               <MappingFragment StoreEntitySet="Pesada_Otro">
+                <ScalarProperty Name="Camion_DominioChasisExtra" ColumnName="Camion_DominioChasisExtra" />
                 <ScalarProperty Name="Destino_Nombre" ColumnName="Destino_Nombre" />
                 <ScalarProperty Name="Origen_Nombre" ColumnName="Origen_Nombre" />
                 <ScalarProperty Name="Titular_Nombre" ColumnName="Titular_Nombre" />

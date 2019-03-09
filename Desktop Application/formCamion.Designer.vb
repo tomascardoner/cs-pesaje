@@ -41,6 +41,7 @@ Partial Class formCamion
         Me.textboxDominioAcoplado = New System.Windows.Forms.TextBox()
         Me.textboxDominioChasis = New System.Windows.Forms.TextBox()
         Me.labelDominioChasis = New System.Windows.Forms.Label()
+        Me.textboxDominioChasisExtra = New System.Windows.Forms.TextBox()
         labelEsActivo = New System.Windows.Forms.Label()
         Me.toolstripMain.SuspendLayout()
         Me.SuspendLayout()
@@ -51,7 +52,7 @@ Partial Class formCamion
         labelEsActivo.Location = New System.Drawing.Point(222, 52)
         labelEsActivo.Name = "labelEsActivo"
         labelEsActivo.Size = New System.Drawing.Size(40, 13)
-        labelEsActivo.TabIndex = 10
+        labelEsActivo.TabIndex = 11
         labelEsActivo.Text = "Activo:"
         '
         'labelNombre
@@ -98,7 +99,7 @@ Partial Class formCamion
         Me.toolstripMain.Location = New System.Drawing.Point(0, 0)
         Me.toolstripMain.Name = "toolstripMain"
         Me.toolstripMain.Size = New System.Drawing.Size(534, 39)
-        Me.toolstripMain.TabIndex = 12
+        Me.toolstripMain.TabIndex = 13
         '
         'buttonCerrar
         '
@@ -146,7 +147,7 @@ Partial Class formCamion
         Me.checkboxEsActivo.Location = New System.Drawing.Point(268, 52)
         Me.checkboxEsActivo.Name = "checkboxEsActivo"
         Me.checkboxEsActivo.Size = New System.Drawing.Size(15, 14)
-        Me.checkboxEsActivo.TabIndex = 11
+        Me.checkboxEsActivo.TabIndex = 12
         Me.checkboxEsActivo.UseVisualStyleBackColor = True
         '
         'labelTransportista
@@ -173,7 +174,7 @@ Partial Class formCamion
         Me.labelDominioAcoplado.Location = New System.Drawing.Point(12, 157)
         Me.labelDominioAcoplado.Name = "labelDominioAcoplado"
         Me.labelDominioAcoplado.Size = New System.Drawing.Size(96, 13)
-        Me.labelDominioAcoplado.TabIndex = 8
+        Me.labelDominioAcoplado.TabIndex = 9
         Me.labelDominioAcoplado.Text = "Dominio Acoplado:"
         '
         'textboxDominioAcoplado
@@ -183,7 +184,7 @@ Partial Class formCamion
         Me.textboxDominioAcoplado.MaxLength = 7
         Me.textboxDominioAcoplado.Name = "textboxDominioAcoplado"
         Me.textboxDominioAcoplado.Size = New System.Drawing.Size(68, 20)
-        Me.textboxDominioAcoplado.TabIndex = 9
+        Me.textboxDominioAcoplado.TabIndex = 10
         '
         'textboxDominioChasis
         '
@@ -203,11 +204,21 @@ Partial Class formCamion
         Me.labelDominioChasis.TabIndex = 6
         Me.labelDominioChasis.Text = "Dominio Chasis:"
         '
+        'textboxDominioChasisExtra
+        '
+        Me.textboxDominioChasisExtra.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.textboxDominioChasisExtra.Location = New System.Drawing.Point(188, 128)
+        Me.textboxDominioChasisExtra.MaxLength = 7
+        Me.textboxDominioChasisExtra.Name = "textboxDominioChasisExtra"
+        Me.textboxDominioChasisExtra.Size = New System.Drawing.Size(68, 20)
+        Me.textboxDominioChasisExtra.TabIndex = 8
+        '
         'formCamion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(534, 192)
+        Me.Controls.Add(Me.textboxDominioChasisExtra)
         Me.Controls.Add(Me.labelDominioAcoplado)
         Me.Controls.Add(Me.textboxDominioAcoplado)
         Me.Controls.Add(Me.textboxDominioChasis)
@@ -251,4 +262,5 @@ Partial Class formCamion
     Friend WithEvents textboxDominioAcoplado As System.Windows.Forms.TextBox
     Friend WithEvents textboxDominioChasis As System.Windows.Forms.TextBox
     Friend WithEvents labelDominioChasis As System.Windows.Forms.Label
+    Friend WithEvents textboxDominioChasisExtra As TextBox
 End Class

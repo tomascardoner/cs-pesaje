@@ -153,6 +153,7 @@ Partial Class formPesada
         Me.checkboxEsActivo = New System.Windows.Forms.CheckBox()
         Me.labelEsVerificado = New System.Windows.Forms.Label()
         Me.checkboxEsVerificado = New System.Windows.Forms.CheckBox()
+        Me.textboxCamion_DominioChasisExtra = New System.Windows.Forms.TextBox()
         Me.toolstripMain.SuspendLayout()
         Me.groupboxTransporte.SuspendLayout()
         CType(Me.integertextboxKilometro, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -461,6 +462,7 @@ Partial Class formPesada
         '
         'groupboxTransporte
         '
+        Me.groupboxTransporte.Controls.Add(Me.textboxCamion_DominioChasisExtra)
         Me.groupboxTransporte.Controls.Add(Me.labelKilometro)
         Me.groupboxTransporte.Controls.Add(Me.integertextboxKilometro)
         Me.groupboxTransporte.Controls.Add(Me.checkboxCamionOtro)
@@ -495,15 +497,15 @@ Partial Class formPesada
         Me.labelKilometro.Location = New System.Drawing.Point(6, 148)
         Me.labelKilometro.Name = "labelKilometro"
         Me.labelKilometro.Size = New System.Drawing.Size(58, 13)
-        Me.labelKilometro.TabIndex = 19
+        Me.labelKilometro.TabIndex = 20
         Me.labelKilometro.Text = "Kilómetros:"
         '
         'integertextboxKilometro
         '
         Me.integertextboxKilometro.AllowNull = True
-        Me.integertextboxKilometro.BackGroundColor = System.Drawing.SystemColors.Window
         Me.integertextboxKilometro.BeforeTouchSize = New System.Drawing.Size(38, 20)
         Me.integertextboxKilometro.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.integertextboxKilometro.ForeColor = System.Drawing.SystemColors.WindowText
         Me.integertextboxKilometro.IntegerValue = CType(0, Long)
         Me.integertextboxKilometro.Location = New System.Drawing.Point(92, 145)
         Me.integertextboxKilometro.MaxValue = CType(3000, Long)
@@ -513,28 +515,27 @@ Partial Class formPesada
         Me.integertextboxKilometro.NullString = ""
         Me.integertextboxKilometro.NumberNegativePattern = 0
         Me.integertextboxKilometro.Size = New System.Drawing.Size(53, 20)
-        Me.integertextboxKilometro.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
-        Me.integertextboxKilometro.TabIndex = 20
+        Me.integertextboxKilometro.TabIndex = 21
         Me.integertextboxKilometro.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.integertextboxKilometro.WordWrap = False
         '
         'labelCamion_DominioAcoplado
         '
         Me.labelCamion_DominioAcoplado.AutoSize = True
-        Me.labelCamion_DominioAcoplado.Location = New System.Drawing.Point(193, 123)
+        Me.labelCamion_DominioAcoplado.Location = New System.Drawing.Point(257, 123)
         Me.labelCamion_DominioAcoplado.Name = "labelCamion_DominioAcoplado"
-        Me.labelCamion_DominioAcoplado.Size = New System.Drawing.Size(55, 13)
-        Me.labelCamion_DominioAcoplado.TabIndex = 17
-        Me.labelCamion_DominioAcoplado.Text = "Acoplado:"
+        Me.labelCamion_DominioAcoplado.Size = New System.Drawing.Size(23, 13)
+        Me.labelCamion_DominioAcoplado.TabIndex = 18
+        Me.labelCamion_DominioAcoplado.Text = "Ac:"
         '
         'textboxCamion_DominioAcoplado
         '
         Me.textboxCamion_DominioAcoplado.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.textboxCamion_DominioAcoplado.Location = New System.Drawing.Point(254, 119)
+        Me.textboxCamion_DominioAcoplado.Location = New System.Drawing.Point(280, 119)
         Me.textboxCamion_DominioAcoplado.MaxLength = 7
         Me.textboxCamion_DominioAcoplado.Name = "textboxCamion_DominioAcoplado"
         Me.textboxCamion_DominioAcoplado.Size = New System.Drawing.Size(68, 20)
-        Me.textboxCamion_DominioAcoplado.TabIndex = 18
+        Me.textboxCamion_DominioAcoplado.TabIndex = 19
         '
         'textboxCamion_DominioChasis
         '
@@ -1077,10 +1078,10 @@ Partial Class formPesada
         'integertextboxKilogramoNeto
         '
         Me.integertextboxKilogramoNeto.AllowNull = True
-        Me.integertextboxKilogramoNeto.BackGroundColor = System.Drawing.SystemColors.Window
         Me.integertextboxKilogramoNeto.BeforeTouchSize = New System.Drawing.Size(38, 20)
         Me.integertextboxKilogramoNeto.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.integertextboxKilogramoNeto.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.integertextboxKilogramoNeto.ForeColor = System.Drawing.SystemColors.WindowText
         Me.integertextboxKilogramoNeto.IntegerValue = CType(0, Long)
         Me.integertextboxKilogramoNeto.Location = New System.Drawing.Point(268, 26)
         Me.integertextboxKilogramoNeto.MaxValue = CType(99999, Long)
@@ -1091,7 +1092,6 @@ Partial Class formPesada
         Me.integertextboxKilogramoNeto.NumberNegativePattern = 0
         Me.integertextboxKilogramoNeto.ReadOnly = True
         Me.integertextboxKilogramoNeto.Size = New System.Drawing.Size(79, 22)
-        Me.integertextboxKilogramoNeto.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
         Me.integertextboxKilogramoNeto.TabIndex = 7
         Me.integertextboxKilogramoNeto.TabStop = False
         Me.integertextboxKilogramoNeto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -1109,9 +1109,9 @@ Partial Class formPesada
         'integertextboxKilogramoTara
         '
         Me.integertextboxKilogramoTara.AllowNull = True
-        Me.integertextboxKilogramoTara.BackGroundColor = System.Drawing.SystemColors.Window
         Me.integertextboxKilogramoTara.BeforeTouchSize = New System.Drawing.Size(38, 20)
         Me.integertextboxKilogramoTara.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.integertextboxKilogramoTara.ForeColor = System.Drawing.SystemColors.WindowText
         Me.integertextboxKilogramoTara.IntegerValue = CType(0, Long)
         Me.integertextboxKilogramoTara.Location = New System.Drawing.Point(92, 39)
         Me.integertextboxKilogramoTara.MaxValue = CType(99999, Long)
@@ -1121,7 +1121,6 @@ Partial Class formPesada
         Me.integertextboxKilogramoTara.NullString = ""
         Me.integertextboxKilogramoTara.NumberNegativePattern = 0
         Me.integertextboxKilogramoTara.Size = New System.Drawing.Size(53, 20)
-        Me.integertextboxKilogramoTara.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
         Me.integertextboxKilogramoTara.TabIndex = 4
         Me.integertextboxKilogramoTara.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.integertextboxKilogramoTara.WordWrap = False
@@ -1138,9 +1137,9 @@ Partial Class formPesada
         'integertextboxKilogramoBruto
         '
         Me.integertextboxKilogramoBruto.AllowNull = True
-        Me.integertextboxKilogramoBruto.BackGroundColor = System.Drawing.SystemColors.Window
         Me.integertextboxKilogramoBruto.BeforeTouchSize = New System.Drawing.Size(38, 20)
         Me.integertextboxKilogramoBruto.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.integertextboxKilogramoBruto.ForeColor = System.Drawing.SystemColors.WindowText
         Me.integertextboxKilogramoBruto.IntegerValue = CType(0, Long)
         Me.integertextboxKilogramoBruto.Location = New System.Drawing.Point(92, 13)
         Me.integertextboxKilogramoBruto.MaxValue = CType(99999, Long)
@@ -1150,7 +1149,6 @@ Partial Class formPesada
         Me.integertextboxKilogramoBruto.NullString = ""
         Me.integertextboxKilogramoBruto.NumberNegativePattern = 0
         Me.integertextboxKilogramoBruto.Size = New System.Drawing.Size(53, 20)
-        Me.integertextboxKilogramoBruto.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
         Me.integertextboxKilogramoBruto.TabIndex = 1
         Me.integertextboxKilogramoBruto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.integertextboxKilogramoBruto.WordWrap = False
@@ -1182,9 +1180,9 @@ Partial Class formPesada
         'integertextboxGranoDaniado
         '
         Me.integertextboxGranoDaniado.AllowNull = True
-        Me.integertextboxGranoDaniado.BackGroundColor = System.Drawing.SystemColors.Window
         Me.integertextboxGranoDaniado.BeforeTouchSize = New System.Drawing.Size(38, 20)
         Me.integertextboxGranoDaniado.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.integertextboxGranoDaniado.ForeColor = System.Drawing.SystemColors.WindowText
         Me.integertextboxGranoDaniado.IntegerValue = CType(0, Long)
         Me.integertextboxGranoDaniado.Location = New System.Drawing.Point(206, 38)
         Me.integertextboxGranoDaniado.MaxValue = CType(99, Long)
@@ -1194,7 +1192,6 @@ Partial Class formPesada
         Me.integertextboxGranoDaniado.NullString = ""
         Me.integertextboxGranoDaniado.NumberNegativePattern = 0
         Me.integertextboxGranoDaniado.Size = New System.Drawing.Size(38, 20)
-        Me.integertextboxGranoDaniado.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
         Me.integertextboxGranoDaniado.TabIndex = 9
         Me.integertextboxGranoDaniado.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.integertextboxGranoDaniado.WordWrap = False
@@ -1202,9 +1199,9 @@ Partial Class formPesada
         'integertextboxGranoVerde
         '
         Me.integertextboxGranoVerde.AllowNull = True
-        Me.integertextboxGranoVerde.BackGroundColor = System.Drawing.SystemColors.Window
         Me.integertextboxGranoVerde.BeforeTouchSize = New System.Drawing.Size(38, 20)
         Me.integertextboxGranoVerde.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.integertextboxGranoVerde.ForeColor = System.Drawing.SystemColors.WindowText
         Me.integertextboxGranoVerde.IntegerValue = CType(0, Long)
         Me.integertextboxGranoVerde.Location = New System.Drawing.Point(206, 12)
         Me.integertextboxGranoVerde.MaxValue = CType(99, Long)
@@ -1214,7 +1211,6 @@ Partial Class formPesada
         Me.integertextboxGranoVerde.NullString = ""
         Me.integertextboxGranoVerde.NumberNegativePattern = 0
         Me.integertextboxGranoVerde.Size = New System.Drawing.Size(38, 20)
-        Me.integertextboxGranoVerde.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
         Me.integertextboxGranoVerde.TabIndex = 7
         Me.integertextboxGranoVerde.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.integertextboxGranoVerde.WordWrap = False
@@ -1258,21 +1254,20 @@ Partial Class formPesada
         'doubletextboxGluten
         '
         Me.doubletextboxGluten.AllowNull = True
-        Me.doubletextboxGluten.BackGroundColor = System.Drawing.SystemColors.Window
         Me.doubletextboxGluten.BeforeTouchSize = New System.Drawing.Size(38, 20)
         Me.doubletextboxGluten.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.doubletextboxGluten.DoubleValue = 0.0R
+        Me.doubletextboxGluten.DoubleValue = 0R
+        Me.doubletextboxGluten.ForeColor = System.Drawing.SystemColors.WindowText
         Me.doubletextboxGluten.Location = New System.Drawing.Point(309, 38)
         Me.doubletextboxGluten.MaxValue = 80.0R
         Me.doubletextboxGluten.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
-        Me.doubletextboxGluten.MinValue = 0.0R
+        Me.doubletextboxGluten.MinValue = 0R
         Me.doubletextboxGluten.Name = "doubletextboxGluten"
         Me.doubletextboxGluten.NullString = ""
         Me.doubletextboxGluten.NumberDecimalDigits = 1
         Me.doubletextboxGluten.NumberNegativePattern = 0
         Me.doubletextboxGluten.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.SetNullString
         Me.doubletextboxGluten.Size = New System.Drawing.Size(38, 20)
-        Me.doubletextboxGluten.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
         Me.doubletextboxGluten.TabIndex = 15
         Me.doubletextboxGluten.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.doubletextboxGluten.WordWrap = False
@@ -1289,21 +1284,20 @@ Partial Class formPesada
         'doubletextboxPesoHectolitrico
         '
         Me.doubletextboxPesoHectolitrico.AllowNull = True
-        Me.doubletextboxPesoHectolitrico.BackGroundColor = System.Drawing.SystemColors.Window
         Me.doubletextboxPesoHectolitrico.BeforeTouchSize = New System.Drawing.Size(38, 20)
         Me.doubletextboxPesoHectolitrico.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.doubletextboxPesoHectolitrico.DoubleValue = 0.0R
+        Me.doubletextboxPesoHectolitrico.DoubleValue = 0R
+        Me.doubletextboxPesoHectolitrico.ForeColor = System.Drawing.SystemColors.WindowText
         Me.doubletextboxPesoHectolitrico.Location = New System.Drawing.Point(309, 12)
         Me.doubletextboxPesoHectolitrico.MaxValue = 100.0R
         Me.doubletextboxPesoHectolitrico.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
-        Me.doubletextboxPesoHectolitrico.MinValue = 0.0R
+        Me.doubletextboxPesoHectolitrico.MinValue = 0R
         Me.doubletextboxPesoHectolitrico.Name = "doubletextboxPesoHectolitrico"
         Me.doubletextboxPesoHectolitrico.NullString = ""
         Me.doubletextboxPesoHectolitrico.NumberDecimalDigits = 1
         Me.doubletextboxPesoHectolitrico.NumberNegativePattern = 0
         Me.doubletextboxPesoHectolitrico.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.SetNullString
         Me.doubletextboxPesoHectolitrico.Size = New System.Drawing.Size(38, 20)
-        Me.doubletextboxPesoHectolitrico.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
         Me.doubletextboxPesoHectolitrico.TabIndex = 13
         Me.doubletextboxPesoHectolitrico.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.doubletextboxPesoHectolitrico.WordWrap = False
@@ -1338,21 +1332,20 @@ Partial Class formPesada
         'doubletextboxZaranda
         '
         Me.doubletextboxZaranda.AllowNull = True
-        Me.doubletextboxZaranda.BackGroundColor = System.Drawing.SystemColors.Window
         Me.doubletextboxZaranda.BeforeTouchSize = New System.Drawing.Size(38, 20)
         Me.doubletextboxZaranda.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.doubletextboxZaranda.DoubleValue = 0.0R
+        Me.doubletextboxZaranda.DoubleValue = 0R
+        Me.doubletextboxZaranda.ForeColor = System.Drawing.SystemColors.WindowText
         Me.doubletextboxZaranda.Location = New System.Drawing.Point(68, 38)
         Me.doubletextboxZaranda.MaxValue = 50.0R
         Me.doubletextboxZaranda.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
-        Me.doubletextboxZaranda.MinValue = 0.0R
+        Me.doubletextboxZaranda.MinValue = 0R
         Me.doubletextboxZaranda.Name = "doubletextboxZaranda"
         Me.doubletextboxZaranda.NullString = ""
         Me.doubletextboxZaranda.NumberDecimalDigits = 1
         Me.doubletextboxZaranda.NumberNegativePattern = 0
         Me.doubletextboxZaranda.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.SetNullString
         Me.doubletextboxZaranda.Size = New System.Drawing.Size(38, 20)
-        Me.doubletextboxZaranda.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
         Me.doubletextboxZaranda.TabIndex = 3
         Me.doubletextboxZaranda.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.doubletextboxZaranda.WordWrap = False
@@ -1369,21 +1362,20 @@ Partial Class formPesada
         'doubletextboxHumedad
         '
         Me.doubletextboxHumedad.AllowNull = True
-        Me.doubletextboxHumedad.BackGroundColor = System.Drawing.SystemColors.Window
         Me.doubletextboxHumedad.BeforeTouchSize = New System.Drawing.Size(38, 20)
         Me.doubletextboxHumedad.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.doubletextboxHumedad.DoubleValue = 0.0R
+        Me.doubletextboxHumedad.DoubleValue = 0R
+        Me.doubletextboxHumedad.ForeColor = System.Drawing.SystemColors.WindowText
         Me.doubletextboxHumedad.Location = New System.Drawing.Point(68, 12)
         Me.doubletextboxHumedad.MaxValue = 40.0R
         Me.doubletextboxHumedad.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
-        Me.doubletextboxHumedad.MinValue = 0.0R
+        Me.doubletextboxHumedad.MinValue = 0R
         Me.doubletextboxHumedad.Name = "doubletextboxHumedad"
         Me.doubletextboxHumedad.NullString = ""
         Me.doubletextboxHumedad.NumberDecimalDigits = 1
         Me.doubletextboxHumedad.NumberNegativePattern = 0
         Me.doubletextboxHumedad.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.SetNullString
         Me.doubletextboxHumedad.Size = New System.Drawing.Size(38, 20)
-        Me.doubletextboxHumedad.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
         Me.doubletextboxHumedad.TabIndex = 1
         Me.doubletextboxHumedad.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.doubletextboxHumedad.WordWrap = False
@@ -1670,6 +1662,15 @@ Partial Class formPesada
         Me.checkboxEsVerificado.TabIndex = 6
         Me.checkboxEsVerificado.UseVisualStyleBackColor = True
         '
+        'textboxCamion_DominioChasisExtra
+        '
+        Me.textboxCamion_DominioChasisExtra.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.textboxCamion_DominioChasisExtra.Location = New System.Drawing.Point(187, 119)
+        Me.textboxCamion_DominioChasisExtra.MaxLength = 7
+        Me.textboxCamion_DominioChasisExtra.Name = "textboxCamion_DominioChasisExtra"
+        Me.textboxCamion_DominioChasisExtra.Size = New System.Drawing.Size(68, 20)
+        Me.textboxCamion_DominioChasisExtra.TabIndex = 17
+        '
         'formPesada
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1861,4 +1862,5 @@ Partial Class formPesada
     Friend WithEvents textboxDestino As System.Windows.Forms.TextBox
     Friend WithEvents comboboxDestino As System.Windows.Forms.ComboBox
     Friend WithEvents textboxNotas As System.Windows.Forms.TextBox
+    Friend WithEvents textboxCamion_DominioChasisExtra As TextBox
 End Class

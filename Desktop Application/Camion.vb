@@ -15,6 +15,7 @@ Partial Public Class Camion
     Public Property IDCamion As Byte
     Public Property Nombre As String
     Public Property DominioChasis As String
+    Public Property DominioChasisExtra As String
     Public Property DominioAcoplado As String
     Public Property NombreDominios As String
     Public Property EsActivo As Boolean

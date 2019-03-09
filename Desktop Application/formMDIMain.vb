@@ -20,7 +20,7 @@
         textboxKilogramo.Visible = pBalanzaConeccionHabilitada
     End Sub
 
-    Private Sub formMDIMain_Resize() Handles Me.Resize
+    Private Sub MDIMain_Resize() Handles Me.Resize
         If Not Me.WindowState = FormWindowState.Minimized Then
 
             'OBTENGO LAS MEDIDAS DEL CLIENT AREA DEL FORM MDI

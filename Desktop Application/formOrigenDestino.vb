@@ -29,7 +29,7 @@
             mOrigenDestinoActual = mdbContext.OrigenDestino.Find(IDOrigenDestino)
         End If
 
-        Me.MdiParent = formMDIMain
+        Me.MdiParent = pFormMDIMain
         CS_Form.CenterToParent(ParentForm, Me)
         InitializeFormAndControls()
         SetDataFromObjectToControls()
@@ -261,8 +261,8 @@
                 mdbContext.SaveChanges()
 
                 ' Refresco la lista de OrigenesDestinos para mostrar los cambios
-                If CS_Form.MDIChild_IsLoaded(CType(formMDIMain, Form), "formOrigenesDestinos") Then
-                    Dim formOrigenDestinos As formOrigenesDestinos = CType(CS_Form.MDIChild_GetInstance(CType(formMDIMain, Form), "formOrigenesDestinos"), formOrigenesDestinos)
+                If CS_Form.MDIChild_IsLoaded(CType(pFormMDIMain, Form), "formOrigenesDestinos") Then
+                    Dim formOrigenDestinos As formOrigenesDestinos = CType(CS_Form.MDIChild_GetInstance(CType(pFormMDIMain, Form), "formOrigenesDestinos"), formOrigenesDestinos)
                     formOrigenDestinos.RefreshData(mOrigenDestinoActual.IDOrigenDestino)
                     formOrigenDestinos = Nothing
                 End If

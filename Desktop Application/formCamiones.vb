@@ -51,7 +51,7 @@
 #End Region
 
 #Region "Load and Set Data"
-    Friend Sub RefreshData(Optional ByVal PositionIDCamion As Integer = 0, Optional ByVal RestoreCurrentPosition As Boolean = False)
+    Friend Sub RefreshData(Optional ByVal PositionIDEntidad As Integer = 0, Optional ByVal PositionIDCamion As Byte = 0, Optional ByVal RestoreCurrentPosition As Boolean = False)
         Me.Cursor = Cursors.WaitCursor
 
         Try
@@ -72,17 +72,19 @@
 
         If RestoreCurrentPosition Then
             If datagridviewMain.CurrentRow Is Nothing Then
+                PositionIDEntidad = 0
                 PositionIDCamion = 0
             Else
-                PositionIDCamion = CType(datagridviewMain.CurrentRow.DataBoundItem, Camion).IDCamion
+                PositionIDEntidad = CType(datagridviewMain.CurrentRow.DataBoundItem, GridRowData).IDEntidad
+                PositionIDCamion = CType(datagridviewMain.CurrentRow.DataBoundItem, GridRowData).IDCamion
             End If
         End If
 
         FilterData()
 
-        If PositionIDCamion <> 0 Then
+        If PositionIDEntidad <> 0 Then
             For Each CurrentRowChecked As DataGridViewRow In datagridviewMain.Rows
-                If CType(CurrentRowChecked.DataBoundItem, GridRowData).IDCamion = PositionIDCamion Then
+                If CType(CurrentRowChecked.DataBoundItem, GridRowData).IDEntidad = PositionIDEntidad AndAlso CType(CurrentRowChecked.DataBoundItem, GridRowData).IDCamion = PositionIDCamion Then
                     datagridviewMain.CurrentCell = CurrentRowChecked.Cells(columnNombre.Name)
                     Exit For
                 End If

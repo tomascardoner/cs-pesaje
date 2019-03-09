@@ -29,7 +29,7 @@
             mCamionActual = mdbContext.Camion.Find(IDEntidad, IDCamion)
         End If
 
-        Me.MdiParent = formMDIMain
+        Me.MdiParent = pFormMDIMain
         CS_Form.CenterToParent(ParentForm, Me)
         InitializeFormAndControls()
         SetDataFromObjectToControls()
@@ -58,6 +58,7 @@
         comboboxTransportista.Enabled = mEditMode
         textboxNombre.ReadOnly = (mEditMode = False)
         textboxDominioChasis.ReadOnly = (mEditMode = False)
+        textboxDominioChasisExtra.ReadOnly = (mEditMode = False)
         textboxDominioAcoplado.ReadOnly = (mEditMode = False)
     End Sub
 
@@ -90,6 +91,7 @@
             CS_ComboBox.SetSelectedValue(comboboxTransportista, SelectedItemOptions.ValueOrFirstIfUnique, .IDEntidad)
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
             textboxDominioChasis.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DominioChasis)
+            textboxDominioChasisExtra.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DominioChasisExtra)
             textboxDominioAcoplado.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DominioAcoplado)
         End With
     End Sub
@@ -100,6 +102,7 @@
             .IDEntidad = CS_ValueTranslation.FromControlComboBoxToObjectInteger(comboboxTransportista.SelectedValue).Value
             .Nombre = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNombre.Text)
             .DominioChasis = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxDominioChasis.Text)
+            .DominioChasisExtra = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxDominioChasisExtra.Text)
             .DominioAcoplado = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxDominioAcoplado.Text)
         End With
     End Sub
@@ -123,7 +126,7 @@
         End Select
     End Sub
 
-    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxIDCamion.GotFocus, textboxNombre.GotFocus
+    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxIDCamion.GotFocus, textboxNombre.GotFocus, textboxDominioChasis.GotFocus, textboxDominioChasisExtra.GotFocus, textboxDominioAcoplado.GotFocus
         CType(sender, TextBox).SelectAll()
     End Sub
 #End Region
@@ -180,9 +183,9 @@
                 mdbContext.SaveChanges()
 
                 ' Refresco la lista de Camiones para mostrar los cambios
-                If CS_Form.MDIChild_IsLoaded(CType(formMDIMain, Form), "formCamiones") Then
-                    Dim formCamions As formCamiones = CType(CS_Form.MDIChild_GetInstance(CType(formMDIMain, Form), "formCamiones"), formCamiones)
-                    formCamions.RefreshData(mCamionActual.IDCamion)
+                If CS_Form.MDIChild_IsLoaded(CType(pFormMDIMain, Form), "formCamiones") Then
+                    Dim formCamions As formCamiones = CType(CS_Form.MDIChild_GetInstance(CType(pFormMDIMain, Form), "formCamiones"), formCamiones)
+                    formCamions.RefreshData(mCamionActual.IDEntidad, mCamionActual.IDCamion)
                     formCamions = Nothing
                 End If
 

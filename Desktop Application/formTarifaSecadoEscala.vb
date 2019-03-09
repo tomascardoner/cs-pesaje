@@ -18,7 +18,7 @@
         mCosecha_Producto_TarifaActual = Cosecha_Producto_TarifaActual
         mCosecha_Producto_TarifaEscalaActual = Cosecha_Producto_TarifaEscalaActual
 
-        'Me.MdiParent = formMDIMain
+        'Me.MdiParent = pFormMDIMain
         CS_Form.CenterToParent(ParentForm, Me)
         InitializeFormAndControls()
         SetDataFromObjectToControls()

@@ -32,7 +32,7 @@
             mPesadaActual = mdbContext.Pesada.Find(IDPesada)
         End If
 
-        'Me.MdiParent = formMDIMain
+        'Me.MdiParent = pFormMDIMain
         CS_Form.CenterToParent(ParentForm, Me)
         InitializeFormAndControls()
         SetDataFromObjectToControls()
@@ -110,6 +110,7 @@
         checkboxCamionOtro.Visible = mEditMode
         comboboxCamion.Enabled = mEditMode
         textboxCamion_DominioChasis.ReadOnly = Not mEditMode
+        textboxCamion_DominioChasisExtra.ReadOnly = Not mEditMode
         textboxCamion_DominioAcoplado.ReadOnly = Not mEditMode
         integertextboxKilometro.ReadOnly = Not mEditMode
 
@@ -306,13 +307,16 @@
                 checkboxCamionOtro.Checked = True
                 If .Pesada_Otro Is Nothing Then
                     textboxCamion_DominioChasis.Text = ""
+                    textboxCamion_DominioChasisExtra.Text = ""
                     textboxCamion_DominioAcoplado.Text = ""
                 Else
                     textboxCamion_DominioChasis.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Pesada_Otro.Camion_DominioChasis)
+                    textboxCamion_DominioChasisExtra.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Pesada_Otro.Camion_DominioChasisExtra)
                     textboxCamion_DominioAcoplado.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Pesada_Otro.Camion_DominioAcoplado)
                 End If
             Else
                 textboxCamion_DominioChasis.Text = ""
+                textboxCamion_DominioChasisExtra.Text = ""
                 textboxCamion_DominioAcoplado.Text = ""
                 CS_ComboBox.SetSelectedValue(comboboxCamion, SelectedItemOptions.ValueOrFirst, .IDCamion)
             End If
@@ -485,12 +489,14 @@
                 .Camion_IDEntidad = CS_Constants.FIELD_VALUE_OTHER_INTEGER
                 .IDCamion = CS_Constants.FIELD_VALUE_OTHER_BYTE
                 .Pesada_Otro.Camion_DominioChasis = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxCamion_DominioChasis.Text)
+                .Pesada_Otro.Camion_DominioChasisExtra = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxCamion_DominioChasisExtra.Text)
                 .Pesada_Otro.Camion_DominioAcoplado = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxCamion_DominioAcoplado.Text)
             Else
                 .Camion_IDEntidad = CS_ValueTranslation.FromControlComboBoxToObjectInteger(comboboxTransportista.SelectedValue)
                 .IDCamion = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxCamion.SelectedValue)
                 If Not .Pesada_Otro Is Nothing Then
                     .Pesada_Otro.Camion_DominioChasis = ""
+                    .Pesada_Otro.Camion_DominioChasisExtra = ""
                     .Pesada_Otro.Camion_DominioAcoplado = ""
                 End If
             End If
@@ -868,6 +874,7 @@
     Private Sub CamionOtro() Handles checkboxCamionOtro.CheckedChanged
         comboboxCamion.Visible = Not checkboxCamionOtro.Checked
         textboxCamion_DominioChasis.Visible = checkboxCamionOtro.Checked
+        textboxCamion_DominioChasisExtra.Visible = checkboxCamionOtro.Checked
         labelCamion_DominioAcoplado.Visible = checkboxCamionOtro.Checked
         textboxCamion_DominioAcoplado.Visible = checkboxCamionOtro.Checked
 
@@ -898,8 +905,8 @@
     End Sub
 
     Private Sub ObtenerKilogramosBrutos() Handles buttonObtenerKilogramosBrutos.Click
-        'If formMDIMain.labelDisplay.text <> "" Then
-        '    integertextboxKilogramoBruto.Text = formMDIMain.labelDisplay.text
+        'If pFormMDIMain.labelDisplay.text <> "" Then
+        '    integertextboxKilogramoBruto.Text = pFormMDIMain.labelDisplay.text
         '    If integertextboxKilogramoBruto.IsNull Or integertextboxKilogramoTara.IsNull Then
         '        FechaHoraInicioAhora()
         '        FechaHoraFinAhora()
@@ -910,8 +917,8 @@
     End Sub
 
     Private Sub ObtenerKilogramosTara() Handles buttonObtenerKilogramosTara.Click
-        'If formMDIMain.labelDisplay.text <> "" Then
-        '    integertextboxKilogramoBruto.Text = formMDIMain.labelDisplay.text
+        'If pFormMDIMain.labelDisplay.text <> "" Then
+        '    integertextboxKilogramoBruto.Text = pFormMDIMain.labelDisplay.text
         '    If integertextboxKilogramoBruto.IsNull Or integertextboxKilogramoTara.IsNull Then
         '        FechaHoraInicioAhora()
         '        FechaHoraFinAhora()
@@ -1186,8 +1193,8 @@
                 mdbContext.SaveChanges()
 
                 ' Refresco la lista de Pesadas para mostrar los cambios
-                If CS_Form.MDIChild_IsLoaded(CType(formMDIMain, Form), "formPesadas") Then
-                    Dim formPesadas As formPesadas = CType(CS_Form.MDIChild_GetInstance(CType(formMDIMain, Form), "formPesadas"), formPesadas)
+                If CS_Form.MDIChild_IsLoaded(CType(pFormMDIMain, Form), "formPesadas") Then
+                    Dim formPesadas As formPesadas = CType(CS_Form.MDIChild_GetInstance(CType(pFormMDIMain, Form), "formPesadas"), formPesadas)
                     formPesadas.RefreshData(mPesadaActual.IDPesada)
                     formPesadas = Nothing
                 End If

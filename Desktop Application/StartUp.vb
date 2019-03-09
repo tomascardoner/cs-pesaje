@@ -1,5 +1,6 @@
 ﻿Module StartUp
     ' Database stuff
+    Friend pFormMDIMain As formMDIMain
     Friend pDatabase As CS_Database_SQL
     Friend pFillAndRefreshLists As FillAndRefreshLists
 
@@ -36,7 +37,7 @@
         ' Si hay más de un DataSource especificado, muestro la ventana de selección
         If My.Settings.DBConnection_Datasource.Contains(CS_Constants.STRING_LIST_SEPARATOR) Then
             CS_Database_SelectSource.comboboxDataSource.Items.AddRange(My.Settings.DBConnection_Datasource.Split(CChar(CS_Constants.STRING_LIST_SEPARATOR)))
-            If Not CS_Database_SelectSource.ShowDialog(formMDIMain) = DialogResult.OK Then
+            If Not CS_Database_SelectSource.ShowDialog(formSplashScreen) = DialogResult.OK Then
                 Application.Exit()
                 My.Application.Log.WriteEntry("La Aplicación ha finalizado porque el Usuario no ha seleccionado el origen de los datos.", TraceEventType.Warning)
                 Exit Sub
@@ -178,10 +179,11 @@
         StartupTime = Now
 
         ' Muestro el form MDI principal
-        formMDIMain.Show()
+        pFormMDIMain = New formMDIMain
+        pFormMDIMain.Show()
 
-        formMDIMain.Cursor = Cursors.AppStarting
-        formMDIMain.Enabled = False
+        pFormMDIMain.Cursor = Cursors.AppStarting
+        pFormMDIMain.Enabled = False
 
         ' Si corresponde, abro la conexión con el puerto correspondiente para leer los valores de la balanza
         If My.Settings.ScaleConnectionEnabled Then
@@ -192,7 +194,7 @@
         formSplashScreen.labelStatus.Text = "Cargando y mostrando ventana de Pesadas..."
         Application.DoEvents()
 
-        CS_Form.MDIChild_PositionAndSizeToFit(CType(formMDIMain, Form), CType(formPesadas, Form))
+        CS_Form.MDIChild_PositionAndSizeToFit(CType(pFormMDIMain, Form), CType(formPesadas, Form))
 
         formSplashScreen.labelStatus.Text = "Todo completado."
         Application.DoEvents()
@@ -239,7 +241,7 @@
             End Using
         Else
             ' El Usuario debe iniciar sesión a través del form correspondiente
-            If Not formLogin.ShowDialog(formMDIMain) = DialogResult.OK Then
+            If Not formLogin.ShowDialog(pFormMDIMain) = DialogResult.OK Then
                 Application.Exit()
                 My.Application.Log.WriteEntry("La Aplicación ha finalizado porque el Usuario no ha iniciado sesión.", TraceEventType.Warning)
                 Exit Sub
@@ -249,8 +251,8 @@
         End If
 
         ' Está todo listo. Cambio el puntero del mouse a modo normal y habilito los forms
-        formMDIMain.Cursor = Cursors.Default
-        formMDIMain.Enabled = True
+        pFormMDIMain.Cursor = Cursors.Default
+        pFormMDIMain.Enabled = True
 
         formPesadas.Show()
 
@@ -258,10 +260,14 @@
 
         ' Inicio el loop sobre el form MDI principal
         My.Application.Log.WriteEntry("La Aplicación se ha iniciado correctamente.", TraceEventType.Information)
-        Application.Run(formMDIMain)
+        Application.Run(pFormMDIMain)
     End Sub
 
     Friend Sub TerminateApplication()
+        For Each formCurrent As Form In pFormMDIMain.MdiChildren()
+            formCurrent.Close()
+            formCurrent.Dispose()
+        Next
         pDatabase = Nothing
         pFillAndRefreshLists = Nothing
         pPermisos = Nothing

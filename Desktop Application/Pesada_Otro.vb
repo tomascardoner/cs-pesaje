@@ -21,6 +21,7 @@ Partial Public Class Pesada_Otro
     Public Property Chofer_Nombre As String
     Public Property Chofer_CUIT_CUIL As String
     Public Property Camion_DominioChasis As String
+    Public Property Camion_DominioChasisExtra As String
     Public Property Camion_DominioAcoplado As String
 
     Public Overridable Property Pesada As Pesada
