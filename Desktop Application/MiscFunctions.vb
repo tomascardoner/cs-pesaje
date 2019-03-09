@@ -60,7 +60,7 @@ Module MiscFunctions
             End Using
             Return True
         Catch ex As Exception
-            CS_Error.ProcessError(ex, "Error al cargar los Parámetros desde la base de datos.")
+            CS_Error.ProcessError(ex, "Error al conectarse a la base de datos.")
             Return False
         End Try
     End Function

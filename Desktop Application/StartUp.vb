@@ -1,9 +1,9 @@
 ﻿Module StartUp
     ' Database stuff
-    Friend pFormMDIMain As formMDIMain
     Friend pDatabase As CS_Database_SQL
     Friend pFillAndRefreshLists As FillAndRefreshLists
 
+    Friend pFormMDIMain As formMDIMain
     Friend pPermisos As List(Of UsuarioGrupoPermiso)
     Friend pParametros As List(Of Parametro)
     Friend pLicensedTo As String
@@ -264,10 +264,12 @@
     End Sub
 
     Friend Sub TerminateApplication()
-        For Each formCurrent As Form In pFormMDIMain.MdiChildren()
-            formCurrent.Close()
-            formCurrent.Dispose()
-        Next
+        If Not pFormMDIMain Is Nothing Then
+            For Each formCurrent As Form In pFormMDIMain.MdiChildren()
+                formCurrent.Close()
+                formCurrent.Dispose()
+            Next
+        End If
         pDatabase = Nothing
         pFillAndRefreshLists = Nothing
         pPermisos = Nothing
