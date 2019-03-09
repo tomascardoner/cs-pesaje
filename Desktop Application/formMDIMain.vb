@@ -1,11 +1,14 @@
 ﻿Public Class formMDIMain
 
 #Region "Declarations"
+
     Friend Form_ClientSize As Size
     Private AFIP_TicketAcceso_Homo As String
+
 #End Region
 
 #Region "Form stuff"
+
     Private Sub Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ' Cambio el puntero del mouse para indicar que la aplicación está iniciando
         Me.Cursor = Cursors.AppStarting
@@ -50,9 +53,11 @@
         End If
         TerminateApplication()
     End Sub
+
 #End Region
 
 #Region "Menu Archivo"
+
     Private Sub menuitemArchivo_Salir_Click() Handles menuitemArchivo_Salir.Click
         Me.Close()
     End Sub
@@ -60,13 +65,13 @@
     Private Sub UsuarioCerrarSesion() Handles menuitemArchivo_CerrarSesion.Click
         CerrarSesionUsuario()
     End Sub
-#End Region
-
-#Region "Menu Debug"
 
 #End Region
+
+
 
 #Region "Menu Ventana"
+
     Private Sub menuitemVentana_MosaicoHorizontal_Click() Handles menuitemVentana_MosaicoHorizontal.Click
         Me.LayoutMdi(MdiLayout.TileHorizontal)
     End Sub
@@ -94,9 +99,11 @@
     Private Sub menuitemVentana_CerrarTodas_Click() Handles menuitemVentana_CerrarTodas.Click
         CS_Form.MDIChild_CloseAll(Me)
     End Sub
+
 #End Region
 
 #Region "Menu Ayuda"
+
     Private Sub menuitemAyuda_AcercaDe_Click(sender As Object, e As EventArgs) Handles menuitemAyuda_AcercaDe.Click
         formAboutBox.ShowDialog(Me)
         formAboutBox.Dispose()
@@ -105,6 +112,7 @@
 #End Region
 
 #Region "Left Toolbar - Tablas"
+
     Private Sub Entidades() Handles menuitemTablas_Entidades.Click
         If Permisos.VerificarPermiso(Permisos.ENTIDAD) Then
             Me.Cursor = Cursors.WaitCursor
@@ -183,6 +191,7 @@
 #End Region
 
 #Region "Left Toolbar - Pesadas"
+
     Private Sub Pesadas() Handles buttonPesadas.Click
         If Permisos.VerificarPermiso(Permisos.PESADA) Then
             Me.Cursor = Cursors.WaitCursor
@@ -201,6 +210,7 @@
 #End Region
 
 #Region "Left Toolbar - Reportes"
+
     Private Sub buttonReportes_Click(sender As Object, e As EventArgs)
         If Permisos.VerificarPermiso(Permisos.REPORTE) Then
             Me.Cursor = Cursors.WaitCursor
@@ -215,15 +225,19 @@
             Me.Cursor = Cursors.Default
         End If
     End Sub
+
 #End Region
 
 #Region "Controls behavior"
+
     Private Sub labelUsuarioNombre_DoubleClick() Handles labelUsuarioNombre.MouseDown
         CerrarSesionUsuario()
     End Sub
+
 #End Region
 
 #Region "Extra stuff"
+
     Private Sub CerrarSesionUsuario()
         If MsgBox("¿Desea cerrar la sesión del Usuario actual?", CType(MsgBoxStyle.Question + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
             CS_Form.MDIChild_CloseAll(Me)

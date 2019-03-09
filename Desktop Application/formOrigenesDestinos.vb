@@ -1,6 +1,7 @@
 ﻿Public Class formOrigenesDestinos
 
 #Region "Declarations"
+
     Friend Class GridRowData
         Public Property IDOrigenDestino As Integer
         Public Property Nombre As String
@@ -18,9 +19,11 @@
 
     Private mOrdenColumna As DataGridViewColumn
     Private mOrdenTipo As SortOrder
+
 #End Region
 
 #Region "Form stuff"
+
     Friend Sub SetAppearance()
         DataGridSetAppearance(datagridviewMain)
     End Sub
@@ -45,9 +48,11 @@
         mlistOrigenDestinoBase = Nothing
         mlistOrigenDestinoFiltradaYOrdenada = Nothing
     End Sub
+
 #End Region
 
 #Region "Load and Set Data"
+
     Friend Sub RefreshData(Optional ByVal PositionIDOrigenDestino As Integer = 0, Optional ByVal RestoreCurrentPosition As Boolean = False)
         Me.Cursor = Cursors.WaitCursor
 
@@ -59,7 +64,6 @@
                                           Where od.IDOrigenDestino <> CS_Constants.FIELD_VALUE_OTHER_INTEGER
                                           Select New GridRowData With {.IDOrigenDestino = od.IDOrigenDestino, .Nombre = od.Nombre, .Domicilio = od.Domicilio, .LocalidadNombre = If(od.IDProvincia Is Nothing, "", lg.Nombre), .EsActivo = od.EsActivo}).ToList
             End Using
-
         Catch ex As Exception
             CS_Error.ProcessError(ex, "Error al leer los Orígenes-Destinos.")
             Me.Cursor = Cursors.Default
@@ -123,7 +127,6 @@
                     Case Else
                         statuslabelMain.Text = String.Format("Se muestran {0} Orígenes-Destinos.", mlistOrigenDestinoFiltradaYOrdenada.Count)
                 End Select
-
             Catch ex As Exception
                 CS_Error.ProcessError(ex, "Error al filtrar los datos.")
                 Me.Cursor = Cursors.Default
@@ -163,9 +166,11 @@
         ' Muestro el ícono de orden en la columna correspondiente
         mOrdenColumna.HeaderCell.SortGlyphDirection = mOrdenTipo
     End Sub
+
 #End Region
 
 #Region "Controls behavior"
+
     Private Sub Me_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
         If Not textboxBuscar.Focused Then
             If Char.IsLetter(e.KeyChar) Then
@@ -241,6 +246,7 @@
 #End Region
 
 #Region "Main Toolbar"
+
     Private Sub Agregar_Click() Handles buttonAgregar.Click
         If Permisos.VerificarPermiso(Permisos.ORIGENDESTINO_AGREGAR) Then
             Me.Cursor = Cursors.WaitCursor
@@ -280,7 +286,7 @@
         If datagridviewMain.CurrentRow Is Nothing Then
             MsgBox("No hay ningún Origen-Destino para eliminar.", vbInformation, My.Application.Info.Title)
         Else
-            If Permisos.VerificarPermiso(Permisos.OrigenDestino_ELIMINAR) Then
+            If Permisos.VerificarPermiso(Permisos.ORIGENDESTINO_ELIMINAR) Then
                 Dim GridRowDataActual As GridRowData
                 GridRowDataActual = CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData)
 
@@ -298,7 +304,6 @@
                             dbContext.OrigenDestino.Remove(OrigenDestinoActual)
                             dbContext.SaveChanges()
                         End Using
-
                     Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                         Me.Cursor = Cursors.Default
                         Select Case CS_Database_EF_SQL.TryDecodeDbUpdateException(dbuex)
@@ -306,7 +311,6 @@
                                 MsgBox("No se puede eliminar el Origen-Destino porque tiene datos relacionados.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                         End Select
                         Exit Sub
-
                     Catch ex As Exception
                         CS_Error.ProcessError(ex, "Error al eliminar el Origen-Destino.")
                     End Try
@@ -344,7 +348,7 @@
         If datagridviewMain.CurrentRow Is Nothing Then
             MsgBox("No hay ningún Origen-Destino para imprimir el Listado.", vbInformation, My.Application.Info.Title)
         Else
-            If Permisos.VerificarPermiso(Permisos.OrigenDestino_IMPRIMIR) Then
+            If Permisos.VerificarPermiso(Permisos.ORIGENDESTINO_IMPRIMIR) Then
                 Me.Cursor = Cursors.WaitCursor
 
                 datagridviewMain.Enabled = False

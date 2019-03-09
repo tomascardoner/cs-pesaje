@@ -21,9 +21,11 @@ Partial Public Class CSPesajeContext
 
         ConnectionString = ecb.ConnectionString
     End Sub
+
 End Class
 
 Partial Public Class Cosecha_Producto_TarifaEscala
+
     Public ReadOnly Property TipoNombre() As String
         Get
             Select Case Tipo
@@ -42,9 +44,11 @@ Partial Public Class Cosecha_Producto_TarifaEscala
             End Select
         End Get
     End Property
+
 End Class
 
 Partial Public Class OrigenDestino
+
     Public ReadOnly Property DomicilioCompleto() As String
         Get
             Dim ReturnValue As String
@@ -54,17 +58,21 @@ Partial Public Class OrigenDestino
             Return ReturnValue
         End Get
     End Property
+
 End Class
 
 Partial Public Class Pesada
+
     Public ReadOnly Property CorrespondeAcondicionamiento() As Boolean
         Get
             Return (Tipo = Constantes.PESADA_TIPO_ENTRADA AndAlso IDCosecha.HasValue AndAlso KilogramoNeto.HasValue AndAlso KilogramoNeto.Value > 0)
         End Get
     End Property
+
 End Class
 
 Partial Public Class Pesada_Analisis
+
     Public Sub New()
         Me.MermaVolatilAplica = True
         Me.MermaHumedadAplica = True
@@ -124,7 +132,6 @@ Partial Public Class Pesada_Analisis
                         If .MermaVolatil.HasValue AndAlso Me.Zaranda.HasValue AndAlso Me.MermaZarandaAplica Then
                             Me.MermaZarandaKilogramo = CInt(KilogramoNeto * (Me.Zaranda / 100))
                             KilogramoFinal -= Me.MermaZarandaKilogramo.Value
-
                         Else
                             Me.MermaZarandaKilogramo = 0
                         End If
@@ -144,9 +151,11 @@ Partial Public Class Pesada_Analisis
             PesadaActual.KilogramoFinal = Nothing
         End If
     End Sub
+
 End Class
 
 Partial Public Class Pesada_Acondicionamiento
+
     Public Sub New()
         Me.ParitariaAplica = True
         Me.SecadoAplica = True
@@ -377,6 +386,7 @@ Partial Public Class Pesada_Acondicionamiento
             Return True
         End If
     End Function
+
 End Class
 
 Partial Public Class Reporte
@@ -402,7 +412,6 @@ Partial Public Class Reporte
 
         Try
             ReportObject = New ReportDocument
-
         Catch ex As Exception
             CS_Error.ProcessError(ex, "Error al crear el objeto del reporte." & vbCrLf & "Probablemente, esto se deba a que no estan correctamente instaladas las librerías de Crystal Reports.")
             Return False
@@ -410,7 +419,6 @@ Partial Public Class Reporte
 
         Try
             ReportObject.Load(PathAndFileName)
-
         Catch ex As Exception
             CS_Error.ProcessError(ex, "Error al cargar el reporte.")
             Return False
@@ -494,12 +502,12 @@ Partial Public Class Reporte
                 CrTable.ApplyLogOnInfo(crtableLogoninfo)
             Next
             Return True
-
         Catch ex As Exception
             CS_Error.ProcessError(ex, "Error al establecer la conexión a la base de datos del Reporte.")
             Return False
         End Try
     End Function
+
 End Class
 
 Partial Public Class ReporteParametro
@@ -511,7 +519,7 @@ Partial Public Class ReporteParametro
             If mValor Is Nothing Then
                 ' El valor no está inicializado, sí que verifico que no haya un valor predeterminado
                 Select Case Me.Tipo
-                    Case Constantes.REPORTE_PARAMETRO_PERSONA
+                    Case Constantes.REPORTE_PARAMETRO_TIPO_PERSONA
                     Case Constantes.REPORTE_PARAMETRO_TIPO_NUMBER_INTEGER
                         If Not Me.ValorPredeterminadoNumeroEntero Is Nothing Then
                             mValor = Me.ValorPredeterminadoNumeroEntero
@@ -549,7 +557,7 @@ Partial Public Class ReporteParametro
                 Return ""
             Else
                 Select Case Me.Tipo
-                    Case Constantes.REPORTE_PARAMETRO_PERSONA
+                    Case Constantes.REPORTE_PARAMETRO_TIPO_PERSONA
                         Return mValorParaMostrar
                     Case Constantes.REPORTE_PARAMETRO_TIPO_NUMBER_INTEGER
                         Return FormatNumber(mValor, 0)
@@ -583,4 +591,5 @@ Partial Public Class ReporteParametro
             mValorParaMostrar = value
         End Set
     End Property
+
 End Class

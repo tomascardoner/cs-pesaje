@@ -1,6 +1,7 @@
 ﻿Public Class formCamiones
 
 #Region "Declarations"
+
     Friend Class GridRowData
         Public Property IDEntidad As Integer
         Public Property TransportistaNombre As String
@@ -19,9 +20,11 @@
 
     Private mOrdenColumna As DataGridViewColumn
     Private mOrdenTipo As SortOrder
+
 #End Region
 
 #Region "Form stuff"
+
     Friend Sub SetAppearance()
         DataGridSetAppearance(datagridviewMain)
     End Sub
@@ -48,9 +51,11 @@
         mlistCamionBase = Nothing
         mlistCamionFiltradaYOrdenada = Nothing
     End Sub
+
 #End Region
 
 #Region "Load and Set Data"
+
     Friend Sub RefreshData(Optional ByVal PositionIDEntidad As Integer = 0, Optional ByVal PositionIDCamion As Byte = 0, Optional ByVal RestoreCurrentPosition As Boolean = False)
         Me.Cursor = Cursors.WaitCursor
 
@@ -61,7 +66,6 @@
                                    Where c.IDCamion <> CS_Constants.FIELD_VALUE_OTHER_BYTE
                                    Select New GridRowData With {.IDEntidad = c.IDEntidad, .TransportistaNombre = e.Nombre, .IDCamion = c.IDCamion, .Nombre = c.Nombre, .DominioChasis = c.DominioChasis, .DominioAcoplado = c.DominioAcoplado, .EsActivo = c.EsActivo}).ToList
             End Using
-
         Catch ex As Exception
             CS_Error.ProcessError(ex, "Error al leer los Camiones.")
             Me.Cursor = Cursors.Default
@@ -127,7 +131,6 @@
                     Case Else
                         statuslabelMain.Text = String.Format("Se muestran {0} Camiones.", mlistCamionFiltradaYOrdenada.Count)
                 End Select
-
             Catch ex As Exception
                 CS_Error.ProcessError(ex, "Error al filtrar los datos.")
                 Me.Cursor = Cursors.Default
@@ -173,9 +176,11 @@
         ' Muestro el ícono de orden en la columna correspondiente
         mOrdenColumna.HeaderCell.SortGlyphDirection = mOrdenTipo
     End Sub
+
 #End Region
 
 #Region "Controls behavior"
+
     Private Sub TransportistaCambio() Handles comboboxTransportista.SelectedIndexChanged
         FilterData()
     End Sub
@@ -216,6 +221,7 @@
 #End Region
 
 #Region "Main Toolbar"
+
     Private Sub Agregar_Click() Handles buttonAgregar.Click
         If Permisos.VerificarPermiso(Permisos.CAMION_AGREGAR) Then
             Me.Cursor = Cursors.WaitCursor
@@ -278,7 +284,6 @@
                             dbContext.Camion.Remove(CamionActual)
                             dbContext.SaveChanges()
                         End Using
-
                     Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                         Me.Cursor = Cursors.Default
                         Select Case CS_Database_EF_SQL.TryDecodeDbUpdateException(dbuex)
@@ -286,7 +291,6 @@
                                 MsgBox("No se puede eliminar el Camión porque tiene datos relacionados.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                         End Select
                         Exit Sub
-
                     Catch ex As Exception
                         CS_Error.ProcessError(ex, "Error al eliminar el Camión.")
                     End Try

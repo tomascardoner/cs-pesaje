@@ -1,6 +1,7 @@
 ﻿Public Class formEntidadesSeleccionar
 
 #Region "Declarations"
+
     Private mlistEntidadBase As List(Of Entidad)
     Private mlistEntidadFiltradaYOrdenada As List(Of Entidad)
 
@@ -9,9 +10,11 @@
 
     Private mOrdenColumna As DataGridViewColumn
     Private mOrdenTipo As SortOrder
+
 #End Region
 
 #Region "Form stuff"
+
     Friend Sub SetAppearance()
         datagridviewMain.DefaultCellStyle.Font = My.Settings.GridsAndListsFont
         datagridviewMain.ColumnHeadersDefaultCellStyle.Font = My.Settings.GridsAndListsFont
@@ -37,9 +40,11 @@
         mlistEntidadBase = Nothing
         mlistEntidadFiltradaYOrdenada = Nothing
     End Sub
+
 #End Region
 
 #Region "Load and Set Data"
+
     Friend Sub RefreshData(Optional ByVal PositionIDEntidad As Integer = 0, Optional ByVal RestoreCurrentPosition As Boolean = False)
         Me.Cursor = Cursors.WaitCursor
 
@@ -47,7 +52,6 @@
             Using dbContext As New CSPesajeContext(True)
                 mlistEntidadBase = dbContext.Entidad.ToList
             End Using
-
         Catch ex As Exception
             CS_Error.ProcessError(ex, "Error al leer las Entidades.")
             Me.Cursor = Cursors.Default
@@ -104,7 +108,6 @@
                     Case COMBOBOX_ALLYESNO_NO_LISTINDEX         ' No
                         mlistEntidadFiltradaYOrdenada = mlistEntidadFiltradaYOrdenada.Where(Function(a) Not a.EsActivo).ToList
                 End Select
-
             Catch ex As Exception
                 CS_Error.ProcessError(ex, "Error al filtrar los datos.")
                 Me.Cursor = Cursors.Default
@@ -136,6 +139,7 @@
 #End Region
 
 #Region "Controls behavior"
+
     Private Sub formEntidadesSeleccionar_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
         If Not textboxBuscar.Focused Then
             If Char.IsLetter(e.KeyChar) Then
@@ -223,9 +227,11 @@
 
         OrderData()
     End Sub
+
 #End Region
 
 #Region "Main Toolbar"
+
     Private Sub Seleccionar() Handles datagridviewMain.DoubleClick, buttonSeleccionar.Click
         If datagridviewMain.CurrentRow Is Nothing Then
             MsgBox("No hay ninguna Entidad para seleccionar.", vbInformation, My.Application.Info.Title)
@@ -245,6 +251,7 @@
             Cancelar()
         End If
     End Sub
+
 #End Region
 
 End Class

@@ -1,6 +1,8 @@
 ﻿Module StartUp
+
     ' Database stuff
     Friend pDatabase As CS_Database_SQL
+
     Friend pFillAndRefreshLists As FillAndRefreshLists
 
     Friend pFormMDIMain As formMDIMain
@@ -277,4 +279,5 @@
         pLicensedTo = Nothing
         pUsuario = Nothing
     End Sub
+
 End Module

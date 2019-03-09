@@ -1,15 +1,18 @@
 ﻿Public Class formEntidad
 
 #Region "Declarations"
+
     Private mdbContext As New CSPesajeContext(True)
     Private mEntidadActual As Entidad
 
     Private mIsLoading As Boolean = False
     Private mEditMode As Boolean = False
     Private mIsNew As Boolean
+
 #End Region
 
 #Region "Form stuff"
+
     Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDEntidad As Integer)
         mIsLoading = True
         mEditMode = EditMode
@@ -100,9 +103,11 @@
         mEntidadActual = Nothing
         Me.Dispose()
     End Sub
+
 #End Region
 
 #Region "Load and Set Data"
+
     Friend Sub SetDataFromObjectToControls()
         With mEntidadActual
             If .IDEntidad = 0 Then
@@ -207,7 +212,7 @@
                                          Select od).ToList
 
             listOrigenesDestinosNoIncluidos = (From odt In listOrigenesDestinosTodos
-                                              Where Not listOrigenesDestinosIncluidos.Any(Function(od) od.IDOrigenDestino = odt.IDOrigenDestino)).ToList
+                                               Where Not listOrigenesDestinosIncluidos.Any(Function(od) od.IDOrigenDestino = odt.IDOrigenDestino)).ToList
 
         End Using
 
@@ -224,6 +229,7 @@
 #End Region
 
 #Region "Controls behavior"
+
     Private Sub FormKeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
         Select Case e.KeyChar
             Case Microsoft.VisualBasic.ChrW(Keys.Return)
@@ -324,6 +330,7 @@
 #End Region
 
 #Region "Main Toolbar"
+
     Private Sub Editar_Click() Handles buttonEditar.Click
         If Permisos.VerificarPermiso(Permisos.ENTIDAD_EDITAR) Then
             mEditMode = True
@@ -402,7 +409,6 @@
                     formEntidads.RefreshData(mEntidadActual.IDEntidad)
                     formEntidads = Nothing
                 End If
-
             Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                 Me.Cursor = Cursors.Default
                 Select Case CS_Database_EF_SQL.TryDecodeDbUpdateException(dbuex)
@@ -412,7 +418,6 @@
                         CS_Error.ProcessError(CType(dbuex, Exception), My.Resources.STRING_ERROR_SAVING_CHANGES)
                 End Select
                 Exit Sub
-
             Catch ex As Exception
                 Me.Cursor = Cursors.Default
                 CS_Error.ProcessError(ex, My.Resources.STRING_ERROR_SAVING_CHANGES)
@@ -432,9 +437,6 @@
             Me.Close()
         End If
     End Sub
-#End Region
-
-#Region "Extra stuff"
 
 #End Region
 

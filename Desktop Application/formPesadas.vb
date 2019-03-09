@@ -1,6 +1,7 @@
 ﻿Public Class formPesadas
 
 #Region "Declarations"
+
     Private WithEvents datetimepickerFechaDesdeHost As ToolStripControlHost
     Private WithEvents datetimepickerFechaHastaHost As ToolStripControlHost
 
@@ -48,9 +49,11 @@
 
     Private mOrdenColumna As DataGridViewColumn
     Private mOrdenTipo As SortOrder
+
 #End Region
 
 #Region "Form stuff"
+
     Friend Sub SetAppearance()
         DataGridSetAppearance(datagridviewMain)
     End Sub
@@ -128,13 +131,13 @@
         datetimepickerFechaHastaHost.Width = 100
         datetimepickerFechaHastaHost.DisplayStyle = ToolStripItemDisplayStyle.Text
 
-        ' Setting the Text property requires a string that converts to a  
+        ' Setting the Text property requires a string that converts to a
         ' DateTime type since that is what the hosted control requires.
         datetimepickerFechaDesdeHost.Text = DateTime.Today.ToShortDateString
         datetimepickerFechaHastaHost.Text = DateTime.Today.ToShortDateString
 
-        ' Cast the Control property back to the original type to set a  
-        ' type-specific property. 
+        ' Cast the Control property back to the original type to set a
+        ' type-specific property.
         CType(datetimepickerFechaDesdeHost.Control, DateTimePicker).Format = DateTimePickerFormat.Short
         CType(datetimepickerFechaHastaHost.Control, DateTimePicker).Format = DateTimePickerFormat.Short
 
@@ -149,6 +152,7 @@
 #End Region
 
 #Region "Load and Set Data"
+
     Friend Sub RefreshData(Optional ByVal PositionIDPesada As Integer = 0, Optional ByVal RestoreCurrentPosition As Boolean = False)
         Dim FechaDesde As Date
         Dim FechaHasta As Date
@@ -251,7 +255,6 @@
                                    Where pe.FechaHoraInicio >= FechaDesde And pe.FechaHoraInicio <= FechaHasta
                                    Select New GridRowData With {.IDPesada = pe.IDPesada, .FechaHoraInicio = pe.FechaHoraInicio, .FechaHoraFin = pe.FechaHoraFin, .ComprobanteNumero = pe.ComprobanteNumero, .IDTitular = pe.Titular_IDEntidad, .TitularNombre = If(pe.Titular_IDEntidad = CS_Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Titular_Nombre, ent.Nombre), .IDProducto = pe.IDProducto, .ProductoNombre = If(pe.IDProducto = CS_Constants.FIELD_VALUE_OTHER_BYTE, pe_otg.Producto_Nombre, pr.Nombre), .Producto_TicketPesada_IDReporte = pr.TicketPesada_IDReporte, .IDPlanta = pe.IDPlanta, .Tipo = pe.Tipo, .TipoNombre = pe.TipoNombre, .IDCosecha = pe.IDCosecha, .CosechaNombre = If(cog Is Nothing, "", cog.Nombre), .IDOrigen = pe.IDOrigen, .OrigenNombre = If(pe.IDOrigen = CS_Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Origen_Nombre, If(og Is Nothing, "", og.Nombre)), .IDDestino = pe.IDDestino, .DestinoNombre = If(pe.IDDestino = CS_Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Destino_Nombre, If(dg Is Nothing, "", dg.Nombre)), .KilogramoBruto = pe.KilogramoBruto, .KilogramoTara = pe.KilogramoTara, .KilogramoNeto = pe.KilogramoNeto, .Humedad = If(pe_ang Is Nothing, Nothing, pe_ang.Humedad), .Zaranda = If(pe_ang Is Nothing, Nothing, pe_ang.Zaranda), .KilogramoFinal = pe.KilogramoFinal, .IDTransportista = pe.Transportista_IDEntidad, .TransportistaNombre = If(pe.Transportista_IDEntidad = CS_Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Transportista_Nombre, If(trg Is Nothing, "", trg.Nombre)), .IDChofer = pe.Chofer_IDEntidad, .ChoferNombre = If(pe.Chofer_IDEntidad = CS_Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Chofer_Nombre, If(chg Is Nothing, "", chg.Nombre)), .CamionNombreDominios = If(pe.IDCamion = CS_Constants.FIELD_VALUE_OTHER_BYTE, pe_otg.Camion_DominioChasis & If(pe_otg.Camion_DominioAcoplado Is Nothing, "", " - " & pe_otg.Camion_DominioAcoplado), If(cag Is Nothing, "", cag.NombreDominios)), .EsVerificado = pe.EsVerificado, .EsActivo = pe.EsActivo}).ToList
             End Using
-
         Catch ex As Exception
             CS_Error.ProcessError(ex, "Error al leer las Pesadas.")
             Me.Cursor = Cursors.Default
@@ -289,7 +292,6 @@
             Try
                 ' Inicializo las variables
                 mlistPesadaFiltradaYOrdenada = mlistPesadaBase
-
 
                 ' FILTROS BÁSICOS
                 ' ===============
@@ -375,7 +377,6 @@
                         mRecordSelectionFormula_Filter &= " AND (NOT {Pesada.EsActivo})"
                 End Select
 
-
                 Select Case mlistPesadaFiltradaYOrdenada.Count
                     Case 0
                         statuslabelMain.Text = String.Format("No hay Pesadas para mostrar.")
@@ -384,7 +385,6 @@
                     Case Else
                         statuslabelMain.Text = String.Format("Se muestran {0} Pesadas.", mlistPesadaFiltradaYOrdenada.Count)
                 End Select
-
             Catch ex As Exception
                 CS_Error.ProcessError(ex, "Error al filtrar los datos.")
                 Me.Cursor = Cursors.Default
@@ -431,9 +431,11 @@
         ' Muestro el ícono de orden en la columna correspondiente
         mOrdenColumna.HeaderCell.SortGlyphDirection = mOrdenTipo
     End Sub
+
 #End Region
 
 #Region "Controls behavior"
+
     Private Sub Periodo_LauncherClick() Handles toolstripgroupPeriodo.LauncherClick
         mFiltroPeriodoExpandido = Not mFiltroPeriodoExpandido
         FiltroPeriodoMostrar()
@@ -586,6 +588,7 @@
 #End Region
 
 #Region "Main Toolbar"
+
     Private Sub Agregar_Click() Handles buttonAgregar.Click
         If Permisos.VerificarPermiso(Permisos.PESADA_AGREGAR) Then
             Me.Cursor = Cursors.WaitCursor
@@ -637,7 +640,6 @@
                             dbContext.Pesada.Remove(PesadaActual)
                             dbContext.SaveChanges()
                         End Using
-
                     Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                         Me.Cursor = Cursors.Default
                         Select Case CS_Database_EF_SQL.TryDecodeDbUpdateException(dbuex)
@@ -645,7 +647,6 @@
                                 MsgBox("No se puede eliminar la Pesada porque tiene datos relacionados.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                         End Select
                         Exit Sub
-
                     Catch ex As Exception
                         CS_Error.ProcessError(ex, "Error al eliminar la Pesada.")
                     End Try
@@ -796,7 +797,6 @@
 
                     RefreshData()
                 End Using
-
             Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                 Me.Cursor = Cursors.Default
                 Select Case CS_Database_EF_SQL.TryDecodeDbUpdateException(dbuex)
@@ -804,7 +804,6 @@
                 datagridviewMain.Enabled = True
                 Me.Cursor = Cursors.Default
                 Exit Sub
-
             Catch ex As Exception
                 CS_Error.ProcessError(ex, "Error al calcular mermas de la Pesada.")
             End Try
@@ -856,7 +855,6 @@
 
                     RefreshData()
                 End Using
-
             Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                 Me.Cursor = Cursors.Default
                 Select Case CS_Database_EF_SQL.TryDecodeDbUpdateException(dbuex)
@@ -864,7 +862,6 @@
                 datagridviewMain.Enabled = True
                 Me.Cursor = Cursors.Default
                 Exit Sub
-
             Catch ex As Exception
                 CS_Error.ProcessError(ex, "Error al calcular el acondicionamiento de la Pesada.")
             End Try
@@ -878,9 +875,11 @@
             Me.Cursor = Cursors.Default
         End If
     End Sub
+
 #End Region
 
 #Region "Extra stuff"
+
     Private Sub FiltroPeriodoMostrar()
         comboboxPeriodoTipo.Visible = mFiltroPeriodoExpandido
         comboboxPeriodoValor.Visible = mFiltroPeriodoExpandido
@@ -890,6 +889,7 @@
             comboboxPeriodoValor.SelectedIndex = 0
         End If
     End Sub
+
 #End Region
 
 End Class

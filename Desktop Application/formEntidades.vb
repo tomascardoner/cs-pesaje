@@ -1,6 +1,7 @@
 ﻿Public Class formEntidades
 
 #Region "Declarations"
+
     Private mlistEntidadBase As List(Of Entidad)
     Private mlistEntidadFiltradaYOrdenada As List(Of Entidad)
 
@@ -10,9 +11,11 @@
 
     Private mOrdenColumna As DataGridViewColumn
     Private mOrdenTipo As SortOrder
+
 #End Region
 
 #Region "Form stuff"
+
     Friend Sub SetAppearance()
         DataGridSetAppearance(datagridviewMain)
     End Sub
@@ -37,9 +40,11 @@
         mlistEntidadBase = Nothing
         mlistEntidadFiltradaYOrdenada = Nothing
     End Sub
+
 #End Region
 
 #Region "Load and Set Data"
+
     Friend Sub RefreshData(Optional ByVal PositionIDEntidad As Integer = 0, Optional ByVal RestoreCurrentPosition As Boolean = False)
         Me.Cursor = Cursors.WaitCursor
 
@@ -47,7 +52,6 @@
             Using dbContext As New CSPesajeContext(True)
                 mlistEntidadBase = dbContext.Entidad.Where(Function(e) e.IDEntidad <> CS_Constants.FIELD_VALUE_OTHER_INTEGER).ToList
             End Using
-
         Catch ex As Exception
             CS_Error.ProcessError(ex, "Error al leer las Entidades.")
             Me.Cursor = Cursors.Default
@@ -116,7 +120,6 @@
                     Case Else
                         statuslabelMain.Text = String.Format("Se muestran {0} Entidades.", mlistEntidadFiltradaYOrdenada.Count)
                 End Select
-
             Catch ex As Exception
                 CS_Error.ProcessError(ex, "Error al filtrar los datos.")
                 Me.Cursor = Cursors.Default
@@ -150,9 +153,11 @@
         ' Muestro el ícono de orden en la columna correspondiente
         mOrdenColumna.HeaderCell.SortGlyphDirection = mOrdenTipo
     End Sub
+
 #End Region
 
 #Region "Controls behavior"
+
     Private Sub Me_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
         If Not textboxBuscar.Focused Then
             If Char.IsLetter(e.KeyChar) Then
@@ -244,6 +249,7 @@
 #End Region
 
 #Region "Main Toolbar"
+
     Private Sub Agregar_Click() Handles buttonAgregar.Click
         If Permisos.VerificarPermiso(Permisos.ENTIDAD_AGREGAR) Then
             Me.Cursor = Cursors.WaitCursor
@@ -295,7 +301,6 @@
                             dbContext.Entidad.Remove(EntidadActual)
                             dbContext.SaveChanges()
                         End Using
-
                     Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                         Me.Cursor = Cursors.Default
                         Select Case CS_Database_EF_SQL.TryDecodeDbUpdateException(dbuex)
@@ -303,7 +308,6 @@
                                 MsgBox("No se puede eliminar la Entidad porque tiene datos relacionados.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                         End Select
                         Exit Sub
-
                     Catch ex As Exception
                         CS_Error.ProcessError(ex, "Error al eliminar la Entidad.")
                     End Try

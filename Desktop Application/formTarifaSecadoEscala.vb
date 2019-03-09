@@ -1,15 +1,18 @@
 ﻿Public Class formTarifaSecadoEscala
 
 #Region "Declarations"
+
     Private mCosecha_Producto_TarifaActual As Cosecha_Producto_Tarifa
     Private mCosecha_Producto_TarifaEscalaActual As Cosecha_Producto_TarifaEscala
 
     Private mParentEditMode As Boolean = False
     Private mEditMode As Boolean = False
     Private mIsNew As Boolean = False
+
 #End Region
 
 #Region "Form stuff"
+
     Friend Sub LoadAndShow(ByVal ParentEditMode As Boolean, ByVal EditMode As Boolean, ByRef ParentForm As Form, ByRef Cosecha_Producto_TarifaActual As Cosecha_Producto_Tarifa, ByRef Cosecha_Producto_TarifaEscalaActual As Cosecha_Producto_TarifaEscala)
         mParentEditMode = ParentEditMode
         mEditMode = EditMode
@@ -55,9 +58,11 @@
 
         Me.Dispose()
     End Sub
+
 #End Region
 
 #Region "Load and Set Data"
+
     Friend Sub SetDataFromObjectToControls()
         With mCosecha_Producto_TarifaEscalaActual
             doubletextboxHumedadExcesoInicio.DoubleValue = .HumedadExcesoInicio
@@ -96,9 +101,11 @@
             .Tarifa = currencytextboxTarifa.DecimalValue
         End With
     End Sub
+
 #End Region
 
 #Region "Controls behavior"
+
     Private Sub FormKeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
         Select Case e.KeyChar
             Case Microsoft.VisualBasic.ChrW(Keys.Return)
@@ -115,9 +122,11 @@
                 End If
         End Select
     End Sub
+
 #End Region
 
 #Region "Main Toolbar"
+
     Private Sub buttonEditar_Click() Handles buttonEditar.Click
         mEditMode = True
         ChangeMode()
@@ -158,6 +167,7 @@
 
         Me.Close()
     End Sub
+
 #End Region
 
 End Class

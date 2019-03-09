@@ -72,7 +72,7 @@
 
         Arbol.Nodes.Clear()
 
-        RootNode = Arbol.Nodes.Add(UsuarioGrupo, "Grupos de Usuarios")
+        RootNode = Arbol.Nodes.Add(USUARIOGRUPO, "Grupos de Usuarios")
         With RootNode
             .Nodes.Add(USUARIOGRUPO_AGREGAR, DESCRIPCION_AGREGAR)
             .Nodes.Add(USUARIOGRUPO_EDITAR, DESCRIPCION_EDITAR)
@@ -126,4 +126,5 @@
 
         Arbol.ResumeLayout()
     End Sub
+
 End Module

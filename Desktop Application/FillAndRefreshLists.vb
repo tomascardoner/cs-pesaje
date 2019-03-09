@@ -1,6 +1,7 @@
 ﻿Friend Class FillAndRefreshLists
 
 #Region "Declarations..."
+
     Friend mdbContext As CSPesajeContext
 
     Public Sub New()
@@ -24,7 +25,7 @@
         ComboBoxControl.DisplayMember = "Nombre"
 
         Dim qryList = From tbl In mdbContext.Provincia
-                          Order By tbl.Nombre
+                      Order By tbl.Nombre
 
         Dim localList = qryList.ToList
         If AgregarItem_NoEspecifica Then
@@ -42,8 +43,8 @@
         ComboBoxControl.DisplayMember = "Nombre"
 
         Dim qryList = From tbl In mdbContext.Localidad
-                          Where tbl.IDProvincia = IDProvincia
-                          Order By tbl.Nombre
+                      Where tbl.IDProvincia = IDProvincia
+                      Order By tbl.Nombre
 
         Dim localList = qryList.ToList
         If AgregarItem_NoEspecifica Then
@@ -332,10 +333,10 @@
             listItems = mdbContext.OrigenDestino.Where(Function(od) (od.IDOrigenDestino <> CS_Constants.FIELD_VALUE_OTHER_INTEGER Or MostrarItemOtro) And (IDOrigenDestino.HasValue And od.IDOrigenDestino = IDOrigenDestino.Value) Or od.EsActivo).OrderBy(Function(od) od.Nombre).ToList
         Else
             listItems = (From ori In mdbContext.OrigenDestino
-                             Join ent_ori In mdbContext.Entidad_OrigenDestino On ori.IDOrigenDestino Equals ent_ori.IDOrigenDestino
-                             Where (IDOrigenDestino.HasValue And ori.IDOrigenDestino = IDOrigenDestino.Value) Or (ent_ori.IDEntidad = IDEntidad And ori.EsActivo)
-                             Order By ori.Nombre
-                             Select ori).ToList
+                         Join ent_ori In mdbContext.Entidad_OrigenDestino On ori.IDOrigenDestino Equals ent_ori.IDOrigenDestino
+                         Where (IDOrigenDestino.HasValue And ori.IDOrigenDestino = IDOrigenDestino.Value) Or (ent_ori.IDEntidad = IDEntidad And ori.EsActivo)
+                         Order By ori.Nombre
+                         Select ori).ToList
         End If
 
         If AgregarItem_Otro Then
@@ -361,4 +362,5 @@
 
         ComboBoxControl.DataSource = listItems
     End Sub
+
 End Class

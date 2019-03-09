@@ -1,4 +1,5 @@
 ﻿Module Constantes
+
     '//////////////////
     '    APLICACIÓN
     '//////////////////
@@ -57,8 +58,7 @@
     '///////////////////////////////////
     '    PARÁMETROS DE LOS REPORTES
     '///////////////////////////////////
-    Friend Const REPORTE_PARAMETRO_PERSONA As String = "PERS"
-
+    Friend Const REPORTE_PARAMETRO_TIPO_PERSONA As String = "PERS"
     Friend Const REPORTE_PARAMETRO_TIPO_NUMBER_INTEGER As String = "NUIN"
     Friend Const REPORTE_PARAMETRO_TIPO_NUMBER_DECIMAL As String = "NUDE"
     Friend Const REPORTE_PARAMETRO_TIPO_MONEY As String = "MONY"

@@ -1,15 +1,18 @@
 ﻿Public Class formOrigenDestino
 
 #Region "Declarations"
+
     Private mdbContext As New CSPesajeContext(True)
     Private mOrigenDestinoActual As OrigenDestino
 
     Private mIsLoading As Boolean = False
     Private mEditMode As Boolean = False
     Private mIsNew As Boolean
+
 #End Region
 
 #Region "Form stuff"
+
     Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDOrigenDestino As Integer)
         mIsLoading = True
         mEditMode = EditMode
@@ -83,9 +86,11 @@
         mOrigenDestinoActual = Nothing
         Me.Dispose()
     End Sub
+
 #End Region
 
 #Region "Load and Set Data"
+
     Friend Sub SetDataFromObjectToControls()
         With mOrigenDestinoActual
             If .IDOrigenDestino = 0 Then
@@ -141,9 +146,11 @@
             .EsActivo = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxEsActivo.CheckState)
         End With
     End Sub
+
 #End Region
 
 #Region "Controls behavior"
+
     Private Sub FormKeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
         Select Case e.KeyChar
             Case Microsoft.VisualBasic.ChrW(Keys.Return)
@@ -198,9 +205,11 @@
 
     Private Sub AbrirEnGoogleEarth_Click(sender As Object, e As EventArgs) Handles buttonAbrirEnGoogleEarth.Click
     End Sub
+
 #End Region
 
 #Region "Main Toolbar"
+
     Private Sub Editar_Click() Handles buttonEditar.Click
         If Permisos.VerificarPermiso(Permisos.ORIGENDESTINO_EDITAR) Then
             mEditMode = True
@@ -266,7 +275,6 @@
                     formOrigenDestinos.RefreshData(mOrigenDestinoActual.IDOrigenDestino)
                     formOrigenDestinos = Nothing
                 End If
-
             Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                 Me.Cursor = Cursors.Default
                 Select Case CS_Database_EF_SQL.TryDecodeDbUpdateException(dbuex)
@@ -276,7 +284,6 @@
                         CS_Error.ProcessError(CType(dbuex, Exception), My.Resources.STRING_ERROR_SAVING_CHANGES)
                 End Select
                 Exit Sub
-
             Catch ex As Exception
                 Me.Cursor = Cursors.Default
                 CS_Error.ProcessError(ex, My.Resources.STRING_ERROR_SAVING_CHANGES)
@@ -296,9 +303,6 @@
             Me.Close()
         End If
     End Sub
-#End Region
-
-#Region "Extra stuff"
 
 #End Region
 

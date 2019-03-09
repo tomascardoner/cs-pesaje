@@ -1,15 +1,18 @@
 ﻿Public Class formTarifa
 
 #Region "Declarations"
+
     Private mdbContext As New CSPesajeContext(True)
     Private mCosecha_Producto_TarifaActual As Cosecha_Producto_Tarifa
 
     Private mIsLoading As Boolean = False
     Private mEditMode As Boolean = False
     Private mIsNew As Boolean
+
 #End Region
 
 #Region "Form stuff"
+
     Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDCosecha As Byte, ByVal IDProducto As Byte, ByVal Indice As Short)
         mIsLoading = True
         mEditMode = EditMode
@@ -117,9 +120,11 @@
         mCosecha_Producto_TarifaActual = Nothing
         Me.Dispose()
     End Sub
+
 #End Region
 
 #Region "Load and Set Data"
+
     Friend Sub SetDataFromObjectToControls()
         With mCosecha_Producto_TarifaActual
             ' General - Requeridos
@@ -247,7 +252,6 @@
 
             datagridviewTarifaSecadoEscala.AutoGenerateColumns = False
             datagridviewTarifaSecadoEscala.DataSource = listSecadoEscalas
-
         Catch ex As Exception
             CS_Error.ProcessError(ex, "Error al leer las Escalas de Tarifas de Secado.")
             Me.Cursor = Cursors.Default
@@ -265,9 +269,11 @@
             Next
         End If
     End Sub
+
 #End Region
 
 #Region "Controls behavior"
+
     Private Sub FormKeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
         Select Case e.KeyChar
             Case Microsoft.VisualBasic.ChrW(Keys.Return)
@@ -309,6 +315,7 @@
 #End Region
 
 #Region "Main Toolbar"
+
     Private Sub Editar_Click() Handles buttonEditar.Click
         If Permisos.VerificarPermiso(Permisos.TARIFA_EDITAR) Then
             mEditMode = True
@@ -403,7 +410,6 @@
                     formTarifas.RefreshData(mCosecha_Producto_TarifaActual.IDCosecha, mCosecha_Producto_TarifaActual.IDProducto, mCosecha_Producto_TarifaActual.Indice)
                     formTarifas = Nothing
                 End If
-
             Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                 Me.Cursor = Cursors.Default
                 Select Case CS_Database_EF_SQL.TryDecodeDbUpdateException(dbuex)
@@ -413,7 +419,6 @@
                         CS_Error.ProcessError(CType(dbuex, Exception), My.Resources.STRING_ERROR_SAVING_CHANGES)
                 End Select
                 Exit Sub
-
             Catch ex As Exception
                 Me.Cursor = Cursors.Default
 
@@ -438,6 +443,7 @@
 #End Region
 
 #Region "Escalas Toolbar"
+
     Private Sub Escala_Agregar(sender As Object, e As EventArgs) Handles buttonEscala_Agregar.Click
         Me.Cursor = Cursors.WaitCursor
 
@@ -509,10 +515,6 @@
             Me.Cursor = Cursors.Default
         End If
     End Sub
-
-#End Region
-
-#Region "Extra stuff"
 
 #End Region
 

@@ -1,15 +1,18 @@
 ﻿Public Class formPesada
 
 #Region "Declarations"
+
     Private mdbContext As New CSPesajeContext(True)
     Private mPesadaActual As Pesada
 
     Private mIsLoading As Boolean = False
     Private mEditMode As Boolean = False
     Private mIsNew As Boolean
+
 #End Region
 
 #Region "Form stuff"
+
     Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDPesada As Integer)
         mIsLoading = True
         mEditMode = EditMode
@@ -193,9 +196,11 @@
         mPesadaActual = Nothing
         Me.Dispose()
     End Sub
+
 #End Region
 
 #Region "Load and Set Data"
+
     Friend Sub SetDataFromObjectToControls()
         With mPesadaActual
             ' Encabezado
@@ -268,7 +273,6 @@
                 Else
                     textboxDestino.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Pesada_Otro.Destino_Nombre)
                 End If
-
             Else
                 CS_ComboBox.SetSelectedValue(comboboxDestino, SelectedItemOptions.ValueOrFirst, .IDDestino)
                 textboxDestino.Text = ""
@@ -565,9 +569,11 @@
             End If
         End With
     End Sub
+
 #End Region
 
 #Region "Controls behavior"
+
     Private Sub FormKeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
         Select Case e.KeyChar
             Case Microsoft.VisualBasic.ChrW(Keys.Return)
@@ -931,9 +937,11 @@
     Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxProducto.GotFocus, textboxTitular.GotFocus, textboxOrigen.GotFocus, textboxTransportista.GotFocus, textboxChofer.GotFocus, textboxCamion_DominioChasis.GotFocus, textboxCamion_DominioAcoplado.GotFocus
         CType(sender, TextBox).SelectAll()
     End Sub
+
 #End Region
 
 #Region "Main Toolbar"
+
     Private Sub buttonEditar_Click() Handles buttonEditar.Click
         If Permisos.VerificarPermiso(Permisos.PESADA_EDITAR) Then
             mEditMode = True
@@ -1198,7 +1206,6 @@
                     formPesadas.RefreshData(mPesadaActual.IDPesada)
                     formPesadas = Nothing
                 End If
-
             Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                 Me.Cursor = Cursors.Default
                 Select Case CS_Database_EF_SQL.TryDecodeDbUpdateException(dbuex)
@@ -1208,7 +1215,6 @@
                         CS_Error.ProcessError(CType(dbuex, Exception), My.Resources.STRING_ERROR_SAVING_CHANGES)
                 End Select
                 Exit Sub
-
             Catch ex As Exception
                 Me.Cursor = Cursors.Default
                 CS_Error.ProcessError(ex, My.Resources.STRING_ERROR_SAVING_CHANGES)
@@ -1228,9 +1234,6 @@
             Me.Close()
         End If
     End Sub
-#End Region
-
-#Region "Extra stuff"
 
 #End Region
 

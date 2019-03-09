@@ -1,6 +1,5 @@
-﻿Imports System.Net.Mail
+﻿Module MiscFunctions
 
-Module MiscFunctions
     Friend Sub DataGridSetAppearance(ByRef DataGridViewObject As DataGridView)
         DataGridViewObject.DefaultCellStyle.Font = My.Settings.GridsAndListsFont
         DataGridViewObject.ColumnHeadersDefaultCellStyle.Font = My.Settings.GridsAndListsFont
@@ -76,4 +75,5 @@ Module MiscFunctions
             Return False
         End Try
     End Function
+
 End Module

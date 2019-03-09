@@ -42,4 +42,5 @@
     Private Sub formReportesParametro_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
         mParametroActual = Nothing
     End Sub
+
 End Class

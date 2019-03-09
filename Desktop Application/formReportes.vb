@@ -1,10 +1,13 @@
 ﻿Public Class formReportes
 
 #Region "Declarations"
+
     Private mdbContext As New CSPesajeContext(True)
+
 #End Region
 
 #Region "Form stuff"
+
     Private Sub formReportes_Load(sender As Object, e As EventArgs) Handles Me.Load
         CargarListaReportes()
 
@@ -15,9 +18,11 @@
     Private Sub formReportes_Unload() Handles Me.FormClosed
         mdbContext.Dispose()
     End Sub
+
 #End Region
 
 #Region "Reportes"
+
     Private Sub CargarListaReportes()
         Dim ReporteGrupoNode As TreeNode
         Dim ReporteNode As TreeNode
@@ -39,7 +44,6 @@
             Next
             treeviewReportes.ExpandAll()
             treeviewReportes.EndUpdate()
-
         Catch ex As Exception
             CS_Error.ProcessError(ex, "Error al leer la lista de Reportes.")
         End Try
@@ -58,9 +62,11 @@
             End If
         End If
     End Sub
+
 #End Region
 
 #Region "Parámetros"
+
     Private Sub CargarListaParametros()
         Dim ReporteActual As Reporte
         Dim ParametroListViewItem As ListViewItem
@@ -93,7 +99,6 @@
                 listviewParametros.Items.Add(ParametroListViewItem)
             Next
             listviewParametros.EndUpdate()
-
         Catch ex As Exception
             CS_Error.ProcessError(ex, "Error al leer la lista de Parámetros del Reporte.")
         End Try
@@ -113,7 +118,7 @@
 
             Select Case ParametroActual.Tipo
                 ' Personaes
-                Case Constantes.REPORTE_PARAMETRO_PERSONA
+                Case Constantes.REPORTE_PARAMETRO_TIPO_PERSONA
                     'If formEntidadesSeleccionar.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
                     '    Dim EntidadSeleccionada As Entidad
 
@@ -156,9 +161,11 @@
         panelReportes.Show()
         panelParametros.Hide()
     End Sub
+
 #End Region
 
 #Region "Mostrar Reporte"
+
     Private Sub MostrarReporte(sender As Object, e As EventArgs) Handles buttonImprimir.Click, buttonPrevisualizar.Click
         Dim ReporteActual As Reporte
 
@@ -191,6 +198,7 @@
 
         Me.Cursor = Cursors.Default
     End Sub
+
 #End Region
 
 End Class

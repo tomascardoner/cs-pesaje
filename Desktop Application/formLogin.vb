@@ -114,4 +114,5 @@
     Private Sub buttonCancelar_Click() Handles buttonCancelar.Click
         Me.DialogResult = Windows.Forms.DialogResult.Cancel
     End Sub
+
 End Class
