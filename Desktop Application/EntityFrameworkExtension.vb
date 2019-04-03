@@ -203,7 +203,7 @@ Partial Public Class Pesada_Acondicionamiento
             ' - Filtrar los que coincidan con el Origen
             listCosecha_Producto_Tarifa = listCosecha_Producto_Tarifa.Where(Function(cpt) cpt.IDOrigen Is Nothing OrElse (PesadaActualLocal.IDOrigen.HasValue AndAlso cpt.IDOrigen.Value = PesadaActualLocal.IDOrigen.Value)).ToList
             ' - Ordenar por Entidad DESC (para darle prioridad a las que especifican Entidad), Origen DESC, Indice
-            listCosecha_Producto_Tarifa = listCosecha_Producto_Tarifa.OrderByDescending(Function(cpt) cpt.IDEntidad).OrderByDescending(Function(cpt) cpt.IDOrigen).OrderBy(Function(cpt) cpt.Indice).ToList
+            listCosecha_Producto_Tarifa = listCosecha_Producto_Tarifa.OrderByDescending(Function(cpt) cpt.IDEntidad).ThenByDescending(Function(cpt) cpt.IDOrigen).ThenBy(Function(cpt) cpt.Indice).ToList
             ' Seleccionar la primer tarifa
             If listCosecha_Producto_Tarifa.Count > 0 Then
                 Cosecha_Producto_TarifaActual = listCosecha_Producto_Tarifa.First

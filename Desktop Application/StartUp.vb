@@ -267,10 +267,7 @@
 
     Friend Sub TerminateApplication()
         If Not pFormMDIMain Is Nothing Then
-            For Each formCurrent As Form In pFormMDIMain.MdiChildren()
-                formCurrent.Close()
-                formCurrent.Dispose()
-            Next
+            CS_Form.MDIChild_CloseAll(CType(pFormMDIMain, Form))
         End If
         pDatabase = Nothing
         pFillAndRefreshLists = Nothing
