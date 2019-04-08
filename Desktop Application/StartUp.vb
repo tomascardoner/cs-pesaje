@@ -228,7 +228,7 @@
                 Dim UserPasswordDecrypter As New CS_Encrypt_TripleDES(CS_Constants.PUBLIC_ENCRYPTION_PASSWORD)
                 Dim DecryptedPassword As String = ""
                 If Not UserPasswordDecrypter.Decrypt(My.Settings.AutoLogon_Password, DecryptedPassword) Then
-                    MsgBox("La contraseña de conexión a la base de datos es incorrecta.", MsgBoxStyle.Critical, My.Application.Info.Title)
+                    MsgBox("La contraseña especificada en Auto-Logon es incorrecta.", MsgBoxStyle.Critical, My.Application.Info.Title)
                     formSplashScreen.Close()
                     formSplashScreen.Dispose()
                     TerminateApplication()
@@ -238,6 +238,16 @@
                     Exit Sub
                 End If
                 UserPasswordDecrypter = Nothing
+                If DecryptedPassword <> pUsuario.Password Then
+                    MsgBox("La contraseña especificada en Auto-Logon es incorrecta.", MsgBoxStyle.Critical, My.Application.Info.Title)
+                    formSplashScreen.Close()
+                    formSplashScreen.Dispose()
+                    TerminateApplication()
+                    UserPasswordDecrypter = Nothing
+                    Application.Exit()
+                    My.Application.Log.WriteEntry("La Aplicación ha finalizado porque el Password especificado en el Auto-Logon es incorrecto.", TraceEventType.Warning)
+                    Exit Sub
+                End If
 
                 MiscFunctions.UserLoggedIn()
             End Using
