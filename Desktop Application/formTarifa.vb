@@ -296,7 +296,11 @@
             Dim IDCosecha As Byte = Convert.ToByte(comboboxCosecha.SelectedValue)
             Dim IDProducto As Byte = Convert.ToByte(comboboxProducto.SelectedValue)
 
-            updownIndice.Value = mdbContext.Cosecha_Producto_Tarifa.Where(Function(cpt) cpt.IDCosecha = IDCosecha And cpt.IDProducto = IDProducto).Max(Function(cpt) cpt.Indice) + Convert.ToInt16(1)
+            If mdbContext.Cosecha_Producto_Tarifa.Where(Function(cpt) cpt.IDCosecha = IDCosecha And cpt.IDProducto = IDProducto).Count = 0 Then
+                updownIndice.Value = 1
+            Else
+                updownIndice.Value = mdbContext.Cosecha_Producto_Tarifa.Where(Function(cpt) cpt.IDCosecha = IDCosecha And cpt.IDProducto = IDProducto).Max(Function(cpt) cpt.Indice) + Convert.ToInt16(1)
+            End If
         End If
     End Sub
 
