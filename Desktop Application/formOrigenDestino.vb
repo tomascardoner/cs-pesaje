@@ -168,8 +168,12 @@
         End Select
     End Sub
 
-    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxNombre.GotFocus
+    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxNombre.GotFocus, textboxDomicilio.GotFocus, textboxDomicilioCodigoPostal.GotFocus, textboxNotas.GotFocus
         CType(sender, TextBox).SelectAll()
+    End Sub
+
+    Private Sub MaskedTextBoxs_GotFocus(sender As Object, e As EventArgs) Handles maskedtextboxCUIT_CUIL.GotFocus
+        CType(sender, MaskedTextBox).SelectAll()
     End Sub
 
     Private Sub DomicilioProvincia_SelectedValueChanged(sender As Object, e As EventArgs) Handles comboboxDomicilioProvincia.SelectedValueChanged

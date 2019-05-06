@@ -27,11 +27,11 @@ Partial Class formEntidad
         Dim labelEsActivo As System.Windows.Forms.Label
         Dim labelModificacion As System.Windows.Forms.Label
         Dim labelCreacion As System.Windows.Forms.Label
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim labelDomicilioCodigoPostal As System.Windows.Forms.Label
         Dim labelDomicilioProvincia As System.Windows.Forms.Label
         Dim labelDomicilioLocalidad As System.Windows.Forms.Label
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.labelNombre = New System.Windows.Forms.Label()
         Me.textboxNombre = New System.Windows.Forms.TextBox()
         Me.toolstripMain = New System.Windows.Forms.ToolStrip()
@@ -54,6 +54,11 @@ Partial Class formEntidad
         Me.comboboxTransportista = New System.Windows.Forms.ComboBox()
         Me.tabcontrolMain = New CSPesaje.DesktopApplication.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
+        Me.comboboxDomicilioLocalidad = New System.Windows.Forms.ComboBox()
+        Me.comboboxDomicilioProvincia = New System.Windows.Forms.ComboBox()
+        Me.textboxDomicilio = New System.Windows.Forms.TextBox()
+        Me.labelDomicilio = New System.Windows.Forms.Label()
+        Me.textboxDomicilioCodigoPostal = New System.Windows.Forms.TextBox()
         Me.tabpageNotasAuditoria = New System.Windows.Forms.TabPage()
         Me.checkboxEsActivo = New System.Windows.Forms.CheckBox()
         Me.labelIDEntidad = New System.Windows.Forms.Label()
@@ -76,11 +81,6 @@ Partial Class formEntidad
         Me.panelOrigenesDestinosButtons = New System.Windows.Forms.Panel()
         Me.buttonOrigenesDestinosEliminar = New System.Windows.Forms.Button()
         Me.buttonOrigenesDestinosAgregar = New System.Windows.Forms.Button()
-        Me.comboboxDomicilioLocalidad = New System.Windows.Forms.ComboBox()
-        Me.comboboxDomicilioProvincia = New System.Windows.Forms.ComboBox()
-        Me.textboxDomicilio = New System.Windows.Forms.TextBox()
-        Me.labelDomicilio = New System.Windows.Forms.Label()
-        Me.textboxDomicilioCodigoPostal = New System.Windows.Forms.TextBox()
         labelTipo = New System.Windows.Forms.Label()
         labelEsActivo = New System.Windows.Forms.Label()
         labelModificacion = New System.Windows.Forms.Label()
@@ -135,6 +135,33 @@ Partial Class formEntidad
         labelCreacion.Size = New System.Drawing.Size(52, 13)
         labelCreacion.TabIndex = 40
         labelCreacion.Text = "Creación:"
+        '
+        'labelDomicilioCodigoPostal
+        '
+        labelDomicilioCodigoPostal.AutoSize = True
+        labelDomicilioCodigoPostal.Location = New System.Drawing.Point(6, 141)
+        labelDomicilioCodigoPostal.Name = "labelDomicilioCodigoPostal"
+        labelDomicilioCodigoPostal.Size = New System.Drawing.Size(59, 13)
+        labelDomicilioCodigoPostal.TabIndex = 10
+        labelDomicilioCodigoPostal.Text = "Cód. Post.:"
+        '
+        'labelDomicilioProvincia
+        '
+        labelDomicilioProvincia.AutoSize = True
+        labelDomicilioProvincia.Location = New System.Drawing.Point(6, 87)
+        labelDomicilioProvincia.Name = "labelDomicilioProvincia"
+        labelDomicilioProvincia.Size = New System.Drawing.Size(54, 13)
+        labelDomicilioProvincia.TabIndex = 6
+        labelDomicilioProvincia.Text = "Provincia:"
+        '
+        'labelDomicilioLocalidad
+        '
+        labelDomicilioLocalidad.AutoSize = True
+        labelDomicilioLocalidad.Location = New System.Drawing.Point(6, 114)
+        labelDomicilioLocalidad.Name = "labelDomicilioLocalidad"
+        labelDomicilioLocalidad.Size = New System.Drawing.Size(56, 13)
+        labelDomicilioLocalidad.TabIndex = 8
+        labelDomicilioLocalidad.Text = "Localidad:"
         '
         'labelNombre
         '
@@ -359,6 +386,49 @@ Partial Class formEntidad
         Me.tabpageGeneral.TabIndex = 0
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
+        '
+        'comboboxDomicilioLocalidad
+        '
+        Me.comboboxDomicilioLocalidad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxDomicilioLocalidad.FormattingEnabled = True
+        Me.comboboxDomicilioLocalidad.Location = New System.Drawing.Point(101, 111)
+        Me.comboboxDomicilioLocalidad.Name = "comboboxDomicilioLocalidad"
+        Me.comboboxDomicilioLocalidad.Size = New System.Drawing.Size(404, 21)
+        Me.comboboxDomicilioLocalidad.TabIndex = 9
+        '
+        'comboboxDomicilioProvincia
+        '
+        Me.comboboxDomicilioProvincia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxDomicilioProvincia.FormattingEnabled = True
+        Me.comboboxDomicilioProvincia.Location = New System.Drawing.Point(101, 84)
+        Me.comboboxDomicilioProvincia.Name = "comboboxDomicilioProvincia"
+        Me.comboboxDomicilioProvincia.Size = New System.Drawing.Size(404, 21)
+        Me.comboboxDomicilioProvincia.TabIndex = 7
+        '
+        'textboxDomicilio
+        '
+        Me.textboxDomicilio.Location = New System.Drawing.Point(101, 58)
+        Me.textboxDomicilio.MaxLength = 100
+        Me.textboxDomicilio.Name = "textboxDomicilio"
+        Me.textboxDomicilio.Size = New System.Drawing.Size(405, 20)
+        Me.textboxDomicilio.TabIndex = 5
+        '
+        'labelDomicilio
+        '
+        Me.labelDomicilio.AutoSize = True
+        Me.labelDomicilio.Location = New System.Drawing.Point(6, 61)
+        Me.labelDomicilio.Name = "labelDomicilio"
+        Me.labelDomicilio.Size = New System.Drawing.Size(52, 13)
+        Me.labelDomicilio.TabIndex = 4
+        Me.labelDomicilio.Text = "Domicilio:"
+        '
+        'textboxDomicilioCodigoPostal
+        '
+        Me.textboxDomicilioCodigoPostal.Location = New System.Drawing.Point(101, 138)
+        Me.textboxDomicilioCodigoPostal.MaxLength = 8
+        Me.textboxDomicilioCodigoPostal.Name = "textboxDomicilioCodigoPostal"
+        Me.textboxDomicilioCodigoPostal.Size = New System.Drawing.Size(50, 20)
+        Me.textboxDomicilioCodigoPostal.TabIndex = 11
         '
         'tabpageNotasAuditoria
         '
@@ -599,76 +669,6 @@ Partial Class formEntidad
         Me.buttonOrigenesDestinosAgregar.TabIndex = 0
         Me.buttonOrigenesDestinosAgregar.Text = "->"
         Me.buttonOrigenesDestinosAgregar.UseVisualStyleBackColor = True
-        '
-        'comboboxDomicilioLocalidad
-        '
-        Me.comboboxDomicilioLocalidad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboboxDomicilioLocalidad.FormattingEnabled = True
-        Me.comboboxDomicilioLocalidad.Location = New System.Drawing.Point(101, 111)
-        Me.comboboxDomicilioLocalidad.Name = "comboboxDomicilioLocalidad"
-        Me.comboboxDomicilioLocalidad.Size = New System.Drawing.Size(404, 21)
-        Me.comboboxDomicilioLocalidad.TabIndex = 9
-        '
-        'comboboxDomicilioProvincia
-        '
-        Me.comboboxDomicilioProvincia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboboxDomicilioProvincia.FormattingEnabled = True
-        Me.comboboxDomicilioProvincia.Location = New System.Drawing.Point(101, 84)
-        Me.comboboxDomicilioProvincia.Name = "comboboxDomicilioProvincia"
-        Me.comboboxDomicilioProvincia.Size = New System.Drawing.Size(404, 21)
-        Me.comboboxDomicilioProvincia.TabIndex = 7
-        '
-        'textboxDomicilio
-        '
-        Me.textboxDomicilio.Location = New System.Drawing.Point(101, 58)
-        Me.textboxDomicilio.MaxLength = 100
-        Me.textboxDomicilio.Name = "textboxDomicilio"
-        Me.textboxDomicilio.Size = New System.Drawing.Size(405, 20)
-        Me.textboxDomicilio.TabIndex = 5
-        '
-        'labelDomicilioCodigoPostal
-        '
-        labelDomicilioCodigoPostal.AutoSize = True
-        labelDomicilioCodigoPostal.Location = New System.Drawing.Point(6, 141)
-        labelDomicilioCodigoPostal.Name = "labelDomicilioCodigoPostal"
-        labelDomicilioCodigoPostal.Size = New System.Drawing.Size(59, 13)
-        labelDomicilioCodigoPostal.TabIndex = 10
-        labelDomicilioCodigoPostal.Text = "Cód. Post.:"
-        '
-        'labelDomicilio
-        '
-        Me.labelDomicilio.AutoSize = True
-        Me.labelDomicilio.Location = New System.Drawing.Point(6, 61)
-        Me.labelDomicilio.Name = "labelDomicilio"
-        Me.labelDomicilio.Size = New System.Drawing.Size(52, 13)
-        Me.labelDomicilio.TabIndex = 4
-        Me.labelDomicilio.Text = "Domicilio:"
-        '
-        'textboxDomicilioCodigoPostal
-        '
-        Me.textboxDomicilioCodigoPostal.Location = New System.Drawing.Point(101, 138)
-        Me.textboxDomicilioCodigoPostal.MaxLength = 8
-        Me.textboxDomicilioCodigoPostal.Name = "textboxDomicilioCodigoPostal"
-        Me.textboxDomicilioCodigoPostal.Size = New System.Drawing.Size(50, 20)
-        Me.textboxDomicilioCodigoPostal.TabIndex = 11
-        '
-        'labelDomicilioProvincia
-        '
-        labelDomicilioProvincia.AutoSize = True
-        labelDomicilioProvincia.Location = New System.Drawing.Point(6, 87)
-        labelDomicilioProvincia.Name = "labelDomicilioProvincia"
-        labelDomicilioProvincia.Size = New System.Drawing.Size(54, 13)
-        labelDomicilioProvincia.TabIndex = 6
-        labelDomicilioProvincia.Text = "Provincia:"
-        '
-        'labelDomicilioLocalidad
-        '
-        labelDomicilioLocalidad.AutoSize = True
-        labelDomicilioLocalidad.Location = New System.Drawing.Point(6, 114)
-        labelDomicilioLocalidad.Name = "labelDomicilioLocalidad"
-        labelDomicilioLocalidad.Size = New System.Drawing.Size(56, 13)
-        labelDomicilioLocalidad.TabIndex = 8
-        labelDomicilioLocalidad.Text = "Localidad:"
         '
         'formEntidad
         '
