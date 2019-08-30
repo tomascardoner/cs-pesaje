@@ -1,7 +1,7 @@
 ﻿Module StartUp
 
     ' Database stuff
-    Friend pDatabase As CS_Database_SQL
+    Friend pDatabase As CardonerSistemas.Database.ADO.SQLServer
 
     Friend pFillAndRefreshLists As FillAndRefreshLists
 
@@ -52,7 +52,7 @@
         End If
 
         ' Obtengo el Connection String para las conexiones de ADO .NET
-        pDatabase = New CS_Database_SQL
+        pDatabase = New CardonerSistemas.Database.ADO.SQLServer
         pDatabase.ApplicationName = My.Application.Info.Title
         If DataSourceIndex > -1 Then
             pDatabase.DataSource = My.Settings.DBConnection_Datasource.Split(CChar(CS_Constants.STRING_LIST_SEPARATOR)).ElementAt(DataSourceIndex)

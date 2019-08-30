@@ -53,7 +53,7 @@
                 mlistEntidadBase = dbContext.Entidad.Where(Function(e) e.IDEntidad <> CS_Constants.FIELD_VALUE_OTHER_INTEGER).ToList
             End Using
         Catch ex As Exception
-            CS_Error.ProcessError(ex, "Error al leer las Entidades.")
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer las Entidades.")
             Me.Cursor = Cursors.Default
             Exit Sub
         End Try
@@ -121,7 +121,7 @@
                         statuslabelMain.Text = String.Format("Se muestran {0} Entidades.", mlistEntidadFiltradaYOrdenada.Count)
                 End Select
             Catch ex As Exception
-                CS_Error.ProcessError(ex, "Error al filtrar los datos.")
+                CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al filtrar los datos.")
                 Me.Cursor = Cursors.Default
                 Exit Sub
             End Try
@@ -303,13 +303,13 @@
                         End Using
                     Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                         Me.Cursor = Cursors.Default
-                        Select Case CS_Database_EF_SQL.TryDecodeDbUpdateException(dbuex)
-                            Case Errors.RelatedEntity
+                        Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)
+                            Case CardonerSistemas.Database.EntityFramework.Errors.RelatedEntity
                                 MsgBox("No se puede eliminar la Entidad porque tiene datos relacionados.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                         End Select
                         Exit Sub
                     Catch ex As Exception
-                        CS_Error.ProcessError(ex, "Error al eliminar la Entidad.")
+                        CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al eliminar la Entidad.")
                     End Try
 
                     RefreshData()

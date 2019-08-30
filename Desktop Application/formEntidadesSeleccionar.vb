@@ -53,7 +53,7 @@
                 mlistEntidadBase = dbContext.Entidad.ToList
             End Using
         Catch ex As Exception
-            CS_Error.ProcessError(ex, "Error al leer las Entidades.")
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer las Entidades.")
             Me.Cursor = Cursors.Default
             Exit Sub
         End Try
@@ -109,7 +109,7 @@
                         mlistEntidadFiltradaYOrdenada = mlistEntidadFiltradaYOrdenada.Where(Function(a) Not a.EsActivo).ToList
                 End Select
             Catch ex As Exception
-                CS_Error.ProcessError(ex, "Error al filtrar los datos.")
+                CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al filtrar los datos.")
                 Me.Cursor = Cursors.Default
                 Exit Sub
             End Try

@@ -45,7 +45,7 @@
             treeviewReportes.ExpandAll()
             treeviewReportes.EndUpdate()
         Catch ex As Exception
-            CS_Error.ProcessError(ex, "Error al leer la lista de Reportes.")
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer la lista de Reportes.")
         End Try
     End Sub
 
@@ -100,7 +100,7 @@
             Next
             listviewParametros.EndUpdate()
         Catch ex As Exception
-            CS_Error.ProcessError(ex, "Error al leer la lista de Parámetros del Reporte.")
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer la lista de Parámetros del Reporte.")
         End Try
     End Sub
 

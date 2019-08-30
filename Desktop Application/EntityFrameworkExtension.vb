@@ -413,14 +413,14 @@ Partial Public Class Reporte
         Try
             ReportObject = New ReportDocument
         Catch ex As Exception
-            CS_Error.ProcessError(ex, "Error al crear el objeto del reporte." & vbCrLf & "Probablemente, esto se deba a que no estan correctamente instaladas las librerías de Crystal Reports.")
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al crear el objeto del reporte." & vbCrLf & "Probablemente, esto se deba a que no estan correctamente instaladas las librerías de Crystal Reports.")
             Return False
         End Try
 
         Try
             ReportObject.Load(PathAndFileName)
         Catch ex As Exception
-            CS_Error.ProcessError(ex, "Error al cargar el reporte.")
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al cargar el reporte.")
             Return False
         End Try
 
@@ -503,7 +503,7 @@ Partial Public Class Reporte
             Next
             Return True
         Catch ex As Exception
-            CS_Error.ProcessError(ex, "Error al establecer la conexión a la base de datos del Reporte.")
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al establecer la conexión a la base de datos del Reporte.")
             Return False
         End Try
     End Function

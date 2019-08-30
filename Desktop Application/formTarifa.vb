@@ -253,7 +253,7 @@
             datagridviewTarifaSecadoEscala.AutoGenerateColumns = False
             datagridviewTarifaSecadoEscala.DataSource = listSecadoEscalas
         Catch ex As Exception
-            CS_Error.ProcessError(ex, "Error al leer las Escalas de Tarifas de Secado.")
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer las Escalas de Tarifas de Secado.")
             Me.Cursor = Cursors.Default
             Exit Sub
         End Try
@@ -416,17 +416,17 @@
                 End If
             Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                 Me.Cursor = Cursors.Default
-                Select Case CS_Database_EF_SQL.TryDecodeDbUpdateException(dbuex)
-                    Case Errors.DuplicatedEntity, Errors.PrimaryKeyViolation
+                Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)
+                    Case CardonerSistemas.Database.EntityFramework.Errors.DuplicatedEntity, CardonerSistemas.Database.EntityFramework.Errors.PrimaryKeyViolation
                         MsgBox("No se pueden guardar los cambios porque ya existe una Tarifa para la misma Cosecha y Producto con el mismo Índice.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
-                    Case Errors.Unknown
-                        CS_Error.ProcessError(CType(dbuex, Exception), My.Resources.STRING_ERROR_SAVING_CHANGES)
+                    Case CardonerSistemas.Database.EntityFramework.Errors.Unknown
+                        CardonerSistemas.ErrorHandler.ProcessError(CType(dbuex, Exception), My.Resources.STRING_ERROR_SAVING_CHANGES)
                 End Select
                 Exit Sub
             Catch ex As Exception
                 Me.Cursor = Cursors.Default
 
-                CS_Error.ProcessError(ex, My.Resources.STRING_ERROR_SAVING_CHANGES)
+                CardonerSistemas.ErrorHandler.ProcessError(ex, My.Resources.STRING_ERROR_SAVING_CHANGES)
                 Exit Sub
             End Try
         End If

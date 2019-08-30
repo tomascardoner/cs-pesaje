@@ -256,7 +256,7 @@
                                    Select New GridRowData With {.IDPesada = pe.IDPesada, .FechaHoraInicio = pe.FechaHoraInicio, .FechaHoraFin = pe.FechaHoraFin, .ComprobanteNumero = pe.ComprobanteNumero, .IDTitular = pe.Titular_IDEntidad, .TitularNombre = If(pe.Titular_IDEntidad = CS_Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Titular_Nombre, ent.Nombre), .IDProducto = pe.IDProducto, .ProductoNombre = If(pe.IDProducto = CS_Constants.FIELD_VALUE_OTHER_BYTE, pe_otg.Producto_Nombre, pr.Nombre), .Producto_TicketPesada_IDReporte = pr.TicketPesada_IDReporte, .IDPlanta = pe.IDPlanta, .Tipo = pe.Tipo, .TipoNombre = pe.TipoNombre, .IDCosecha = pe.IDCosecha, .CosechaNombre = If(cog Is Nothing, "", cog.Nombre), .IDOrigen = pe.IDOrigen, .OrigenNombre = If(pe.IDOrigen = CS_Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Origen_Nombre, If(og Is Nothing, "", og.Nombre)), .IDDestino = pe.IDDestino, .DestinoNombre = If(pe.IDDestino = CS_Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Destino_Nombre, If(dg Is Nothing, "", dg.Nombre)), .KilogramoBruto = pe.KilogramoBruto, .KilogramoTara = pe.KilogramoTara, .KilogramoNeto = pe.KilogramoNeto, .Humedad = If(pe_ang Is Nothing, Nothing, pe_ang.Humedad), .Zaranda = If(pe_ang Is Nothing, Nothing, pe_ang.Zaranda), .KilogramoFinal = pe.KilogramoFinal, .IDTransportista = pe.Transportista_IDEntidad, .TransportistaNombre = If(pe.Transportista_IDEntidad = CS_Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Transportista_Nombre, If(trg Is Nothing, "", trg.Nombre)), .IDChofer = pe.Chofer_IDEntidad, .ChoferNombre = If(pe.Chofer_IDEntidad = CS_Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Chofer_Nombre, If(chg Is Nothing, "", chg.Nombre)), .CamionNombreDominios = If(pe.IDCamion = CS_Constants.FIELD_VALUE_OTHER_BYTE, pe_otg.Camion_DominioChasis & If(pe_otg.Camion_DominioAcoplado Is Nothing, "", " - " & pe_otg.Camion_DominioAcoplado), If(cag Is Nothing, "", cag.NombreDominios)), .EsVerificado = pe.EsVerificado, .EsActivo = pe.EsActivo}).ToList
             End Using
         Catch ex As Exception
-            CS_Error.ProcessError(ex, "Error al leer las Pesadas.")
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer las Pesadas.")
             Me.Cursor = Cursors.Default
             Exit Sub
         End Try
@@ -386,7 +386,7 @@
                         statuslabelMain.Text = String.Format("Se muestran {0} Pesadas.", mlistPesadaFiltradaYOrdenada.Count)
                 End Select
             Catch ex As Exception
-                CS_Error.ProcessError(ex, "Error al filtrar los datos.")
+                CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al filtrar los datos.")
                 Me.Cursor = Cursors.Default
                 Exit Sub
             End Try
@@ -642,13 +642,13 @@
                         End Using
                     Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                         Me.Cursor = Cursors.Default
-                        Select Case CS_Database_EF_SQL.TryDecodeDbUpdateException(dbuex)
-                            Case Errors.RelatedEntity
+                        Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)
+                            Case CardonerSistemas.Database.EntityFramework.Errors.RelatedEntity
                                 MsgBox("No se puede eliminar la Pesada porque tiene datos relacionados.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                         End Select
                         Exit Sub
                     Catch ex As Exception
-                        CS_Error.ProcessError(ex, "Error al eliminar la Pesada.")
+                        CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al eliminar la Pesada.")
                     End Try
 
                     RefreshData()
@@ -799,13 +799,13 @@
                 End Using
             Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                 Me.Cursor = Cursors.Default
-                Select Case CS_Database_EF_SQL.TryDecodeDbUpdateException(dbuex)
+                Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)
                 End Select
                 datagridviewMain.Enabled = True
                 Me.Cursor = Cursors.Default
                 Exit Sub
             Catch ex As Exception
-                CS_Error.ProcessError(ex, "Error al calcular mermas de la Pesada.")
+                CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al calcular mermas de la Pesada.")
             End Try
 
             If datagridviewMain.Rows.Count > 0 Then
@@ -857,13 +857,13 @@
                 End Using
             Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                 Me.Cursor = Cursors.Default
-                Select Case CS_Database_EF_SQL.TryDecodeDbUpdateException(dbuex)
+                Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)
                 End Select
                 datagridviewMain.Enabled = True
                 Me.Cursor = Cursors.Default
                 Exit Sub
             Catch ex As Exception
-                CS_Error.ProcessError(ex, "Error al calcular el acondicionamiento de la Pesada.")
+                CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al calcular el acondicionamiento de la Pesada.")
             End Try
 
             If datagridviewMain.Rows.Count > 0 Then

@@ -65,7 +65,7 @@
                                           Select New GridRowData With {.IDOrigenDestino = od.IDOrigenDestino, .Nombre = od.Nombre, .Domicilio = od.Domicilio, .LocalidadNombre = If(od.IDProvincia Is Nothing, "", lg.Nombre), .EsActivo = od.EsActivo}).ToList
             End Using
         Catch ex As Exception
-            CS_Error.ProcessError(ex, "Error al leer los Orígenes-Destinos.")
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer los Orígenes-Destinos.")
             Me.Cursor = Cursors.Default
             Exit Sub
         End Try
@@ -128,7 +128,7 @@
                         statuslabelMain.Text = String.Format("Se muestran {0} Orígenes-Destinos.", mlistOrigenDestinoFiltradaYOrdenada.Count)
                 End Select
             Catch ex As Exception
-                CS_Error.ProcessError(ex, "Error al filtrar los datos.")
+                CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al filtrar los datos.")
                 Me.Cursor = Cursors.Default
                 Exit Sub
             End Try
@@ -306,13 +306,13 @@
                         End Using
                     Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                         Me.Cursor = Cursors.Default
-                        Select Case CS_Database_EF_SQL.TryDecodeDbUpdateException(dbuex)
-                            Case Errors.RelatedEntity
+                        Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)
+                            Case CardonerSistemas.Database.EntityFramework.Errors.RelatedEntity
                                 MsgBox("No se puede eliminar el Origen-Destino porque tiene datos relacionados.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                         End Select
                         Exit Sub
                     Catch ex As Exception
-                        CS_Error.ProcessError(ex, "Error al eliminar el Origen-Destino.")
+                        CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al eliminar el Origen-Destino.")
                     End Try
 
                     RefreshData()

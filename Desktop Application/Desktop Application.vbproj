@@ -109,14 +109,28 @@
     <Compile Include="..\..\..\..\framework-vbnet\CS_Icon.vb">
       <Link>CS_Icon.vb</Link>
     </Compile>
+    <Compile Include="..\..\..\..\framework-vbnet\Database.ADO.vb">
+      <Link>Database.ADO.vb</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\framework-vbnet\Database.EntityFramework.vb">
+      <Link>Database.EntityFramework.vb</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\framework-vbnet\ErrorHandler.vb">
+      <Link>ErrorHandler.vb</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\framework-vbnet\ErrorHandlerMessageBox.designer.vb">
+      <Link>ErrorHandlerMessageBox.designer.vb</Link>
+      <DependentUpon>ErrorHandlerMessageBox.vb</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\..\..\framework-vbnet\ErrorHandlerMessageBox.vb">
+      <Link>ErrorHandlerMessageBox.vb</Link>
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="C:\Data\Cardoner Sistemas\Development\framework-vbnet\CS_AFIP.vb">
       <Link>CS_AFIP.vb</Link>
     </Compile>
     <Compile Include="C:\Data\Cardoner Sistemas\Development\framework-vbnet\CS_ComboBox.vb">
       <Link>CS_ComboBox.vb</Link>
-    </Compile>
-    <Compile Include="C:\Data\Cardoner Sistemas\Development\framework-vbnet\CS_Database_EF_SQL.vb">
-      <Link>CS_Database_EF_SQL.vb</Link>
     </Compile>
     <Compile Include="C:\Data\Cardoner Sistemas\Development\framework-vbnet\CS_Database_SelectSource.designer.vb">
       <Link>CS_Database_SelectSource.designer.vb</Link>
@@ -136,22 +150,8 @@
       <Link>CS_Control_TabControl.vb</Link>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="C:\Data\Cardoner Sistemas\Development\framework-vbnet\CS_Database_SQL.vb">
-      <Link>CS_Database_SQL.vb</Link>
-    </Compile>
     <Compile Include="C:\Data\Cardoner Sistemas\Development\framework-vbnet\CS_Encryption_TripleDES.vb">
       <Link>CS_Encryption_TripleDES.vb</Link>
-    </Compile>
-    <Compile Include="C:\Data\Cardoner Sistemas\Development\framework-vbnet\CS_Error.vb">
-      <Link>CS_Error.vb</Link>
-    </Compile>
-    <Compile Include="C:\Data\Cardoner Sistemas\Development\framework-vbnet\CS_ErrorMessageBox.designer.vb">
-      <Link>CS_ErrorMessageBox.designer.vb</Link>
-      <DependentUpon>CS_ErrorMessageBox.vb</DependentUpon>
-    </Compile>
-    <Compile Include="C:\Data\Cardoner Sistemas\Development\framework-vbnet\CS_ErrorMessageBox.vb">
-      <Link>CS_ErrorMessageBox.vb</Link>
-      <SubType>Form</SubType>
     </Compile>
     <Compile Include="C:\Data\Cardoner Sistemas\Development\framework-vbnet\CS_Form.vb">
       <Link>CS_Form.vb</Link>
@@ -400,13 +400,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="..\..\..\..\framework-vbnet\ErrorHandlerMessageBox.resx">
+      <Link>ErrorHandlerMessageBox.resx</Link>
+      <DependentUpon>ErrorHandlerMessageBox.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="C:\Data\Cardoner Sistemas\Development\framework-vbnet\CS_Database_SelectSource.resx">
       <Link>CS_Database_SelectSource.resx</Link>
       <DependentUpon>CS_Database_SelectSource.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="C:\Data\Cardoner Sistemas\Development\framework-vbnet\CS_ErrorMessageBox.resx">
-      <Link>CS_ErrorMessageBox.resx</Link>
-      <DependentUpon>CS_ErrorMessageBox.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formCamion.resx">
       <DependentUpon>formCamion.vb</DependentUpon>
