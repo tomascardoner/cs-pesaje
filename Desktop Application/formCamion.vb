@@ -21,6 +21,15 @@
         If mIsNew Then
             mCamionActual = New Camion
             With mCamionActual
+                ' Si está abierto el form de Camiones, y tiene un Transportista seleccionado, lo uso como predeterminado
+                If CS_Form.MDIChild_IsLoaded(CType(pFormMDIMain, Form), "formCamiones") Then
+                    Dim formCamions As formCamiones = CType(CS_Form.MDIChild_GetInstance(CType(pFormMDIMain, Form), "formCamiones"), formCamiones)
+                    If CInt(formCamions.comboboxTransportista.ComboBox.SelectedValue) <> FIELD_VALUE_ALL_INTEGER Then
+                        .IDEntidad = CInt(formCamions.comboboxTransportista.ComboBox.SelectedValue)
+                    End If
+                    formCamions = Nothing
+                End If
+
                 .EsActivo = True
                 .IDUsuarioCreacion = pUsuario.IDUsuario
                 .FechaHoraCreacion = Now
