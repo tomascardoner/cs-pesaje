@@ -102,8 +102,8 @@
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
             maskedtextboxCUIT_CUIL.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.CUIT_CUIL)
             textboxDomicilio.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Domicilio)
-            CS_ComboBox.SetSelectedValue(comboboxDomicilioProvincia, SelectedItemOptions.Value, .IDProvincia, FIELD_VALUE_NOTSPECIFIED_BYTE)
-            CS_ComboBox.SetSelectedValue(comboboxDomicilioLocalidad, SelectedItemOptions.Value, .IDLocalidad, FIELD_VALUE_NOTSPECIFIED_SHORT)
+            CardonerSistemas.ComboBox.SetSelectedValue(comboboxDomicilioProvincia, CardonerSistemas.ComboBox.SelectedItemOptions.Value, .IDProvincia, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
+            CardonerSistemas.ComboBox.SetSelectedValue(comboboxDomicilioLocalidad, CardonerSistemas.ComboBox.SelectedItemOptions.Value, .IDLocalidad, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
             textboxDomicilioCodigoPostal.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.CodigoPostal)
             doubletextboxLatitud.Text = CS_ValueTranslation.FromObjectDecimalToControlTextBox(.UbicacionLatitud)
             doubletextboxLongitud.Text = CS_ValueTranslation.FromObjectDecimalToControlTextBox(.UbicacionLongitud)
@@ -136,8 +136,8 @@
             .Nombre = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNombre.Text)
             .CUIT_CUIL = CS_ValueTranslation.FromControlTextBoxToObjectString(maskedtextboxCUIT_CUIL.Text)
             .Domicilio = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxDomicilio.Text)
-            .IDProvincia = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxDomicilioProvincia.SelectedValue, FIELD_VALUE_NOTSPECIFIED_BYTE)
-            .IDLocalidad = CS_ValueTranslation.FromControlComboBoxToObjectShort(comboboxDomicilioLocalidad.SelectedValue, FIELD_VALUE_NOTSPECIFIED_SHORT)
+            .IDProvincia = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxDomicilioProvincia.SelectedValue, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
+            .IDLocalidad = CS_ValueTranslation.FromControlComboBoxToObjectShort(comboboxDomicilioLocalidad.SelectedValue, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
             .CodigoPostal = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxDomicilioCodigoPostal.Text)
             .UbicacionLatitud = CS_ValueTranslation.FromControlTextBoxToObjectDecimal(doubletextboxLatitud.Text)
             .UbicacionLongitud = CS_ValueTranslation.FromControlTextBoxToObjectDecimal(doubletextboxLongitud.Text)
@@ -183,7 +183,7 @@
         Else
             pFillAndRefreshLists.Localidad(comboboxDomicilioLocalidad, CByte(comboboxDomicilioProvincia.SelectedValue), True)
             If CByte(comboboxDomicilioProvincia.SelectedValue) = CS_Parameter_System.GetIntegerAsByte(Parametros.DEFAULT_PROVINCIA_ID) Then
-                CS_ComboBox.SetSelectedValue(comboboxDomicilioLocalidad, SelectedItemOptions.ValueOrFirst, CS_Parameter_System.GetIntegerAsShort(Parametros.DEFAULT_LOCALIDAD_ID))
+                CardonerSistemas.ComboBox.SetSelectedValue(comboboxDomicilioLocalidad, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, CS_Parameter_System.GetIntegerAsShort(Parametros.DEFAULT_LOCALIDAD_ID))
             End If
         End If
     End Sub
@@ -240,7 +240,7 @@
                 maskedtextboxCUIT_CUIL.Focus()
                 Exit Sub
             End If
-            If Not CS_AFIP.VerificarCUIT(maskedtextboxCUIT_CUIL.Text) Then
+            If Not CardonerSistemas.AFIP.VerificarCUIT(maskedtextboxCUIT_CUIL.Text) Then
                 MsgBox("El Número de CUIT / CUIL ingresado es incorrecto.", MsgBoxStyle.Information, My.Application.Info.Title)
                 maskedtextboxCUIT_CUIL.Focus()
                 Exit Sub
@@ -250,10 +250,10 @@
         ' Generar el ID del Origen-Destino nuevo
         If mIsNew Then
             Using dbcMaxID As New CSPesajeContext(True)
-                If dbcMaxID.OrigenDestino.Where(Function(e) e.IDOrigenDestino <> CS_Constants.FIELD_VALUE_OTHER_INTEGER).Count = 0 Then
+                If dbcMaxID.OrigenDestino.Where(Function(e) e.IDOrigenDestino <> CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER).Count = 0 Then
                     mOrigenDestinoActual.IDOrigenDestino = 1
                 Else
-                    mOrigenDestinoActual.IDOrigenDestino = CByte(dbcMaxID.OrigenDestino.Where(Function(e) e.IDOrigenDestino <> CS_Constants.FIELD_VALUE_OTHER_INTEGER).Max(Function(ent) ent.IDOrigenDestino) + 1)
+                    mOrigenDestinoActual.IDOrigenDestino = CByte(dbcMaxID.OrigenDestino.Where(Function(e) e.IDOrigenDestino <> CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER).Max(Function(ent) ent.IDOrigenDestino) + 1)
                 End If
             End Using
         End If

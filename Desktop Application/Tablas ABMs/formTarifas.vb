@@ -132,12 +132,12 @@
                 mlistTarifaFiltradaYOrdenada = mlistTarifaBase
 
                 ' Filtro por Cosecha
-                If CInt(comboboxCosecha.ComboBox.SelectedValue) <> FIELD_VALUE_ALL_BYTE Then
+                If CInt(comboboxCosecha.ComboBox.SelectedValue) <> CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE Then
                     mlistTarifaFiltradaYOrdenada = mlistTarifaFiltradaYOrdenada.Where(Function(t) t.IDCosecha = CByte(comboboxCosecha.ComboBox.SelectedValue)).ToList
                 End If
 
                 ' Filtro por Producto
-                If CInt(comboboxProducto.ComboBox.SelectedValue) <> FIELD_VALUE_ALL_BYTE Then
+                If CInt(comboboxProducto.ComboBox.SelectedValue) <> CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE Then
                     mlistTarifaFiltradaYOrdenada = mlistTarifaFiltradaYOrdenada.Where(Function(t) t.IDProducto = CByte(comboboxProducto.ComboBox.SelectedValue)).ToList
                 End If
 

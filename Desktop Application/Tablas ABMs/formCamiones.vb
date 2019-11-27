@@ -37,7 +37,7 @@
         pFillAndRefreshLists.Entidad(comboboxTransportista.ComboBox, Nothing, False, False, True, False, 0, False, True, False, False)
 
         comboboxActivo.Items.AddRange({My.Resources.STRING_ITEM_ALL_MALE, My.Resources.STRING_YES, My.Resources.STRING_NO})
-        comboboxActivo.SelectedIndex = COMBOBOX_ALLYESNO_YES_LISTINDEX
+        comboboxActivo.SelectedIndex = CardonerSistemas.Constants.COMBOBOX_ALLYESNO_YES_LISTINDEX
 
         mSkipFilterData = False
 
@@ -63,7 +63,7 @@
             Using dbContext As New CSPesajeContext(True)
                 mlistCamionBase = (From c In dbContext.Camion
                                    Join e In dbContext.Entidad On c.IDEntidad Equals e.IDEntidad
-                                   Where c.IDCamion <> CS_Constants.FIELD_VALUE_OTHER_BYTE
+                                   Where c.IDCamion <> CardonerSistemas.Constants.FIELD_VALUE_OTHER_BYTE
                                    Select New GridRowData With {.IDEntidad = c.IDEntidad, .TransportistaNombre = e.Nombre, .IDCamion = c.IDCamion, .Nombre = c.Nombre, .DominioChasis = c.DominioChasis, .DominioAcoplado = c.DominioAcoplado, .EsActivo = c.EsActivo}).ToList
             End Using
         Catch ex As Exception
@@ -108,17 +108,17 @@
                 mlistCamionFiltradaYOrdenada = mlistCamionBase
 
                 ' Filtro por Transportista
-                If CInt(comboboxTransportista.ComboBox.SelectedValue) <> FIELD_VALUE_ALL_INTEGER Then
+                If CInt(comboboxTransportista.ComboBox.SelectedValue) <> CardonerSistemas.Constants.FIELD_VALUE_ALL_INTEGER Then
                     mlistCamionFiltradaYOrdenada = mlistCamionFiltradaYOrdenada.Where(Function(cam) cam.IDEntidad = CInt(comboboxTransportista.ComboBox.SelectedValue)).ToList
                 End If
 
                 ' Filtro por Activo
                 Select Case comboboxActivo.SelectedIndex
-                    Case COMBOBOX_ALLYESNO_ALL_LISTINDEX        ' Todos
-                    Case COMBOBOX_ALLYESNO_YES_LISTINDEX        ' Sí
+                    Case CardonerSistemas.Constants.COMBOBOX_ALLYESNO_ALL_LISTINDEX        ' Todos
+                    Case CardonerSistemas.Constants.COMBOBOX_ALLYESNO_YES_LISTINDEX        ' Sí
                         mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, "", " AND ").ToString & "{Camion.EsActivo} = 1"
                         mlistCamionFiltradaYOrdenada = mlistCamionFiltradaYOrdenada.Where(Function(a) a.EsActivo).ToList
-                    Case COMBOBOX_ALLYESNO_NO_LISTINDEX         ' No
+                    Case CardonerSistemas.Constants.COMBOBOX_ALLYESNO_NO_LISTINDEX         ' No
                         mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, "", " AND ").ToString & "{Camion.EsActivo} = 0"
                         mlistCamionFiltradaYOrdenada = mlistCamionFiltradaYOrdenada.Where(Function(a) Not a.EsActivo).ToList
                 End Select
@@ -230,7 +230,7 @@
 
             Dim IDEntidadFiltro As Integer
             IDEntidadFiltro = CInt(comboboxTransportista.ComboBox.SelectedValue)
-            If IDEntidadFiltro = CS_Constants.FIELD_VALUE_OTHER_INTEGER Then
+            If IDEntidadFiltro = CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER Then
                 IDEntidadFiltro = 0
             End If
             formCamion.LoadAndShow(True, Me, IDEntidadFiltro, 0)

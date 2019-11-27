@@ -159,7 +159,7 @@
         CamionOtro()
 
         pFillAndRefreshLists.Producto(comboboxProducto, mPesadaActual.IDProducto, False, True, False, False)
-        pFillAndRefreshLists.Entidad(comboboxTransportista, mPesadaActual.Transportista_IDEntidad, False, False, True, False, CS_Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER, True, False, False, True)
+        pFillAndRefreshLists.Entidad(comboboxTransportista, mPesadaActual.Transportista_IDEntidad, False, False, True, False, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER, True, False, False, True)
 
         If Permisos.VerificarPermiso(Permisos.PESADA_MOSTRAR_EXTRAS, False) Then
             tabcontrolNotasExtras.ShowTabPageByName(tabpageExtras.Name)
@@ -217,7 +217,7 @@
             maskedtextboxComprobanteNumeroTercero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.ComprobanteNumeroTercero)
 
             ' Producto - Planta - Tipo - Cosecha
-            If .IDProducto = CS_Constants.FIELD_VALUE_OTHER_BYTE Then
+            If .IDProducto = CardonerSistemas.Constants.FIELD_VALUE_OTHER_BYTE Then
                 checkboxProductoOtro.Checked = True
                 If .Pesada_Otro Is Nothing Then
                     textboxProducto.Text = ""
@@ -225,10 +225,10 @@
                     textboxProducto.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Pesada_Otro.Producto_Nombre)
                 End If
             Else
-                CS_ComboBox.SetSelectedValue(comboboxProducto, SelectedItemOptions.Value, .IDProducto)
+                CardonerSistemas.ComboBox.SetSelectedValue(comboboxProducto, CardonerSistemas.ComboBox.SelectedItemOptions.Value, .IDProducto)
                 textboxProducto.Text = ""
             End If
-            CS_ComboBox.SetSelectedValue(comboboxPlanta, SelectedItemOptions.Value, .IDPlanta, CS_Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
+            CardonerSistemas.ComboBox.SetSelectedValue(comboboxPlanta, CardonerSistemas.ComboBox.SelectedItemOptions.Value, .IDPlanta, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
             TipoTodos()
             Select Case .Tipo
                 Case Constantes.PESADA_TIPO_ENTRADA
@@ -241,10 +241,10 @@
                     radiobuttonNinguno.Checked = True
                     radiobuttonNinguno.Visible = True
             End Select
-            CS_ComboBox.SetSelectedValue(comboboxCosecha, SelectedItemOptions.Value, .IDCosecha, CS_Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
+            CardonerSistemas.ComboBox.SetSelectedValue(comboboxCosecha, CardonerSistemas.ComboBox.SelectedItemOptions.Value, .IDCosecha, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
 
             ' Titular - Origen - Destino
-            If .Titular_IDEntidad = CS_Constants.FIELD_VALUE_OTHER_INTEGER Then
+            If .Titular_IDEntidad = CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER Then
                 checkboxTitularOtro.Checked = True
                 If .Pesada_Otro Is Nothing Then
                     textboxTitular.Text = ""
@@ -252,10 +252,10 @@
                     textboxTitular.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Pesada_Otro.Titular_Nombre)
                 End If
             Else
-                CS_ComboBox.SetSelectedValue(comboboxTitular, SelectedItemOptions.Value, .Titular_IDEntidad)
+                CardonerSistemas.ComboBox.SetSelectedValue(comboboxTitular, CardonerSistemas.ComboBox.SelectedItemOptions.Value, .Titular_IDEntidad)
                 textboxTitular.Text = ""
             End If
-            If .IDOrigen = CS_Constants.FIELD_VALUE_OTHER_INTEGER Then
+            If .IDOrigen = CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER Then
                 checkboxOrigenOtro.Checked = True
                 If .Pesada_Otro Is Nothing Then
                     textboxOrigen.Text = ""
@@ -263,10 +263,10 @@
                     textboxOrigen.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Pesada_Otro.Origen_Nombre)
                 End If
             Else
-                CS_ComboBox.SetSelectedValue(comboboxOrigen, SelectedItemOptions.ValueOrFirst, .IDOrigen)
+                CardonerSistemas.ComboBox.SetSelectedValue(comboboxOrigen, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .IDOrigen)
                 textboxOrigen.Text = ""
             End If
-            If .IDDestino = CS_Constants.FIELD_VALUE_OTHER_INTEGER Then
+            If .IDDestino = CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER Then
                 checkboxDestinoOtro.Checked = True
                 If .Pesada_Otro Is Nothing Then
                     textboxDestino.Text = ""
@@ -274,12 +274,12 @@
                     textboxDestino.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Pesada_Otro.Destino_Nombre)
                 End If
             Else
-                CS_ComboBox.SetSelectedValue(comboboxDestino, SelectedItemOptions.ValueOrFirst, .IDDestino)
+                CardonerSistemas.ComboBox.SetSelectedValue(comboboxDestino, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .IDDestino)
                 textboxDestino.Text = ""
             End If
 
             ' Transporte
-            If .Transportista_IDEntidad = CS_Constants.FIELD_VALUE_OTHER_INTEGER Then
+            If .Transportista_IDEntidad = CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER Then
                 checkboxTransportistaOtro.Checked = True
                 If .Pesada_Otro Is Nothing Then
                     textboxTransportista.Text = ""
@@ -291,9 +291,9 @@
             Else
                 textboxTransportista.Text = ""
                 maskedtextboxTransportistaCUIT.Text = ""
-                CS_ComboBox.SetSelectedValue(comboboxTransportista, SelectedItemOptions.ValueOrFirst, .Transportista_IDEntidad)
+                CardonerSistemas.ComboBox.SetSelectedValue(comboboxTransportista, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .Transportista_IDEntidad)
             End If
-            If .Chofer_IDEntidad = CS_Constants.FIELD_VALUE_OTHER_INTEGER Then
+            If .Chofer_IDEntidad = CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER Then
                 checkboxChoferOtro.Checked = True
                 If .Pesada_Otro Is Nothing Then
                     textboxChofer.Text = ""
@@ -305,9 +305,9 @@
             Else
                 textboxChofer.Text = ""
                 maskedtextboxChoferCUIT_CUIL.Text = ""
-                CS_ComboBox.SetSelectedValue(comboboxChofer, SelectedItemOptions.ValueOrFirst, .Chofer_IDEntidad)
+                CardonerSistemas.ComboBox.SetSelectedValue(comboboxChofer, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .Chofer_IDEntidad)
             End If
-            If .IDCamion = CS_Constants.FIELD_VALUE_OTHER_BYTE Then
+            If .IDCamion = CardonerSistemas.Constants.FIELD_VALUE_OTHER_BYTE Then
                 checkboxCamionOtro.Checked = True
                 If .Pesada_Otro Is Nothing Then
                     textboxCamion_DominioChasis.Text = ""
@@ -322,7 +322,7 @@
                 textboxCamion_DominioChasis.Text = ""
                 textboxCamion_DominioChasisExtra.Text = ""
                 textboxCamion_DominioAcoplado.Text = ""
-                CS_ComboBox.SetSelectedValue(comboboxCamion, SelectedItemOptions.ValueOrFirst, .IDCamion)
+                CardonerSistemas.ComboBox.SetSelectedValue(comboboxCamion, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .IDCamion)
             End If
             integertextboxKilometro.Text = CS_ValueTranslation.FromObjectIntegerToControlTextBox(.Kilometro)
 
@@ -400,7 +400,7 @@
 
             ' Producto - Planta - Cosecha
             If checkboxProductoOtro.Checked Then
-                .IDProducto = CS_Constants.FIELD_VALUE_OTHER_BYTE
+                .IDProducto = CardonerSistemas.Constants.FIELD_VALUE_OTHER_BYTE
                 .Pesada_Otro.Producto_Nombre = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxProducto.Text)
             Else
                 .IDProducto = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxProducto.SelectedValue).Value
@@ -420,7 +420,7 @@
 
             ' Titular - Origen - Destino
             If checkboxTitularOtro.Checked Then
-                .Titular_IDEntidad = CS_Constants.FIELD_VALUE_OTHER_INTEGER
+                .Titular_IDEntidad = CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER
                 .Pesada_Otro.Titular_Nombre = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxTitular.Text)
             Else
                 .Titular_IDEntidad = CS_ValueTranslation.FromControlComboBoxToObjectInteger(comboboxTitular.SelectedValue).Value
@@ -430,7 +430,7 @@
             End If
             If labelOrigen.Visible Then
                 If checkboxOrigenOtro.Checked Then
-                    .IDOrigen = CS_Constants.FIELD_VALUE_OTHER_INTEGER
+                    .IDOrigen = CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER
                     .Pesada_Otro.Origen_Nombre = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxOrigen.Text)
                 Else
                     .IDOrigen = CS_ValueTranslation.FromControlComboBoxToObjectInteger(comboboxOrigen.SelectedValue)
@@ -449,7 +449,7 @@
 
             If labelDestino.Visible Then
                 If checkboxDestinoOtro.Checked Then
-                    .IDDestino = CS_Constants.FIELD_VALUE_OTHER_INTEGER
+                    .IDDestino = CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER
                     .Pesada_Otro.Destino_Nombre = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxDestino.Text)
                 Else
                     .IDDestino = CS_ValueTranslation.FromControlComboBoxToObjectInteger(comboboxDestino.SelectedValue)
@@ -468,7 +468,7 @@
 
             ' Transporte
             If checkboxTransportistaOtro.Checked Then
-                .Transportista_IDEntidad = CS_Constants.FIELD_VALUE_OTHER_INTEGER
+                .Transportista_IDEntidad = CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER
                 .Pesada_Otro.Transportista_Nombre = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxTransportista.Text)
                 .Pesada_Otro.Transportista_CUIT = CS_ValueTranslation.FromControlTextBoxToObjectString(maskedtextboxTransportistaCUIT.Text)
             Else
@@ -479,7 +479,7 @@
                 End If
             End If
             If checkboxChoferOtro.Checked Then
-                .Chofer_IDEntidad = CS_Constants.FIELD_VALUE_OTHER_INTEGER
+                .Chofer_IDEntidad = CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER
                 .Pesada_Otro.Chofer_Nombre = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxChofer.Text)
                 .Pesada_Otro.Chofer_CUIT_CUIL = CS_ValueTranslation.FromControlTextBoxToObjectString(maskedtextboxChoferCUIT_CUIL.Text)
             Else
@@ -490,8 +490,8 @@
                 End If
             End If
             If checkboxCamionOtro.Checked Then
-                .Camion_IDEntidad = CS_Constants.FIELD_VALUE_OTHER_INTEGER
-                .IDCamion = CS_Constants.FIELD_VALUE_OTHER_BYTE
+                .Camion_IDEntidad = CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER
+                .IDCamion = CardonerSistemas.Constants.FIELD_VALUE_OTHER_BYTE
                 .Pesada_Otro.Camion_DominioChasis = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxCamion_DominioChasis.Text)
                 .Pesada_Otro.Camion_DominioChasisExtra = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxCamion_DominioChasisExtra.Text)
                 .Pesada_Otro.Camion_DominioAcoplado = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxCamion_DominioAcoplado.Text)
@@ -638,7 +638,7 @@
         If Not comboboxProducto.SelectedItem Is Nothing Then
             ' Planta
             pFillAndRefreshLists.Planta(comboboxPlanta, mPesadaActual.IDPlanta, CByte(comboboxProducto.SelectedValue), False, False)
-            CS_ComboBox.SetSelectedValue(comboboxPlanta, SelectedItemOptions.NoneOrFirstIfUnique)
+            CardonerSistemas.ComboBox.SetSelectedValue(comboboxPlanta, CardonerSistemas.ComboBox.SelectedItemOptions.NoneOrFirstIfUnique)
 
             ' Cosecha
             labelCosecha.Visible = CType(comboboxProducto.SelectedItem, Producto).UtilizaCosecha
@@ -672,8 +672,8 @@
         OrigenOtro()
         DestinoOtro()
 
-        CS_ComboBox.SetSelectedValue(comboboxOrigen, SelectedItemOptions.ValueOrFirst, IDOrigenSave)
-        CS_ComboBox.SetSelectedValue(comboboxDestino, SelectedItemOptions.ValueOrFirst, IDDestinoSave)
+        CardonerSistemas.ComboBox.SetSelectedValue(comboboxOrigen, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, IDOrigenSave)
+        CardonerSistemas.ComboBox.SetSelectedValue(comboboxDestino, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, IDDestinoSave)
     End Sub
 
     Private Sub TipoTodos() Handles checkboxTipoTodos.CheckedChanged
@@ -715,17 +715,17 @@
     Private Sub CosechaTodos() Handles checkboxCosechaTodos.CheckedChanged
         If Not mPesadaActual Is Nothing Then
             If checkboxCosechaTodos.Checked Then
-                pFillAndRefreshLists.Cosecha(comboboxCosecha, mPesadaActual.IDCosecha, CS_Constants.FIELD_VALUE_NOTSPECIFIED_BYTE, CS_Constants.FIELD_VALUE_NOTSPECIFIED_DATE, False, False, True)
+                pFillAndRefreshLists.Cosecha(comboboxCosecha, mPesadaActual.IDCosecha, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_DATE, False, False, True)
             Else
                 pFillAndRefreshLists.Cosecha(comboboxCosecha, mPesadaActual.IDCosecha, CByte(comboboxProducto.SelectedValue), datetimepickerFechaInicio.Value, False, False, True)
             End If
-            CS_ComboBox.SetSelectedValue(comboboxCosecha, SelectedItemOptions.NoneOrFirstIfUnique)
+            CardonerSistemas.ComboBox.SetSelectedValue(comboboxCosecha, CardonerSistemas.ComboBox.SelectedItemOptions.NoneOrFirstIfUnique)
         End If
     End Sub
 
     Private Sub TitularCargarLista()
         If checkboxTitularTodos.Checked Or Not comboboxPlanta.Visible Then
-            pFillAndRefreshLists.Entidad(comboboxTitular, mPesadaActual.Titular_IDEntidad, False, True, False, False, CS_Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER, False, False, False, False)
+            pFillAndRefreshLists.Entidad(comboboxTitular, mPesadaActual.Titular_IDEntidad, False, True, False, False, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER, False, False, False, False)
         Else
             pFillAndRefreshLists.EntidadTitularPorProductoPlanta(comboboxTitular, mPesadaActual.Titular_IDEntidad, CByte(comboboxProducto.SelectedValue), CByte(comboboxPlanta.SelectedValue), CStr(Microsoft.VisualBasic.Switch(radiobuttonEntrada.Checked, Constantes.PESADA_TIPO_ENTRADA, radiobuttonSalida.Checked, Constantes.PESADA_TIPO_SALIDA, radiobuttonNinguno.Checked, Constantes.PESADA_TIPO_NINGUNA)), True, False, False)
         End If
@@ -747,9 +747,9 @@
         If Not comboboxTitular.SelectedItem Is Nothing Then
             ' Origen - Destino
             pFillAndRefreshLists.OrigenDestino(comboboxOrigen, mPesadaActual.IDOrigen, False, CInt(comboboxTitular.SelectedValue), False, False, True)
-            CS_ComboBox.SetSelectedValue(comboboxOrigen, SelectedItemOptions.First)
+            CardonerSistemas.ComboBox.SetSelectedValue(comboboxOrigen, CardonerSistemas.ComboBox.SelectedItemOptions.First)
             pFillAndRefreshLists.OrigenDestino(comboboxDestino, mPesadaActual.IDDestino, False, CInt(comboboxTitular.SelectedValue), False, False, True)
-            CS_ComboBox.SetSelectedValue(comboboxDestino, SelectedItemOptions.First)
+            CardonerSistemas.ComboBox.SetSelectedValue(comboboxDestino, CardonerSistemas.ComboBox.SelectedItemOptions.First)
         End If
     End Sub
 
@@ -825,18 +825,18 @@
             pFillAndRefreshLists.Camion(comboboxCamion, mPesadaActual.IDCamion, False, CInt(comboboxTransportista.SelectedValue), True, True, False, True)
             ChoferTodos()
 
-            If CInt(comboboxTransportista.SelectedValue) = CS_Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER Then
-                CS_ComboBox.SetSelectedValue(comboboxCamion, SelectedItemOptions.First)
-                CS_ComboBox.SetSelectedValue(comboboxChofer, SelectedItemOptions.First)
+            If CInt(comboboxTransportista.SelectedValue) = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER Then
+                CardonerSistemas.ComboBox.SetSelectedValue(comboboxCamion, CardonerSistemas.ComboBox.SelectedItemOptions.First)
+                CardonerSistemas.ComboBox.SetSelectedValue(comboboxChofer, CardonerSistemas.ComboBox.SelectedItemOptions.First)
             Else
-                CS_ComboBox.SetSelectedValue(comboboxCamion, SelectedItemOptions.First)
-                CS_ComboBox.SetSelectedValue(comboboxChofer, SelectedItemOptions.First)
+                CardonerSistemas.ComboBox.SetSelectedValue(comboboxCamion, CardonerSistemas.ComboBox.SelectedItemOptions.First)
+                CardonerSistemas.ComboBox.SetSelectedValue(comboboxChofer, CardonerSistemas.ComboBox.SelectedItemOptions.First)
             End If
         End If
     End Sub
 
     Private Sub TransportistaTodos() Handles checkboxTransportistaTodos.CheckedChanged
-        pFillAndRefreshLists.Entidad(comboboxTransportista, mPesadaActual.Transportista_IDEntidad, False, False, True, False, CS_Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER, checkboxTransportistaTodos.Checked, False, False, True)
+        pFillAndRefreshLists.Entidad(comboboxTransportista, mPesadaActual.Transportista_IDEntidad, False, False, True, False, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER, checkboxTransportistaTodos.Checked, False, False, True)
         comboboxTransportista.Focus()
     End Sub
 
@@ -863,14 +863,14 @@
         If Not comboboxChofer.SelectedItem Is Nothing Then
             maskedtextboxChoferCUIT_CUIL.Text = CType(comboboxChofer.SelectedItem, Entidad).CUIT_CUIL
             If CType(comboboxChofer.SelectedItem, Entidad).IDCamion.HasValue Then
-                CS_ComboBox.SetSelectedValue(comboboxCamion, SelectedItemOptions.ValueOrFirst, CType(comboboxChofer.SelectedItem, Entidad).IDCamion)
+                CardonerSistemas.ComboBox.SetSelectedValue(comboboxCamion, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, CType(comboboxChofer.SelectedItem, Entidad).IDCamion)
             End If
         End If
     End Sub
 
     Private Sub ChoferTodos() Handles checkboxChoferTodos.CheckedChanged
         If checkboxChoferTodos.Checked Then
-            pFillAndRefreshLists.Entidad(comboboxChofer, mPesadaActual.Chofer_IDEntidad, False, False, False, True, CS_Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER, False, False, False, True)
+            pFillAndRefreshLists.Entidad(comboboxChofer, mPesadaActual.Chofer_IDEntidad, False, False, False, True, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER, False, False, False, True)
         Else
             pFillAndRefreshLists.Entidad(comboboxChofer, mPesadaActual.Chofer_IDEntidad, False, False, False, True, CInt(comboboxTransportista.SelectedValue), False, False, False, True)
         End If

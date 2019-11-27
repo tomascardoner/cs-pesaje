@@ -37,8 +37,8 @@
         Application.DoEvents()
 
         ' Si hay más de un DataSource especificado, muestro la ventana de selección
-        If My.Settings.DBConnection_Datasource.Contains(CS_Constants.STRING_LIST_SEPARATOR) Then
-            CS_Database_SelectSource.comboboxDataSource.Items.AddRange(My.Settings.DBConnection_Datasource.Split(CChar(CS_Constants.STRING_LIST_SEPARATOR)))
+        If My.Settings.DBConnection_Datasource.Contains(CardonerSistemas.Constants.STRING_LIST_SEPARATOR) Then
+            CS_Database_SelectSource.comboboxDataSource.Items.AddRange(My.Settings.DBConnection_Datasource.Split(CChar(CardonerSistemas.Constants.STRING_LIST_SEPARATOR)))
             If Not CS_Database_SelectSource.ShowDialog(formSplashScreen) = DialogResult.OK Then
                 Application.Exit()
                 My.Application.Log.WriteEntry("La Aplicación ha finalizado porque el Usuario no ha seleccionado el origen de los datos.", TraceEventType.Warning)
@@ -55,11 +55,11 @@
         pDatabase = New CardonerSistemas.Database.ADO.SQLServer
         pDatabase.ApplicationName = My.Application.Info.Title
         If DataSourceIndex > -1 Then
-            pDatabase.DataSource = My.Settings.DBConnection_Datasource.Split(CChar(CS_Constants.STRING_LIST_SEPARATOR)).ElementAt(DataSourceIndex)
+            pDatabase.DataSource = My.Settings.DBConnection_Datasource.Split(CChar(CardonerSistemas.Constants.STRING_LIST_SEPARATOR)).ElementAt(DataSourceIndex)
             ' Database
-            If My.Settings.DBConnection_Database.Contains(CS_Constants.STRING_LIST_SEPARATOR) Then
+            If My.Settings.DBConnection_Database.Contains(CardonerSistemas.Constants.STRING_LIST_SEPARATOR) Then
                 Dim aDatabase() As String
-                aDatabase = My.Settings.DBConnection_Database.Split(CChar(CS_Constants.STRING_LIST_SEPARATOR))
+                aDatabase = My.Settings.DBConnection_Database.Split(CChar(CardonerSistemas.Constants.STRING_LIST_SEPARATOR))
                 If aDatabase.GetUpperBound(0) >= DataSourceIndex Then
                     pDatabase.InitialCatalog = aDatabase(DataSourceIndex)
                 Else
@@ -70,9 +70,9 @@
                 pDatabase.InitialCatalog = My.Settings.DBConnection_Database
             End If
             ' UserID
-            If My.Settings.DBConnection_UserID.Contains(CS_Constants.STRING_LIST_SEPARATOR) Then
+            If My.Settings.DBConnection_UserID.Contains(CardonerSistemas.Constants.STRING_LIST_SEPARATOR) Then
                 Dim aUserID() As String
-                aUserID = My.Settings.DBConnection_UserID.Split(CChar(CS_Constants.STRING_LIST_SEPARATOR))
+                aUserID = My.Settings.DBConnection_UserID.Split(CChar(CardonerSistemas.Constants.STRING_LIST_SEPARATOR))
                 If aUserID.GetUpperBound(0) >= DataSourceIndex Then
                     pDatabase.UserID = aUserID(DataSourceIndex)
                 Else
@@ -84,9 +84,9 @@
             End If
             ' Password
             Dim PasswordEncrypted As String
-            If My.Settings.DBConnection_Password.Contains(CS_Constants.STRING_LIST_SEPARATOR) Then
+            If My.Settings.DBConnection_Password.Contains(CardonerSistemas.Constants.STRING_LIST_SEPARATOR) Then
                 Dim aPassword() As String
-                aPassword = My.Settings.DBConnection_Password.Split(CChar(CS_Constants.STRING_LIST_SEPARATOR))
+                aPassword = My.Settings.DBConnection_Password.Split(CChar(CardonerSistemas.Constants.STRING_LIST_SEPARATOR))
                 If aPassword.GetUpperBound(0) >= DataSourceIndex Then
                     PasswordEncrypted = aPassword(DataSourceIndex)
                 Else
@@ -98,7 +98,7 @@
             End If
             ' Desencripto la contraseña de la conexión a la base de datos que está en el archivo app.config
             If PasswordEncrypted.Length > 0 Then
-                Dim PasswordDecrypter As New CS_Encrypt_TripleDES(CS_Constants.PUBLIC_ENCRYPTION_PASSWORD)
+                Dim PasswordDecrypter As New CS_Encrypt_TripleDES(CardonerSistemas.Constants.PUBLIC_ENCRYPTION_PASSWORD)
                 Dim DecryptedPassword As String = ""
                 If Not PasswordDecrypter.Decrypt(PasswordEncrypted, DecryptedPassword) Then
                     MsgBox("La contraseña de conexión a la base de datos es incorrecta.", MsgBoxStyle.Critical, My.Application.Info.Title)
@@ -119,7 +119,7 @@
             pDatabase.InitialCatalog = My.Settings.DBConnection_Database
             pDatabase.UserID = My.Settings.DBConnection_UserID
             ' Desencripto la contraseña de la conexión a la base de datos que está en el archivo app.config
-            Dim PasswordDecrypter As New CS_Encrypt_TripleDES(CS_Constants.PUBLIC_ENCRYPTION_PASSWORD)
+            Dim PasswordDecrypter As New CS_Encrypt_TripleDES(CardonerSistemas.Constants.PUBLIC_ENCRYPTION_PASSWORD)
             Dim DecryptedPassword As String = ""
             If Not PasswordDecrypter.Decrypt(My.Settings.DBConnection_Password, DecryptedPassword) Then
                 MsgBox("La contraseña de conexión a la base de datos es incorrecta.", MsgBoxStyle.Critical, My.Application.Info.Title)
@@ -225,7 +225,7 @@
                     My.Application.Log.WriteEntry("La Aplicación ha finalizado porque el Usuario especificado en Auto-Logon no existe.", TraceEventType.Warning)
                     Exit Sub
                 End If
-                Dim UserPasswordDecrypter As New CS_Encrypt_TripleDES(CS_Constants.PUBLIC_ENCRYPTION_PASSWORD)
+                Dim UserPasswordDecrypter As New CS_Encrypt_TripleDES(CardonerSistemas.Constants.PUBLIC_ENCRYPTION_PASSWORD)
                 Dim DecryptedPassword As String = ""
                 If Not UserPasswordDecrypter.Decrypt(My.Settings.AutoLogon_Password, DecryptedPassword) Then
                     MsgBox("La contraseña especificada en Auto-Logon es incorrecta.", MsgBoxStyle.Critical, My.Application.Info.Title)

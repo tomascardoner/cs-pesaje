@@ -103,12 +103,12 @@
     Friend Sub InitializeFormAndControls()
         SetAppearance()
 
-        pFillAndRefreshLists.Cosecha(comboboxCosecha, mCosecha_Producto_TarifaActual.IDCosecha, CS_Constants.FIELD_VALUE_NOTSPECIFIED_BYTE, DateTime.MinValue, False, False, True)
+        pFillAndRefreshLists.Cosecha(comboboxCosecha, mCosecha_Producto_TarifaActual.IDCosecha, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE, DateTime.MinValue, False, False, True)
         pFillAndRefreshLists.Producto(comboboxProducto, mCosecha_Producto_TarifaActual.IDProducto, False, True, False, False)
 
-        pFillAndRefreshLists.Planta(comboboxPlanta, mCosecha_Producto_TarifaActual.IDPlanta, CS_Constants.FIELD_VALUE_NOTSPECIFIED_BYTE, False, True)
-        pFillAndRefreshLists.Entidad(comboboxEntidad, mCosecha_Producto_TarifaActual.IDEntidad, False, False, True, False, CS_Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER, True, False, False, True)
-        pFillAndRefreshLists.OrigenDestino(comboboxOrigen, mCosecha_Producto_TarifaActual.IDOrigen, False, CS_Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER, False, False, True)
+        pFillAndRefreshLists.Planta(comboboxPlanta, mCosecha_Producto_TarifaActual.IDPlanta, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE, False, True)
+        pFillAndRefreshLists.Entidad(comboboxEntidad, mCosecha_Producto_TarifaActual.IDEntidad, False, False, True, False, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER, True, False, False, True)
+        pFillAndRefreshLists.OrigenDestino(comboboxOrigen, mCosecha_Producto_TarifaActual.IDOrigen, False, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER, False, False, True)
     End Sub
 
     Friend Sub SetAppearance()
@@ -128,15 +128,15 @@
     Friend Sub SetDataFromObjectToControls()
         With mCosecha_Producto_TarifaActual
             ' General - Requeridos
-            CS_ComboBox.SetSelectedValue(comboboxCosecha, SelectedItemOptions.Value, .IDCosecha, CS_Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
-            CS_ComboBox.SetSelectedValue(comboboxProducto, SelectedItemOptions.Value, .IDProducto)
+            CardonerSistemas.ComboBox.SetSelectedValue(comboboxCosecha, CardonerSistemas.ComboBox.SelectedItemOptions.Value, .IDCosecha, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
+            CardonerSistemas.ComboBox.SetSelectedValue(comboboxProducto, CardonerSistemas.ComboBox.SelectedItemOptions.Value, .IDProducto)
             updownIndice.Value = CS_ValueTranslation.FromObjectShortToControlUpDown(.Indice)
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
 
             ' General - Opcionales
-            CS_ComboBox.SetSelectedValue(comboboxPlanta, SelectedItemOptions.ValueOrFirst, .IDPlanta, CS_Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
-            CS_ComboBox.SetSelectedValue(comboboxEntidad, SelectedItemOptions.ValueOrFirst, .IDEntidad)
-            CS_ComboBox.SetSelectedValue(comboboxOrigen, SelectedItemOptions.ValueOrFirst, .IDOrigen)
+            CardonerSistemas.ComboBox.SetSelectedValue(comboboxPlanta, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .IDPlanta, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
+            CardonerSistemas.ComboBox.SetSelectedValue(comboboxEntidad, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .IDEntidad)
+            CardonerSistemas.ComboBox.SetSelectedValue(comboboxOrigen, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .IDOrigen)
             datetimepickerFechaDesde.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.FechaDesde, datetimepickerFechaDesde)
             datetimepickerFechaHasta.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.FechaHasta, datetimepickerFechaHasta)
 

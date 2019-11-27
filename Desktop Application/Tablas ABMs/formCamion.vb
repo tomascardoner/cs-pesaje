@@ -24,7 +24,7 @@
                 ' Si está abierto el form de Camiones, y tiene un Transportista seleccionado, lo uso como predeterminado
                 If CS_Form.MDIChild_IsLoaded(CType(pFormMDIMain, Form), "formCamiones") Then
                     Dim formCamions As formCamiones = CType(CS_Form.MDIChild_GetInstance(CType(pFormMDIMain, Form), "formCamiones"), formCamiones)
-                    If CInt(formCamions.comboboxTransportista.ComboBox.SelectedValue) <> FIELD_VALUE_ALL_INTEGER Then
+                    If CInt(formCamions.comboboxTransportista.ComboBox.SelectedValue) <> CardonerSistemas.Constants.FIELD_VALUE_ALL_INTEGER Then
                         .IDEntidad = CInt(formCamions.comboboxTransportista.ComboBox.SelectedValue)
                     End If
                     formCamions = Nothing
@@ -102,7 +102,7 @@
                 textboxIDCamion.Text = String.Format(.IDCamion.ToString, "G")
             End If
             checkboxEsActivo.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.EsActivo)
-            CS_ComboBox.SetSelectedValue(comboboxTransportista, SelectedItemOptions.ValueOrFirstIfUnique, .IDEntidad)
+            CardonerSistemas.ComboBox.SetSelectedValue(comboboxTransportista, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDEntidad)
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
             textboxDominioChasis.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DominioChasis)
             textboxDominioChasisExtra.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DominioChasisExtra)
@@ -177,10 +177,10 @@
         ' Generar el ID del Camión nuevo
         If mIsNew Then
             Using dbcMaxID As New CSPesajeContext(True)
-                If dbcMaxID.Camion.Where(Function(e) e.IDCamion <> CS_Constants.FIELD_VALUE_OTHER_INTEGER).Count = 0 Then
+                If dbcMaxID.Camion.Where(Function(e) e.IDCamion <> CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER).Count = 0 Then
                     mCamionActual.IDCamion = 1
                 Else
-                    mCamionActual.IDCamion = CByte(dbcMaxID.Camion.Where(Function(e) e.IDCamion <> CS_Constants.FIELD_VALUE_OTHER_BYTE).Max(Function(ent) ent.IDCamion) + 1)
+                    mCamionActual.IDCamion = CByte(dbcMaxID.Camion.Where(Function(e) e.IDCamion <> CardonerSistemas.Constants.FIELD_VALUE_OTHER_BYTE).Max(Function(ent) ent.IDCamion) + 1)
                 End If
             End Using
         End If

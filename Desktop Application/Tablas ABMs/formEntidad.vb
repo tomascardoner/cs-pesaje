@@ -119,8 +119,8 @@
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
             maskedtextboxCUIT_CUIL.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.CUIT_CUIL)
             textboxDomicilio.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Domicilio)
-            CS_ComboBox.SetSelectedValue(comboboxDomicilioProvincia, SelectedItemOptions.Value, .IDProvincia, FIELD_VALUE_NOTSPECIFIED_BYTE)
-            CS_ComboBox.SetSelectedValue(comboboxDomicilioLocalidad, SelectedItemOptions.Value, .IDLocalidad, FIELD_VALUE_NOTSPECIFIED_SHORT)
+            CardonerSistemas.ComboBox.SetSelectedValue(comboboxDomicilioProvincia, CardonerSistemas.ComboBox.SelectedItemOptions.Value, .IDProvincia, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
+            CardonerSistemas.ComboBox.SetSelectedValue(comboboxDomicilioLocalidad, CardonerSistemas.ComboBox.SelectedItemOptions.Value, .IDLocalidad, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
             textboxDomicilioCodigoPostal.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.CodigoPostal)
 
             checkboxTipoTitular.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.EsTitular)
@@ -128,9 +128,9 @@
             checkboxTipoChofer.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.EsChofer)
 
             If .EsChofer Then
-                CS_ComboBox.SetSelectedValue(comboboxTransportista, SelectedItemOptions.ValueOrFirst, .Transportista_IDEntidad)
+                CardonerSistemas.ComboBox.SetSelectedValue(comboboxTransportista, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .Transportista_IDEntidad)
                 CargarCamiones()
-                CS_ComboBox.SetSelectedValue(comboboxCamion, SelectedItemOptions.ValueOrFirst, .IDCamion)
+                CardonerSistemas.ComboBox.SetSelectedValue(comboboxCamion, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .IDCamion)
             Else
                 comboboxTransportista.SelectedIndex = 0
                 CargarCamiones()
@@ -171,8 +171,8 @@
             .Nombre = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNombre.Text)
             .CUIT_CUIL = CS_ValueTranslation.FromControlTextBoxToObjectString(maskedtextboxCUIT_CUIL.Text)
             .Domicilio = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxDomicilio.Text)
-            .IDProvincia = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxDomicilioProvincia.SelectedValue, FIELD_VALUE_NOTSPECIFIED_BYTE)
-            .IDLocalidad = CS_ValueTranslation.FromControlComboBoxToObjectShort(comboboxDomicilioLocalidad.SelectedValue, FIELD_VALUE_NOTSPECIFIED_SHORT)
+            .IDProvincia = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxDomicilioProvincia.SelectedValue, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
+            .IDLocalidad = CS_ValueTranslation.FromControlComboBoxToObjectShort(comboboxDomicilioLocalidad.SelectedValue, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
             .CodigoPostal = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxDomicilioCodigoPostal.Text)
 
             .EsTitular = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxTipoTitular.CheckState)
@@ -202,12 +202,12 @@
         Using dbContext As New CSPesajeContext(True)
             listOrigenesDestinosIncluidos = (From od In dbContext.OrigenDestino
                                              Join e_od In dbContext.Entidad_OrigenDestino On od.IDOrigenDestino Equals e_od.IDOrigenDestino
-                                             Where e_od.IDEntidad = mEntidadActual.IDEntidad And od.EsActivo And od.IDOrigenDestino <> CS_Constants.FIELD_VALUE_OTHER_INTEGER
+                                             Where e_od.IDEntidad = mEntidadActual.IDEntidad And od.EsActivo And od.IDOrigenDestino <> CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER
                                              Order By od.Nombre
                                              Select od).ToList
 
             listOrigenesDestinosTodos = (From od In dbContext.OrigenDestino
-                                         Where od.EsActivo And od.IDOrigenDestino <> CS_Constants.FIELD_VALUE_OTHER_INTEGER
+                                         Where od.EsActivo And od.IDOrigenDestino <> CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER
                                          Order By od.Nombre
                                          Select od).ToList
 
@@ -262,7 +262,7 @@
         Else
             pFillAndRefreshLists.Localidad(comboboxDomicilioLocalidad, CByte(comboboxDomicilioProvincia.SelectedValue), True)
             If CByte(comboboxDomicilioProvincia.SelectedValue) = CS_Parameter_System.GetIntegerAsByte(Parametros.DEFAULT_PROVINCIA_ID) Then
-                CS_ComboBox.SetSelectedValue(comboboxDomicilioLocalidad, SelectedItemOptions.ValueOrFirst, CS_Parameter_System.GetIntegerAsShort(Parametros.DEFAULT_LOCALIDAD_ID))
+                CardonerSistemas.ComboBox.SetSelectedValue(comboboxDomicilioLocalidad, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, CS_Parameter_System.GetIntegerAsShort(Parametros.DEFAULT_LOCALIDAD_ID))
             End If
         End If
     End Sub
@@ -357,7 +357,7 @@
                 maskedtextboxCUIT_CUIL.Focus()
                 Exit Sub
             End If
-            If Not CS_AFIP.VerificarCUIT(maskedtextboxCUIT_CUIL.Text) Then
+            If Not CardonerSistemas.AFIP.VerificarCUIT(maskedtextboxCUIT_CUIL.Text) Then
                 MsgBox("El Número de CUIT / CUIL ingresado es incorrecto.", MsgBoxStyle.Information, My.Application.Info.Title)
                 maskedtextboxCUIT_CUIL.Focus()
                 Exit Sub
@@ -380,10 +380,10 @@
         ' Generar el ID de la Entidad nueva
         If mIsNew Then
             Using dbcMaxID As New CSPesajeContext(True)
-                If dbcMaxID.Entidad.Where(Function(e) e.IDEntidad <> CS_Constants.FIELD_VALUE_OTHER_INTEGER).Count = 0 Then
+                If dbcMaxID.Entidad.Where(Function(e) e.IDEntidad <> CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER).Count = 0 Then
                     mEntidadActual.IDEntidad = 1
                 Else
-                    mEntidadActual.IDEntidad = dbcMaxID.Entidad.Where(Function(e) e.IDEntidad <> CS_Constants.FIELD_VALUE_OTHER_INTEGER).Max(Function(ent) ent.IDEntidad) + 1
+                    mEntidadActual.IDEntidad = dbcMaxID.Entidad.Where(Function(e) e.IDEntidad <> CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER).Max(Function(ent) ent.IDEntidad) + 1
                 End If
             End Using
         End If
