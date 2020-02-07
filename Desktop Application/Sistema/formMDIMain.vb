@@ -2,7 +2,6 @@
 
 #Region "Declarations"
 
-    Friend Form_ClientSize As Size
     Private AFIP_TicketAcceso_Homo As String
 
 #End Region
@@ -26,19 +25,16 @@
     Private Sub MDIMain_Resize() Handles Me.Resize
         If Not Me.WindowState = FormWindowState.Minimized Then
 
-            'OBTENGO LAS MEDIDAS DEL CLIENT AREA DEL FORM MDI
-            Form_ClientSize = New Size(Me.ClientSize.Width - toolstripMain.Width - My.Settings.MDIFormMargin, Me.ClientSize.Height - menustripMain.Height - statusstripMain.Height - My.Settings.MDIFormMargin)
-
             'HAGO UN RESIZE DE TODOS LOS CHILDS QUE ESTÉN ABIERTOS
             For Each FormCurrent As Form In Me.MdiChildren
                 If FormCurrent.FormBorderStyle = Windows.Forms.FormBorderStyle.Sizable Then
                     If FormCurrent.Name = "formComprobante" Then
-                        CS_Form.MDIChild_CenterToClientArea(Me, FormCurrent, Form_ClientSize)
+                        CS_Form.MDIChild_CenterToClientArea(FormCurrent, Me.ClientSize)
                     Else
                         CS_Form.MDIChild_PositionAndSizeToFit(Me, FormCurrent)
                     End If
                 Else
-                    CS_Form.MDIChild_CenterToClientArea(Me, FormCurrent, Form_ClientSize)
+                    CS_Form.MDIChild_CenterToClientArea(FormCurrent, Me.ClientSize)
                 End If
             Next
         End If
@@ -68,8 +64,6 @@
 
 #End Region
 
-
-
 #Region "Menu Ventana"
 
     Private Sub menuitemVentana_MosaicoHorizontal_Click() Handles menuitemVentana_MosaicoHorizontal.Click
@@ -92,7 +86,7 @@
         If Not Me.ActiveMdiChild Is Nothing Then
             Me.ActiveMdiChild.Left = 0
             Me.ActiveMdiChild.Top = 0
-            Me.ActiveMdiChild.Size = Form_ClientSize
+            Me.ActiveMdiChild.Size = Me.ClientSize
         End If
     End Sub
 

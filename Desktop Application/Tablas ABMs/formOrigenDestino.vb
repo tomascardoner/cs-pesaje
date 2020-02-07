@@ -155,7 +155,9 @@
         Select Case e.KeyChar
             Case Microsoft.VisualBasic.ChrW(Keys.Return)
                 If mEditMode Then
-                    buttonGuardar.PerformClick()
+                    If Me.ActiveControl IsNot textboxNotas Then
+                        buttonGuardar.PerformClick()
+                    End If
                 Else
                     buttonCerrar.PerformClick()
                 End If
