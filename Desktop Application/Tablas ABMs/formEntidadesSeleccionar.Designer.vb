@@ -80,7 +80,7 @@ Partial Class formEntidadesSeleccionar
         'buttonBuscarBorrar
         '
         Me.buttonBuscarBorrar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.buttonBuscarBorrar.Image = Global.CSPesaje.DesktopApplication.My.Resources.Resources.IMAGE_CLOSE_16
+        Me.buttonBuscarBorrar.Image = My.Resources.Resources.IMAGE_CLOSE_16
         Me.buttonBuscarBorrar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonBuscarBorrar.Name = "buttonBuscarBorrar"
         Me.buttonBuscarBorrar.Size = New System.Drawing.Size(24, 36)
@@ -169,7 +169,7 @@ Partial Class formEntidadesSeleccionar
         '
         'buttonSeleccionar
         '
-        Me.buttonSeleccionar.Image = Global.CSPesaje.DesktopApplication.My.Resources.Resources.IMAGE_OK_32
+        Me.buttonSeleccionar.Image = My.Resources.Resources.IMAGE_OK_32
         Me.buttonSeleccionar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonSeleccionar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonSeleccionar.Name = "buttonSeleccionar"
@@ -178,7 +178,7 @@ Partial Class formEntidadesSeleccionar
         '
         'buttonCancelar
         '
-        Me.buttonCancelar.Image = Global.CSPesaje.DesktopApplication.My.Resources.Resources.IMAGE_CANCEL_32
+        Me.buttonCancelar.Image = My.Resources.Resources.IMAGE_CANCEL_32
         Me.buttonCancelar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCancelar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonCancelar.Name = "buttonCancelar"

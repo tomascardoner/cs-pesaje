@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class formCamion
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class formCamion
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim labelEsActivo As System.Windows.Forms.Label
@@ -104,7 +104,7 @@ Partial Class formCamion
         'buttonCerrar
         '
         Me.buttonCerrar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonCerrar.Image = Global.CSPesaje.DesktopApplication.My.Resources.Resources.IMAGE_CLOSE_32
+        Me.buttonCerrar.Image = Global.My.Resources.Resources.IMAGE_CLOSE_32
         Me.buttonCerrar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCerrar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonCerrar.Name = "buttonCerrar"
@@ -114,7 +114,7 @@ Partial Class formCamion
         'buttonEditar
         '
         Me.buttonEditar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonEditar.Image = Global.CSPesaje.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_EDIT_32
+        Me.buttonEditar.Image = Global.My.Resources.Resources.IMAGE_ITEM_EDIT_32
         Me.buttonEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonEditar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonEditar.Name = "buttonEditar"
@@ -124,7 +124,7 @@ Partial Class formCamion
         'buttonCancelar
         '
         Me.buttonCancelar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonCancelar.Image = Global.CSPesaje.DesktopApplication.My.Resources.Resources.IMAGE_CANCEL_32
+        Me.buttonCancelar.Image = Global.My.Resources.Resources.IMAGE_CANCEL_32
         Me.buttonCancelar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCancelar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonCancelar.Name = "buttonCancelar"
@@ -134,7 +134,7 @@ Partial Class formCamion
         'buttonGuardar
         '
         Me.buttonGuardar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonGuardar.Image = Global.CSPesaje.DesktopApplication.My.Resources.Resources.IMAGE_OK_32
+        Me.buttonGuardar.Image = Global.My.Resources.Resources.IMAGE_OK_32
         Me.buttonGuardar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonGuardar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonGuardar.Name = "buttonGuardar"

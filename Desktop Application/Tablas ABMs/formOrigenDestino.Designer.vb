@@ -37,8 +37,10 @@ Partial Class formOrigenDestino
         Me.buttonCancelar = New System.Windows.Forms.ToolStripButton()
         Me.buttonGuardar = New System.Windows.Forms.ToolStripButton()
         Me.tooltipMain = New System.Windows.Forms.ToolTip(Me.components)
-        Me.tabcontrolMain = New CSPesaje.DesktopApplication.CS_Control_TabControl()
-        Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.labelCUIT_CUIL = New System.Windows.Forms.Label()
+        Me.tabcontrolMain = New CardonerSistemas.TabControl()
+        Me.tabpageGeneral = New System.Windows.Forms.TabPage()
+        Me.maskedtextboxCUIT_CUIL = New System.Windows.Forms.MaskedTextBox()
         Me.buttonAbrirEnGoogleEarth = New System.Windows.Forms.Button()
         Me.buttonAbrirEnGoogleMaps = New System.Windows.Forms.Button()
         Me.doubletextboxLongitud = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
@@ -60,8 +62,6 @@ Partial Class formOrigenDestino
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
         Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.labelNotas = New System.Windows.Forms.Label()
-        Me.labelCUIT_CUIL = New System.Windows.Forms.Label()
-        Me.maskedtextboxCUIT_CUIL = New System.Windows.Forms.MaskedTextBox()
         labelUbicacionLongitud = New System.Windows.Forms.Label()
         labelUbicacionLatitud = New System.Windows.Forms.Label()
         labelDomicilioCodigoPostal = New System.Windows.Forms.Label()
@@ -72,7 +72,7 @@ Partial Class formOrigenDestino
         labelCreacion = New System.Windows.Forms.Label()
         Me.toolstripMain.SuspendLayout()
         Me.tabcontrolMain.SuspendLayout()
-        Me.TabPage1.SuspendLayout()
+        Me.tabpageGeneral.SuspendLayout()
         CType(Me.doubletextboxLongitud, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.doubletextboxLatitud, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tabpageNotasAuditoria.SuspendLayout()
@@ -162,7 +162,7 @@ Partial Class formOrigenDestino
         'buttonCerrar
         '
         Me.buttonCerrar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonCerrar.Image = Global.CSPesaje.DesktopApplication.My.Resources.Resources.IMAGE_CLOSE_32
+        Me.buttonCerrar.Image = Global.My.Resources.Resources.IMAGE_CLOSE_32
         Me.buttonCerrar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCerrar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonCerrar.Name = "buttonCerrar"
@@ -172,7 +172,7 @@ Partial Class formOrigenDestino
         'buttonEditar
         '
         Me.buttonEditar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonEditar.Image = Global.CSPesaje.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_EDIT_32
+        Me.buttonEditar.Image = Global.My.Resources.Resources.IMAGE_ITEM_EDIT_32
         Me.buttonEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonEditar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonEditar.Name = "buttonEditar"
@@ -182,7 +182,7 @@ Partial Class formOrigenDestino
         'buttonCancelar
         '
         Me.buttonCancelar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonCancelar.Image = Global.CSPesaje.DesktopApplication.My.Resources.Resources.IMAGE_CANCEL_32
+        Me.buttonCancelar.Image = Global.My.Resources.Resources.IMAGE_CANCEL_32
         Me.buttonCancelar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCancelar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonCancelar.Name = "buttonCancelar"
@@ -192,17 +192,27 @@ Partial Class formOrigenDestino
         'buttonGuardar
         '
         Me.buttonGuardar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonGuardar.Image = Global.CSPesaje.DesktopApplication.My.Resources.Resources.IMAGE_OK_32
+        Me.buttonGuardar.Image = Global.My.Resources.Resources.IMAGE_OK_32
         Me.buttonGuardar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonGuardar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonGuardar.Name = "buttonGuardar"
         Me.buttonGuardar.Size = New System.Drawing.Size(85, 36)
         Me.buttonGuardar.Text = "Guardar"
         '
+        'labelCUIT_CUIL
+        '
+        Me.labelCUIT_CUIL.AutoSize = True
+        Me.labelCUIT_CUIL.Location = New System.Drawing.Point(6, 9)
+        Me.labelCUIT_CUIL.Name = "labelCUIT_CUIL"
+        Me.labelCUIT_CUIL.Size = New System.Drawing.Size(70, 13)
+        Me.labelCUIT_CUIL.TabIndex = 0
+        Me.labelCUIT_CUIL.Text = "CUIT / CUIL:"
+        Me.tooltipMain.SetToolTip(Me.labelCUIT_CUIL, "Ingrese el Número de Documento sin utilizar puntos.")
+        '
         'tabcontrolMain
         '
         Me.tabcontrolMain.Appearance = System.Windows.Forms.TabAppearance.FlatButtons
-        Me.tabcontrolMain.Controls.Add(Me.TabPage1)
+        Me.tabcontrolMain.Controls.Add(Me.tabpageGeneral)
         Me.tabcontrolMain.Controls.Add(Me.tabpageNotasAuditoria)
         Me.tabcontrolMain.Location = New System.Drawing.Point(12, 42)
         Me.tabcontrolMain.Name = "tabcontrolMain"
@@ -210,33 +220,46 @@ Partial Class formOrigenDestino
         Me.tabcontrolMain.Size = New System.Drawing.Size(525, 249)
         Me.tabcontrolMain.TabIndex = 0
         '
-        'TabPage1
+        'tabpageGeneral
         '
-        Me.TabPage1.Controls.Add(Me.labelCUIT_CUIL)
-        Me.TabPage1.Controls.Add(Me.maskedtextboxCUIT_CUIL)
-        Me.TabPage1.Controls.Add(Me.buttonAbrirEnGoogleEarth)
-        Me.TabPage1.Controls.Add(Me.buttonAbrirEnGoogleMaps)
-        Me.TabPage1.Controls.Add(Me.doubletextboxLongitud)
-        Me.TabPage1.Controls.Add(Me.doubletextboxLatitud)
-        Me.TabPage1.Controls.Add(labelUbicacionLongitud)
-        Me.TabPage1.Controls.Add(labelUbicacionLatitud)
-        Me.TabPage1.Controls.Add(Me.textboxNombre)
-        Me.TabPage1.Controls.Add(Me.comboboxDomicilioLocalidad)
-        Me.TabPage1.Controls.Add(Me.labelNombre)
-        Me.TabPage1.Controls.Add(Me.comboboxDomicilioProvincia)
-        Me.TabPage1.Controls.Add(Me.textboxDomicilio)
-        Me.TabPage1.Controls.Add(labelDomicilioCodigoPostal)
-        Me.TabPage1.Controls.Add(Me.labelDomicilio)
-        Me.TabPage1.Controls.Add(Me.textboxDomicilioCodigoPostal)
-        Me.TabPage1.Controls.Add(labelDomicilioProvincia)
-        Me.TabPage1.Controls.Add(labelDomicilioLocalidad)
-        Me.TabPage1.Location = New System.Drawing.Point(4, 25)
-        Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(517, 220)
-        Me.TabPage1.TabIndex = 0
-        Me.TabPage1.Text = "General"
-        Me.TabPage1.UseVisualStyleBackColor = True
+        Me.tabpageGeneral.Controls.Add(Me.labelCUIT_CUIL)
+        Me.tabpageGeneral.Controls.Add(Me.maskedtextboxCUIT_CUIL)
+        Me.tabpageGeneral.Controls.Add(Me.buttonAbrirEnGoogleEarth)
+        Me.tabpageGeneral.Controls.Add(Me.buttonAbrirEnGoogleMaps)
+        Me.tabpageGeneral.Controls.Add(Me.doubletextboxLongitud)
+        Me.tabpageGeneral.Controls.Add(Me.doubletextboxLatitud)
+        Me.tabpageGeneral.Controls.Add(labelUbicacionLongitud)
+        Me.tabpageGeneral.Controls.Add(labelUbicacionLatitud)
+        Me.tabpageGeneral.Controls.Add(Me.textboxNombre)
+        Me.tabpageGeneral.Controls.Add(Me.comboboxDomicilioLocalidad)
+        Me.tabpageGeneral.Controls.Add(Me.labelNombre)
+        Me.tabpageGeneral.Controls.Add(Me.comboboxDomicilioProvincia)
+        Me.tabpageGeneral.Controls.Add(Me.textboxDomicilio)
+        Me.tabpageGeneral.Controls.Add(labelDomicilioCodigoPostal)
+        Me.tabpageGeneral.Controls.Add(Me.labelDomicilio)
+        Me.tabpageGeneral.Controls.Add(Me.textboxDomicilioCodigoPostal)
+        Me.tabpageGeneral.Controls.Add(labelDomicilioProvincia)
+        Me.tabpageGeneral.Controls.Add(labelDomicilioLocalidad)
+        Me.tabpageGeneral.Location = New System.Drawing.Point(4, 25)
+        Me.tabpageGeneral.Name = "tabpageGeneral"
+        Me.tabpageGeneral.Padding = New System.Windows.Forms.Padding(3)
+        Me.tabpageGeneral.Size = New System.Drawing.Size(517, 220)
+        Me.tabpageGeneral.TabIndex = 0
+        Me.tabpageGeneral.Text = "General"
+        Me.tabpageGeneral.UseVisualStyleBackColor = True
+        '
+        'maskedtextboxCUIT_CUIL
+        '
+        Me.maskedtextboxCUIT_CUIL.AllowPromptAsInput = False
+        Me.maskedtextboxCUIT_CUIL.AsciiOnly = True
+        Me.maskedtextboxCUIT_CUIL.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
+        Me.maskedtextboxCUIT_CUIL.HidePromptOnLeave = True
+        Me.maskedtextboxCUIT_CUIL.Location = New System.Drawing.Point(87, 6)
+        Me.maskedtextboxCUIT_CUIL.Mask = "00-00000000-0"
+        Me.maskedtextboxCUIT_CUIL.Name = "maskedtextboxCUIT_CUIL"
+        Me.maskedtextboxCUIT_CUIL.Size = New System.Drawing.Size(90, 20)
+        Me.maskedtextboxCUIT_CUIL.TabIndex = 1
+        Me.maskedtextboxCUIT_CUIL.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
         '
         'buttonAbrirEnGoogleEarth
         '
@@ -266,10 +289,8 @@ Partial Class formOrigenDestino
         Me.doubletextboxLongitud.ForeColor = System.Drawing.SystemColors.WindowText
         Me.doubletextboxLongitud.Location = New System.Drawing.Point(87, 190)
         Me.doubletextboxLongitud.MaxValue = 180.0R
-        Me.doubletextboxLongitud.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
         Me.doubletextboxLongitud.MinValue = -180.0R
         Me.doubletextboxLongitud.Name = "doubletextboxLongitud"
-        Me.doubletextboxLongitud.NullString = ""
         Me.doubletextboxLongitud.NumberDecimalDigits = 6
         Me.doubletextboxLongitud.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.SetNullString
         Me.doubletextboxLongitud.Size = New System.Drawing.Size(78, 20)
@@ -286,10 +307,8 @@ Partial Class formOrigenDestino
         Me.doubletextboxLatitud.ForeColor = System.Drawing.SystemColors.WindowText
         Me.doubletextboxLatitud.Location = New System.Drawing.Point(87, 164)
         Me.doubletextboxLatitud.MaxValue = 90.0R
-        Me.doubletextboxLatitud.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
         Me.doubletextboxLatitud.MinValue = -90.0R
         Me.doubletextboxLatitud.Name = "doubletextboxLatitud"
-        Me.doubletextboxLatitud.NullString = ""
         Me.doubletextboxLatitud.NumberDecimalDigits = 6
         Me.doubletextboxLatitud.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.SetNullString
         Me.doubletextboxLatitud.Size = New System.Drawing.Size(78, 20)
@@ -463,29 +482,6 @@ Partial Class formOrigenDestino
         Me.labelNotas.TabIndex = 24
         Me.labelNotas.Text = "Notas:"
         '
-        'labelCUIT_CUIL
-        '
-        Me.labelCUIT_CUIL.AutoSize = True
-        Me.labelCUIT_CUIL.Location = New System.Drawing.Point(6, 9)
-        Me.labelCUIT_CUIL.Name = "labelCUIT_CUIL"
-        Me.labelCUIT_CUIL.Size = New System.Drawing.Size(70, 13)
-        Me.labelCUIT_CUIL.TabIndex = 0
-        Me.labelCUIT_CUIL.Text = "CUIT / CUIL:"
-        Me.tooltipMain.SetToolTip(Me.labelCUIT_CUIL, "Ingrese el Número de Documento sin utilizar puntos.")
-        '
-        'maskedtextboxCUIT_CUIL
-        '
-        Me.maskedtextboxCUIT_CUIL.AllowPromptAsInput = False
-        Me.maskedtextboxCUIT_CUIL.AsciiOnly = True
-        Me.maskedtextboxCUIT_CUIL.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
-        Me.maskedtextboxCUIT_CUIL.HidePromptOnLeave = True
-        Me.maskedtextboxCUIT_CUIL.Location = New System.Drawing.Point(87, 6)
-        Me.maskedtextboxCUIT_CUIL.Mask = "00-00000000-0"
-        Me.maskedtextboxCUIT_CUIL.Name = "maskedtextboxCUIT_CUIL"
-        Me.maskedtextboxCUIT_CUIL.Size = New System.Drawing.Size(90, 20)
-        Me.maskedtextboxCUIT_CUIL.TabIndex = 1
-        Me.maskedtextboxCUIT_CUIL.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
-        '
         'formOrigenDestino
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -503,8 +499,8 @@ Partial Class formOrigenDestino
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()
         Me.tabcontrolMain.ResumeLayout(False)
-        Me.TabPage1.ResumeLayout(False)
-        Me.TabPage1.PerformLayout()
+        Me.tabpageGeneral.ResumeLayout(False)
+        Me.tabpageGeneral.PerformLayout()
         CType(Me.doubletextboxLongitud, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.doubletextboxLatitud, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tabpageNotasAuditoria.ResumeLayout(False)
@@ -528,8 +524,8 @@ Partial Class formOrigenDestino
     Friend WithEvents comboboxDomicilioLocalidad As System.Windows.Forms.ComboBox
     Friend WithEvents comboboxDomicilioProvincia As System.Windows.Forms.ComboBox
     Friend WithEvents textboxDomicilioCodigoPostal As System.Windows.Forms.TextBox
-    Friend WithEvents tabcontrolMain As CSPesaje.DesktopApplication.CS_Control_TabControl
-    Friend WithEvents TabPage1 As System.Windows.Forms.TabPage
+    Friend WithEvents tabcontrolMain As CardonerSistemas.TabControl
+    Friend WithEvents tabpageGeneral As System.Windows.Forms.TabPage
     Friend WithEvents tabpageNotasAuditoria As System.Windows.Forms.TabPage
     Friend WithEvents textboxIDOrigenDestino As System.Windows.Forms.TextBox
     Friend WithEvents textboxUsuarioModificacion As System.Windows.Forms.TextBox

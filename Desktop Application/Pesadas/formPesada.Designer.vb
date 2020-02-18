@@ -126,7 +126,7 @@ Partial Class formPesada
         Me.labelZaranda = New System.Windows.Forms.Label()
         Me.doubletextboxHumedad = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
         Me.labelHumedad = New System.Windows.Forms.Label()
-        Me.tabcontrolNotasExtras = New CSPesaje.DesktopApplication.CS_Control_TabControl()
+        Me.tabcontrolNotasExtras = New CardonerSistemas.TabControl()
         Me.tabpageNotas = New System.Windows.Forms.TabPage()
         Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.tabpageExtras = New System.Windows.Forms.TabPage()
@@ -192,7 +192,7 @@ Partial Class formPesada
         'buttonCerrar
         '
         Me.buttonCerrar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonCerrar.Image = Global.CSPesaje.DesktopApplication.My.Resources.Resources.IMAGE_CLOSE_32
+        Me.buttonCerrar.Image = My.Resources.Resources.IMAGE_CLOSE_32
         Me.buttonCerrar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCerrar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonCerrar.Name = "buttonCerrar"
@@ -202,7 +202,7 @@ Partial Class formPesada
         'buttonEditar
         '
         Me.buttonEditar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonEditar.Image = Global.CSPesaje.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_EDIT_32
+        Me.buttonEditar.Image = My.Resources.Resources.IMAGE_ITEM_EDIT_32
         Me.buttonEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonEditar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonEditar.Name = "buttonEditar"
@@ -212,7 +212,7 @@ Partial Class formPesada
         'buttonCancelar
         '
         Me.buttonCancelar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonCancelar.Image = Global.CSPesaje.DesktopApplication.My.Resources.Resources.IMAGE_CANCEL_32
+        Me.buttonCancelar.Image = My.Resources.Resources.IMAGE_CANCEL_32
         Me.buttonCancelar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCancelar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonCancelar.Name = "buttonCancelar"
@@ -222,7 +222,7 @@ Partial Class formPesada
         'buttonGuardar
         '
         Me.buttonGuardar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonGuardar.Image = Global.CSPesaje.DesktopApplication.My.Resources.Resources.IMAGE_OK_32
+        Me.buttonGuardar.Image = My.Resources.Resources.IMAGE_OK_32
         Me.buttonGuardar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonGuardar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonGuardar.Name = "buttonGuardar"
@@ -907,7 +907,7 @@ Partial Class formPesada
         '
         'buttonFechaHoraFinAhora
         '
-        Me.buttonFechaHoraFinAhora.Image = Global.CSPesaje.DesktopApplication.My.Resources.Resources.IMAGE_CALENDAR_TODAY_16
+        Me.buttonFechaHoraFinAhora.Image = My.Resources.Resources.IMAGE_CALENDAR_TODAY_16
         Me.buttonFechaHoraFinAhora.Location = New System.Drawing.Point(303, 64)
         Me.buttonFechaHoraFinAhora.Name = "buttonFechaHoraFinAhora"
         Me.buttonFechaHoraFinAhora.Size = New System.Drawing.Size(22, 22)
@@ -918,7 +918,7 @@ Partial Class formPesada
         '
         'buttonFechaHoraInicioAhora
         '
-        Me.buttonFechaHoraInicioAhora.Image = Global.CSPesaje.DesktopApplication.My.Resources.Resources.IMAGE_CALENDAR_TODAY_16
+        Me.buttonFechaHoraInicioAhora.Image = My.Resources.Resources.IMAGE_CALENDAR_TODAY_16
         Me.buttonFechaHoraInicioAhora.Location = New System.Drawing.Point(303, 38)
         Me.buttonFechaHoraInicioAhora.Name = "buttonFechaHoraInicioAhora"
         Me.buttonFechaHoraInicioAhora.Size = New System.Drawing.Size(22, 22)
@@ -1047,7 +1047,7 @@ Partial Class formPesada
         '
         'buttonObtenerKilogramosTara
         '
-        Me.buttonObtenerKilogramosTara.Image = Global.CSPesaje.DesktopApplication.My.Resources.Resources.IMAGE_SCALE_16
+        Me.buttonObtenerKilogramosTara.Image = My.Resources.Resources.IMAGE_SCALE_16
         Me.buttonObtenerKilogramosTara.Location = New System.Drawing.Point(151, 38)
         Me.buttonObtenerKilogramosTara.Name = "buttonObtenerKilogramosTara"
         Me.buttonObtenerKilogramosTara.Size = New System.Drawing.Size(22, 22)
@@ -1057,7 +1057,7 @@ Partial Class formPesada
         '
         'buttonObtenerKilogramosBrutos
         '
-        Me.buttonObtenerKilogramosBrutos.Image = Global.CSPesaje.DesktopApplication.My.Resources.Resources.IMAGE_SCALE_16
+        Me.buttonObtenerKilogramosBrutos.Image = My.Resources.Resources.IMAGE_SCALE_16
         Me.buttonObtenerKilogramosBrutos.Location = New System.Drawing.Point(151, 12)
         Me.buttonObtenerKilogramosBrutos.Name = "buttonObtenerKilogramosBrutos"
         Me.buttonObtenerKilogramosBrutos.Size = New System.Drawing.Size(22, 22)
@@ -1830,7 +1830,7 @@ Partial Class formPesada
     Friend WithEvents maskedtextboxComprobanteNumeroTercero As System.Windows.Forms.MaskedTextBox
     Friend WithEvents integertextboxGranoDaniado As Syncfusion.Windows.Forms.Tools.IntegerTextBox
     Friend WithEvents integertextboxGranoVerde As Syncfusion.Windows.Forms.Tools.IntegerTextBox
-    Friend WithEvents tabcontrolNotasExtras As CSPesaje.DesktopApplication.CS_Control_TabControl
+    Friend WithEvents tabcontrolNotasExtras As CardonerSistemas.TabControl
     Friend WithEvents tabpageNotas As System.Windows.Forms.TabPage
     Friend WithEvents tabpageExtras As System.Windows.Forms.TabPage
     Friend WithEvents groupboxControl As System.Windows.Forms.GroupBox

@@ -52,7 +52,7 @@ Partial Class formEntidad
         Me.labelTransportista = New System.Windows.Forms.Label()
         Me.labelCamion = New System.Windows.Forms.Label()
         Me.comboboxTransportista = New System.Windows.Forms.ComboBox()
-        Me.tabcontrolMain = New CSPesaje.DesktopApplication.CS_Control_TabControl()
+        Me.tabcontrolMain = New CardonerSistemas.TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
         Me.comboboxDomicilioLocalidad = New System.Windows.Forms.ComboBox()
         Me.comboboxDomicilioProvincia = New System.Windows.Forms.ComboBox()
@@ -192,7 +192,7 @@ Partial Class formEntidad
         'buttonCerrar
         '
         Me.buttonCerrar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonCerrar.Image = Global.CSPesaje.DesktopApplication.My.Resources.Resources.IMAGE_CLOSE_32
+        Me.buttonCerrar.Image = My.Resources.Resources.IMAGE_CLOSE_32
         Me.buttonCerrar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCerrar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonCerrar.Name = "buttonCerrar"
@@ -202,7 +202,7 @@ Partial Class formEntidad
         'buttonEditar
         '
         Me.buttonEditar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonEditar.Image = Global.CSPesaje.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_EDIT_32
+        Me.buttonEditar.Image = My.Resources.Resources.IMAGE_ITEM_EDIT_32
         Me.buttonEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonEditar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonEditar.Name = "buttonEditar"
@@ -212,7 +212,7 @@ Partial Class formEntidad
         'buttonCancelar
         '
         Me.buttonCancelar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonCancelar.Image = Global.CSPesaje.DesktopApplication.My.Resources.Resources.IMAGE_CANCEL_32
+        Me.buttonCancelar.Image = My.Resources.Resources.IMAGE_CANCEL_32
         Me.buttonCancelar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCancelar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonCancelar.Name = "buttonCancelar"
@@ -222,7 +222,7 @@ Partial Class formEntidad
         'buttonGuardar
         '
         Me.buttonGuardar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonGuardar.Image = Global.CSPesaje.DesktopApplication.My.Resources.Resources.IMAGE_OK_32
+        Me.buttonGuardar.Image = My.Resources.Resources.IMAGE_OK_32
         Me.buttonGuardar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonGuardar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonGuardar.Name = "buttonGuardar"
@@ -722,7 +722,7 @@ Partial Class formEntidad
     Friend WithEvents labelTransportista As System.Windows.Forms.Label
     Friend WithEvents labelCamion As System.Windows.Forms.Label
     Friend WithEvents comboboxTransportista As System.Windows.Forms.ComboBox
-    Friend WithEvents tabcontrolMain As CSPesaje.DesktopApplication.CS_Control_TabControl
+    Friend WithEvents tabcontrolMain As CardonerSistemas.TabControl
     Friend WithEvents tabpageGeneral As System.Windows.Forms.TabPage
     Friend WithEvents tabpageNotasAuditoria As System.Windows.Forms.TabPage
     Friend WithEvents checkboxEsActivo As System.Windows.Forms.CheckBox

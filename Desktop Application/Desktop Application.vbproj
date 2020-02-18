@@ -7,11 +7,12 @@
     <ProjectGuid>{80F91FA5-66EC-49A8-87A4-A4EBB1DDE34D}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <StartupObject>Sub Main</StartupObject>
-    <RootNamespace>CSPesaje.DesktopApplication</RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <AssemblyName>CSPesaje</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsFormsWithCustomSubMain</MyType>
-    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -148,10 +149,6 @@
     </Compile>
     <Compile Include="C:\Data\Cardoner Sistemas\Development\framework-vbnet\CS_Parameter_System.vb">
       <Link>Framework\CS_Parameter_System.vb</Link>
-    </Compile>
-    <Compile Include="C:\Data\Cardoner Sistemas\Development\framework-vbnet\CS_Control_TabControl.vb">
-      <Link>Framework\CS_Control_TabControl.vb</Link>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="C:\Data\Cardoner Sistemas\Development\framework-vbnet\CS_Encryption_TripleDES.vb">
       <Link>Framework\CS_Encryption_TripleDES.vb</Link>
