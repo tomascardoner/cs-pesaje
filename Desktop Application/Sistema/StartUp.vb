@@ -183,6 +183,7 @@
         ' Muestro el form MDI principal
         pFormMDIMain = New formMDIMain
         pFormMDIMain.Show()
+        formSplashScreen.Focus()
 
         pFormMDIMain.Cursor = Cursors.AppStarting
         pFormMDIMain.Enabled = False
@@ -194,6 +195,7 @@
 
         ' Muestro el form de Pesadas
         formSplashScreen.labelStatus.Text = "Cargando y mostrando ventana de Pesadas..."
+        formSplashScreen.Focus()
         Application.DoEvents()
 
         CS_Form.MDIChild_PositionAndSizeToFit(CType(pFormMDIMain, Form), CType(formPesadas, Form))
@@ -253,7 +255,8 @@
             End Using
         Else
             ' El Usuario debe iniciar sesión a través del form correspondiente
-            If Not formLogin.ShowDialog(pFormMDIMain) = DialogResult.OK Then
+            formSplashScreen.Show()
+            If Not formLogin.ShowDialog(formSplashScreen) = DialogResult.OK Then
                 Application.Exit()
                 My.Application.Log.WriteEntry("La Aplicación ha finalizado porque el Usuario no ha iniciado sesión.", TraceEventType.Warning)
                 Exit Sub

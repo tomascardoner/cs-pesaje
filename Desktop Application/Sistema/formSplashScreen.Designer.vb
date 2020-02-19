@@ -22,7 +22,6 @@ Partial Class formSplashScreen
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.Icon = CS_Icon.GetIconFromEmbeddedResource("ApplicationIcon", New Size(48, 48))
         Me.labelAppTitle = New System.Windows.Forms.Label()
         Me.labelCompanyName = New System.Windows.Forms.Label()
         Me.labelCopyright = New System.Windows.Forms.Label()
@@ -95,7 +94,7 @@ Partial Class formSplashScreen
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.DarkOliveGreen
-        Me.BackgroundImage = My.Resources.Resources.IMAGE_SPLASH_SCREEN_BACKGROUND
+        Me.BackgroundImage = Global.My.Resources.Resources.IMAGE_SPLASH_SCREEN_BACKGROUND
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(498, 329)
         Me.ControlBox = False
@@ -108,7 +107,6 @@ Partial Class formSplashScreen
         Me.Name = "formSplashScreen"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "App.Title"
-        Me.TopMost = True
         Me.ResumeLayout(False)
 
     End Sub
