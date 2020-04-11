@@ -104,7 +104,7 @@
         My.Settings.LastUserLoggedIn = pUsuario.Nombre
         My.Settings.Save()
 
-        MiscFunctions.UserLoggedIn()
+        Appearance.UserLoggedIn()
 
         Me.Cursor = Cursors.Default
 

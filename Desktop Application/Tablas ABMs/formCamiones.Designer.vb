@@ -68,7 +68,7 @@ Partial Class formCamiones
         '
         'buttonAgregar
         '
-        Me.buttonAgregar.Image = My.Resources.Resources.IMAGE_ITEM_ADD_32
+        Me.buttonAgregar.Image = Global.My.Resources.Resources.IMAGE_ITEM_ADD_32
         Me.buttonAgregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonAgregar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonAgregar.Name = "buttonAgregar"
@@ -77,7 +77,7 @@ Partial Class formCamiones
         '
         'buttonEditar
         '
-        Me.buttonEditar.Image = My.Resources.Resources.IMAGE_ITEM_EDIT_32
+        Me.buttonEditar.Image = Global.My.Resources.Resources.IMAGE_ITEM_EDIT_32
         Me.buttonEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonEditar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonEditar.Name = "buttonEditar"
@@ -86,7 +86,7 @@ Partial Class formCamiones
         '
         'buttonEliminar
         '
-        Me.buttonEliminar.Image = My.Resources.Resources.IMAGE_ITEM_DELETE_32
+        Me.buttonEliminar.Image = Global.My.Resources.Resources.IMAGE_ITEM_DELETE_32
         Me.buttonEliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonEliminar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonEliminar.Name = "buttonEliminar"
@@ -96,7 +96,7 @@ Partial Class formCamiones
         'buttonImprimir
         '
         Me.buttonImprimir.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemImprimirListado})
-        Me.buttonImprimir.Image = My.Resources.Resources.IMAGE_PRINT_32
+        Me.buttonImprimir.Image = Global.My.Resources.Resources.IMAGE_PRINT_32
         Me.buttonImprimir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonImprimir.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonImprimir.Name = "buttonImprimir"
@@ -145,7 +145,7 @@ Partial Class formCamiones
         Me.toolstripTransportista.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelTransportista, Me.comboboxTransportista})
         Me.toolstripTransportista.Location = New System.Drawing.Point(348, 0)
         Me.toolstripTransportista.Name = "toolstripTransportista"
-        Me.toolstripTransportista.Size = New System.Drawing.Size(283, 39)
+        Me.toolstripTransportista.Size = New System.Drawing.Size(282, 39)
         Me.toolstripTransportista.TabIndex = 4
         '
         'labelTransportista
@@ -153,7 +153,7 @@ Partial Class formCamiones
         Me.labelTransportista.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
         Me.labelTransportista.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.labelTransportista.Name = "labelTransportista"
-        Me.labelTransportista.Size = New System.Drawing.Size(78, 36)
+        Me.labelTransportista.Size = New System.Drawing.Size(77, 36)
         Me.labelTransportista.Text = "Transportista:"
         '
         'comboboxTransportista
@@ -167,7 +167,7 @@ Partial Class formCamiones
         Me.toolstripActivo.Dock = System.Windows.Forms.DockStyle.Fill
         Me.toolstripActivo.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolstripActivo.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelActivo, Me.comboboxActivo})
-        Me.toolstripActivo.Location = New System.Drawing.Point(631, 0)
+        Me.toolstripActivo.Location = New System.Drawing.Point(630, 0)
         Me.toolstripActivo.Name = "toolstripActivo"
         Me.toolstripActivo.Size = New System.Drawing.Size(124, 39)
         Me.toolstripActivo.TabIndex = 3
@@ -269,6 +269,7 @@ Partial Class formCamiones
         Me.Controls.Add(Me.statusstripMain)
         Me.KeyPreview = True
         Me.Name = "formCamiones"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Camiones"
         Me.toolstripButtons.ResumeLayout(False)

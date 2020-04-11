@@ -237,6 +237,7 @@ Partial Class formCamion
         Me.MaximizeBox = False
         Me.Name = "formCamion"
         Me.ShowIcon = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Detalle de la Camion"
         Me.toolstripMain.ResumeLayout(False)

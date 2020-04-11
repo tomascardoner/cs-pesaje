@@ -79,7 +79,7 @@ Partial Class formEntidades
         '
         'buttonAgregar
         '
-        Me.buttonAgregar.Image = My.Resources.Resources.IMAGE_ITEM_ADD_32
+        Me.buttonAgregar.Image = Global.My.Resources.Resources.IMAGE_ITEM_ADD_32
         Me.buttonAgregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonAgregar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonAgregar.Name = "buttonAgregar"
@@ -88,7 +88,7 @@ Partial Class formEntidades
         '
         'buttonEditar
         '
-        Me.buttonEditar.Image = My.Resources.Resources.IMAGE_ITEM_EDIT_32
+        Me.buttonEditar.Image = Global.My.Resources.Resources.IMAGE_ITEM_EDIT_32
         Me.buttonEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonEditar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonEditar.Name = "buttonEditar"
@@ -97,7 +97,7 @@ Partial Class formEntidades
         '
         'buttonEliminar
         '
-        Me.buttonEliminar.Image = My.Resources.Resources.IMAGE_ITEM_DELETE_32
+        Me.buttonEliminar.Image = Global.My.Resources.Resources.IMAGE_ITEM_DELETE_32
         Me.buttonEliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonEliminar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonEliminar.Name = "buttonEliminar"
@@ -107,7 +107,7 @@ Partial Class formEntidades
         'buttonImprimir
         '
         Me.buttonImprimir.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemImprimirListado})
-        Me.buttonImprimir.Image = My.Resources.Resources.IMAGE_PRINT_32
+        Me.buttonImprimir.Image = Global.My.Resources.Resources.IMAGE_PRINT_32
         Me.buttonImprimir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonImprimir.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonImprimir.Name = "buttonImprimir"
@@ -167,6 +167,7 @@ Partial Class formEntidades
         '
         'textboxBuscar
         '
+        Me.textboxBuscar.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.textboxBuscar.MaxLength = 100
         Me.textboxBuscar.Name = "textboxBuscar"
         Me.textboxBuscar.Size = New System.Drawing.Size(120, 39)
@@ -174,7 +175,7 @@ Partial Class formEntidades
         'buttonBuscarBorrar
         '
         Me.buttonBuscarBorrar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.buttonBuscarBorrar.Image = My.Resources.Resources.IMAGE_CLOSE_16
+        Me.buttonBuscarBorrar.Image = Global.My.Resources.Resources.IMAGE_CLOSE_16
         Me.buttonBuscarBorrar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonBuscarBorrar.Name = "buttonBuscarBorrar"
         Me.buttonBuscarBorrar.Size = New System.Drawing.Size(23, 36)
@@ -188,7 +189,7 @@ Partial Class formEntidades
         Me.toolstripEntidadTipo.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.dropdownbuttonEntidadTipos})
         Me.toolstripEntidadTipo.Location = New System.Drawing.Point(541, 0)
         Me.toolstripEntidadTipo.Name = "toolstripEntidadTipo"
-        Me.toolstripEntidadTipo.Size = New System.Drawing.Size(111, 39)
+        Me.toolstripEntidadTipo.Size = New System.Drawing.Size(110, 39)
         Me.toolstripEntidadTipo.TabIndex = 4
         '
         'dropdownbuttonEntidadTipos
@@ -198,7 +199,7 @@ Partial Class formEntidades
         Me.dropdownbuttonEntidadTipos.Image = CType(resources.GetObject("dropdownbuttonEntidadTipos.Image"), System.Drawing.Image)
         Me.dropdownbuttonEntidadTipos.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.dropdownbuttonEntidadTipos.Name = "dropdownbuttonEntidadTipos"
-        Me.dropdownbuttonEntidadTipos.Size = New System.Drawing.Size(108, 36)
+        Me.dropdownbuttonEntidadTipos.Size = New System.Drawing.Size(107, 36)
         Me.dropdownbuttonEntidadTipos.Text = "Tipos de Entidad"
         '
         'menuitemEntidadTipo_Titular
@@ -250,7 +251,7 @@ Partial Class formEntidades
         Me.toolstripActivo.Dock = System.Windows.Forms.DockStyle.Fill
         Me.toolstripActivo.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolstripActivo.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelActivo, Me.comboboxActivo})
-        Me.toolstripActivo.Location = New System.Drawing.Point(652, 0)
+        Me.toolstripActivo.Location = New System.Drawing.Point(651, 0)
         Me.toolstripActivo.Name = "toolstripActivo"
         Me.toolstripActivo.Size = New System.Drawing.Size(124, 39)
         Me.toolstripActivo.TabIndex = 3
@@ -350,6 +351,7 @@ Partial Class formEntidades
         Me.Controls.Add(Me.statusstripMain)
         Me.KeyPreview = True
         Me.Name = "formEntidades"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Entidades"
         Me.toolstripButtons.ResumeLayout(False)

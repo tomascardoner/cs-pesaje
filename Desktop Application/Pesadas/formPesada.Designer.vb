@@ -49,6 +49,7 @@ Partial Class formPesada
         Me.checkboxDestinoOtro = New System.Windows.Forms.CheckBox()
         Me.labelDestino = New System.Windows.Forms.Label()
         Me.groupboxTransporte = New System.Windows.Forms.GroupBox()
+        Me.textboxCamion_DominioChasisExtra = New System.Windows.Forms.TextBox()
         Me.labelKilometro = New System.Windows.Forms.Label()
         Me.integertextboxKilometro = New Syncfusion.Windows.Forms.Tools.IntegerTextBox()
         Me.labelCamion_DominioAcoplado = New System.Windows.Forms.Label()
@@ -153,7 +154,6 @@ Partial Class formPesada
         Me.checkboxEsActivo = New System.Windows.Forms.CheckBox()
         Me.labelEsVerificado = New System.Windows.Forms.Label()
         Me.checkboxEsVerificado = New System.Windows.Forms.CheckBox()
-        Me.textboxCamion_DominioChasisExtra = New System.Windows.Forms.TextBox()
         Me.toolstripMain.SuspendLayout()
         Me.groupboxTransporte.SuspendLayout()
         CType(Me.integertextboxKilometro, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -192,7 +192,7 @@ Partial Class formPesada
         'buttonCerrar
         '
         Me.buttonCerrar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonCerrar.Image = My.Resources.Resources.IMAGE_CLOSE_32
+        Me.buttonCerrar.Image = Global.My.Resources.Resources.IMAGE_CLOSE_32
         Me.buttonCerrar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCerrar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonCerrar.Name = "buttonCerrar"
@@ -202,7 +202,7 @@ Partial Class formPesada
         'buttonEditar
         '
         Me.buttonEditar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonEditar.Image = My.Resources.Resources.IMAGE_ITEM_EDIT_32
+        Me.buttonEditar.Image = Global.My.Resources.Resources.IMAGE_ITEM_EDIT_32
         Me.buttonEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonEditar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonEditar.Name = "buttonEditar"
@@ -212,7 +212,7 @@ Partial Class formPesada
         'buttonCancelar
         '
         Me.buttonCancelar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonCancelar.Image = My.Resources.Resources.IMAGE_CANCEL_32
+        Me.buttonCancelar.Image = Global.My.Resources.Resources.IMAGE_CANCEL_32
         Me.buttonCancelar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCancelar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonCancelar.Name = "buttonCancelar"
@@ -222,7 +222,7 @@ Partial Class formPesada
         'buttonGuardar
         '
         Me.buttonGuardar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonGuardar.Image = My.Resources.Resources.IMAGE_OK_32
+        Me.buttonGuardar.Image = Global.My.Resources.Resources.IMAGE_OK_32
         Me.buttonGuardar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonGuardar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonGuardar.Name = "buttonGuardar"
@@ -491,6 +491,15 @@ Partial Class formPesada
         Me.groupboxTransporte.TabIndex = 3
         Me.groupboxTransporte.TabStop = False
         '
+        'textboxCamion_DominioChasisExtra
+        '
+        Me.textboxCamion_DominioChasisExtra.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.textboxCamion_DominioChasisExtra.Location = New System.Drawing.Point(187, 119)
+        Me.textboxCamion_DominioChasisExtra.MaxLength = 7
+        Me.textboxCamion_DominioChasisExtra.Name = "textboxCamion_DominioChasisExtra"
+        Me.textboxCamion_DominioChasisExtra.Size = New System.Drawing.Size(68, 20)
+        Me.textboxCamion_DominioChasisExtra.TabIndex = 17
+        '
         'labelKilometro
         '
         Me.labelKilometro.AutoSize = True
@@ -509,10 +518,8 @@ Partial Class formPesada
         Me.integertextboxKilometro.IntegerValue = CType(0, Long)
         Me.integertextboxKilometro.Location = New System.Drawing.Point(92, 145)
         Me.integertextboxKilometro.MaxValue = CType(3000, Long)
-        Me.integertextboxKilometro.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
         Me.integertextboxKilometro.MinValue = CType(0, Long)
         Me.integertextboxKilometro.Name = "integertextboxKilometro"
-        Me.integertextboxKilometro.NullString = ""
         Me.integertextboxKilometro.NumberNegativePattern = 0
         Me.integertextboxKilometro.Size = New System.Drawing.Size(53, 20)
         Me.integertextboxKilometro.TabIndex = 21
@@ -907,7 +914,7 @@ Partial Class formPesada
         '
         'buttonFechaHoraFinAhora
         '
-        Me.buttonFechaHoraFinAhora.Image = My.Resources.Resources.IMAGE_CALENDAR_TODAY_16
+        Me.buttonFechaHoraFinAhora.Image = Global.My.Resources.Resources.IMAGE_CALENDAR_TODAY_16
         Me.buttonFechaHoraFinAhora.Location = New System.Drawing.Point(303, 64)
         Me.buttonFechaHoraFinAhora.Name = "buttonFechaHoraFinAhora"
         Me.buttonFechaHoraFinAhora.Size = New System.Drawing.Size(22, 22)
@@ -918,7 +925,7 @@ Partial Class formPesada
         '
         'buttonFechaHoraInicioAhora
         '
-        Me.buttonFechaHoraInicioAhora.Image = My.Resources.Resources.IMAGE_CALENDAR_TODAY_16
+        Me.buttonFechaHoraInicioAhora.Image = Global.My.Resources.Resources.IMAGE_CALENDAR_TODAY_16
         Me.buttonFechaHoraInicioAhora.Location = New System.Drawing.Point(303, 38)
         Me.buttonFechaHoraInicioAhora.Name = "buttonFechaHoraInicioAhora"
         Me.buttonFechaHoraInicioAhora.Size = New System.Drawing.Size(22, 22)
@@ -1047,7 +1054,7 @@ Partial Class formPesada
         '
         'buttonObtenerKilogramosTara
         '
-        Me.buttonObtenerKilogramosTara.Image = My.Resources.Resources.IMAGE_SCALE_16
+        Me.buttonObtenerKilogramosTara.Image = Global.My.Resources.Resources.IMAGE_SCALE_16
         Me.buttonObtenerKilogramosTara.Location = New System.Drawing.Point(151, 38)
         Me.buttonObtenerKilogramosTara.Name = "buttonObtenerKilogramosTara"
         Me.buttonObtenerKilogramosTara.Size = New System.Drawing.Size(22, 22)
@@ -1057,7 +1064,7 @@ Partial Class formPesada
         '
         'buttonObtenerKilogramosBrutos
         '
-        Me.buttonObtenerKilogramosBrutos.Image = My.Resources.Resources.IMAGE_SCALE_16
+        Me.buttonObtenerKilogramosBrutos.Image = Global.My.Resources.Resources.IMAGE_SCALE_16
         Me.buttonObtenerKilogramosBrutos.Location = New System.Drawing.Point(151, 12)
         Me.buttonObtenerKilogramosBrutos.Name = "buttonObtenerKilogramosBrutos"
         Me.buttonObtenerKilogramosBrutos.Size = New System.Drawing.Size(22, 22)
@@ -1085,10 +1092,8 @@ Partial Class formPesada
         Me.integertextboxKilogramoNeto.IntegerValue = CType(0, Long)
         Me.integertextboxKilogramoNeto.Location = New System.Drawing.Point(268, 26)
         Me.integertextboxKilogramoNeto.MaxValue = CType(99999, Long)
-        Me.integertextboxKilogramoNeto.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
         Me.integertextboxKilogramoNeto.MinValue = CType(-99999, Long)
         Me.integertextboxKilogramoNeto.Name = "integertextboxKilogramoNeto"
-        Me.integertextboxKilogramoNeto.NullString = ""
         Me.integertextboxKilogramoNeto.NumberNegativePattern = 0
         Me.integertextboxKilogramoNeto.ReadOnly = True
         Me.integertextboxKilogramoNeto.Size = New System.Drawing.Size(79, 22)
@@ -1115,10 +1120,8 @@ Partial Class formPesada
         Me.integertextboxKilogramoTara.IntegerValue = CType(0, Long)
         Me.integertextboxKilogramoTara.Location = New System.Drawing.Point(92, 39)
         Me.integertextboxKilogramoTara.MaxValue = CType(99999, Long)
-        Me.integertextboxKilogramoTara.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
         Me.integertextboxKilogramoTara.MinValue = CType(0, Long)
         Me.integertextboxKilogramoTara.Name = "integertextboxKilogramoTara"
-        Me.integertextboxKilogramoTara.NullString = ""
         Me.integertextboxKilogramoTara.NumberNegativePattern = 0
         Me.integertextboxKilogramoTara.Size = New System.Drawing.Size(53, 20)
         Me.integertextboxKilogramoTara.TabIndex = 4
@@ -1143,10 +1146,8 @@ Partial Class formPesada
         Me.integertextboxKilogramoBruto.IntegerValue = CType(0, Long)
         Me.integertextboxKilogramoBruto.Location = New System.Drawing.Point(92, 13)
         Me.integertextboxKilogramoBruto.MaxValue = CType(99999, Long)
-        Me.integertextboxKilogramoBruto.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
         Me.integertextboxKilogramoBruto.MinValue = CType(0, Long)
         Me.integertextboxKilogramoBruto.Name = "integertextboxKilogramoBruto"
-        Me.integertextboxKilogramoBruto.NullString = ""
         Me.integertextboxKilogramoBruto.NumberNegativePattern = 0
         Me.integertextboxKilogramoBruto.Size = New System.Drawing.Size(53, 20)
         Me.integertextboxKilogramoBruto.TabIndex = 1
@@ -1186,10 +1187,8 @@ Partial Class formPesada
         Me.integertextboxGranoDaniado.IntegerValue = CType(0, Long)
         Me.integertextboxGranoDaniado.Location = New System.Drawing.Point(206, 38)
         Me.integertextboxGranoDaniado.MaxValue = CType(99, Long)
-        Me.integertextboxGranoDaniado.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
         Me.integertextboxGranoDaniado.MinValue = CType(0, Long)
         Me.integertextboxGranoDaniado.Name = "integertextboxGranoDaniado"
-        Me.integertextboxGranoDaniado.NullString = ""
         Me.integertextboxGranoDaniado.NumberNegativePattern = 0
         Me.integertextboxGranoDaniado.Size = New System.Drawing.Size(38, 20)
         Me.integertextboxGranoDaniado.TabIndex = 9
@@ -1205,10 +1204,8 @@ Partial Class formPesada
         Me.integertextboxGranoVerde.IntegerValue = CType(0, Long)
         Me.integertextboxGranoVerde.Location = New System.Drawing.Point(206, 12)
         Me.integertextboxGranoVerde.MaxValue = CType(99, Long)
-        Me.integertextboxGranoVerde.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
         Me.integertextboxGranoVerde.MinValue = CType(0, Long)
         Me.integertextboxGranoVerde.Name = "integertextboxGranoVerde"
-        Me.integertextboxGranoVerde.NullString = ""
         Me.integertextboxGranoVerde.NumberNegativePattern = 0
         Me.integertextboxGranoVerde.Size = New System.Drawing.Size(38, 20)
         Me.integertextboxGranoVerde.TabIndex = 7
@@ -1260,10 +1257,8 @@ Partial Class formPesada
         Me.doubletextboxGluten.ForeColor = System.Drawing.SystemColors.WindowText
         Me.doubletextboxGluten.Location = New System.Drawing.Point(309, 38)
         Me.doubletextboxGluten.MaxValue = 80.0R
-        Me.doubletextboxGluten.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
         Me.doubletextboxGluten.MinValue = 0R
         Me.doubletextboxGluten.Name = "doubletextboxGluten"
-        Me.doubletextboxGluten.NullString = ""
         Me.doubletextboxGluten.NumberDecimalDigits = 1
         Me.doubletextboxGluten.NumberNegativePattern = 0
         Me.doubletextboxGluten.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.SetNullString
@@ -1290,10 +1285,8 @@ Partial Class formPesada
         Me.doubletextboxPesoHectolitrico.ForeColor = System.Drawing.SystemColors.WindowText
         Me.doubletextboxPesoHectolitrico.Location = New System.Drawing.Point(309, 12)
         Me.doubletextboxPesoHectolitrico.MaxValue = 100.0R
-        Me.doubletextboxPesoHectolitrico.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
         Me.doubletextboxPesoHectolitrico.MinValue = 0R
         Me.doubletextboxPesoHectolitrico.Name = "doubletextboxPesoHectolitrico"
-        Me.doubletextboxPesoHectolitrico.NullString = ""
         Me.doubletextboxPesoHectolitrico.NumberDecimalDigits = 1
         Me.doubletextboxPesoHectolitrico.NumberNegativePattern = 0
         Me.doubletextboxPesoHectolitrico.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.SetNullString
@@ -1338,10 +1331,8 @@ Partial Class formPesada
         Me.doubletextboxZaranda.ForeColor = System.Drawing.SystemColors.WindowText
         Me.doubletextboxZaranda.Location = New System.Drawing.Point(68, 38)
         Me.doubletextboxZaranda.MaxValue = 50.0R
-        Me.doubletextboxZaranda.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
         Me.doubletextboxZaranda.MinValue = 0R
         Me.doubletextboxZaranda.Name = "doubletextboxZaranda"
-        Me.doubletextboxZaranda.NullString = ""
         Me.doubletextboxZaranda.NumberDecimalDigits = 1
         Me.doubletextboxZaranda.NumberNegativePattern = 0
         Me.doubletextboxZaranda.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.SetNullString
@@ -1368,10 +1359,8 @@ Partial Class formPesada
         Me.doubletextboxHumedad.ForeColor = System.Drawing.SystemColors.WindowText
         Me.doubletextboxHumedad.Location = New System.Drawing.Point(68, 12)
         Me.doubletextboxHumedad.MaxValue = 40.0R
-        Me.doubletextboxHumedad.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
         Me.doubletextboxHumedad.MinValue = 0R
         Me.doubletextboxHumedad.Name = "doubletextboxHumedad"
-        Me.doubletextboxHumedad.NullString = ""
         Me.doubletextboxHumedad.NumberDecimalDigits = 1
         Me.doubletextboxHumedad.NumberNegativePattern = 0
         Me.doubletextboxHumedad.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.SetNullString
@@ -1662,15 +1651,6 @@ Partial Class formPesada
         Me.checkboxEsVerificado.TabIndex = 6
         Me.checkboxEsVerificado.UseVisualStyleBackColor = True
         '
-        'textboxCamion_DominioChasisExtra
-        '
-        Me.textboxCamion_DominioChasisExtra.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.textboxCamion_DominioChasisExtra.Location = New System.Drawing.Point(187, 119)
-        Me.textboxCamion_DominioChasisExtra.MaxLength = 7
-        Me.textboxCamion_DominioChasisExtra.Name = "textboxCamion_DominioChasisExtra"
-        Me.textboxCamion_DominioChasisExtra.Size = New System.Drawing.Size(68, 20)
-        Me.textboxCamion_DominioChasisExtra.TabIndex = 17
-        '
         'formPesada
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1690,6 +1670,7 @@ Partial Class formPesada
         Me.MinimizeBox = False
         Me.Name = "formPesada"
         Me.ShowIcon = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Detalle de la Pesada"
         Me.toolstripMain.ResumeLayout(False)

@@ -1,4 +1,4 @@
-﻿Module MiscFunctions
+﻿Module Appearance
 
     Friend Sub DataGridSetAppearance(ByRef DataGridViewObject As DataGridView)
         DataGridViewObject.DefaultCellStyle.Font = My.Settings.GridsAndListsFont
@@ -13,25 +13,6 @@
         DataGridViewObject.AlternatingRowsDefaultCellStyle.ForeColor = SystemColors.ControlText
         DataGridViewObject.AlternatingRowsDefaultCellStyle.SelectionBackColor = SystemColors.Highlight
         DataGridViewObject.AlternatingRowsDefaultCellStyle.SelectionForeColor = SystemColors.HighlightText
-    End Sub
-
-    Friend Sub PreviewCrystalReport(ByRef ReporteActual As Reporte, ByVal WindowText As String)
-        Dim VisorReporte As New formReportesVisor
-
-        pFormMDIMain.Cursor = Cursors.WaitCursor
-
-        CS_Form.MDIChild_PositionAndSizeToFit(CType(pFormMDIMain, Form), CType(VisorReporte, Form))
-        With VisorReporte
-            .Text = WindowText
-            .CRViewerMain.ReportSource = ReporteActual.ReportObject
-            .Show()
-            If .WindowState = FormWindowState.Minimized Then
-                .WindowState = FormWindowState.Normal
-            End If
-            .Focus()
-        End With
-
-        pFormMDIMain.Cursor = Cursors.Default
     End Sub
 
     Friend Sub UserLoggedIn()
@@ -51,29 +32,5 @@
 
         My.Application.Log.WriteEntry(String.Format("El Usuario '{0}' ha iniciado sesión.", pUsuario.Nombre), TraceEventType.Information)
     End Sub
-
-    Friend Function LoadParameters() As Boolean
-        Try
-            Using dbContext As New CSPesajeContext(True)
-                pParametros = dbContext.Parametro.ToList
-            End Using
-            Return True
-        Catch ex As Exception
-            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al conectarse a la base de datos.")
-            Return False
-        End Try
-    End Function
-
-    Friend Function LoadPermisos() As Boolean
-        Try
-            Using dbcontext As New CSPesajeContext(True)
-                pPermisos = dbcontext.UsuarioGrupoPermiso.ToList
-            End Using
-            Return True
-        Catch ex As Exception
-            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al cargar los Permisos del Usuario.")
-            Return False
-        End Try
-    End Function
 
 End Module

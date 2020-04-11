@@ -710,7 +710,7 @@
                                 If My.Settings.Reporte_Pesada_Previsualizar = False Then
                                     ReporteActual.ReportObject.PrintToPrinter(1, False, 1, 100)
                                 Else
-                                    MiscFunctions.PreviewCrystalReport(ReporteActual, "Ticket Pesada N° " & Microsoft.VisualBasic.Strings.Format(CurrentRow.IDPesada, "N0"))
+                                    Reportes.PreviewCrystalReport(ReporteActual, "Ticket Pesada N° " & Microsoft.VisualBasic.Strings.Format(CurrentRow.IDPesada, "N0"))
                                 End If
                             End If
                         End If
@@ -747,7 +747,7 @@
                                 ReporteActual.RecordSelectionFormula = mRecordSelectionFormula_Refresh & mRecordSelectionFormula_Filter
                             End If
                             If ReporteActual.SetDatabaseConnection(pDatabase.DataSource, pDatabase.InitialCatalog, pDatabase.UserID, pDatabase.Password) Then
-                                MiscFunctions.PreviewCrystalReport(ReporteActual, ReporteActual.Titulo)
+                                Reportes.PreviewCrystalReport(ReporteActual, ReporteActual.Titulo)
                             End If
                         End If
                     End If

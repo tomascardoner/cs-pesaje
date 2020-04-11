@@ -1,4 +1,7 @@
 ﻿Module Permisos
+
+#Region "Constantes"
+
     Friend Const USUARIOGRUPO As String = "USUARIOGRUPO"
     Friend Const USUARIOGRUPO_AGREGAR As String = "USUARIOGRUPO_AGREGAR"
     Friend Const USUARIOGRUPO_EDITAR As String = "USUARIOGRUPO_EDITAR"
@@ -49,6 +52,20 @@
     Friend Const DESCRIPCION_EDITAR As String = "Editar"
     Friend Const DESCRIPCION_ELIMINAR As String = "Eliminar"
     Friend Const DESCRIPCION_IMPRIMIR As String = "Imprimir"
+
+#End Region
+
+    Friend Function LoadPermisos() As Boolean
+        Try
+            Using dbcontext As New CSPesajeContext(True)
+                pPermisos = dbcontext.UsuarioGrupoPermiso.ToList
+            End Using
+            Return True
+        Catch ex As Exception
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al cargar los Permisos del Usuario.")
+            Return False
+        End Try
+    End Function
 
     Friend Function VerificarPermiso(ByVal IDPermiso As String, Optional ByVal MostrarAviso As Boolean = True) As Boolean
         If pUsuario.IDUsuarioGrupo = 1 Then

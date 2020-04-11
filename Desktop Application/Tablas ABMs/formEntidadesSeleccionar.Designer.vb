@@ -45,11 +45,11 @@ Partial Class formEntidadesSeleccionar
         Me.buttonSeleccionar = New System.Windows.Forms.ToolStripButton()
         Me.buttonCancelar = New System.Windows.Forms.ToolStripButton()
         Me.datagridviewMain = New System.Windows.Forms.DataGridView()
-        Me.bindingsourceMain = New System.Windows.Forms.BindingSource(Me.components)
         Me.columnNombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnEsTitular = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.columnEsTransportista = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.columnChofer = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.bindingsourceMain = New System.Windows.Forms.BindingSource(Me.components)
         Me.toolstripMain.SuspendLayout()
         CType(Me.datagridviewMain, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.bindingsourceMain, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -73,6 +73,7 @@ Partial Class formEntidadesSeleccionar
         '
         'textboxBuscar
         '
+        Me.textboxBuscar.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.textboxBuscar.MaxLength = 100
         Me.textboxBuscar.Name = "textboxBuscar"
         Me.textboxBuscar.Size = New System.Drawing.Size(120, 39)
@@ -80,7 +81,7 @@ Partial Class formEntidadesSeleccionar
         'buttonBuscarBorrar
         '
         Me.buttonBuscarBorrar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.buttonBuscarBorrar.Image = My.Resources.Resources.IMAGE_CLOSE_16
+        Me.buttonBuscarBorrar.Image = Global.My.Resources.Resources.IMAGE_CLOSE_16
         Me.buttonBuscarBorrar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonBuscarBorrar.Name = "buttonBuscarBorrar"
         Me.buttonBuscarBorrar.Size = New System.Drawing.Size(24, 36)
@@ -98,7 +99,7 @@ Partial Class formEntidadesSeleccionar
         Me.dropdownbuttonEntidadTipos.Image = CType(resources.GetObject("dropdownbuttonEntidadTipos.Image"), System.Drawing.Image)
         Me.dropdownbuttonEntidadTipos.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.dropdownbuttonEntidadTipos.Name = "dropdownbuttonEntidadTipos"
-        Me.dropdownbuttonEntidadTipos.Size = New System.Drawing.Size(108, 36)
+        Me.dropdownbuttonEntidadTipos.Size = New System.Drawing.Size(107, 36)
         Me.dropdownbuttonEntidadTipos.Text = "Tipos de Entidad"
         '
         'menuitemEntidadTipo_Titular
@@ -169,7 +170,7 @@ Partial Class formEntidadesSeleccionar
         '
         'buttonSeleccionar
         '
-        Me.buttonSeleccionar.Image = My.Resources.Resources.IMAGE_OK_32
+        Me.buttonSeleccionar.Image = Global.My.Resources.Resources.IMAGE_OK_32
         Me.buttonSeleccionar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonSeleccionar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonSeleccionar.Name = "buttonSeleccionar"
@@ -178,7 +179,7 @@ Partial Class formEntidadesSeleccionar
         '
         'buttonCancelar
         '
-        Me.buttonCancelar.Image = My.Resources.Resources.IMAGE_CANCEL_32
+        Me.buttonCancelar.Image = Global.My.Resources.Resources.IMAGE_CANCEL_32
         Me.buttonCancelar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCancelar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonCancelar.Name = "buttonCancelar"
@@ -260,6 +261,7 @@ Partial Class formEntidadesSeleccionar
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.KeyPreview = True
         Me.Name = "formEntidadesSeleccionar"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Seleccione una Entidad"
         Me.toolstripMain.ResumeLayout(False)

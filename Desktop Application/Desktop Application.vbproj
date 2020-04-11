@@ -165,6 +165,7 @@
     <Compile Include="Camion.vb">
       <DependentUpon>CSPesaje.tt</DependentUpon>
     </Compile>
+    <Compile Include="Sistema\Appearance.vb" />
     <Compile Include="Sistema\Constantes.vb" />
     <Compile Include="Cosecha.vb">
       <DependentUpon>CSPesaje.tt</DependentUpon>
@@ -196,6 +197,7 @@
     </Compile>
     <Compile Include="Sistema\EntityFrameworkExtension.vb" />
     <Compile Include="Sistema\FillAndRefreshLists.vb" />
+    <Compile Include="Sistema\Reportes.vb" />
     <Compile Include="Tablas ABMs\formCamion.designer.vb">
       <DependentUpon>formCamion.vb</DependentUpon>
     </Compile>
@@ -325,7 +327,6 @@
     <Compile Include="Localidad.vb">
       <DependentUpon>CSPesaje.tt</DependentUpon>
     </Compile>
-    <Compile Include="Sistema\MiscFunctions.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

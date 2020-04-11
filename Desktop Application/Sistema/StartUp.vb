@@ -142,7 +142,7 @@
         ' Cargos los Parámetros desde la Base de datos
         formSplashScreen.labelStatus.Text = "Cargando los parámetros desde la Base de datos..."
         Application.DoEvents()
-        If Not MiscFunctions.LoadParameters() Then
+        If Not Parametros.LoadParameters() Then
             formSplashScreen.Close()
             formSplashScreen.Dispose()
             TerminateApplication()
@@ -216,7 +216,7 @@
             ' Como se está ejecutando dentro del IDE de Visual Studio, en lugar de pedir Usuario y contraseña, asumo que es el Administrador
             Using dbcontext As New CSPesajeContext(True)
                 pUsuario = dbcontext.Usuario.Find(1)
-                MiscFunctions.UserLoggedIn()
+                Appearance.UserLoggedIn()
             End Using
         ElseIf My.Settings.AutoLogon_Usuario <> "" Then
             ' Se especifica un Usuario de Auto Logon, por lo tanto, se procederá a verificar la información de Logon
@@ -251,7 +251,7 @@
                     Exit Sub
                 End If
 
-                MiscFunctions.UserLoggedIn()
+                Appearance.UserLoggedIn()
             End Using
         Else
             ' El Usuario debe iniciar sesión a través del form correspondiente

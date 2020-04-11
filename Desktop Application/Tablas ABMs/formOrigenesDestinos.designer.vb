@@ -68,7 +68,7 @@ Partial Class formOrigenesDestinos
         '
         'buttonAgregar
         '
-        Me.buttonAgregar.Image = My.Resources.Resources.IMAGE_ITEM_ADD_32
+        Me.buttonAgregar.Image = Global.My.Resources.Resources.IMAGE_ITEM_ADD_32
         Me.buttonAgregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonAgregar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonAgregar.Name = "buttonAgregar"
@@ -77,7 +77,7 @@ Partial Class formOrigenesDestinos
         '
         'buttonEditar
         '
-        Me.buttonEditar.Image = My.Resources.Resources.IMAGE_ITEM_EDIT_32
+        Me.buttonEditar.Image = Global.My.Resources.Resources.IMAGE_ITEM_EDIT_32
         Me.buttonEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonEditar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonEditar.Name = "buttonEditar"
@@ -86,7 +86,7 @@ Partial Class formOrigenesDestinos
         '
         'buttonEliminar
         '
-        Me.buttonEliminar.Image = My.Resources.Resources.IMAGE_ITEM_DELETE_32
+        Me.buttonEliminar.Image = Global.My.Resources.Resources.IMAGE_ITEM_DELETE_32
         Me.buttonEliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonEliminar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonEliminar.Name = "buttonEliminar"
@@ -96,7 +96,7 @@ Partial Class formOrigenesDestinos
         'buttonImprimir
         '
         Me.buttonImprimir.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemImprimirListado})
-        Me.buttonImprimir.Image = My.Resources.Resources.IMAGE_PRINT_32
+        Me.buttonImprimir.Image = Global.My.Resources.Resources.IMAGE_PRINT_32
         Me.buttonImprimir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonImprimir.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonImprimir.Name = "buttonImprimir"
@@ -155,6 +155,7 @@ Partial Class formOrigenesDestinos
         '
         'textboxBuscar
         '
+        Me.textboxBuscar.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.textboxBuscar.MaxLength = 100
         Me.textboxBuscar.Name = "textboxBuscar"
         Me.textboxBuscar.Size = New System.Drawing.Size(120, 39)
@@ -162,7 +163,7 @@ Partial Class formOrigenesDestinos
         'buttonBuscarBorrar
         '
         Me.buttonBuscarBorrar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.buttonBuscarBorrar.Image = My.Resources.Resources.IMAGE_CLOSE_16
+        Me.buttonBuscarBorrar.Image = Global.My.Resources.Resources.IMAGE_CLOSE_16
         Me.buttonBuscarBorrar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonBuscarBorrar.Name = "buttonBuscarBorrar"
         Me.buttonBuscarBorrar.Size = New System.Drawing.Size(23, 36)
@@ -265,6 +266,7 @@ Partial Class formOrigenesDestinos
         Me.Controls.Add(Me.statusstripMain)
         Me.KeyPreview = True
         Me.Name = "formOrigenesDestinos"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Orígenes - Destinos"
         Me.toolstripButtons.ResumeLayout(False)

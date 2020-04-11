@@ -56,7 +56,7 @@ Partial Class formTarifaSecadoEscala
         'buttonCerrar
         '
         Me.buttonCerrar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonCerrar.Image = My.Resources.Resources.IMAGE_CLOSE_32
+        Me.buttonCerrar.Image = Global.My.Resources.Resources.IMAGE_CLOSE_32
         Me.buttonCerrar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCerrar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonCerrar.Name = "buttonCerrar"
@@ -66,7 +66,7 @@ Partial Class formTarifaSecadoEscala
         'buttonEditar
         '
         Me.buttonEditar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonEditar.Image = My.Resources.Resources.IMAGE_ITEM_EDIT_32
+        Me.buttonEditar.Image = Global.My.Resources.Resources.IMAGE_ITEM_EDIT_32
         Me.buttonEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonEditar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonEditar.Name = "buttonEditar"
@@ -76,7 +76,7 @@ Partial Class formTarifaSecadoEscala
         'buttonCancelar
         '
         Me.buttonCancelar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonCancelar.Image = My.Resources.Resources.IMAGE_CANCEL_32
+        Me.buttonCancelar.Image = Global.My.Resources.Resources.IMAGE_CANCEL_32
         Me.buttonCancelar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCancelar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonCancelar.Name = "buttonCancelar"
@@ -86,7 +86,7 @@ Partial Class formTarifaSecadoEscala
         'buttonGuardar
         '
         Me.buttonGuardar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonGuardar.Image = My.Resources.Resources.IMAGE_OK_32
+        Me.buttonGuardar.Image = Global.My.Resources.Resources.IMAGE_OK_32
         Me.buttonGuardar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonGuardar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonGuardar.Name = "buttonGuardar"
@@ -109,10 +109,8 @@ Partial Class formTarifaSecadoEscala
         Me.doubletextboxHumedadExcesoInicio.DoubleValue = 0R
         Me.doubletextboxHumedadExcesoInicio.Location = New System.Drawing.Point(154, 54)
         Me.doubletextboxHumedadExcesoInicio.MaxValue = 99.9R
-        Me.doubletextboxHumedadExcesoInicio.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
         Me.doubletextboxHumedadExcesoInicio.MinValue = 0R
         Me.doubletextboxHumedadExcesoInicio.Name = "doubletextboxHumedadExcesoInicio"
-        Me.doubletextboxHumedadExcesoInicio.NullString = ""
         Me.doubletextboxHumedadExcesoInicio.NumberDecimalDigits = 1
         Me.doubletextboxHumedadExcesoInicio.NumberNegativePattern = 0
         Me.doubletextboxHumedadExcesoInicio.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.KeepFocus
@@ -207,10 +205,8 @@ Partial Class formTarifaSecadoEscala
         Me.currencytextboxTarifa.DecimalValue = New Decimal(New Integer() {0, 0, 0, 131072})
         Me.currencytextboxTarifa.Location = New System.Drawing.Point(55, 227)
         Me.currencytextboxTarifa.MaxValue = New Decimal(New Integer() {99999, 0, 0, 131072})
-        Me.currencytextboxTarifa.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
         Me.currencytextboxTarifa.MinValue = New Decimal(New Integer() {0, 0, 0, 0})
         Me.currencytextboxTarifa.Name = "currencytextboxTarifa"
-        Me.currencytextboxTarifa.NullString = ""
         Me.currencytextboxTarifa.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.KeepFocus
         Me.currencytextboxTarifa.Size = New System.Drawing.Size(55, 20)
         Me.currencytextboxTarifa.TabIndex = 4
@@ -234,6 +230,7 @@ Partial Class formTarifaSecadoEscala
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "formTarifaSecadoEscala"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Escala de Secado"
         Me.toolstripMain.ResumeLayout(False)

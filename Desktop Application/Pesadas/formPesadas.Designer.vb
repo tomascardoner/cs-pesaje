@@ -449,7 +449,7 @@ Partial Class formPesadas
         '
         'buttonAgregar
         '
-        Me.buttonAgregar.Image = My.Resources.Resources.IMAGE_ITEM_ADD_32
+        Me.buttonAgregar.Image = Global.My.Resources.Resources.IMAGE_ITEM_ADD_32
         Me.buttonAgregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonAgregar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonAgregar.Name = "buttonAgregar"
@@ -459,7 +459,7 @@ Partial Class formPesadas
         '
         'buttonEditar
         '
-        Me.buttonEditar.Image = My.Resources.Resources.IMAGE_ITEM_EDIT_32
+        Me.buttonEditar.Image = Global.My.Resources.Resources.IMAGE_ITEM_EDIT_32
         Me.buttonEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonEditar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonEditar.Name = "buttonEditar"
@@ -469,7 +469,7 @@ Partial Class formPesadas
         '
         'buttonCopiar
         '
-        Me.buttonCopiar.Image = My.Resources.Resources.IMAGE_ITEM_COPY_32
+        Me.buttonCopiar.Image = Global.My.Resources.Resources.IMAGE_ITEM_COPY_32
         Me.buttonCopiar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCopiar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonCopiar.Name = "buttonCopiar"
@@ -479,7 +479,7 @@ Partial Class formPesadas
         '
         'buttonEliminar
         '
-        Me.buttonEliminar.Image = My.Resources.Resources.IMAGE_ITEM_DELETE_32
+        Me.buttonEliminar.Image = Global.My.Resources.Resources.IMAGE_ITEM_DELETE_32
         Me.buttonEliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonEliminar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonEliminar.Name = "buttonEliminar"
@@ -490,7 +490,7 @@ Partial Class formPesadas
         'buttonImprimir
         '
         Me.buttonImprimir.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemImprimir_TicketPesadaReducido, Me.menuitemSeparator1})
-        Me.buttonImprimir.Image = My.Resources.Resources.IMAGE_PRINT_32
+        Me.buttonImprimir.Image = Global.My.Resources.Resources.IMAGE_PRINT_32
         Me.buttonImprimir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonImprimir.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonImprimir.Name = "buttonImprimir"
@@ -501,13 +501,13 @@ Partial Class formPesadas
         'menuitemImprimir_TicketPesadaReducido
         '
         Me.menuitemImprimir_TicketPesadaReducido.Name = "menuitemImprimir_TicketPesadaReducido"
-        Me.menuitemImprimir_TicketPesadaReducido.Size = New System.Drawing.Size(152, 22)
+        Me.menuitemImprimir_TicketPesadaReducido.Size = New System.Drawing.Size(153, 22)
         Me.menuitemImprimir_TicketPesadaReducido.Text = "Ticket reducido"
         '
         'menuitemSeparator1
         '
         Me.menuitemSeparator1.Name = "menuitemSeparator1"
-        Me.menuitemSeparator1.Size = New System.Drawing.Size(149, 6)
+        Me.menuitemSeparator1.Size = New System.Drawing.Size(150, 6)
         '
         'toolstripgroupPeriodo
         '
@@ -547,7 +547,7 @@ Partial Class formPesadas
         'buttonFechaDesdeAnterior
         '
         Me.buttonFechaDesdeAnterior.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.buttonFechaDesdeAnterior.Image = My.Resources.Resources.IMAGE_CALENDAR_PREVIOUS_16
+        Me.buttonFechaDesdeAnterior.Image = Global.My.Resources.Resources.IMAGE_CALENDAR_PREVIOUS_16
         Me.buttonFechaDesdeAnterior.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonFechaDesdeAnterior.Name = "buttonFechaDesdeAnterior"
         Me.buttonFechaDesdeAnterior.Size = New System.Drawing.Size(23, 43)
@@ -564,7 +564,7 @@ Partial Class formPesadas
         'buttonFechaDesdeSiguiente
         '
         Me.buttonFechaDesdeSiguiente.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.buttonFechaDesdeSiguiente.Image = My.Resources.Resources.IMAGE_CALENDAR_NEXT_16
+        Me.buttonFechaDesdeSiguiente.Image = Global.My.Resources.Resources.IMAGE_CALENDAR_NEXT_16
         Me.buttonFechaDesdeSiguiente.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonFechaDesdeSiguiente.Name = "buttonFechaDesdeSiguiente"
         Me.buttonFechaDesdeSiguiente.Size = New System.Drawing.Size(23, 43)
@@ -573,7 +573,7 @@ Partial Class formPesadas
         'buttonFechaDesdeHoy
         '
         Me.buttonFechaDesdeHoy.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.buttonFechaDesdeHoy.Image = My.Resources.Resources.IMAGE_CALENDAR_TODAY_16
+        Me.buttonFechaDesdeHoy.Image = Global.My.Resources.Resources.IMAGE_CALENDAR_TODAY_16
         Me.buttonFechaDesdeHoy.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonFechaDesdeHoy.Name = "buttonFechaDesdeHoy"
         Me.buttonFechaDesdeHoy.Size = New System.Drawing.Size(23, 43)
@@ -590,7 +590,7 @@ Partial Class formPesadas
         'buttonFechaHastaAnterior
         '
         Me.buttonFechaHastaAnterior.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.buttonFechaHastaAnterior.Image = My.Resources.Resources.IMAGE_CALENDAR_PREVIOUS_16
+        Me.buttonFechaHastaAnterior.Image = Global.My.Resources.Resources.IMAGE_CALENDAR_PREVIOUS_16
         Me.buttonFechaHastaAnterior.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonFechaHastaAnterior.Name = "buttonFechaHastaAnterior"
         Me.buttonFechaHastaAnterior.Size = New System.Drawing.Size(23, 43)
@@ -599,7 +599,7 @@ Partial Class formPesadas
         'buttonFechaHastaSiguiente
         '
         Me.buttonFechaHastaSiguiente.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.buttonFechaHastaSiguiente.Image = My.Resources.Resources.IMAGE_CALENDAR_NEXT_16
+        Me.buttonFechaHastaSiguiente.Image = Global.My.Resources.Resources.IMAGE_CALENDAR_NEXT_16
         Me.buttonFechaHastaSiguiente.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonFechaHastaSiguiente.Name = "buttonFechaHastaSiguiente"
         Me.buttonFechaHastaSiguiente.Size = New System.Drawing.Size(23, 43)
@@ -608,7 +608,7 @@ Partial Class formPesadas
         'buttonFechaHastaHoy
         '
         Me.buttonFechaHastaHoy.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.buttonFechaHastaHoy.Image = My.Resources.Resources.IMAGE_CALENDAR_TODAY_16
+        Me.buttonFechaHastaHoy.Image = Global.My.Resources.Resources.IMAGE_CALENDAR_TODAY_16
         Me.buttonFechaHastaHoy.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonFechaHastaHoy.Name = "buttonFechaHastaHoy"
         Me.buttonFechaHastaHoy.Size = New System.Drawing.Size(23, 43)
@@ -636,7 +636,7 @@ Partial Class formPesadas
         Me.toolstriptabFiltrosBasicos.Panel.TabIndex = 3
         Me.toolstriptabFiltrosBasicos.Panel.Text = "Básicos"
         Me.toolstriptabFiltrosBasicos.Position = 1
-        Me.toolstriptabFiltrosBasicos.Size = New System.Drawing.Size(51, 19)
+        Me.toolstriptabFiltrosBasicos.Size = New System.Drawing.Size(50, 19)
         Me.toolstriptabFiltrosBasicos.Tag = "1"
         Me.toolstriptabFiltrosBasicos.Text = "Básicos"
         '
@@ -724,7 +724,7 @@ Partial Class formPesadas
         Me.dropdownbuttonPesadaTipo.Image = CType(resources.GetObject("dropdownbuttonPesadaTipo.Image"), System.Drawing.Image)
         Me.dropdownbuttonPesadaTipo.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.dropdownbuttonPesadaTipo.Name = "dropdownbuttonPesadaTipo"
-        Me.dropdownbuttonPesadaTipo.Size = New System.Drawing.Size(107, 44)
+        Me.dropdownbuttonPesadaTipo.Size = New System.Drawing.Size(108, 44)
         Me.dropdownbuttonPesadaTipo.Text = "Tipos de Pesadas"
         '
         'menuitemPesadaTipo_Entrada
@@ -960,7 +960,7 @@ Partial Class formPesadas
         Me.dropdownbuttonTareas.Image = CType(resources.GetObject("dropdownbuttonTareas.Image"), System.Drawing.Image)
         Me.dropdownbuttonTareas.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.dropdownbuttonTareas.Name = "dropdownbuttonTareas"
-        Me.dropdownbuttonTareas.Size = New System.Drawing.Size(51, 49)
+        Me.dropdownbuttonTareas.Size = New System.Drawing.Size(52, 49)
         Me.dropdownbuttonTareas.Text = "Tareas"
         '
         'menuitemCalcularMermas
@@ -986,6 +986,7 @@ Partial Class formPesadas
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.KeyPreview = True
         Me.Name = "formPesadas"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Pesadas"
         Me.statusstripMain.ResumeLayout(False)

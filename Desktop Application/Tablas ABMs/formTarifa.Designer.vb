@@ -144,7 +144,7 @@ Partial Class formTarifa
         'buttonCerrar
         '
         Me.buttonCerrar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonCerrar.Image = My.Resources.Resources.IMAGE_CLOSE_32
+        Me.buttonCerrar.Image = Global.My.Resources.Resources.IMAGE_CLOSE_32
         Me.buttonCerrar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCerrar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonCerrar.Name = "buttonCerrar"
@@ -154,7 +154,7 @@ Partial Class formTarifa
         'buttonEditar
         '
         Me.buttonEditar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonEditar.Image = My.Resources.Resources.IMAGE_ITEM_EDIT_32
+        Me.buttonEditar.Image = Global.My.Resources.Resources.IMAGE_ITEM_EDIT_32
         Me.buttonEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonEditar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonEditar.Name = "buttonEditar"
@@ -164,7 +164,7 @@ Partial Class formTarifa
         'buttonCancelar
         '
         Me.buttonCancelar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonCancelar.Image = My.Resources.Resources.IMAGE_CANCEL_32
+        Me.buttonCancelar.Image = Global.My.Resources.Resources.IMAGE_CANCEL_32
         Me.buttonCancelar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCancelar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonCancelar.Name = "buttonCancelar"
@@ -174,7 +174,7 @@ Partial Class formTarifa
         'buttonGuardar
         '
         Me.buttonGuardar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonGuardar.Image = My.Resources.Resources.IMAGE_OK_32
+        Me.buttonGuardar.Image = Global.My.Resources.Resources.IMAGE_OK_32
         Me.buttonGuardar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonGuardar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonGuardar.Name = "buttonGuardar"
@@ -462,10 +462,8 @@ Partial Class formTarifa
         Me.currencytextboxTarifaSecadoPuntoExcesoImporte.DecimalValue = New Decimal(New Integer() {0, 0, 0, 131072})
         Me.currencytextboxTarifaSecadoPuntoExcesoImporte.Location = New System.Drawing.Point(160, 71)
         Me.currencytextboxTarifaSecadoPuntoExcesoImporte.MaxValue = New Decimal(New Integer() {99999, 0, 0, 131072})
-        Me.currencytextboxTarifaSecadoPuntoExcesoImporte.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
         Me.currencytextboxTarifaSecadoPuntoExcesoImporte.MinValue = New Decimal(New Integer() {0, 0, 0, 0})
         Me.currencytextboxTarifaSecadoPuntoExcesoImporte.Name = "currencytextboxTarifaSecadoPuntoExcesoImporte"
-        Me.currencytextboxTarifaSecadoPuntoExcesoImporte.NullString = ""
         Me.currencytextboxTarifaSecadoPuntoExcesoImporte.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.KeepFocus
         Me.currencytextboxTarifaSecadoPuntoExcesoImporte.Size = New System.Drawing.Size(55, 20)
         Me.currencytextboxTarifaSecadoPuntoExcesoImporte.TabIndex = 3
@@ -537,10 +535,8 @@ Partial Class formTarifa
         Me.doubletextboxTarifaSecadoMargenLibre.DoubleValue = 0R
         Me.doubletextboxTarifaSecadoMargenLibre.Location = New System.Drawing.Point(160, 124)
         Me.doubletextboxTarifaSecadoMargenLibre.MaxValue = 0.9R
-        Me.doubletextboxTarifaSecadoMargenLibre.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
         Me.doubletextboxTarifaSecadoMargenLibre.MinValue = 0R
         Me.doubletextboxTarifaSecadoMargenLibre.Name = "doubletextboxTarifaSecadoMargenLibre"
-        Me.doubletextboxTarifaSecadoMargenLibre.NullString = ""
         Me.doubletextboxTarifaSecadoMargenLibre.NumberDecimalDigits = 1
         Me.doubletextboxTarifaSecadoMargenLibre.NumberNegativePattern = 0
         Me.doubletextboxTarifaSecadoMargenLibre.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.SetNullString
@@ -566,10 +562,8 @@ Partial Class formTarifa
         Me.doubletextboxTarifaSecadoHumedadBase.DoubleValue = 0R
         Me.doubletextboxTarifaSecadoHumedadBase.Location = New System.Drawing.Point(160, 98)
         Me.doubletextboxTarifaSecadoHumedadBase.MaxValue = 40.0R
-        Me.doubletextboxTarifaSecadoHumedadBase.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
         Me.doubletextboxTarifaSecadoHumedadBase.MinValue = 0R
         Me.doubletextboxTarifaSecadoHumedadBase.Name = "doubletextboxTarifaSecadoHumedadBase"
-        Me.doubletextboxTarifaSecadoHumedadBase.NullString = ""
         Me.doubletextboxTarifaSecadoHumedadBase.NumberDecimalDigits = 1
         Me.doubletextboxTarifaSecadoHumedadBase.NumberNegativePattern = 0
         Me.doubletextboxTarifaSecadoHumedadBase.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.SetNullString
@@ -617,10 +611,8 @@ Partial Class formTarifa
         Me.currencytextboxTarifaSecadoInicialImporte.DecimalValue = New Decimal(New Integer() {0, 0, 0, 131072})
         Me.currencytextboxTarifaSecadoInicialImporte.Location = New System.Drawing.Point(152, 19)
         Me.currencytextboxTarifaSecadoInicialImporte.MaxValue = New Decimal(New Integer() {99999, 0, 0, 131072})
-        Me.currencytextboxTarifaSecadoInicialImporte.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
         Me.currencytextboxTarifaSecadoInicialImporte.MinValue = New Decimal(New Integer() {0, 0, 0, 0})
         Me.currencytextboxTarifaSecadoInicialImporte.Name = "currencytextboxTarifaSecadoInicialImporte"
-        Me.currencytextboxTarifaSecadoInicialImporte.NullString = ""
         Me.currencytextboxTarifaSecadoInicialImporte.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.KeepFocus
         Me.currencytextboxTarifaSecadoInicialImporte.Size = New System.Drawing.Size(55, 20)
         Me.currencytextboxTarifaSecadoInicialImporte.TabIndex = 3
@@ -635,10 +627,8 @@ Partial Class formTarifa
         Me.doubletextboxTarifaSecadoInicialPunto.DoubleValue = 0R
         Me.doubletextboxTarifaSecadoInicialPunto.Location = New System.Drawing.Point(50, 19)
         Me.doubletextboxTarifaSecadoInicialPunto.MaxValue = 99.9R
-        Me.doubletextboxTarifaSecadoInicialPunto.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
         Me.doubletextboxTarifaSecadoInicialPunto.MinValue = 0R
         Me.doubletextboxTarifaSecadoInicialPunto.Name = "doubletextboxTarifaSecadoInicialPunto"
-        Me.doubletextboxTarifaSecadoInicialPunto.NullString = ""
         Me.doubletextboxTarifaSecadoInicialPunto.NumberDecimalDigits = 1
         Me.doubletextboxTarifaSecadoInicialPunto.NumberNegativePattern = 0
         Me.doubletextboxTarifaSecadoInicialPunto.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.KeepFocus
@@ -725,10 +715,8 @@ Partial Class formTarifa
         Me.currencytextboxTarifaMezcladoImporte.DecimalValue = New Decimal(New Integer() {0, 0, 0, 131072})
         Me.currencytextboxTarifaMezcladoImporte.Location = New System.Drawing.Point(231, 45)
         Me.currencytextboxTarifaMezcladoImporte.MaxValue = New Decimal(New Integer() {99999, 0, 0, 131072})
-        Me.currencytextboxTarifaMezcladoImporte.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
         Me.currencytextboxTarifaMezcladoImporte.MinValue = New Decimal(New Integer() {0, 0, 0, 0})
         Me.currencytextboxTarifaMezcladoImporte.Name = "currencytextboxTarifaMezcladoImporte"
-        Me.currencytextboxTarifaMezcladoImporte.NullString = ""
         Me.currencytextboxTarifaMezcladoImporte.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.KeepFocus
         Me.currencytextboxTarifaMezcladoImporte.Size = New System.Drawing.Size(55, 20)
         Me.currencytextboxTarifaMezcladoImporte.TabIndex = 7
@@ -743,10 +731,8 @@ Partial Class formTarifa
         Me.currencytextboxTarifaFumigadoImporte.DecimalValue = New Decimal(New Integer() {0, 0, 0, 131072})
         Me.currencytextboxTarifaFumigadoImporte.Location = New System.Drawing.Point(231, 19)
         Me.currencytextboxTarifaFumigadoImporte.MaxValue = New Decimal(New Integer() {99999, 0, 0, 131072})
-        Me.currencytextboxTarifaFumigadoImporte.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
         Me.currencytextboxTarifaFumigadoImporte.MinValue = New Decimal(New Integer() {0, 0, 0, 0})
         Me.currencytextboxTarifaFumigadoImporte.Name = "currencytextboxTarifaFumigadoImporte"
-        Me.currencytextboxTarifaFumigadoImporte.NullString = ""
         Me.currencytextboxTarifaFumigadoImporte.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.KeepFocus
         Me.currencytextboxTarifaFumigadoImporte.Size = New System.Drawing.Size(55, 20)
         Me.currencytextboxTarifaFumigadoImporte.TabIndex = 5
@@ -761,10 +747,8 @@ Partial Class formTarifa
         Me.currencytextboxTarifaZarandeo.DecimalValue = New Decimal(New Integer() {0, 0, 0, 131072})
         Me.currencytextboxTarifaZarandeo.Location = New System.Drawing.Point(68, 45)
         Me.currencytextboxTarifaZarandeo.MaxValue = New Decimal(New Integer() {99999, 0, 0, 131072})
-        Me.currencytextboxTarifaZarandeo.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
         Me.currencytextboxTarifaZarandeo.MinValue = New Decimal(New Integer() {0, 0, 0, 0})
         Me.currencytextboxTarifaZarandeo.Name = "currencytextboxTarifaZarandeo"
-        Me.currencytextboxTarifaZarandeo.NullString = ""
         Me.currencytextboxTarifaZarandeo.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.KeepFocus
         Me.currencytextboxTarifaZarandeo.Size = New System.Drawing.Size(55, 20)
         Me.currencytextboxTarifaZarandeo.TabIndex = 3
@@ -779,10 +763,8 @@ Partial Class formTarifa
         Me.currencytextboxTarifaParitariaImporte.DecimalValue = New Decimal(New Integer() {0, 0, 0, 131072})
         Me.currencytextboxTarifaParitariaImporte.Location = New System.Drawing.Point(68, 19)
         Me.currencytextboxTarifaParitariaImporte.MaxValue = New Decimal(New Integer() {99999, 0, 0, 131072})
-        Me.currencytextboxTarifaParitariaImporte.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
         Me.currencytextboxTarifaParitariaImporte.MinValue = New Decimal(New Integer() {0, 0, 0, 0})
         Me.currencytextboxTarifaParitariaImporte.Name = "currencytextboxTarifaParitariaImporte"
-        Me.currencytextboxTarifaParitariaImporte.NullString = ""
         Me.currencytextboxTarifaParitariaImporte.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.KeepFocus
         Me.currencytextboxTarifaParitariaImporte.Size = New System.Drawing.Size(55, 20)
         Me.currencytextboxTarifaParitariaImporte.TabIndex = 1
@@ -847,13 +829,10 @@ Partial Class formTarifa
         'percenttextboxAlmacenajePorcentajeMensual
         '
         Me.percenttextboxAlmacenajePorcentajeMensual.BeforeTouchSize = New System.Drawing.Size(39, 20)
-        Me.percenttextboxAlmacenajePorcentajeMensual.DoubleValue = 0R
         Me.percenttextboxAlmacenajePorcentajeMensual.Location = New System.Drawing.Point(122, 133)
         Me.percenttextboxAlmacenajePorcentajeMensual.MaxValue = 5.0R
-        Me.percenttextboxAlmacenajePorcentajeMensual.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
         Me.percenttextboxAlmacenajePorcentajeMensual.MinValue = 0R
         Me.percenttextboxAlmacenajePorcentajeMensual.Name = "percenttextboxAlmacenajePorcentajeMensual"
-        Me.percenttextboxAlmacenajePorcentajeMensual.NullString = ""
         Me.percenttextboxAlmacenajePorcentajeMensual.Size = New System.Drawing.Size(52, 20)
         Me.percenttextboxAlmacenajePorcentajeMensual.TabIndex = 6
         Me.percenttextboxAlmacenajePorcentajeMensual.Text = "0,00 %"
@@ -868,10 +847,8 @@ Partial Class formTarifa
         Me.integertextboxAlmacenajeDiaGracia.IntegerValue = CType(0, Long)
         Me.integertextboxAlmacenajeDiaGracia.Location = New System.Drawing.Point(122, 81)
         Me.integertextboxAlmacenajeDiaGracia.MaxValue = CType(999, Long)
-        Me.integertextboxAlmacenajeDiaGracia.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
         Me.integertextboxAlmacenajeDiaGracia.MinValue = CType(0, Long)
         Me.integertextboxAlmacenajeDiaGracia.Name = "integertextboxAlmacenajeDiaGracia"
-        Me.integertextboxAlmacenajeDiaGracia.NullString = ""
         Me.integertextboxAlmacenajeDiaGracia.Size = New System.Drawing.Size(39, 20)
         Me.integertextboxAlmacenajeDiaGracia.TabIndex = 2
         Me.integertextboxAlmacenajeDiaGracia.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -1039,7 +1016,7 @@ Partial Class formTarifa
         '
         'buttonEscala_Agregar
         '
-        Me.buttonEscala_Agregar.Image = My.Resources.Resources.IMAGE_ITEM_ADD_32
+        Me.buttonEscala_Agregar.Image = Global.My.Resources.Resources.IMAGE_ITEM_ADD_32
         Me.buttonEscala_Agregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonEscala_Agregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonEscala_Agregar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -1049,7 +1026,7 @@ Partial Class formTarifa
         '
         'buttonEscala_Editar
         '
-        Me.buttonEscala_Editar.Image = My.Resources.Resources.IMAGE_ITEM_EDIT_32
+        Me.buttonEscala_Editar.Image = Global.My.Resources.Resources.IMAGE_ITEM_EDIT_32
         Me.buttonEscala_Editar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonEscala_Editar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonEscala_Editar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -1059,7 +1036,7 @@ Partial Class formTarifa
         '
         'buttonEscala_Eliminar
         '
-        Me.buttonEscala_Eliminar.Image = My.Resources.Resources.IMAGE_ITEM_DELETE_32
+        Me.buttonEscala_Eliminar.Image = Global.My.Resources.Resources.IMAGE_ITEM_DELETE_32
         Me.buttonEscala_Eliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonEscala_Eliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonEscala_Eliminar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -1079,6 +1056,7 @@ Partial Class formTarifa
         Me.MaximizeBox = False
         Me.Name = "formTarifa"
         Me.ShowIcon = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Detalle de la Tarifa"
         Me.toolstripMain.ResumeLayout(False)

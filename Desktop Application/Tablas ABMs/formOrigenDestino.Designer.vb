@@ -494,6 +494,7 @@ Partial Class formOrigenDestino
         Me.MaximizeBox = False
         Me.Name = "formOrigenDestino"
         Me.ShowIcon = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Detalle del Origen-Destino"
         Me.toolstripMain.ResumeLayout(False)

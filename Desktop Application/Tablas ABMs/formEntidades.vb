@@ -350,7 +350,7 @@
                     If ReporteActual.SetDatabaseConnection(pDatabase.DataSource, pDatabase.InitialCatalog, pDatabase.UserID, pDatabase.Password) Then
                         ReporteActual.RecordSelectionFormula = mReportSelectionFormula
 
-                        MiscFunctions.PreviewCrystalReport(ReporteActual, "Listado de Entidades")
+                        Reportes.PreviewCrystalReport(ReporteActual, "Listado de Entidades")
                     End If
                 End If
 
