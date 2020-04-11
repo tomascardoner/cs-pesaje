@@ -36,7 +36,9 @@ Partial Class formAboutBox
         Me.columnValor = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.pictureboxIcon = New System.Windows.Forms.PictureBox()
         Me.labelLicensedTo = New System.Windows.Forms.Label()
+        Me.pictureboxCompanyLogo = New System.Windows.Forms.PictureBox()
         CType(Me.pictureboxIcon, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pictureboxCompanyLogo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'labelApplicationTitle
@@ -66,7 +68,7 @@ Partial Class formAboutBox
         Me.labelCopyright.Location = New System.Drawing.Point(111, 70)
         Me.labelCopyright.Margin = New System.Windows.Forms.Padding(6, 0, 3, 0)
         Me.labelCopyright.Name = "labelCopyright"
-        Me.labelCopyright.Size = New System.Drawing.Size(319, 38)
+        Me.labelCopyright.Size = New System.Drawing.Size(185, 38)
         Me.labelCopyright.TabIndex = 0
         Me.labelCopyright.Text = "Copyright"
         '
@@ -86,6 +88,7 @@ Partial Class formAboutBox
         Me.listviewPropiedades.FullRowSelect = True
         Me.listviewPropiedades.GridLines = True
         Me.listviewPropiedades.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None
+        Me.listviewPropiedades.HideSelection = False
         Me.listviewPropiedades.Location = New System.Drawing.Point(12, 145)
         Me.listviewPropiedades.MultiSelect = False
         Me.listviewPropiedades.Name = "listviewPropiedades"
@@ -108,7 +111,7 @@ Partial Class formAboutBox
         '
         'pictureboxIcon
         '
-        Me.pictureboxIcon.Image = CS_Icon.GetIconFromEmbeddedResource("ApplicationIcon", New Size(256, 256)).ToBitmap
+        Me.pictureboxIcon.Image = Global.My.Resources.Resources.IMAGE_APPLICATION_ICON_256
         Me.pictureboxIcon.Location = New System.Drawing.Point(12, 12)
         Me.pictureboxIcon.Name = "pictureboxIcon"
         Me.pictureboxIcon.Size = New System.Drawing.Size(90, 96)
@@ -129,12 +132,23 @@ Partial Class formAboutBox
         Me.labelLicensedTo.Text = "LicensedTo"
         Me.labelLicensedTo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
+        'pictureboxCompanyLogo
+        '
+        Me.pictureboxCompanyLogo.Image = Global.My.Resources.Resources.IMAGE_CARDONERSISTEMAS
+        Me.pictureboxCompanyLogo.Location = New System.Drawing.Point(302, 63)
+        Me.pictureboxCompanyLogo.Name = "pictureboxCompanyLogo"
+        Me.pictureboxCompanyLogo.Size = New System.Drawing.Size(128, 38)
+        Me.pictureboxCompanyLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.pictureboxCompanyLogo.TabIndex = 8
+        Me.pictureboxCompanyLogo.TabStop = False
+        '
         'formAboutBox
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.OKButton
         Me.ClientSize = New System.Drawing.Size(442, 302)
+        Me.Controls.Add(Me.pictureboxCompanyLogo)
         Me.Controls.Add(Me.labelLicensedTo)
         Me.Controls.Add(Me.pictureboxIcon)
         Me.Controls.Add(Me.labelApplicationTitle)
@@ -151,6 +165,7 @@ Partial Class formAboutBox
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "formAboutBox"
         CType(Me.pictureboxIcon, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pictureboxCompanyLogo, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -159,5 +174,5 @@ Partial Class formAboutBox
     Friend WithEvents columnValor As System.Windows.Forms.ColumnHeader
     Friend WithEvents pictureboxIcon As System.Windows.Forms.PictureBox
     Friend WithEvents labelLicensedTo As System.Windows.Forms.Label
-
+    Friend WithEvents pictureboxCompanyLogo As PictureBox
 End Class
