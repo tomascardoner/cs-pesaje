@@ -139,14 +139,14 @@ Partial Class formMDIMain
         '
         'menuitemVentana_MosaicoHorizontal
         '
-        Me.menuitemVentana_MosaicoHorizontal.Image = My.Resources.Resources.IMAGE_MENU_WINDOW_TILE_HORIZONTALLY
+        Me.menuitemVentana_MosaicoHorizontal.Image = Global.My.Resources.Resources.IMAGE_MENU_WINDOW_TILE_HORIZONTALLY
         Me.menuitemVentana_MosaicoHorizontal.Name = "menuitemVentana_MosaicoHorizontal"
         Me.menuitemVentana_MosaicoHorizontal.Size = New System.Drawing.Size(177, 22)
         Me.menuitemVentana_MosaicoHorizontal.Text = "Mosaico &Horizontal"
         '
         'menuitemVentana_MosaicoVertical
         '
-        Me.menuitemVentana_MosaicoVertical.Image = My.Resources.Resources.IMAGE_MENU_WINDOW_TILE_VERTICALLY
+        Me.menuitemVentana_MosaicoVertical.Image = Global.My.Resources.Resources.IMAGE_MENU_WINDOW_TILE_VERTICALLY
         Me.menuitemVentana_MosaicoVertical.Name = "menuitemVentana_MosaicoVertical"
         Me.menuitemVentana_MosaicoVertical.Size = New System.Drawing.Size(177, 22)
         Me.menuitemVentana_MosaicoVertical.Text = "Mosaico &Vertical"
@@ -170,14 +170,14 @@ Partial Class formMDIMain
         '
         'menuitemVentana_CerrarTodas
         '
-        Me.menuitemVentana_CerrarTodas.Image = My.Resources.Resources.IMAGE_MENU_WINDOW_CLOSE_ALL
+        Me.menuitemVentana_CerrarTodas.Image = Global.My.Resources.Resources.IMAGE_MENU_WINDOW_CLOSE_ALL
         Me.menuitemVentana_CerrarTodas.Name = "menuitemVentana_CerrarTodas"
         Me.menuitemVentana_CerrarTodas.Size = New System.Drawing.Size(177, 22)
         Me.menuitemVentana_CerrarTodas.Text = "Cerrar todas"
         '
         'menuitemVentana_EncajarEnVentana
         '
-        Me.menuitemVentana_EncajarEnVentana.Image = My.Resources.Resources.IMAGE_MENU_WINDOW_FIT_SIZE
+        Me.menuitemVentana_EncajarEnVentana.Image = Global.My.Resources.Resources.IMAGE_MENU_WINDOW_FIT_SIZE
         Me.menuitemVentana_EncajarEnVentana.Name = "menuitemVentana_EncajarEnVentana"
         Me.menuitemVentana_EncajarEnVentana.Size = New System.Drawing.Size(177, 22)
         Me.menuitemVentana_EncajarEnVentana.Text = "Encajar en ventana"
@@ -231,19 +231,19 @@ Partial Class formMDIMain
         Me.toolstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.dropdownbuttonTablas, Me.buttonPesadas, Me.buttonReportes})
         Me.toolstripMain.Location = New System.Drawing.Point(0, 0)
         Me.toolstripMain.Name = "toolstripMain"
-        Me.toolstripMain.Size = New System.Drawing.Size(262, 39)
+        Me.toolstripMain.Size = New System.Drawing.Size(261, 39)
         Me.toolstripMain.TabIndex = 2
         Me.toolstripMain.Text = "Principal"
         '
         'dropdownbuttonTablas
         '
         Me.dropdownbuttonTablas.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemTablas_Entidades, Me.menuitemTablas_Camiones, Me.menuitemTablas_OrigenesDestinos, Me.menuitemTablas_Productos, Me.menuitemTablas_Cosechas, Me.menuitemTablas_GruposUsuarios, Me.menuitemTablas_Usuarios, Me.menuitemTablas_Permisos, Me.menuitemTablas_Tarifas})
-        Me.dropdownbuttonTablas.Image = My.Resources.Resources.IMAGE_TABLAS_32
+        Me.dropdownbuttonTablas.Image = Global.My.Resources.Resources.IMAGE_TABLAS_32
         Me.dropdownbuttonTablas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.dropdownbuttonTablas.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.dropdownbuttonTablas.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.dropdownbuttonTablas.Name = "dropdownbuttonTablas"
-        Me.dropdownbuttonTablas.Size = New System.Drawing.Size(85, 36)
+        Me.dropdownbuttonTablas.Size = New System.Drawing.Size(84, 36)
         Me.dropdownbuttonTablas.Text = "Tablas"
         '
         'menuitemTablas_Entidades
@@ -302,7 +302,7 @@ Partial Class formMDIMain
         '
         'buttonPesadas
         '
-        Me.buttonPesadas.Image = My.Resources.Resources.IMAGE_PESADAS_32
+        Me.buttonPesadas.Image = Global.My.Resources.Resources.IMAGE_PESADAS_32
         Me.buttonPesadas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonPesadas.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonPesadas.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -312,7 +312,7 @@ Partial Class formMDIMain
         '
         'buttonReportes
         '
-        Me.buttonReportes.Image = My.Resources.Resources.IMAGE_REPORTES_32
+        Me.buttonReportes.Image = Global.My.Resources.Resources.IMAGE_REPORTES_32
         Me.buttonReportes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonReportes.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonReportes.ImageTransparentColor = System.Drawing.Color.Magenta
