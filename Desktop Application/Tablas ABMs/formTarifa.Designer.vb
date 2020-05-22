@@ -138,7 +138,7 @@ Partial Class formTarifa
         Me.toolstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonCerrar, Me.buttonEditar, Me.buttonCancelar, Me.buttonGuardar})
         Me.toolstripMain.Location = New System.Drawing.Point(0, 0)
         Me.toolstripMain.Name = "toolstripMain"
-        Me.toolstripMain.Size = New System.Drawing.Size(396, 39)
+        Me.toolstripMain.Size = New System.Drawing.Size(412, 39)
         Me.toolstripMain.TabIndex = 1
         '
         'buttonCerrar
@@ -194,7 +194,7 @@ Partial Class formTarifa
         Me.tabcontrolMain.Location = New System.Drawing.Point(12, 42)
         Me.tabcontrolMain.Name = "tabcontrolMain"
         Me.tabcontrolMain.SelectedIndex = 0
-        Me.tabcontrolMain.Size = New System.Drawing.Size(372, 338)
+        Me.tabcontrolMain.Size = New System.Drawing.Size(388, 338)
         Me.tabcontrolMain.TabIndex = 0
         '
         'tabpageGeneral
@@ -205,7 +205,7 @@ Partial Class formTarifa
         Me.tabpageGeneral.Location = New System.Drawing.Point(4, 25)
         Me.tabpageGeneral.Name = "tabpageGeneral"
         Me.tabpageGeneral.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageGeneral.Size = New System.Drawing.Size(364, 309)
+        Me.tabpageGeneral.Size = New System.Drawing.Size(380, 309)
         Me.tabpageGeneral.TabIndex = 0
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
@@ -226,7 +226,7 @@ Partial Class formTarifa
         Me.roupboxGeneralOpcionales.Controls.Add(Me.labelPlanta)
         Me.roupboxGeneralOpcionales.Location = New System.Drawing.Point(6, 139)
         Me.roupboxGeneralOpcionales.Name = "roupboxGeneralOpcionales"
-        Me.roupboxGeneralOpcionales.Size = New System.Drawing.Size(350, 158)
+        Me.roupboxGeneralOpcionales.Size = New System.Drawing.Size(366, 158)
         Me.roupboxGeneralOpcionales.TabIndex = 1
         Me.roupboxGeneralOpcionales.TabStop = False
         Me.roupboxGeneralOpcionales.Text = "Opcionales:"
@@ -337,7 +337,7 @@ Partial Class formTarifa
         Me.groupboxGeneralRequeridos.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.groupboxGeneralRequeridos.Location = New System.Drawing.Point(6, 6)
         Me.groupboxGeneralRequeridos.Name = "groupboxGeneralRequeridos"
-        Me.groupboxGeneralRequeridos.Size = New System.Drawing.Size(350, 127)
+        Me.groupboxGeneralRequeridos.Size = New System.Drawing.Size(366, 127)
         Me.groupboxGeneralRequeridos.TabIndex = 0
         Me.groupboxGeneralRequeridos.TabStop = False
         Me.groupboxGeneralRequeridos.Text = "Requeridos:"
@@ -353,10 +353,12 @@ Partial Class formTarifa
         '
         'textboxNombre
         '
+        Me.textboxNombre.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.textboxNombre.Location = New System.Drawing.Point(84, 99)
         Me.textboxNombre.MaxLength = 50
         Me.textboxNombre.Name = "textboxNombre"
-        Me.textboxNombre.Size = New System.Drawing.Size(257, 20)
+        Me.textboxNombre.Size = New System.Drawing.Size(276, 20)
         Me.textboxNombre.TabIndex = 7
         '
         'labelNombre
@@ -430,7 +432,7 @@ Partial Class formTarifa
         Me.tabpageTarifas.Location = New System.Drawing.Point(4, 25)
         Me.tabpageTarifas.Name = "tabpageTarifas"
         Me.tabpageTarifas.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageTarifas.Size = New System.Drawing.Size(364, 309)
+        Me.tabpageTarifas.Size = New System.Drawing.Size(380, 309)
         Me.tabpageTarifas.TabIndex = 2
         Me.tabpageTarifas.Text = "Tarifas"
         Me.tabpageTarifas.UseVisualStyleBackColor = True
@@ -450,24 +452,25 @@ Partial Class formTarifa
         Me.groupboxTarifasSecado.Controls.Add(Me.groupboxTarifasSecadoSecadoTipo)
         Me.groupboxTarifasSecado.Location = New System.Drawing.Point(6, 87)
         Me.groupboxTarifasSecado.Name = "groupboxTarifasSecado"
-        Me.groupboxTarifasSecado.Size = New System.Drawing.Size(350, 214)
+        Me.groupboxTarifasSecado.Size = New System.Drawing.Size(366, 214)
         Me.groupboxTarifasSecado.TabIndex = 1
         Me.groupboxTarifasSecado.TabStop = False
         Me.groupboxTarifasSecado.Text = "Secado:"
         '
         'currencytextboxTarifaSecadoPuntoExcesoImporte
         '
-        Me.currencytextboxTarifaSecadoPuntoExcesoImporte.BeforeTouchSize = New System.Drawing.Size(39, 20)
+        Me.currencytextboxTarifaSecadoPuntoExcesoImporte.BeforeTouchSize = New System.Drawing.Size(70, 20)
+        Me.currencytextboxTarifaSecadoPuntoExcesoImporte.CurrencyDecimalDigits = 3
         Me.currencytextboxTarifaSecadoPuntoExcesoImporte.CurrentCultureRefresh = True
-        Me.currencytextboxTarifaSecadoPuntoExcesoImporte.DecimalValue = New Decimal(New Integer() {0, 0, 0, 131072})
+        Me.currencytextboxTarifaSecadoPuntoExcesoImporte.DecimalValue = New Decimal(New Integer() {0, 0, 0, 196608})
         Me.currencytextboxTarifaSecadoPuntoExcesoImporte.Location = New System.Drawing.Point(160, 71)
-        Me.currencytextboxTarifaSecadoPuntoExcesoImporte.MaxValue = New Decimal(New Integer() {99999, 0, 0, 131072})
+        Me.currencytextboxTarifaSecadoPuntoExcesoImporte.MaxValue = New Decimal(New Integer() {9999999, 0, 0, 196608})
         Me.currencytextboxTarifaSecadoPuntoExcesoImporte.MinValue = New Decimal(New Integer() {0, 0, 0, 0})
         Me.currencytextboxTarifaSecadoPuntoExcesoImporte.Name = "currencytextboxTarifaSecadoPuntoExcesoImporte"
         Me.currencytextboxTarifaSecadoPuntoExcesoImporte.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.KeepFocus
-        Me.currencytextboxTarifaSecadoPuntoExcesoImporte.Size = New System.Drawing.Size(55, 20)
+        Me.currencytextboxTarifaSecadoPuntoExcesoImporte.Size = New System.Drawing.Size(70, 20)
         Me.currencytextboxTarifaSecadoPuntoExcesoImporte.TabIndex = 3
-        Me.currencytextboxTarifaSecadoPuntoExcesoImporte.Text = "$ 0,00"
+        Me.currencytextboxTarifaSecadoPuntoExcesoImporte.Text = "$ 0,000"
         Me.currencytextboxTarifaSecadoPuntoExcesoImporte.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.currencytextboxTarifaSecadoPuntoExcesoImporte.WordWrap = False
         '
@@ -530,7 +533,7 @@ Partial Class formTarifa
         '
         'doubletextboxTarifaSecadoMargenLibre
         '
-        Me.doubletextboxTarifaSecadoMargenLibre.BeforeTouchSize = New System.Drawing.Size(39, 20)
+        Me.doubletextboxTarifaSecadoMargenLibre.BeforeTouchSize = New System.Drawing.Size(70, 20)
         Me.doubletextboxTarifaSecadoMargenLibre.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.doubletextboxTarifaSecadoMargenLibre.DoubleValue = 0R
         Me.doubletextboxTarifaSecadoMargenLibre.Location = New System.Drawing.Point(160, 124)
@@ -557,7 +560,7 @@ Partial Class formTarifa
         '
         'doubletextboxTarifaSecadoHumedadBase
         '
-        Me.doubletextboxTarifaSecadoHumedadBase.BeforeTouchSize = New System.Drawing.Size(39, 20)
+        Me.doubletextboxTarifaSecadoHumedadBase.BeforeTouchSize = New System.Drawing.Size(70, 20)
         Me.doubletextboxTarifaSecadoHumedadBase.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.doubletextboxTarifaSecadoHumedadBase.DoubleValue = 0R
         Me.doubletextboxTarifaSecadoHumedadBase.Location = New System.Drawing.Point(160, 98)
@@ -599,30 +602,31 @@ Partial Class formTarifa
         Me.groupboxTarifasSecadoInicial.Controls.Add(Me.labelTarifaSecadoInicialPunto)
         Me.groupboxTarifasSecadoInicial.Location = New System.Drawing.Point(131, 19)
         Me.groupboxTarifasSecadoInicial.Name = "groupboxTarifasSecadoInicial"
-        Me.groupboxTarifasSecadoInicial.Size = New System.Drawing.Size(213, 46)
+        Me.groupboxTarifasSecadoInicial.Size = New System.Drawing.Size(229, 46)
         Me.groupboxTarifasSecadoInicial.TabIndex = 1
         Me.groupboxTarifasSecadoInicial.TabStop = False
         Me.groupboxTarifasSecadoInicial.Text = "Inicial:"
         '
         'currencytextboxTarifaSecadoInicialImporte
         '
-        Me.currencytextboxTarifaSecadoInicialImporte.BeforeTouchSize = New System.Drawing.Size(39, 20)
+        Me.currencytextboxTarifaSecadoInicialImporte.BeforeTouchSize = New System.Drawing.Size(70, 20)
+        Me.currencytextboxTarifaSecadoInicialImporte.CurrencyDecimalDigits = 3
         Me.currencytextboxTarifaSecadoInicialImporte.CurrentCultureRefresh = True
-        Me.currencytextboxTarifaSecadoInicialImporte.DecimalValue = New Decimal(New Integer() {0, 0, 0, 131072})
+        Me.currencytextboxTarifaSecadoInicialImporte.DecimalValue = New Decimal(New Integer() {0, 0, 0, 196608})
         Me.currencytextboxTarifaSecadoInicialImporte.Location = New System.Drawing.Point(152, 19)
-        Me.currencytextboxTarifaSecadoInicialImporte.MaxValue = New Decimal(New Integer() {99999, 0, 0, 131072})
+        Me.currencytextboxTarifaSecadoInicialImporte.MaxValue = New Decimal(New Integer() {9999999, 0, 0, 196608})
         Me.currencytextboxTarifaSecadoInicialImporte.MinValue = New Decimal(New Integer() {0, 0, 0, 0})
         Me.currencytextboxTarifaSecadoInicialImporte.Name = "currencytextboxTarifaSecadoInicialImporte"
         Me.currencytextboxTarifaSecadoInicialImporte.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.KeepFocus
-        Me.currencytextboxTarifaSecadoInicialImporte.Size = New System.Drawing.Size(55, 20)
+        Me.currencytextboxTarifaSecadoInicialImporte.Size = New System.Drawing.Size(70, 20)
         Me.currencytextboxTarifaSecadoInicialImporte.TabIndex = 3
-        Me.currencytextboxTarifaSecadoInicialImporte.Text = "$ 0,00"
+        Me.currencytextboxTarifaSecadoInicialImporte.Text = "$ 0,000"
         Me.currencytextboxTarifaSecadoInicialImporte.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.currencytextboxTarifaSecadoInicialImporte.WordWrap = False
         '
         'doubletextboxTarifaSecadoInicialPunto
         '
-        Me.doubletextboxTarifaSecadoInicialPunto.BeforeTouchSize = New System.Drawing.Size(39, 20)
+        Me.doubletextboxTarifaSecadoInicialPunto.BeforeTouchSize = New System.Drawing.Size(70, 20)
         Me.doubletextboxTarifaSecadoInicialPunto.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.doubletextboxTarifaSecadoInicialPunto.DoubleValue = 0R
         Me.doubletextboxTarifaSecadoInicialPunto.Location = New System.Drawing.Point(50, 19)
@@ -703,72 +707,76 @@ Partial Class formTarifa
         Me.groupboxTarifasVarias.Controls.Add(Me.labelTarifaParitariaImporte)
         Me.groupboxTarifasVarias.Location = New System.Drawing.Point(6, 6)
         Me.groupboxTarifasVarias.Name = "groupboxTarifasVarias"
-        Me.groupboxTarifasVarias.Size = New System.Drawing.Size(350, 75)
+        Me.groupboxTarifasVarias.Size = New System.Drawing.Size(366, 75)
         Me.groupboxTarifasVarias.TabIndex = 0
         Me.groupboxTarifasVarias.TabStop = False
         Me.groupboxTarifasVarias.Text = "Varias:"
         '
         'currencytextboxTarifaMezcladoImporte
         '
-        Me.currencytextboxTarifaMezcladoImporte.BeforeTouchSize = New System.Drawing.Size(39, 20)
+        Me.currencytextboxTarifaMezcladoImporte.BeforeTouchSize = New System.Drawing.Size(70, 20)
+        Me.currencytextboxTarifaMezcladoImporte.CurrencyDecimalDigits = 3
         Me.currencytextboxTarifaMezcladoImporte.CurrentCultureRefresh = True
-        Me.currencytextboxTarifaMezcladoImporte.DecimalValue = New Decimal(New Integer() {0, 0, 0, 131072})
+        Me.currencytextboxTarifaMezcladoImporte.DecimalValue = New Decimal(New Integer() {0, 0, 0, 196608})
         Me.currencytextboxTarifaMezcladoImporte.Location = New System.Drawing.Point(231, 45)
-        Me.currencytextboxTarifaMezcladoImporte.MaxValue = New Decimal(New Integer() {99999, 0, 0, 131072})
+        Me.currencytextboxTarifaMezcladoImporte.MaxValue = New Decimal(New Integer() {9999999, 0, 0, 196608})
         Me.currencytextboxTarifaMezcladoImporte.MinValue = New Decimal(New Integer() {0, 0, 0, 0})
         Me.currencytextboxTarifaMezcladoImporte.Name = "currencytextboxTarifaMezcladoImporte"
         Me.currencytextboxTarifaMezcladoImporte.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.KeepFocus
-        Me.currencytextboxTarifaMezcladoImporte.Size = New System.Drawing.Size(55, 20)
+        Me.currencytextboxTarifaMezcladoImporte.Size = New System.Drawing.Size(70, 20)
         Me.currencytextboxTarifaMezcladoImporte.TabIndex = 7
-        Me.currencytextboxTarifaMezcladoImporte.Text = "$ 0,00"
+        Me.currencytextboxTarifaMezcladoImporte.Text = "$ 0,000"
         Me.currencytextboxTarifaMezcladoImporte.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.currencytextboxTarifaMezcladoImporte.WordWrap = False
         '
         'currencytextboxTarifaFumigadoImporte
         '
-        Me.currencytextboxTarifaFumigadoImporte.BeforeTouchSize = New System.Drawing.Size(39, 20)
+        Me.currencytextboxTarifaFumigadoImporte.BeforeTouchSize = New System.Drawing.Size(70, 20)
+        Me.currencytextboxTarifaFumigadoImporte.CurrencyDecimalDigits = 3
         Me.currencytextboxTarifaFumigadoImporte.CurrentCultureRefresh = True
-        Me.currencytextboxTarifaFumigadoImporte.DecimalValue = New Decimal(New Integer() {0, 0, 0, 131072})
+        Me.currencytextboxTarifaFumigadoImporte.DecimalValue = New Decimal(New Integer() {0, 0, 0, 196608})
         Me.currencytextboxTarifaFumigadoImporte.Location = New System.Drawing.Point(231, 19)
-        Me.currencytextboxTarifaFumigadoImporte.MaxValue = New Decimal(New Integer() {99999, 0, 0, 131072})
+        Me.currencytextboxTarifaFumigadoImporte.MaxValue = New Decimal(New Integer() {9999999, 0, 0, 196608})
         Me.currencytextboxTarifaFumigadoImporte.MinValue = New Decimal(New Integer() {0, 0, 0, 0})
         Me.currencytextboxTarifaFumigadoImporte.Name = "currencytextboxTarifaFumigadoImporte"
         Me.currencytextboxTarifaFumigadoImporte.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.KeepFocus
-        Me.currencytextboxTarifaFumigadoImporte.Size = New System.Drawing.Size(55, 20)
+        Me.currencytextboxTarifaFumigadoImporte.Size = New System.Drawing.Size(70, 20)
         Me.currencytextboxTarifaFumigadoImporte.TabIndex = 5
-        Me.currencytextboxTarifaFumigadoImporte.Text = "$ 0,00"
+        Me.currencytextboxTarifaFumigadoImporte.Text = "$ 0,000"
         Me.currencytextboxTarifaFumigadoImporte.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.currencytextboxTarifaFumigadoImporte.WordWrap = False
         '
         'currencytextboxTarifaZarandeo
         '
-        Me.currencytextboxTarifaZarandeo.BeforeTouchSize = New System.Drawing.Size(39, 20)
+        Me.currencytextboxTarifaZarandeo.BeforeTouchSize = New System.Drawing.Size(70, 20)
+        Me.currencytextboxTarifaZarandeo.CurrencyDecimalDigits = 3
         Me.currencytextboxTarifaZarandeo.CurrentCultureRefresh = True
-        Me.currencytextboxTarifaZarandeo.DecimalValue = New Decimal(New Integer() {0, 0, 0, 131072})
+        Me.currencytextboxTarifaZarandeo.DecimalValue = New Decimal(New Integer() {0, 0, 0, 196608})
         Me.currencytextboxTarifaZarandeo.Location = New System.Drawing.Point(68, 45)
-        Me.currencytextboxTarifaZarandeo.MaxValue = New Decimal(New Integer() {99999, 0, 0, 131072})
+        Me.currencytextboxTarifaZarandeo.MaxValue = New Decimal(New Integer() {9999999, 0, 0, 196608})
         Me.currencytextboxTarifaZarandeo.MinValue = New Decimal(New Integer() {0, 0, 0, 0})
         Me.currencytextboxTarifaZarandeo.Name = "currencytextboxTarifaZarandeo"
         Me.currencytextboxTarifaZarandeo.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.KeepFocus
-        Me.currencytextboxTarifaZarandeo.Size = New System.Drawing.Size(55, 20)
+        Me.currencytextboxTarifaZarandeo.Size = New System.Drawing.Size(70, 20)
         Me.currencytextboxTarifaZarandeo.TabIndex = 3
-        Me.currencytextboxTarifaZarandeo.Text = "$ 0,00"
+        Me.currencytextboxTarifaZarandeo.Text = "$ 0,000"
         Me.currencytextboxTarifaZarandeo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.currencytextboxTarifaZarandeo.WordWrap = False
         '
         'currencytextboxTarifaParitariaImporte
         '
-        Me.currencytextboxTarifaParitariaImporte.BeforeTouchSize = New System.Drawing.Size(39, 20)
+        Me.currencytextboxTarifaParitariaImporte.BeforeTouchSize = New System.Drawing.Size(70, 20)
+        Me.currencytextboxTarifaParitariaImporte.CurrencyDecimalDigits = 3
         Me.currencytextboxTarifaParitariaImporte.CurrentCultureRefresh = True
-        Me.currencytextboxTarifaParitariaImporte.DecimalValue = New Decimal(New Integer() {0, 0, 0, 131072})
+        Me.currencytextboxTarifaParitariaImporte.DecimalValue = New Decimal(New Integer() {0, 0, 0, 196608})
         Me.currencytextboxTarifaParitariaImporte.Location = New System.Drawing.Point(68, 19)
-        Me.currencytextboxTarifaParitariaImporte.MaxValue = New Decimal(New Integer() {99999, 0, 0, 131072})
+        Me.currencytextboxTarifaParitariaImporte.MaxValue = New Decimal(New Integer() {9999999, 0, 0, 196608})
         Me.currencytextboxTarifaParitariaImporte.MinValue = New Decimal(New Integer() {0, 0, 0, 0})
         Me.currencytextboxTarifaParitariaImporte.Name = "currencytextboxTarifaParitariaImporte"
         Me.currencytextboxTarifaParitariaImporte.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.KeepFocus
-        Me.currencytextboxTarifaParitariaImporte.Size = New System.Drawing.Size(55, 20)
+        Me.currencytextboxTarifaParitariaImporte.Size = New System.Drawing.Size(70, 20)
         Me.currencytextboxTarifaParitariaImporte.TabIndex = 1
-        Me.currencytextboxTarifaParitariaImporte.Text = "$ 0,00"
+        Me.currencytextboxTarifaParitariaImporte.Text = "$ 0,000"
         Me.currencytextboxTarifaParitariaImporte.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.currencytextboxTarifaParitariaImporte.WordWrap = False
         '
@@ -821,14 +829,14 @@ Partial Class formTarifa
         Me.tabpageAlmacenaje.Location = New System.Drawing.Point(4, 25)
         Me.tabpageAlmacenaje.Name = "tabpageAlmacenaje"
         Me.tabpageAlmacenaje.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageAlmacenaje.Size = New System.Drawing.Size(364, 309)
+        Me.tabpageAlmacenaje.Size = New System.Drawing.Size(380, 309)
         Me.tabpageAlmacenaje.TabIndex = 3
         Me.tabpageAlmacenaje.Text = "Almacenaje"
         Me.tabpageAlmacenaje.UseVisualStyleBackColor = True
         '
         'percenttextboxAlmacenajePorcentajeMensual
         '
-        Me.percenttextboxAlmacenajePorcentajeMensual.BeforeTouchSize = New System.Drawing.Size(39, 20)
+        Me.percenttextboxAlmacenajePorcentajeMensual.BeforeTouchSize = New System.Drawing.Size(70, 20)
         Me.percenttextboxAlmacenajePorcentajeMensual.Location = New System.Drawing.Point(122, 133)
         Me.percenttextboxAlmacenajePorcentajeMensual.MaxValue = 5.0R
         Me.percenttextboxAlmacenajePorcentajeMensual.MinValue = 0R
@@ -842,7 +850,7 @@ Partial Class formTarifa
         'integertextboxAlmacenajeDiaGracia
         '
         Me.integertextboxAlmacenajeDiaGracia.AllowNull = True
-        Me.integertextboxAlmacenajeDiaGracia.BeforeTouchSize = New System.Drawing.Size(39, 20)
+        Me.integertextboxAlmacenajeDiaGracia.BeforeTouchSize = New System.Drawing.Size(70, 20)
         Me.integertextboxAlmacenajeDiaGracia.ForeColor = System.Drawing.SystemColors.WindowText
         Me.integertextboxAlmacenajeDiaGracia.IntegerValue = CType(0, Long)
         Me.integertextboxAlmacenajeDiaGracia.Location = New System.Drawing.Point(122, 81)
@@ -943,7 +951,7 @@ Partial Class formTarifa
         Me.tabpageSecadoEscala.Location = New System.Drawing.Point(4, 25)
         Me.tabpageSecadoEscala.Name = "tabpageSecadoEscala"
         Me.tabpageSecadoEscala.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageSecadoEscala.Size = New System.Drawing.Size(364, 309)
+        Me.tabpageSecadoEscala.Size = New System.Drawing.Size(380, 309)
         Me.tabpageSecadoEscala.TabIndex = 1
         Me.tabpageSecadoEscala.Text = "Escalas de Secado"
         Me.tabpageSecadoEscala.UseVisualStyleBackColor = True
@@ -964,7 +972,7 @@ Partial Class formTarifa
         Me.datagridviewTarifaSecadoEscala.RowHeadersVisible = False
         Me.datagridviewTarifaSecadoEscala.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.datagridviewTarifaSecadoEscala.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datagridviewTarifaSecadoEscala.Size = New System.Drawing.Size(269, 301)
+        Me.datagridviewTarifaSecadoEscala.Size = New System.Drawing.Size(285, 301)
         Me.datagridviewTarifaSecadoEscala.TabIndex = 0
         '
         'columnHumedadExcesoInicio
@@ -1048,7 +1056,7 @@ Partial Class formTarifa
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(396, 392)
+        Me.ClientSize = New System.Drawing.Size(412, 392)
         Me.Controls.Add(Me.tabcontrolMain)
         Me.Controls.Add(Me.toolstripMain)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle

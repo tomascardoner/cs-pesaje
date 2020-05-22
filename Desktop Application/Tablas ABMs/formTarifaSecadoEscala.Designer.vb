@@ -104,7 +104,7 @@ Partial Class formTarifaSecadoEscala
         '
         'doubletextboxHumedadExcesoInicio
         '
-        Me.doubletextboxHumedadExcesoInicio.BeforeTouchSize = New System.Drawing.Size(55, 20)
+        Me.doubletextboxHumedadExcesoInicio.BeforeTouchSize = New System.Drawing.Size(70, 20)
         Me.doubletextboxHumedadExcesoInicio.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.doubletextboxHumedadExcesoInicio.DoubleValue = 0R
         Me.doubletextboxHumedadExcesoInicio.Location = New System.Drawing.Point(154, 54)
@@ -200,17 +200,18 @@ Partial Class formTarifaSecadoEscala
         '
         'currencytextboxTarifa
         '
-        Me.currencytextboxTarifa.BeforeTouchSize = New System.Drawing.Size(55, 20)
+        Me.currencytextboxTarifa.BeforeTouchSize = New System.Drawing.Size(70, 20)
+        Me.currencytextboxTarifa.CurrencyDecimalDigits = 3
         Me.currencytextboxTarifa.CurrentCultureRefresh = True
-        Me.currencytextboxTarifa.DecimalValue = New Decimal(New Integer() {0, 0, 0, 131072})
+        Me.currencytextboxTarifa.DecimalValue = New Decimal(New Integer() {0, 0, 0, 196608})
         Me.currencytextboxTarifa.Location = New System.Drawing.Point(55, 227)
-        Me.currencytextboxTarifa.MaxValue = New Decimal(New Integer() {99999, 0, 0, 131072})
+        Me.currencytextboxTarifa.MaxValue = New Decimal(New Integer() {9999999, 0, 0, 196608})
         Me.currencytextboxTarifa.MinValue = New Decimal(New Integer() {0, 0, 0, 0})
         Me.currencytextboxTarifa.Name = "currencytextboxTarifa"
         Me.currencytextboxTarifa.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.KeepFocus
-        Me.currencytextboxTarifa.Size = New System.Drawing.Size(55, 20)
+        Me.currencytextboxTarifa.Size = New System.Drawing.Size(70, 20)
         Me.currencytextboxTarifa.TabIndex = 4
-        Me.currencytextboxTarifa.Text = "$ 0,00"
+        Me.currencytextboxTarifa.Text = "$ 0,000"
         Me.currencytextboxTarifa.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.currencytextboxTarifa.WordWrap = False
         '
