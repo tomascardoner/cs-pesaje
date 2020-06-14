@@ -240,8 +240,6 @@
                 Dim DecryptedPassword As String = ""
                 If Not UserPasswordDecrypter.Decrypt(pGeneralConfig.AutoLogonPassword, DecryptedPassword) Then
                     MsgBox("La contraseña especificada en Auto-Logon es incorrecta.", MsgBoxStyle.Critical, My.Application.Info.Title)
-                    formSplashScreen.Close()
-                    formSplashScreen.Dispose()
                     TerminateApplication()
                     UserPasswordDecrypter = Nothing
                     Application.Exit()
@@ -251,8 +249,6 @@
                 UserPasswordDecrypter = Nothing
                 If DecryptedPassword <> pUsuario.Password Then
                     MsgBox("La contraseña especificada en Auto-Logon es incorrecta.", MsgBoxStyle.Critical, My.Application.Info.Title)
-                    formSplashScreen.Close()
-                    formSplashScreen.Dispose()
                     TerminateApplication()
                     UserPasswordDecrypter = Nothing
                     Application.Exit()
@@ -264,7 +260,6 @@
             End Using
         Else
             ' El Usuario debe iniciar sesión a través del form correspondiente
-            formSplashScreen.Show()
             If Not formLogin.ShowDialog(formSplashScreen) = DialogResult.OK Then
                 Application.Exit()
                 My.Application.Log.WriteEntry("La Aplicación ha finalizado porque el Usuario no ha iniciado sesión.", TraceEventType.Warning)
