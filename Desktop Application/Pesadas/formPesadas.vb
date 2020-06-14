@@ -705,9 +705,9 @@
                     If Not ReporteActual Is Nothing Then
                         ReporteActual.ReporteParametros.Single(Function(rp) rp.Nombre = "IDPesada").Valor = CurrentRow.IDPesada
                         ReporteActual.ReporteParametros.Single(Function(rp) rp.Nombre = "EsReducido").Valor = sender.Equals(menuitemImprimir_TicketPesadaReducido)
-                        If ReporteActual.Open(My.Settings.ReportsPath & "\" & ReporteActual.Archivo) Then
-                            If ReporteActual.SetDatabaseConnection(pDatabase.DataSource, pDatabase.InitialCatalog, pDatabase.UserID, pDatabase.Password) Then
-                                If My.Settings.Reporte_Pesada_Previsualizar = False Then
+                        If ReporteActual.Open(pGeneralConfig.ReportsPath & "\" & ReporteActual.Archivo) Then
+                            If ReporteActual.SetDatabaseConnection(pDatabase.Datasource, pDatabase.InitialCatalog, pDatabase.UserId, pDatabase.Password) Then
+                                If pGeneralConfig.ReportePesadaPrevisualizar = False Then
                                     ReporteActual.ReportObject.PrintToPrinter(1, False, 1, 100)
                                 Else
                                     Reportes.PreviewCrystalReport(ReporteActual, "Ticket Pesada N° " & Microsoft.VisualBasic.Strings.Format(CurrentRow.IDPesada, "N0"))
@@ -740,13 +740,13 @@
                     ReporteActual = dbContext.Reporte.Find(CInt(CType(sender, ToolStripMenuItem).Tag))
                     If Not ReporteActual Is Nothing Then
                         ReporteActual.ReporteParametros.Single(Function(rp) rp.Nombre = "Titulo").Valor = ReporteActual.Titulo
-                        If ReporteActual.Open(My.Settings.ReportsPath & "\" & ReporteActual.Archivo) Then
+                        If ReporteActual.Open(pGeneralConfig.ReportsPath & "\" & ReporteActual.Archivo) Then
                             If ReporteActual.RecordSelectionFormula <> "" Then
                                 ReporteActual.RecordSelectionFormula &= " AND " & mRecordSelectionFormula_Refresh & mRecordSelectionFormula_Filter
                             Else
                                 ReporteActual.RecordSelectionFormula = mRecordSelectionFormula_Refresh & mRecordSelectionFormula_Filter
                             End If
-                            If ReporteActual.SetDatabaseConnection(pDatabase.DataSource, pDatabase.InitialCatalog, pDatabase.UserID, pDatabase.Password) Then
+                            If ReporteActual.SetDatabaseConnection(pDatabase.Datasource, pDatabase.InitialCatalog, pDatabase.UserId, pDatabase.Password) Then
                                 Reportes.PreviewCrystalReport(ReporteActual, ReporteActual.Titulo)
                             End If
                         End If

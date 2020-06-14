@@ -354,8 +354,8 @@
                 datagridviewMain.Enabled = False
 
                 Dim ReporteActual As New Reporte
-                If ReporteActual.Open(My.Settings.ReportsPath & "\") Then
-                    If ReporteActual.SetDatabaseConnection(pDatabase.DataSource, pDatabase.InitialCatalog, pDatabase.UserID, pDatabase.Password) Then
+                If ReporteActual.Open(pGeneralConfig.ReportsPath & "\") Then
+                    If ReporteActual.SetDatabaseConnection(pDatabase.Datasource, pDatabase.InitialCatalog, pDatabase.UserId, pDatabase.Password) Then
                         ReporteActual.RecordSelectionFormula = mReportSelectionFormula
 
                         Reportes.PreviewCrystalReport(ReporteActual, "Listado de Orígenes-Destinos")

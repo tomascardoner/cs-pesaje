@@ -1,8 +1,11 @@
 ﻿Module StartUp
+    ' Config files
+    Friend pAppearanceConfig As New AppearanceConfig
+    Friend pDatabaseConfig As DatabaseConfig
+    Friend pGeneralConfig As GeneralConfig
 
     ' Database stuff
     Friend pDatabase As CardonerSistemas.Database.ADO.SQLServer
-
     Friend pFillAndRefreshLists As FillAndRefreshLists
 
     Friend pFormMDIMain As formMDIMain
@@ -20,13 +23,19 @@
 
         My.Application.Log.WriteEntry("La Aplicación se está iniciando.", TraceEventType.Information)
 
+        ' Cargo los archivos de configuración de la aplicación
+        If Not Configuration.LoadFiles() Then
+            TerminateApplication()
+            Exit Sub
+        End If
+
         ' Verifico si ya hay una instancia ejecutandose, si permite iniciar otra, o de lo contrario, muestro la instancia original
-        If My.Settings.SingleInstanceApplication Then
+        If pGeneralConfig.SingleInstanceApplication Then
 
         End If
 
         ' Realizo la inicialización de la Aplicación
-        If My.Settings.EnableVisualStyles Then
+        If pAppearanceConfig.EnableVisualStyles Then
             Application.EnableVisualStyles()
         End If
 
@@ -36,9 +45,9 @@
         formSplashScreen.labelStatus.Text = "Obteniendo los parámetros de conexión a la Base de datos..."
         Application.DoEvents()
 
-        ' Si hay más de un DataSource especificado, muestro la ventana de selección
-        If My.Settings.DBConnection_Datasource.Contains(CardonerSistemas.Constants.STRING_LIST_SEPARATOR) Then
-            CS_Database_SelectSource.comboboxDataSource.Items.AddRange(My.Settings.DBConnection_Datasource.Split(CChar(CardonerSistemas.Constants.STRING_LIST_SEPARATOR)))
+        ' Si hay más de un Datasource especificado, muestro la ventana de selección
+        If pDatabaseConfig.Datasource.Contains(CardonerSistemas.Constants.STRING_LIST_SEPARATOR) Then
+            CS_Database_SelectSource.comboboxDataSource.Items.AddRange(pDatabaseConfig.Datasource.Split(CChar(CardonerSistemas.Constants.STRING_LIST_SEPARATOR)))
             If Not CS_Database_SelectSource.ShowDialog(formSplashScreen) = DialogResult.OK Then
                 Application.Exit()
                 My.Application.Log.WriteEntry("La Aplicación ha finalizado porque el Usuario no ha seleccionado el origen de los datos.", TraceEventType.Warning)
@@ -55,11 +64,11 @@
         pDatabase = New CardonerSistemas.Database.ADO.SQLServer
         pDatabase.ApplicationName = My.Application.Info.Title
         If DataSourceIndex > -1 Then
-            pDatabase.DataSource = My.Settings.DBConnection_Datasource.Split(CChar(CardonerSistemas.Constants.STRING_LIST_SEPARATOR)).ElementAt(DataSourceIndex)
+            pDatabase.Datasource = pDatabaseConfig.Datasource.Split(CChar(CardonerSistemas.Constants.STRING_LIST_SEPARATOR)).ElementAt(DataSourceIndex)
             ' Database
-            If My.Settings.DBConnection_Database.Contains(CardonerSistemas.Constants.STRING_LIST_SEPARATOR) Then
+            If pDatabaseConfig.Database.Contains(CardonerSistemas.Constants.STRING_LIST_SEPARATOR) Then
                 Dim aDatabase() As String
-                aDatabase = My.Settings.DBConnection_Database.Split(CChar(CardonerSistemas.Constants.STRING_LIST_SEPARATOR))
+                aDatabase = pDatabaseConfig.Database.Split(CChar(CardonerSistemas.Constants.STRING_LIST_SEPARATOR))
                 If aDatabase.GetUpperBound(0) >= DataSourceIndex Then
                     pDatabase.InitialCatalog = aDatabase(DataSourceIndex)
                 Else
@@ -67,26 +76,26 @@
                 End If
                 aDatabase = Nothing
             Else
-                pDatabase.InitialCatalog = My.Settings.DBConnection_Database
+                pDatabase.InitialCatalog = pDatabaseConfig.Database
             End If
             ' UserID
-            If My.Settings.DBConnection_UserID.Contains(CardonerSistemas.Constants.STRING_LIST_SEPARATOR) Then
+            If pDatabaseConfig.UserId.Contains(CardonerSistemas.Constants.STRING_LIST_SEPARATOR) Then
                 Dim aUserID() As String
-                aUserID = My.Settings.DBConnection_UserID.Split(CChar(CardonerSistemas.Constants.STRING_LIST_SEPARATOR))
+                aUserID = pDatabaseConfig.UserId.Split(CChar(CardonerSistemas.Constants.STRING_LIST_SEPARATOR))
                 If aUserID.GetUpperBound(0) >= DataSourceIndex Then
-                    pDatabase.UserID = aUserID(DataSourceIndex)
+                    pDatabase.UserId = aUserID(DataSourceIndex)
                 Else
-                    pDatabase.UserID = ""
+                    pDatabase.UserId = ""
                 End If
                 aUserID = Nothing
             Else
-                pDatabase.UserID = My.Settings.DBConnection_UserID
+                pDatabase.UserId = pDatabaseConfig.UserId
             End If
             ' Password
             Dim PasswordEncrypted As String
-            If My.Settings.DBConnection_Password.Contains(CardonerSistemas.Constants.STRING_LIST_SEPARATOR) Then
+            If pDatabaseConfig.Password.Contains(CardonerSistemas.Constants.STRING_LIST_SEPARATOR) Then
                 Dim aPassword() As String
-                aPassword = My.Settings.DBConnection_Password.Split(CChar(CardonerSistemas.Constants.STRING_LIST_SEPARATOR))
+                aPassword = pDatabaseConfig.Password.Split(CChar(CardonerSistemas.Constants.STRING_LIST_SEPARATOR))
                 If aPassword.GetUpperBound(0) >= DataSourceIndex Then
                     PasswordEncrypted = aPassword(DataSourceIndex)
                 Else
@@ -94,7 +103,7 @@
                 End If
                 aPassword = Nothing
             Else
-                PasswordEncrypted = My.Settings.DBConnection_Password
+                PasswordEncrypted = pDatabaseConfig.Password
             End If
             ' Desencripto la contraseña de la conexión a la base de datos que está en el archivo app.config
             If PasswordEncrypted.Length > 0 Then
@@ -115,13 +124,13 @@
             End If
             PasswordEncrypted = Nothing
         Else
-            pDatabase.DataSource = My.Settings.DBConnection_Datasource
-            pDatabase.InitialCatalog = My.Settings.DBConnection_Database
-            pDatabase.UserID = My.Settings.DBConnection_UserID
+            pDatabase.Datasource = pDatabaseConfig.Datasource
+            pDatabase.InitialCatalog = pDatabaseConfig.Database
+            pDatabase.UserId = pDatabaseConfig.UserId
             ' Desencripto la contraseña de la conexión a la base de datos que está en el archivo app.config
             Dim PasswordDecrypter As New CS_Encrypt_TripleDES(CardonerSistemas.Constants.PUBLIC_ENCRYPTION_PASSWORD)
             Dim DecryptedPassword As String = ""
-            If Not PasswordDecrypter.Decrypt(My.Settings.DBConnection_Password, DecryptedPassword) Then
+            If Not PasswordDecrypter.Decrypt(pDatabaseConfig.Password, DecryptedPassword) Then
                 MsgBox("La contraseña de conexión a la base de datos es incorrecta.", MsgBoxStyle.Critical, My.Application.Info.Title)
                 formSplashScreen.Close()
                 formSplashScreen.Dispose()
@@ -137,7 +146,7 @@
         pDatabase.CreateConnectionString()
 
         ' Obtengo el Connection String para las conexiones de Entity Framework
-        CSPesajeContext.CreateConnectionString(My.Settings.DBConnection_Provider, pDatabase.ConnectionString)
+        CSPesajeContext.CreateConnectionString(pDatabaseConfig.Provider, pDatabase.ConnectionString)
 
         ' Cargos los Parámetros desde la Base de datos
         formSplashScreen.labelStatus.Text = "Cargando los parámetros desde la Base de datos..."
@@ -189,7 +198,7 @@
         pFormMDIMain.Enabled = False
 
         ' Si corresponde, abro la conexión con el puerto correspondiente para leer los valores de la balanza
-        If My.Settings.ScaleConnectionEnabled Then
+        If pGeneralConfig.ScaleConnectionEnabled Then
             pBalanzaConeccionHabilitada = True
         End If
 
@@ -205,7 +214,7 @@
 
         ' Espero el tiempo mínimo para mostrar el Splash Screen y después lo cierro
         If Not CS_Instance.IsRunningUnderIDE Then
-            Do While Now.Subtract(StartupTime).Seconds < My.Settings.MinimumSplashScreenDisplaySeconds
+            Do While Now.Subtract(StartupTime).Seconds < pAppearanceConfig.MinimumSplashScreenDisplaySeconds
                 Application.DoEvents()
             Loop
         End If
@@ -218,10 +227,10 @@
                 pUsuario = dbcontext.Usuario.Find(1)
                 Appearance.UserLoggedIn()
             End Using
-        ElseIf My.Settings.AutoLogon_Usuario <> "" Then
+        ElseIf pGeneralConfig.AutoLogonUsername <> "" Then
             ' Se especifica un Usuario de Auto Logon, por lo tanto, se procederá a verificar la información de Logon
             Using dbcontext As New CSPesajeContext(True)
-                pUsuario = dbcontext.Usuario.Where(Function(us) us.Nombre = My.Settings.AutoLogon_Usuario).FirstOrDefault
+                pUsuario = dbcontext.Usuario.Where(Function(us) us.Nombre = pGeneralConfig.AutoLogonUsername).FirstOrDefault
                 If pUsuario Is Nothing Then
                     Application.Exit()
                     My.Application.Log.WriteEntry("La Aplicación ha finalizado porque el Usuario especificado en Auto-Logon no existe.", TraceEventType.Warning)
@@ -229,7 +238,7 @@
                 End If
                 Dim UserPasswordDecrypter As New CS_Encrypt_TripleDES(CardonerSistemas.Constants.PUBLIC_ENCRYPTION_PASSWORD)
                 Dim DecryptedPassword As String = ""
-                If Not UserPasswordDecrypter.Decrypt(My.Settings.AutoLogon_Password, DecryptedPassword) Then
+                If Not UserPasswordDecrypter.Decrypt(pGeneralConfig.AutoLogonPassword, DecryptedPassword) Then
                     MsgBox("La contraseña especificada en Auto-Logon es incorrecta.", MsgBoxStyle.Critical, My.Application.Info.Title)
                     formSplashScreen.Close()
                     formSplashScreen.Dispose()
@@ -282,6 +291,11 @@
         If Not pFormMDIMain Is Nothing Then
             CS_Form.MDIChild_CloseAll(CType(pFormMDIMain, Form))
         End If
+
+        pAppearanceConfig = Nothing
+        pDatabaseConfig = Nothing
+        pGeneralConfig = Nothing
+
         pDatabase = Nothing
         pFillAndRefreshLists = Nothing
         pPermisos = Nothing

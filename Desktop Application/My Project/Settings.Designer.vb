@@ -15,7 +15,7 @@ Option Explicit On
 Namespace My
     
     <Global.System.Runtime.CompilerServices.CompilerGeneratedAttribute(),  _
-     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.4.0.0"),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.6.0.0"),  _
      Global.System.ComponentModel.EditorBrowsableAttribute(Global.System.ComponentModel.EditorBrowsableState.Advanced)>  _
     Partial Friend NotInheritable Class MySettings
         Inherits Global.System.Configuration.ApplicationSettingsBase
@@ -54,169 +54,16 @@ Namespace My
             End Get
         End Property
         
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
-        Public ReadOnly Property EnableVisualStyles() As Boolean
-            Get
-                Return CType(Me("EnableVisualStyles"),Boolean)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("5")>  _
-        Public ReadOnly Property MinimumSplashScreenDisplaySeconds() As Byte
-            Get
-                Return CType(Me("MinimumSplashScreenDisplaySeconds"),Byte)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("4")>  _
-        Public ReadOnly Property MDIFormMargin() As Integer
-            Get
-                Return CType(Me("MDIFormMargin"),Integer)
-            End Get
-        End Property
-        
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("")>  _
-        Public Property LastUserLoggedIn() As String
+        Public Property LastLoggedInUser() As String
             Get
-                Return CType(Me("LastUserLoggedIn"),String)
+                Return CType(Me("LastLoggedInUser"),String)
             End Get
             Set
-                Me("LastUserLoggedIn") = value
+                Me("LastLoggedInUser") = value
             End Set
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
-        Public ReadOnly Property ShowLastUserLoggedIn() As Boolean
-            Get
-                Return CType(Me("ShowLastUserLoggedIn"),Boolean)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Microsoft Sans Serif, 11.25pt")>  _
-        Public ReadOnly Property GridsAndListsFont() As Global.System.Drawing.Font
-            Get
-                Return CType(Me("GridsAndListsFont"),Global.System.Drawing.Font)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
-        Public ReadOnly Property SingleInstanceApplication() As Boolean
-            Get
-                Return CType(Me("SingleInstanceApplication"),Boolean)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
-        Public ReadOnly Property UseCustomDialogForErrorMessage() As Boolean
-            Get
-                Return CType(Me("UseCustomDialogForErrorMessage"),Boolean)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("C:\Users\Tomas\Dropbox\Cardoner Sistemas\CS-Pesaje\2017\Reportes")>  _
-        Public ReadOnly Property ReportsPath() As String
-            Get
-                Return CType(Me("ReportsPath"),String)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("192.168.20.201;localhost")>  _
-        Public ReadOnly Property DBConnection_Datasource() As String
-            Get
-                Return CType(Me("DBConnection_Datasource"),String)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("CSPesaje")>  _
-        Public ReadOnly Property DBConnection_Database() As String
-            Get
-                Return CType(Me("DBConnection_Database"),String)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("sa")>  _
-        Public ReadOnly Property DBConnection_UserID() As String
-            Get
-                Return CType(Me("DBConnection_UserID"),String)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("43ubKjbAQCxR+foIcEK/PcLRw0VHFqfd")>  _
-        Public ReadOnly Property DBConnection_Password() As String
-            Get
-                Return CType(Me("DBConnection_Password"),String)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("System.Data.SqlClient")>  _
-        Public ReadOnly Property DBConnection_Provider() As String
-            Get
-                Return CType(Me("DBConnection_Provider"),String)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
-        Public ReadOnly Property ScaleConnectionEnabled() As Boolean
-            Get
-                Return CType(Me("ScaleConnectionEnabled"),Boolean)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("administrador")>  _
-        Public ReadOnly Property AutoLogon_Usuario() As String
-            Get
-                Return CType(Me("AutoLogon_Usuario"),String)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("43ubKjbAQCxR+foIcEK/PcLRw0VHFqfd")>  _
-        Public ReadOnly Property AutoLogon_Password() As String
-            Get
-                Return CType(Me("AutoLogon_Password"),String)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
-        Public ReadOnly Property Reporte_Pesada_Previsualizar() As Boolean
-            Get
-                Return CType(Me("Reporte_Pesada_Previsualizar"),Boolean)
-            End Get
         End Property
     End Class
 End Namespace
