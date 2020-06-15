@@ -14,8 +14,6 @@
         If Not CardonerSistemas.Configuration.LoadFile(ConfigFolder, AppearanceFileName, pAppearanceConfig) Then
             Return False
         End If
-        ' Needs to convert Font property
-        pAppearanceConfig.ListsFontAsFont = CardonerSistemas.Configuration.ConvertStringToFont(pAppearanceConfig.ListsFont)
 
         If Not CardonerSistemas.Configuration.LoadFile(ConfigFolder, DatabaseFileName, pDatabaseConfig) Then
             Return False
