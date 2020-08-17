@@ -739,7 +739,14 @@
 
                     ReporteActual = dbContext.Reporte.Find(CInt(CType(sender, ToolStripMenuItem).Tag))
                     If Not ReporteActual Is Nothing Then
-                        ReporteActual.ReporteParametros.Single(Function(rp) rp.Nombre = "Titulo").Valor = ReporteActual.Titulo
+                        Dim reporteParametro As ReporteParametro
+
+                        reporteParametro = ReporteActual.ReporteParametros.SingleOrDefault(Function(rp) rp.Nombre = "Titulo")
+                        If Not reporteParametro Is Nothing Then
+                            reporteParametro.Valor = ReporteActual.Titulo
+                        End If
+                        reporteParametro = Nothing
+
                         If ReporteActual.Open(pGeneralConfig.ReportsPath & "\" & ReporteActual.Archivo) Then
                             If ReporteActual.RecordSelectionFormula <> "" Then
                                 ReporteActual.RecordSelectionFormula &= " AND " & mRecordSelectionFormula_Refresh & mRecordSelectionFormula_Filter
