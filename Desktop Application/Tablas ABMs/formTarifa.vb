@@ -16,7 +16,7 @@
     Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDCosecha As Byte, ByVal IDProducto As Byte, ByVal Indice As Short)
         mIsLoading = True
         mEditMode = EditMode
-        mIsNew = Indice = 0
+        mIsNew = (Indice = 0)
 
         If mIsNew Then
             mCosecha_Producto_TarifaActual = New Cosecha_Producto_Tarifa
@@ -28,6 +28,38 @@
         Else
             mCosecha_Producto_TarifaActual = mdbContext.Cosecha_Producto_Tarifa.Find(IDCosecha, IDProducto, Indice)
         End If
+        buttonIndiceObtener.Visible = mIsNew
+
+        'Me.MdiParent = pFormMDIMain
+        CS_Form.CenterToParent(ParentForm, Me)
+        InitializeFormAndControls()
+        SetDataFromObjectToControls()
+        'If Me.WindowState = FormWindowState.Minimized Then
+        '    Me.WindowState = FormWindowState.Normal
+        'End If
+        'Me.Focus()
+        mIsLoading = False
+
+        ChangeMode()
+
+        Me.ShowDialog(formTarifas)
+    End Sub
+
+    Friend Sub LoadAndShowCopy(ByRef ParentForm As Form, ByRef tarifaOriginal As Cosecha_Producto_Tarifa, ByRef tarifaClonada As Cosecha_Producto_Tarifa)
+        mIsLoading = True
+        mEditMode = True
+        mIsNew = True
+
+        mCosecha_Producto_TarifaActual = tarifaClonada
+        mdbContext.Cosecha_Producto_Tarifa.Add(mCosecha_Producto_TarifaActual)
+
+        ' Copio las escalas porque de otra manera no anda
+        If tarifaOriginal.TarifaSecadoTipo <> Constantes.PRODUCTO_TARIFA_SECADO_TIPO_FIJA Then
+            For Each escala As Cosecha_Producto_TarifaEscala In tarifaOriginal.Cosecha_Producto_TarifaEscala
+                tarifaClonada.Cosecha_Producto_TarifaEscala.Add(escala.Clone(False))
+            Next
+        End If
+
         buttonIndiceObtener.Visible = mIsNew
 
         'Me.MdiParent = pFormMDIMain
@@ -228,7 +260,7 @@
             Else
                 Throw New Exception("No se ha seleccionado el Tipo de Almacenaje")
             End If
-            .AlmacenajeDiaGracia = CS_ValueTranslation.FromControlSyncfusionIntegerTextBoxToObjectShort(integertextboxAlmacenajeDiaGracia.BindableValue)
+            .AlmacenajeDiaGracia = CS_ValueTranslation.FromControlIntegerTextBoxToValueShort(integertextboxAlmacenajeDiaGracia)
             .AlmacenajeInicio = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerAlmacenajeInicio.Value, datetimepickerAlmacenajeInicio.Checked)
             .AlmacenajePorcentajeMensual = Convert.ToDecimal(percenttextboxAlmacenajePorcentajeMensual.PercentValue)
         End With
@@ -518,6 +550,10 @@
 
             Me.Cursor = Cursors.Default
         End If
+    End Sub
+
+    Private Sub updownIndice_Enter(sender As Object, e As EventArgs) Handles updownIndice.Enter
+        updownIndice.Select(0, 5)
     End Sub
 
 #End Region

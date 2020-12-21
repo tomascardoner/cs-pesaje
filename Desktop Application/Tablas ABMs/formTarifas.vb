@@ -229,20 +229,32 @@
             MsgBox("No hay ninguna Tarifa para copiar.", vbInformation, My.Application.Info.Title)
         Else
             If Permisos.VerificarPermiso(Permisos.TARIFA_AGREGAR) Then
-                'Me.Cursor = Cursors.WaitCursor
+                Me.Cursor = Cursors.WaitCursor
 
-                'datagridviewMain.Enabled = False
+                datagridviewMain.Enabled = False
 
-                'Dim GridRowDataActual As GridRowData
-                'GridRowDataActual = CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData)
+                Dim GridRowDataActual As GridRowData
+                GridRowDataActual = CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData)
 
-                'formTarifa.LoadAndShow(True, Me, GridRowDataActual.IDCosecha, GridRowDataActual.IDProducto, GridRowDataActual.Indice)
+                Try
+                    Using dbContext = New CSPesajeContext(True)
+                        Dim TarifaActual As Cosecha_Producto_Tarifa
+                        Dim TarifaNueva As Cosecha_Producto_Tarifa
 
-                'GridRowDataActual = Nothing
+                        TarifaActual = dbContext.Cosecha_Producto_Tarifa.Find(GridRowDataActual.IDCosecha, GridRowDataActual.IDProducto, GridRowDataActual.Indice)
+                        TarifaNueva = TarifaActual.Clone(False, True)
 
-                'datagridviewMain.Enabled = True
+                        formTarifa.LoadAndShowCopy(Me, TarifaActual, TarifaNueva)
+                    End Using
+                Catch ex As Exception
+                    CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al copiar la Tarifa.")
+                End Try
 
-                'Me.Cursor = Cursors.Default
+                GridRowDataActual = Nothing
+
+                datagridviewMain.Enabled = True
+
+                Me.Cursor = Cursors.Default
             End If
         End If
     End Sub
@@ -276,10 +288,10 @@
         Else
             If Permisos.VerificarPermiso(Permisos.TARIFA_ELIMINAR) Then
                 Dim Mensaje As String
-                Dim CurrentGridRowData As GridRowData
+                Dim GridRowDataActual As GridRowData
 
-                CurrentGridRowData = CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData)
-                Mensaje = String.Format("Se eliminará la Tarifa seleccionada.{0}{0}Cosecha: {1}{0}Producto: {2}{0}Índice: {3}{0}Nombre: {4}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, CurrentGridRowData.CosechaNombre, CurrentGridRowData.ProductoNombre, CurrentGridRowData.Indice, CurrentGridRowData.Nombre)
+                GridRowDataActual = CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData)
+                Mensaje = String.Format("Se eliminará la Tarifa seleccionada.{0}{0}Cosecha: {1}{0}Producto: {2}{0}Índice: {3}{0}Nombre: {4}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, GridRowDataActual.CosechaNombre, GridRowDataActual.ProductoNombre, GridRowDataActual.Indice, GridRowDataActual.Nombre)
 
                 If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
                     Me.Cursor = Cursors.WaitCursor
@@ -287,7 +299,7 @@
                     Try
                         Using dbContext = New CSPesajeContext(True)
                             Dim TarifaActual As Cosecha_Producto_Tarifa
-                            TarifaActual = dbContext.Cosecha_Producto_Tarifa.Find(CurrentGridRowData.IDCosecha, CurrentGridRowData.IDProducto, CurrentGridRowData.Indice)
+                            TarifaActual = dbContext.Cosecha_Producto_Tarifa.Find(GridRowDataActual.IDCosecha, GridRowDataActual.IDProducto, GridRowDataActual.Indice)
 
                             dbContext.Cosecha_Producto_Tarifa.Attach(TarifaActual)
                             dbContext.Cosecha_Producto_Tarifa.Remove(TarifaActual)
@@ -331,10 +343,6 @@
 
             Me.Cursor = Cursors.Default
         End If
-    End Sub
-
-    Private Sub Editar_Click(sender As Object, e As EventArgs) Handles buttonEditar.Click
-
     End Sub
 
 #End Region

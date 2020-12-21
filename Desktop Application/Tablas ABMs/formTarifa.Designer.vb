@@ -22,8 +22,8 @@ Partial Class formTarifa
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.toolstripMain = New System.Windows.Forms.ToolStrip()
         Me.buttonCerrar = New System.Windows.Forms.ToolStripButton()
         Me.buttonEditar = New System.Windows.Forms.ToolStripButton()
@@ -344,10 +344,10 @@ Partial Class formTarifa
         '
         'buttonIndiceObtener
         '
-        Me.buttonIndiceObtener.Location = New System.Drawing.Point(132, 72)
+        Me.buttonIndiceObtener.Location = New System.Drawing.Point(144, 72)
         Me.buttonIndiceObtener.Name = "buttonIndiceObtener"
         Me.buttonIndiceObtener.Size = New System.Drawing.Size(64, 22)
-        Me.buttonIndiceObtener.TabIndex = 8
+        Me.buttonIndiceObtener.TabIndex = 6
         Me.buttonIndiceObtener.Text = "Obtener"
         Me.buttonIndiceObtener.UseVisualStyleBackColor = True
         '
@@ -359,7 +359,7 @@ Partial Class formTarifa
         Me.textboxNombre.MaxLength = 50
         Me.textboxNombre.Name = "textboxNombre"
         Me.textboxNombre.Size = New System.Drawing.Size(276, 20)
-        Me.textboxNombre.TabIndex = 7
+        Me.textboxNombre.TabIndex = 8
         '
         'labelNombre
         '
@@ -367,7 +367,7 @@ Partial Class formTarifa
         Me.labelNombre.Location = New System.Drawing.Point(6, 102)
         Me.labelNombre.Name = "labelNombre"
         Me.labelNombre.Size = New System.Drawing.Size(47, 13)
-        Me.labelNombre.TabIndex = 6
+        Me.labelNombre.TabIndex = 7
         Me.labelNombre.Text = "Nombre:"
         '
         'comboboxCosecha
@@ -384,7 +384,8 @@ Partial Class formTarifa
         Me.updownIndice.Location = New System.Drawing.Point(84, 73)
         Me.updownIndice.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
         Me.updownIndice.Name = "updownIndice"
-        Me.updownIndice.Size = New System.Drawing.Size(42, 20)
+        Me.updownIndice.ReadOnly = True
+        Me.updownIndice.Size = New System.Drawing.Size(54, 20)
         Me.updownIndice.TabIndex = 5
         Me.updownIndice.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
@@ -459,7 +460,7 @@ Partial Class formTarifa
         '
         'currencytextboxTarifaSecadoPuntoExcesoImporte
         '
-        Me.currencytextboxTarifaSecadoPuntoExcesoImporte.BeforeTouchSize = New System.Drawing.Size(70, 20)
+        Me.currencytextboxTarifaSecadoPuntoExcesoImporte.BeforeTouchSize = New System.Drawing.Size(39, 20)
         Me.currencytextboxTarifaSecadoPuntoExcesoImporte.CurrencyDecimalDigits = 3
         Me.currencytextboxTarifaSecadoPuntoExcesoImporte.CurrentCultureRefresh = True
         Me.currencytextboxTarifaSecadoPuntoExcesoImporte.DecimalValue = New Decimal(New Integer() {0, 0, 0, 196608})
@@ -533,7 +534,7 @@ Partial Class formTarifa
         '
         'doubletextboxTarifaSecadoMargenLibre
         '
-        Me.doubletextboxTarifaSecadoMargenLibre.BeforeTouchSize = New System.Drawing.Size(70, 20)
+        Me.doubletextboxTarifaSecadoMargenLibre.BeforeTouchSize = New System.Drawing.Size(39, 20)
         Me.doubletextboxTarifaSecadoMargenLibre.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.doubletextboxTarifaSecadoMargenLibre.DoubleValue = 0R
         Me.doubletextboxTarifaSecadoMargenLibre.Location = New System.Drawing.Point(160, 124)
@@ -560,7 +561,7 @@ Partial Class formTarifa
         '
         'doubletextboxTarifaSecadoHumedadBase
         '
-        Me.doubletextboxTarifaSecadoHumedadBase.BeforeTouchSize = New System.Drawing.Size(70, 20)
+        Me.doubletextboxTarifaSecadoHumedadBase.BeforeTouchSize = New System.Drawing.Size(39, 20)
         Me.doubletextboxTarifaSecadoHumedadBase.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.doubletextboxTarifaSecadoHumedadBase.DoubleValue = 0R
         Me.doubletextboxTarifaSecadoHumedadBase.Location = New System.Drawing.Point(160, 98)
@@ -609,7 +610,7 @@ Partial Class formTarifa
         '
         'currencytextboxTarifaSecadoInicialImporte
         '
-        Me.currencytextboxTarifaSecadoInicialImporte.BeforeTouchSize = New System.Drawing.Size(70, 20)
+        Me.currencytextboxTarifaSecadoInicialImporte.BeforeTouchSize = New System.Drawing.Size(39, 20)
         Me.currencytextboxTarifaSecadoInicialImporte.CurrencyDecimalDigits = 3
         Me.currencytextboxTarifaSecadoInicialImporte.CurrentCultureRefresh = True
         Me.currencytextboxTarifaSecadoInicialImporte.DecimalValue = New Decimal(New Integer() {0, 0, 0, 196608})
@@ -626,7 +627,7 @@ Partial Class formTarifa
         '
         'doubletextboxTarifaSecadoInicialPunto
         '
-        Me.doubletextboxTarifaSecadoInicialPunto.BeforeTouchSize = New System.Drawing.Size(70, 20)
+        Me.doubletextboxTarifaSecadoInicialPunto.BeforeTouchSize = New System.Drawing.Size(39, 20)
         Me.doubletextboxTarifaSecadoInicialPunto.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.doubletextboxTarifaSecadoInicialPunto.DoubleValue = 0R
         Me.doubletextboxTarifaSecadoInicialPunto.Location = New System.Drawing.Point(50, 19)
@@ -714,7 +715,7 @@ Partial Class formTarifa
         '
         'currencytextboxTarifaMezcladoImporte
         '
-        Me.currencytextboxTarifaMezcladoImporte.BeforeTouchSize = New System.Drawing.Size(70, 20)
+        Me.currencytextboxTarifaMezcladoImporte.BeforeTouchSize = New System.Drawing.Size(39, 20)
         Me.currencytextboxTarifaMezcladoImporte.CurrencyDecimalDigits = 3
         Me.currencytextboxTarifaMezcladoImporte.CurrentCultureRefresh = True
         Me.currencytextboxTarifaMezcladoImporte.DecimalValue = New Decimal(New Integer() {0, 0, 0, 196608})
@@ -731,7 +732,7 @@ Partial Class formTarifa
         '
         'currencytextboxTarifaFumigadoImporte
         '
-        Me.currencytextboxTarifaFumigadoImporte.BeforeTouchSize = New System.Drawing.Size(70, 20)
+        Me.currencytextboxTarifaFumigadoImporte.BeforeTouchSize = New System.Drawing.Size(39, 20)
         Me.currencytextboxTarifaFumigadoImporte.CurrencyDecimalDigits = 3
         Me.currencytextboxTarifaFumigadoImporte.CurrentCultureRefresh = True
         Me.currencytextboxTarifaFumigadoImporte.DecimalValue = New Decimal(New Integer() {0, 0, 0, 196608})
@@ -748,7 +749,7 @@ Partial Class formTarifa
         '
         'currencytextboxTarifaZarandeo
         '
-        Me.currencytextboxTarifaZarandeo.BeforeTouchSize = New System.Drawing.Size(70, 20)
+        Me.currencytextboxTarifaZarandeo.BeforeTouchSize = New System.Drawing.Size(39, 20)
         Me.currencytextboxTarifaZarandeo.CurrencyDecimalDigits = 3
         Me.currencytextboxTarifaZarandeo.CurrentCultureRefresh = True
         Me.currencytextboxTarifaZarandeo.DecimalValue = New Decimal(New Integer() {0, 0, 0, 196608})
@@ -765,7 +766,7 @@ Partial Class formTarifa
         '
         'currencytextboxTarifaParitariaImporte
         '
-        Me.currencytextboxTarifaParitariaImporte.BeforeTouchSize = New System.Drawing.Size(70, 20)
+        Me.currencytextboxTarifaParitariaImporte.BeforeTouchSize = New System.Drawing.Size(39, 20)
         Me.currencytextboxTarifaParitariaImporte.CurrencyDecimalDigits = 3
         Me.currencytextboxTarifaParitariaImporte.CurrentCultureRefresh = True
         Me.currencytextboxTarifaParitariaImporte.DecimalValue = New Decimal(New Integer() {0, 0, 0, 196608})
@@ -836,7 +837,7 @@ Partial Class formTarifa
         '
         'percenttextboxAlmacenajePorcentajeMensual
         '
-        Me.percenttextboxAlmacenajePorcentajeMensual.BeforeTouchSize = New System.Drawing.Size(70, 20)
+        Me.percenttextboxAlmacenajePorcentajeMensual.BeforeTouchSize = New System.Drawing.Size(39, 20)
         Me.percenttextboxAlmacenajePorcentajeMensual.Location = New System.Drawing.Point(122, 133)
         Me.percenttextboxAlmacenajePorcentajeMensual.MaxValue = 5.0R
         Me.percenttextboxAlmacenajePorcentajeMensual.MinValue = 0R
@@ -850,7 +851,7 @@ Partial Class formTarifa
         'integertextboxAlmacenajeDiaGracia
         '
         Me.integertextboxAlmacenajeDiaGracia.AllowNull = True
-        Me.integertextboxAlmacenajeDiaGracia.BeforeTouchSize = New System.Drawing.Size(70, 20)
+        Me.integertextboxAlmacenajeDiaGracia.BeforeTouchSize = New System.Drawing.Size(39, 20)
         Me.integertextboxAlmacenajeDiaGracia.ForeColor = System.Drawing.SystemColors.WindowText
         Me.integertextboxAlmacenajeDiaGracia.IntegerValue = CType(0, Long)
         Me.integertextboxAlmacenajeDiaGracia.Location = New System.Drawing.Point(122, 81)
@@ -979,10 +980,10 @@ Partial Class formTarifa
         '
         Me.columnHumedadExcesoInicio.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.columnHumedadExcesoInicio.DataPropertyName = "HumedadExcesoInicio"
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle1.Format = "N2"
-        DataGridViewCellStyle1.NullValue = Nothing
-        Me.columnHumedadExcesoInicio.DefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle3.Format = "N2"
+        DataGridViewCellStyle3.NullValue = Nothing
+        Me.columnHumedadExcesoInicio.DefaultCellStyle = DataGridViewCellStyle3
         Me.columnHumedadExcesoInicio.HeaderText = "Exceso Inicio"
         Me.columnHumedadExcesoInicio.Name = "columnHumedadExcesoInicio"
         Me.columnHumedadExcesoInicio.ReadOnly = True
@@ -1001,10 +1002,10 @@ Partial Class formTarifa
         '
         Me.columnTarifa.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.columnTarifa.DataPropertyName = "Tarifa"
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle2.Format = "C2"
-        DataGridViewCellStyle2.NullValue = Nothing
-        Me.columnTarifa.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle4.Format = "C2"
+        DataGridViewCellStyle4.NullValue = Nothing
+        Me.columnTarifa.DefaultCellStyle = DataGridViewCellStyle4
         Me.columnTarifa.HeaderText = "Tarifa"
         Me.columnTarifa.Name = "columnTarifa"
         Me.columnTarifa.ReadOnly = True

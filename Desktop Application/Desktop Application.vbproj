@@ -132,6 +132,9 @@
     <Compile Include="..\..\..\..\framework-vbnet\Database.EntityFramework.vb">
       <Link>Framework\Database.EntityFramework.vb</Link>
     </Compile>
+    <Compile Include="..\..\..\..\framework-vbnet\Database.EntityFrameworkModule.vb">
+      <Link>Framework\Database.EntityFrameworkModule.vb</Link>
+    </Compile>
     <Compile Include="..\..\..\..\framework-vbnet\ErrorHandler.vb">
       <Link>Framework\ErrorHandler.vb</Link>
     </Compile>
@@ -173,6 +176,14 @@
     <Compile Include="Config\Configuration.vb" />
     <Compile Include="Config\DatabaseConfig.vb" />
     <Compile Include="Config\GeneralConfig.vb" />
+    <Compile Include="EF Extensions\Cosecha_Producto_TarifaEscala.vb" />
+    <Compile Include="EF Extensions\OrigenDestino.vb" />
+    <Compile Include="EF Extensions\Pesada.vb" />
+    <Compile Include="EF Extensions\Pesada_Acondicionamiento.vb" />
+    <Compile Include="EF Extensions\Pesada_Analisis.vb" />
+    <Compile Include="EF Extensions\Reporte.vb" />
+    <Compile Include="EF Extensions\ReporteParametro.vb" />
+    <Compile Include="EF Extensions\Cosecha_Producto_Tarifa.vb" />
     <Compile Include="Sistema\Appearance.vb" />
     <Compile Include="Sistema\Constantes.vb" />
     <Compile Include="Cosecha.vb">
@@ -203,7 +214,7 @@
     <Compile Include="Entidad_Producto_Planta.vb">
       <DependentUpon>CSPesaje.tt</DependentUpon>
     </Compile>
-    <Compile Include="Sistema\EntityFrameworkExtension.vb" />
+    <Compile Include="EF Extensions\CSPesajeContext.vb" />
     <Compile Include="Sistema\FillAndRefreshLists.vb" />
     <Compile Include="Sistema\Reportes.vb" />
     <Compile Include="Tablas ABMs\formCamion.designer.vb">
