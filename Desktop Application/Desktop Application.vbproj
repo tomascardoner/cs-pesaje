@@ -132,9 +132,6 @@
     <Compile Include="..\..\..\..\framework-vbnet\Database.EntityFramework.vb">
       <Link>Framework\Database.EntityFramework.vb</Link>
     </Compile>
-    <Compile Include="..\..\..\..\framework-vbnet\Database.EntityFrameworkModule.vb">
-      <Link>Framework\Database.EntityFrameworkModule.vb</Link>
-    </Compile>
     <Compile Include="..\..\..\..\framework-vbnet\ErrorHandler.vb">
       <Link>Framework\ErrorHandler.vb</Link>
     </Compile>

@@ -216,7 +216,7 @@
 
             datagridviewMain.Enabled = False
 
-            formTarifa.LoadAndShow(True, Me, CType(comboboxCosecha.SelectedItem, Cosecha).IDCosecha, CType(comboboxProducto.SelectedItem, Producto).IDProducto, 0)
+            formTarifa.LoadAndShow(True, Me, CType(comboboxCosecha.SelectedItem, Cosecha).IDCosecha, CType(comboboxProducto.SelectedItem, Producto).IDProducto, 0, False)
 
             datagridviewMain.Enabled = True
 
@@ -236,19 +236,7 @@
                 Dim GridRowDataActual As GridRowData
                 GridRowDataActual = CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData)
 
-                Try
-                    Using dbContext = New CSPesajeContext(True)
-                        Dim TarifaActual As Cosecha_Producto_Tarifa
-                        Dim TarifaNueva As Cosecha_Producto_Tarifa
-
-                        TarifaActual = dbContext.Cosecha_Producto_Tarifa.Find(GridRowDataActual.IDCosecha, GridRowDataActual.IDProducto, GridRowDataActual.Indice)
-                        TarifaNueva = TarifaActual.Clone(False, True)
-
-                        formTarifa.LoadAndShowCopy(Me, TarifaActual, TarifaNueva)
-                    End Using
-                Catch ex As Exception
-                    CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al copiar la Tarifa.")
-                End Try
+                formTarifa.LoadAndShow(True, Me, GridRowDataActual.IDCosecha, GridRowDataActual.IDProducto, GridRowDataActual.Indice, True)
 
                 GridRowDataActual = Nothing
 
@@ -271,7 +259,7 @@
                 Dim GridRowDataActual As GridRowData
                 GridRowDataActual = CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData)
 
-                formTarifa.LoadAndShow(True, Me, GridRowDataActual.IDCosecha, GridRowDataActual.IDProducto, GridRowDataActual.Indice)
+                formTarifa.LoadAndShow(True, Me, GridRowDataActual.IDCosecha, GridRowDataActual.IDProducto, GridRowDataActual.Indice, False)
 
                 GridRowDataActual = Nothing
 
@@ -335,7 +323,7 @@
             Dim GridRowDataActual As GridRowData
             GridRowDataActual = CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData)
 
-            formTarifa.LoadAndShow(False, Me, GridRowDataActual.IDCosecha, GridRowDataActual.IDProducto, GridRowDataActual.Indice)
+            formTarifa.LoadAndShow(False, Me, GridRowDataActual.IDCosecha, GridRowDataActual.IDProducto, GridRowDataActual.Indice, False)
 
             GridRowDataActual = Nothing
 

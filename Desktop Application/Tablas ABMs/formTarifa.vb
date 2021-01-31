@@ -13,10 +13,10 @@
 
 #Region "Form stuff"
 
-    Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDCosecha As Byte, ByVal IDProducto As Byte, ByVal Indice As Short)
+    Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDCosecha As Byte, ByVal IDProducto As Byte, ByVal Indice As Short, ByVal copiar As Boolean)
         mIsLoading = True
         mEditMode = EditMode
-        mIsNew = (Indice = 0)
+        mIsNew = (Indice = 0 Or copiar)
 
         If mIsNew Then
             mCosecha_Producto_TarifaActual = New Cosecha_Producto_Tarifa
@@ -25,6 +25,11 @@
                 .IDProducto = IDProducto
             End With
             mdbContext.Cosecha_Producto_Tarifa.Add(mCosecha_Producto_TarifaActual)
+
+            If copiar Then
+                mCosecha_Producto_TarifaActual.CopyFrom(mdbContext.Cosecha_Producto_Tarifa.Find(IDCosecha, IDProducto, Indice), True, True)
+                mCosecha_Producto_TarifaActual.Indice = 0
+            End If
         Else
             mCosecha_Producto_TarifaActual = mdbContext.Cosecha_Producto_Tarifa.Find(IDCosecha, IDProducto, Indice)
         End If
