@@ -105,9 +105,9 @@
 
         ' Filtros Avanzados
         comboboxEsVerificado.Items.AddRange({My.Resources.STRING_ITEM_ALL_MALE, My.Resources.STRING_YES, My.Resources.STRING_NO})
-        comboboxEsVerificado.SelectedIndex = CardonerSistemas.Constants.COMBOBOX_ALLYESNO_ALL_LISTINDEX
+        comboboxEsVerificado.SelectedIndex = CardonerSistemas.Constants.ComboBoxAllYesNo_AllListindex
         comboboxEsActivo.Items.AddRange({My.Resources.STRING_ITEM_ALL_MALE, My.Resources.STRING_YES, My.Resources.STRING_NO})
-        comboboxEsActivo.SelectedIndex = CardonerSistemas.Constants.COMBOBOX_ALLYESNO_YES_LISTINDEX
+        comboboxEsActivo.SelectedIndex = CardonerSistemas.Constants.ComboBoxAllYesNo_YesListindex
 
         toolstriptabFiltrosAvanzados.Visible = (Permisos.VerificarPermiso(Permisos.PESADA_MOSTRAR_VERIFICADO, False) Or Permisos.VerificarPermiso(Permisos.PESADA_MOSTRAR_ACTIVO, False))
     End Sub
@@ -357,22 +357,22 @@
 
                 ' Filtro por Verificado
                 Select Case comboboxEsVerificado.SelectedIndex
-                    Case CardonerSistemas.Constants.COMBOBOX_ALLYESNO_ALL_LISTINDEX       ' Todos
-                    Case CardonerSistemas.Constants.COMBOBOX_ALLYESNO_YES_LISTINDEX       ' Sí
+                    Case CardonerSistemas.Constants.ComboBoxAllYesNo_AllListindex       ' Todos
+                    Case CardonerSistemas.Constants.ComboBoxAllYesNo_YesListindex       ' Sí
                         mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) p.EsVerificado).ToList
                         mRecordSelectionFormula_Filter &= " AND {Pesada.EsVerificado}"
-                    Case CardonerSistemas.Constants.COMBOBOX_ALLYESNO_NO_LISTINDEX        ' No
+                    Case CardonerSistemas.Constants.ComboBoxAllYesNo_NoListindex        ' No
                         mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) Not p.EsVerificado).ToList
                         mRecordSelectionFormula_Filter &= " AND (NOT {Pesada.EsVerificado})"
                 End Select
 
                 ' Filtro por Activo
                 Select Case comboboxEsActivo.SelectedIndex
-                    Case CardonerSistemas.Constants.COMBOBOX_ALLYESNO_ALL_LISTINDEX       ' Todos
-                    Case CardonerSistemas.Constants.COMBOBOX_ALLYESNO_YES_LISTINDEX       ' Sí
+                    Case CardonerSistemas.Constants.ComboBoxAllYesNo_AllListindex       ' Todos
+                    Case CardonerSistemas.Constants.ComboBoxAllYesNo_YesListindex       ' Sí
                         mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) p.EsActivo).ToList
                         mRecordSelectionFormula_Filter &= " AND {Pesada.EsActivo}"
-                    Case CardonerSistemas.Constants.COMBOBOX_ALLYESNO_NO_LISTINDEX        ' No
+                    Case CardonerSistemas.Constants.ComboBoxAllYesNo_NoListindex        ' No
                         mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) Not p.EsActivo).ToList
                         mRecordSelectionFormula_Filter &= " AND (NOT {Pesada.EsActivo})"
                 End Select

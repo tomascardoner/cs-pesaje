@@ -26,6 +26,8 @@
 #Region "Form stuff"
 
     Friend Sub SetAppearance()
+        Me.Icon = CardonerSistemas.Graphics.GetIconFromBitmap(My.Resources.IMAGE_TABLAS_32)
+
         DataGridSetAppearance(datagridviewMain)
     End Sub
 
@@ -37,7 +39,7 @@
         pFillAndRefreshLists.Entidad(comboboxTransportista.ComboBox, Nothing, False, False, True, False, 0, False, True, False, False)
 
         comboboxActivo.Items.AddRange({My.Resources.STRING_ITEM_ALL_MALE, My.Resources.STRING_YES, My.Resources.STRING_NO})
-        comboboxActivo.SelectedIndex = CardonerSistemas.Constants.COMBOBOX_ALLYESNO_YES_LISTINDEX
+        comboboxActivo.SelectedIndex = CardonerSistemas.Constants.ComboBoxAllYesNo_YesListindex
 
         mSkipFilterData = False
 
@@ -114,11 +116,11 @@
 
                 ' Filtro por Activo
                 Select Case comboboxActivo.SelectedIndex
-                    Case CardonerSistemas.Constants.COMBOBOX_ALLYESNO_ALL_LISTINDEX        ' Todos
-                    Case CardonerSistemas.Constants.COMBOBOX_ALLYESNO_YES_LISTINDEX        ' Sí
+                    Case CardonerSistemas.Constants.ComboBoxAllYesNo_AllListindex        ' Todos
+                    Case CardonerSistemas.Constants.ComboBoxAllYesNo_YesListindex        ' Sí
                         mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, "", " AND ").ToString & "{Camion.EsActivo} = 1"
                         mlistCamionFiltradaYOrdenada = mlistCamionFiltradaYOrdenada.Where(Function(a) a.EsActivo).ToList
-                    Case CardonerSistemas.Constants.COMBOBOX_ALLYESNO_NO_LISTINDEX         ' No
+                    Case CardonerSistemas.Constants.ComboBoxAllYesNo_NoListindex         ' No
                         mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, "", " AND ").ToString & "{Camion.EsActivo} = 0"
                         mlistCamionFiltradaYOrdenada = mlistCamionFiltradaYOrdenada.Where(Function(a) Not a.EsActivo).ToList
                 End Select

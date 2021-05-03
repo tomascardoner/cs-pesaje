@@ -1,0 +1,7 @@
+{
+  "Datasource": "192.168.20.201;localhost",
+  "Database": "CSPesaje",
+  "UserId": "sa",
+  "Password": "43ubKjbAQCxR+foIcEK/PcLRw0VHFqfd",
+  "Provider": "System.Data.SqlClient"
+}

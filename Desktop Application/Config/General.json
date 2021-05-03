@@ -1,0 +1,9 @@
+{
+  "SingleInstanceApplication": true,
+  "ReportsPath": "{Dropbox}\\Cardoner Sistemas\\CS-Pesaje\\2017\\Reportes",
+  "ShowLastLoggedInUser": true,
+  "AutoLogonUsername": "administrador",
+  "AutoLogonPassword": "43ubKjbAQCxR+foIcEK/PcLRw0VHFqfd",
+  "ScaleConnectionEnabled": false,
+  "ReportePesadaPrevisualizar": true
+}
