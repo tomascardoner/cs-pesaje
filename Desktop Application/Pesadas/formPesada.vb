@@ -1124,7 +1124,7 @@
             End If
         End If
 
-        ' Camion
+        ' Camión
         If checkboxCamionOtro.Checked Then
             If textboxCamion_DominioChasis.Text.Trim.Length > 0 And textboxCamion_DominioChasis.Text.Trim.Length < 6 Then
                 MsgBox("El Dominio del Chasis debe contener al menos 6 caracteres.", MsgBoxStyle.Information, My.Application.Info.Title)

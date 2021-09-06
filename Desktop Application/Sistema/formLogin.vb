@@ -10,8 +10,8 @@
                 textboxNombre.Text = My.Settings.LastLoggedInUser
                 labelPassword.TabIndex = 0
                 textboxPassword.TabIndex = 1
-                labelNombre.TabIndex = 6
-                textboxNombre.TabIndex = 7
+                labelNombre.TabIndex = 2
+                textboxNombre.TabIndex = 3
             End If
         End If
     End Sub
