@@ -13,7 +13,7 @@
     <AssemblyName>CSPesaje</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsFormsWithCustomSubMain</MyType>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <TargetFrameworkProfile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -154,11 +154,36 @@
     <Compile Include="..\..\..\..\framework-vbnet\CS_Icon.vb">
       <Link>Framework\CS_Icon.vb</Link>
     </Compile>
-    <Compile Include="..\..\..\..\framework-vbnet\Database.ADO.vb">
-      <Link>Framework\Database.ADO.vb</Link>
+    <Compile Include="..\..\..\..\framework-vbnet\CS_String.vb">
+      <Link>Framework\CS_String.vb</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\framework-vbnet\CS_ValueTranslation_Syncfusion.vb">
+      <Link>Framework\CS_ValueTranslation_Syncfusion.vb</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\framework-vbnet\Database.Ado.SqlServer.vb">
+      <Link>Framework\Database.Ado.SqlServer.vb</Link>
     </Compile>
     <Compile Include="..\..\..\..\framework-vbnet\Database.EntityFramework.vb">
       <Link>Framework\Database.EntityFramework.vb</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\framework-vbnet\Database.LoginInfo.designer.vb">
+      <Link>Framework\Database.LoginInfo.designer.vb</Link>
+      <DependentUpon>Database.LoginInfo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\..\..\framework-vbnet\Database.LoginInfo.vb">
+      <Link>Framework\Database.LoginInfo.vb</Link>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="..\..\..\..\framework-vbnet\Database.SelectDatasource.designer.vb">
+      <Link>Framework\Database.SelectDatasource.designer.vb</Link>
+      <DependentUpon>Database.SelectDatasource.vb</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\..\..\framework-vbnet\Database.SelectDatasource.vb">
+      <Link>Framework\Database.SelectDatasource.vb</Link>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="..\..\..\..\framework-vbnet\Encrypt.StringCipher.vb">
+      <Link>Framework\Encrypt.StringCipher.vb</Link>
     </Compile>
     <Compile Include="..\..\..\..\framework-vbnet\ErrorHandler.vb">
       <Link>Framework\ErrorHandler.vb</Link>
@@ -174,25 +199,14 @@
     <Compile Include="..\..\..\..\framework-vbnet\Files.vb">
       <Link>Framework\Files.vb</Link>
     </Compile>
+    <Compile Include="..\..\..\..\framework-vbnet\Forms.vb">
+      <Link>Framework\Forms.vb</Link>
+    </Compile>
     <Compile Include="..\..\..\..\framework-vbnet\Graphics.vb">
       <Link>EF Extensions\Graphics.vb</Link>
     </Compile>
-    <Compile Include="C:\Data\Cardoner Sistemas\Development\framework-vbnet\CS_Database_SelectSource.designer.vb">
-      <Link>Framework\CS_Database_SelectSource.designer.vb</Link>
-      <DependentUpon>CS_Database_SelectSource.vb</DependentUpon>
-    </Compile>
-    <Compile Include="C:\Data\Cardoner Sistemas\Development\framework-vbnet\CS_Database_SelectSource.vb">
-      <Link>Framework\CS_Database_SelectSource.vb</Link>
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="C:\Data\Cardoner Sistemas\Development\framework-vbnet\CS_Parameter_System.vb">
       <Link>Framework\CS_Parameter_System.vb</Link>
-    </Compile>
-    <Compile Include="C:\Data\Cardoner Sistemas\Development\framework-vbnet\CS_Encryption_TripleDES.vb">
-      <Link>Framework\CS_Encryption_TripleDES.vb</Link>
-    </Compile>
-    <Compile Include="C:\Data\Cardoner Sistemas\Development\framework-vbnet\CS_Form.vb">
-      <Link>Framework\CS_Form.vb</Link>
     </Compile>
     <Compile Include="C:\Data\Cardoner Sistemas\Development\framework-vbnet\CS_Instance.vb">
       <Link>Framework\CS_Instance.vb</Link>
@@ -381,6 +395,7 @@
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
       <DependentUpon>Application.myapp</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="My Project\Resources.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -451,13 +466,17 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="..\..\..\..\framework-vbnet\Database.LoginInfo.resx">
+      <Link>Framework\Database.LoginInfo.resx</Link>
+      <DependentUpon>Database.LoginInfo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\..\framework-vbnet\Database.SelectDatasource.resx">
+      <Link>Framework\Database.SelectDatasource.resx</Link>
+      <DependentUpon>Database.SelectDatasource.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="..\..\..\..\framework-vbnet\ErrorHandlerMessageBox.resx">
       <Link>Framework\ErrorHandlerMessageBox.resx</Link>
       <DependentUpon>ErrorHandlerMessageBox.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="C:\Data\Cardoner Sistemas\Development\framework-vbnet\CS_Database_SelectSource.resx">
-      <Link>Framework\CS_Database_SelectSource.resx</Link>
-      <DependentUpon>CS_Database_SelectSource.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Tablas ABMs\formCamion.resx">
       <DependentUpon>formCamion.vb</DependentUpon>
@@ -683,7 +702,9 @@
   <ItemGroup>
     <None Include="Resources\Balanza.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Resources\DatabaseLoginInfo48.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

@@ -36,7 +36,7 @@
         buttonIndiceObtener.Visible = mIsNew
 
         'Me.MdiParent = pFormMDIMain
-        CS_Form.CenterToParent(ParentForm, Me)
+        CardonerSistemas.Forms.CenterToParent(ParentForm, Me)
         InitializeFormAndControls()
         SetDataFromObjectToControls()
         'If Me.WindowState = FormWindowState.Minimized Then
@@ -68,7 +68,7 @@
         buttonIndiceObtener.Visible = mIsNew
 
         'Me.MdiParent = pFormMDIMain
-        CS_Form.CenterToParent(ParentForm, Me)
+        CardonerSistemas.Forms.CenterToParent(ParentForm, Me)
         InitializeFormAndControls()
         SetDataFromObjectToControls()
         'If Me.WindowState = FormWindowState.Minimized Then
@@ -265,7 +265,7 @@
             Else
                 Throw New Exception("No se ha seleccionado el Tipo de Almacenaje")
             End If
-            .AlmacenajeDiaGracia = CS_ValueTranslation.FromControlIntegerTextBoxToValueShort(integertextboxAlmacenajeDiaGracia)
+            .AlmacenajeDiaGracia = CS_ValueTranslation_Syncfusion.FromControlIntegerTextBoxToValueShort(integertextboxAlmacenajeDiaGracia)
             .AlmacenajeInicio = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerAlmacenajeInicio.Value, datetimepickerAlmacenajeInicio.Checked)
             .AlmacenajePorcentajeMensual = Convert.ToDecimal(percenttextboxAlmacenajePorcentajeMensual.PercentValue)
         End With
@@ -446,8 +446,8 @@
                 mdbContext.SaveChanges()
 
                 ' Refresco la lista de Cosecha_Producto_Tarifas para mostrar los cambios
-                If CS_Form.MDIChild_IsLoaded(CType(pFormMDIMain, Form), "formTarifas") Then
-                    Dim formTarifas As formTarifas = CType(CS_Form.MDIChild_GetInstance(CType(pFormMDIMain, Form), "formTarifas"), formTarifas)
+                If CardonerSistemas.Forms.MdiChildIsLoaded(CType(pFormMDIMain, Form), "formTarifas") Then
+                    Dim formTarifas As formTarifas = CType(CardonerSistemas.Forms.MdiChildGetInstance(CType(pFormMDIMain, Form), "formTarifas"), formTarifas)
                     formTarifas.RefreshData(mCosecha_Producto_TarifaActual.IDCosecha, mCosecha_Producto_TarifaActual.IDProducto, mCosecha_Producto_TarifaActual.Indice)
                     formTarifas = Nothing
                 End If

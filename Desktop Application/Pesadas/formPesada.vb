@@ -36,7 +36,7 @@
         End If
 
         'Me.MdiParent = pFormMDIMain
-        CS_Form.CenterToParent(ParentForm, Me)
+        CardonerSistemas.Forms.CenterToParent(ParentForm, Me)
         InitializeFormAndControls()
         SetDataFromObjectToControls()
         'If Me.WindowState = FormWindowState.Minimized Then
@@ -1203,8 +1203,8 @@
                 mdbContext.SaveChanges()
 
                 ' Refresco la lista de Pesadas para mostrar los cambios
-                If CS_Form.MDIChild_IsLoaded(CType(pFormMDIMain, Form), "formPesadas") Then
-                    Dim formPesadas As formPesadas = CType(CS_Form.MDIChild_GetInstance(CType(pFormMDIMain, Form), "formPesadas"), formPesadas)
+                If CardonerSistemas.Forms.MdiChildIsLoaded(CType(pFormMDIMain, Form), "formPesadas") Then
+                    Dim formPesadas As formPesadas = CType(CardonerSistemas.Forms.MdiChildGetInstance(CType(pFormMDIMain, Form), "formPesadas"), formPesadas)
                     formPesadas.RefreshData(mPesadaActual.IDPesada)
                     formPesadas = Nothing
                 End If

@@ -33,7 +33,7 @@
         End If
 
         Me.MdiParent = pFormMDIMain
-        CS_Form.CenterToParent(ParentForm, Me)
+        CardonerSistemas.Forms.CenterToParent(ParentForm, Me)
         InitializeFormAndControls()
         SetDataFromObjectToControls()
         Me.Show()
@@ -276,8 +276,8 @@
                 mdbContext.SaveChanges()
 
                 ' Refresco la lista de OrigenesDestinos para mostrar los cambios
-                If CS_Form.MDIChild_IsLoaded(CType(pFormMDIMain, Form), "formOrigenesDestinos") Then
-                    Dim formOrigenDestinos As formOrigenesDestinos = CType(CS_Form.MDIChild_GetInstance(CType(pFormMDIMain, Form), "formOrigenesDestinos"), formOrigenesDestinos)
+                If CardonerSistemas.Forms.MdiChildIsLoaded(CType(pFormMDIMain, Form), "formOrigenesDestinos") Then
+                    Dim formOrigenDestinos As formOrigenesDestinos = CType(CardonerSistemas.Forms.MdiChildGetInstance(CType(pFormMDIMain, Form), "formOrigenesDestinos"), formOrigenesDestinos)
                     formOrigenDestinos.RefreshData(mOrigenDestinoActual.IDOrigenDestino)
                     formOrigenDestinos = Nothing
                 End If

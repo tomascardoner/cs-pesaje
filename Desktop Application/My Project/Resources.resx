@@ -118,6 +118,18 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="ImageAceptar32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Actions-dialog-ok-apply-icon (6).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ImageCancelar32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Actions-dialog-cancel-icon (6).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ImageDatabaseLoginInfo48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\databaselogininfo48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ImageDatabaseSelect48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DatabaseSearch48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="IMAGE_APPLICATION_ICON_256" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Balanza.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -130,9 +142,6 @@
   <data name="IMAGE_CALENDAR_TODAY_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Actions-go-jump-today-icon_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="IMAGE_CANCEL_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Actions-dialog-cancel-icon (6).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="IMAGE_CARDONERSISTEMAS" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Cardoner Sistemas.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -141,9 +150,6 @@
   </data>
   <data name="IMAGE_CLOSE_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Actions-dialog-close-icon (6).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="IMAGE_DATABASE_SELECT_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DatabaseSearch48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="IMAGE_INICIO_SESION_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Login Manager (5).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -177,9 +183,6 @@
   </data>
   <data name="IMAGE_MOVE_PREVIOUS_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Move Previous (Arrow) Red24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="IMAGE_OK_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Actions-dialog-ok-apply-icon (6).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="IMAGE_PERSONA_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Actions-view-pim-contacts-icon (5).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

@@ -1,4 +1,6 @@
-﻿Module Configuration
+﻿Imports System.IO
+
+Module Configuration
     Private Const ConfigSubFolder As String = "Config"
 
     Private Const AppearanceFileName As String = "Appearance.json"
@@ -8,7 +10,7 @@
     Friend Function LoadFiles() As Boolean
         Dim ConfigFolder As String
 
-        ConfigFolder = My.Application.Info.DirectoryPath & IIf(My.Application.Info.DirectoryPath.EndsWith("\"), "", "\").ToString() & ConfigSubFolder & "\"
+        ConfigFolder = Path.Combine(Application.StartupPath, ConfigSubFolder)
 
         ' Appearance
         If Not CardonerSistemas.ConfigurationJson.LoadFile(ConfigFolder, AppearanceFileName, pAppearanceConfig) Then
@@ -24,6 +26,14 @@
         pGeneralConfig.ReportsPath = CardonerSistemas.Files.ProcessFolderName(pGeneralConfig.ReportsPath)
 
         Return True
+    End Function
+
+    Friend Function SaveFileDatabase() As Boolean
+        Dim ConfigFolder As String
+
+        ConfigFolder = Path.Combine(Application.StartupPath, ConfigSubFolder)
+
+        Return CardonerSistemas.ConfigurationJson.SaveFile(ConfigFolder, DatabaseFileName, StartUp.pDatabaseConfig, True)
     End Function
 
 End Module

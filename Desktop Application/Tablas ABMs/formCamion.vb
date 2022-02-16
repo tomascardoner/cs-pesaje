@@ -22,8 +22,8 @@
             mCamionActual = New Camion
             With mCamionActual
                 ' Si está abierto el form de Camiones, y tiene un Transportista seleccionado, lo uso como predeterminado
-                If CS_Form.MDIChild_IsLoaded(CType(pFormMDIMain, Form), "formCamiones") Then
-                    Dim formCamions As formCamiones = CType(CS_Form.MDIChild_GetInstance(CType(pFormMDIMain, Form), "formCamiones"), formCamiones)
+                If CardonerSistemas.Forms.MdiChildIsLoaded(CType(pFormMDIMain, Form), "formCamiones") Then
+                    Dim formCamions As formCamiones = CType(CardonerSistemas.Forms.MdiChildGetInstance(CType(pFormMDIMain, Form), "formCamiones"), formCamiones)
                     If CInt(formCamions.comboboxTransportista.ComboBox.SelectedValue) <> CardonerSistemas.Constants.FIELD_VALUE_ALL_INTEGER Then
                         .IDEntidad = CInt(formCamions.comboboxTransportista.ComboBox.SelectedValue)
                     End If
@@ -42,7 +42,7 @@
         End If
 
         Me.MdiParent = pFormMDIMain
-        CS_Form.CenterToParent(ParentForm, Me)
+        CardonerSistemas.Forms.CenterToParent(ParentForm, Me)
         InitializeFormAndControls()
         SetDataFromObjectToControls()
         Me.Show()
@@ -201,8 +201,8 @@
                 mdbContext.SaveChanges()
 
                 ' Refresco la lista de Camiones para mostrar los cambios
-                If CS_Form.MDIChild_IsLoaded(CType(pFormMDIMain, Form), "formCamiones") Then
-                    Dim formCamions As formCamiones = CType(CS_Form.MDIChild_GetInstance(CType(pFormMDIMain, Form), "formCamiones"), formCamiones)
+                If CardonerSistemas.Forms.MdiChildIsLoaded(CType(pFormMDIMain, Form), "formCamiones") Then
+                    Dim formCamions As formCamiones = CType(CardonerSistemas.Forms.MdiChildGetInstance(CType(pFormMDIMain, Form), "formCamiones"), formCamiones)
                     formCamions.RefreshData(mCamionActual.IDEntidad, mCamionActual.IDCamion)
                     formCamions = Nothing
                 End If

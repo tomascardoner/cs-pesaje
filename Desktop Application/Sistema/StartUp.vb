@@ -17,9 +17,8 @@
 
     Friend Sub Main()
         Dim StartupTime As Date
-        Dim DataSourceIndex As Integer
 
-        System.Windows.Forms.Cursor.Current = Cursors.AppStarting
+        Cursor.Current = Cursors.AppStarting
 
         My.Application.Log.WriteEntry("La Aplicación se está iniciando.", TraceEventType.Information)
 
@@ -45,108 +44,30 @@
         formSplashScreen.labelStatus.Text = "Obteniendo los parámetros de conexión a la Base de datos..."
         Application.DoEvents()
 
-        ' Si hay más de un Datasource especificado, muestro la ventana de selección
-        If pDatabaseConfig.Datasource.Contains(CardonerSistemas.Constants.STRING_LIST_SEPARATOR) Then
-            CS_Database_SelectSource.comboboxDataSource.Items.AddRange(pDatabaseConfig.Datasource.Split(CChar(CardonerSistemas.Constants.STRING_LIST_SEPARATOR)))
-            If Not CS_Database_SelectSource.ShowDialog(formSplashScreen) = DialogResult.OK Then
-                Application.Exit()
-                My.Application.Log.WriteEntry("La Aplicación ha finalizado porque el Usuario no ha seleccionado el origen de los datos.", TraceEventType.Warning)
-                Exit Sub
-            End If
-            DataSourceIndex = CS_Database_SelectSource.comboboxDataSource.SelectedIndex
-            CS_Database_SelectSource.Close()
-            CS_Database_SelectSource.Dispose()
-        Else
-            DataSourceIndex = -1
-        End If
-
         ' Obtengo el Connection String para las conexiones de ADO .NET
-        pDatabase = New CardonerSistemas.Database.ADO.SQLServer
-        pDatabase.ApplicationName = My.Application.Info.Title
-        If DataSourceIndex > -1 Then
-            pDatabase.Datasource = pDatabaseConfig.Datasource.Split(CChar(CardonerSistemas.Constants.STRING_LIST_SEPARATOR)).ElementAt(DataSourceIndex)
-            ' Database
-            If pDatabaseConfig.Database.Contains(CardonerSistemas.Constants.STRING_LIST_SEPARATOR) Then
-                Dim aDatabase() As String
-                aDatabase = pDatabaseConfig.Database.Split(CChar(CardonerSistemas.Constants.STRING_LIST_SEPARATOR))
-                If aDatabase.GetUpperBound(0) >= DataSourceIndex Then
-                    pDatabase.InitialCatalog = aDatabase(DataSourceIndex)
-                Else
-                    pDatabase.InitialCatalog = ""
-                End If
-                aDatabase = Nothing
-            Else
-                pDatabase.InitialCatalog = pDatabaseConfig.Database
-            End If
-            ' UserID
-            If pDatabaseConfig.UserId.Contains(CardonerSistemas.Constants.STRING_LIST_SEPARATOR) Then
-                Dim aUserID() As String
-                aUserID = pDatabaseConfig.UserId.Split(CChar(CardonerSistemas.Constants.STRING_LIST_SEPARATOR))
-                If aUserID.GetUpperBound(0) >= DataSourceIndex Then
-                    pDatabase.UserId = aUserID(DataSourceIndex)
-                Else
-                    pDatabase.UserId = ""
-                End If
-                aUserID = Nothing
-            Else
-                pDatabase.UserId = pDatabaseConfig.UserId
-            End If
-            ' Password
-            Dim PasswordEncrypted As String
-            If pDatabaseConfig.Password.Contains(CardonerSistemas.Constants.STRING_LIST_SEPARATOR) Then
-                Dim aPassword() As String
-                aPassword = pDatabaseConfig.Password.Split(CChar(CardonerSistemas.Constants.STRING_LIST_SEPARATOR))
-                If aPassword.GetUpperBound(0) >= DataSourceIndex Then
-                    PasswordEncrypted = aPassword(DataSourceIndex)
-                Else
-                    PasswordEncrypted = ""
-                End If
-                aPassword = Nothing
-            Else
-                PasswordEncrypted = pDatabaseConfig.Password
-            End If
-            ' Desencripto la contraseña de la conexión a la base de datos que está en el archivo app.config
-            If PasswordEncrypted.Length > 0 Then
-                Dim PasswordDecrypter As New CS_Encrypt_TripleDES(CardonerSistemas.Constants.PublicEncryptionPassword)
-                Dim DecryptedPassword As String = ""
-                If Not PasswordDecrypter.Decrypt(PasswordEncrypted, DecryptedPassword) Then
-                    MsgBox("La contraseña de conexión a la base de datos es incorrecta.", MsgBoxStyle.Critical, My.Application.Info.Title)
-                    formSplashScreen.Close()
-                    formSplashScreen.Dispose()
-                    TerminateApplication()
-                    PasswordDecrypter = Nothing
-                    Exit Sub
-                End If
-                pDatabase.Password = DecryptedPassword
-                PasswordDecrypter = Nothing
-            Else
-                pDatabase.Password = ""
-            End If
-            PasswordEncrypted = Nothing
-        Else
-            pDatabase.Datasource = pDatabaseConfig.Datasource
-            pDatabase.InitialCatalog = pDatabaseConfig.Database
-            pDatabase.UserId = pDatabaseConfig.UserId
-            ' Desencripto la contraseña de la conexión a la base de datos que está en el archivo app.config
-            Dim PasswordDecrypter As New CS_Encrypt_TripleDES(CardonerSistemas.Constants.PublicEncryptionPassword)
-            Dim DecryptedPassword As String = ""
-            If Not PasswordDecrypter.Decrypt(pDatabaseConfig.Password, DecryptedPassword) Then
-                MsgBox("La contraseña de conexión a la base de datos es incorrecta.", MsgBoxStyle.Critical, My.Application.Info.Title)
-                formSplashScreen.Close()
-                formSplashScreen.Dispose()
-                TerminateApplication()
-                PasswordDecrypter = Nothing
-                Exit Sub
-            End If
-            pDatabase.Password = DecryptedPassword
-            PasswordDecrypter = Nothing
+        pDatabase = New CardonerSistemas.Database.Ado.SqlServer()
+        If Not pDatabase.SetProperties(pDatabaseConfig.Datasource, pDatabaseConfig.Database, pDatabaseConfig.UserId, pDatabaseConfig.Password, pDatabaseConfig.ConnectTimeout, pDatabaseConfig.ConnectRetryCount, pDatabaseConfig.ConnectRetryInterval) Then
+            TerminateApplication()
+            Return
         End If
-        pDatabase.MultipleActiveResultsets = True
-        pDatabase.WorkstationID = My.Computer.Name
+        If Not pDatabase.PasswordUnencrypt() Then
+            TerminateApplication()
+            Return
+        End If
         pDatabase.CreateConnectionString()
 
+        ' Verifico que se pueda establecer la conexión a la base de datos
+        Dim newLoginData As Boolean = False
+        If Not pDatabase.Connect(pDatabaseConfig, newLoginData) Then
+            TerminateApplication()
+            Return
+        End If
+        If newLoginData Then
+            Configuration.SaveFileDatabase()
+        End If
+
         ' Obtengo el Connection String para las conexiones de Entity Framework
-        CSPesajeContext.CreateConnectionString(pDatabaseConfig.Provider, pDatabase.ConnectionString)
+        CSPesajeContext.ConnectionString = CardonerSistemas.Database.EntityFramework.CreateConnectionString(pDatabaseConfig.Provider, pDatabase.ConnectionString, "CSPesaje")
 
         ' Cargos los Parámetros desde la Base de datos
         formSplashScreen.labelStatus.Text = "Cargando los parámetros desde la Base de datos..."
@@ -168,18 +89,13 @@
         End If
 
         ' Muestro el Nombre de la Compañía a la que está licenciada la Aplicación
-        Dim LicenseDecrypter As New CS_Encrypt_TripleDES(Constantes.APPLICATION_LICENSE_PASSWORD)
-        Dim DecryptedLicense As String = ""
-        If Not LicenseDecrypter.Decrypt(CS_Parameter_System.GetString(Parametros.LICENSE_COMPANY_NAME, "EMPTY"), DecryptedLicense) Then
-            MsgBox("La Licencia especificada no es válida.", MsgBoxStyle.Critical, My.Application.Info.Title)
+        If Not CardonerSistemas.Encrypt.StringCipher.Decrypt(CS_Parameter_System.GetString(Parametros.LICENSE_COMPANY_NAME, "EMPTY"), Constantes.APPLICATION_LICENSE_PASSWORD, pLicensedTo) Then
+            MsgBox("La Licencia especificada es incorrecta.", MsgBoxStyle.Critical, My.Application.Info.Title)
             formSplashScreen.Close()
             formSplashScreen.Dispose()
             TerminateApplication()
-            LicenseDecrypter = Nothing
             Exit Sub
         End If
-        pLicensedTo = DecryptedLicense
-        LicenseDecrypter = Nothing
         formSplashScreen.labelLicensedTo.Text = pLicensedTo
         Application.DoEvents()
 
@@ -207,7 +123,7 @@
         formSplashScreen.Focus()
         Application.DoEvents()
 
-        CS_Form.MDIChild_PositionAndSizeToFit(CType(pFormMDIMain, Form), CType(formPesadas, Form))
+        CardonerSistemas.Forms.MdiChildPositionAndSizeToFit(CType(pFormMDIMain, Form), CType(formPesadas, Form))
 
         formSplashScreen.labelStatus.Text = "Todo completado."
         Application.DoEvents()
@@ -227,7 +143,7 @@
                 pUsuario = dbcontext.Usuario.Find(1)
                 Appearance.UserLoggedIn()
             End Using
-        ElseIf pGeneralConfig.AutoLogonUsername <> "" Then
+        ElseIf pGeneralConfig.AutoLogonUsername <> String.Empty Then
             ' Se especifica un Usuario de Auto Logon, por lo tanto, se procederá a verificar la información de Logon
             Using dbcontext As New CSPesajeContext(True)
                 pUsuario = dbcontext.Usuario.Where(Function(us) us.Nombre = pGeneralConfig.AutoLogonUsername).FirstOrDefault
@@ -236,21 +152,17 @@
                     My.Application.Log.WriteEntry("La Aplicación ha finalizado porque el Usuario especificado en Auto-Logon no existe.", TraceEventType.Warning)
                     Exit Sub
                 End If
-                Dim UserPasswordDecrypter As New CS_Encrypt_TripleDES(CardonerSistemas.Constants.PublicEncryptionPassword)
-                Dim DecryptedPassword As String = ""
-                If Not UserPasswordDecrypter.Decrypt(pGeneralConfig.AutoLogonPassword, DecryptedPassword) Then
+                Dim DecryptedPassword As String = String.Empty
+                If Not CardonerSistemas.Encrypt.StringCipher.Decrypt(pGeneralConfig.AutoLogonPassword, CardonerSistemas.Constants.PublicEncryptionPassword, DecryptedPassword) Then
                     MsgBox("La contraseña especificada en Auto-Logon es incorrecta.", MsgBoxStyle.Critical, My.Application.Info.Title)
                     TerminateApplication()
-                    UserPasswordDecrypter = Nothing
                     Application.Exit()
                     My.Application.Log.WriteEntry("La Aplicación ha finalizado porque el Password especificado en el Auto-Logon es incorrecto.", TraceEventType.Warning)
                     Exit Sub
                 End If
-                UserPasswordDecrypter = Nothing
                 If DecryptedPassword <> pUsuario.Password Then
                     MsgBox("La contraseña especificada en Auto-Logon es incorrecta.", MsgBoxStyle.Critical, My.Application.Info.Title)
                     TerminateApplication()
-                    UserPasswordDecrypter = Nothing
                     Application.Exit()
                     My.Application.Log.WriteEntry("La Aplicación ha finalizado porque el Password especificado en el Auto-Logon es incorrecto.", TraceEventType.Warning)
                     Exit Sub
@@ -283,8 +195,13 @@
     End Sub
 
     Friend Sub TerminateApplication()
-        If Not pFormMDIMain Is Nothing Then
-            CS_Form.MDIChild_CloseAll(CType(pFormMDIMain, Form))
+        If pFormMDIMain IsNot Nothing Then
+            CardonerSistemas.Forms.MdiChildCloseAll(CType(pFormMDIMain, Form))
+            CardonerSistemas.Forms.CloseAll("FormMDIMain")
+        End If
+        If pDatabase IsNot Nothing Then
+            pDatabase.Close()
+            pDatabase = Nothing
         End If
 
         pAppearanceConfig = Nothing

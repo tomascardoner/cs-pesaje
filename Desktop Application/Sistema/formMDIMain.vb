@@ -8,7 +8,7 @@
 
 #Region "Form stuff"
 
-    Private Sub Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub Me_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ' Cambio el puntero del mouse para indicar que la aplicación está iniciando
         Me.Cursor = Cursors.AppStarting
 
@@ -22,31 +22,15 @@
         textboxKilogramo.Visible = pBalanzaConeccionHabilitada
     End Sub
 
-    Private Sub MDIMain_Resize() Handles Me.Resize
-        If Not Me.WindowState = FormWindowState.Minimized Then
-
-            'HAGO UN RESIZE DE TODOS LOS CHILDS QUE ESTÉN ABIERTOS
-            For Each FormCurrent As Form In Me.MdiChildren
-                If FormCurrent.FormBorderStyle = Windows.Forms.FormBorderStyle.Sizable Then
-                    If FormCurrent.Name = "formComprobante" Then
-                        CS_Form.MDIChild_CenterToClientArea(FormCurrent, Me.ClientSize)
-                    Else
-                        CS_Form.MDIChild_PositionAndSizeToFit(Me, FormCurrent)
-                    End If
-                Else
-                    CS_Form.MDIChild_CenterToClientArea(FormCurrent, Me.ClientSize)
-                End If
-            Next
-        End If
-    End Sub
-
-    Private Sub MDIMain_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+    Private Sub Me_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
         If Not (e.CloseReason = CloseReason.ApplicationExitCall Or e.CloseReason = CloseReason.TaskManagerClosing Or e.CloseReason = CloseReason.WindowsShutDown) Then
             If MsgBox("¿Desea salir de la aplicación?", CType(MsgBoxStyle.Information + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.No Then
                 e.Cancel = True
-                Exit Sub
             End If
         End If
+    End Sub
+
+    Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
         TerminateApplication()
     End Sub
 
@@ -91,7 +75,7 @@
     End Sub
 
     Private Sub menuitemVentana_CerrarTodas_Click() Handles menuitemVentana_CerrarTodas.Click
-        CS_Form.MDIChild_CloseAll(Me)
+        CardonerSistemas.Forms.MdiChildCloseAll(Me)
     End Sub
 
 #End Region
@@ -111,7 +95,7 @@
         If Permisos.VerificarPermiso(Permisos.ENTIDAD) Then
             Me.Cursor = Cursors.WaitCursor
 
-            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formEntidades, Form))
+            CardonerSistemas.Forms.MdiChildPositionAndSizeToFit(Me, CType(formEntidades, Form))
             formEntidades.Show()
             If formEntidades.WindowState = FormWindowState.Minimized Then
                 formEntidades.WindowState = FormWindowState.Normal
@@ -126,7 +110,7 @@
         If Permisos.VerificarPermiso(Permisos.CAMION) Then
             Me.Cursor = Cursors.WaitCursor
 
-            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formCamiones, Form))
+            CardonerSistemas.Forms.MdiChildPositionAndSizeToFit(Me, CType(formCamiones, Form))
             formCamiones.Show()
             If formCamiones.WindowState = FormWindowState.Minimized Then
                 formCamiones.WindowState = FormWindowState.Normal
@@ -141,7 +125,7 @@
         If Permisos.VerificarPermiso(Permisos.ORIGENDESTINO) Then
             Me.Cursor = Cursors.WaitCursor
 
-            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formOrigenesDestinos, Form))
+            CardonerSistemas.Forms.MdiChildPositionAndSizeToFit(Me, CType(formOrigenesDestinos, Form))
             formOrigenesDestinos.Show()
             If formOrigenesDestinos.WindowState = FormWindowState.Minimized Then
                 formOrigenesDestinos.WindowState = FormWindowState.Normal
@@ -156,7 +140,7 @@
         If Permisos.VerificarPermiso(Permisos.USUARIOGRUPO) Then
             Me.Cursor = Cursors.WaitCursor
 
-            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formUsuarioGrupoPermisos, Form))
+            CardonerSistemas.Forms.MdiChildPositionAndSizeToFit(Me, CType(formUsuarioGrupoPermisos, Form))
             formUsuarioGrupoPermisos.Show()
             If formUsuarioGrupoPermisos.WindowState = FormWindowState.Minimized Then
                 formUsuarioGrupoPermisos.WindowState = FormWindowState.Normal
@@ -171,7 +155,7 @@
         If Permisos.VerificarPermiso(Permisos.TARIFA) Then
             Me.Cursor = Cursors.WaitCursor
 
-            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formTarifas, Form))
+            CardonerSistemas.Forms.MdiChildPositionAndSizeToFit(Me, CType(formTarifas, Form))
             formTarifas.Show()
             If formTarifas.WindowState = FormWindowState.Minimized Then
                 formTarifas.WindowState = FormWindowState.Normal
@@ -190,7 +174,7 @@
         If Permisos.VerificarPermiso(Permisos.PESADA) Then
             Me.Cursor = Cursors.WaitCursor
 
-            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formPesadas, Form))
+            CardonerSistemas.Forms.MdiChildPositionAndSizeToFit(Me, CType(formPesadas, Form))
             formPesadas.Show()
             If formPesadas.WindowState = FormWindowState.Minimized Then
                 formPesadas.WindowState = FormWindowState.Normal
@@ -209,7 +193,7 @@
         If Permisos.VerificarPermiso(Permisos.REPORTE) Then
             Me.Cursor = Cursors.WaitCursor
 
-            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formReportes, Form))
+            CardonerSistemas.Forms.MdiChildPositionAndSizeToFit(Me, CType(formReportes, Form))
             formReportes.Show()
             If formReportes.WindowState = FormWindowState.Minimized Then
                 formReportes.WindowState = FormWindowState.Normal
@@ -234,7 +218,7 @@
 
     Private Sub CerrarSesionUsuario()
         If MsgBox("¿Desea cerrar la sesión del Usuario actual?", CType(MsgBoxStyle.Question + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
-            CS_Form.MDIChild_CloseAll(Me)
+            CardonerSistemas.Forms.MdiChildCloseAll(Me)
             labelUsuarioNombre.Image = Nothing
             labelUsuarioNombre.Text = ""
             pUsuario = Nothing

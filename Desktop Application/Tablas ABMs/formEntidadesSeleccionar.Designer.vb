@@ -170,7 +170,7 @@ Partial Class formEntidadesSeleccionar
         '
         'buttonSeleccionar
         '
-        Me.buttonSeleccionar.Image = Global.My.Resources.Resources.IMAGE_OK_32
+        Me.buttonSeleccionar.Image = Global.My.Resources.Resources.ImageAceptar32
         Me.buttonSeleccionar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonSeleccionar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonSeleccionar.Name = "buttonSeleccionar"
@@ -179,7 +179,7 @@ Partial Class formEntidadesSeleccionar
         '
         'buttonCancelar
         '
-        Me.buttonCancelar.Image = Global.My.Resources.Resources.IMAGE_CANCEL_32
+        Me.buttonCancelar.Image = Global.My.Resources.Resources.ImageCancelar32
         Me.buttonCancelar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCancelar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonCancelar.Name = "buttonCancelar"

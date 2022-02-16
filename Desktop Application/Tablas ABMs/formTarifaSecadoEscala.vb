@@ -22,7 +22,7 @@
         mCosecha_Producto_TarifaEscalaActual = Cosecha_Producto_TarifaEscalaActual
 
         'Me.MdiParent = pFormMDIMain
-        CS_Form.CenterToParent(ParentForm, Me)
+        CardonerSistemas.Forms.CenterToParent(ParentForm, Me)
         InitializeFormAndControls()
         SetDataFromObjectToControls()
 
@@ -159,8 +159,8 @@
         SetDataFromControlsToObject()
 
         ' Refresco la lista para mostrar los cambios
-        If CS_Form.IsLoaded("formTarifa") Then
-            Dim formTarifa As formTarifa = CType(CS_Form.GetInstance("formTarifa"), formTarifa)
+        If CardonerSistemas.Forms.IsLoaded("formTarifa") Then
+            Dim formTarifa As formTarifa = CType(CardonerSistemas.Forms.GetInstance("formTarifa"), formTarifa)
             formTarifa.RefreshData_SecadoEscalas(mCosecha_Producto_TarifaEscalaActual.HumedadExcesoInicio)
             formTarifa = Nothing
         End If
