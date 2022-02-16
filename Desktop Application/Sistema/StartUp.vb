@@ -47,10 +47,14 @@
         ' Obtengo el Connection String para las conexiones de ADO .NET
         pDatabase = New CardonerSistemas.Database.Ado.SqlServer()
         If Not pDatabase.SetProperties(pDatabaseConfig.Datasource, pDatabaseConfig.Database, pDatabaseConfig.UserId, pDatabaseConfig.Password, pDatabaseConfig.ConnectTimeout, pDatabaseConfig.ConnectRetryCount, pDatabaseConfig.ConnectRetryInterval) Then
+            formSplashScreen.Close()
+            formSplashScreen.Dispose()
             TerminateApplication()
             Return
         End If
         If Not pDatabase.PasswordUnencrypt() Then
+            formSplashScreen.Close()
+            formSplashScreen.Dispose()
             TerminateApplication()
             Return
         End If
@@ -59,6 +63,8 @@
         ' Verifico que se pueda establecer la conexión a la base de datos
         Dim newLoginData As Boolean = False
         If Not pDatabase.Connect(pDatabaseConfig, newLoginData) Then
+            formSplashScreen.Close()
+            formSplashScreen.Dispose()
             TerminateApplication()
             Return
         End If
@@ -187,7 +193,7 @@
 
         formPesadas.Show()
 
-        System.Windows.Forms.Cursor.Current = Cursors.Default
+        Cursor.Current = Cursors.Default
 
         ' Inicio el loop sobre el form MDI principal
         My.Application.Log.WriteEntry("La Aplicación se ha iniciado correctamente.", TraceEventType.Information)
