@@ -232,6 +232,12 @@
     <Compile Include="EF Extensions\Reporte.vb" />
     <Compile Include="EF Extensions\ReporteParametro.vb" />
     <Compile Include="EF Extensions\Cosecha_Producto_Tarifa.vb" />
+    <Compile Include="Pesadas\formPesadasResumen.Designer.vb">
+      <DependentUpon>formPesadasResumen.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Pesadas\formPesadasResumen.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Sistema\Appearance.vb" />
     <Compile Include="Sistema\Constantes.vb" />
     <Compile Include="Cosecha.vb">
@@ -458,6 +464,9 @@
       <DependentUpon>CSPesaje.tt</DependentUpon>
     </Compile>
     <Compile Include="Sistema\StartUp.vb" />
+    <Compile Include="uspPesadaObtenerResumen_Result.vb">
+      <DependentUpon>CSPesaje.tt</DependentUpon>
+    </Compile>
     <Compile Include="Usuario.vb">
       <DependentUpon>CSPesaje.tt</DependentUpon>
     </Compile>
@@ -480,6 +489,9 @@
     <EmbeddedResource Include="..\..\..\..\framework-vbnet\ErrorHandlerMessageBox.resx">
       <Link>Framework\ErrorHandlerMessageBox.resx</Link>
       <DependentUpon>ErrorHandlerMessageBox.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pesadas\formPesadasResumen.resx">
+      <DependentUpon>formPesadasResumen.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Tablas ABMs\formCamion.resx">
       <DependentUpon>formCamion.vb</DependentUpon>
@@ -708,6 +720,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\DatabaseLoginInfo48.png" />
+    <None Include="Resources\Summary32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

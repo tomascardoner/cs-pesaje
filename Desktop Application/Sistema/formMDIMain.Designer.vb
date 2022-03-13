@@ -58,6 +58,7 @@ Partial Class formMDIMain
         Me.menuitemTablas_Permisos = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemTablas_Tarifas = New System.Windows.Forms.ToolStripMenuItem()
         Me.buttonPesadas = New System.Windows.Forms.ToolStripButton()
+        Me.buttonResumenPesadas = New System.Windows.Forms.ToolStripButton()
         Me.buttonReportes = New System.Windows.Forms.ToolStripButton()
         Me.textboxKilogramo = New System.Windows.Forms.TextBox()
         Me.statusstripMain.SuspendLayout()
@@ -228,10 +229,10 @@ Partial Class formMDIMain
         '
         Me.toolstripMain.AllowMerge = False
         Me.toolstripMain.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.toolstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.dropdownbuttonTablas, Me.buttonPesadas, Me.buttonReportes})
+        Me.toolstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.dropdownbuttonTablas, Me.buttonPesadas, Me.buttonResumenPesadas, Me.buttonReportes})
         Me.toolstripMain.Location = New System.Drawing.Point(0, 0)
         Me.toolstripMain.Name = "toolstripMain"
-        Me.toolstripMain.Size = New System.Drawing.Size(261, 39)
+        Me.toolstripMain.Size = New System.Drawing.Size(414, 39)
         Me.toolstripMain.TabIndex = 2
         Me.toolstripMain.Text = "Principal"
         '
@@ -309,6 +310,15 @@ Partial Class formMDIMain
         Me.buttonPesadas.Name = "buttonPesadas"
         Me.buttonPesadas.Size = New System.Drawing.Size(85, 36)
         Me.buttonPesadas.Text = "Pesadas"
+        '
+        'buttonResumenPesadas
+        '
+        Me.buttonResumenPesadas.Image = Global.My.Resources.Resources.IMAGE_RESUMEN_32
+        Me.buttonResumenPesadas.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.buttonResumenPesadas.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonResumenPesadas.Name = "buttonResumenPesadas"
+        Me.buttonResumenPesadas.Size = New System.Drawing.Size(153, 36)
+        Me.buttonResumenPesadas.Text = "Resumen de pesadas"
         '
         'buttonReportes
         '
@@ -399,4 +409,5 @@ Partial Class formMDIMain
     Friend WithEvents menuitemTablas_Tarifas As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents menuitemTablas_Camiones As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents menuitemTablas_OrigenesDestinos As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents buttonResumenPesadas As ToolStripButton
 End Class

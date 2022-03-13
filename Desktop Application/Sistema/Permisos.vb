@@ -46,6 +46,8 @@
     Friend Const PESADA_MOSTRAR_MERMASAPLICA As String = "PESADA_MOSTRAR_MERMASAPLICA"
     Friend Const PESADA_MOSTRAR_TARIFASASAPLICA As String = "PESADA_MOSTRAR_TARIFASASAPLICA"
 
+    Friend Const RESUMENPESADA As String = "RESUMENPESADA"
+
     Friend Const REPORTE As String = "REPORTE"
 
     Friend Const DESCRIPCION_AGREGAR As String = "Agregar"
@@ -136,6 +138,8 @@
             .Nodes.Add(PESADA_MOSTRAR_MERMASAPLICA, "Mostrar opciones de aplicación de mermas.")
             .Nodes.Add(PESADA_MOSTRAR_TARIFASASAPLICA, "Mostrar opciones de aplicación de tarifas.")
         End With
+
+        RootNode = Arbol.Nodes.Add(RESUMENPESADA, "Resumen de pesadas")
 
         RootNode = Arbol.Nodes.Add(REPORTE, "Reportes")
 

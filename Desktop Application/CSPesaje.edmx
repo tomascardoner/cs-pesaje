@@ -1110,6 +1110,16 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="uspPesadaObtenerResumen" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IDProducto" Type="tinyint" Mode="In" />
+          <Parameter Name="IDCosecha" Type="tinyint" Mode="In" />
+          <Parameter Name="IDPlanta" Type="tinyint" Mode="In" />
+          <Parameter Name="IDEntidad" Type="int" Mode="In" />
+          <Parameter Name="Entradas" Type="bit" Mode="In" />
+          <Parameter Name="Salidas" Type="bit" Mode="In" />
+          <Parameter Name="FechaDesde" Type="date" Mode="In" />
+          <Parameter Name="FechaHasta" Type="date" Mode="In" />
+        </Function>
         <EntityContainer Name="CSPesajeModelStoreContainer">
           <EntitySet Name="Camion" EntityType="Self.Camion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cosecha" EntityType="Self.Cosecha" Schema="dbo" store:Type="Tables" />
@@ -1617,6 +1627,16 @@
             <End Role="Localidad" EntitySet="Localidad" />
             <End Role="Entidad" EntitySet="Entidad" />
           </AssociationSet>
+          <FunctionImport Name="uspPesadaObtenerResumen" ReturnType="Collection(CSPesajeModel.uspPesadaObtenerResumen_Result)">
+            <Parameter Name="IDProducto" Mode="In" Type="Byte" />
+            <Parameter Name="IDCosecha" Mode="In" Type="Byte" />
+            <Parameter Name="IDPlanta" Mode="In" Type="Byte" />
+            <Parameter Name="IDEntidad" Mode="In" Type="Int32" />
+            <Parameter Name="Entradas" Mode="In" Type="Boolean" />
+            <Parameter Name="Salidas" Mode="In" Type="Boolean" />
+            <Parameter Name="FechaDesde" Mode="In" Type="DateTime" />
+            <Parameter Name="FechaHasta" Mode="In" Type="DateTime" />
+          </FunctionImport>
         </EntityContainer>		
 		<EntityType Name="Camion">
           <Key>
@@ -2829,6 +2849,13 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="uspPesadaObtenerResumen_Result">
+          <Property Type="Int32" Name="KilogramosEntradasBrutos" Nullable="false" />
+          <Property Type="Int32" Name="KilogramosEntradasNetos" Nullable="false" />
+          <Property Type="Int32" Name="KilogramosSalidas" Nullable="false" />
+          <Property Type="Int32" Name="CantidadEntradas" Nullable="true" />
+          <Property Type="Int32" Name="CantidadSalidas" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3258,6 +3285,17 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="uspPesadaObtenerResumen" FunctionName="CSPesajeModel.Store.uspPesadaObtenerResumen">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CSPesajeModel.uspPesadaObtenerResumen_Result">
+                <ScalarProperty Name="KilogramosEntradasBrutos" ColumnName="KilogramosEntradasBrutos" />
+                <ScalarProperty Name="KilogramosEntradasNetos" ColumnName="KilogramosEntradasNetos" />
+                <ScalarProperty Name="KilogramosSalidas" ColumnName="KilogramosSalidas" />
+                <ScalarProperty Name="CantidadEntradas" ColumnName="CantidadEntradas" />
+                <ScalarProperty Name="CantidadSalidas" ColumnName="CantidadSalidas" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

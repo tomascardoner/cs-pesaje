@@ -92,116 +92,39 @@
 #Region "Left Toolbar - Tablas"
 
     Private Sub Entidades() Handles menuitemTablas_Entidades.Click
-        If Permisos.VerificarPermiso(Permisos.ENTIDAD) Then
-            Me.Cursor = Cursors.WaitCursor
-
-            CardonerSistemas.Forms.MdiChildPositionAndSizeToFit(Me, CType(formEntidades, Form))
-            formEntidades.Show()
-            If formEntidades.WindowState = FormWindowState.Minimized Then
-                formEntidades.WindowState = FormWindowState.Normal
-            End If
-            formEntidades.Focus()
-
-            Me.Cursor = Cursors.Default
-        End If
+        ShowForm(Permisos.ENTIDAD, CType(formEntidades, Form))
     End Sub
 
     Private Sub Camiones() Handles menuitemTablas_Camiones.Click
-        If Permisos.VerificarPermiso(Permisos.CAMION) Then
-            Me.Cursor = Cursors.WaitCursor
-
-            CardonerSistemas.Forms.MdiChildPositionAndSizeToFit(Me, CType(formCamiones, Form))
-            formCamiones.Show()
-            If formCamiones.WindowState = FormWindowState.Minimized Then
-                formCamiones.WindowState = FormWindowState.Normal
-            End If
-            formCamiones.Focus()
-
-            Me.Cursor = Cursors.Default
-        End If
+        ShowForm(Permisos.CAMION, CType(formCamiones, Form))
     End Sub
 
     Private Sub OrigenesDestinos() Handles menuitemTablas_OrigenesDestinos.Click
-        If Permisos.VerificarPermiso(Permisos.ORIGENDESTINO) Then
-            Me.Cursor = Cursors.WaitCursor
-
-            CardonerSistemas.Forms.MdiChildPositionAndSizeToFit(Me, CType(formOrigenesDestinos, Form))
-            formOrigenesDestinos.Show()
-            If formOrigenesDestinos.WindowState = FormWindowState.Minimized Then
-                formOrigenesDestinos.WindowState = FormWindowState.Normal
-            End If
-            formOrigenesDestinos.Focus()
-
-            Me.Cursor = Cursors.Default
-        End If
+        ShowForm(Permisos.ORIGENDESTINO, CType(formOrigenesDestinos, Form))
     End Sub
 
     Private Sub UsuarioGrupoPermisos() Handles menuitemTablas_Permisos.Click
-        If Permisos.VerificarPermiso(Permisos.USUARIOGRUPO) Then
-            Me.Cursor = Cursors.WaitCursor
-
-            CardonerSistemas.Forms.MdiChildPositionAndSizeToFit(Me, CType(formUsuarioGrupoPermisos, Form))
-            formUsuarioGrupoPermisos.Show()
-            If formUsuarioGrupoPermisos.WindowState = FormWindowState.Minimized Then
-                formUsuarioGrupoPermisos.WindowState = FormWindowState.Normal
-            End If
-            formUsuarioGrupoPermisos.Focus()
-
-            Me.Cursor = Cursors.Default
-        End If
+        ShowForm(Permisos.USUARIOGRUPO, CType(formUsuarioGrupoPermisos, Form))
     End Sub
 
     Private Sub Tarifas() Handles menuitemTablas_Tarifas.Click
-        If Permisos.VerificarPermiso(Permisos.TARIFA) Then
-            Me.Cursor = Cursors.WaitCursor
-
-            CardonerSistemas.Forms.MdiChildPositionAndSizeToFit(Me, CType(formTarifas, Form))
-            formTarifas.Show()
-            If formTarifas.WindowState = FormWindowState.Minimized Then
-                formTarifas.WindowState = FormWindowState.Normal
-            End If
-            formTarifas.Focus()
-
-            Me.Cursor = Cursors.Default
-        End If
+        ShowForm(Permisos.TARIFA, CType(formTarifas, Form))
     End Sub
 
 #End Region
 
-#Region "Left Toolbar - Pesadas"
+#Region "Left Toolbar - Resto"
 
     Private Sub Pesadas() Handles buttonPesadas.Click
-        If Permisos.VerificarPermiso(Permisos.PESADA) Then
-            Me.Cursor = Cursors.WaitCursor
-
-            CardonerSistemas.Forms.MdiChildPositionAndSizeToFit(Me, CType(formPesadas, Form))
-            formPesadas.Show()
-            If formPesadas.WindowState = FormWindowState.Minimized Then
-                formPesadas.WindowState = FormWindowState.Normal
-            End If
-            formPesadas.Focus()
-
-            Me.Cursor = Cursors.Default
-        End If
+        ShowForm(Permisos.PESADA, CType(formPesadas, Form))
     End Sub
 
-#End Region
-
-#Region "Left Toolbar - Reportes"
+    Private Sub ResumenPesadas() Handles buttonResumenPesadas.Click
+        ShowForm(Permisos.RESUMENPESADA, CType(formPesadasResumen, Form))
+    End Sub
 
     Private Sub buttonReportes_Click(sender As Object, e As EventArgs)
-        If Permisos.VerificarPermiso(Permisos.REPORTE) Then
-            Me.Cursor = Cursors.WaitCursor
-
-            CardonerSistemas.Forms.MdiChildPositionAndSizeToFit(Me, CType(formReportes, Form))
-            formReportes.Show()
-            If formReportes.WindowState = FormWindowState.Minimized Then
-                formReportes.WindowState = FormWindowState.Normal
-            End If
-            formReportes.Focus()
-
-            Me.Cursor = Cursors.Default
-        End If
+        ShowForm(Permisos.REPORTE, CType(formReportes, Form))
     End Sub
 
 #End Region
@@ -215,6 +138,21 @@
 #End Region
 
 #Region "Extra stuff"
+
+    Private Sub ShowForm(ByVal idPermiso As String, ByRef form As Form)
+        If Permisos.VerificarPermiso(idPermiso) Then
+            Me.Cursor = Cursors.WaitCursor
+
+            CardonerSistemas.Forms.MdiChildPositionAndSizeToFit(Me, form)
+            form.Show()
+            If form.WindowState = FormWindowState.Minimized Then
+                form.WindowState = FormWindowState.Normal
+            End If
+            form.Focus()
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
 
     Private Sub CerrarSesionUsuario()
         If MsgBox("¿Desea cerrar la sesión del Usuario actual?", CType(MsgBoxStyle.Question + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
