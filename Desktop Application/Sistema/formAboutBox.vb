@@ -2,7 +2,7 @@
 
 Public NotInheritable Class formAboutBox
 
-    Private Sub formAboutBox_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+    Private Sub Me_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Me.Text = String.Format("Acerca de {0}", My.Application.Info.Title)
 
         labelApplicationTitle.Text = My.Application.Info.Title
@@ -11,22 +11,25 @@ Public NotInheritable Class formAboutBox
         labelLicensedTo.Text = pLicensedTo
 
         ' Propiedades
-        Dim NewItem As ListViewItem
+        Dim newItem As ListViewItem
 
-        NewItem = New ListViewItem
-        NewItem.Text = "DB - DataSource"
-        NewItem.SubItems.Add(pDatabase.DataSource)
-        listviewPropiedades.Items.Add(NewItem)
+        newItem = New ListViewItem With {
+            .Text = "DB - DataSource"
+        }
+        newItem.SubItems.Add(pDatabase.Datasource)
+        listviewPropiedades.Items.Add(newItem)
 
-        NewItem = New ListViewItem
-        NewItem.Text = "DB - Database"
-        NewItem.SubItems.Add(pDatabase.InitialCatalog)
-        listviewPropiedades.Items.Add(NewItem)
+        newItem = New ListViewItem With {
+            .Text = "DB - Database"
+        }
+        newItem.SubItems.Add(pDatabase.InitialCatalog)
+        listviewPropiedades.Items.Add(newItem)
 
-        NewItem = New ListViewItem
-        NewItem.Text = "Reports Path"
-        NewItem.SubItems.Add(pGeneralConfig.ReportsPath)
-        listviewPropiedades.Items.Add(NewItem)
+        newItem = New ListViewItem With {
+            .Text = "Reports Path"
+        }
+        newItem.SubItems.Add(pGeneralConfig.ReportsPath)
+        listviewPropiedades.Items.Add(newItem)
     End Sub
 
     Private Sub OKButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OKButton.Click

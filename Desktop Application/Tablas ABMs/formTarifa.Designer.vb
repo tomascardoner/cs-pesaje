@@ -95,13 +95,13 @@ Partial Class formTarifa
         Me.radiobuttonAlmacenajeTipoDiasGraciaSiRetiraAntes = New System.Windows.Forms.RadioButton()
         Me.tabpageSecadoEscala = New System.Windows.Forms.TabPage()
         Me.datagridviewTarifaSecadoEscala = New System.Windows.Forms.DataGridView()
-        Me.columnHumedadExcesoInicio = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnTipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnTarifa = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.toolstripEscala = New System.Windows.Forms.ToolStrip()
         Me.buttonEscala_Agregar = New System.Windows.Forms.ToolStripButton()
         Me.buttonEscala_Editar = New System.Windows.Forms.ToolStripButton()
         Me.buttonEscala_Eliminar = New System.Windows.Forms.ToolStripButton()
+        Me.columnHumedadExcesoInicio = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnTipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnTarifa = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.toolstripMain.SuspendLayout()
         Me.tabcontrolMain.SuspendLayout()
         Me.tabpageGeneral.SuspendLayout()
@@ -976,41 +976,6 @@ Partial Class formTarifa
         Me.datagridviewTarifaSecadoEscala.Size = New System.Drawing.Size(285, 301)
         Me.datagridviewTarifaSecadoEscala.TabIndex = 0
         '
-        'columnHumedadExcesoInicio
-        '
-        Me.columnHumedadExcesoInicio.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnHumedadExcesoInicio.DataPropertyName = "HumedadExcesoInicio"
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle3.Format = "N2"
-        DataGridViewCellStyle3.NullValue = Nothing
-        Me.columnHumedadExcesoInicio.DefaultCellStyle = DataGridViewCellStyle3
-        Me.columnHumedadExcesoInicio.HeaderText = "Exceso Inicio"
-        Me.columnHumedadExcesoInicio.Name = "columnHumedadExcesoInicio"
-        Me.columnHumedadExcesoInicio.ReadOnly = True
-        Me.columnHumedadExcesoInicio.Width = 95
-        '
-        'columnTipo
-        '
-        Me.columnTipo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnTipo.DataPropertyName = "TipoNombre"
-        Me.columnTipo.HeaderText = "Tipo"
-        Me.columnTipo.Name = "columnTipo"
-        Me.columnTipo.ReadOnly = True
-        Me.columnTipo.Width = 53
-        '
-        'columnTarifa
-        '
-        Me.columnTarifa.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnTarifa.DataPropertyName = "Tarifa"
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle4.Format = "C2"
-        DataGridViewCellStyle4.NullValue = Nothing
-        Me.columnTarifa.DefaultCellStyle = DataGridViewCellStyle4
-        Me.columnTarifa.HeaderText = "Tarifa"
-        Me.columnTarifa.Name = "columnTarifa"
-        Me.columnTarifa.ReadOnly = True
-        Me.columnTarifa.Width = 59
-        '
         'toolstripEscala
         '
         Me.toolstripEscala.Dock = System.Windows.Forms.DockStyle.Left
@@ -1052,6 +1017,41 @@ Partial Class formTarifa
         Me.buttonEscala_Eliminar.Name = "buttonEscala_Eliminar"
         Me.buttonEscala_Eliminar.Size = New System.Drawing.Size(84, 36)
         Me.buttonEscala_Eliminar.Text = "Eliminar"
+        '
+        'columnHumedadExcesoInicio
+        '
+        Me.columnHumedadExcesoInicio.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnHumedadExcesoInicio.DataPropertyName = "HumedadExcesoInicio"
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle3.Format = "N2"
+        DataGridViewCellStyle3.NullValue = Nothing
+        Me.columnHumedadExcesoInicio.DefaultCellStyle = DataGridViewCellStyle3
+        Me.columnHumedadExcesoInicio.HeaderText = "Exceso Inicio"
+        Me.columnHumedadExcesoInicio.Name = "columnHumedadExcesoInicio"
+        Me.columnHumedadExcesoInicio.ReadOnly = True
+        Me.columnHumedadExcesoInicio.Width = 95
+        '
+        'columnTipo
+        '
+        Me.columnTipo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnTipo.DataPropertyName = "TipoNombre"
+        Me.columnTipo.HeaderText = "Tipo"
+        Me.columnTipo.Name = "columnTipo"
+        Me.columnTipo.ReadOnly = True
+        Me.columnTipo.Width = 53
+        '
+        'columnTarifa
+        '
+        Me.columnTarifa.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnTarifa.DataPropertyName = "Tarifa"
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle4.Format = "C3"
+        DataGridViewCellStyle4.NullValue = Nothing
+        Me.columnTarifa.DefaultCellStyle = DataGridViewCellStyle4
+        Me.columnTarifa.HeaderText = "Tarifa"
+        Me.columnTarifa.Name = "columnTarifa"
+        Me.columnTarifa.ReadOnly = True
+        Me.columnTarifa.Width = 59
         '
         'formTarifa
         '
