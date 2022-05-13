@@ -238,6 +238,9 @@
     <Compile Include="Pesadas\formPesadasResumen.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="PlantaDeposito.vb">
+      <DependentUpon>CSPesaje.tt</DependentUpon>
+    </Compile>
     <Compile Include="Sistema\Appearance.vb" />
     <Compile Include="Sistema\Constantes.vb" />
     <Compile Include="Cosecha.vb">

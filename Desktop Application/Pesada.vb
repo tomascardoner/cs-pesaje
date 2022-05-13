@@ -14,9 +14,13 @@ Partial Public Class Pesada
     Public Property IDPesada As Integer
     Public Property FechaHoraInicio As Date
     Public Property FechaHoraFin As Nullable(Of Date)
-    Public Property ComprobanteNumero As String
-    Public Property ComprobanteNumeroTercero As String
+    Public Property Ctg As Nullable(Of Long)
+    Public Property ComprobanteNumero As Nullable(Of Long)
+    Public Property ComprobanteNumeroConFormato As String
+    Public Property ComprobanteNumeroTercero As Nullable(Of Long)
+    Public Property ComprobanteNumeroTerceroConFormato As String
     Public Property IDPlanta As Nullable(Of Byte)
+    Public Property IDDeposito As Nullable(Of Byte)
     Public Property IDProducto As Byte
     Public Property IDCosecha As Nullable(Of Byte)
     Public Property Tipo As String
@@ -53,7 +57,8 @@ Partial Public Class Pesada
     Public Overridable Property UsuarioCreacion As Usuario
     Public Overridable Property UsuarioModificacion As Usuario
     Public Overridable Property Camion As Camion
-    Public Overridable Property OrigenDestino1 As OrigenDestino
-    Public Overridable Property OrigenDestino11 As OrigenDestino
+    Public Overridable Property Destino As OrigenDestino
+    Public Overridable Property Origen As OrigenDestino
+    Public Overridable Property PlantaDeposito As PlantaDeposito
 
 End Class

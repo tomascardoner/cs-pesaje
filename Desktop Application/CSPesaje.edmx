@@ -179,9 +179,13 @@
           <Property Name="IDPesada" Type="int" Nullable="false" />
           <Property Name="FechaHoraInicio" Type="smalldatetime" Nullable="false" />
           <Property Name="FechaHoraFin" Type="smalldatetime" />
-          <Property Name="ComprobanteNumero" Type="varchar" MaxLength="12" />
-          <Property Name="ComprobanteNumeroTercero" Type="varchar" MaxLength="12" />
+          <Property Name="Ctg" Type="bigint" />
+          <Property Name="ComprobanteNumero" Type="bigint" />
+          <Property Name="ComprobanteNumeroConFormato" Type="varchar" MaxLength="12" StoreGeneratedPattern="Computed" />
+          <Property Name="ComprobanteNumeroTercero" Type="bigint" />
+          <Property Name="ComprobanteNumeroTerceroConFormato" Type="varchar" MaxLength="12" StoreGeneratedPattern="Computed" />
           <Property Name="IDPlanta" Type="tinyint" />
+          <Property Name="IDDeposito" Type="tinyint" />
           <Property Name="IDProducto" Type="tinyint" Nullable="false" />
           <Property Name="IDCosecha" Type="tinyint" />
           <Property Name="Tipo" Type="char" MaxLength="1" Nullable="false" />
@@ -280,6 +284,22 @@
           <Property Name="IDPlanta" Type="tinyint" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="AplicaMermaVolatil" Type="bit" Nullable="false" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
+          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PlantaDeposito">
+          <Key>
+            <PropertyRef Name="IDPlanta" />
+            <PropertyRef Name="IDDeposito" />
+          </Key>
+          <Property Name="IDPlanta" Type="tinyint" Nullable="false" />
+          <Property Name="IDDeposito" Type="tinyint" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CapacidadToneladasBaseTrigo" Type="smallint" />
+          <Property Name="Notas" Type="varchar(max)" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
@@ -748,6 +768,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Planta__PlantaDeposito">
+          <End Role="Planta" Type="Self.Planta" Multiplicity="1" />
+          <End Role="PlantaDeposito" Type="Self.PlantaDeposito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Planta">
+              <PropertyRef Name="IDPlanta" />
+            </Principal>
+            <Dependent Role="PlantaDeposito">
+              <PropertyRef Name="IDPlanta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Planta__Producto_Planta">
           <End Role="Planta" Type="Self.Planta" Multiplicity="1" />
           <End Role="Producto_Planta" Type="Self.Producto_Planta" Multiplicity="*" />
@@ -757,6 +789,20 @@
             </Principal>
             <Dependent Role="Producto_Planta">
               <PropertyRef Name="IDPlanta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PlantaDeposito__Pesada">
+          <End Role="PlantaDeposito" Type="Self.PlantaDeposito" Multiplicity="0..1" />
+          <End Role="Pesada" Type="Self.Pesada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlantaDeposito">
+              <PropertyRef Name="IDPlanta" />
+              <PropertyRef Name="IDDeposito" />
+            </Principal>
+            <Dependent Role="Pesada">
+              <PropertyRef Name="IDPlanta" />
+              <PropertyRef Name="IDDeposito" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1026,6 +1072,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Usuario__PlantaDeposito__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="PlantaDeposito" Type="Self.PlantaDeposito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="PlantaDeposito">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__PlantaDeposito__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="PlantaDeposito" Type="Self.PlantaDeposito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="PlantaDeposito">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Usuario__Producto__Creacion">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
           <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
@@ -1136,6 +1206,7 @@
           <EntitySet Name="Pesada_Analisis" EntityType="Self.Pesada_Analisis" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pesada_Otro" EntityType="Self.Pesada_Otro" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Planta" EntityType="Self.Planta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PlantaDeposito" EntityType="Self.PlantaDeposito" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Producto" EntityType="Self.Producto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Producto_Cosecha" EntityType="Self.Producto_Cosecha" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Producto_Humedad" EntityType="Self.Producto_Humedad" Schema="dbo" store:Type="Tables" />
@@ -1251,9 +1322,17 @@
             <End Role="Planta" EntitySet="Planta" />
             <End Role="Pesada" EntitySet="Pesada" />
           </AssociationSet>
+          <AssociationSet Name="FK__Planta__PlantaDeposito" Association="Self.FK__Planta__PlantaDeposito">
+            <End Role="Planta" EntitySet="Planta" />
+            <End Role="PlantaDeposito" EntitySet="PlantaDeposito" />
+          </AssociationSet>
           <AssociationSet Name="FK__Planta__Producto_Planta" Association="Self.FK__Planta__Producto_Planta">
             <End Role="Planta" EntitySet="Planta" />
             <End Role="Producto_Planta" EntitySet="Producto_Planta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PlantaDeposito__Pesada" Association="Self.FK__PlantaDeposito__Pesada">
+            <End Role="PlantaDeposito" EntitySet="PlantaDeposito" />
+            <End Role="Pesada" EntitySet="Pesada" />
           </AssociationSet>
           <AssociationSet Name="FK__Producto__Pesada" Association="Self.FK__Producto__Pesada">
             <End Role="Producto" EntitySet="Producto" />
@@ -1342,6 +1421,14 @@
           <AssociationSet Name="FK__Usuario__Planta__Modificacion" Association="Self.FK__Usuario__Planta__Modificacion">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Planta" EntitySet="Planta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__PlantaDeposito__Creacion" Association="Self.FK__Usuario__PlantaDeposito__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="PlantaDeposito" EntitySet="PlantaDeposito" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__PlantaDeposito__Modificacion" Association="Self.FK__Usuario__PlantaDeposito__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="PlantaDeposito" EntitySet="PlantaDeposito" />
           </AssociationSet>
           <AssociationSet Name="FK__Usuario__Producto__Creacion" Association="Self.FK__Usuario__Producto__Creacion">
             <End Role="Usuario" EntitySet="Usuario" />
@@ -1637,6 +1724,23 @@
             <Parameter Name="FechaDesde" Mode="In" Type="DateTime" />
             <Parameter Name="FechaHasta" Mode="In" Type="DateTime" />
           </FunctionImport>
+          <EntitySet Name="PlantaDeposito" EntityType="CSPesajeModel.PlantaDeposito" />
+          <AssociationSet Name="FK__PlantaDeposito__Pesada" Association="CSPesajeModel.FK__PlantaDeposito__Pesada">
+            <End Role="PlantaDeposito" EntitySet="PlantaDeposito" />
+            <End Role="Pesada" EntitySet="Pesada" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Planta__PlantaDeposito" Association="CSPesajeModel.FK__Planta__PlantaDeposito">
+            <End Role="Planta" EntitySet="Planta" />
+            <End Role="PlantaDeposito" EntitySet="PlantaDeposito" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__PlantaDeposito__Creacion" Association="CSPesajeModel.FK__Usuario__PlantaDeposito__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="PlantaDeposito" EntitySet="PlantaDeposito" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__PlantaDeposito__Modificacion" Association="CSPesajeModel.FK__Usuario__PlantaDeposito__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="PlantaDeposito" EntitySet="PlantaDeposito" />
+          </AssociationSet>
         </EntityContainer>		
 		<EntityType Name="Camion">
           <Key>
@@ -1821,8 +1925,8 @@
           <NavigationProperty Name="UsuarioCreacion" Relationship="CSPesajeModel.FK__Usuario__OrigenDestino__Creacion" FromRole="OrigenDestino" ToRole="Usuario" />
           <NavigationProperty Name="UsuarioModificacion" Relationship="CSPesajeModel.FK__Usuario__OrigenDestino__Modificacion" FromRole="OrigenDestino" ToRole="Usuario" />
           <NavigationProperty Name="Cosecha_Producto_Tarifas" Relationship="CSPesajeModel.FK__OrigenDestino__Cosecha_Producto_Tarifa" FromRole="OrigenDestino" ToRole="Cosecha_Producto_Tarifa" />
-          <NavigationProperty Name="PesadasDestino" Relationship="CSPesajeModel.FK__OrigenDestino__Pesada__Destino" FromRole="OrigenDestino" ToRole="Pesada" />
-          <NavigationProperty Name="PesadasOrigen" Relationship="CSPesajeModel.FK__OrigenDestino__Pesada__Origen" FromRole="OrigenDestino" ToRole="Pesada" />
+          <NavigationProperty Name="PesadasDestinos" Relationship="CSPesajeModel.FK__OrigenDestino__Pesada__Destino" FromRole="OrigenDestino" ToRole="Pesada" />
+          <NavigationProperty Name="PesadasOrigenes" Relationship="CSPesajeModel.FK__OrigenDestino__Pesada__Origen" FromRole="OrigenDestino" ToRole="Pesada" />
         </EntityType>
         <EntityType Name="Parametro">
           <Key>
@@ -1844,9 +1948,13 @@
           <Property Name="IDPesada" Type="Int32" Nullable="false" />
           <Property Name="FechaHoraInicio" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="FechaHoraFin" Type="DateTime" Precision="0" />
-          <Property Name="ComprobanteNumero" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
-          <Property Name="ComprobanteNumeroTercero" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="Ctg" Type="Int64" />
+          <Property Name="ComprobanteNumero" Type="Int64" />
+          <Property Name="ComprobanteNumeroConFormato" Type="String" MaxLength="12" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="ComprobanteNumeroTercero" Type="Int64" />
+          <Property Name="ComprobanteNumeroTerceroConFormato" Type="String" MaxLength="12" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" />
           <Property Name="IDPlanta" Type="Byte" />
+          <Property Name="IDDeposito" Type="Byte" />
           <Property Name="IDProducto" Type="Byte" Nullable="false" />
           <Property Name="IDCosecha" Type="Byte" />
           <Property Name="Tipo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
@@ -1882,8 +1990,9 @@
           <NavigationProperty Name="UsuarioCreacion" Relationship="CSPesajeModel.FK__Usuario__Pesada__Creacion" FromRole="Pesada" ToRole="Usuario" />
           <NavigationProperty Name="UsuarioModificacion" Relationship="CSPesajeModel.FK__Usuario__Pesada__Modificacion" FromRole="Pesada" ToRole="Usuario" />
           <NavigationProperty Name="Camion" Relationship="CSPesajeModel.FK__Camion__Pesada" FromRole="Pesada" ToRole="Camion" />
-          <NavigationProperty Name="OrigenDestino1" Relationship="CSPesajeModel.FK__OrigenDestino__Pesada__Destino" FromRole="Pesada" ToRole="OrigenDestino" />
-          <NavigationProperty Name="OrigenDestino11" Relationship="CSPesajeModel.FK__OrigenDestino__Pesada__Origen" FromRole="Pesada" ToRole="OrigenDestino" />
+          <NavigationProperty Name="Destino" Relationship="CSPesajeModel.FK__OrigenDestino__Pesada__Destino" FromRole="Pesada" ToRole="OrigenDestino" />
+          <NavigationProperty Name="Origen" Relationship="CSPesajeModel.FK__OrigenDestino__Pesada__Origen" FromRole="Pesada" ToRole="OrigenDestino" />
+          <NavigationProperty Name="PlantaDeposito" Relationship="CSPesajeModel.FK__PlantaDeposito__Pesada" FromRole="Pesada" ToRole="PlantaDeposito" />
         </EntityType>
         <EntityType Name="Pesada_Acondicionamiento">
           <Key>
@@ -1972,6 +2081,7 @@
           <NavigationProperty Name="Producto_Planta" Relationship="CSPesajeModel.FK__Planta__Producto_Planta" FromRole="Planta" ToRole="Producto_Planta" />
           <NavigationProperty Name="UsuarioCreacion" Relationship="CSPesajeModel.FK__Usuario__Planta__Creacion" FromRole="Planta" ToRole="Usuario" />
           <NavigationProperty Name="UsuarioModificacion" Relationship="CSPesajeModel.FK__Usuario__Planta__Modificacion" FromRole="Planta" ToRole="Usuario" />
+          <NavigationProperty Name="PlantasDepositos" Relationship="CSPesajeModel.FK__Planta__PlantaDeposito" FromRole="Planta" ToRole="PlantaDeposito" />
         </EntityType>
         <EntityType Name="Producto">
           <Key>
@@ -2113,6 +2223,8 @@
           <NavigationProperty Name="UsuariosGruposCreados" Relationship="CSPesajeModel.FK__Usuario__UsuarioGrupo__Creacion" FromRole="Usuario" ToRole="UsuarioGrupo" />
           <NavigationProperty Name="UsuariosGruposModificados" Relationship="CSPesajeModel.FK__Usuario__UsuarioGrupo__Modificacion" FromRole="Usuario" ToRole="UsuarioGrupo" />
           <NavigationProperty Name="UsuarioGrupo" Relationship="CSPesajeModel.FK__UsuarioGrupo__Usuario" FromRole="Usuario" ToRole="UsuarioGrupo" />
+          <NavigationProperty Name="PlantasDepositosCreados" Relationship="CSPesajeModel.FK__Usuario__PlantaDeposito__Creacion" FromRole="Usuario" ToRole="PlantaDeposito" />
+          <NavigationProperty Name="PlantasDepositos" Relationship="CSPesajeModel.FK__Usuario__PlantaDeposito__Modificacion" FromRole="Usuario" ToRole="PlantaDeposito" />
         </EntityType>
         <EntityType Name="UsuarioGrupo">
           <Key>
@@ -2856,6 +2968,76 @@
           <Property Type="Int32" Name="CantidadEntradas" Nullable="true" />
           <Property Type="Int32" Name="CantidadSalidas" Nullable="true" />
         </ComplexType>
+        <EntityType Name="PlantaDeposito">
+          <Key>
+            <PropertyRef Name="IDPlanta" />
+            <PropertyRef Name="IDDeposito" />
+          </Key>
+          <Property Name="IDPlanta" Type="Byte" Nullable="false" />
+          <Property Name="IDDeposito" Type="Byte" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CapacidadToneladasBaseTrigo" Type="Int16" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EsActivo" Type="Boolean" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Pesadas" Relationship="CSPesajeModel.FK__PlantaDeposito__Pesada" FromRole="PlantaDeposito" ToRole="Pesada" />
+          <NavigationProperty Name="Planta" Relationship="CSPesajeModel.FK__Planta__PlantaDeposito" FromRole="PlantaDeposito" ToRole="Planta" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSPesajeModel.FK__Usuario__PlantaDeposito__Creacion" FromRole="PlantaDeposito" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSPesajeModel.FK__Usuario__PlantaDeposito__Modificacion" FromRole="PlantaDeposito" ToRole="Usuario" />
+        </EntityType>
+        <Association Name="FK__PlantaDeposito__Pesada">
+          <End Type="CSPesajeModel.PlantaDeposito" Role="PlantaDeposito" Multiplicity="0..1" />
+          <End Type="CSPesajeModel.Pesada" Role="Pesada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlantaDeposito">
+              <PropertyRef Name="IDPlanta" />
+              <PropertyRef Name="IDDeposito" />
+            </Principal>
+            <Dependent Role="Pesada">
+              <PropertyRef Name="IDPlanta" />
+              <PropertyRef Name="IDDeposito" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Planta__PlantaDeposito">
+          <End Type="CSPesajeModel.Planta" Role="Planta" Multiplicity="1" />
+          <End Type="CSPesajeModel.PlantaDeposito" Role="PlantaDeposito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Planta">
+              <PropertyRef Name="IDPlanta" />
+            </Principal>
+            <Dependent Role="PlantaDeposito">
+              <PropertyRef Name="IDPlanta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__PlantaDeposito__Creacion">
+          <End Type="CSPesajeModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSPesajeModel.PlantaDeposito" Role="PlantaDeposito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="PlantaDeposito">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__PlantaDeposito__Modificacion">
+          <End Type="CSPesajeModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSPesajeModel.PlantaDeposito" Role="PlantaDeposito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="PlantaDeposito">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3021,6 +3203,10 @@
           <EntitySetMapping Name="Pesada">
             <EntityTypeMapping TypeName="CSPesajeModel.Pesada">
               <MappingFragment StoreEntitySet="Pesada">
+                <ScalarProperty Name="ComprobanteNumeroTerceroConFormato" ColumnName="ComprobanteNumeroTerceroConFormato" />
+                <ScalarProperty Name="ComprobanteNumeroConFormato" ColumnName="ComprobanteNumeroConFormato" />
+                <ScalarProperty Name="IDDeposito" ColumnName="IDDeposito" />
+                <ScalarProperty Name="Ctg" ColumnName="Ctg" />
                 <ScalarProperty Name="IDDestino" ColumnName="IDDestino" />
                 <ScalarProperty Name="IDOrigen" ColumnName="IDOrigen" />
                 <ScalarProperty Name="Camion_IDEntidad" ColumnName="Camion_IDEntidad" />
@@ -3296,6 +3482,22 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="PlantaDeposito">
+            <EntityTypeMapping TypeName="CSPesajeModel.PlantaDeposito">
+              <MappingFragment StoreEntitySet="PlantaDeposito">
+                <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
+                <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
+                <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
+                <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
+                <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
+                <ScalarProperty Name="CapacidadToneladasBaseTrigo" ColumnName="CapacidadToneladasBaseTrigo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IDDeposito" ColumnName="IDDeposito" />
+                <ScalarProperty Name="IDPlanta" ColumnName="IDPlanta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

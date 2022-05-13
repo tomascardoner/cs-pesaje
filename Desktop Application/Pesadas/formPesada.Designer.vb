@@ -154,6 +154,8 @@ Partial Class formPesada
         Me.checkboxEsActivo = New System.Windows.Forms.CheckBox()
         Me.labelEsVerificado = New System.Windows.Forms.Label()
         Me.checkboxEsVerificado = New System.Windows.Forms.CheckBox()
+        Me.labelCtg = New System.Windows.Forms.Label()
+        Me.maskedtextboxCtg = New System.Windows.Forms.MaskedTextBox()
         Me.toolstripMain.SuspendLayout()
         Me.groupboxTransporte.SuspendLayout()
         CType(Me.integertextboxKilometro, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -870,6 +872,8 @@ Partial Class formPesada
         '
         'groupboxEncabezado
         '
+        Me.groupboxEncabezado.Controls.Add(Me.labelCtg)
+        Me.groupboxEncabezado.Controls.Add(Me.maskedtextboxCtg)
         Me.groupboxEncabezado.Controls.Add(Me.labelComprobanteNumeroTercero)
         Me.groupboxEncabezado.Controls.Add(Me.maskedtextboxComprobanteNumeroTercero)
         Me.groupboxEncabezado.Controls.Add(Me.buttonFechaHoraFinAhora)
@@ -896,7 +900,7 @@ Partial Class formPesada
         Me.labelComprobanteNumeroTercero.Location = New System.Drawing.Point(204, 96)
         Me.labelComprobanteNumeroTercero.Name = "labelComprobanteNumeroTercero"
         Me.labelComprobanteNumeroTercero.Size = New System.Drawing.Size(47, 13)
-        Me.labelComprobanteNumeroTercero.TabIndex = 12
+        Me.labelComprobanteNumeroTercero.TabIndex = 14
         Me.labelComprobanteNumeroTercero.Text = "Tercero:"
         '
         'maskedtextboxComprobanteNumeroTercero
@@ -909,7 +913,7 @@ Partial Class formPesada
         Me.maskedtextboxComprobanteNumeroTercero.Mask = "0000-00000000"
         Me.maskedtextboxComprobanteNumeroTercero.Name = "maskedtextboxComprobanteNumeroTercero"
         Me.maskedtextboxComprobanteNumeroTercero.Size = New System.Drawing.Size(90, 20)
-        Me.maskedtextboxComprobanteNumeroTercero.TabIndex = 13
+        Me.maskedtextboxComprobanteNumeroTercero.TabIndex = 15
         Me.maskedtextboxComprobanteNumeroTercero.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
         '
         'buttonFechaHoraFinAhora
@@ -918,7 +922,7 @@ Partial Class formPesada
         Me.buttonFechaHoraFinAhora.Location = New System.Drawing.Point(303, 64)
         Me.buttonFechaHoraFinAhora.Name = "buttonFechaHoraFinAhora"
         Me.buttonFechaHoraFinAhora.Size = New System.Drawing.Size(22, 22)
-        Me.buttonFechaHoraFinAhora.TabIndex = 9
+        Me.buttonFechaHoraFinAhora.TabIndex = 11
         Me.buttonFechaHoraFinAhora.TabStop = False
         Me.buttonFechaHoraFinAhora.Text = "Ahora"
         Me.buttonFechaHoraFinAhora.UseVisualStyleBackColor = True
@@ -929,7 +933,7 @@ Partial Class formPesada
         Me.buttonFechaHoraInicioAhora.Location = New System.Drawing.Point(303, 38)
         Me.buttonFechaHoraInicioAhora.Name = "buttonFechaHoraInicioAhora"
         Me.buttonFechaHoraInicioAhora.Size = New System.Drawing.Size(22, 22)
-        Me.buttonFechaHoraInicioAhora.TabIndex = 5
+        Me.buttonFechaHoraInicioAhora.TabIndex = 7
         Me.buttonFechaHoraInicioAhora.TabStop = False
         Me.buttonFechaHoraInicioAhora.Text = "Ahora"
         Me.buttonFechaHoraInicioAhora.UseVisualStyleBackColor = True
@@ -940,7 +944,7 @@ Partial Class formPesada
         Me.labelComprobanteNumero.Location = New System.Drawing.Point(6, 96)
         Me.labelComprobanteNumero.Name = "labelComprobanteNumero"
         Me.labelComprobanteNumero.Size = New System.Drawing.Size(70, 13)
-        Me.labelComprobanteNumero.TabIndex = 10
+        Me.labelComprobanteNumero.TabIndex = 12
         Me.labelComprobanteNumero.Text = "Nº Comprob.:"
         '
         'maskedtextboxComprobanteNumero
@@ -953,7 +957,7 @@ Partial Class formPesada
         Me.maskedtextboxComprobanteNumero.Mask = "0000-00000000"
         Me.maskedtextboxComprobanteNumero.Name = "maskedtextboxComprobanteNumero"
         Me.maskedtextboxComprobanteNumero.Size = New System.Drawing.Size(90, 20)
-        Me.maskedtextboxComprobanteNumero.TabIndex = 11
+        Me.maskedtextboxComprobanteNumero.TabIndex = 13
         Me.maskedtextboxComprobanteNumero.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
         '
         'datetimepickerHoraFin
@@ -965,7 +969,7 @@ Partial Class formPesada
         Me.datetimepickerHoraFin.Name = "datetimepickerHoraFin"
         Me.datetimepickerHoraFin.ShowUpDown = True
         Me.datetimepickerHoraFin.Size = New System.Drawing.Size(85, 20)
-        Me.datetimepickerHoraFin.TabIndex = 8
+        Me.datetimepickerHoraFin.TabIndex = 10
         '
         'datetimepickerFechaFin
         '
@@ -975,7 +979,7 @@ Partial Class formPesada
         Me.datetimepickerFechaFin.MinDate = New Date(2017, 1, 1, 0, 0, 0, 0)
         Me.datetimepickerFechaFin.Name = "datetimepickerFechaFin"
         Me.datetimepickerFechaFin.Size = New System.Drawing.Size(114, 20)
-        Me.datetimepickerFechaFin.TabIndex = 7
+        Me.datetimepickerFechaFin.TabIndex = 9
         '
         'labelFin
         '
@@ -983,7 +987,7 @@ Partial Class formPesada
         Me.labelFin.Location = New System.Drawing.Point(6, 69)
         Me.labelFin.Name = "labelFin"
         Me.labelFin.Size = New System.Drawing.Size(24, 13)
-        Me.labelFin.TabIndex = 6
+        Me.labelFin.TabIndex = 8
         Me.labelFin.Text = "Fin:"
         '
         'datetimepickerHoraInicio
@@ -995,7 +999,7 @@ Partial Class formPesada
         Me.datetimepickerHoraInicio.Name = "datetimepickerHoraInicio"
         Me.datetimepickerHoraInicio.ShowUpDown = True
         Me.datetimepickerHoraInicio.Size = New System.Drawing.Size(85, 20)
-        Me.datetimepickerHoraInicio.TabIndex = 4
+        Me.datetimepickerHoraInicio.TabIndex = 6
         '
         'datetimepickerFechaInicio
         '
@@ -1005,7 +1009,7 @@ Partial Class formPesada
         Me.datetimepickerFechaInicio.MinDate = New Date(2017, 1, 1, 0, 0, 0, 0)
         Me.datetimepickerFechaInicio.Name = "datetimepickerFechaInicio"
         Me.datetimepickerFechaInicio.Size = New System.Drawing.Size(114, 20)
-        Me.datetimepickerFechaInicio.TabIndex = 3
+        Me.datetimepickerFechaInicio.TabIndex = 5
         '
         'labelIDPesada
         '
@@ -1033,7 +1037,7 @@ Partial Class formPesada
         Me.labelInicio.Location = New System.Drawing.Point(6, 43)
         Me.labelInicio.Name = "labelInicio"
         Me.labelInicio.Size = New System.Drawing.Size(35, 13)
-        Me.labelInicio.TabIndex = 2
+        Me.labelInicio.TabIndex = 4
         Me.labelInicio.Text = "Inicio:"
         '
         'groupboxKilogramo
@@ -1651,6 +1655,28 @@ Partial Class formPesada
         Me.checkboxEsVerificado.TabIndex = 6
         Me.checkboxEsVerificado.UseVisualStyleBackColor = True
         '
+        'labelCtg
+        '
+        Me.labelCtg.AutoSize = True
+        Me.labelCtg.Location = New System.Drawing.Point(212, 16)
+        Me.labelCtg.Name = "labelCtg"
+        Me.labelCtg.Size = New System.Drawing.Size(41, 13)
+        Me.labelCtg.TabIndex = 2
+        Me.labelCtg.Text = "C.T.G.:"
+        '
+        'maskedtextboxCtg
+        '
+        Me.maskedtextboxCtg.AllowPromptAsInput = False
+        Me.maskedtextboxCtg.AsciiOnly = True
+        Me.maskedtextboxCtg.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
+        Me.maskedtextboxCtg.HidePromptOnLeave = True
+        Me.maskedtextboxCtg.Location = New System.Drawing.Point(259, 14)
+        Me.maskedtextboxCtg.Mask = "00000000000"
+        Me.maskedtextboxCtg.Name = "maskedtextboxCtg"
+        Me.maskedtextboxCtg.Size = New System.Drawing.Size(90, 20)
+        Me.maskedtextboxCtg.TabIndex = 3
+        Me.maskedtextboxCtg.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
+        '
         'formPesada
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1844,4 +1870,6 @@ Partial Class formPesada
     Friend WithEvents comboboxDestino As System.Windows.Forms.ComboBox
     Friend WithEvents textboxNotas As System.Windows.Forms.TextBox
     Friend WithEvents textboxCamion_DominioChasisExtra As TextBox
+    Friend WithEvents labelCtg As Label
+    Friend WithEvents maskedtextboxCtg As MaskedTextBox
 End Class

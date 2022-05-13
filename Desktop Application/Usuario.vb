@@ -42,5 +42,7 @@ Partial Public Class Usuario
     Public Overridable Property UsuariosGruposCreados As ICollection(Of UsuarioGrupo) = New HashSet(Of UsuarioGrupo)
     Public Overridable Property UsuariosGruposModificados As ICollection(Of UsuarioGrupo) = New HashSet(Of UsuarioGrupo)
     Public Overridable Property UsuarioGrupo As UsuarioGrupo
+    Public Overridable Property PlantasDepositosCreados As ICollection(Of PlantaDeposito) = New HashSet(Of PlantaDeposito)
+    Public Overridable Property PlantasDepositos As ICollection(Of PlantaDeposito) = New HashSet(Of PlantaDeposito)
 
 End Class

@@ -10,21 +10,21 @@
 Imports System
 Imports System.Collections.Generic
 
-Partial Public Class Planta
+Partial Public Class PlantaDeposito
     Public Property IDPlanta As Byte
+    Public Property IDDeposito As Byte
     Public Property Nombre As String
-    Public Property AplicaMermaVolatil As Boolean
+    Public Property CapacidadToneladasBaseTrigo As Nullable(Of Short)
+    Public Property Notas As String
     Public Property EsActivo As Boolean
     Public Property IDUsuarioCreacion As Short
     Public Property FechaHoraCreacion As Date
     Public Property IDUsuarioModificacion As Short
     Public Property FechaHoraModificacion As Date
 
-    Public Overridable Property Cosecha_Producto_Tarifa As ICollection(Of Cosecha_Producto_Tarifa) = New HashSet(Of Cosecha_Producto_Tarifa)
-    Public Overridable Property Pesada As ICollection(Of Pesada) = New HashSet(Of Pesada)
-    Public Overridable Property Producto_Planta As ICollection(Of Producto_Planta) = New HashSet(Of Producto_Planta)
+    Public Overridable Property Pesadas As ICollection(Of Pesada) = New HashSet(Of Pesada)
+    Public Overridable Property Planta As Planta
     Public Overridable Property UsuarioCreacion As Usuario
     Public Overridable Property UsuarioModificacion As Usuario
-    Public Overridable Property PlantasDepositos As ICollection(Of PlantaDeposito) = New HashSet(Of PlantaDeposito)
 
 End Class

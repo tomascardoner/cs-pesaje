@@ -50,6 +50,7 @@ Partial Public Class CSPesajeContext
     Public Overridable Property UsuarioGrupoPermiso() As DbSet(Of UsuarioGrupoPermiso)
     Public Overridable Property Producto_Humedad() As DbSet(Of Producto_Humedad)
     Public Overridable Property Entidad_Producto_Planta() As DbSet(Of Entidad_Producto_Planta)
+    Public Overridable Property PlantaDeposito() As DbSet(Of PlantaDeposito)
 
     Public Overridable Function uspPesadaObtenerResumen(iDProducto As Nullable(Of Byte), iDCosecha As Nullable(Of Byte), iDPlanta As Nullable(Of Byte), iDEntidad As Nullable(Of Integer), entradas As Nullable(Of Boolean), salidas As Nullable(Of Boolean), fechaDesde As Nullable(Of Date), fechaHasta As Nullable(Of Date)) As ObjectResult(Of uspPesadaObtenerResumen_Result)
         Dim iDProductoParameter As ObjectParameter = If(iDProducto.HasValue, New ObjectParameter("IDProducto", iDProducto), New ObjectParameter("IDProducto", GetType(Byte)))
