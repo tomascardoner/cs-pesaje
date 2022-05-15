@@ -8,14 +8,14 @@
 
 #Region "Form stuff"
 
-    Private Sub formReportes_Load(sender As Object, e As EventArgs) Handles Me.Load
+    Private Sub Me_Load(sender As Object, e As EventArgs) Handles Me.Load
         CargarListaReportes()
 
         treeviewReportes.Font = pAppearanceConfig.ListsFont
         listviewParametros.Font = pAppearanceConfig.ListsFont
     End Sub
 
-    Private Sub formReportes_Unload() Handles Me.FormClosed
+    Private Sub Me_Unload() Handles Me.FormClosed
         mdbContext.Dispose()
     End Sub
 

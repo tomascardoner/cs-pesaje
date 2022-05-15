@@ -145,6 +145,9 @@
     <Compile Include="..\..\..\..\framework-vbnet\AFIP.vb">
       <Link>Framework\AFIP.vb</Link>
     </Compile>
+    <Compile Include="..\..\..\..\framework-vbnet\Colors.vb">
+      <Link>Framework\Colors.vb</Link>
+    </Compile>
     <Compile Include="..\..\..\..\framework-vbnet\ComboBox.vb">
       <Link>Framework\ComboBox.vb</Link>
     </Compile>

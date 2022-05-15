@@ -50,6 +50,9 @@
     Private mOrdenColumna As DataGridViewColumn
     Private mOrdenTipo As SortOrder
 
+    Private mEntradaHumedadVaciaMostrarError As Boolean
+    Private mEntradaZarandeoVacioMostrarError As Boolean
+
 #End Region
 
 #Region "Form stuff"
@@ -64,6 +67,9 @@
         mSkipFilterData = True
 
         InitializeFormAndControls()
+
+        mEntradaHumedadVaciaMostrarError = CS_Parameter_System.GetBoolean(Parametros.PESADA_ENTRADA_HUMEDAD_VACIA_MOSTRARERROR, True).Value
+        mEntradaZarandeoVacioMostrarError = CS_Parameter_System.GetBoolean(Parametros.PESADA_ENTRADA_ZARANDEO_VACIO_MOSTRARERROR, True).Value
 
         mSkipFilterData = False
 
@@ -554,6 +560,25 @@
         mSkipFilterData = SaveSkipFilterData
 
         FilterData()
+    End Sub
+
+    Private Sub GridCellFormatting(sender As Object, e As DataGridViewCellFormattingEventArgs) Handles datagridviewMain.CellFormatting
+        Dim gridRowData As GridRowData
+
+        If Not (mEntradaHumedadVaciaMostrarError Or mEntradaZarandeoVacioMostrarError) Then
+            Return
+        End If
+
+        gridRowData = CType(datagridviewMain.Rows(e.RowIndex).DataBoundItem, GridRowData)
+        If gridRowData.Tipo = Constantes.PESADA_TIPO_ENTRADA AndAlso ((mEntradaHumedadVaciaMostrarError And Not gridRowData.Humedad.HasValue) Or (mEntradaZarandeoVacioMostrarError And Not gridRowData.Zaranda.HasValue)) Then
+            If e.ColumnIndex = columnIDPesada.Index OrElse e.ColumnIndex = columnFechaHoraInicio.Index OrElse e.ColumnIndex = columnTipo.Index OrElse e.ColumnIndex = columnHumedad.Index OrElse e.ColumnIndex = columnZaranda.Index Then
+                Appearance.DataGridSetCellStyleError(CType(datagridviewMain.Rows(e.RowIndex).Cells(e.ColumnIndex), DataGridViewTextBoxCell))
+            Else
+                Appearance.DataGridSetCellStyleStandard(CType(datagridviewMain.Rows(e.RowIndex).Cells(e.ColumnIndex), DataGridViewTextBoxCell), e.RowIndex)
+            End If
+        Else
+            Appearance.DataGridSetCellStyleStandard(CType(datagridviewMain.Rows(e.RowIndex).Cells(e.ColumnIndex), DataGridViewTextBoxCell), e.RowIndex)
+        End If
     End Sub
 
     Private Sub GridChangeOrder(sender As Object, e As DataGridViewCellMouseEventArgs) Handles datagridviewMain.ColumnHeaderMouseClick

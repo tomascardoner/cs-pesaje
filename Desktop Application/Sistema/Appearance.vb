@@ -1,18 +1,45 @@
 ﻿Module Appearance
+    Friend Sub DataGridSetAppearance(ByRef grid As DataGridView)
+        With grid
+            ' Fuentes
+            .DefaultCellStyle.Font = pAppearanceConfig.ListsFont
+            .ColumnHeadersDefaultCellStyle.Font = pAppearanceConfig.ListsFont
 
-    Friend Sub DataGridSetAppearance(ByRef DataGridViewObject As DataGridView)
-        DataGridViewObject.DefaultCellStyle.Font = pAppearanceConfig.ListsFont
-        DataGridViewObject.ColumnHeadersDefaultCellStyle.Font = pAppearanceConfig.ListsFont
+            ' Colores filas pares
+            .DefaultCellStyle.BackColor = pAppearanceConfig.GridRowBackColorObject
+            .DefaultCellStyle.ForeColor = pAppearanceConfig.GridRowForeColorObject
+            .DefaultCellStyle.SelectionBackColor = pAppearanceConfig.GridRowSelectionBackColorObject
+            .DefaultCellStyle.SelectionForeColor = pAppearanceConfig.GridRowSelectionForeColorObject
 
-        DataGridViewObject.DefaultCellStyle.BackColor = SystemColors.Window
-        DataGridViewObject.DefaultCellStyle.ForeColor = SystemColors.ControlText
-        DataGridViewObject.DefaultCellStyle.SelectionBackColor = SystemColors.Highlight
-        DataGridViewObject.DefaultCellStyle.SelectionForeColor = SystemColors.HighlightText
+            ' colores filas impares
+            .AlternatingRowsDefaultCellStyle.BackColor = pAppearanceConfig.GridAlternateRowBackColorObject
+            .AlternatingRowsDefaultCellStyle.ForeColor = pAppearanceConfig.GridAlternateRowForeColorObject
+            .AlternatingRowsDefaultCellStyle.SelectionBackColor = pAppearanceConfig.GridAlternateRowSelectionBackColorObject
+            .AlternatingRowsDefaultCellStyle.SelectionForeColor = pAppearanceConfig.GridAlternateRowSelectionForeColorObject
+        End With
+    End Sub
 
-        DataGridViewObject.AlternatingRowsDefaultCellStyle.BackColor = SystemColors.GradientActiveCaption
-        DataGridViewObject.AlternatingRowsDefaultCellStyle.ForeColor = SystemColors.ControlText
-        DataGridViewObject.AlternatingRowsDefaultCellStyle.SelectionBackColor = SystemColors.Highlight
-        DataGridViewObject.AlternatingRowsDefaultCellStyle.SelectionForeColor = SystemColors.HighlightText
+    Friend Sub DataGridSetCellStyleStandard(ByRef cell As DataGridViewTextBoxCell, ByVal rowIndex As Integer)
+        If rowIndex Mod 2 = 0 Then
+            ' Filas pares
+            cell.Style.BackColor = pAppearanceConfig.GridRowBackColorObject
+            cell.Style.ForeColor = pAppearanceConfig.GridRowForeColorObject
+            cell.Style.SelectionBackColor = pAppearanceConfig.GridRowSelectionBackColorObject
+            cell.Style.SelectionForeColor = pAppearanceConfig.GridRowSelectionForeColorObject
+        Else
+            ' Filas impares
+            cell.Style.BackColor = pAppearanceConfig.GridAlternateRowBackColorObject
+            cell.Style.ForeColor = pAppearanceConfig.GridAlternateRowForeColorObject
+            cell.Style.SelectionBackColor = pAppearanceConfig.GridAlternateRowSelectionBackColorObject
+            cell.Style.SelectionForeColor = pAppearanceConfig.GridAlternateRowSelectionForeColorObject
+        End If
+    End Sub
+
+    Friend Sub DataGridSetCellStyleError(ByRef cell As DataGridViewTextBoxCell)
+        cell.Style.BackColor = pAppearanceConfig.GridRowErrorBackColorObject
+        cell.Style.ForeColor = pAppearanceConfig.GridRowErrorForeColorObject
+        cell.Style.SelectionBackColor = pAppearanceConfig.GridRowErrorSelectionBackColorObject
+        cell.Style.SelectionForeColor = pAppearanceConfig.GridRowErrorSelectionForeColorObject
     End Sub
 
     Friend Sub UserLoggedIn()
