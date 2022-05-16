@@ -9,7 +9,7 @@
         Public Property IDPesada As Integer
         Public Property FechaHoraInicio As Date
         Public Property FechaHoraFin As Date?
-        Public Property ComprobanteNumero As String
+        Public Property Ctg As Long?
         Public Property IDTitular As Integer
         Public Property TitularNombre As String
         Public Property IDProducto As Byte
@@ -259,7 +259,7 @@
                                    Group Join ca In dbContext.Camion On pe.Transportista_IDEntidad Equals ca.IDEntidad And pe.IDCamion Equals ca.IDCamion Into Camion_Group = Group
                                    From cag In Camion_Group.DefaultIfEmpty
                                    Where pe.FechaHoraInicio >= FechaDesde And pe.FechaHoraInicio <= FechaHasta
-                                   Select New GridRowData With {.IDPesada = pe.IDPesada, .FechaHoraInicio = pe.FechaHoraInicio, .FechaHoraFin = pe.FechaHoraFin, .ComprobanteNumero = pe.ComprobanteNumeroConFormato, .IDTitular = pe.Titular_IDEntidad, .TitularNombre = If(pe.Titular_IDEntidad = CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Titular_Nombre, ent.Nombre), .IDProducto = pe.IDProducto, .ProductoNombre = If(pe.IDProducto = CardonerSistemas.Constants.FIELD_VALUE_OTHER_BYTE, pe_otg.Producto_Nombre, pr.Nombre), .Producto_TicketPesada_IDReporte = pr.TicketPesada_IDReporte, .IDPlanta = pe.IDPlanta, .Tipo = pe.Tipo, .TipoNombre = pe.TipoNombre, .IDCosecha = pe.IDCosecha, .CosechaNombre = If(cog Is Nothing, "", cog.Nombre), .IDOrigen = pe.IDOrigen, .OrigenNombre = If(pe.IDOrigen = CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Origen_Nombre, If(og Is Nothing, "", og.Nombre)), .IDDestino = pe.IDDestino, .DestinoNombre = If(pe.IDDestino = CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Destino_Nombre, If(dg Is Nothing, "", dg.Nombre)), .KilogramoBruto = pe.KilogramoBruto, .KilogramoTara = pe.KilogramoTara, .KilogramoNeto = pe.KilogramoNeto, .Humedad = If(pe_ang Is Nothing, Nothing, pe_ang.Humedad), .Zaranda = If(pe_ang Is Nothing, Nothing, pe_ang.Zaranda), .KilogramoFinal = pe.KilogramoFinal, .IDTransportista = pe.Transportista_IDEntidad, .TransportistaNombre = If(pe.Transportista_IDEntidad = CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Transportista_Nombre, If(trg Is Nothing, "", trg.Nombre)), .IDChofer = pe.Chofer_IDEntidad, .ChoferNombre = If(pe.Chofer_IDEntidad = CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Chofer_Nombre, If(chg Is Nothing, "", chg.Nombre)), .CamionNombreDominios = If(pe.IDCamion = CardonerSistemas.Constants.FIELD_VALUE_OTHER_BYTE, pe_otg.Camion_DominioChasis & If(pe_otg.Camion_DominioAcoplado Is Nothing, "", " - " & pe_otg.Camion_DominioAcoplado), If(cag Is Nothing, "", cag.NombreDominios)), .EsVerificado = pe.EsVerificado, .EsActivo = pe.EsActivo}).ToList
+                                   Select New GridRowData With {.IDPesada = pe.IDPesada, .FechaHoraInicio = pe.FechaHoraInicio, .FechaHoraFin = pe.FechaHoraFin, .Ctg = pe.Ctg, .IDTitular = pe.Titular_IDEntidad, .TitularNombre = If(pe.Titular_IDEntidad = CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Titular_Nombre, ent.Nombre), .IDProducto = pe.IDProducto, .ProductoNombre = If(pe.IDProducto = CardonerSistemas.Constants.FIELD_VALUE_OTHER_BYTE, pe_otg.Producto_Nombre, pr.Nombre), .Producto_TicketPesada_IDReporte = pr.TicketPesada_IDReporte, .IDPlanta = pe.IDPlanta, .Tipo = pe.Tipo, .TipoNombre = pe.TipoNombre, .IDCosecha = pe.IDCosecha, .CosechaNombre = If(cog Is Nothing, "", cog.Nombre), .IDOrigen = pe.IDOrigen, .OrigenNombre = If(pe.IDOrigen = CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Origen_Nombre, If(og Is Nothing, "", og.Nombre)), .IDDestino = pe.IDDestino, .DestinoNombre = If(pe.IDDestino = CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Destino_Nombre, If(dg Is Nothing, "", dg.Nombre)), .KilogramoBruto = pe.KilogramoBruto, .KilogramoTara = pe.KilogramoTara, .KilogramoNeto = pe.KilogramoNeto, .Humedad = If(pe_ang Is Nothing, Nothing, pe_ang.Humedad), .Zaranda = If(pe_ang Is Nothing, Nothing, pe_ang.Zaranda), .KilogramoFinal = pe.KilogramoFinal, .IDTransportista = pe.Transportista_IDEntidad, .TransportistaNombre = If(pe.Transportista_IDEntidad = CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Transportista_Nombre, If(trg Is Nothing, "", trg.Nombre)), .IDChofer = pe.Chofer_IDEntidad, .ChoferNombre = If(pe.Chofer_IDEntidad = CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Chofer_Nombre, If(chg Is Nothing, "", chg.Nombre)), .CamionNombreDominios = If(pe.IDCamion = CardonerSistemas.Constants.FIELD_VALUE_OTHER_BYTE, pe_otg.Camion_DominioChasis & If(pe_otg.Camion_DominioAcoplado Is Nothing, "", " - " & pe_otg.Camion_DominioAcoplado), If(cag Is Nothing, "", cag.NombreDominios)), .EsVerificado = pe.EsVerificado, .EsActivo = pe.EsActivo}).ToList
             End Using
         Catch ex As Exception
             CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer las Pesadas.")
@@ -412,11 +412,11 @@
                 Else
                     mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.OrderByDescending(Function(col) col.IDPesada).ToList
                 End If
-            Case columnComprobanteNumero.Name
+            Case columnCtg.Name
                 If mOrdenTipo = SortOrder.Ascending Then
-                    mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.OrderBy(Function(col) col.ComprobanteNumero).ThenBy(Function(col) col.IDPesada).ToList
+                    mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.OrderBy(Function(col) col.Ctg).ThenBy(Function(col) col.IDPesada).ToList
                 Else
-                    mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.OrderByDescending(Function(col) col.ComprobanteNumero).ThenByDescending(Function(col) col.IDPesada).ToList
+                    mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.OrderByDescending(Function(col) col.Ctg).ThenByDescending(Function(col) col.IDPesada).ToList
                 End If
             Case columnFechaHoraInicio.Name
                 If mOrdenTipo = SortOrder.Ascending Then
@@ -586,7 +586,7 @@
 
         ClickedColumn = CType(datagridviewMain.Columns(e.ColumnIndex), DataGridViewColumn)
 
-        If ClickedColumn.Name = columnIDPesada.Name Or ClickedColumn.Name = columnComprobanteNumero.Name Or ClickedColumn.Name = columnFechaHoraInicio.Name Or ClickedColumn.Name = columnKilogramoNeto.Name Then
+        If ClickedColumn.Name = columnIDPesada.Name Or ClickedColumn.Name = columnCtg.Name Or ClickedColumn.Name = columnFechaHoraInicio.Name Or ClickedColumn.Name = columnKilogramoNeto.Name Then
             If ClickedColumn Is mOrdenColumna Then
                 ' La columna clickeada es la misma por la que ya estaba ordenado, así que cambio la dirección del orden
                 If mOrdenTipo = SortOrder.Ascending Then
