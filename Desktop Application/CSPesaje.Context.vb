@@ -52,7 +52,7 @@ Partial Public Class CSPesajeContext
     Public Overridable Property Entidad_Producto_Planta() As DbSet(Of Entidad_Producto_Planta)
     Public Overridable Property PlantaDeposito() As DbSet(Of PlantaDeposito)
 
-    Public Overridable Function uspPesadaObtenerResumen(iDProducto As Nullable(Of Byte), iDCosecha As Nullable(Of Byte), iDPlanta As Nullable(Of Byte), iDEntidad As Nullable(Of Integer), entradas As Nullable(Of Boolean), salidas As Nullable(Of Boolean), fechaDesde As Nullable(Of Date), fechaHasta As Nullable(Of Date)) As ObjectResult(Of uspPesadaObtenerResumen_Result)
+    Public Overridable Function ObtenerResumenPesadas(iDProducto As Nullable(Of Byte), iDCosecha As Nullable(Of Byte), iDPlanta As Nullable(Of Byte), iDEntidad As Nullable(Of Integer), entradas As Nullable(Of Boolean), salidas As Nullable(Of Boolean), activas As Nullable(Of Boolean), fechaDesde As Nullable(Of Date), fechaHasta As Nullable(Of Date)) As ObjectResult(Of ObtenerResumenPesadas_Result)
         Dim iDProductoParameter As ObjectParameter = If(iDProducto.HasValue, New ObjectParameter("IDProducto", iDProducto), New ObjectParameter("IDProducto", GetType(Byte)))
 
         Dim iDCosechaParameter As ObjectParameter = If(iDCosecha.HasValue, New ObjectParameter("IDCosecha", iDCosecha), New ObjectParameter("IDCosecha", GetType(Byte)))
@@ -65,11 +65,13 @@ Partial Public Class CSPesajeContext
 
         Dim salidasParameter As ObjectParameter = If(salidas.HasValue, New ObjectParameter("Salidas", salidas), New ObjectParameter("Salidas", GetType(Boolean)))
 
+        Dim activasParameter As ObjectParameter = If(activas.HasValue, New ObjectParameter("Activas", activas), New ObjectParameter("Activas", GetType(Boolean)))
+
         Dim fechaDesdeParameter As ObjectParameter = If(fechaDesde.HasValue, New ObjectParameter("FechaDesde", fechaDesde), New ObjectParameter("FechaDesde", GetType(Date)))
 
         Dim fechaHastaParameter As ObjectParameter = If(fechaHasta.HasValue, New ObjectParameter("FechaHasta", fechaHasta), New ObjectParameter("FechaHasta", GetType(Date)))
 
-        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of uspPesadaObtenerResumen_Result)("uspPesadaObtenerResumen", iDProductoParameter, iDCosechaParameter, iDPlantaParameter, iDEntidadParameter, entradasParameter, salidasParameter, fechaDesdeParameter, fechaHastaParameter)
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of ObtenerResumenPesadas_Result)("ObtenerResumenPesadas", iDProductoParameter, iDCosechaParameter, iDPlantaParameter, iDEntidadParameter, entradasParameter, salidasParameter, activasParameter, fechaDesdeParameter, fechaHastaParameter)
     End Function
 
 End Class

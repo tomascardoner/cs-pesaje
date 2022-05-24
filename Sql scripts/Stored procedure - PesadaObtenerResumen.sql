@@ -11,16 +11,17 @@ GO
 -- Creation: 2022-03-12
 -- Description:	Obtiene los totales de pesadas
 -- =============================================
-IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'uspPesadaObtenerResumen') AND type in (N'P', N'PC'))
-	 DROP PROCEDURE uspPesadaObtenerResumen
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'ObtenerResumenPesadas') AND type in (N'P', N'PC'))
+	 DROP PROCEDURE ObtenerResumenPesadas
 GO
-CREATE PROCEDURE dbo.uspPesadaObtenerResumen 
+CREATE PROCEDURE dbo.ObtenerResumenPesadas 
     @IDProducto tinyint,
 	@IDCosecha tinyint,
 	@IDPlanta tinyint,
 	@IDEntidad int,
 	@Entradas bit,
 	@Salidas bit,
+	@Activas bit,
 	@FechaDesde date,
 	@FechaHasta date
 AS
@@ -36,6 +37,7 @@ AS
 				AND (@IDPlanta IS NULL OR p.IDPlanta = @IDPlanta)
 				AND (@IDEntidad IS NULL OR p.Titular_IDEntidad = @IDEntidad)
 				AND ((@Entradas = 1 AND p.Tipo = 'E') OR (@Salidas = 1 AND p.Tipo = 'S'))
+				AND (@Activas IS NULL OR p.EsActivo = @Activas)
 				AND (@FechaDesde IS NULL OR p.FechaHoraInicio >= @FechaDesde)
 				AND (@FechaHasta IS NULL OR p.FechaHoraInicio <= DATETIMEFROMPARTS(YEAR(@FechaHasta), MONTH(@FechaHasta), DAY(@FechaHasta), 23, 59, 59, 99))
 	END

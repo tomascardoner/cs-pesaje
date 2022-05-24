@@ -34,6 +34,11 @@ Partial Class formPesadasResumen
         Me.CheckBoxTipoEntradas = New System.Windows.Forms.CheckBox()
         Me.CheckBoxTipoSalidas = New System.Windows.Forms.CheckBox()
         Me.GroupBoxResumen = New System.Windows.Forms.GroupBox()
+        Me.TextBoxCantidadTotal = New System.Windows.Forms.TextBox()
+        Me.TextBoxCantidadSalidas = New System.Windows.Forms.TextBox()
+        Me.TextBoxCantidadEntradas = New System.Windows.Forms.TextBox()
+        Me.LabelCantidad = New System.Windows.Forms.Label()
+        Me.LabelKilogramos = New System.Windows.Forms.Label()
         Me.LabelTotales = New System.Windows.Forms.Label()
         Me.TextBoxKilogramosTotal = New System.Windows.Forms.TextBox()
         Me.LabelSalidas = New System.Windows.Forms.Label()
@@ -47,11 +52,8 @@ Partial Class formPesadasResumen
         Me.DateTimePickerFechaHasta = New System.Windows.Forms.DateTimePicker()
         Me.LabelFechaHasta = New System.Windows.Forms.Label()
         Me.ButtonCalcular = New System.Windows.Forms.Button()
-        Me.LabelKilogramos = New System.Windows.Forms.Label()
-        Me.LabelCantidad = New System.Windows.Forms.Label()
-        Me.TextBoxCantidadEntradas = New System.Windows.Forms.TextBox()
-        Me.TextBoxCantidadSalidas = New System.Windows.Forms.TextBox()
-        Me.TextBoxCantidadTotal = New System.Windows.Forms.TextBox()
+        Me.ComboBoxActivas = New System.Windows.Forms.ComboBox()
+        Me.LabelActivas = New System.Windows.Forms.Label()
         Me.GroupBoxResumen.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -175,11 +177,57 @@ Partial Class formPesadasResumen
         Me.GroupBoxResumen.Controls.Add(Me.TextBoxKilogramosEntradasNetas)
         Me.GroupBoxResumen.Controls.Add(Me.LabelEntradasBrutas)
         Me.GroupBoxResumen.Controls.Add(Me.TextBoxKilogramosEntradasBrutas)
-        Me.GroupBoxResumen.Location = New System.Drawing.Point(49, 231)
+        Me.GroupBoxResumen.Location = New System.Drawing.Point(49, 256)
         Me.GroupBoxResumen.Name = "GroupBoxResumen"
         Me.GroupBoxResumen.Size = New System.Drawing.Size(262, 146)
-        Me.GroupBoxResumen.TabIndex = 16
+        Me.GroupBoxResumen.TabIndex = 18
         Me.GroupBoxResumen.TabStop = False
+        '
+        'TextBoxCantidadTotal
+        '
+        Me.TextBoxCantidadTotal.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxCantidadTotal.Location = New System.Drawing.Point(196, 112)
+        Me.TextBoxCantidadTotal.Name = "TextBoxCantidadTotal"
+        Me.TextBoxCantidadTotal.ReadOnly = True
+        Me.TextBoxCantidadTotal.Size = New System.Drawing.Size(55, 20)
+        Me.TextBoxCantidadTotal.TabIndex = 12
+        Me.TextBoxCantidadTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'TextBoxCantidadSalidas
+        '
+        Me.TextBoxCantidadSalidas.Location = New System.Drawing.Point(196, 86)
+        Me.TextBoxCantidadSalidas.Name = "TextBoxCantidadSalidas"
+        Me.TextBoxCantidadSalidas.ReadOnly = True
+        Me.TextBoxCantidadSalidas.Size = New System.Drawing.Size(55, 20)
+        Me.TextBoxCantidadSalidas.TabIndex = 11
+        Me.TextBoxCantidadSalidas.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'TextBoxCantidadEntradas
+        '
+        Me.TextBoxCantidadEntradas.Location = New System.Drawing.Point(196, 47)
+        Me.TextBoxCantidadEntradas.Name = "TextBoxCantidadEntradas"
+        Me.TextBoxCantidadEntradas.ReadOnly = True
+        Me.TextBoxCantidadEntradas.Size = New System.Drawing.Size(55, 20)
+        Me.TextBoxCantidadEntradas.TabIndex = 10
+        Me.TextBoxCantidadEntradas.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'LabelCantidad
+        '
+        Me.LabelCantidad.AutoSize = True
+        Me.LabelCantidad.Location = New System.Drawing.Point(199, 16)
+        Me.LabelCantidad.Name = "LabelCantidad"
+        Me.LabelCantidad.Size = New System.Drawing.Size(49, 13)
+        Me.LabelCantidad.TabIndex = 9
+        Me.LabelCantidad.Text = "Cantidad"
+        '
+        'LabelKilogramos
+        '
+        Me.LabelKilogramos.AutoSize = True
+        Me.LabelKilogramos.Location = New System.Drawing.Point(109, 16)
+        Me.LabelKilogramos.Name = "LabelKilogramos"
+        Me.LabelKilogramos.Size = New System.Drawing.Size(58, 13)
+        Me.LabelKilogramos.TabIndex = 8
+        Me.LabelKilogramos.Text = "Kilogramos"
         '
         'LabelTotales
         '
@@ -258,105 +306,79 @@ Partial Class formPesadasResumen
         'LabelFechaDesde
         '
         Me.LabelFechaDesde.AutoSize = True
-        Me.LabelFechaDesde.Location = New System.Drawing.Point(12, 150)
+        Me.LabelFechaDesde.Location = New System.Drawing.Point(12, 175)
         Me.LabelFechaDesde.Name = "LabelFechaDesde"
         Me.LabelFechaDesde.Size = New System.Drawing.Size(72, 13)
-        Me.LabelFechaDesde.TabIndex = 11
+        Me.LabelFechaDesde.TabIndex = 13
         Me.LabelFechaDesde.Text = "Fecha desde:"
         '
         'DateTimePickerFechaDesde
         '
         Me.DateTimePickerFechaDesde.Checked = False
         Me.DateTimePickerFechaDesde.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DateTimePickerFechaDesde.Location = New System.Drawing.Point(90, 147)
+        Me.DateTimePickerFechaDesde.Location = New System.Drawing.Point(90, 172)
         Me.DateTimePickerFechaDesde.MaxDate = New Date(2200, 12, 31, 0, 0, 0, 0)
         Me.DateTimePickerFechaDesde.MinDate = New Date(2017, 1, 1, 0, 0, 0, 0)
         Me.DateTimePickerFechaDesde.Name = "DateTimePickerFechaDesde"
         Me.DateTimePickerFechaDesde.ShowCheckBox = True
         Me.DateTimePickerFechaDesde.Size = New System.Drawing.Size(132, 20)
-        Me.DateTimePickerFechaDesde.TabIndex = 12
+        Me.DateTimePickerFechaDesde.TabIndex = 14
         '
         'DateTimePickerFechaHasta
         '
         Me.DateTimePickerFechaHasta.Checked = False
         Me.DateTimePickerFechaHasta.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DateTimePickerFechaHasta.Location = New System.Drawing.Point(90, 173)
+        Me.DateTimePickerFechaHasta.Location = New System.Drawing.Point(90, 198)
         Me.DateTimePickerFechaHasta.MaxDate = New Date(2200, 12, 31, 0, 0, 0, 0)
         Me.DateTimePickerFechaHasta.MinDate = New Date(2017, 1, 1, 0, 0, 0, 0)
         Me.DateTimePickerFechaHasta.Name = "DateTimePickerFechaHasta"
         Me.DateTimePickerFechaHasta.ShowCheckBox = True
         Me.DateTimePickerFechaHasta.Size = New System.Drawing.Size(132, 20)
-        Me.DateTimePickerFechaHasta.TabIndex = 14
+        Me.DateTimePickerFechaHasta.TabIndex = 16
         '
         'LabelFechaHasta
         '
         Me.LabelFechaHasta.AutoSize = True
-        Me.LabelFechaHasta.Location = New System.Drawing.Point(12, 176)
+        Me.LabelFechaHasta.Location = New System.Drawing.Point(12, 201)
         Me.LabelFechaHasta.Name = "LabelFechaHasta"
         Me.LabelFechaHasta.Size = New System.Drawing.Size(69, 13)
-        Me.LabelFechaHasta.TabIndex = 13
+        Me.LabelFechaHasta.TabIndex = 15
         Me.LabelFechaHasta.Text = "Fecha hasta:"
         '
         'ButtonCalcular
         '
-        Me.ButtonCalcular.Location = New System.Drawing.Point(90, 199)
+        Me.ButtonCalcular.Location = New System.Drawing.Point(90, 224)
         Me.ButtonCalcular.Name = "ButtonCalcular"
         Me.ButtonCalcular.Size = New System.Drawing.Size(134, 26)
-        Me.ButtonCalcular.TabIndex = 15
+        Me.ButtonCalcular.TabIndex = 17
         Me.ButtonCalcular.Text = "Calcular"
         Me.ButtonCalcular.UseVisualStyleBackColor = True
         '
-        'LabelKilogramos
+        'ComboBoxActivas
         '
-        Me.LabelKilogramos.AutoSize = True
-        Me.LabelKilogramos.Location = New System.Drawing.Point(109, 16)
-        Me.LabelKilogramos.Name = "LabelKilogramos"
-        Me.LabelKilogramos.Size = New System.Drawing.Size(58, 13)
-        Me.LabelKilogramos.TabIndex = 8
-        Me.LabelKilogramos.Text = "Kilogramos"
+        Me.ComboBoxActivas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ComboBoxActivas.FormattingEnabled = True
+        Me.ComboBoxActivas.Location = New System.Drawing.Point(90, 145)
+        Me.ComboBoxActivas.Name = "ComboBoxActivas"
+        Me.ComboBoxActivas.Size = New System.Drawing.Size(121, 21)
+        Me.ComboBoxActivas.TabIndex = 12
         '
-        'LabelCantidad
+        'LabelActivas
         '
-        Me.LabelCantidad.AutoSize = True
-        Me.LabelCantidad.Location = New System.Drawing.Point(199, 16)
-        Me.LabelCantidad.Name = "LabelCantidad"
-        Me.LabelCantidad.Size = New System.Drawing.Size(49, 13)
-        Me.LabelCantidad.TabIndex = 9
-        Me.LabelCantidad.Text = "Cantidad"
-        '
-        'TextBoxCantidadEntradas
-        '
-        Me.TextBoxCantidadEntradas.Location = New System.Drawing.Point(196, 47)
-        Me.TextBoxCantidadEntradas.Name = "TextBoxCantidadEntradas"
-        Me.TextBoxCantidadEntradas.ReadOnly = True
-        Me.TextBoxCantidadEntradas.Size = New System.Drawing.Size(55, 20)
-        Me.TextBoxCantidadEntradas.TabIndex = 10
-        Me.TextBoxCantidadEntradas.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'TextBoxCantidadSalidas
-        '
-        Me.TextBoxCantidadSalidas.Location = New System.Drawing.Point(196, 86)
-        Me.TextBoxCantidadSalidas.Name = "TextBoxCantidadSalidas"
-        Me.TextBoxCantidadSalidas.ReadOnly = True
-        Me.TextBoxCantidadSalidas.Size = New System.Drawing.Size(55, 20)
-        Me.TextBoxCantidadSalidas.TabIndex = 11
-        Me.TextBoxCantidadSalidas.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'TextBoxCantidadTotal
-        '
-        Me.TextBoxCantidadTotal.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxCantidadTotal.Location = New System.Drawing.Point(196, 112)
-        Me.TextBoxCantidadTotal.Name = "TextBoxCantidadTotal"
-        Me.TextBoxCantidadTotal.ReadOnly = True
-        Me.TextBoxCantidadTotal.Size = New System.Drawing.Size(55, 20)
-        Me.TextBoxCantidadTotal.TabIndex = 12
-        Me.TextBoxCantidadTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.LabelActivas.AutoSize = True
+        Me.LabelActivas.Location = New System.Drawing.Point(12, 148)
+        Me.LabelActivas.Name = "LabelActivas"
+        Me.LabelActivas.Size = New System.Drawing.Size(45, 13)
+        Me.LabelActivas.TabIndex = 11
+        Me.LabelActivas.Text = "Activas:"
         '
         'formPesadasResumen
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(357, 390)
+        Me.ClientSize = New System.Drawing.Size(357, 412)
+        Me.Controls.Add(Me.ComboBoxActivas)
+        Me.Controls.Add(Me.LabelActivas)
         Me.Controls.Add(Me.ButtonCalcular)
         Me.Controls.Add(Me.DateTimePickerFechaHasta)
         Me.Controls.Add(Me.LabelFechaHasta)
@@ -417,4 +439,6 @@ Partial Class formPesadasResumen
     Friend WithEvents TextBoxCantidadEntradas As TextBox
     Friend WithEvents LabelCantidad As Label
     Friend WithEvents LabelKilogramos As Label
+    Friend WithEvents ComboBoxActivas As ComboBox
+    Friend WithEvents LabelActivas As Label
 End Class

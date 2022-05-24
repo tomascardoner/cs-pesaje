@@ -235,6 +235,9 @@
     <Compile Include="EF Extensions\Reporte.vb" />
     <Compile Include="EF Extensions\ReporteParametro.vb" />
     <Compile Include="EF Extensions\Cosecha_Producto_Tarifa.vb" />
+    <Compile Include="ObtenerResumenPesadas_Result.vb">
+      <DependentUpon>CSPesaje.tt</DependentUpon>
+    </Compile>
     <Compile Include="Pesadas\formPesadasResumen.Designer.vb">
       <DependentUpon>formPesadasResumen.vb</DependentUpon>
     </Compile>
@@ -470,9 +473,6 @@
       <DependentUpon>CSPesaje.tt</DependentUpon>
     </Compile>
     <Compile Include="Sistema\StartUp.vb" />
-    <Compile Include="uspPesadaObtenerResumen_Result.vb">
-      <DependentUpon>CSPesaje.tt</DependentUpon>
-    </Compile>
     <Compile Include="Usuario.vb">
       <DependentUpon>CSPesaje.tt</DependentUpon>
     </Compile>

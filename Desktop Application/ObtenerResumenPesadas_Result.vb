@@ -10,7 +10,7 @@
 Imports System
 Imports System.Collections.Generic
 
-Partial Public Class uspPesadaObtenerResumen_Result
+Partial Public Class ObtenerResumenPesadas_Result
     Public Property KilogramosEntradasBrutos As Integer
     Public Property KilogramosEntradasNetos As Integer
     Public Property KilogramosSalidas As Integer
