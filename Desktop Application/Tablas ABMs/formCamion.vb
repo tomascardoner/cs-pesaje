@@ -102,7 +102,7 @@
                 textboxIDCamion.Text = String.Format(.IDCamion.ToString, "G")
             End If
             checkboxEsActivo.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.EsActivo)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxTransportista, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDEntidad)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxTransportista, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDEntidad)
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
             textboxDominioChasis.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DominioChasis)
             textboxDominioChasisExtra.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DominioChasisExtra)
@@ -150,18 +150,18 @@
 
 #Region "Main Toolbar"
 
-    Private Sub buttonEditar_Click() Handles buttonEditar.Click
+    Private Sub Editar_Click() Handles buttonEditar.Click
         If Permisos.VerificarPermiso(Permisos.CAMION_EDITAR) Then
             mEditMode = True
             ChangeMode()
         End If
     End Sub
 
-    Private Sub buttonCerrar_Click() Handles buttonCerrar.Click
+    Private Sub Cerrar_Click() Handles buttonCerrar.Click
         Me.Close()
     End Sub
 
-    Private Sub buttonGuardar_Click() Handles buttonGuardar.Click
+    Private Sub Guardar_Click() Handles buttonGuardar.Click
         ' Verificar que estén todos los campos con datos coherentes
         If comboboxTransportista.SelectedValue Is Nothing Then
             MsgBox("Debe especificar el Transportista al cual pertenece el Camión.", MsgBoxStyle.Information, My.Application.Info.Title)
@@ -225,7 +225,7 @@
         Me.Close()
     End Sub
 
-    Private Sub buttonCancelar_Click() Handles buttonCancelar.Click
+    Private Sub Cancelar_Click() Handles buttonCancelar.Click
         If mdbContext.ChangeTracker.HasChanges Then
             If MsgBox("Ha realizado cambios en los datos y seleccionó cancelar, los cambios se perderán." & vbCr & vbCr & "¿Confirma la pérdida de los cambios?", CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
                 Me.Close()

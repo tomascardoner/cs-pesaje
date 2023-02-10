@@ -73,7 +73,7 @@
                 End If
 
                 ' Si tiene análisis cargado, calculo los servicios:
-                If Not PesadaActual.Pesada_Analisis Is Nothing Then
+                If PesadaActual.Pesada_Analisis IsNot Nothing Then
 
                     ' Calculo el Zarandeo, Fumigado y Mezcla antes del Secado porque en las Escalas de Secado,
                     ' según el caso, tengo que poner en cero alguna de estas tarifas
@@ -179,7 +179,7 @@
                                                     HumedadLimiteSuperior = (Cosecha_Producto_TarifaEscalaActual.HumedadExcesoInicio - CDec(0.1))
                                                 Next
                                                 If Me.SecadoExcesoTarifa > 0 Then
-                                                    Me.SecadoExcesoTarifa = Me.SecadoExcesoTarifa / EscalaCount
+                                                    Me.SecadoExcesoTarifa /= EscalaCount
                                                 End If
 
                                             Case Constantes.PRODUCTO_TARIFA_SECADO_TIPO_ESCALA_COMPLETA

@@ -165,15 +165,15 @@
     Friend Sub SetDataFromObjectToControls()
         With mCosecha_Producto_TarifaActual
             ' General - Requeridos
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxCosecha, CardonerSistemas.ComboBox.SelectedItemOptions.Value, .IDCosecha, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxProducto, CardonerSistemas.ComboBox.SelectedItemOptions.Value, .IDProducto)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxCosecha, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.Value, .IDCosecha, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxProducto, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.Value, .IDProducto)
             updownIndice.Value = CS_ValueTranslation.FromObjectShortToControlUpDown(.Indice)
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
 
             ' General - Opcionales
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxPlanta, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .IDPlanta, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxEntidad, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .IDEntidad)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxOrigen, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .IDOrigen)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxPlanta, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirst, .IDPlanta, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxEntidad, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirst, .IDEntidad)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxOrigen, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirst, .IDOrigen)
             datetimepickerFechaDesde.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.FechaDesde, datetimepickerFechaDesde)
             datetimepickerFechaHasta.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.FechaHasta, datetimepickerFechaHasta)
 
@@ -364,7 +364,7 @@
         End If
     End Sub
 
-    Private Sub buttonCerrar_Click() Handles buttonCerrar.Click
+    Private Sub Cerrar_Click() Handles buttonCerrar.Click
         Me.Close()
     End Sub
 
@@ -557,7 +557,7 @@
         End If
     End Sub
 
-    Private Sub updownIndice_Enter(sender As Object, e As EventArgs) Handles updownIndice.Enter
+    Private Sub Indice_Enter(sender As Object, e As EventArgs) Handles updownIndice.Enter
         updownIndice.Select(0, 5)
     End Sub
 
