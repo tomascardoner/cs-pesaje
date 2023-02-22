@@ -34,14 +34,6 @@ Partial Class formMDIMain
         Me.menuitemArchivo_Separador_Salir = New System.Windows.Forms.ToolStripSeparator()
         Me.menuitemArchivo_Salir = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemVentana = New System.Windows.Forms.ToolStripMenuItem()
-        Me.menuitemVentana_MosaicoHorizontal = New System.Windows.Forms.ToolStripMenuItem()
-        Me.menuitemVentana_MosaicoVertical = New System.Windows.Forms.ToolStripMenuItem()
-        Me.menuitemVentana_Cascada = New System.Windows.Forms.ToolStripMenuItem()
-        Me.menuitemVentana_OrganizarIconos = New System.Windows.Forms.ToolStripMenuItem()
-        Me.menuitemVentana_SeparadorCerrarTodas = New System.Windows.Forms.ToolStripSeparator()
-        Me.menuitemVentana_CerrarTodas = New System.Windows.Forms.ToolStripMenuItem()
-        Me.menuitemVentana_EncajarEnVentana = New System.Windows.Forms.ToolStripMenuItem()
-        Me.menuitemVentana_SeparadorListaVentanas = New System.Windows.Forms.ToolStripSeparator()
         Me.menuitemDebug = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemAyuda = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemAyuda_AcercaDe = New System.Windows.Forms.ToolStripMenuItem()
@@ -61,6 +53,7 @@ Partial Class formMDIMain
         Me.buttonResumenPesadas = New System.Windows.Forms.ToolStripButton()
         Me.buttonReportes = New System.Windows.Forms.ToolStripButton()
         Me.textboxKilogramo = New System.Windows.Forms.TextBox()
+        Me.menuitemArchivo_CambiarContrasena = New System.Windows.Forms.ToolStripMenuItem()
         Me.statusstripMain.SuspendLayout()
         Me.menustripMain.SuspendLayout()
         Me.panelMain.SuspendLayout()
@@ -98,7 +91,7 @@ Partial Class formMDIMain
         '
         'menuitemArchivo
         '
-        Me.menuitemArchivo.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemArchivo_Opciones, Me.menuitemArchivo_Separador_CerrarSesion, Me.menuitemArchivo_CerrarSesion, Me.menuitemArchivo_Separador_Salir, Me.menuitemArchivo_Salir})
+        Me.menuitemArchivo.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemArchivo_Opciones, Me.menuitemArchivo_Separador_CerrarSesion, Me.menuitemArchivo_CerrarSesion, Me.menuitemArchivo_CambiarContrasena, Me.menuitemArchivo_Separador_Salir, Me.menuitemArchivo_Salir})
         Me.menuitemArchivo.Name = "menuitemArchivo"
         Me.menuitemArchivo.Size = New System.Drawing.Size(60, 20)
         Me.menuitemArchivo.Text = "&Archivo"
@@ -133,60 +126,9 @@ Partial Class formMDIMain
         '
         'menuitemVentana
         '
-        Me.menuitemVentana.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemVentana_MosaicoHorizontal, Me.menuitemVentana_MosaicoVertical, Me.menuitemVentana_Cascada, Me.menuitemVentana_OrganizarIconos, Me.menuitemVentana_SeparadorCerrarTodas, Me.menuitemVentana_CerrarTodas, Me.menuitemVentana_EncajarEnVentana, Me.menuitemVentana_SeparadorListaVentanas})
         Me.menuitemVentana.Name = "menuitemVentana"
         Me.menuitemVentana.Size = New System.Drawing.Size(61, 20)
         Me.menuitemVentana.Text = "&Ventana"
-        '
-        'menuitemVentana_MosaicoHorizontal
-        '
-        Me.menuitemVentana_MosaicoHorizontal.Image = Global.My.Resources.Resources.IMAGE_MENU_WINDOW_TILE_HORIZONTALLY
-        Me.menuitemVentana_MosaicoHorizontal.Name = "menuitemVentana_MosaicoHorizontal"
-        Me.menuitemVentana_MosaicoHorizontal.Size = New System.Drawing.Size(177, 22)
-        Me.menuitemVentana_MosaicoHorizontal.Text = "Mosaico &Horizontal"
-        '
-        'menuitemVentana_MosaicoVertical
-        '
-        Me.menuitemVentana_MosaicoVertical.Image = Global.My.Resources.Resources.IMAGE_MENU_WINDOW_TILE_VERTICALLY
-        Me.menuitemVentana_MosaicoVertical.Name = "menuitemVentana_MosaicoVertical"
-        Me.menuitemVentana_MosaicoVertical.Size = New System.Drawing.Size(177, 22)
-        Me.menuitemVentana_MosaicoVertical.Text = "Mosaico &Vertical"
-        '
-        'menuitemVentana_Cascada
-        '
-        Me.menuitemVentana_Cascada.Name = "menuitemVentana_Cascada"
-        Me.menuitemVentana_Cascada.Size = New System.Drawing.Size(177, 22)
-        Me.menuitemVentana_Cascada.Text = "&Cascada"
-        '
-        'menuitemVentana_OrganizarIconos
-        '
-        Me.menuitemVentana_OrganizarIconos.Name = "menuitemVentana_OrganizarIconos"
-        Me.menuitemVentana_OrganizarIconos.Size = New System.Drawing.Size(177, 22)
-        Me.menuitemVentana_OrganizarIconos.Text = "&Organizar Iconos"
-        '
-        'menuitemVentana_SeparadorCerrarTodas
-        '
-        Me.menuitemVentana_SeparadorCerrarTodas.Name = "menuitemVentana_SeparadorCerrarTodas"
-        Me.menuitemVentana_SeparadorCerrarTodas.Size = New System.Drawing.Size(174, 6)
-        '
-        'menuitemVentana_CerrarTodas
-        '
-        Me.menuitemVentana_CerrarTodas.Image = Global.My.Resources.Resources.IMAGE_MENU_WINDOW_CLOSE_ALL
-        Me.menuitemVentana_CerrarTodas.Name = "menuitemVentana_CerrarTodas"
-        Me.menuitemVentana_CerrarTodas.Size = New System.Drawing.Size(177, 22)
-        Me.menuitemVentana_CerrarTodas.Text = "Cerrar todas"
-        '
-        'menuitemVentana_EncajarEnVentana
-        '
-        Me.menuitemVentana_EncajarEnVentana.Image = Global.My.Resources.Resources.IMAGE_MENU_WINDOW_FIT_SIZE
-        Me.menuitemVentana_EncajarEnVentana.Name = "menuitemVentana_EncajarEnVentana"
-        Me.menuitemVentana_EncajarEnVentana.Size = New System.Drawing.Size(177, 22)
-        Me.menuitemVentana_EncajarEnVentana.Text = "Encajar en ventana"
-        '
-        'menuitemVentana_SeparadorListaVentanas
-        '
-        Me.menuitemVentana_SeparadorListaVentanas.Name = "menuitemVentana_SeparadorListaVentanas"
-        Me.menuitemVentana_SeparadorListaVentanas.Size = New System.Drawing.Size(174, 6)
         '
         'menuitemDebug
         '
@@ -344,6 +286,12 @@ Partial Class formMDIMain
         Me.textboxKilogramo.TabIndex = 3
         Me.textboxKilogramo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
+        'menuitemArchivo_CambiarContrasena
+        '
+        Me.menuitemArchivo_CambiarContrasena.Name = "menuitemArchivo_CambiarContrasena"
+        Me.menuitemArchivo_CambiarContrasena.Size = New System.Drawing.Size(204, 22)
+        Me.menuitemArchivo_CambiarContrasena.Text = "Cambiar contraseña"
+        '
         'formMDIMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -383,16 +331,8 @@ Partial Class formMDIMain
     Friend WithEvents menuitemArchivo_Separador_Salir As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents menuitemArchivo_Salir As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents menuitemVentana As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents menuitemVentana_MosaicoHorizontal As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents menuitemVentana_MosaicoVertical As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents menuitemVentana_Cascada As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents menuitemVentana_OrganizarIconos As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents menuitemVentana_SeparadorCerrarTodas As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents menuitemVentana_CerrarTodas As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents menuitemVentana_EncajarEnVentana As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents menuitemAyuda As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents menuitemAyuda_AcercaDe As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents menuitemVentana_SeparadorListaVentanas As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents menuitemDebug As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents panelMain As System.Windows.Forms.TableLayoutPanel
     Friend WithEvents toolstripMain As System.Windows.Forms.ToolStrip
@@ -410,4 +350,5 @@ Partial Class formMDIMain
     Friend WithEvents menuitemTablas_Camiones As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents menuitemTablas_OrigenesDestinos As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents buttonResumenPesadas As ToolStripButton
+    Friend WithEvents menuitemArchivo_CambiarContrasena As ToolStripMenuItem
 End Class

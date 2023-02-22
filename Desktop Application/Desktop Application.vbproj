@@ -8,13 +8,15 @@
     <ProjectGuid>{80F91FA5-66EC-49A8-87A4-A4EBB1DDE34D}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <StartupObject>Sub Main</StartupObject>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <AssemblyName>CSPesaje</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsFormsWithCustomSubMain</MyType>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <TargetFrameworkProfile />
-    <NuGetPackageImportStamp></NuGetPackageImportStamp>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -24,7 +26,8 @@
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
     <DocumentationFile>CSPesaje.xml</DocumentationFile>
-    <NoWarn></NoWarn>
+    <NoWarn>
+    </NoWarn>
     <WarningsAsErrors>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</WarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -35,7 +38,8 @@
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DocumentationFile>CSPesaje.xml</DocumentationFile>
-    <NoWarn></NoWarn>
+    <NoWarn>
+    </NoWarn>
     <WarningsAsErrors>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</WarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup>
@@ -360,10 +364,16 @@
     <Compile Include="Tablas ABMs\formEntidadesSeleccionar.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Sistema\formLogin.Designer.vb">
+    <Compile Include="Usuarios\formCambiarContrasena.designer.vb">
+      <DependentUpon>formCambiarContrasena.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Usuarios\formCambiarContrasena.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Usuarios\formLogin.Designer.vb">
       <DependentUpon>formLogin.vb</DependentUpon>
     </Compile>
-    <Compile Include="Sistema\formLogin.vb">
+    <Compile Include="Usuarios\formLogin.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Sistema\formMDIMain.Designer.vb">
@@ -446,7 +456,7 @@
       <DependentUpon>CSPesaje.tt</DependentUpon>
     </Compile>
     <Compile Include="Sistema\Parametros.vb" />
-    <Compile Include="Sistema\Permisos.vb" />
+    <Compile Include="Usuarios\Permisos.vb" />
     <Compile Include="Pesada.vb">
       <DependentUpon>CSPesaje.tt</DependentUpon>
     </Compile>
@@ -552,7 +562,10 @@
     <EmbeddedResource Include="Tablas ABMs\formEntidadesSeleccionar.resx">
       <DependentUpon>formEntidadesSeleccionar.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Sistema\formLogin.resx">
+    <EmbeddedResource Include="Usuarios\formCambiarContrasena.resx">
+      <DependentUpon>formCambiarContrasena.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Usuarios\formLogin.resx">
       <DependentUpon>formLogin.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sistema\formMDIMain.resx">

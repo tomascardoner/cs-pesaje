@@ -2,7 +2,7 @@
 
 #Region "Declarations"
 
-    Private AFIP_TicketAcceso_Homo As String
+    Private ReadOnly AFIP_TicketAcceso_Homo As String
 
 #End Region
 
@@ -38,7 +38,7 @@
 
 #Region "Menu Archivo"
 
-    Private Sub menuitemArchivo_Salir_Click() Handles menuitemArchivo_Salir.Click
+    Private Sub Archivo_Salir_Click() Handles menuitemArchivo_Salir.Click
         Me.Close()
     End Sub
 
@@ -46,43 +46,15 @@
         CerrarSesionUsuario()
     End Sub
 
-#End Region
-
-#Region "Menu Ventana"
-
-    Private Sub menuitemVentana_MosaicoHorizontal_Click() Handles menuitemVentana_MosaicoHorizontal.Click
-        Me.LayoutMdi(MdiLayout.TileHorizontal)
-    End Sub
-
-    Private Sub menuitemVentana_MosaicoVertical_Click() Handles menuitemVentana_MosaicoVertical.Click
-        Me.LayoutMdi(MdiLayout.TileVertical)
-    End Sub
-
-    Private Sub menuitemVentana_Cascada_Click() Handles menuitemVentana_Cascada.Click
-        Me.LayoutMdi(MdiLayout.Cascade)
-    End Sub
-
-    Private Sub menuitemVentana_OrganizarIconos_Click() Handles menuitemVentana_OrganizarIconos.Click
-        Me.LayoutMdi(MdiLayout.ArrangeIcons)
-    End Sub
-
-    Private Sub menuitemVentana_EncajarEnVentana_Click() Handles menuitemVentana_EncajarEnVentana.Click
-        If Not Me.ActiveMdiChild Is Nothing Then
-            Me.ActiveMdiChild.Left = 0
-            Me.ActiveMdiChild.Top = 0
-            Me.ActiveMdiChild.Size = Me.ClientSize
-        End If
-    End Sub
-
-    Private Sub menuitemVentana_CerrarTodas_Click() Handles menuitemVentana_CerrarTodas.Click
-        CardonerSistemas.Forms.MdiChildCloseAll(Me)
+    Private Sub UsuarioCambiarContrasena(sender As Object, e As EventArgs) Handles menuitemArchivo_CambiarContrasena.Click
+        formCambiarContrasena.ShowDialog(Me)
     End Sub
 
 #End Region
 
 #Region "Menu Ayuda"
 
-    Private Sub menuitemAyuda_AcercaDe_Click(sender As Object, e As EventArgs) Handles menuitemAyuda_AcercaDe.Click
+    Private Sub Ayuda_AcercaDe_Click(sender As Object, e As EventArgs) Handles menuitemAyuda_AcercaDe.Click
         formAboutBox.ShowDialog(Me)
         formAboutBox.Dispose()
     End Sub
@@ -123,7 +95,7 @@
         ShowForm(Permisos.RESUMENPESADA, CType(formPesadasResumen, Form))
     End Sub
 
-    Private Sub buttonReportes_Click(sender As Object, e As EventArgs)
+    Private Sub Reportes(sender As Object, e As EventArgs)
         ShowForm(Permisos.REPORTE, CType(formReportes, Form))
     End Sub
 
@@ -131,7 +103,7 @@
 
 #Region "Controls behavior"
 
-    Private Sub labelUsuarioNombre_DoubleClick() Handles labelUsuarioNombre.MouseDown
+    Private Sub UsuarioNombre_DoubleClick() Handles labelUsuarioNombre.MouseDown
         CerrarSesionUsuario()
     End Sub
 

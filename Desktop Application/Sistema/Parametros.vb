@@ -49,7 +49,6 @@
         End Try
     End Function
 
-
     Friend Function SaveParameter(parametro As Parametro) As Boolean
         Try
             Using dbcontext As New CSPesajeContext(True)

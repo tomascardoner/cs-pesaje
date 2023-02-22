@@ -1,6 +1,6 @@
 ﻿Module Permisos
 
-#Region "Constantes"
+#Region "Definición de constantes"
 
     Friend Const USUARIOGRUPO As String = "USUARIOGRUPO"
     Friend Const USUARIOGRUPO_AGREGAR As String = "USUARIOGRUPO_AGREGAR"
@@ -57,6 +57,8 @@
 
 #End Region
 
+#Region "Verificación de permisos"
+
     Friend Function LoadPermisos() As Boolean
         Try
             Using dbcontext As New CSPesajeContext(True)
@@ -70,7 +72,7 @@
     End Function
 
     Friend Function VerificarPermiso(ByVal IDPermiso As String, Optional ByVal MostrarAviso As Boolean = True) As Boolean
-        If pUsuario.IDUsuarioGrupo = 1 Then
+        If pUsuario.IDUsuarioGrupo = Constantes.UsurioGrupoAdministradoresId Then
             Return True
         Else
             If pPermisos.Find(Function(usrper) usrper.IDUsuarioGrupo = pUsuario.IDUsuarioGrupo And usrper.IDPermiso.TrimEnd = IDPermiso) Is Nothing Then
@@ -84,46 +86,44 @@
         End If
     End Function
 
+#End Region
+
+#Region "Asignación de permisos comunes"
+
+    Friend Function AgregarNodos(ByRef parent As TreeNode, ByVal permissionKey As String, ByVal permissionDisplay As String, ByVal permissionAddKey As String, ByVal permissionAddDisplay As String, ByVal permissionEditKey As String, ByVal permissionEditDisplay As String, ByVal permissionDeleteKey As String, ByVal permissionDeleteDisplay As String) As TreeNode
+        Dim newNode = parent.Nodes.Add(permissionKey, permissionDisplay)
+
+        With newNode
+            .Nodes.Add(permissionAddKey, permissionAddDisplay)
+            .Nodes.Add(permissionEditKey, permissionEditDisplay)
+            .Nodes.Add(permissionDeleteKey, permissionDeleteDisplay)
+        End With
+        Return newNode
+    End Function
+
     Friend Sub CargarArbolDePermisos(ByRef Arbol As TreeView, ByVal IDUsuarioGrupo As Byte)
-        Dim RootNode As TreeNode
+        Dim nodeRoot As TreeNode
 
         Arbol.SuspendLayout()
+        Application.DoEvents()
 
         Arbol.Nodes.Clear()
 
-        RootNode = Arbol.Nodes.Add(USUARIOGRUPO, "Grupos de Usuarios")
-        With RootNode
-            .Nodes.Add(USUARIOGRUPO_AGREGAR, DESCRIPCION_AGREGAR)
-            .Nodes.Add(USUARIOGRUPO_EDITAR, DESCRIPCION_EDITAR)
-            .Nodes.Add(USUARIOGRUPO_ELIMINAR, DESCRIPCION_ELIMINAR)
-        End With
+        ' TABLAS
+        nodeRoot = Arbol.Nodes.Add("TABLAS", "Tablas")
+        AgregarNodos(nodeRoot, ENTIDAD, "Entidades", ENTIDAD_AGREGAR, DESCRIPCION_AGREGAR, ENTIDAD_EDITAR, DESCRIPCION_EDITAR, ENTIDAD_ELIMINAR, DESCRIPCION_ELIMINAR)
+        AgregarNodos(nodeRoot, CAMION, "Camiones", CAMION_AGREGAR, DESCRIPCION_AGREGAR, CAMION_EDITAR, DESCRIPCION_EDITAR, CAMION_ELIMINAR, DESCRIPCION_ELIMINAR)
+        AgregarNodos(nodeRoot, ORIGENDESTINO, "Orígenes-Destinos", ORIGENDESTINO_AGREGAR, DESCRIPCION_AGREGAR, ORIGENDESTINO_EDITAR, DESCRIPCION_EDITAR, ORIGENDESTINO_ELIMINAR, DESCRIPCION_ELIMINAR)
+        ' AgregarNodos(nodeRoot, PRODUCTO, "Productos", PRODUCTO_AGREGAR, DESCRIPCION_AGREGAR, PRODUCTO_EDITAR, DESCRIPCION_EDITAR, PRODUCTO_ELIMINAR, DESCRIPCION_ELIMINAR)
+        ' AgregarNodos(nodeRoot, COSECHA, "Cosechas", COSECHA_AGREGAR, DESCRIPCION_AGREGAR, COSECHA_EDITAR, DESCRIPCION_EDITAR, COSECHA_ELIMINAR, DESCRIPCION_ELIMINAR)
+        AgregarNodos(nodeRoot, USUARIOGRUPO, "Grupos de Usuarios", USUARIOGRUPO_AGREGAR, DESCRIPCION_AGREGAR, USUARIOGRUPO_EDITAR, DESCRIPCION_EDITAR, USUARIOGRUPO_ELIMINAR, DESCRIPCION_ELIMINAR)
+        ' AgregarNodos(nodeRoot, USUARIOGRUPOPERMISO, "Permisos", USUARIOGRUPOPERMISO_AGREGAR, DESCRIPCION_AGREGAR, USUARIOGRUPOPERMISO_EDITAR, DESCRIPCION_EDITAR, USUARIOGRUPOPERMISO_ELIMINAR, DESCRIPCION_ELIMINAR)
+        ' AgregarNodos(nodeRoot, USUARIO, "Usuarios", USUARIO_AGREGAR, DESCRIPCION_AGREGAR, USUARIO_EDITAR, DESCRIPCION_EDITAR, USUARIO_ELIMINAR, DESCRIPCION_ELIMINAR)
+        ' AgregarNodos(nodeRoot, TARIFA, "Tarifas", TARIFA_AGREGAR, DESCRIPCION_AGREGAR, TARIFA_EDITAR, DESCRIPCION_EDITAR, TARIFA_ELIMINAR, DESCRIPCION_ELIMINAR)
 
-        RootNode = Arbol.Nodes.Add(ENTIDAD, "Entidades")
-        With RootNode
-            .Nodes.Add(ENTIDAD_AGREGAR, DESCRIPCION_AGREGAR)
-            .Nodes.Add(ENTIDAD_EDITAR, DESCRIPCION_EDITAR)
-            .Nodes.Add(ENTIDAD_ELIMINAR, DESCRIPCION_ELIMINAR)
-            .Nodes.Add(ENTIDAD_IMPRIMIR, DESCRIPCION_IMPRIMIR)
-        End With
-
-        RootNode = Arbol.Nodes.Add(CAMION, "Camiones")
-        With RootNode
-            .Nodes.Add(CAMION_AGREGAR, DESCRIPCION_AGREGAR)
-            .Nodes.Add(CAMION_EDITAR, DESCRIPCION_EDITAR)
-            .Nodes.Add(CAMION_ELIMINAR, DESCRIPCION_ELIMINAR)
-            .Nodes.Add(CAMION_IMPRIMIR, DESCRIPCION_IMPRIMIR)
-        End With
-
-        RootNode = Arbol.Nodes.Add(ORIGENDESTINO, "Orígenes-Destinos")
-        With RootNode
-            .Nodes.Add(ORIGENDESTINO_AGREGAR, DESCRIPCION_AGREGAR)
-            .Nodes.Add(ORIGENDESTINO_EDITAR, DESCRIPCION_EDITAR)
-            .Nodes.Add(ORIGENDESTINO_ELIMINAR, DESCRIPCION_ELIMINAR)
-            .Nodes.Add(ORIGENDESTINO_IMPRIMIR, DESCRIPCION_IMPRIMIR)
-        End With
-
-        RootNode = Arbol.Nodes.Add(PESADA, "Pesadas")
-        With RootNode
+        ' PESADAS
+        nodeRoot = Arbol.Nodes.Add(PESADA, "Pesadas")
+        With nodeRoot
             .Nodes.Add(PESADA_AGREGAR, DESCRIPCION_AGREGAR)
             .Nodes.Add(PESADA_AGREGAR_HORA_ANTERIOR, "Agregar con hora anterior de la hora actual")
             .Nodes.Add(PESADA_AGREGAR_FECHA_ANTERIOR_XDIAS, "Agregar con fecha anterior (hasta X días especificados en los parámetros de la aplicación)")
@@ -139,13 +139,40 @@
             .Nodes.Add(PESADA_MOSTRAR_TARIFASASAPLICA, "Mostrar opciones de aplicación de tarifas.")
         End With
 
-        RootNode = Arbol.Nodes.Add(RESUMENPESADA, "Resumen de pesadas")
+        nodeRoot = Arbol.Nodes.Add(RESUMENPESADA, "Resumen de pesadas")
 
-        RootNode = Arbol.Nodes.Add(REPORTE, "Reportes")
+        nodeRoot = Arbol.Nodes.Add(REPORTE, "Reportes")
 
-        Arbol.ExpandAll()
+        Arbol.TopNode = Arbol.Nodes(0)
+
+        ' Muestro los permisos asignados
+        MostrarPermisosEstablecidos(Arbol, IDUsuarioGrupo)
 
         Arbol.ResumeLayout()
     End Sub
+
+    Private Sub MostrarPermisosEstablecidos(ByRef Arbol As TreeView, ByVal IDUsuarioGrupo As Byte)
+        Dim listPermisos As List(Of UsuarioGrupoPermiso)
+
+        ' Obtengo la lista de permisos para el Grupo de Usuarios
+        Using dbcontext As New CSPesajeContext(True)
+            Try
+                listPermisos = dbcontext.UsuarioGrupoPermiso.Where(Function(ugp) ugp.IDUsuarioGrupo = IDUsuarioGrupo).OrderBy(Function(ugp) ugp.IDPermiso).ToList()
+            Catch ex As Exception
+                CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer la lista de permisos efectivos.")
+                Exit Sub
+            End Try
+        End Using
+
+        ' Marco los items del Tree View que tienen asignado el permiso
+        For Each permiso As UsuarioGrupoPermiso In listPermisos
+            ' Arbol.Nodes.Item(permiso.IDPermiso.Trim()).Checked = True
+            Arbol.Nodes.Find(permiso.IDPermiso.Trim(), True).First.Checked = True
+        Next
+
+        listPermisos = Nothing
+    End Sub
+
+#End Region
 
 End Module

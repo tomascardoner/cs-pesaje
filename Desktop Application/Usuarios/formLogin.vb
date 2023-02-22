@@ -18,9 +18,9 @@
 
     Private Sub Me_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
         If e.KeyChar = ChrW(Keys.Return) Then
-            buttonAceptar_Click()
+            Aceptar_Click()
         ElseIf e.KeyChar = ChrW(Keys.Escape) Then
-            buttonCancelar_Click()
+            Cancelar_Click()
         End If
     End Sub
 
@@ -28,15 +28,15 @@
         mdbContext.Dispose()
     End Sub
 
-    Private Sub textboxNombre_GotFocus() Handles textboxNombre.GotFocus
+    Private Sub Nombre_GotFocus() Handles textboxNombre.GotFocus
         textboxNombre.SelectAll()
     End Sub
 
-    Private Sub textboxPassword_GotFocus() Handles textboxPassword.GotFocus
+    Private Sub Password_GotFocus() Handles textboxPassword.GotFocus
         textboxPassword.SelectAll()
     End Sub
 
-    Private Sub buttonAceptar_Click() Handles buttonAceptar.Click
+    Private Sub Aceptar_Click() Handles buttonAceptar.Click
         Dim UsuarioCurrent As Usuario
 
         textboxNombre.Text.Trim()
@@ -111,7 +111,7 @@
         Me.DialogResult = Windows.Forms.DialogResult.OK
     End Sub
 
-    Private Sub buttonCancelar_Click() Handles buttonCancelar.Click
+    Private Sub Cancelar_Click() Handles buttonCancelar.Click
         Me.DialogResult = Windows.Forms.DialogResult.Cancel
     End Sub
 
