@@ -77,6 +77,10 @@
         SetAppearance()
 
         pFillAndRefreshLists.Reporte(ComboBoxTicketPesada_IDReporte, Nothing, False, True)
+
+        MermasHumedadRefreshData()
+        PlantasRefreshData()
+        CosechasRefreshData()
     End Sub
 
     Friend Sub SetAppearance()
@@ -125,10 +129,6 @@
             textboxFechaHoraModificacion.Text = .FechaHoraModificacionFormatted
             textboxUsuarioModificacion.Text = .UsuarioModificacionFormatted
         End With
-
-        'MermasHumedadRefreshData()
-        'PlantasRefreshData()
-        'CosechasRefreshData()
     End Sub
 
     Friend Sub SetDataFromControlsToObject()
@@ -140,7 +140,7 @@
             .UtilizaPlanta = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxUtilizaPlanta.CheckState)
             .UtilizaCosecha = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxUtilizaCosecha.CheckState)
             .UsoFrecuente = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxUsoFrecuente.CheckState)
-            .TicketPesada_IDReporte = CS_ValueTranslation.FromControlComboBoxToObjectShort(ComboBoxTicketPesada_IDReporte, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
+            .TicketPesada_IDReporte = CS_ValueTranslation.FromControlComboBoxToObjectShort(ComboBoxTicketPesada_IDReporte.SelectedValue, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
 
             .EsActivo = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxEsActivo.CheckState)
         End With
@@ -244,96 +244,335 @@
 
 #End Region
 
-    '#Region "Mermas humedad"
+#Region "Mermas humedad"
 
-    '    Friend Sub PuntajesRefreshData(Optional ByVal PositionFechaInicio As Date = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_DATE, Optional ByVal RestoreCurrentPosition As Boolean = False)
-    '        Dim listPuntajes As List(Of ProductoPuntaje)
+    Friend Sub MermasHumedadRefreshData(Optional ByVal PositionHumedad As Decimal = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_DECIMAL, Optional ByVal RestoreCurrentPosition As Boolean = False)
+        Dim listHumedades As List(Of Producto_Humedad)
 
-    '        If RestoreCurrentPosition Then
-    '            If datagridviewMermasHumedad.CurrentRow Is Nothing Then
-    '                PositionFechaInicio = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_DATE
-    '            Else
-    '                PositionFechaInicio = CType(datagridviewMermasHumedad.CurrentRow.DataBoundItem, ProductoPuntaje).FechaInicio
-    '            End If
-    '        End If
+        If RestoreCurrentPosition Then
+            If datagridviewMermasHumedad.CurrentRow Is Nothing Then
+                PositionHumedad = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_DECIMAL
+            Else
+                PositionHumedad = CType(datagridviewMermasHumedad.CurrentRow.DataBoundItem, Producto_Humedad).Humedad
+            End If
+        End If
 
-    '        Me.Cursor = Cursors.WaitCursor
+        Me.Cursor = Cursors.WaitCursor
 
-    '        Try
-    '            listPuntajes = mProductoActual.SiniestrosAsistenciasTipoPuntajes.OrderBy(Function(satp) satp.FechaInicio).ToList()
+        Try
+            listHumedades = mdbContext.Producto_Humedad.Where(Function(ph) ph.IDProducto = mProductoActual.IDProducto).OrderBy(Function(ph) ph.Humedad).ToList()
 
-    '            datagridviewMermasHumedad.AutoGenerateColumns = False
-    '            datagridviewMermasHumedad.DataSource = listPuntajes
+            datagridviewMermasHumedad.AutoGenerateColumns = False
+            datagridviewMermasHumedad.DataSource = listHumedades
 
-    '        Catch ex As Exception
-    '            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer los Puntajes del Tipo de Asistencia a Siniestros.")
-    '            Me.Cursor = Cursors.Default
-    '            Exit Sub
-    '        End Try
+        Catch ex As Exception
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer las Mermas de Humedad del Producto.")
+            Me.Cursor = Cursors.Default
+            Exit Sub
+        End Try
 
-    '        Me.Cursor = Cursors.Default
+        Me.Cursor = Cursors.Default
 
-    '        If PositionFechaInicio <> CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_DATE Then
-    '            For Each CurrentRowChecked As DataGridViewRow In datagridviewMermasHumedad.Rows
-    '                If CType(CurrentRowChecked.DataBoundItem, ProductoPuntaje).FechaInicio = PositionFechaInicio Then
-    '                    datagridviewMermasHumedad.CurrentCell = CurrentRowChecked.Cells(0)
-    '                    Exit For
-    '                End If
-    '            Next
-    '        End If
-    '    End Sub
+        If PositionHumedad <> CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_DECIMAL Then
+            For Each CurrentRowChecked As DataGridViewRow In datagridviewMermasHumedad.Rows
+                If CType(CurrentRowChecked.DataBoundItem, Producto_Humedad).Humedad = PositionHumedad Then
+                    datagridviewMermasHumedad.CurrentCell = CurrentRowChecked.Cells(0)
+                    Exit For
+                End If
+            Next
+        End If
+    End Sub
 
-    '    Private Sub DetallesAgregar(sender As Object, e As EventArgs) Handles buttonMermasHumedadAgregar.Click
-    '        Me.Cursor = Cursors.WaitCursor
+    Private Sub MermasHumedadAgregar(sender As Object, e As EventArgs) Handles buttonMermasHumedadAgregar.Click
+        Me.Cursor = Cursors.WaitCursor
 
-    '        formProductoPuntaje.LoadAndShow(True, True, Me, mProductoActual, 0)
+        'formProductoMermaHumedad.LoadAndShow(True, True, Me, mProductoActual, 0)
 
-    '        Me.Cursor = Cursors.Default
-    '    End Sub
+        Me.Cursor = Cursors.Default
+    End Sub
 
-    '    Private Sub DetallesEditar(sender As Object, e As EventArgs) Handles buttonMermasHumedadEditar.Click
-    '        If datagridviewMermasHumedad.CurrentRow Is Nothing Then
-    '            MsgBox("No hay ningún Puntaje del Tipo de Asistencia a Siniestros para editar.", vbInformation, My.Application.Info.Title)
-    '        Else
-    '            Me.Cursor = Cursors.WaitCursor
+    Private Sub MermasHumedadEditar(sender As Object, e As EventArgs) Handles buttonMermasHumedadEditar.Click
+        If datagridviewMermasHumedad.CurrentRow Is Nothing Then
+            MessageBox.Show("No hay ninguna Merma de Humedad para editar.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Information)
+        Else
+            Me.Cursor = Cursors.WaitCursor
 
-    '            formProductoPuntaje.LoadAndShow(True, True, Me, mProductoActual, CType(datagridviewMermasHumedad.SelectedRows(0).DataBoundItem, ProductoPuntaje).IDProductoPuntaje)
+            'formProductoMermaHumedad.LoadAndShow(True, True, Me, mProductoActual, CType(datagridviewMermasHumedad.SelectedRows(0).DataBoundItem, Producto_Humedad).IDProducto_Humedad)
 
-    '            Me.Cursor = Cursors.Default
-    '        End If
-    '    End Sub
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
 
-    '    Private Sub DetallesEliminar(sender As Object, e As EventArgs) Handles buttonMermasHumedadBorrar.Click
-    '        If datagridviewMermasHumedad.CurrentRow Is Nothing Then
-    '            MsgBox("No hay ningún Puntaje del Tipo de Asistencia a Siniestros para eliminar.", vbInformation, My.Application.Info.Title)
-    '        Else
-    '            Dim Mensaje As String
+    Private Sub MermasHumedadBorrar(sender As Object, e As EventArgs) Handles buttonMermasHumedadBorrar.Click
+        If datagridviewMermasHumedad.CurrentRow Is Nothing Then
+            MessageBox.Show("No hay ninguna Merma de Humedad para borrar.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Information)
+        Else
+            Dim Mensaje As String
 
-    '            Mensaje = String.Format("Se eliminará el Puntaje.{0}{0}Fecha de inicio: {1}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, CType(datagridviewMermasHumedad.SelectedRows(0).DataBoundItem, ProductoPuntaje).FechaInicio.ToShortDateString())
-    '            If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
-    '                Me.Cursor = Cursors.WaitCursor
+            Mensaje = String.Format("Se borrará la Merma de Humedad.{0}{0}Humedad: {1}{0}{0}¿Confirma el borrado definitivo?", vbCrLf, CType(datagridviewMermasHumedad.SelectedRows(0).DataBoundItem, Producto_Humedad).HumedadFormatted())
+            If MessageBox.Show(Mensaje, My.Application.Info.Title, MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) = DialogResult.Yes Then
+                Me.Cursor = Cursors.WaitCursor
 
-    '                mProductoActual.SiniestrosAsistenciasTipoPuntajes.Remove(mProductoActual.SiniestrosAsistenciasTipoPuntajes.First(Function(satp) satp.FechaInicio = CType(datagridviewMermasHumedad.SelectedRows(0).DataBoundItem, ProductoPuntaje).FechaInicio))
+                Try
+                    Dim ph As Producto_Humedad
 
-    '                PuntajesRefreshData()
+                    ph = mdbContext.Producto_Humedad.Find(mProductoActual.IDProducto, CType(datagridviewPlantas.SelectedRows(0).DataBoundItem, Producto_Humedad).Humedad)
+                    mdbContext.Producto_Humedad.Remove(ph)
+                    mdbContext.SaveChanges()
+                Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
+                    Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)
+                        Case CardonerSistemas.Database.EntityFramework.Errors.RelatedEntity
+                            MessageBox.Show("No se puede borrar la Merma de Humedad porque tiene datos relacionados.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                    End Select
+                Catch ex As Exception
+                    CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al borrar la Merma de Humedad.")
+                End Try
 
-    '                Me.Cursor = Cursors.Default
-    '            End If
-    '        End If
-    '    End Sub
+                MermasHumedadRefreshData()
 
-    '    Private Sub DetallesVer(sender As Object, e As EventArgs) Handles datagridviewMermasHumedad.DoubleClick
-    '        If datagridviewMermasHumedad.CurrentRow Is Nothing Then
-    '            MsgBox("No hay ningún Puntaje del Tipo de Asistencia a Siniestros para ver.", vbInformation, My.Application.Info.Title)
-    '        Else
-    '            Me.Cursor = Cursors.WaitCursor
+                Me.Cursor = Cursors.Default
+            End If
+        End If
+    End Sub
 
-    '            formProductoPuntaje.LoadAndShow(mEditMode, False, Me, mProductoActual, CType(datagridviewMermasHumedad.SelectedRows(0).DataBoundItem, ProductoPuntaje).IDProductoPuntaje)
+    Private Sub MermasHumedadVer(sender As Object, e As EventArgs) Handles datagridviewMermasHumedad.DoubleClick
+        If datagridviewMermasHumedad.CurrentRow Is Nothing Then
+            MessageBox.Show("No hay ninguna Merma de Humedad para ver.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Information)
+        Else
+            Me.Cursor = Cursors.WaitCursor
 
-    '            Me.Cursor = Cursors.Default
-    '        End If
-    '    End Sub
+            'formProductoHumedad.LoadAndShow(mEditMode, False, Me, mProductoActual, CType(datagridviewMermasHumedad.SelectedRows(0).DataBoundItem, Producto_Humedad).IDProducto_Humedad)
 
-    '#End Region
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
+#End Region
+
+#Region "Plantas"
+
+    Friend Sub PlantasRefreshData(Optional ByVal PositionIDPlanta As Byte = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE, Optional ByVal RestoreCurrentPosition As Boolean = False)
+        Dim listPlantas As List(Of Planta)
+
+        If RestoreCurrentPosition Then
+            If datagridviewPlantas.CurrentRow Is Nothing Then
+                PositionIDPlanta = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE
+            Else
+                PositionIDPlanta = CType(datagridviewPlantas.CurrentRow.DataBoundItem, Producto_Planta).IDPlanta
+            End If
+        End If
+
+        Me.Cursor = Cursors.WaitCursor
+
+        Try
+            listPlantas = (From p In mdbContext.Planta
+                           Join pp In mdbContext.Producto_Planta On p.IDPlanta Equals pp.IDPlanta
+                           Where pp.IDProducto = mProductoActual.IDProducto
+                           Order By p.Nombre
+                           Select p).ToList()
+
+            datagridviewPlantas.AutoGenerateColumns = False
+            datagridviewPlantas.DataSource = listPlantas
+
+        Catch ex As Exception
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer las Plantas del Producto.")
+            Me.Cursor = Cursors.Default
+            Exit Sub
+        End Try
+
+        Me.Cursor = Cursors.Default
+
+        If PositionIDPlanta <> CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE Then
+            For Each CurrentRowChecked As DataGridViewRow In datagridviewPlantas.Rows
+                If CType(CurrentRowChecked.DataBoundItem, Producto_Planta).IDPlanta = PositionIDPlanta Then
+                    datagridviewPlantas.CurrentCell = CurrentRowChecked.Cells(0)
+                    Exit For
+                End If
+            Next
+        End If
+    End Sub
+
+    Private Sub PlantasAgregar(sender As Object, e As EventArgs) Handles buttonPlantasAgregar.Click
+        Me.Cursor = Cursors.WaitCursor
+
+        'formProductoMermaPlanta.LoadAndShow(True, True, Me, mProductoActual, 0)
+
+        Me.Cursor = Cursors.Default
+    End Sub
+
+    Private Sub PlantasEditar(sender As Object, e As EventArgs) Handles buttonPlantasEditar.Click
+        If datagridviewPlantas.CurrentRow Is Nothing Then
+            MessageBox.Show("No hay ninguna Planta para editar.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Information)
+        Else
+            Me.Cursor = Cursors.WaitCursor
+
+            'formProductoMermaPlanta.LoadAndShow(True, True, Me, mProductoActual, CType(datagridviewMermasPlanta.SelectedRows(0).DataBoundItem, Producto_Planta).IDProducto_Planta)
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub PlantasBorrar(sender As Object, e As EventArgs) Handles buttonPlantasBorrar.Click
+        If datagridviewPlantas.CurrentRow Is Nothing Then
+            MessageBox.Show("No hay ninguna Planta para borrar.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Information)
+        Else
+            Dim Mensaje As String
+
+            Mensaje = String.Format("Se borrará la Planta.{0}{0}Planta: {1}{0}{0}¿Confirma el borrado definitivo?", vbCrLf, CType(datagridviewPlantas.SelectedRows(0).DataBoundItem, Planta).Nombre)
+            If MessageBox.Show(Mensaje, My.Application.Info.Title, MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) = DialogResult.Yes Then
+                Me.Cursor = Cursors.WaitCursor
+
+                Try
+                    Dim pp As Producto_Planta
+
+                    pp = mdbContext.Producto_Planta.Find(mProductoActual.IDProducto, CType(datagridviewPlantas.SelectedRows(0).DataBoundItem, Planta).IDPlanta)
+                    mdbContext.Producto_Planta.Remove(pp)
+                    mdbContext.SaveChanges()
+                Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
+                    Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)
+                        Case CardonerSistemas.Database.EntityFramework.Errors.RelatedEntity
+                            MessageBox.Show("No se puede borrar la Planta porque tiene datos relacionados.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                    End Select
+                Catch ex As Exception
+                    CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al borrar la Planta.")
+                End Try
+
+                PlantasRefreshData()
+
+                Me.Cursor = Cursors.Default
+            End If
+        End If
+    End Sub
+
+    Private Sub PlantasVer(sender As Object, e As EventArgs) Handles datagridviewPlantas.DoubleClick
+        If datagridviewPlantas.CurrentRow Is Nothing Then
+            MessageBox.Show("No hay ninguna Planta para ver.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Information)
+        Else
+            Me.Cursor = Cursors.WaitCursor
+
+            'formProductoPlanta.LoadAndShow(mEditMode, False, Me, mProductoActual, CType(datagridviewMermasPlanta.SelectedRows(0).DataBoundItem, Producto_Planta).IDProducto_Planta)
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
+#End Region
+
+#Region "Cosechas"
+
+    Public Class CosechasRowData
+        Public Property IDCosecha As Byte
+        Public Property Nombre As String
+        Public Property Inicio As Date
+        Public Property Fin As Date
+        Public Property EsActivo As Boolean
+    End Class
+
+    Friend Sub CosechasRefreshData(Optional ByVal PositionIDCosecha As Byte = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE, Optional ByVal RestoreCurrentPosition As Boolean = False)
+        Dim listCosechas As List(Of CosechasRowData)
+
+        If RestoreCurrentPosition Then
+            If datagridviewCosechas.CurrentRow Is Nothing Then
+                PositionIDCosecha = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE
+            Else
+                PositionIDCosecha = CType(datagridviewCosechas.CurrentRow.DataBoundItem, Producto_Cosecha).IDCosecha
+            End If
+        End If
+
+        Me.Cursor = Cursors.WaitCursor
+
+        Try
+            listCosechas = (From c In mdbContext.Cosecha
+                            Join pc In mdbContext.Producto_Cosecha On c.IDCosecha Equals pc.IDCosecha
+                            Where pc.IDProducto = mProductoActual.IDProducto
+                            Order By c.Nombre
+                            Select New CosechasRowData With {.IDCosecha = pc.IDCosecha, .Nombre = c.Nombre, .Inicio = pc.Inicio, .Fin = pc.Fin, .EsActivo = pc.EsActivo}).ToList()
+
+            datagridviewCosechas.AutoGenerateColumns = False
+            datagridviewCosechas.DataSource = listCosechas
+
+        Catch ex As Exception
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer las Cosechas del Producto.")
+            Me.Cursor = Cursors.Default
+            Exit Sub
+        End Try
+
+        Me.Cursor = Cursors.Default
+
+        If PositionIDCosecha <> CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE Then
+            For Each CurrentRowChecked As DataGridViewRow In datagridviewCosechas.Rows
+                If CType(CurrentRowChecked.DataBoundItem, Producto_Cosecha).IDCosecha = PositionIDCosecha Then
+                    datagridviewCosechas.CurrentCell = CurrentRowChecked.Cells(0)
+                    Exit For
+                End If
+            Next
+        End If
+    End Sub
+
+    Private Sub CosechasAgregar(sender As Object, e As EventArgs) Handles buttonCosechasAgregar.Click
+        Me.Cursor = Cursors.WaitCursor
+
+        'formProductoMermaCosecha.LoadAndShow(True, True, Me, mProductoActual, 0)
+
+        Me.Cursor = Cursors.Default
+    End Sub
+
+    Private Sub CosechasEditar(sender As Object, e As EventArgs) Handles buttonCosechasEditar.Click
+        If datagridviewCosechas.CurrentRow Is Nothing Then
+            MessageBox.Show("No hay ninguna Cosecha para editar.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Information)
+        Else
+            Me.Cursor = Cursors.WaitCursor
+
+            'formProductoMermaCosecha.LoadAndShow(True, True, Me, mProductoActual, CType(datagridviewMermasCosecha.SelectedRows(0).DataBoundItem, Producto_Cosecha).IDProducto_Cosecha)
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub CosechasBorrar(sender As Object, e As EventArgs) Handles buttonCosechasBorrar.Click
+        If datagridviewCosechas.CurrentRow Is Nothing Then
+            MessageBox.Show("No hay ninguna Cosecha para borrar.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Information)
+        Else
+            Dim Mensaje As String
+
+            Mensaje = String.Format("Se borrará la Cosecha.{0}{0}Cosecha: {1}{0}{0}¿Confirma el borrado definitivo?", vbCrLf, CType(datagridviewCosechas.SelectedRows(0).DataBoundItem, CosechasRowData).Nombre)
+            If MessageBox.Show(Mensaje, My.Application.Info.Title, MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) = DialogResult.Yes Then
+                Me.Cursor = Cursors.WaitCursor
+
+                Try
+                    Dim pc As Producto_Cosecha
+
+                    pc = mdbContext.Producto_Cosecha.Find(mProductoActual.IDProducto, CType(datagridviewCosechas.SelectedRows(0).DataBoundItem, CosechasRowData).IDCosecha)
+                    mdbContext.Producto_Cosecha.Remove(pc)
+                    mdbContext.SaveChanges()
+                Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
+                    Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)
+                        Case CardonerSistemas.Database.EntityFramework.Errors.RelatedEntity
+                            MessageBox.Show("No se puede borrar la Cosecha porque tiene datos relacionados.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                    End Select
+                Catch ex As Exception
+                    CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al borrar la Cosecha.")
+                End Try
+
+                CosechasRefreshData()
+
+                Me.Cursor = Cursors.Default
+            End If
+        End If
+    End Sub
+
+    Private Sub CosechasVer(sender As Object, e As EventArgs) Handles datagridviewCosechas.DoubleClick
+        If datagridviewCosechas.CurrentRow Is Nothing Then
+            MessageBox.Show("No hay ninguna Cosecha para ver.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Information)
+        Else
+            Me.Cursor = Cursors.WaitCursor
+
+            'formProductoCosecha.LoadAndShow(mEditMode, False, Me, mProductoActual, CType(datagridviewMermasCosecha.SelectedRows(0).DataBoundItem, Producto_Cosecha).IDProducto_Cosecha)
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
+#End Region
 
 End Class

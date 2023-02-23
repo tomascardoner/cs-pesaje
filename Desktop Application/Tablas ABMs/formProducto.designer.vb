@@ -25,13 +25,13 @@ Partial Class formProducto
         Dim labelEsActivo As System.Windows.Forms.Label
         Dim labelModificacion As System.Windows.Forms.Label
         Dim labelCreacion As System.Windows.Forms.Label
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.buttonGuardar = New System.Windows.Forms.ToolStripButton()
         Me.buttonCancelar = New System.Windows.Forms.ToolStripButton()
         Me.buttonEditar = New System.Windows.Forms.ToolStripButton()
@@ -65,19 +65,12 @@ Partial Class formProducto
         Me.buttonMermasHumedadBorrar = New System.Windows.Forms.ToolStripButton()
         Me.tabpagePlantas = New System.Windows.Forms.TabPage()
         Me.datagridviewPlantas = New System.Windows.Forms.DataGridView()
-        Me.columnPlantasPlanta = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnPlantasTipoEntrada = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.columnPlantasTipoSalida = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.columnPlantasTipoNinguno = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.toolstripPlantas = New System.Windows.Forms.ToolStrip()
         Me.buttonPlantasAgregar = New System.Windows.Forms.ToolStripButton()
         Me.buttonPlantasEditar = New System.Windows.Forms.ToolStripButton()
         Me.buttonPlantasBorrar = New System.Windows.Forms.ToolStripButton()
         Me.tabpageCosechas = New System.Windows.Forms.TabPage()
         Me.datagridviewCosechas = New System.Windows.Forms.DataGridView()
-        Me.columnCosechasCosecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnCosechasInicio = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnCosechasFin = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.toolstripCosechas = New System.Windows.Forms.ToolStrip()
         Me.buttonCosechasAgregar = New System.Windows.Forms.ToolStripButton()
         Me.buttonCosechasEditar = New System.Windows.Forms.ToolStripButton()
@@ -92,6 +85,11 @@ Partial Class formProducto
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
         Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.labelNotas = New System.Windows.Forms.Label()
+        Me.columnPlantasPlanta = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnCosechasCosecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnCosechasInicio = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnCosechasFin = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnCosechasEsActivo = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         labelEsActivo = New System.Windows.Forms.Label()
         labelModificacion = New System.Windows.Forms.Label()
         labelCreacion = New System.Windows.Forms.Label()
@@ -405,11 +403,11 @@ Partial Class formProducto
         Me.datagridviewMermasHumedad.AllowUserToAddRows = False
         Me.datagridviewMermasHumedad.AllowUserToDeleteRows = False
         Me.datagridviewMermasHumedad.AllowUserToResizeRows = False
-        DataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.GradientActiveCaption
-        DataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
-        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.WindowText
-        Me.datagridviewMermasHumedad.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle8
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.GradientActiveCaption
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText
+        Me.datagridviewMermasHumedad.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.datagridviewMermasHumedad.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
         Me.datagridviewMermasHumedad.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.datagridviewMermasHumedad.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnMermasHumedadHumedad, Me.columnMermasHumedadMerma})
@@ -428,9 +426,10 @@ Partial Class formProducto
         'columnMermasHumedadHumedad
         '
         Me.columnMermasHumedadHumedad.DataPropertyName = "Humedad"
-        DataGridViewCellStyle9.Format = "N1"
-        DataGridViewCellStyle9.NullValue = Nothing
-        Me.columnMermasHumedadHumedad.DefaultCellStyle = DataGridViewCellStyle9
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle2.Format = "N1"
+        DataGridViewCellStyle2.NullValue = Nothing
+        Me.columnMermasHumedadHumedad.DefaultCellStyle = DataGridViewCellStyle2
         Me.columnMermasHumedadHumedad.HeaderText = "Humedad"
         Me.columnMermasHumedadHumedad.Name = "columnMermasHumedadHumedad"
         Me.columnMermasHumedadHumedad.ReadOnly = True
@@ -439,9 +438,10 @@ Partial Class formProducto
         'columnMermasHumedadMerma
         '
         Me.columnMermasHumedadMerma.DataPropertyName = "Merma"
-        DataGridViewCellStyle10.Format = "N2"
-        DataGridViewCellStyle10.NullValue = Nothing
-        Me.columnMermasHumedadMerma.DefaultCellStyle = DataGridViewCellStyle10
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle3.Format = "N2"
+        DataGridViewCellStyle3.NullValue = Nothing
+        Me.columnMermasHumedadMerma.DefaultCellStyle = DataGridViewCellStyle3
         Me.columnMermasHumedadMerma.HeaderText = "Merma"
         Me.columnMermasHumedadMerma.Name = "columnMermasHumedadMerma"
         Me.columnMermasHumedadMerma.ReadOnly = True
@@ -506,14 +506,14 @@ Partial Class formProducto
         Me.datagridviewPlantas.AllowUserToAddRows = False
         Me.datagridviewPlantas.AllowUserToDeleteRows = False
         Me.datagridviewPlantas.AllowUserToResizeRows = False
-        DataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.GradientActiveCaption
-        DataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
-        DataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.WindowText
-        Me.datagridviewPlantas.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle11
+        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.GradientActiveCaption
+        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
+        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.WindowText
+        Me.datagridviewPlantas.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle4
         Me.datagridviewPlantas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
         Me.datagridviewPlantas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.datagridviewPlantas.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnPlantasPlanta, Me.columnPlantasTipoEntrada, Me.columnPlantasTipoSalida, Me.columnPlantasTipoNinguno})
+        Me.datagridviewPlantas.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnPlantasPlanta})
         Me.datagridviewPlantas.Dock = System.Windows.Forms.DockStyle.Fill
         Me.datagridviewPlantas.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.datagridviewPlantas.Location = New System.Drawing.Point(89, 3)
@@ -525,44 +525,6 @@ Partial Class formProducto
         Me.datagridviewPlantas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.datagridviewPlantas.Size = New System.Drawing.Size(422, 217)
         Me.datagridviewPlantas.TabIndex = 1
-        '
-        'columnPlantasPlanta
-        '
-        Me.columnPlantasPlanta.DataPropertyName = "PlantaNombre"
-        Me.columnPlantasPlanta.HeaderText = "Planta"
-        Me.columnPlantasPlanta.Name = "columnPlantasPlanta"
-        Me.columnPlantasPlanta.ReadOnly = True
-        Me.columnPlantasPlanta.Width = 62
-        '
-        'columnPlantasTipoEntrada
-        '
-        Me.columnPlantasTipoEntrada.DataPropertyName = "TipoEntrada"
-        Me.columnPlantasTipoEntrada.HeaderText = "Entrada"
-        Me.columnPlantasTipoEntrada.Name = "columnPlantasTipoEntrada"
-        Me.columnPlantasTipoEntrada.ReadOnly = True
-        Me.columnPlantasTipoEntrada.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.columnPlantasTipoEntrada.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        Me.columnPlantasTipoEntrada.Width = 69
-        '
-        'columnPlantasTipoSalida
-        '
-        Me.columnPlantasTipoSalida.DataPropertyName = "TipoSalida"
-        Me.columnPlantasTipoSalida.HeaderText = "Salida"
-        Me.columnPlantasTipoSalida.Name = "columnPlantasTipoSalida"
-        Me.columnPlantasTipoSalida.ReadOnly = True
-        Me.columnPlantasTipoSalida.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.columnPlantasTipoSalida.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        Me.columnPlantasTipoSalida.Width = 61
-        '
-        'columnPlantasTipoNinguno
-        '
-        Me.columnPlantasTipoNinguno.DataPropertyName = "TipoNinguno"
-        Me.columnPlantasTipoNinguno.HeaderText = "Ninguno"
-        Me.columnPlantasTipoNinguno.Name = "columnPlantasTipoNinguno"
-        Me.columnPlantasTipoNinguno.ReadOnly = True
-        Me.columnPlantasTipoNinguno.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.columnPlantasTipoNinguno.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        Me.columnPlantasTipoNinguno.Width = 72
         '
         'toolstripPlantas
         '
@@ -623,14 +585,14 @@ Partial Class formProducto
         Me.datagridviewCosechas.AllowUserToAddRows = False
         Me.datagridviewCosechas.AllowUserToDeleteRows = False
         Me.datagridviewCosechas.AllowUserToResizeRows = False
-        DataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.GradientActiveCaption
-        DataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
-        DataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.WindowText
-        Me.datagridviewCosechas.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle12
+        DataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.GradientActiveCaption
+        DataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
+        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.WindowText
+        Me.datagridviewCosechas.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle5
         Me.datagridviewCosechas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
         Me.datagridviewCosechas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.datagridviewCosechas.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnCosechasCosecha, Me.columnCosechasInicio, Me.columnCosechasFin})
+        Me.datagridviewCosechas.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnCosechasCosecha, Me.columnCosechasInicio, Me.columnCosechasFin, Me.columnCosechasEsActivo})
         Me.datagridviewCosechas.Dock = System.Windows.Forms.DockStyle.Fill
         Me.datagridviewCosechas.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.datagridviewCosechas.Location = New System.Drawing.Point(89, 3)
@@ -642,35 +604,6 @@ Partial Class formProducto
         Me.datagridviewCosechas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.datagridviewCosechas.Size = New System.Drawing.Size(422, 217)
         Me.datagridviewCosechas.TabIndex = 1
-        '
-        'columnCosechasCosecha
-        '
-        Me.columnCosechasCosecha.DataPropertyName = "CosechaNombre"
-        Me.columnCosechasCosecha.HeaderText = "Cosecha"
-        Me.columnCosechasCosecha.Name = "columnCosechasCosecha"
-        Me.columnCosechasCosecha.ReadOnly = True
-        Me.columnCosechasCosecha.Width = 74
-        '
-        'columnCosechasInicio
-        '
-        Me.columnCosechasInicio.DataPropertyName = "Inicio"
-        DataGridViewCellStyle13.Format = "d"
-        Me.columnCosechasInicio.DefaultCellStyle = DataGridViewCellStyle13
-        Me.columnCosechasInicio.HeaderText = "Fecha inicio"
-        Me.columnCosechasInicio.Name = "columnCosechasInicio"
-        Me.columnCosechasInicio.ReadOnly = True
-        Me.columnCosechasInicio.Width = 89
-        '
-        'columnCosechasFin
-        '
-        Me.columnCosechasFin.DataPropertyName = "Fin"
-        DataGridViewCellStyle14.Format = "d"
-        DataGridViewCellStyle14.NullValue = Nothing
-        Me.columnCosechasFin.DefaultCellStyle = DataGridViewCellStyle14
-        Me.columnCosechasFin.HeaderText = "Fecha fin"
-        Me.columnCosechasFin.Name = "columnCosechasFin"
-        Me.columnCosechasFin.ReadOnly = True
-        Me.columnCosechasFin.Width = 76
         '
         'toolstripCosechas
         '
@@ -830,6 +763,53 @@ Partial Class formProducto
         Me.labelNotas.TabIndex = 0
         Me.labelNotas.Text = "Notas:"
         '
+        'columnPlantasPlanta
+        '
+        Me.columnPlantasPlanta.DataPropertyName = "Nombre"
+        Me.columnPlantasPlanta.HeaderText = "Planta"
+        Me.columnPlantasPlanta.Name = "columnPlantasPlanta"
+        Me.columnPlantasPlanta.ReadOnly = True
+        Me.columnPlantasPlanta.Width = 62
+        '
+        'columnCosechasCosecha
+        '
+        Me.columnCosechasCosecha.DataPropertyName = "Nombre"
+        Me.columnCosechasCosecha.HeaderText = "Cosecha"
+        Me.columnCosechasCosecha.Name = "columnCosechasCosecha"
+        Me.columnCosechasCosecha.ReadOnly = True
+        Me.columnCosechasCosecha.Width = 74
+        '
+        'columnCosechasInicio
+        '
+        Me.columnCosechasInicio.DataPropertyName = "Inicio"
+        DataGridViewCellStyle6.Format = "d"
+        Me.columnCosechasInicio.DefaultCellStyle = DataGridViewCellStyle6
+        Me.columnCosechasInicio.HeaderText = "Fecha inicio"
+        Me.columnCosechasInicio.Name = "columnCosechasInicio"
+        Me.columnCosechasInicio.ReadOnly = True
+        Me.columnCosechasInicio.Width = 89
+        '
+        'columnCosechasFin
+        '
+        Me.columnCosechasFin.DataPropertyName = "Fin"
+        DataGridViewCellStyle7.Format = "d"
+        DataGridViewCellStyle7.NullValue = Nothing
+        Me.columnCosechasFin.DefaultCellStyle = DataGridViewCellStyle7
+        Me.columnCosechasFin.HeaderText = "Fecha fin"
+        Me.columnCosechasFin.Name = "columnCosechasFin"
+        Me.columnCosechasFin.ReadOnly = True
+        Me.columnCosechasFin.Width = 76
+        '
+        'columnCosechasEsActivo
+        '
+        Me.columnCosechasEsActivo.DataPropertyName = "EsActivo"
+        Me.columnCosechasEsActivo.HeaderText = "Activo"
+        Me.columnCosechasEsActivo.Name = "columnCosechasEsActivo"
+        Me.columnCosechasEsActivo.ReadOnly = True
+        Me.columnCosechasEsActivo.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.columnCosechasEsActivo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.columnCosechasEsActivo.Width = 62
+        '
         'formProducto
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -922,16 +902,14 @@ Partial Class formProducto
     Friend WithEvents buttonCosechasAgregar As ToolStripButton
     Friend WithEvents buttonCosechasEditar As ToolStripButton
     Friend WithEvents buttonCosechasBorrar As ToolStripButton
-    Friend WithEvents columnMermasHumedadHumedad As DataGridViewTextBoxColumn
-    Friend WithEvents columnMermasHumedadMerma As DataGridViewTextBoxColumn
-    Friend WithEvents columnCosechasCosecha As DataGridViewTextBoxColumn
-    Friend WithEvents columnCosechasInicio As DataGridViewTextBoxColumn
-    Friend WithEvents columnCosechasFin As DataGridViewTextBoxColumn
-    Friend WithEvents columnPlantasPlanta As DataGridViewTextBoxColumn
-    Friend WithEvents columnPlantasTipoEntrada As DataGridViewCheckBoxColumn
-    Friend WithEvents columnPlantasTipoSalida As DataGridViewCheckBoxColumn
-    Friend WithEvents columnPlantasTipoNinguno As DataGridViewCheckBoxColumn
     Friend WithEvents PercentTextBoxMermaHumedadManipuleo As Syncfusion.Windows.Forms.Tools.PercentTextBox
     Friend WithEvents PercentTextBoxMermaHumedadBase As Syncfusion.Windows.Forms.Tools.PercentTextBox
     Friend WithEvents PercentTextBoxMermaVolatil As Syncfusion.Windows.Forms.Tools.PercentTextBox
+    Friend WithEvents columnMermasHumedadHumedad As DataGridViewTextBoxColumn
+    Friend WithEvents columnMermasHumedadMerma As DataGridViewTextBoxColumn
+    Friend WithEvents columnPlantasPlanta As DataGridViewTextBoxColumn
+    Friend WithEvents columnCosechasCosecha As DataGridViewTextBoxColumn
+    Friend WithEvents columnCosechasInicio As DataGridViewTextBoxColumn
+    Friend WithEvents columnCosechasFin As DataGridViewTextBoxColumn
+    Friend WithEvents columnCosechasEsActivo As DataGridViewCheckBoxColumn
 End Class

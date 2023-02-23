@@ -246,6 +246,7 @@
     <Compile Include="Config\DatabaseConfig.vb" />
     <Compile Include="Config\GeneralConfig.vb" />
     <Compile Include="Database\ProductoExtension.vb" />
+    <Compile Include="Database\Producto_HumedadExtension.vb" />
     <Compile Include="EF Extensions\Cosecha_Producto_TarifaEscala.vb" />
     <Compile Include="EF Extensions\OrigenDestino.vb" />
     <Compile Include="EF Extensions\Pesada.vb" />
