@@ -194,7 +194,7 @@ Partial Class formPesada
         'buttonCerrar
         '
         Me.buttonCerrar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonCerrar.Image = Global.My.Resources.Resources.IMAGE_CLOSE_32
+        Me.buttonCerrar.Image = Global.My.Resources.Resources.ImageClose32
         Me.buttonCerrar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCerrar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonCerrar.Name = "buttonCerrar"
@@ -204,7 +204,7 @@ Partial Class formPesada
         'buttonEditar
         '
         Me.buttonEditar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonEditar.Image = Global.My.Resources.Resources.IMAGE_ITEM_EDIT_32
+        Me.buttonEditar.Image = Global.My.Resources.Resources.ImageItemEditar32
         Me.buttonEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonEditar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonEditar.Name = "buttonEditar"
@@ -918,7 +918,7 @@ Partial Class formPesada
         '
         'buttonFechaHoraFinAhora
         '
-        Me.buttonFechaHoraFinAhora.Image = Global.My.Resources.Resources.IMAGE_CALENDAR_TODAY_16
+        Me.buttonFechaHoraFinAhora.Image = Global.My.Resources.Resources.ImageCalendarToday16
         Me.buttonFechaHoraFinAhora.Location = New System.Drawing.Point(303, 64)
         Me.buttonFechaHoraFinAhora.Name = "buttonFechaHoraFinAhora"
         Me.buttonFechaHoraFinAhora.Size = New System.Drawing.Size(22, 22)
@@ -929,7 +929,7 @@ Partial Class formPesada
         '
         'buttonFechaHoraInicioAhora
         '
-        Me.buttonFechaHoraInicioAhora.Image = Global.My.Resources.Resources.IMAGE_CALENDAR_TODAY_16
+        Me.buttonFechaHoraInicioAhora.Image = Global.My.Resources.Resources.ImageCalendarToday16
         Me.buttonFechaHoraInicioAhora.Location = New System.Drawing.Point(303, 38)
         Me.buttonFechaHoraInicioAhora.Name = "buttonFechaHoraInicioAhora"
         Me.buttonFechaHoraInicioAhora.Size = New System.Drawing.Size(22, 22)
@@ -1058,7 +1058,7 @@ Partial Class formPesada
         '
         'buttonObtenerKilogramosTara
         '
-        Me.buttonObtenerKilogramosTara.Image = Global.My.Resources.Resources.IMAGE_SCALE_16
+        Me.buttonObtenerKilogramosTara.Image = Global.My.Resources.Resources.ImageBalanza16
         Me.buttonObtenerKilogramosTara.Location = New System.Drawing.Point(151, 38)
         Me.buttonObtenerKilogramosTara.Name = "buttonObtenerKilogramosTara"
         Me.buttonObtenerKilogramosTara.Size = New System.Drawing.Size(22, 22)
@@ -1068,7 +1068,7 @@ Partial Class formPesada
         '
         'buttonObtenerKilogramosBrutos
         '
-        Me.buttonObtenerKilogramosBrutos.Image = Global.My.Resources.Resources.IMAGE_SCALE_16
+        Me.buttonObtenerKilogramosBrutos.Image = Global.My.Resources.Resources.ImageBalanza16
         Me.buttonObtenerKilogramosBrutos.Location = New System.Drawing.Point(151, 12)
         Me.buttonObtenerKilogramosBrutos.Name = "buttonObtenerKilogramosBrutos"
         Me.buttonObtenerKilogramosBrutos.Size = New System.Drawing.Size(22, 22)

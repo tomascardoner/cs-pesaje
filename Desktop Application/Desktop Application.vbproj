@@ -245,6 +245,7 @@
     <Compile Include="Config\Configuration.vb" />
     <Compile Include="Config\DatabaseConfig.vb" />
     <Compile Include="Config\GeneralConfig.vb" />
+    <Compile Include="Database\ProductoExtension.vb" />
     <Compile Include="EF Extensions\Cosecha_Producto_TarifaEscala.vb" />
     <Compile Include="EF Extensions\OrigenDestino.vb" />
     <Compile Include="EF Extensions\Pesada.vb" />
@@ -308,6 +309,18 @@
       <DependentUpon>formCamiones.vb</DependentUpon>
     </Compile>
     <Compile Include="Tablas ABMs\formCamiones.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tablas ABMs\formProducto.designer.vb">
+      <DependentUpon>formProducto.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Tablas ABMs\formProducto.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tablas ABMs\formProductos.designer.vb">
+      <DependentUpon>formProductos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Tablas ABMs\formProductos.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Tablas ABMs\formTarifa.Designer.vb">
@@ -528,6 +541,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Tablas ABMs\formCamiones.resx">
       <DependentUpon>formCamiones.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tablas ABMs\formProducto.resx">
+      <DependentUpon>formProducto.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tablas ABMs\formProductos.resx">
+      <DependentUpon>formProductos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Tablas ABMs\formTarifa.resx">
       <DependentUpon>formTarifa.vb</DependentUpon>

@@ -144,7 +144,7 @@ Partial Class formTarifa
         'buttonCerrar
         '
         Me.buttonCerrar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonCerrar.Image = Global.My.Resources.Resources.IMAGE_CLOSE_32
+        Me.buttonCerrar.Image = Global.My.Resources.Resources.ImageClose32
         Me.buttonCerrar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCerrar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonCerrar.Name = "buttonCerrar"
@@ -154,7 +154,7 @@ Partial Class formTarifa
         'buttonEditar
         '
         Me.buttonEditar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonEditar.Image = Global.My.Resources.Resources.IMAGE_ITEM_EDIT_32
+        Me.buttonEditar.Image = Global.My.Resources.Resources.ImageItemEditar32
         Me.buttonEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonEditar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonEditar.Name = "buttonEditar"
@@ -990,7 +990,7 @@ Partial Class formTarifa
         '
         'buttonEscala_Agregar
         '
-        Me.buttonEscala_Agregar.Image = Global.My.Resources.Resources.IMAGE_ITEM_ADD_32
+        Me.buttonEscala_Agregar.Image = Global.My.Resources.Resources.ImageItemAgregar32
         Me.buttonEscala_Agregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonEscala_Agregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonEscala_Agregar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -1000,7 +1000,7 @@ Partial Class formTarifa
         '
         'buttonEscala_Editar
         '
-        Me.buttonEscala_Editar.Image = Global.My.Resources.Resources.IMAGE_ITEM_EDIT_32
+        Me.buttonEscala_Editar.Image = Global.My.Resources.Resources.ImageItemEditar32
         Me.buttonEscala_Editar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonEscala_Editar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonEscala_Editar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -1010,7 +1010,7 @@ Partial Class formTarifa
         '
         'buttonEscala_Eliminar
         '
-        Me.buttonEscala_Eliminar.Image = Global.My.Resources.Resources.IMAGE_ITEM_DELETE_32
+        Me.buttonEscala_Eliminar.Image = Global.My.Resources.Resources.ImageItemBorrar32
         Me.buttonEscala_Eliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonEscala_Eliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonEscala_Eliminar.ImageTransparentColor = System.Drawing.Color.Magenta

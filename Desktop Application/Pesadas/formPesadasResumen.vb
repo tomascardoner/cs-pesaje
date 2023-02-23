@@ -5,7 +5,7 @@
     Private Sub Me_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         loading = True
 
-        Me.Icon = CardonerSistemas.Graphics.GetIconFromBitmap(My.Resources.IMAGE_RESUMEN_32)
+        Me.Icon = CardonerSistemas.Graphics.GetIconFromBitmap(My.Resources.ImageResumen32)
 
         pFillAndRefreshLists.Producto(ComboBoxProducto, Nothing, True, False, False, False)
         pFillAndRefreshLists.Cosecha(ComboBoxCosecha, Nothing, Nothing, DateTime.MinValue, True, False, True)

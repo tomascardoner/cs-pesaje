@@ -65,7 +65,7 @@ Partial Class formReportes
         'buttonSiguiente
         '
         Me.buttonSiguiente.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.buttonSiguiente.Image = My.Resources.Resources.IMAGE_MOVE_NEXT_24
+        Me.buttonSiguiente.Image = My.Resources.Resources.ImageMoveNext24
         Me.buttonSiguiente.Location = New System.Drawing.Point(446, 342)
         Me.buttonSiguiente.Name = "buttonSiguiente"
         Me.buttonSiguiente.Size = New System.Drawing.Size(120, 44)
@@ -137,7 +137,7 @@ Partial Class formReportes
         'buttonAnterior
         '
         Me.buttonAnterior.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.buttonAnterior.Image = My.Resources.Resources.IMAGE_MOVE_PREVIOUS_24
+        Me.buttonAnterior.Image = My.Resources.Resources.ImageMovePrevious24
         Me.buttonAnterior.Location = New System.Drawing.Point(0, 342)
         Me.buttonAnterior.Name = "buttonAnterior"
         Me.buttonAnterior.Size = New System.Drawing.Size(120, 44)
@@ -149,7 +149,7 @@ Partial Class formReportes
         'buttonPrevisualizar
         '
         Me.buttonPrevisualizar.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.buttonPrevisualizar.Image = My.Resources.Resources.IMAGE_PRINT_PREVIEW_32
+        Me.buttonPrevisualizar.Image = My.Resources.Resources.ImageImprimirPrevisualizar32
         Me.buttonPrevisualizar.Location = New System.Drawing.Point(446, 342)
         Me.buttonPrevisualizar.Name = "buttonPrevisualizar"
         Me.buttonPrevisualizar.Size = New System.Drawing.Size(120, 44)

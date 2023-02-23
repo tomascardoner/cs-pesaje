@@ -81,7 +81,7 @@ Partial Class formEntidadesSeleccionar
         'buttonBuscarBorrar
         '
         Me.buttonBuscarBorrar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.buttonBuscarBorrar.Image = Global.My.Resources.Resources.IMAGE_CLOSE_16
+        Me.buttonBuscarBorrar.Image = Global.My.Resources.Resources.ImageClose16
         Me.buttonBuscarBorrar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonBuscarBorrar.Name = "buttonBuscarBorrar"
         Me.buttonBuscarBorrar.Size = New System.Drawing.Size(24, 36)

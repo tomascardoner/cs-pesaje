@@ -121,7 +121,7 @@ Partial Class formCambiarContrasena
         '
         'pictureboxMain
         '
-        Me.pictureboxMain.Image = My.Resources.Resources.IMAGE_INICIO_SESION_48
+        Me.pictureboxMain.Image = My.Resources.Resources.ImageInicioSesion48
         Me.pictureboxMain.Location = New System.Drawing.Point(24, 73)
         Me.pictureboxMain.Name = "pictureboxMain"
         Me.pictureboxMain.Size = New System.Drawing.Size(48, 48)

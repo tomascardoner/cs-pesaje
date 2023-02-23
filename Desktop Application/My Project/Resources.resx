@@ -121,8 +121,35 @@
   <data name="ImageAceptar32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Actions-dialog-ok-apply-icon (6).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="ImageApplicationIcon256" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Balanza.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ImageBalanza16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\justice-balance-icon_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ImageBuscar16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Search-icon (8).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ImageCalendarNext16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Actions-go-next-icon_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ImageCalendarPrevious16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Actions-go-previous-icon_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ImageCalendarToday16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Actions-go-jump-today-icon_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="ImageCancelar32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Actions-dialog-cancel-icon (6).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ImageCardonerSistemas" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Cardoner Sistemas.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ImageClose16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Actions-dialog-close-icon (8).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ImageClose32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Actions-dialog-close-icon (6).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ImageDatabaseLoginInfo48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\databaselogininfo48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -130,106 +157,67 @@
   <data name="ImageDatabaseSelect48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DatabaseSearch48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="IMAGE_APPLICATION_ICON_256" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Balanza.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="IMAGE_CALENDAR_NEXT_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Actions-go-next-icon_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="IMAGE_CALENDAR_PREVIOUS_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Actions-go-previous-icon_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="IMAGE_CALENDAR_TODAY_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Actions-go-jump-today-icon_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="IMAGE_CARDONERSISTEMAS" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Cardoner Sistemas.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="IMAGE_CLOSE_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Actions-dialog-close-icon (8).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="IMAGE_CLOSE_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Actions-dialog-close-icon (6).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="IMAGE_INICIO_SESION_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Login Manager (5).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="IMAGE_ITEM_ADD_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Actions-document-new-icon (6).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="IMAGE_ITEM_COPY_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Actions-edit-copy-icon_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="IMAGE_ITEM_DELETE_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Actions-edit-delete-icon (6).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="IMAGE_ITEM_EDIT_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Actions-document-edit-icon (6).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="IMAGE_MENU_WINDOW_CLOSE_ALL" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Window - Close All.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="IMAGE_MENU_WINDOW_FIT_SIZE" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\WindowFitToSize16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="IMAGE_MENU_WINDOW_TILE_HORIZONTALLY" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Window - Tile Horizontally.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="IMAGE_MENU_WINDOW_TILE_VERTICALLY" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Window - Tile Vertically.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="IMAGE_MOVE_NEXT_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Move Next (Arrow) Green24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="IMAGE_MOVE_PREVIOUS_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Move Previous (Arrow) Red24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="IMAGE_PERSONA_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Actions-view-pim-contacts-icon (5).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="IMAGE_PESADAS_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\application-view-detail-icon_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="IMAGE_PRINT_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="ImageImprimir24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\printer (7).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="IMAGE_PRINT_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="ImageImprimir32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\printer (6).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="IMAGE_PRINT_PREVIEW_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="ImageImprimirPrevisualizar24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\document-print-preview (7).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="IMAGE_PRINT_PREVIEW_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="ImageImprimirPrevisualizar32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\document-print-preview (6).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="IMAGE_REPORTES_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="ImageInicioSesion48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Login Manager (5).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ImageItemAgregar32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Actions-document-new-icon (6).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ImageItemBorrar32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Actions-edit-delete-icon (6).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ImageItemCopiar32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Actions-edit-copy-icon_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ImageItemEditar32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Actions-document-edit-icon (6).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ImageMoveNext24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Move Next (Arrow) Green24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ImageMovePrevious24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Move Previous (Arrow) Red24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ImagePersona48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Actions-view-pim-contacts-icon (5).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ImagePesadas32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\application-view-detail-icon_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ImageReportes32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ReportWithChart32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="IMAGE_RESUMEN_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="ImageResumen32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Summary32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="IMAGE_SCALE_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\justice-balance-icon_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="IMAGE_SEARCH_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Search-icon (8).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="IMAGE_SPLASH_SCREEN_BACKGROUND" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="ImageSplashScreenBackground" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\costado2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="IMAGE_TABLAS_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="ImageTablas32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Toolbox-icon_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="IMAGE_USUARIO_HOMBRE_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="ImageUsuarioHombre16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\User-Coat-Red-icon (8).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="IMAGE_USUARIO_HOMBRE_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="ImageUsuarioHombre48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\User-Coat-Red-icon (5).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="IMAGE_USUARIO_MUJER_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="ImageUsuarioMujer16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Office-Girl-icon (8).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="IMAGE_USUARIO_MUJER_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="ImageUsuarioMujer48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Office-Girl-icon (5).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="STRING_ERROR_SAVING_CHANGES" xml:space="preserve">

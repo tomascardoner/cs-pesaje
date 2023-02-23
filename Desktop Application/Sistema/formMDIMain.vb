@@ -75,6 +75,10 @@
         ShowForm(Permisos.ORIGENDESTINO, CType(formOrigenesDestinos, Form))
     End Sub
 
+    Private Sub Productos() Handles menuitemTablas_Productos.Click
+        ShowForm(Permisos.PRODUCTO, CType(formProductos, Form))
+    End Sub
+
     Private Sub UsuarioGrupoPermisos() Handles menuitemTablas_Permisos.Click
         ShowForm(Permisos.USUARIOGRUPO, CType(formUsuarioGrupoPermisos, Form))
     End Sub

@@ -387,4 +387,36 @@
         ComboBoxControl.DataSource = listItems
     End Sub
 
+    Friend Sub Reporte(ByRef ComboBoxControl As ComboBox, ByVal IDReporteActual As Short?, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
+        Dim listItems As List(Of Reporte)
+        Dim IDReporteSeleccionadoActualmente As Short?
+
+        ComboBoxControl.ValueMember = "IDReporte"
+        ComboBoxControl.DisplayMember = "Nombre"
+        IDReporteSeleccionadoActualmente = CShort(ComboBoxControl.SelectedValue)
+
+        listItems = mdbContext.Reporte.OrderBy(Function(cl) cl.Nombre).ToList
+
+        If AgregarItem_Todos Then
+            Dim Item_Todos As New Reporte With {
+                .IDReporte = CardonerSistemas.Constants.FIELD_VALUE_ALL_SHORT,
+                .Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            }
+            listItems.Insert(0, Item_Todos)
+        End If
+
+        If AgregarItem_NoEspecifica Then
+            Dim Item_NoEspecifica As New Reporte With {
+                .IDReporte = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT,
+                .Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            }
+            listItems.Insert(0, Item_NoEspecifica)
+        End If
+
+        ComboBoxControl.DataSource = listItems
+        ComboBoxControl.SelectedValue = IDReporteSeleccionadoActualmente
+    End Sub
+
+
+
 End Class
