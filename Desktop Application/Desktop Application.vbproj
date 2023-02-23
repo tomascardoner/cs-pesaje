@@ -245,8 +245,9 @@
     <Compile Include="Config\Configuration.vb" />
     <Compile Include="Config\DatabaseConfig.vb" />
     <Compile Include="Config\GeneralConfig.vb" />
-    <Compile Include="Database\ProductoExtension.vb" />
-    <Compile Include="Database\Producto_HumedadExtension.vb" />
+    <Compile Include="EF Extensions\CosechaExtension.vb" />
+    <Compile Include="EF Extensions\ProductoExtension.vb" />
+    <Compile Include="EF Extensions\Producto_HumedadExtension.vb" />
     <Compile Include="EF Extensions\Cosecha_Producto_TarifaEscala.vb" />
     <Compile Include="EF Extensions\OrigenDestino.vb" />
     <Compile Include="EF Extensions\Pesada.vb" />
@@ -310,6 +311,18 @@
       <DependentUpon>formCamiones.vb</DependentUpon>
     </Compile>
     <Compile Include="Tablas ABMs\formCamiones.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tablas ABMs\formCosecha.designer.vb">
+      <DependentUpon>formCosecha.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Tablas ABMs\formCosecha.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tablas ABMs\formCosechas.designer.vb">
+      <DependentUpon>formCosechas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Tablas ABMs\formCosechas.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Tablas ABMs\formProducto.designer.vb">
@@ -542,6 +555,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Tablas ABMs\formCamiones.resx">
       <DependentUpon>formCamiones.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tablas ABMs\formCosecha.resx">
+      <DependentUpon>formCosecha.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tablas ABMs\formCosechas.resx">
+      <DependentUpon>formCosechas.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Tablas ABMs\formProducto.resx">
       <DependentUpon>formProducto.vb</DependentUpon>

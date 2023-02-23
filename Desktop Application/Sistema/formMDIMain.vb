@@ -79,6 +79,10 @@
         ShowForm(Permisos.PRODUCTO, CType(formProductos, Form))
     End Sub
 
+    Private Sub Cosechas() Handles menuitemTablas_Cosechas.Click
+        ShowForm(Permisos.COSECHA, CType(formCosechas, Form))
+    End Sub
+
     Private Sub UsuarioGrupoPermisos() Handles menuitemTablas_Permisos.Click
         ShowForm(Permisos.USUARIOGRUPO, CType(formUsuarioGrupoPermisos, Form))
     End Sub
