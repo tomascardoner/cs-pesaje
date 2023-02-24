@@ -417,6 +417,4 @@
         ComboBoxControl.SelectedValue = IDReporteSeleccionadoActualmente
     End Sub
 
-
-
 End Class

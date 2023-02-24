@@ -92,6 +92,8 @@
         <AssociationConnector Association="CSPesajeModel.FK__Planta__PlantaDeposito" />
         <AssociationConnector Association="CSPesajeModel.FK__Usuario__PlantaDeposito__Creacion" />
         <AssociationConnector Association="CSPesajeModel.FK__Usuario__PlantaDeposito__Modificacion" />
+        <AssociationConnector Association="CSPesajeModel.FK__Usuario__Usuario__Creacion" />
+        <AssociationConnector Association="CSPesajeModel.FK__Usuario__Usuario__Modificacion" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

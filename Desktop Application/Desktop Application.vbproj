@@ -256,6 +256,8 @@
     <Compile Include="EF Extensions\Reporte.vb" />
     <Compile Include="EF Extensions\ReporteParametro.vb" />
     <Compile Include="EF Extensions\Cosecha_Producto_Tarifa.vb" />
+    <Compile Include="EF Extensions\UsuarioExtension.vb" />
+    <Compile Include="EF Extensions\UsuarioGrupoExtension.vb" />
     <Compile Include="ObtenerResumenPesadas_Result.vb">
       <DependentUpon>CSPesaje.tt</DependentUpon>
     </Compile>
@@ -389,6 +391,30 @@
       <DependentUpon>formEntidadesSeleccionar.vb</DependentUpon>
     </Compile>
     <Compile Include="Tablas ABMs\formEntidadesSeleccionar.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tablas ABMs\formUsuario.designer.vb">
+      <DependentUpon>formUsuario.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Tablas ABMs\formUsuario.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tablas ABMs\formUsuarioGrupo.designer.vb">
+      <DependentUpon>formUsuarioGrupo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Tablas ABMs\formUsuarioGrupo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tablas ABMs\formUsuarioGrupos.designer.vb">
+      <DependentUpon>formUsuarioGrupos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Tablas ABMs\formUsuarioGrupos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tablas ABMs\formUsuarios.designer.vb">
+      <DependentUpon>formUsuarios.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Tablas ABMs\formUsuarios.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Usuarios\formCambiarContrasena.designer.vb">
@@ -600,6 +626,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Tablas ABMs\formEntidadesSeleccionar.resx">
       <DependentUpon>formEntidadesSeleccionar.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tablas ABMs\formUsuario.resx">
+      <DependentUpon>formUsuario.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tablas ABMs\formUsuarioGrupo.resx">
+      <DependentUpon>formUsuarioGrupo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tablas ABMs\formUsuarioGrupos.resx">
+      <DependentUpon>formUsuarioGrupos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tablas ABMs\formUsuarios.resx">
+      <DependentUpon>formUsuarios.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Usuarios\formCambiarContrasena.resx">
       <DependentUpon>formCambiarContrasena.vb</DependentUpon>

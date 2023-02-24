@@ -83,8 +83,16 @@
         ShowForm(Permisos.COSECHA, CType(formCosechas, Form))
     End Sub
 
-    Private Sub UsuarioGrupoPermisos() Handles menuitemTablas_Permisos.Click
-        ShowForm(Permisos.USUARIOGRUPO, CType(formUsuarioGrupoPermisos, Form))
+    Private Sub GruposUsuarios() Handles menuitemTablas_GruposUsuarios.Click
+        ShowForm(Permisos.USUARIOGRUPO, CType(formUsuarioGrupos, Form))
+    End Sub
+
+    Private Sub GruposUsuariosPermisos() Handles menuitemTablas_GruposUsuariosPermisos.Click
+        ShowForm(Permisos.USUARIOGRUPO_PERMISOS, CType(formUsuarioGrupoPermisos, Form))
+    End Sub
+
+    Private Sub Usuarios() Handles menuitemTablas_Usuarios.Click
+        ShowForm(Permisos.USUARIO, CType(formUsuarios, Form))
     End Sub
 
     Private Sub Tarifas() Handles menuitemTablas_Tarifas.Click

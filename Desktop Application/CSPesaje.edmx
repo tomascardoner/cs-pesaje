@@ -1120,6 +1120,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Usuario__Usuario__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Usuario1" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Usuario1">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Usuario__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Usuario1" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Usuario1">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Usuario__UsuarioGrupo__Creacion">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
           <End Role="UsuarioGrupo" Type="Self.UsuarioGrupo" Multiplicity="*" />
@@ -1439,6 +1463,14 @@
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Producto" EntitySet="Producto" />
           </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Usuario__Creacion" Association="Self.FK__Usuario__Usuario__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Usuario1" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Usuario__Modificacion" Association="Self.FK__Usuario__Usuario__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Usuario1" EntitySet="Usuario" />
+          </AssociationSet>
           <AssociationSet Name="FK__Usuario__UsuarioGrupo__Creacion" Association="Self.FK__Usuario__UsuarioGrupo__Creacion">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="UsuarioGrupo" EntitySet="UsuarioGrupo" />
@@ -1743,6 +1775,14 @@
             <Parameter Name="FechaDesde" Mode="In" Type="DateTime" />
             <Parameter Name="FechaHasta" Mode="In" Type="DateTime" />
           </FunctionImport>
+          <AssociationSet Name="FK__Usuario__Usuario__Creacion" Association="CSPesajeModel.FK__Usuario__Usuario__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Usuario1" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Usuario__Modificacion" Association="CSPesajeModel.FK__Usuario__Usuario__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Usuario1" EntitySet="Usuario" />
+          </AssociationSet>
         </EntityContainer>		
 		<EntityType Name="Camion">
           <Key>
@@ -2227,6 +2267,10 @@
           <NavigationProperty Name="UsuarioGrupo" Relationship="CSPesajeModel.FK__UsuarioGrupo__Usuario" FromRole="Usuario" ToRole="UsuarioGrupo" />
           <NavigationProperty Name="PlantasDepositosCreados" Relationship="CSPesajeModel.FK__Usuario__PlantaDeposito__Creacion" FromRole="Usuario" ToRole="PlantaDeposito" />
           <NavigationProperty Name="PlantasDepositos" Relationship="CSPesajeModel.FK__Usuario__PlantaDeposito__Modificacion" FromRole="Usuario" ToRole="PlantaDeposito" />
+          <NavigationProperty Name="UsuariosCreados" Relationship="CSPesajeModel.FK__Usuario__Usuario__Creacion" FromRole="Usuario" ToRole="Usuario1" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSPesajeModel.FK__Usuario__Usuario__Creacion" FromRole="Usuario1" ToRole="Usuario" />
+          <NavigationProperty Name="UsuariosModificados" Relationship="CSPesajeModel.FK__Usuario__Usuario__Modificacion" FromRole="Usuario" ToRole="Usuario1" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSPesajeModel.FK__Usuario__Usuario__Modificacion" FromRole="Usuario1" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="UsuarioGrupo">
           <Key>
@@ -3040,6 +3084,30 @@
           <Property Type="Int32" Name="CantidadEntradas" Nullable="true" />
           <Property Type="Int32" Name="CantidadSalidas" Nullable="true" />
         </ComplexType>
+        <Association Name="FK__Usuario__Usuario__Creacion">
+          <End Type="CSPesajeModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSPesajeModel.Usuario" Role="Usuario1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Usuario1">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Usuario__Modificacion">
+          <End Type="CSPesajeModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSPesajeModel.Usuario" Role="Usuario1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Usuario1">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

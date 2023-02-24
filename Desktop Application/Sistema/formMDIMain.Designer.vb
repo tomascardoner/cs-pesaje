@@ -31,6 +31,7 @@ Partial Class formMDIMain
         Me.menuitemArchivo_Opciones = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemArchivo_Separador_CerrarSesion = New System.Windows.Forms.ToolStripSeparator()
         Me.menuitemArchivo_CerrarSesion = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuitemArchivo_CambiarContrasena = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemArchivo_Separador_Salir = New System.Windows.Forms.ToolStripSeparator()
         Me.menuitemArchivo_Salir = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemVentana = New System.Windows.Forms.ToolStripMenuItem()
@@ -47,13 +48,12 @@ Partial Class formMDIMain
         Me.menuitemTablas_Cosechas = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemTablas_GruposUsuarios = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemTablas_Usuarios = New System.Windows.Forms.ToolStripMenuItem()
-        Me.menuitemTablas_Permisos = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuitemTablas_GruposUsuariosPermisos = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemTablas_Tarifas = New System.Windows.Forms.ToolStripMenuItem()
         Me.buttonPesadas = New System.Windows.Forms.ToolStripButton()
         Me.buttonResumenPesadas = New System.Windows.Forms.ToolStripButton()
         Me.buttonReportes = New System.Windows.Forms.ToolStripButton()
         Me.textboxKilogramo = New System.Windows.Forms.TextBox()
-        Me.menuitemArchivo_CambiarContrasena = New System.Windows.Forms.ToolStripMenuItem()
         Me.statusstripMain.SuspendLayout()
         Me.menustripMain.SuspendLayout()
         Me.panelMain.SuspendLayout()
@@ -63,7 +63,7 @@ Partial Class formMDIMain
         'statusstripMain
         '
         Me.statusstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelStatus, Me.labelUsuarioNombre})
-        Me.statusstripMain.Location = New System.Drawing.Point(0, 513)
+        Me.statusstripMain.Location = New System.Drawing.Point(0, 393)
         Me.statusstripMain.Name = "statusstripMain"
         Me.statusstripMain.Size = New System.Drawing.Size(718, 22)
         Me.statusstripMain.TabIndex = 2
@@ -112,6 +112,12 @@ Partial Class formMDIMain
         Me.menuitemArchivo_CerrarSesion.Name = "menuitemArchivo_CerrarSesion"
         Me.menuitemArchivo_CerrarSesion.Size = New System.Drawing.Size(204, 22)
         Me.menuitemArchivo_CerrarSesion.Text = "Cerrar sesión del Usuario"
+        '
+        'menuitemArchivo_CambiarContrasena
+        '
+        Me.menuitemArchivo_CambiarContrasena.Name = "menuitemArchivo_CambiarContrasena"
+        Me.menuitemArchivo_CambiarContrasena.Size = New System.Drawing.Size(204, 22)
+        Me.menuitemArchivo_CambiarContrasena.Text = "Cambiar contraseña"
         '
         'menuitemArchivo_Separador_Salir
         '
@@ -174,13 +180,13 @@ Partial Class formMDIMain
         Me.toolstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.dropdownbuttonTablas, Me.buttonPesadas, Me.buttonResumenPesadas, Me.buttonReportes})
         Me.toolstripMain.Location = New System.Drawing.Point(0, 0)
         Me.toolstripMain.Name = "toolstripMain"
-        Me.toolstripMain.Size = New System.Drawing.Size(414, 39)
+        Me.toolstripMain.Size = New System.Drawing.Size(445, 39)
         Me.toolstripMain.TabIndex = 2
         Me.toolstripMain.Text = "Principal"
         '
         'dropdownbuttonTablas
         '
-        Me.dropdownbuttonTablas.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemTablas_Entidades, Me.menuitemTablas_Camiones, Me.menuitemTablas_OrigenesDestinos, Me.menuitemTablas_Productos, Me.menuitemTablas_Cosechas, Me.menuitemTablas_GruposUsuarios, Me.menuitemTablas_Usuarios, Me.menuitemTablas_Permisos, Me.menuitemTablas_Tarifas})
+        Me.dropdownbuttonTablas.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemTablas_Entidades, Me.menuitemTablas_Camiones, Me.menuitemTablas_OrigenesDestinos, Me.menuitemTablas_Productos, Me.menuitemTablas_Cosechas, Me.menuitemTablas_GruposUsuarios, Me.menuitemTablas_GruposUsuariosPermisos, Me.menuitemTablas_Usuarios, Me.menuitemTablas_Tarifas})
         Me.dropdownbuttonTablas.Image = Global.My.Resources.Resources.ImageTablas32
         Me.dropdownbuttonTablas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.dropdownbuttonTablas.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
@@ -192,55 +198,55 @@ Partial Class formMDIMain
         'menuitemTablas_Entidades
         '
         Me.menuitemTablas_Entidades.Name = "menuitemTablas_Entidades"
-        Me.menuitemTablas_Entidades.Size = New System.Drawing.Size(176, 22)
+        Me.menuitemTablas_Entidades.Size = New System.Drawing.Size(241, 22)
         Me.menuitemTablas_Entidades.Text = "Entidades"
         '
         'menuitemTablas_Camiones
         '
         Me.menuitemTablas_Camiones.Name = "menuitemTablas_Camiones"
-        Me.menuitemTablas_Camiones.Size = New System.Drawing.Size(176, 22)
+        Me.menuitemTablas_Camiones.Size = New System.Drawing.Size(241, 22)
         Me.menuitemTablas_Camiones.Text = "Camiones"
         '
         'menuitemTablas_OrigenesDestinos
         '
         Me.menuitemTablas_OrigenesDestinos.Name = "menuitemTablas_OrigenesDestinos"
-        Me.menuitemTablas_OrigenesDestinos.Size = New System.Drawing.Size(176, 22)
-        Me.menuitemTablas_OrigenesDestinos.Text = "Orígenes-Destinos"
+        Me.menuitemTablas_OrigenesDestinos.Size = New System.Drawing.Size(241, 22)
+        Me.menuitemTablas_OrigenesDestinos.Text = "Orígenes y destinos"
         '
         'menuitemTablas_Productos
         '
         Me.menuitemTablas_Productos.Name = "menuitemTablas_Productos"
-        Me.menuitemTablas_Productos.Size = New System.Drawing.Size(176, 22)
+        Me.menuitemTablas_Productos.Size = New System.Drawing.Size(241, 22)
         Me.menuitemTablas_Productos.Text = "Productos"
         '
         'menuitemTablas_Cosechas
         '
         Me.menuitemTablas_Cosechas.Name = "menuitemTablas_Cosechas"
-        Me.menuitemTablas_Cosechas.Size = New System.Drawing.Size(176, 22)
+        Me.menuitemTablas_Cosechas.Size = New System.Drawing.Size(241, 22)
         Me.menuitemTablas_Cosechas.Text = "Cosechas"
         '
         'menuitemTablas_GruposUsuarios
         '
         Me.menuitemTablas_GruposUsuarios.Name = "menuitemTablas_GruposUsuarios"
-        Me.menuitemTablas_GruposUsuarios.Size = New System.Drawing.Size(176, 22)
-        Me.menuitemTablas_GruposUsuarios.Text = "Grupos de Usuarios"
+        Me.menuitemTablas_GruposUsuarios.Size = New System.Drawing.Size(241, 22)
+        Me.menuitemTablas_GruposUsuarios.Text = "Grupos de usuarios"
         '
         'menuitemTablas_Usuarios
         '
         Me.menuitemTablas_Usuarios.Name = "menuitemTablas_Usuarios"
-        Me.menuitemTablas_Usuarios.Size = New System.Drawing.Size(176, 22)
+        Me.menuitemTablas_Usuarios.Size = New System.Drawing.Size(241, 22)
         Me.menuitemTablas_Usuarios.Text = "Usuarios"
         '
-        'menuitemTablas_Permisos
+        'menuitemTablas_GruposUsuariosPermisos
         '
-        Me.menuitemTablas_Permisos.Name = "menuitemTablas_Permisos"
-        Me.menuitemTablas_Permisos.Size = New System.Drawing.Size(176, 22)
-        Me.menuitemTablas_Permisos.Text = "Permisos"
+        Me.menuitemTablas_GruposUsuariosPermisos.Name = "menuitemTablas_GruposUsuariosPermisos"
+        Me.menuitemTablas_GruposUsuariosPermisos.Size = New System.Drawing.Size(241, 22)
+        Me.menuitemTablas_GruposUsuariosPermisos.Text = "Permisos de grupos de usuarios"
         '
         'menuitemTablas_Tarifas
         '
         Me.menuitemTablas_Tarifas.Name = "menuitemTablas_Tarifas"
-        Me.menuitemTablas_Tarifas.Size = New System.Drawing.Size(176, 22)
+        Me.menuitemTablas_Tarifas.Size = New System.Drawing.Size(241, 22)
         Me.menuitemTablas_Tarifas.Text = "Tarifas"
         '
         'buttonPesadas
@@ -286,17 +292,11 @@ Partial Class formMDIMain
         Me.textboxKilogramo.TabIndex = 3
         Me.textboxKilogramo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
-        'menuitemArchivo_CambiarContrasena
-        '
-        Me.menuitemArchivo_CambiarContrasena.Name = "menuitemArchivo_CambiarContrasena"
-        Me.menuitemArchivo_CambiarContrasena.Size = New System.Drawing.Size(204, 22)
-        Me.menuitemArchivo_CambiarContrasena.Text = "Cambiar contraseña"
-        '
         'formMDIMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(718, 535)
+        Me.ClientSize = New System.Drawing.Size(718, 415)
         Me.Controls.Add(Me.panelMain)
         Me.Controls.Add(Me.statusstripMain)
         Me.Controls.Add(Me.menustripMain)
@@ -342,7 +342,7 @@ Partial Class formMDIMain
     Friend WithEvents menuitemTablas_Cosechas As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents menuitemTablas_GruposUsuarios As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents menuitemTablas_Usuarios As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents menuitemTablas_Permisos As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents menuitemTablas_GruposUsuariosPermisos As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents buttonPesadas As System.Windows.Forms.ToolStripButton
     Friend WithEvents buttonReportes As System.Windows.Forms.ToolStripButton
     Friend WithEvents textboxKilogramo As System.Windows.Forms.TextBox
