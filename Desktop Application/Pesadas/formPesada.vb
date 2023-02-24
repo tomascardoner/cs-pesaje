@@ -707,9 +707,9 @@
                 radiobuttonSalida.Visible = (Producto_PlantaActual.TipoSalida <> Constantes.PESADA_TIPO_PERIODICIDAD_NUNCA)
                 radiobuttonNinguno.Visible = (Producto_PlantaActual.TipoNinguno <> Constantes.PESADA_TIPO_PERIODICIDAD_NUNCA)
             Else
-                radiobuttonEntrada.Visible = (Producto_PlantaActual.TipoEntrada = Constantes.PESADA_TIPO_PERIODICIDAD_FRECUENTE)
-                radiobuttonSalida.Visible = (Producto_PlantaActual.TipoSalida = Constantes.PESADA_TIPO_PERIODICIDAD_FRECUENTE)
-                radiobuttonNinguno.Visible = (Producto_PlantaActual.TipoNinguno = Constantes.PESADA_TIPO_PERIODICIDAD_FRECUENTE)
+                radiobuttonEntrada.Visible = (Producto_PlantaActual.TipoEntrada = Constantes.PESADA_TIPO_PERIODICIDAD_FRECUENTEMENTE)
+                radiobuttonSalida.Visible = (Producto_PlantaActual.TipoSalida = Constantes.PESADA_TIPO_PERIODICIDAD_FRECUENTEMENTE)
+                radiobuttonNinguno.Visible = (Producto_PlantaActual.TipoNinguno = Constantes.PESADA_TIPO_PERIODICIDAD_FRECUENTEMENTE)
             End If
 
             If radiobuttonEntrada.Visible And radiobuttonSalida.Visible = False And radiobuttonNinguno.Visible = False Then

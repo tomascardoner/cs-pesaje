@@ -1,32 +1,34 @@
-﻿Public Class formUsuarioGrupo
+﻿Public Class formProductoCosecha
 
 #Region "Declarations"
-    Private mdbContext As New CSPesajeContext(True)
-    Private mUsuarioGrupoActual As UsuarioGrupo
 
+    Private mdbContext As New CSPesajeContext(True)
+    Private mProducto_CosechaActual As Producto_Cosecha
+
+    Private mIsNew As Boolean
     Private mIsLoading As Boolean
     Private mEditMode As Boolean
+
 #End Region
 
 #Region "Form stuff"
 
-    Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDUsuarioGrupo As Byte)
+    Friend Sub LoadAndShow(EditMode As Boolean, ByRef ParentForm As Form, IDProducto As Byte, IDCosecha As Byte)
         mIsLoading = True
         mEditMode = EditMode
 
-        If IDUsuarioGrupo = 0 Then
+        mIsNew = (IDCosecha = 0)
+        If mIsNew Then
             ' Es Nuevo
-            mUsuarioGrupoActual = New UsuarioGrupo
-            With mUsuarioGrupoActual
+            mProducto_CosechaActual = New Producto_Cosecha With {
+                .IDProducto = IDProducto,
+                .Inicio = DateAndTime.Today,
+                .Fin = DateAndTime.Today,
                 .EsActivo = True
-                .IDUsuarioCreacion = pUsuario.IDUsuario
-                .FechaHoraCreacion = Now
-                .IDUsuarioModificacion = pUsuario.IDUsuario
-                .FechaHoraModificacion = .FechaHoraCreacion
-            End With
-            mdbContext.UsuarioGrupo.Add(mUsuarioGrupoActual)
+            }
+            mdbContext.Producto_Cosecha.Add(mProducto_CosechaActual)
         Else
-            mUsuarioGrupoActual = mdbContext.UsuarioGrupo.Find(IDUsuarioGrupo)
+            mProducto_CosechaActual = mdbContext.Producto_Cosecha.Find(IDProducto, IDCosecha)
         End If
 
         CardonerSistemas.Forms.CenterToParent(ParentForm, Me)
@@ -50,14 +52,17 @@
         buttonEditar.Visible = (mEditMode = False)
         buttonCerrar.Visible = (mEditMode = False)
 
-        textboxNombre.ReadOnly = Not mEditMode
+        ComboBoxCosecha.Enabled = mIsNew
 
-        textboxNotas.ReadOnly = Not mEditMode
-        checkboxEsActivo.Enabled = mEditMode
+        DateTimePickerInicio.Enabled = mEditMode
+        DateTimePickerFin.Enabled = mEditMode
+        CheckBoxEsActivo.Enabled = mEditMode
     End Sub
 
     Friend Sub InitializeFormAndControls()
         SetAppearance()
+
+        pFillAndRefreshLists.Cosecha(ComboBoxCosecha, Nothing, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_DATE, False, False)
     End Sub
 
     Friend Sub SetAppearance()
@@ -69,7 +74,7 @@
             mdbContext.Dispose()
             mdbContext = Nothing
         End If
-        mUsuarioGrupoActual = Nothing
+        mProducto_CosechaActual = Nothing
         Me.Dispose()
     End Sub
 
@@ -78,29 +83,27 @@
 #Region "Load and Set Data"
 
     Friend Sub SetDataFromObjectToControls()
-        With mUsuarioGrupoActual
-            textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
-
-            ' Datos de la pestaña Notas y Auditoría
-            checkboxEsActivo.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.EsActivo)
-            textboxID.Text = .IDUsuarioFormatted
-            textboxFechaHoraCreacion.Text = .FechaHoraCreacionFormatted
-            textboxUsuarioCreacion.Text = .UsuarioCreacionFormatted
-            textboxFechaHoraModificacion.Text = .FechaHoraModificacionFormatted
-            textboxUsuarioModificacion.Text = .UsuarioModificacionFormatted
+        With mProducto_CosechaActual
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(ComboBoxCosecha, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDCosecha)
+            DateTimePickerInicio.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker(.Inicio)
+            DateTimePickerFin.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker(.Fin)
+            CheckBoxEsActivo.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.EsActivo)
         End With
     End Sub
 
     Friend Sub SetDataFromControlsToObject()
-        With mUsuarioGrupoActual
-            .Nombre = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNombre.Text)
-
-            .EsActivo = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxEsActivo.CheckState)
+        With mProducto_CosechaActual
+            .IDCosecha = CS_ValueTranslation.FromControlComboBoxToObjectByte(ComboBoxCosecha.SelectedValue).Value
+            .Inicio = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(DateTimePickerInicio.Value).Value
+            .Fin = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(DateTimePickerFin.Value).Value
+            .EsActivo = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(CheckBoxEsActivo.CheckState)
         End With
     End Sub
+    
 #End Region
 
 #Region "Controls behavior"
+
     Private Sub FormKeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
         Select Case e.KeyChar
             Case Microsoft.VisualBasic.ChrW(Keys.Return)
@@ -118,9 +121,10 @@
         End Select
     End Sub
 
-    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxNombre.GotFocus, textboxNotas.GotFocus
+    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs)
         CType(sender, TextBox).SelectAll()
     End Sub
+
 #End Region
 
 #Region "Main Toolbar"
@@ -137,22 +141,8 @@
     End Sub
 
     Private Sub Guardar_Click() Handles buttonGuardar.Click
-        If textboxNombre.Text.Trim.Length = 0 Then
-            tabcontrolMain.SelectedTab = tabpageGeneral
-            MsgBox("Debe ingresar el Nombre.", MsgBoxStyle.Information, My.Application.Info.Title)
-            textboxNombre.Focus()
-            Exit Sub
-        End If
-
-        ' Generar el ID nuevo
-        If mUsuarioGrupoActual.IDUsuarioGrupo = 0 Then
-            Using dbcMaxID As New CSPesajeContext(True)
-                If dbcMaxID.UsuarioGrupo.Any() Then
-                    mUsuarioGrupoActual.IDUsuarioGrupo = dbcMaxID.UsuarioGrupo.Max(Function(a) a.IDUsuarioGrupo) + CByte(1)
-                Else
-                    mUsuarioGrupoActual.IDUsuarioGrupo = 1
-                End If
-            End Using
+        If Not VerificarDatos() Then
+            Return
         End If
 
         ' Paso los datos desde los controles al Objecto de EF
@@ -162,21 +152,18 @@
 
             Me.Cursor = Cursors.WaitCursor
 
-            mUsuarioGrupoActual.IDUsuarioModificacion = pUsuario.IDUsuario
-            mUsuarioGrupoActual.FechaHoraModificacion = Now
-
             Try
                 ' Guardo los cambios
                 mdbContext.SaveChanges()
 
                 ' Refresco la lista para mostrar los cambios
-                formUsuarioGrupos.RefreshData(mUsuarioGrupoActual.IDUsuarioGrupo)
+                formProducto.CosechasRefreshData(mdbContext, mProducto_CosechaActual.IDCosecha)
 
             Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                 Me.Cursor = Cursors.Default
                 Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)
-                    Case CardonerSistemas.Database.EntityFramework.Errors.DuplicatedEntity
-                        MsgBox("No se pueden guardar los cambios porque ya existe un Grupo de Usuarios con el mismo Nombre.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                    Case CardonerSistemas.Database.EntityFramework.Errors.PrimaryKeyViolation
+                        MsgBox("No se pueden guardar los cambios porque ya existe la Cosecha en el Producto.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                 End Select
                 Exit Sub
 
@@ -189,6 +176,20 @@
 
         Me.Close()
     End Sub
+
+#End Region
+
+#Region "Extra stuff"
+
+    Private Function VerificarDatos() As Boolean
+        If ComboBoxCosecha.SelectedIndex = -1 Then
+            MessageBox.Show("Debe especificar la Cosecha.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Information)
+            ComboBoxCosecha.Focus()
+            Return False
+        End If
+
+        Return True
+    End Function
 
 #End Region
 

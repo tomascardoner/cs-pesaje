@@ -265,7 +265,7 @@
             Else
                 Throw New Exception("No se ha seleccionado el Tipo de Almacenaje")
             End If
-            .AlmacenajeDiaGracia = CS_ValueTranslation_Syncfusion.FromControlIntegerTextBoxToValueShort(integertextboxAlmacenajeDiaGracia)
+            .AlmacenajeDiaGracia = CS_ValueTranslation_Syncfusion.FromControlToShort(integertextboxAlmacenajeDiaGracia)
             .AlmacenajeInicio = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerAlmacenajeInicio.Value, datetimepickerAlmacenajeInicio.Checked)
             .AlmacenajePorcentajeMensual = Convert.ToDecimal(percenttextboxAlmacenajePorcentajeMensual.PercentValue)
         End With

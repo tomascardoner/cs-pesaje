@@ -417,4 +417,35 @@
         ComboBoxControl.SelectedValue = IDReporteSeleccionadoActualmente
     End Sub
 
+    Friend Sub Periodicidad(ByRef ComboBoxControl As ComboBox)
+        Dim datatablePeriodicidades As New DataTable("Periodicidades")
+        Dim datarowRow As DataRow
+
+        ComboBoxControl.ValueMember = "IDPeriodicidad"
+        ComboBoxControl.DisplayMember = "Nombre"
+
+        With datatablePeriodicidades
+            .Columns.Add("IDPeriodicidad", System.Type.GetType("System.String"))
+            .Columns.Add("Nombre", System.Type.GetType("System.String"))
+
+            datarowRow = .NewRow
+            datarowRow("IDPeriodicidad") = Constantes.PESADA_TIPO_PERIODICIDAD_NUNCA
+            datarowRow("Nombre") = "Nunca"
+            .Rows.Add(datarowRow)
+
+            datarowRow = .NewRow
+            datarowRow("IDPeriodicidad") = Constantes.PESADA_TIPO_PERIODICIDAD_ESPORADICAMENTE
+            datarowRow("Nombre") = "Esporadicamente"
+            .Rows.Add(datarowRow)
+
+            datarowRow = .NewRow
+            datarowRow("IDPeriodicidad") = Constantes.PESADA_TIPO_PERIODICIDAD_FRECUENTEMENTE
+            datarowRow("Nombre") = "Frecuentemente"
+            .Rows.Add(datarowRow)
+        End With
+
+        ComboBoxControl.DataSource = datatablePeriodicidades
+        ComboBoxControl.SelectedIndex = -1
+    End Sub
+
 End Class

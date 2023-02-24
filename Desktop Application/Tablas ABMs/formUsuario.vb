@@ -59,7 +59,6 @@
         textboxPassword.ReadOnly = Not mEditMode
         comboboxGenero.Enabled = mEditMode
         comboboxUsuarioGrupo.Enabled = mEditMode
-        comboboxCuartel.Enabled = mEditMode
 
         ' Notas y Auditoría
         textboxNotas.ReadOnly = Not mEditMode
@@ -148,18 +147,19 @@
 #End Region
 
 #Region "Main Toolbar"
-    Private Sub buttonEditar_Click() Handles buttonEditar.Click
+
+    Private Sub Editar_Click() Handles buttonEditar.Click
         If Permisos.VerificarPermiso(Permisos.USUARIO_EDITAR) Then
             mEditMode = True
             ChangeMode()
         End If
     End Sub
 
-    Private Sub buttonCerrarOCancelar_Click() Handles buttonCerrar.Click, buttonCancelar.Click
+    Private Sub CerrarOCancelar_Click() Handles buttonCerrar.Click, buttonCancelar.Click
         Me.Close()
     End Sub
 
-    Private Sub buttonGuardar_Click() Handles buttonGuardar.Click
+    Private Sub Guardar_Click() Handles buttonGuardar.Click
         If Not VerificarDatos() Then
             Return
         End If
@@ -210,11 +210,11 @@
         Me.Close()
     End Sub
 
-    Private Sub textboxNombre_Leave(sender As Object, e As EventArgs) Handles textboxNombre.Leave
+    Private Sub Nombre_Leave(sender As Object, e As EventArgs) Handles textboxNombre.Leave
         textboxNombre.Text = textboxNombre.Text.Replace(" ", "")
     End Sub
 
-    Private Sub textboxNombre_KeyDown(sender As Object, e As KeyEventArgs) Handles textboxNombre.KeyDown
+    Private Sub Nombre_KeyDown(sender As Object, e As KeyEventArgs) Handles textboxNombre.KeyDown
         If e.KeyCode = Keys.Space Then
             e.SuppressKeyPress = True
         End If
@@ -238,6 +238,19 @@
             Return False
         End If
 
+        ' Descripción
+        If textboxDescripcion.Text.Trim.Length = 0 Then
+            tabcontrolMain.SelectedTab = tabpageGeneral
+            MsgBox("Debe ingresar la Descripción.", MsgBoxStyle.Information, My.Application.Info.Title)
+            textboxDescripcion.Focus()
+            Return False
+        End If
+        If textboxDescripcion.TextLength < 4 Then
+            MsgBox("La Descripción debe contener al menos 4 caracteres.", vbInformation, My.Application.Info.Title)
+            textboxDescripcion.Focus()
+            Return False
+        End If
+
         ' Contraseña
         If textboxPassword.TextLength = 0 Then
             MsgBox("Debe ingresar la Contraseña.", vbInformation, My.Application.Info.Title)
@@ -256,6 +269,20 @@
                 textboxPassword.Focus()
                 Return False
             End If
+        End If
+
+        If comboboxGenero.SelectedIndex = -1 Then
+            tabcontrolMain.SelectedTab = tabpageGeneral
+            MsgBox("Debe seleccionar el Género.", MsgBoxStyle.Information, My.Application.Info.Title)
+            comboboxGenero.Focus()
+            Return False
+        End If
+
+        If comboboxUsuarioGrupo.SelectedIndex = -1 Then
+            tabcontrolMain.SelectedTab = tabpageGeneral
+            MsgBox("Debe seleccionar el Grupo de Usuarios.", MsgBoxStyle.Information, My.Application.Info.Title)
+            comboboxUsuarioGrupo.Focus()
+            Return False
         End If
 
         Return True

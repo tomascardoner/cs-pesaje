@@ -333,6 +333,24 @@
     <Compile Include="Tablas ABMs\formProducto.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Tablas ABMs\formProductoCosecha.designer.vb">
+      <DependentUpon>formProductoCosecha.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Tablas ABMs\formProductoCosecha.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tablas ABMs\formProductoMermaHumedad.designer.vb">
+      <DependentUpon>formProductoMermaHumedad.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Tablas ABMs\formProductoMermaHumedad.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tablas ABMs\formProductoPlanta.designer.vb">
+      <DependentUpon>formProductoPlanta.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Tablas ABMs\formProductoPlanta.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Tablas ABMs\formProductos.designer.vb">
       <DependentUpon>formProductos.vb</DependentUpon>
     </Compile>
@@ -590,6 +608,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Tablas ABMs\formProducto.resx">
       <DependentUpon>formProducto.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tablas ABMs\formProductoCosecha.resx">
+      <DependentUpon>formProductoCosecha.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tablas ABMs\formProductoMermaHumedad.resx">
+      <DependentUpon>formProductoMermaHumedad.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tablas ABMs\formProductoPlanta.resx">
+      <DependentUpon>formProductoPlanta.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Tablas ABMs\formProductos.resx">
       <DependentUpon>formProductos.vb</DependentUpon>

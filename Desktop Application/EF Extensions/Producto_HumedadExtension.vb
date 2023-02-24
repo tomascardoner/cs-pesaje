@@ -5,7 +5,7 @@
             If Humedad = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_DECIMAL Then
                 Return My.Resources.STRING_ITEM_EMPTY_FEMALE
             Else
-                Return Humedad.ToString(CardonerSistemas.Constants.FormatStringToPercent)
+                Return Humedad.ToString(CardonerSistemas.Constants.FormatStringToNumber)
             End If
         End Get
     End Property

@@ -25,13 +25,13 @@ Partial Class formProducto
         Dim labelEsActivo As System.Windows.Forms.Label
         Dim labelModificacion As System.Windows.Forms.Label
         Dim labelCreacion As System.Windows.Forms.Label
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.buttonGuardar = New System.Windows.Forms.ToolStripButton()
         Me.buttonCancelar = New System.Windows.Forms.ToolStripButton()
         Me.buttonEditar = New System.Windows.Forms.ToolStripButton()
@@ -39,9 +39,6 @@ Partial Class formProducto
         Me.toolstripMain = New System.Windows.Forms.ToolStrip()
         Me.tabcontrolMain = New CardonerSistemas.TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
-        Me.PercentTextBoxMermaHumedadManipuleo = New Syncfusion.Windows.Forms.Tools.PercentTextBox()
-        Me.PercentTextBoxMermaHumedadBase = New Syncfusion.Windows.Forms.Tools.PercentTextBox()
-        Me.PercentTextBoxMermaVolatil = New Syncfusion.Windows.Forms.Tools.PercentTextBox()
         Me.ComboBoxTicketPesada_IDReporte = New System.Windows.Forms.ComboBox()
         Me.LabelMermaHumedadManipuleo = New System.Windows.Forms.Label()
         Me.LabelMermaHumedadBase = New System.Windows.Forms.Label()
@@ -65,12 +62,17 @@ Partial Class formProducto
         Me.buttonMermasHumedadBorrar = New System.Windows.Forms.ToolStripButton()
         Me.tabpagePlantas = New System.Windows.Forms.TabPage()
         Me.datagridviewPlantas = New System.Windows.Forms.DataGridView()
+        Me.columnPlantasPlanta = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.toolstripPlantas = New System.Windows.Forms.ToolStrip()
         Me.buttonPlantasAgregar = New System.Windows.Forms.ToolStripButton()
         Me.buttonPlantasEditar = New System.Windows.Forms.ToolStripButton()
         Me.buttonPlantasBorrar = New System.Windows.Forms.ToolStripButton()
         Me.tabpageCosechas = New System.Windows.Forms.TabPage()
         Me.datagridviewCosechas = New System.Windows.Forms.DataGridView()
+        Me.columnCosechasCosecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnCosechasInicio = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnCosechasFin = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnCosechasEsActivo = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.toolstripCosechas = New System.Windows.Forms.ToolStrip()
         Me.buttonCosechasAgregar = New System.Windows.Forms.ToolStripButton()
         Me.buttonCosechasEditar = New System.Windows.Forms.ToolStripButton()
@@ -85,20 +87,15 @@ Partial Class formProducto
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
         Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.labelNotas = New System.Windows.Forms.Label()
-        Me.columnPlantasPlanta = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnCosechasCosecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnCosechasInicio = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnCosechasFin = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnCosechasEsActivo = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.DoubleTextBoxMermaVolatil = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
+        Me.DoubleTextBoxMermaHumedadBase = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
+        Me.DoubleTextBoxMermaHumedadManipuleo = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
         labelEsActivo = New System.Windows.Forms.Label()
         labelModificacion = New System.Windows.Forms.Label()
         labelCreacion = New System.Windows.Forms.Label()
         Me.toolstripMain.SuspendLayout()
         Me.tabcontrolMain.SuspendLayout()
         Me.tabpageGeneral.SuspendLayout()
-        CType(Me.PercentTextBoxMermaHumedadManipuleo, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PercentTextBoxMermaHumedadBase, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PercentTextBoxMermaVolatil, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tabpageMermasHumedad.SuspendLayout()
         CType(Me.datagridviewMermasHumedad, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.toolstripMermasHumedad.SuspendLayout()
@@ -109,6 +106,9 @@ Partial Class formProducto
         CType(Me.datagridviewCosechas, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.toolstripCosechas.SuspendLayout()
         Me.tabpageNotasAuditoria.SuspendLayout()
+        CType(Me.DoubleTextBoxMermaVolatil, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DoubleTextBoxMermaHumedadBase, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DoubleTextBoxMermaHumedadManipuleo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'labelEsActivo
@@ -209,9 +209,9 @@ Partial Class formProducto
         '
         'tabpageGeneral
         '
-        Me.tabpageGeneral.Controls.Add(Me.PercentTextBoxMermaHumedadManipuleo)
-        Me.tabpageGeneral.Controls.Add(Me.PercentTextBoxMermaHumedadBase)
-        Me.tabpageGeneral.Controls.Add(Me.PercentTextBoxMermaVolatil)
+        Me.tabpageGeneral.Controls.Add(Me.DoubleTextBoxMermaHumedadManipuleo)
+        Me.tabpageGeneral.Controls.Add(Me.DoubleTextBoxMermaHumedadBase)
+        Me.tabpageGeneral.Controls.Add(Me.DoubleTextBoxMermaVolatil)
         Me.tabpageGeneral.Controls.Add(Me.ComboBoxTicketPesada_IDReporte)
         Me.tabpageGeneral.Controls.Add(Me.LabelMermaHumedadManipuleo)
         Me.tabpageGeneral.Controls.Add(Me.LabelMermaHumedadBase)
@@ -232,43 +232,6 @@ Partial Class formProducto
         Me.tabpageGeneral.TabIndex = 0
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
-        '
-        'PercentTextBoxMermaHumedadManipuleo
-        '
-        Me.PercentTextBoxMermaHumedadManipuleo.BeforeTouchSize = New System.Drawing.Size(47, 20)
-        Me.PercentTextBoxMermaHumedadManipuleo.Location = New System.Drawing.Point(152, 97)
-        Me.PercentTextBoxMermaHumedadManipuleo.MaxValue = 1.0R
-        Me.PercentTextBoxMermaHumedadManipuleo.MinValue = 0R
-        Me.PercentTextBoxMermaHumedadManipuleo.Name = "PercentTextBoxMermaHumedadManipuleo"
-        Me.PercentTextBoxMermaHumedadManipuleo.Size = New System.Drawing.Size(47, 20)
-        Me.PercentTextBoxMermaHumedadManipuleo.TabIndex = 7
-        Me.PercentTextBoxMermaHumedadManipuleo.Text = "0,00 %"
-        Me.PercentTextBoxMermaHumedadManipuleo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'PercentTextBoxMermaHumedadBase
-        '
-        Me.PercentTextBoxMermaHumedadBase.BeforeTouchSize = New System.Drawing.Size(47, 20)
-        Me.PercentTextBoxMermaHumedadBase.Location = New System.Drawing.Point(152, 71)
-        Me.PercentTextBoxMermaHumedadBase.MaxValue = 1.0R
-        Me.PercentTextBoxMermaHumedadBase.MinValue = 0R
-        Me.PercentTextBoxMermaHumedadBase.Name = "PercentTextBoxMermaHumedadBase"
-        Me.PercentTextBoxMermaHumedadBase.PercentDecimalDigits = 1
-        Me.PercentTextBoxMermaHumedadBase.Size = New System.Drawing.Size(47, 20)
-        Me.PercentTextBoxMermaHumedadBase.TabIndex = 5
-        Me.PercentTextBoxMermaHumedadBase.Text = "0,0 %"
-        Me.PercentTextBoxMermaHumedadBase.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'PercentTextBoxMermaVolatil
-        '
-        Me.PercentTextBoxMermaVolatil.BeforeTouchSize = New System.Drawing.Size(47, 20)
-        Me.PercentTextBoxMermaVolatil.Location = New System.Drawing.Point(152, 45)
-        Me.PercentTextBoxMermaVolatil.MaxValue = 1.0R
-        Me.PercentTextBoxMermaVolatil.MinValue = 0R
-        Me.PercentTextBoxMermaVolatil.Name = "PercentTextBoxMermaVolatil"
-        Me.PercentTextBoxMermaVolatil.Size = New System.Drawing.Size(47, 20)
-        Me.PercentTextBoxMermaVolatil.TabIndex = 3
-        Me.PercentTextBoxMermaVolatil.Text = "0,00 %"
-        Me.PercentTextBoxMermaVolatil.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'ComboBoxTicketPesada_IDReporte
         '
@@ -403,11 +366,11 @@ Partial Class formProducto
         Me.datagridviewMermasHumedad.AllowUserToAddRows = False
         Me.datagridviewMermasHumedad.AllowUserToDeleteRows = False
         Me.datagridviewMermasHumedad.AllowUserToResizeRows = False
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.GradientActiveCaption
-        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText
-        Me.datagridviewMermasHumedad.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.GradientActiveCaption
+        DataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
+        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.WindowText
+        Me.datagridviewMermasHumedad.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle8
         Me.datagridviewMermasHumedad.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
         Me.datagridviewMermasHumedad.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.datagridviewMermasHumedad.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnMermasHumedadHumedad, Me.columnMermasHumedadMerma})
@@ -426,10 +389,10 @@ Partial Class formProducto
         'columnMermasHumedadHumedad
         '
         Me.columnMermasHumedadHumedad.DataPropertyName = "Humedad"
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle2.Format = "N1"
-        DataGridViewCellStyle2.NullValue = Nothing
-        Me.columnMermasHumedadHumedad.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle9.Format = "N1"
+        DataGridViewCellStyle9.NullValue = Nothing
+        Me.columnMermasHumedadHumedad.DefaultCellStyle = DataGridViewCellStyle9
         Me.columnMermasHumedadHumedad.HeaderText = "Humedad"
         Me.columnMermasHumedadHumedad.Name = "columnMermasHumedadHumedad"
         Me.columnMermasHumedadHumedad.ReadOnly = True
@@ -438,10 +401,10 @@ Partial Class formProducto
         'columnMermasHumedadMerma
         '
         Me.columnMermasHumedadMerma.DataPropertyName = "Merma"
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle3.Format = "N2"
-        DataGridViewCellStyle3.NullValue = Nothing
-        Me.columnMermasHumedadMerma.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle10.Format = "N2"
+        DataGridViewCellStyle10.NullValue = Nothing
+        Me.columnMermasHumedadMerma.DefaultCellStyle = DataGridViewCellStyle10
         Me.columnMermasHumedadMerma.HeaderText = "Merma"
         Me.columnMermasHumedadMerma.Name = "columnMermasHumedadMerma"
         Me.columnMermasHumedadMerma.ReadOnly = True
@@ -506,11 +469,11 @@ Partial Class formProducto
         Me.datagridviewPlantas.AllowUserToAddRows = False
         Me.datagridviewPlantas.AllowUserToDeleteRows = False
         Me.datagridviewPlantas.AllowUserToResizeRows = False
-        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.GradientActiveCaption
-        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.WindowText
-        Me.datagridviewPlantas.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.GradientActiveCaption
+        DataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
+        DataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.WindowText
+        Me.datagridviewPlantas.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle11
         Me.datagridviewPlantas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
         Me.datagridviewPlantas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.datagridviewPlantas.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnPlantasPlanta})
@@ -525,6 +488,14 @@ Partial Class formProducto
         Me.datagridviewPlantas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.datagridviewPlantas.Size = New System.Drawing.Size(422, 217)
         Me.datagridviewPlantas.TabIndex = 1
+        '
+        'columnPlantasPlanta
+        '
+        Me.columnPlantasPlanta.DataPropertyName = "Nombre"
+        Me.columnPlantasPlanta.HeaderText = "Planta"
+        Me.columnPlantasPlanta.Name = "columnPlantasPlanta"
+        Me.columnPlantasPlanta.ReadOnly = True
+        Me.columnPlantasPlanta.Width = 62
         '
         'toolstripPlantas
         '
@@ -585,11 +556,11 @@ Partial Class formProducto
         Me.datagridviewCosechas.AllowUserToAddRows = False
         Me.datagridviewCosechas.AllowUserToDeleteRows = False
         Me.datagridviewCosechas.AllowUserToResizeRows = False
-        DataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.GradientActiveCaption
-        DataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
-        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.WindowText
-        Me.datagridviewCosechas.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.GradientActiveCaption
+        DataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
+        DataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.WindowText
+        Me.datagridviewCosechas.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle12
         Me.datagridviewCosechas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
         Me.datagridviewCosechas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.datagridviewCosechas.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnCosechasCosecha, Me.columnCosechasInicio, Me.columnCosechasFin, Me.columnCosechasEsActivo})
@@ -604,6 +575,45 @@ Partial Class formProducto
         Me.datagridviewCosechas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.datagridviewCosechas.Size = New System.Drawing.Size(422, 217)
         Me.datagridviewCosechas.TabIndex = 1
+        '
+        'columnCosechasCosecha
+        '
+        Me.columnCosechasCosecha.DataPropertyName = "Nombre"
+        Me.columnCosechasCosecha.HeaderText = "Cosecha"
+        Me.columnCosechasCosecha.Name = "columnCosechasCosecha"
+        Me.columnCosechasCosecha.ReadOnly = True
+        Me.columnCosechasCosecha.Width = 74
+        '
+        'columnCosechasInicio
+        '
+        Me.columnCosechasInicio.DataPropertyName = "Inicio"
+        DataGridViewCellStyle13.Format = "d"
+        Me.columnCosechasInicio.DefaultCellStyle = DataGridViewCellStyle13
+        Me.columnCosechasInicio.HeaderText = "Fecha inicio"
+        Me.columnCosechasInicio.Name = "columnCosechasInicio"
+        Me.columnCosechasInicio.ReadOnly = True
+        Me.columnCosechasInicio.Width = 89
+        '
+        'columnCosechasFin
+        '
+        Me.columnCosechasFin.DataPropertyName = "Fin"
+        DataGridViewCellStyle14.Format = "d"
+        DataGridViewCellStyle14.NullValue = Nothing
+        Me.columnCosechasFin.DefaultCellStyle = DataGridViewCellStyle14
+        Me.columnCosechasFin.HeaderText = "Fecha fin"
+        Me.columnCosechasFin.Name = "columnCosechasFin"
+        Me.columnCosechasFin.ReadOnly = True
+        Me.columnCosechasFin.Width = 76
+        '
+        'columnCosechasEsActivo
+        '
+        Me.columnCosechasEsActivo.DataPropertyName = "EsActivo"
+        Me.columnCosechasEsActivo.HeaderText = "Activo"
+        Me.columnCosechasEsActivo.Name = "columnCosechasEsActivo"
+        Me.columnCosechasEsActivo.ReadOnly = True
+        Me.columnCosechasEsActivo.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.columnCosechasEsActivo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.columnCosechasEsActivo.Width = 62
         '
         'toolstripCosechas
         '
@@ -763,52 +773,45 @@ Partial Class formProducto
         Me.labelNotas.TabIndex = 0
         Me.labelNotas.Text = "Notas:"
         '
-        'columnPlantasPlanta
+        'DoubleTextBoxMermaVolatil
         '
-        Me.columnPlantasPlanta.DataPropertyName = "Nombre"
-        Me.columnPlantasPlanta.HeaderText = "Planta"
-        Me.columnPlantasPlanta.Name = "columnPlantasPlanta"
-        Me.columnPlantasPlanta.ReadOnly = True
-        Me.columnPlantasPlanta.Width = 62
+        Me.DoubleTextBoxMermaVolatil.AllowNull = True
+        Me.DoubleTextBoxMermaVolatil.BeforeTouchSize = New System.Drawing.Size(33, 20)
+        Me.DoubleTextBoxMermaVolatil.DoubleValue = 0R
+        Me.DoubleTextBoxMermaVolatil.Location = New System.Drawing.Point(152, 45)
+        Me.DoubleTextBoxMermaVolatil.MaxValue = 1.0R
+        Me.DoubleTextBoxMermaVolatil.MinValue = 0R
+        Me.DoubleTextBoxMermaVolatil.Name = "DoubleTextBoxMermaVolatil"
+        Me.DoubleTextBoxMermaVolatil.Size = New System.Drawing.Size(33, 20)
+        Me.DoubleTextBoxMermaVolatil.TabIndex = 3
+        Me.DoubleTextBoxMermaVolatil.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'columnCosechasCosecha
+        'DoubleTextBoxMermaHumedadBase
         '
-        Me.columnCosechasCosecha.DataPropertyName = "Nombre"
-        Me.columnCosechasCosecha.HeaderText = "Cosecha"
-        Me.columnCosechasCosecha.Name = "columnCosechasCosecha"
-        Me.columnCosechasCosecha.ReadOnly = True
-        Me.columnCosechasCosecha.Width = 74
+        Me.DoubleTextBoxMermaHumedadBase.AllowNull = True
+        Me.DoubleTextBoxMermaHumedadBase.BeforeTouchSize = New System.Drawing.Size(33, 20)
+        Me.DoubleTextBoxMermaHumedadBase.DoubleValue = 0R
+        Me.DoubleTextBoxMermaHumedadBase.Location = New System.Drawing.Point(152, 71)
+        Me.DoubleTextBoxMermaHumedadBase.MaxValue = 50.0R
+        Me.DoubleTextBoxMermaHumedadBase.MinValue = 9.0R
+        Me.DoubleTextBoxMermaHumedadBase.Name = "DoubleTextBoxMermaHumedadBase"
+        Me.DoubleTextBoxMermaHumedadBase.NumberDecimalDigits = 1
+        Me.DoubleTextBoxMermaHumedadBase.Size = New System.Drawing.Size(33, 20)
+        Me.DoubleTextBoxMermaHumedadBase.TabIndex = 5
+        Me.DoubleTextBoxMermaHumedadBase.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'columnCosechasInicio
+        'DoubleTextBoxMermaHumedadManipuleo
         '
-        Me.columnCosechasInicio.DataPropertyName = "Inicio"
-        DataGridViewCellStyle6.Format = "d"
-        Me.columnCosechasInicio.DefaultCellStyle = DataGridViewCellStyle6
-        Me.columnCosechasInicio.HeaderText = "Fecha inicio"
-        Me.columnCosechasInicio.Name = "columnCosechasInicio"
-        Me.columnCosechasInicio.ReadOnly = True
-        Me.columnCosechasInicio.Width = 89
-        '
-        'columnCosechasFin
-        '
-        Me.columnCosechasFin.DataPropertyName = "Fin"
-        DataGridViewCellStyle7.Format = "d"
-        DataGridViewCellStyle7.NullValue = Nothing
-        Me.columnCosechasFin.DefaultCellStyle = DataGridViewCellStyle7
-        Me.columnCosechasFin.HeaderText = "Fecha fin"
-        Me.columnCosechasFin.Name = "columnCosechasFin"
-        Me.columnCosechasFin.ReadOnly = True
-        Me.columnCosechasFin.Width = 76
-        '
-        'columnCosechasEsActivo
-        '
-        Me.columnCosechasEsActivo.DataPropertyName = "EsActivo"
-        Me.columnCosechasEsActivo.HeaderText = "Activo"
-        Me.columnCosechasEsActivo.Name = "columnCosechasEsActivo"
-        Me.columnCosechasEsActivo.ReadOnly = True
-        Me.columnCosechasEsActivo.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.columnCosechasEsActivo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        Me.columnCosechasEsActivo.Width = 62
+        Me.DoubleTextBoxMermaHumedadManipuleo.AllowNull = True
+        Me.DoubleTextBoxMermaHumedadManipuleo.BeforeTouchSize = New System.Drawing.Size(33, 20)
+        Me.DoubleTextBoxMermaHumedadManipuleo.DoubleValue = 0R
+        Me.DoubleTextBoxMermaHumedadManipuleo.Location = New System.Drawing.Point(152, 97)
+        Me.DoubleTextBoxMermaHumedadManipuleo.MaxValue = 1.0R
+        Me.DoubleTextBoxMermaHumedadManipuleo.MinValue = 0R
+        Me.DoubleTextBoxMermaHumedadManipuleo.Name = "DoubleTextBoxMermaHumedadManipuleo"
+        Me.DoubleTextBoxMermaHumedadManipuleo.Size = New System.Drawing.Size(33, 20)
+        Me.DoubleTextBoxMermaHumedadManipuleo.TabIndex = 7
+        Me.DoubleTextBoxMermaHumedadManipuleo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'formProducto
         '
@@ -830,9 +833,6 @@ Partial Class formProducto
         Me.tabcontrolMain.ResumeLayout(False)
         Me.tabpageGeneral.ResumeLayout(False)
         Me.tabpageGeneral.PerformLayout()
-        CType(Me.PercentTextBoxMermaHumedadManipuleo, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PercentTextBoxMermaHumedadBase, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PercentTextBoxMermaVolatil, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tabpageMermasHumedad.ResumeLayout(False)
         Me.tabpageMermasHumedad.PerformLayout()
         CType(Me.datagridviewMermasHumedad, System.ComponentModel.ISupportInitialize).EndInit()
@@ -850,6 +850,9 @@ Partial Class formProducto
         Me.toolstripCosechas.PerformLayout()
         Me.tabpageNotasAuditoria.ResumeLayout(False)
         Me.tabpageNotasAuditoria.PerformLayout()
+        CType(Me.DoubleTextBoxMermaVolatil, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DoubleTextBoxMermaHumedadBase, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DoubleTextBoxMermaHumedadManipuleo, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -902,9 +905,6 @@ Partial Class formProducto
     Friend WithEvents buttonCosechasAgregar As ToolStripButton
     Friend WithEvents buttonCosechasEditar As ToolStripButton
     Friend WithEvents buttonCosechasBorrar As ToolStripButton
-    Friend WithEvents PercentTextBoxMermaHumedadManipuleo As Syncfusion.Windows.Forms.Tools.PercentTextBox
-    Friend WithEvents PercentTextBoxMermaHumedadBase As Syncfusion.Windows.Forms.Tools.PercentTextBox
-    Friend WithEvents PercentTextBoxMermaVolatil As Syncfusion.Windows.Forms.Tools.PercentTextBox
     Friend WithEvents columnMermasHumedadHumedad As DataGridViewTextBoxColumn
     Friend WithEvents columnMermasHumedadMerma As DataGridViewTextBoxColumn
     Friend WithEvents columnPlantasPlanta As DataGridViewTextBoxColumn
@@ -912,4 +912,7 @@ Partial Class formProducto
     Friend WithEvents columnCosechasInicio As DataGridViewTextBoxColumn
     Friend WithEvents columnCosechasFin As DataGridViewTextBoxColumn
     Friend WithEvents columnCosechasEsActivo As DataGridViewCheckBoxColumn
+    Friend WithEvents DoubleTextBoxMermaHumedadManipuleo As Syncfusion.Windows.Forms.Tools.DoubleTextBox
+    Friend WithEvents DoubleTextBoxMermaHumedadBase As Syncfusion.Windows.Forms.Tools.DoubleTextBox
+    Friend WithEvents DoubleTextBoxMermaVolatil As Syncfusion.Windows.Forms.Tools.DoubleTextBox
 End Class

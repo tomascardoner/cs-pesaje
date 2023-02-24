@@ -55,9 +55,9 @@
 
         ' General
         textboxNombre.ReadOnly = Not mEditMode
-        PercentTextBoxMermaVolatil.ReadOnly = Not mEditMode
-        PercentTextBoxMermaHumedadBase.ReadOnly = Not mEditMode
-        PercentTextBoxMermaHumedadManipuleo.ReadOnly = Not mEditMode
+        DoubleTextBoxMermaVolatil.ReadOnly = Not mEditMode
+        DoubleTextBoxMermaHumedadBase.ReadOnly = Not mEditMode
+        DoubleTextBoxMermaHumedadManipuleo.ReadOnly = Not mEditMode
         checkboxUtilizaPlanta.Enabled = mEditMode
         checkboxUtilizaCosecha.Enabled = mEditMode
         checkboxUsoFrecuente.Enabled = mEditMode
@@ -78,9 +78,9 @@
 
         pFillAndRefreshLists.Reporte(ComboBoxTicketPesada_IDReporte, Nothing, False, True)
 
-        MermasHumedadRefreshData()
-        PlantasRefreshData()
-        CosechasRefreshData()
+        MermasHumedadRefreshData(mdbContext)
+        PlantasRefreshData(mdbContext)
+        CosechasRefreshData(mdbContext)
     End Sub
 
     Friend Sub SetAppearance()
@@ -113,9 +113,9 @@
     Friend Sub SetDataFromObjectToControls()
         With mProductoActual
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
-            CS_ValueTranslation_Syncfusion.FromValueDecimalToControlPercentTextBox(.MermaVolatil, PercentTextBoxMermaVolatil)
-            CS_ValueTranslation_Syncfusion.FromValueDecimalToControlPercentTextBox(.MermaHumedadBase, PercentTextBoxMermaHumedadBase)
-            CS_ValueTranslation_Syncfusion.FromValueDecimalToControlPercentTextBox(.MermaHumedadManipuleo, PercentTextBoxMermaHumedadManipuleo)
+            CS_ValueTranslation_Syncfusion.FromValueToControl(.MermaVolatil, DoubleTextBoxMermaVolatil)
+            CS_ValueTranslation_Syncfusion.FromValueToControl(.MermaHumedadBase, DoubleTextBoxMermaHumedadBase)
+            CS_ValueTranslation_Syncfusion.FromValueToControl(.MermaHumedadManipuleo, DoubleTextBoxMermaHumedadManipuleo)
             checkboxUtilizaPlanta.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.UtilizaPlanta)
             checkboxUtilizaCosecha.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.UtilizaCosecha)
             checkboxUsoFrecuente.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.UsoFrecuente)
@@ -134,9 +134,9 @@
     Friend Sub SetDataFromControlsToObject()
         With mProductoActual
             .Nombre = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNombre.Text)
-            .MermaVolatil = CS_ValueTranslation_Syncfusion.FromControlPercentTextBoxToObjectDecimal(PercentTextBoxMermaVolatil)
-            .MermaHumedadBase = CS_ValueTranslation_Syncfusion.FromControlPercentTextBoxToObjectDecimal(PercentTextBoxMermaHumedadBase)
-            .MermaHumedadManipuleo = CS_ValueTranslation_Syncfusion.FromControlPercentTextBoxToObjectDecimal(PercentTextBoxMermaHumedadManipuleo)
+            .MermaVolatil = CS_ValueTranslation_Syncfusion.FromControlToDecimal(DoubleTextBoxMermaVolatil)
+            .MermaHumedadBase = CS_ValueTranslation_Syncfusion.FromControlToDecimal(DoubleTextBoxMermaHumedadBase)
+            .MermaHumedadManipuleo = CS_ValueTranslation_Syncfusion.FromControlToDecimal(DoubleTextBoxMermaHumedadManipuleo)
             .UtilizaPlanta = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxUtilizaPlanta.CheckState)
             .UtilizaCosecha = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxUtilizaCosecha.CheckState)
             .UsoFrecuente = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxUsoFrecuente.CheckState)
@@ -246,7 +246,7 @@
 
 #Region "Mermas humedad"
 
-    Friend Sub MermasHumedadRefreshData(Optional ByVal PositionHumedad As Decimal = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_DECIMAL, Optional ByVal RestoreCurrentPosition As Boolean = False)
+    Friend Sub MermasHumedadRefreshData(ByRef dbContext As CSPesajeContext, Optional ByVal PositionHumedad As Decimal = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_DECIMAL, Optional ByVal RestoreCurrentPosition As Boolean = False)
         Dim listHumedades As List(Of Producto_Humedad)
 
         If RestoreCurrentPosition Then
@@ -260,7 +260,7 @@
         Me.Cursor = Cursors.WaitCursor
 
         Try
-            listHumedades = mdbContext.Producto_Humedad.Where(Function(ph) ph.IDProducto = mProductoActual.IDProducto).OrderBy(Function(ph) ph.Humedad).ToList()
+            listHumedades = dbContext.Producto_Humedad.Where(Function(ph) ph.IDProducto = mProductoActual.IDProducto).OrderBy(Function(ph) ph.Humedad).ToList()
 
             datagridviewMermasHumedad.AutoGenerateColumns = False
             datagridviewMermasHumedad.DataSource = listHumedades
@@ -286,7 +286,7 @@
     Private Sub MermasHumedadAgregar(sender As Object, e As EventArgs) Handles buttonMermasHumedadAgregar.Click
         Me.Cursor = Cursors.WaitCursor
 
-        'formProductoMermaHumedad.LoadAndShow(True, True, Me, mProductoActual, 0)
+        formProductoMermaHumedad.LoadAndShow(True, Me, mProductoActual.IDProducto, 0)
 
         Me.Cursor = Cursors.Default
     End Sub
@@ -297,7 +297,7 @@
         Else
             Me.Cursor = Cursors.WaitCursor
 
-            'formProductoMermaHumedad.LoadAndShow(True, True, Me, mProductoActual, CType(datagridviewMermasHumedad.SelectedRows(0).DataBoundItem, Producto_Humedad).IDProducto_Humedad)
+            formProductoMermaHumedad.LoadAndShow(True, Me, mProductoActual.IDProducto, CType(datagridviewMermasHumedad.SelectedRows(0).DataBoundItem, Producto_Humedad).Humedad)
 
             Me.Cursor = Cursors.Default
         End If
@@ -316,7 +316,7 @@
                 Try
                     Dim ph As Producto_Humedad
 
-                    ph = mdbContext.Producto_Humedad.Find(mProductoActual.IDProducto, CType(datagridviewPlantas.SelectedRows(0).DataBoundItem, Producto_Humedad).Humedad)
+                    ph = mdbContext.Producto_Humedad.Find(mProductoActual.IDProducto, CType(datagridviewMermasHumedad.SelectedRows(0).DataBoundItem, Producto_Humedad).Humedad)
                     mdbContext.Producto_Humedad.Remove(ph)
                     mdbContext.SaveChanges()
                 Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
@@ -328,7 +328,7 @@
                     CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al borrar la Merma de Humedad.")
                 End Try
 
-                MermasHumedadRefreshData()
+                MermasHumedadRefreshData(mdbContext)
 
                 Me.Cursor = Cursors.Default
             End If
@@ -341,7 +341,7 @@
         Else
             Me.Cursor = Cursors.WaitCursor
 
-            'formProductoHumedad.LoadAndShow(mEditMode, False, Me, mProductoActual, CType(datagridviewMermasHumedad.SelectedRows(0).DataBoundItem, Producto_Humedad).IDProducto_Humedad)
+            formProductoMermaHumedad.LoadAndShow(False, Me, mProductoActual.IDProducto, CType(datagridviewMermasHumedad.SelectedRows(0).DataBoundItem, Producto_Humedad).Humedad)
 
             Me.Cursor = Cursors.Default
         End If
@@ -351,7 +351,7 @@
 
 #Region "Plantas"
 
-    Friend Sub PlantasRefreshData(Optional ByVal PositionIDPlanta As Byte = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE, Optional ByVal RestoreCurrentPosition As Boolean = False)
+    Friend Sub PlantasRefreshData(ByRef dbContext As CSPesajeContext, Optional ByVal PositionIDPlanta As Byte = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE, Optional ByVal RestoreCurrentPosition As Boolean = False)
         Dim listPlantas As List(Of Planta)
 
         If RestoreCurrentPosition Then
@@ -365,8 +365,8 @@
         Me.Cursor = Cursors.WaitCursor
 
         Try
-            listPlantas = (From p In mdbContext.Planta
-                           Join pp In mdbContext.Producto_Planta On p.IDPlanta Equals pp.IDPlanta
+            listPlantas = (From p In dbContext.Planta
+                           Join pp In dbContext.Producto_Planta On p.IDPlanta Equals pp.IDPlanta
                            Where pp.IDProducto = mProductoActual.IDProducto
                            Order By p.Nombre
                            Select p).ToList()
@@ -384,7 +384,7 @@
 
         If PositionIDPlanta <> CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE Then
             For Each CurrentRowChecked As DataGridViewRow In datagridviewPlantas.Rows
-                If CType(CurrentRowChecked.DataBoundItem, Producto_Planta).IDPlanta = PositionIDPlanta Then
+                If CType(CurrentRowChecked.DataBoundItem, Planta).IDPlanta = PositionIDPlanta Then
                     datagridviewPlantas.CurrentCell = CurrentRowChecked.Cells(0)
                     Exit For
                 End If
@@ -395,7 +395,7 @@
     Private Sub PlantasAgregar(sender As Object, e As EventArgs) Handles buttonPlantasAgregar.Click
         Me.Cursor = Cursors.WaitCursor
 
-        'formProductoMermaPlanta.LoadAndShow(True, True, Me, mProductoActual, 0)
+        formProductoPlanta.LoadAndShow(True, Me, mProductoActual.IDProducto, 0)
 
         Me.Cursor = Cursors.Default
     End Sub
@@ -406,7 +406,7 @@
         Else
             Me.Cursor = Cursors.WaitCursor
 
-            'formProductoMermaPlanta.LoadAndShow(True, True, Me, mProductoActual, CType(datagridviewMermasPlanta.SelectedRows(0).DataBoundItem, Producto_Planta).IDProducto_Planta)
+            formProductoPlanta.LoadAndShow(True, Me, mProductoActual.IDProducto, CType(datagridviewPlantas.SelectedRows(0).DataBoundItem, Planta).IDPlanta)
 
             Me.Cursor = Cursors.Default
         End If
@@ -437,7 +437,7 @@
                     CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al borrar la Planta.")
                 End Try
 
-                PlantasRefreshData()
+                PlantasRefreshData(mdbContext)
 
                 Me.Cursor = Cursors.Default
             End If
@@ -450,7 +450,7 @@
         Else
             Me.Cursor = Cursors.WaitCursor
 
-            'formProductoPlanta.LoadAndShow(mEditMode, False, Me, mProductoActual, CType(datagridviewMermasPlanta.SelectedRows(0).DataBoundItem, Producto_Planta).IDProducto_Planta)
+            formProductoPlanta.LoadAndShow(False, Me, mProductoActual.IDProducto, CType(datagridviewPlantas.SelectedRows(0).DataBoundItem, Planta).IDPlanta)
 
             Me.Cursor = Cursors.Default
         End If
@@ -468,22 +468,22 @@
         Public Property EsActivo As Boolean
     End Class
 
-    Friend Sub CosechasRefreshData(Optional ByVal PositionIDCosecha As Byte = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE, Optional ByVal RestoreCurrentPosition As Boolean = False)
+    Friend Sub CosechasRefreshData(ByRef dbContext As CSPesajeContext, Optional ByVal PositionIDCosecha As Byte = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE, Optional ByVal RestoreCurrentPosition As Boolean = False)
         Dim listCosechas As List(Of CosechasRowData)
 
         If RestoreCurrentPosition Then
             If datagridviewCosechas.CurrentRow Is Nothing Then
                 PositionIDCosecha = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE
             Else
-                PositionIDCosecha = CType(datagridviewCosechas.CurrentRow.DataBoundItem, Producto_Cosecha).IDCosecha
+                PositionIDCosecha = CType(datagridviewCosechas.CurrentRow.DataBoundItem, CosechasRowData).IDCosecha
             End If
         End If
 
         Me.Cursor = Cursors.WaitCursor
 
         Try
-            listCosechas = (From c In mdbContext.Cosecha
-                            Join pc In mdbContext.Producto_Cosecha On c.IDCosecha Equals pc.IDCosecha
+            listCosechas = (From c In dbContext.Cosecha
+                            Join pc In dbContext.Producto_Cosecha On c.IDCosecha Equals pc.IDCosecha
                             Where pc.IDProducto = mProductoActual.IDProducto
                             Order By c.Nombre
                             Select New CosechasRowData With {.IDCosecha = pc.IDCosecha, .Nombre = c.Nombre, .Inicio = pc.Inicio, .Fin = pc.Fin, .EsActivo = pc.EsActivo}).ToList()
@@ -501,7 +501,7 @@
 
         If PositionIDCosecha <> CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE Then
             For Each CurrentRowChecked As DataGridViewRow In datagridviewCosechas.Rows
-                If CType(CurrentRowChecked.DataBoundItem, Producto_Cosecha).IDCosecha = PositionIDCosecha Then
+                If CType(CurrentRowChecked.DataBoundItem, CosechasRowData).IDCosecha = PositionIDCosecha Then
                     datagridviewCosechas.CurrentCell = CurrentRowChecked.Cells(0)
                     Exit For
                 End If
@@ -512,7 +512,7 @@
     Private Sub CosechasAgregar(sender As Object, e As EventArgs) Handles buttonCosechasAgregar.Click
         Me.Cursor = Cursors.WaitCursor
 
-        'formProductoMermaCosecha.LoadAndShow(True, True, Me, mProductoActual, 0)
+        formProductoCosecha.LoadAndShow(True, Me, mProductoActual.IDProducto, 0)
 
         Me.Cursor = Cursors.Default
     End Sub
@@ -523,7 +523,7 @@
         Else
             Me.Cursor = Cursors.WaitCursor
 
-            'formProductoMermaCosecha.LoadAndShow(True, True, Me, mProductoActual, CType(datagridviewMermasCosecha.SelectedRows(0).DataBoundItem, Producto_Cosecha).IDProducto_Cosecha)
+            formProductoCosecha.LoadAndShow(True, Me, mProductoActual.IDProducto, CType(datagridviewCosechas.SelectedRows(0).DataBoundItem, CosechasRowData).IDCosecha)
 
             Me.Cursor = Cursors.Default
         End If
@@ -554,7 +554,7 @@
                     CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al borrar la Cosecha.")
                 End Try
 
-                CosechasRefreshData()
+                CosechasRefreshData(mdbContext)
 
                 Me.Cursor = Cursors.Default
             End If
@@ -567,7 +567,7 @@
         Else
             Me.Cursor = Cursors.WaitCursor
 
-            'formProductoCosecha.LoadAndShow(mEditMode, False, Me, mProductoActual, CType(datagridviewMermasCosecha.SelectedRows(0).DataBoundItem, Producto_Cosecha).IDProducto_Cosecha)
+            formProductoCosecha.LoadAndShow(False, Me, mProductoActual.IDProducto, CType(datagridviewCosechas.SelectedRows(0).DataBoundItem, CosechasRowData).IDCosecha)
 
             Me.Cursor = Cursors.Default
         End If
