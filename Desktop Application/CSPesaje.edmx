@@ -122,12 +122,13 @@
             <PropertyRef Name="IDEntidad" />
             <PropertyRef Name="IDProducto" />
             <PropertyRef Name="IDPlanta" />
-            <PropertyRef Name="Tipo" />
           </Key>
           <Property Name="IDEntidad" Type="int" Nullable="false" />
           <Property Name="IDProducto" Type="tinyint" Nullable="false" />
           <Property Name="IDPlanta" Type="tinyint" Nullable="false" />
-          <Property Name="Tipo" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="TipoEntrada" Type="bit" Nullable="false" />
+          <Property Name="TipoSalida" Type="bit" Nullable="false" />
+          <Property Name="TipoNinguno" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Localidad">
           <Key>
@@ -2884,14 +2885,15 @@
             <PropertyRef Name="IDEntidad" />
             <PropertyRef Name="IDProducto" />
             <PropertyRef Name="IDPlanta" />
-            <PropertyRef Name="Tipo" />
           </Key>
           <Property Name="IDEntidad" Type="Int32" Nullable="false" />
           <Property Name="IDProducto" Type="Byte" Nullable="false" />
           <Property Name="IDPlanta" Type="Byte" Nullable="false" />
-          <Property Name="Tipo" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="Entidad" Relationship="CSPesajeModel.FK__Entidad__Entidad_Producto_Planta" FromRole="Entidad_Producto_Planta" ToRole="Entidad" />
           <NavigationProperty Name="Producto_Planta" Relationship="CSPesajeModel.FK__Producto_Planta__Entidad_Producto_Planta" FromRole="Entidad_Producto_Planta" ToRole="Producto_Planta" />
+          <Property Name="TipoEntrada" Type="Boolean" Nullable="false" />
+          <Property Name="TipoSalida" Type="Boolean" Nullable="false" />
+          <Property Name="TipoNinguno" Type="Boolean" Nullable="false" />
         </EntityType>
         <Association Name="FK__Entidad__Entidad_Producto_Planta">
           <End Type="CSPesajeModel.Entidad" Role="Entidad" Multiplicity="1" />
@@ -3534,7 +3536,9 @@
           <EntitySetMapping Name="Entidad_Producto_Planta">
             <EntityTypeMapping TypeName="CSPesajeModel.Entidad_Producto_Planta">
               <MappingFragment StoreEntitySet="Entidad_Producto_Planta">
-                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="TipoNinguno" ColumnName="TipoNinguno" />
+                <ScalarProperty Name="TipoSalida" ColumnName="TipoSalida" />
+                <ScalarProperty Name="TipoEntrada" ColumnName="TipoEntrada" />
                 <ScalarProperty Name="IDPlanta" ColumnName="IDPlanta" />
                 <ScalarProperty Name="IDProducto" ColumnName="IDProducto" />
                 <ScalarProperty Name="IDEntidad" ColumnName="IDEntidad" />

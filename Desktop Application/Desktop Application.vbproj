@@ -327,6 +327,12 @@
     <Compile Include="Tablas ABMs\formCosechas.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Tablas ABMs\formEntidadProductoPlanta.designer.vb">
+      <DependentUpon>formEntidadProductoPlanta.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Tablas ABMs\formEntidadProductoPlanta.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Tablas ABMs\formProducto.designer.vb">
       <DependentUpon>formProducto.vb</DependentUpon>
     </Compile>
@@ -605,6 +611,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Tablas ABMs\formCosechas.resx">
       <DependentUpon>formCosechas.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tablas ABMs\formEntidadProductoPlanta.resx">
+      <DependentUpon>formEntidadProductoPlanta.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Tablas ABMs\formProducto.resx">
       <DependentUpon>formProducto.vb</DependentUpon>

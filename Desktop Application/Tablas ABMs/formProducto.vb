@@ -336,6 +336,9 @@
     End Sub
 
     Private Sub MermasHumedadVer(sender As Object, e As EventArgs) Handles datagridviewMermasHumedad.DoubleClick
+        If mEditMode Then
+            Return
+        End If
         If datagridviewMermasHumedad.CurrentRow Is Nothing Then
             MessageBox.Show("No hay ninguna Merma de Humedad para ver.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Information)
         Else
@@ -428,7 +431,7 @@
                     pp = mdbContext.Producto_Planta.Find(mProductoActual.IDProducto, CType(datagridviewPlantas.SelectedRows(0).DataBoundItem, Planta).IDPlanta)
                     mdbContext.Producto_Planta.Remove(pp)
                     mdbContext.SaveChanges()
-                Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
+                Catch dbuex As Entity.Infrastructure.DbUpdateException
                     Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)
                         Case CardonerSistemas.Database.EntityFramework.Errors.RelatedEntity
                             MessageBox.Show("No se puede borrar la Planta porque tiene datos relacionados.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
@@ -445,6 +448,9 @@
     End Sub
 
     Private Sub PlantasVer(sender As Object, e As EventArgs) Handles datagridviewPlantas.DoubleClick
+        If mEditMode Then
+            Return
+        End If
         If datagridviewPlantas.CurrentRow Is Nothing Then
             MessageBox.Show("No hay ninguna Planta para ver.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Information)
         Else
@@ -562,6 +568,9 @@
     End Sub
 
     Private Sub CosechasVer(sender As Object, e As EventArgs) Handles datagridviewCosechas.DoubleClick
+        If mEditMode Then
+            Return
+        End If
         If datagridviewCosechas.CurrentRow Is Nothing Then
             MessageBox.Show("No hay ninguna Cosecha para ver.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Information)
         Else

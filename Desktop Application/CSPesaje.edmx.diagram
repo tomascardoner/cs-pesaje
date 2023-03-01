@@ -77,7 +77,7 @@
         <AssociationConnector Association="CSPesajeModel.FK__Entidad__Camion" />
         <EntityTypeShape EntityType="CSPesajeModel.Producto_Humedad" Width="1.5" PointX="11.25" PointY="30.5" />
         <AssociationConnector Association="CSPesajeModel.FK__Producto__Producto_Humedad" />
-        <EntityTypeShape EntityType="CSPesajeModel.Entidad_Producto_Planta" Width="1.5" PointX="13.5" PointY="32.375" />
+        <EntityTypeShape EntityType="CSPesajeModel.Entidad_Producto_Planta" Width="1.5" PointX="13.625" PointY="31.125" />
         <AssociationConnector Association="CSPesajeModel.FK__Entidad__Entidad_Producto_Planta" />
         <AssociationConnector Association="CSPesajeModel.FK__Producto_Planta__Entidad_Producto_Planta" />
         <AssociationConnector Association="CSPesajeModel.FK__Entidad__Cosecha_Producto_Tarifa" />

@@ -32,6 +32,7 @@ Partial Class formEntidad
         Dim labelDomicilioLocalidad As System.Windows.Forms.Label
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.labelNombre = New System.Windows.Forms.Label()
         Me.textboxNombre = New System.Windows.Forms.TextBox()
         Me.toolstripMain = New System.Windows.Forms.ToolStrip()
@@ -81,6 +82,17 @@ Partial Class formEntidad
         Me.panelOrigenesDestinosButtons = New System.Windows.Forms.Panel()
         Me.buttonOrigenesDestinosEliminar = New System.Windows.Forms.Button()
         Me.buttonOrigenesDestinosAgregar = New System.Windows.Forms.Button()
+        Me.tabpageProductosPlantas = New System.Windows.Forms.TabPage()
+        Me.datagridviewProductosPlantas = New System.Windows.Forms.DataGridView()
+        Me.columnProductosPlantasProducto = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnProductosPlantasPlanta = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnProductosPlantasTipoEntrada = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.columnProductosPlantasTipoSalida = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.columnProductosPlantasTipoNinguno = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.toolstripProductosPlantas = New System.Windows.Forms.ToolStrip()
+        Me.buttonProductosPlantasAgregar = New System.Windows.Forms.ToolStripButton()
+        Me.buttonProductosPlantasEditar = New System.Windows.Forms.ToolStripButton()
+        Me.buttonProductosPlantasBorrar = New System.Windows.Forms.ToolStripButton()
         labelTipo = New System.Windows.Forms.Label()
         labelEsActivo = New System.Windows.Forms.Label()
         labelModificacion = New System.Windows.Forms.Label()
@@ -98,6 +110,9 @@ Partial Class formEntidad
         CType(Me.datagridviewOrigenesDestinosNoIncluidos, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.bindingsourceOrigenesDestinosNoInlcuidos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panelOrigenesDestinosButtons.SuspendLayout()
+        Me.tabpageProductosPlantas.SuspendLayout()
+        CType(Me.datagridviewProductosPlantas, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.toolstripProductosPlantas.SuspendLayout()
         Me.SuspendLayout()
         '
         'labelTipo
@@ -346,8 +361,9 @@ Partial Class formEntidad
         '
         Me.tabcontrolMain.Appearance = System.Windows.Forms.TabAppearance.FlatButtons
         Me.tabcontrolMain.Controls.Add(Me.tabpageGeneral)
-        Me.tabcontrolMain.Controls.Add(Me.tabpageNotasAuditoria)
         Me.tabcontrolMain.Controls.Add(Me.tabpageOrigenesDestinos)
+        Me.tabcontrolMain.Controls.Add(Me.tabpageProductosPlantas)
+        Me.tabcontrolMain.Controls.Add(Me.tabpageNotasAuditoria)
         Me.tabcontrolMain.Location = New System.Drawing.Point(12, 42)
         Me.tabcontrolMain.Name = "tabcontrolMain"
         Me.tabcontrolMain.SelectedIndex = 0
@@ -548,7 +564,7 @@ Partial Class formEntidad
         Me.tabpageOrigenesDestinos.Padding = New System.Windows.Forms.Padding(3)
         Me.tabpageOrigenesDestinos.Size = New System.Drawing.Size(520, 333)
         Me.tabpageOrigenesDestinos.TabIndex = 2
-        Me.tabpageOrigenesDestinos.Text = "Orígenes-Destinos"
+        Me.tabpageOrigenesDestinos.Text = "Orígenes y destinos"
         Me.tabpageOrigenesDestinos.UseVisualStyleBackColor = True
         '
         'datagridviewOrigenesDestinosIncluidos
@@ -670,6 +686,131 @@ Partial Class formEntidad
         Me.buttonOrigenesDestinosAgregar.Text = "->"
         Me.buttonOrigenesDestinosAgregar.UseVisualStyleBackColor = True
         '
+        'tabpageProductosPlantas
+        '
+        Me.tabpageProductosPlantas.Controls.Add(Me.datagridviewProductosPlantas)
+        Me.tabpageProductosPlantas.Controls.Add(Me.toolstripProductosPlantas)
+        Me.tabpageProductosPlantas.Location = New System.Drawing.Point(4, 25)
+        Me.tabpageProductosPlantas.Name = "tabpageProductosPlantas"
+        Me.tabpageProductosPlantas.Padding = New System.Windows.Forms.Padding(3)
+        Me.tabpageProductosPlantas.Size = New System.Drawing.Size(520, 333)
+        Me.tabpageProductosPlantas.TabIndex = 3
+        Me.tabpageProductosPlantas.Text = "Productos y plantas"
+        Me.tabpageProductosPlantas.UseVisualStyleBackColor = True
+        '
+        'datagridviewProductosPlantas
+        '
+        Me.datagridviewProductosPlantas.AllowUserToAddRows = False
+        Me.datagridviewProductosPlantas.AllowUserToDeleteRows = False
+        Me.datagridviewProductosPlantas.AllowUserToResizeRows = False
+        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.GradientActiveCaption
+        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.WindowText
+        Me.datagridviewProductosPlantas.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle3
+        Me.datagridviewProductosPlantas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
+        Me.datagridviewProductosPlantas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.datagridviewProductosPlantas.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnProductosPlantasProducto, Me.columnProductosPlantasPlanta, Me.columnProductosPlantasTipoEntrada, Me.columnProductosPlantasTipoSalida, Me.columnProductosPlantasTipoNinguno})
+        Me.datagridviewProductosPlantas.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.datagridviewProductosPlantas.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
+        Me.datagridviewProductosPlantas.Location = New System.Drawing.Point(89, 3)
+        Me.datagridviewProductosPlantas.MultiSelect = False
+        Me.datagridviewProductosPlantas.Name = "datagridviewProductosPlantas"
+        Me.datagridviewProductosPlantas.ReadOnly = True
+        Me.datagridviewProductosPlantas.RowHeadersVisible = False
+        Me.datagridviewProductosPlantas.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
+        Me.datagridviewProductosPlantas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.datagridviewProductosPlantas.Size = New System.Drawing.Size(428, 327)
+        Me.datagridviewProductosPlantas.TabIndex = 3
+        '
+        'columnProductosPlantasProducto
+        '
+        Me.columnProductosPlantasProducto.DataPropertyName = "ProductoNombre"
+        Me.columnProductosPlantasProducto.HeaderText = "Producto"
+        Me.columnProductosPlantasProducto.Name = "columnProductosPlantasProducto"
+        Me.columnProductosPlantasProducto.ReadOnly = True
+        Me.columnProductosPlantasProducto.Width = 75
+        '
+        'columnProductosPlantasPlanta
+        '
+        Me.columnProductosPlantasPlanta.DataPropertyName = "PlantaNombre"
+        Me.columnProductosPlantasPlanta.HeaderText = "Planta"
+        Me.columnProductosPlantasPlanta.Name = "columnProductosPlantasPlanta"
+        Me.columnProductosPlantasPlanta.ReadOnly = True
+        Me.columnProductosPlantasPlanta.Width = 62
+        '
+        'columnProductosPlantasTipoEntrada
+        '
+        Me.columnProductosPlantasTipoEntrada.DataPropertyName = "TipoEntrada"
+        Me.columnProductosPlantasTipoEntrada.HeaderText = "Entrada"
+        Me.columnProductosPlantasTipoEntrada.Name = "columnProductosPlantasTipoEntrada"
+        Me.columnProductosPlantasTipoEntrada.ReadOnly = True
+        Me.columnProductosPlantasTipoEntrada.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.columnProductosPlantasTipoEntrada.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.columnProductosPlantasTipoEntrada.Width = 69
+        '
+        'columnProductosPlantasTipoSalida
+        '
+        Me.columnProductosPlantasTipoSalida.DataPropertyName = "TipoSalida"
+        Me.columnProductosPlantasTipoSalida.HeaderText = "Salida"
+        Me.columnProductosPlantasTipoSalida.Name = "columnProductosPlantasTipoSalida"
+        Me.columnProductosPlantasTipoSalida.ReadOnly = True
+        Me.columnProductosPlantasTipoSalida.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.columnProductosPlantasTipoSalida.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.columnProductosPlantasTipoSalida.Width = 61
+        '
+        'columnProductosPlantasTipoNinguno
+        '
+        Me.columnProductosPlantasTipoNinguno.DataPropertyName = "TipoNinguno"
+        Me.columnProductosPlantasTipoNinguno.HeaderText = "Ninguno"
+        Me.columnProductosPlantasTipoNinguno.Name = "columnProductosPlantasTipoNinguno"
+        Me.columnProductosPlantasTipoNinguno.ReadOnly = True
+        Me.columnProductosPlantasTipoNinguno.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.columnProductosPlantasTipoNinguno.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.columnProductosPlantasTipoNinguno.Width = 72
+        '
+        'toolstripProductosPlantas
+        '
+        Me.toolstripProductosPlantas.Dock = System.Windows.Forms.DockStyle.Left
+        Me.toolstripProductosPlantas.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.toolstripProductosPlantas.ImageScalingSize = New System.Drawing.Size(20, 20)
+        Me.toolstripProductosPlantas.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonProductosPlantasAgregar, Me.buttonProductosPlantasEditar, Me.buttonProductosPlantasBorrar})
+        Me.toolstripProductosPlantas.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
+        Me.toolstripProductosPlantas.Location = New System.Drawing.Point(3, 3)
+        Me.toolstripProductosPlantas.Name = "toolstripProductosPlantas"
+        Me.toolstripProductosPlantas.Size = New System.Drawing.Size(86, 327)
+        Me.toolstripProductosPlantas.TabIndex = 2
+        '
+        'buttonProductosPlantasAgregar
+        '
+        Me.buttonProductosPlantasAgregar.Image = Global.My.Resources.Resources.ImageItemAgregar32
+        Me.buttonProductosPlantasAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.buttonProductosPlantasAgregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.buttonProductosPlantasAgregar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonProductosPlantasAgregar.Name = "buttonProductosPlantasAgregar"
+        Me.buttonProductosPlantasAgregar.Size = New System.Drawing.Size(83, 36)
+        Me.buttonProductosPlantasAgregar.Text = "Agregar"
+        '
+        'buttonProductosPlantasEditar
+        '
+        Me.buttonProductosPlantasEditar.Image = Global.My.Resources.Resources.ImageItemEditar32
+        Me.buttonProductosPlantasEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.buttonProductosPlantasEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.buttonProductosPlantasEditar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonProductosPlantasEditar.Name = "buttonProductosPlantasEditar"
+        Me.buttonProductosPlantasEditar.Size = New System.Drawing.Size(83, 36)
+        Me.buttonProductosPlantasEditar.Text = "Editar"
+        '
+        'buttonProductosPlantasBorrar
+        '
+        Me.buttonProductosPlantasBorrar.Image = Global.My.Resources.Resources.ImageItemBorrar32
+        Me.buttonProductosPlantasBorrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.buttonProductosPlantasBorrar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.buttonProductosPlantasBorrar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonProductosPlantasBorrar.Name = "buttonProductosPlantasBorrar"
+        Me.buttonProductosPlantasBorrar.Size = New System.Drawing.Size(83, 36)
+        Me.buttonProductosPlantasBorrar.Text = "Borrar"
+        '
         'formEntidad
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -699,6 +840,11 @@ Partial Class formEntidad
         CType(Me.datagridviewOrigenesDestinosNoIncluidos, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.bindingsourceOrigenesDestinosNoInlcuidos, System.ComponentModel.ISupportInitialize).EndInit()
         Me.panelOrigenesDestinosButtons.ResumeLayout(False)
+        Me.tabpageProductosPlantas.ResumeLayout(False)
+        Me.tabpageProductosPlantas.PerformLayout()
+        CType(Me.datagridviewProductosPlantas, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.toolstripProductosPlantas.ResumeLayout(False)
+        Me.toolstripProductosPlantas.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -752,4 +898,15 @@ Partial Class formEntidad
     Friend WithEvents textboxDomicilio As TextBox
     Friend WithEvents labelDomicilio As Label
     Friend WithEvents textboxDomicilioCodigoPostal As TextBox
+    Friend WithEvents tabpageProductosPlantas As TabPage
+    Friend WithEvents datagridviewProductosPlantas As DataGridView
+    Friend WithEvents columnProductosPlantasProducto As DataGridViewTextBoxColumn
+    Friend WithEvents columnProductosPlantasPlanta As DataGridViewTextBoxColumn
+    Friend WithEvents columnProductosPlantasTipoEntrada As DataGridViewCheckBoxColumn
+    Friend WithEvents columnProductosPlantasTipoSalida As DataGridViewCheckBoxColumn
+    Friend WithEvents columnProductosPlantasTipoNinguno As DataGridViewCheckBoxColumn
+    Friend WithEvents toolstripProductosPlantas As ToolStrip
+    Friend WithEvents buttonProductosPlantasAgregar As ToolStripButton
+    Friend WithEvents buttonProductosPlantasEditar As ToolStripButton
+    Friend WithEvents buttonProductosPlantasBorrar As ToolStripButton
 End Class

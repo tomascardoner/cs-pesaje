@@ -165,7 +165,7 @@
         ComboBoxControl.DataSource = listItems
     End Sub
 
-    Friend Sub EntidadTitularPorProductoPlanta(ByRef ComboBoxControl As ComboBox, ByVal IDEntidadActual As Integer, ByVal IDProducto As Byte, ByVal IDPlanta As Byte, ByVal Tipo As String, ByVal UsoFrecuente As Boolean, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
+    Friend Sub EntidadTitularPorProductoPlanta(ByRef ComboBoxControl As ComboBox, IDEntidadActual As Integer, IDProducto As Byte, IDPlanta As Byte, TipoEntrada As Boolean, TipoSalida As Boolean, TipoNinguno As Boolean, UsoFrecuente As Boolean, AgregarItem_Todos As Boolean, AgregarItem_NoEspecifica As Boolean)
         Dim listItems As List(Of Entidad)
 
         ComboBoxControl.ValueMember = "IDEntidad"
@@ -173,7 +173,7 @@
 
         listItems = (From ent In mdbContext.Entidad
                      Join ent_pro_pla In mdbContext.Entidad_Producto_Planta On ent.IDEntidad Equals ent_pro_pla.IDEntidad
-                     Where ent.IDEntidad <> CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER And (ent.IDEntidad = IDEntidadActual Or (ent.EsActivo And ent.EsTitular And ent_pro_pla.IDProducto = IDProducto And ent_pro_pla.IDPlanta = IDPlanta And ent_pro_pla.Tipo = Tipo))
+                     Where ent.IDEntidad <> CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER And (ent.IDEntidad = IDEntidadActual Or (ent.EsActivo And ent.EsTitular And ent_pro_pla.IDProducto = IDProducto And ent_pro_pla.IDPlanta = IDPlanta And ((TipoEntrada And ent_pro_pla.TipoEntrada) Or (TipoSalida And ent_pro_pla.TipoSalida) Or (TipoNinguno And ent_pro_pla.TipoNinguno))))
                      Order By ent.Nombre
                      Select ent).ToList
 

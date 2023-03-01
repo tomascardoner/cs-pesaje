@@ -59,7 +59,7 @@
         buttonEditar.Visible = (mEditMode = False)
         buttonCerrar.Visible = (mEditMode = False)
 
-        checkboxEsActivo.Enabled = mEditMode
+        ' General
         textboxNombre.ReadOnly = (mEditMode = False)
         maskedtextboxCUIT_CUIL.ReadOnly = (mEditMode = False)
         textboxDomicilio.ReadOnly = (mEditMode = False)
@@ -70,6 +70,7 @@
         checkboxTipoTransportista.Enabled = mEditMode
         checkboxTipoChofer.Enabled = mEditMode
 
+        ' Transportista
         labelTransportista.Visible = checkboxTipoChofer.Checked
         comboboxTransportista.Visible = checkboxTipoChofer.Checked
         comboboxTransportista.Enabled = (checkboxTipoChofer.Checked And mEditMode)
@@ -77,6 +78,7 @@
         comboboxCamion.Visible = checkboxTipoChofer.Checked
         comboboxCamion.Enabled = (checkboxTipoChofer.Checked And mEditMode)
 
+        ' Notas y auditoría
         textboxNotas.ReadOnly = (mEditMode = False)
         checkboxEsActivo.Enabled = mEditMode
     End Sub
@@ -92,8 +94,10 @@
     Friend Sub SetAppearance()
         If (Not mEntidadActual.EsTitular) Or mEditMode Then
             tabcontrolMain.HideTabPageByName(tabpageOrigenesDestinos.Name)
+            tabcontrolMain.HideTabPageByName(tabpageProductosPlantas.Name)
         Else
             tabcontrolMain.ShowTabPageByName(tabpageOrigenesDestinos.Name)
+            tabcontrolMain.ShowTabPageByName(tabpageProductosPlantas.Name)
         End If
     End Sub
 
@@ -115,7 +119,6 @@
             Else
                 textboxIDEntidad.Text = String.Format(.IDEntidad.ToString, "G")
             End If
-            checkboxEsActivo.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.EsActivo)
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
             maskedtextboxCUIT_CUIL.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.CUIT_CUIL)
             textboxDomicilio.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Domicilio)
@@ -161,7 +164,8 @@
                 datagridviewOrigenesDestinosNoIncluidos.DataSource = Nothing
                 datagridviewOrigenesDestinosIncluidos.DataSource = Nothing
             Else
-                Refresh_OrigenesDestinos()
+                OrigenesDestinosRefreshData()
+                ProductosPlantasRefreshData(mdbContext)
             End If
         End With
     End Sub
@@ -190,36 +194,6 @@
             .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
             .EsActivo = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxEsActivo.CheckState)
         End With
-    End Sub
-
-    Friend Sub Refresh_OrigenesDestinos()
-        Dim listOrigenesDestinosNoIncluidos As List(Of OrigenDestino)
-        Dim listOrigenesDestinosTodos As List(Of OrigenDestino)
-        Dim listOrigenesDestinosIncluidos As List(Of OrigenDestino)
-
-        Me.Cursor = Cursors.WaitCursor
-
-        Using dbContext As New CSPesajeContext(True)
-            listOrigenesDestinosIncluidos = (From od In dbContext.OrigenDestino
-                                             Join e_od In dbContext.Entidad_OrigenDestino On od.IDOrigenDestino Equals e_od.IDOrigenDestino
-                                             Where e_od.IDEntidad = mEntidadActual.IDEntidad And od.EsActivo And od.IDOrigenDestino <> CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER
-                                             Order By od.Nombre
-                                             Select od).ToList
-
-            listOrigenesDestinosTodos = (From od In dbContext.OrigenDestino
-                                         Where od.EsActivo And od.IDOrigenDestino <> CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER
-                                         Order By od.Nombre
-                                         Select od).ToList
-
-            listOrigenesDestinosNoIncluidos = (From odt In listOrigenesDestinosTodos
-                                               Where Not listOrigenesDestinosIncluidos.Any(Function(od) od.IDOrigenDestino = odt.IDOrigenDestino)).ToList
-
-        End Using
-
-        bindingsourceOrigenesDestinosInlcuidos.DataSource = listOrigenesDestinosIncluidos
-        bindingsourceOrigenesDestinosNoInlcuidos.DataSource = listOrigenesDestinosNoIncluidos
-
-        Me.Cursor = Cursors.Default
     End Sub
 
     Friend Sub CargarCamiones()
@@ -284,51 +258,6 @@
         comboboxCamion.Focus()
     End Sub
 
-    Private Sub OrigenDestinoAgregar() Handles buttonOrigenesDestinosAgregar.Click
-        If mEntidadActual.EsTitular And Not mEditMode Then
-            If datagridviewOrigenesDestinosNoIncluidos.CurrentRow Is Nothing Then
-                MsgBox("No hay ningún Origen-Destino no incluído para agregar.", vbInformation, My.Application.Info.Title)
-            Else
-                Using dbContext As New CSPesajeContext(True)
-                    Dim Entidad_OrigenDestino_Nueva As New Entidad_OrigenDestino
-                    With Entidad_OrigenDestino_Nueva
-                        .IDOrigenDestino = CType(datagridviewOrigenesDestinosNoIncluidos.CurrentRow.DataBoundItem, OrigenDestino).IDOrigenDestino
-                        .IDUsuarioCreacion = pUsuario.IDUsuario
-                        .FechaHoraCreacion = Now
-                        .IDUsuarioModificacion = pUsuario.IDUsuario
-                        .FechaHoraModificacion = Entidad_OrigenDestino_Nueva.FechaHoraCreacion
-                        .EsActivo = True
-                    End With
-
-                    Dim EntidadActual As Entidad
-                    EntidadActual = dbContext.Entidad.Find(mEntidadActual.IDEntidad)
-                    EntidadActual.Entidades_OrigenesDestinos.Add(Entidad_OrigenDestino_Nueva)
-
-                    dbContext.SaveChanges()
-                End Using
-
-                Refresh_OrigenesDestinos()
-            End If
-        End If
-    End Sub
-
-    Private Sub OrigenDestinoEliminar() Handles buttonOrigenesDestinosEliminar.Click
-        If mEntidadActual.EsTitular And Not mEditMode Then
-            If datagridviewOrigenesDestinosIncluidos.CurrentRow Is Nothing Then
-                MsgBox("No hay ningún Origen-Destino incluído para eliminar.", vbInformation, My.Application.Info.Title)
-            Else
-                Using dbContext As New CSPesajeContext(True)
-                    Dim Entidad_OrigenDestino_Eliminar As New Entidad_OrigenDestino
-                    Entidad_OrigenDestino_Eliminar = dbContext.Entidad_OrigenDestino.Find(mEntidadActual.IDEntidad, CType(datagridviewOrigenesDestinosIncluidos.CurrentRow.DataBoundItem, OrigenDestino).IDOrigenDestino)
-                    dbContext.Entidad_OrigenDestino.Remove(Entidad_OrigenDestino_Eliminar)
-                    dbContext.SaveChanges()
-                End Using
-
-                Refresh_OrigenesDestinos()
-            End If
-        End If
-    End Sub
-
 #End Region
 
 #Region "Main Toolbar"
@@ -345,39 +274,9 @@
     End Sub
 
     Private Sub Guardar_Click() Handles buttonGuardar.Click
-        ' Verificar que estén todos los campos con datos coherentes
-        If textboxNombre.Text.Trim.Length = 0 Then
-            MsgBox("Debe ingresar el Nombre.", MsgBoxStyle.Information, My.Application.Info.Title)
-            textboxNombre.Focus()
-            Exit Sub
+        If Not VerificarDatos() Then
+            Return
         End If
-
-        ' Verifico el Número de CUIT / CUIL
-        If maskedtextboxCUIT_CUIL.Text.Trim.Length > 0 Then
-            If maskedtextboxCUIT_CUIL.Text.Trim.Length < 11 Then
-                MsgBox("El Número de CUIT / CUIL debe contener 11 dígitos (sin contar los guiones).", MsgBoxStyle.Information, My.Application.Info.Title)
-                maskedtextboxCUIT_CUIL.Focus()
-                Exit Sub
-            End If
-            If Not CardonerSistemas.AFIP.VerificarCUIT(maskedtextboxCUIT_CUIL.Text) Then
-                MsgBox("El Número de CUIT / CUIL ingresado es incorrecto.", MsgBoxStyle.Information, My.Application.Info.Title)
-                maskedtextboxCUIT_CUIL.Focus()
-                Exit Sub
-            End If
-        End If
-
-        'If checkboxTipoChofer.Checked Then
-        '    If textboxEntidadTransportista.Tag Is Nothing Then
-        '        MsgBox("Debe especificar el Transportista al cual pertenece el Chofer.", MsgBoxStyle.Information, My.Application.Info.Title)
-        '    End If
-
-        '    ' Ccamión
-        '    If comboboxCamion.SelectedValue Is Nothing Then
-        '        MsgBox("Debe especificar el Camión que utiliza el Chofer.", MsgBoxStyle.Information, My.Application.Info.Title)
-        '        comboboxCamion.Focus()
-        '        Exit Sub
-        '    End If
-        'End If
 
         ' Generar el ID de la Entidad nueva
         If mIsNew Then
@@ -439,6 +338,247 @@
             Me.Close()
         End If
     End Sub
+
+#End Region
+
+#Region "Orígenes y destinos"
+
+    Private Sub OrigenesDestinosRefreshData()
+        Dim listOrigenesDestinosNoIncluidos As List(Of OrigenDestino)
+        Dim listOrigenesDestinosTodos As List(Of OrigenDestino)
+        Dim listOrigenesDestinosIncluidos As List(Of OrigenDestino)
+
+        Me.Cursor = Cursors.WaitCursor
+
+        Using dbContext As New CSPesajeContext(True)
+            listOrigenesDestinosIncluidos = (From od In dbContext.OrigenDestino
+                                             Join e_od In dbContext.Entidad_OrigenDestino On od.IDOrigenDestino Equals e_od.IDOrigenDestino
+                                             Where e_od.IDEntidad = mEntidadActual.IDEntidad And od.EsActivo And od.IDOrigenDestino <> CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER
+                                             Order By od.Nombre
+                                             Select od).ToList
+
+            listOrigenesDestinosTodos = (From od In dbContext.OrigenDestino
+                                         Where od.EsActivo And od.IDOrigenDestino <> CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER
+                                         Order By od.Nombre
+                                         Select od).ToList
+
+            listOrigenesDestinosNoIncluidos = (From odt In listOrigenesDestinosTodos
+                                               Where Not listOrigenesDestinosIncluidos.Any(Function(od) od.IDOrigenDestino = odt.IDOrigenDestino)).ToList
+
+        End Using
+
+        bindingsourceOrigenesDestinosInlcuidos.DataSource = listOrigenesDestinosIncluidos
+        bindingsourceOrigenesDestinosNoInlcuidos.DataSource = listOrigenesDestinosNoIncluidos
+
+        Me.Cursor = Cursors.Default
+    End Sub
+
+    Private Sub OrigenDestinoAgregar() Handles buttonOrigenesDestinosAgregar.Click
+        If mEntidadActual.EsTitular And Not mEditMode Then
+            If datagridviewOrigenesDestinosNoIncluidos.CurrentRow Is Nothing Then
+                MsgBox("No hay ningún Origen-Destino no incluído para agregar.", vbInformation, My.Application.Info.Title)
+            Else
+                Using dbContext As New CSPesajeContext(True)
+                    Dim Entidad_OrigenDestino_Nueva As New Entidad_OrigenDestino
+                    With Entidad_OrigenDestino_Nueva
+                        .IDOrigenDestino = CType(datagridviewOrigenesDestinosNoIncluidos.CurrentRow.DataBoundItem, OrigenDestino).IDOrigenDestino
+                        .IDUsuarioCreacion = pUsuario.IDUsuario
+                        .FechaHoraCreacion = Now
+                        .IDUsuarioModificacion = pUsuario.IDUsuario
+                        .FechaHoraModificacion = Entidad_OrigenDestino_Nueva.FechaHoraCreacion
+                        .EsActivo = True
+                    End With
+
+                    Dim EntidadActual As Entidad
+                    EntidadActual = dbContext.Entidad.Find(mEntidadActual.IDEntidad)
+                    EntidadActual.Entidades_OrigenesDestinos.Add(Entidad_OrigenDestino_Nueva)
+
+                    dbContext.SaveChanges()
+                End Using
+
+                OrigenesDestinosRefreshData()
+            End If
+        End If
+    End Sub
+
+    Private Sub OrigenDestinoEliminar() Handles buttonOrigenesDestinosEliminar.Click
+        If mEntidadActual.EsTitular And Not mEditMode Then
+            If datagridviewOrigenesDestinosIncluidos.CurrentRow Is Nothing Then
+                MsgBox("No hay ningún Origen-Destino incluído para eliminar.", vbInformation, My.Application.Info.Title)
+            Else
+                Using dbContext As New CSPesajeContext(True)
+                    Dim Entidad_OrigenDestino_Eliminar As New Entidad_OrigenDestino
+                    Entidad_OrigenDestino_Eliminar = dbContext.Entidad_OrigenDestino.Find(mEntidadActual.IDEntidad, CType(datagridviewOrigenesDestinosIncluidos.CurrentRow.DataBoundItem, OrigenDestino).IDOrigenDestino)
+                    dbContext.Entidad_OrigenDestino.Remove(Entidad_OrigenDestino_Eliminar)
+                    dbContext.SaveChanges()
+                End Using
+
+                OrigenesDestinosRefreshData()
+            End If
+        End If
+    End Sub
+
+#End Region
+
+#Region "Productos y plantas"
+
+    Public Class ProductoPlantaRowData
+        Public Property IDProducto As Byte
+        Public Property ProductoNombre As String
+        Public Property IDPlanta As Byte
+        Public Property PlantaNombre As String
+        Public Property TipoEntrada As Boolean
+        Public Property TipoSalida As Boolean
+        Public Property TipoNinguno As Boolean
+    End Class
+
+    Friend Sub ProductosPlantasRefreshData(ByRef dbContext As CSPesajeContext, Optional ByVal PositionIDProducto As Byte = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE, Optional ByVal PositionIDPlanta As Byte = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE, Optional ByVal RestoreCurrentPosition As Boolean = False)
+        Dim listProductosPlantas As List(Of ProductoPlantaRowData)
+
+        If RestoreCurrentPosition Then
+            If datagridviewProductosPlantas.CurrentRow Is Nothing Then
+                PositionIDProducto = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE
+                PositionIDPlanta = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE
+            Else
+                PositionIDProducto = CType(datagridviewProductosPlantas.CurrentRow.DataBoundItem, ProductoPlantaRowData).IDProducto
+                PositionIDPlanta = CType(datagridviewProductosPlantas.CurrentRow.DataBoundItem, ProductoPlantaRowData).IDPlanta
+            End If
+        End If
+
+        Me.Cursor = Cursors.WaitCursor
+
+        Try
+            listProductosPlantas = (From epp In dbContext.Entidad_Producto_Planta
+                                    Join pr In dbContext.Producto On epp.IDProducto Equals pr.IDProducto
+                                    Join pl In dbContext.Planta On epp.IDPlanta Equals pl.IDPlanta
+                                    Where epp.IDEntidad = mEntidadActual.IDEntidad
+                                    Order By pr.Nombre, pl.Nombre
+                                    Select New ProductoPlantaRowData With {.IDProducto = epp.IDProducto, .ProductoNombre = pr.Nombre, .IDPlanta = epp.IDPlanta, .PlantaNombre = pl.Nombre, .TipoEntrada = epp.TipoEntrada, .TipoSalida = epp.TipoSalida, .TipoNinguno = epp.TipoNinguno}).ToList()
+
+            datagridviewProductosPlantas.AutoGenerateColumns = False
+            datagridviewProductosPlantas.DataSource = listProductosPlantas
+
+        Catch ex As Exception
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer los Productos y Plantas de la Entidad.")
+            Me.Cursor = Cursors.Default
+            Exit Sub
+        End Try
+
+        Me.Cursor = Cursors.Default
+
+        If PositionIDPlanta <> CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE Then
+            For Each CurrentRowChecked As DataGridViewRow In datagridviewProductosPlantas.Rows
+                If CType(CurrentRowChecked.DataBoundItem, ProductoPlantaRowData).IDProducto = PositionIDProducto And CType(CurrentRowChecked.DataBoundItem, ProductoPlantaRowData).IDPlanta = PositionIDPlanta Then
+                    datagridviewProductosPlantas.CurrentCell = CurrentRowChecked.Cells(0)
+                    Exit For
+                End If
+            Next
+        End If
+    End Sub
+
+    Private Sub PlantasAgregar(sender As Object, e As EventArgs) Handles buttonProductosPlantasAgregar.Click
+        Me.Cursor = Cursors.WaitCursor
+        formEntidadProductoPlanta.LoadAndShow(True, Me, mEntidadActual.IDEntidad, 0, 0)
+        Me.Cursor = Cursors.Default
+    End Sub
+
+    Private Sub PlantasEditar(sender As Object, e As EventArgs) Handles buttonProductosPlantasEditar.Click
+        If datagridviewProductosPlantas.CurrentRow Is Nothing Then
+            MessageBox.Show("No hay ningún Producto y Planta para editar.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Return
+        End If
+
+        Me.Cursor = Cursors.WaitCursor
+        formEntidadProductoPlanta.LoadAndShow(True, Me, mEntidadActual.IDEntidad, CType(datagridviewProductosPlantas.SelectedRows(0).DataBoundItem, ProductoPlantaRowData).IDProducto, CType(datagridviewProductosPlantas.SelectedRows(0).DataBoundItem, ProductoPlantaRowData).IDPlanta)
+        Me.Cursor = Cursors.Default
+    End Sub
+
+    Private Sub PlantasBorrar(sender As Object, e As EventArgs) Handles buttonProductosPlantasBorrar.Click
+        If datagridviewProductosPlantas.CurrentRow Is Nothing Then
+            MessageBox.Show("No hay ningún Producto y Planta para borrar.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Return
+        End If
+        Dim Mensaje As String
+
+        Mensaje = String.Format("Se borrará el Producto y Planta.{0}{0}Producto: {1}{0}Planta: {2}{0}{0}¿Confirma el borrado definitivo?", vbCrLf, CType(datagridviewProductosPlantas.SelectedRows(0).DataBoundItem, ProductoPlantaRowData).ProductoNombre, CType(datagridviewProductosPlantas.SelectedRows(0).DataBoundItem, ProductoPlantaRowData).PlantaNombre)
+        If MessageBox.Show(Mensaje, My.Application.Info.Title, MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) = DialogResult.Yes Then
+            Me.Cursor = Cursors.WaitCursor
+
+            Try
+                Dim epp As Entidad_Producto_Planta
+
+                epp = mdbContext.Entidad_Producto_Planta.Find(mEntidadActual.IDEntidad, CType(datagridviewProductosPlantas.SelectedRows(0).DataBoundItem, ProductoPlantaRowData).IDProducto, CType(datagridviewProductosPlantas.SelectedRows(0).DataBoundItem, ProductoPlantaRowData).IDPlanta)
+                mdbContext.Entidad_Producto_Planta.Remove(epp)
+                mdbContext.SaveChanges()
+            Catch dbuex As Entity.Infrastructure.DbUpdateException
+                Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)
+                    Case CardonerSistemas.Database.EntityFramework.Errors.RelatedEntity
+                        MessageBox.Show("No se puede borrar el Producto y Planta porque tiene datos relacionados.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                End Select
+            Catch ex As Exception
+                CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al borrar el Producto y Planta.")
+            End Try
+
+            ProductosPlantasRefreshData(mdbContext)
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub PlantasVer(sender As Object, e As EventArgs) Handles datagridviewProductosPlantas.DoubleClick
+        If mEditMode Then
+            Return
+        End If
+        If datagridviewProductosPlantas.CurrentRow Is Nothing Then
+            MessageBox.Show("No hay ningún Producto y Planta para ver.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Return
+        End If
+        Me.Cursor = Cursors.WaitCursor
+        formEntidadProductoPlanta.LoadAndShow(False, Me, mEntidadActual.IDEntidad, CType(datagridviewProductosPlantas.SelectedRows(0).DataBoundItem, ProductoPlantaRowData).IDProducto, CType(datagridviewProductosPlantas.SelectedRows(0).DataBoundItem, ProductoPlantaRowData).IDPlanta)
+        Me.Cursor = Cursors.Default
+    End Sub
+
+#End Region
+
+#Region "Extra stuff"
+
+    Private Function VerificarDatos() As Boolean
+        ' Verificar que estén todos los campos con datos coherentes
+        If textboxNombre.Text.Trim.Length = 0 Then
+            MsgBox("Debe ingresar el Nombre.", MsgBoxStyle.Information, My.Application.Info.Title)
+            textboxNombre.Focus()
+            Return False
+        End If
+
+        ' Verifico el Número de CUIT / CUIL
+        If maskedtextboxCUIT_CUIL.Text.Trim.Length > 0 Then
+            If maskedtextboxCUIT_CUIL.Text.Trim.Length < 11 Then
+                MsgBox("El Número de CUIT / CUIL debe contener 11 dígitos (sin contar los guiones).", MsgBoxStyle.Information, My.Application.Info.Title)
+                maskedtextboxCUIT_CUIL.Focus()
+                Return False
+            End If
+            If Not CardonerSistemas.Afip.VerificarCuit(maskedtextboxCUIT_CUIL.Text) Then
+                MsgBox("El Número de CUIT / CUIL ingresado es incorrecto.", MsgBoxStyle.Information, My.Application.Info.Title)
+                maskedtextboxCUIT_CUIL.Focus()
+                Return False
+            End If
+        End If
+
+        'If checkboxTipoChofer.Checked Then
+        '    If textboxEntidadTransportista.Tag Is Nothing Then
+        '        MsgBox("Debe especificar el Transportista al cual pertenece el Chofer.", MsgBoxStyle.Information, My.Application.Info.Title)
+        '    End If
+
+        '    ' Ccamión
+        '    If comboboxCamion.SelectedValue Is Nothing Then
+        '        MsgBox("Debe especificar el Camión que utiliza el Chofer.", MsgBoxStyle.Information, My.Application.Info.Title)
+        '        comboboxCamion.Focus()
+        '        Return False
+        '    End If
+        'End If
+
+        Return True
+    End Function
 
 #End Region
 

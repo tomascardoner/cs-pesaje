@@ -1,9 +1,9 @@
-﻿Public Class formProductoPlanta
+﻿Public Class formEntidadProductoPlanta
 
 #Region "Declarations"
 
     Private mdbContext As New CSPesajeContext(True)
-    Private mProducto_PlantaActual As Producto_Planta
+    Private mEntidad_Producto_PlantaActual As Entidad_Producto_Planta
 
     Private mIsNew As Boolean
     Private mIsLoading As Boolean
@@ -13,17 +13,17 @@
 
 #Region "Form stuff"
 
-    Friend Sub LoadAndShow(EditMode As Boolean, ByRef ParentForm As Form, IDProducto As Byte, IDPlanta As Byte)
+    Friend Sub LoadAndShow(EditMode As Boolean, ByRef ParentForm As Form, IDEntidad As Integer, IDProducto As Byte, IDPlanta As Byte)
         mIsLoading = True
         mEditMode = EditMode
 
-        mIsNew = (IDPlanta = 0)
+        mIsNew = (IDProducto = 0)
         If mIsNew Then
             ' Es Nuevo
-            mProducto_PlantaActual = New Producto_Planta With {.IDProducto = IDProducto}
-            mdbContext.Producto_Planta.Add(mProducto_PlantaActual)
+            mEntidad_Producto_PlantaActual = New Entidad_Producto_Planta With {.IDEntidad = IDEntidad}
+            mdbContext.Entidad_Producto_Planta.Add(mEntidad_Producto_PlantaActual)
         Else
-            mProducto_PlantaActual = mdbContext.Producto_Planta.Find(IDProducto, IDPlanta)
+            mEntidad_Producto_PlantaActual = mdbContext.Entidad_Producto_Planta.Find(IDEntidad, IDProducto, IDPlanta)
         End If
 
         CardonerSistemas.Forms.CenterToParent(ParentForm, Me)
@@ -47,21 +47,19 @@
         buttonEditar.Visible = (mEditMode = False)
         buttonCerrar.Visible = (mEditMode = False)
 
+        ComboBoxProducto.Enabled = mIsNew
         ComboBoxPlanta.Enabled = mIsNew
 
-        ComboBoxTipoEntrada.Enabled = mEditMode
-        ComboBoxTipoSalida.Enabled = mEditMode
-        ComboBoxTipoNinguno.Enabled = mEditMode
+        CheckBoxTipoEntrada.Enabled = mEditMode
+        CheckBoxTipoSalida.Enabled = mEditMode
+        CheckBoxTipoNinguno.Enabled = mEditMode
     End Sub
 
     Friend Sub InitializeFormAndControls()
         SetAppearance()
 
+        pFillAndRefreshLists.Producto(ComboBoxProducto, Nothing, False, False, False, False)
         pFillAndRefreshLists.Planta(ComboBoxPlanta, Nothing, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE, False, False)
-
-        pFillAndRefreshLists.Periodicidad(ComboBoxTipoEntrada)
-        pFillAndRefreshLists.Periodicidad(ComboBoxTipoSalida)
-        pFillAndRefreshLists.Periodicidad(ComboBoxTipoNinguno)
     End Sub
 
     Friend Sub SetAppearance()
@@ -73,7 +71,7 @@
             mdbContext.Dispose()
             mdbContext = Nothing
         End If
-        mProducto_PlantaActual = Nothing
+        mEntidad_Producto_PlantaActual = Nothing
         Me.Dispose()
     End Sub
 
@@ -82,22 +80,24 @@
 #Region "Load and Set Data"
 
     Friend Sub SetDataFromObjectToControls()
-        With mProducto_PlantaActual
+        With mEntidad_Producto_PlantaActual
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(ComboBoxProducto, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDProducto)
             CardonerSistemas.Controls.ComboBox.SetSelectedValue(ComboBoxPlanta, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDPlanta)
 
-            CardonerSistemas.Controls.ComboBox.SetSelectedValue(ComboBoxTipoEntrada, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.Value, .TipoEntrada)
-            CardonerSistemas.Controls.ComboBox.SetSelectedValue(ComboBoxTipoSalida, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.Value, .TipoSalida)
-            CardonerSistemas.Controls.ComboBox.SetSelectedValue(ComboBoxTipoNinguno, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.Value, .TipoNinguno)
+            CheckBoxTipoEntrada.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.TipoEntrada)
+            CheckBoxTipoSalida.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.TipoSalida)
+            CheckBoxTipoNinguno.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.TipoNinguno)
         End With
     End Sub
 
     Friend Sub SetDataFromControlsToObject()
-        With mProducto_PlantaActual
+        With mEntidad_Producto_PlantaActual
+            .IDProducto = CS_ValueTranslation.FromControlComboBoxToObjectByte(ComboBoxProducto.SelectedValue).Value
             .IDPlanta = CS_ValueTranslation.FromControlComboBoxToObjectByte(ComboBoxPlanta.SelectedValue).Value
 
-            .TipoEntrada = CS_ValueTranslation.FromControlComboBoxToObjectString(ComboBoxTipoEntrada.SelectedValue)
-            .TipoSalida = CS_ValueTranslation.FromControlComboBoxToObjectString(ComboBoxTipoSalida.SelectedValue)
-            .TipoNinguno = CS_ValueTranslation.FromControlComboBoxToObjectString(ComboBoxTipoNinguno.SelectedValue)
+            .TipoEntrada = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(CheckBoxTipoEntrada.CheckState)
+            .TipoSalida = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(CheckBoxTipoSalida.CheckState)
+            .TipoNinguno = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(CheckBoxTipoNinguno.CheckState)
         End With
     End Sub
     
@@ -154,13 +154,13 @@
                 mdbContext.SaveChanges()
 
                 ' Refresco la lista para mostrar los cambios
-                formProducto.PlantasRefreshData(mdbContext, mProducto_PlantaActual.IDPlanta)
+                formEntidad.ProductosPlantasRefreshData(mdbContext, mEntidad_Producto_PlantaActual.IDProducto, mEntidad_Producto_PlantaActual.IDPlanta)
 
-            Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
+            Catch dbuex As Entity.Infrastructure.DbUpdateException
                 Me.Cursor = Cursors.Default
                 Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)
                     Case CardonerSistemas.Database.EntityFramework.Errors.PrimaryKeyViolation
-                        MsgBox("No se pueden guardar los cambios porque ya existe la Planta en el Producto.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                        MsgBox("No se pueden guardar los cambios porque ya existe el Producto y la Planta en la Entidad.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                 End Select
                 Exit Sub
 
@@ -179,25 +179,14 @@
 #Region "Extra stuff"
 
     Private Function VerificarDatos() As Boolean
+        If ComboBoxProducto.SelectedIndex = -1 Then
+            MessageBox.Show("Debe especificar el Producto.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Information)
+            ComboBoxProducto.Focus()
+            Return False
+        End If
         If ComboBoxPlanta.SelectedIndex = -1 Then
             MessageBox.Show("Debe especificar la Planta.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Information)
             ComboBoxPlanta.Focus()
-            Return False
-        End If
-
-        If ComboBoxTipoEntrada.SelectedIndex = -1 Then
-            MessageBox.Show("Debe especificar la periodicidad de las pesadas de Tipo Entrada.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Information)
-            ComboBoxTipoEntrada.Focus()
-            Return False
-        End If
-        If ComboBoxTipoSalida.SelectedIndex = -1 Then
-            MessageBox.Show("Debe especificar la periodicidad de las pesadas de Tipo Salida.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Information)
-            ComboBoxTipoSalida.Focus()
-            Return False
-        End If
-        If ComboBoxTipoNinguno.SelectedIndex = -1 Then
-            MessageBox.Show("Debe especificar la periodicidad de las pesadas de Tipo Ninguno.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Information)
-            ComboBoxTipoNinguno.Focus()
             Return False
         End If
 
