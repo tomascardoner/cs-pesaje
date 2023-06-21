@@ -182,9 +182,9 @@
           <Property Name="FechaHoraFin" Type="smalldatetime" />
           <Property Name="Ctg" Type="bigint" />
           <Property Name="ComprobanteNumero" Type="bigint" />
-          <Property Name="ComprobanteNumeroConFormato" Type="varchar" MaxLength="12" StoreGeneratedPattern="Computed" />
+          <Property Name="ComprobanteNumeroConFormato" Type="varchar" MaxLength="13" StoreGeneratedPattern="Computed" />
           <Property Name="ComprobanteNumeroTercero" Type="bigint" />
-          <Property Name="ComprobanteNumeroTerceroConFormato" Type="varchar" MaxLength="12" StoreGeneratedPattern="Computed" />
+          <Property Name="ComprobanteNumeroTerceroConFormato" Type="varchar" MaxLength="13" StoreGeneratedPattern="Computed" />
           <Property Name="IDPlanta" Type="tinyint" />
           <Property Name="IDDeposito" Type="tinyint" />
           <Property Name="IDProducto" Type="tinyint" Nullable="false" />
@@ -591,18 +591,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Entidad__Entidad_Producto_Planta">
-          <End Role="Entidad" Type="Self.Entidad" Multiplicity="1" />
-          <End Role="Entidad_Producto_Planta" Type="Self.Entidad_Producto_Planta" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Entidad">
-              <PropertyRef Name="IDEntidad" />
-            </Principal>
-            <Dependent Role="Entidad_Producto_Planta">
-              <PropertyRef Name="IDEntidad" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Entidad__Pesada__Chofer">
           <End Role="Entidad" Type="Self.Entidad" Multiplicity="0..1" />
           <End Role="Pesada" Type="Self.Pesada" Multiplicity="*" />
@@ -852,20 +840,6 @@
             </Principal>
             <Dependent Role="Producto_Planta">
               <PropertyRef Name="IDProducto" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Producto_Planta__Entidad_Producto_Planta">
-          <End Role="Producto_Planta" Type="Self.Producto_Planta" Multiplicity="1" />
-          <End Role="Entidad_Producto_Planta" Type="Self.Entidad_Producto_Planta" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Producto_Planta">
-              <PropertyRef Name="IDProducto" />
-              <PropertyRef Name="IDPlanta" />
-            </Principal>
-            <Dependent Role="Entidad_Producto_Planta">
-              <PropertyRef Name="IDProducto" />
-              <PropertyRef Name="IDPlanta" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1292,10 +1266,6 @@
             <End Role="Entidad" EntitySet="Entidad" />
             <End Role="Entidad1" EntitySet="Entidad" />
           </AssociationSet>
-          <AssociationSet Name="FK__Entidad__Entidad_Producto_Planta" Association="Self.FK__Entidad__Entidad_Producto_Planta">
-            <End Role="Entidad" EntitySet="Entidad" />
-            <End Role="Entidad_Producto_Planta" EntitySet="Entidad_Producto_Planta" />
-          </AssociationSet>
           <AssociationSet Name="FK__Entidad__Pesada__Chofer" Association="Self.FK__Entidad__Pesada__Chofer">
             <End Role="Entidad" EntitySet="Entidad" />
             <End Role="Pesada" EntitySet="Pesada" />
@@ -1375,10 +1345,6 @@
           <AssociationSet Name="FK__Producto__Producto_Planta" Association="Self.FK__Producto__Producto_Planta">
             <End Role="Producto" EntitySet="Producto" />
             <End Role="Producto_Planta" EntitySet="Producto_Planta" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Producto_Planta__Entidad_Producto_Planta" Association="Self.FK__Producto_Planta__Entidad_Producto_Planta">
-            <End Role="Producto_Planta" EntitySet="Producto_Planta" />
-            <End Role="Entidad_Producto_Planta" EntitySet="Entidad_Producto_Planta" />
           </AssociationSet>
           <AssociationSet Name="FK__Provincia__Localidad" Association="Self.FK__Provincia__Localidad">
             <End Role="Provincia" EntitySet="Provincia" />
@@ -1993,9 +1959,9 @@
           <Property Name="FechaHoraFin" Type="DateTime" Precision="0" />
           <Property Name="Ctg" Type="Int64" />
           <Property Name="ComprobanteNumero" Type="Int64" />
-          <Property Name="ComprobanteNumeroConFormato" Type="String" MaxLength="12" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="ComprobanteNumeroConFormato" Type="String" MaxLength="13" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
           <Property Name="ComprobanteNumeroTercero" Type="Int64" />
-          <Property Name="ComprobanteNumeroTerceroConFormato" Type="String" MaxLength="12" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" />
+          <Property Name="ComprobanteNumeroTerceroConFormato" Type="String" MaxLength="13" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" />
           <Property Name="IDPlanta" Type="Byte" />
           <Property Name="IDDeposito" Type="Byte" />
           <Property Name="IDProducto" Type="Byte" Nullable="false" />

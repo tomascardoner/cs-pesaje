@@ -87,6 +87,8 @@ Partial Class formPesada
         Me.textboxProducto = New System.Windows.Forms.TextBox()
         Me.comboboxProducto = New System.Windows.Forms.ComboBox()
         Me.groupboxEncabezado = New System.Windows.Forms.GroupBox()
+        Me.labelCtg = New System.Windows.Forms.Label()
+        Me.maskedtextboxCtg = New System.Windows.Forms.MaskedTextBox()
         Me.labelComprobanteNumeroTercero = New System.Windows.Forms.Label()
         Me.maskedtextboxComprobanteNumeroTercero = New System.Windows.Forms.MaskedTextBox()
         Me.buttonFechaHoraFinAhora = New System.Windows.Forms.Button()
@@ -154,8 +156,6 @@ Partial Class formPesada
         Me.checkboxEsActivo = New System.Windows.Forms.CheckBox()
         Me.labelEsVerificado = New System.Windows.Forms.Label()
         Me.checkboxEsVerificado = New System.Windows.Forms.CheckBox()
-        Me.labelCtg = New System.Windows.Forms.Label()
-        Me.maskedtextboxCtg = New System.Windows.Forms.MaskedTextBox()
         Me.toolstripMain.SuspendLayout()
         Me.groupboxTransporte.SuspendLayout()
         CType(Me.integertextboxKilometro, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -894,10 +894,32 @@ Partial Class formPesada
         Me.groupboxEncabezado.TabIndex = 0
         Me.groupboxEncabezado.TabStop = False
         '
+        'labelCtg
+        '
+        Me.labelCtg.AutoSize = True
+        Me.labelCtg.Location = New System.Drawing.Point(212, 16)
+        Me.labelCtg.Name = "labelCtg"
+        Me.labelCtg.Size = New System.Drawing.Size(41, 13)
+        Me.labelCtg.TabIndex = 2
+        Me.labelCtg.Text = "C.T.G.:"
+        '
+        'maskedtextboxCtg
+        '
+        Me.maskedtextboxCtg.AllowPromptAsInput = False
+        Me.maskedtextboxCtg.AsciiOnly = True
+        Me.maskedtextboxCtg.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
+        Me.maskedtextboxCtg.HidePromptOnLeave = True
+        Me.maskedtextboxCtg.Location = New System.Drawing.Point(259, 14)
+        Me.maskedtextboxCtg.Mask = "00000000000"
+        Me.maskedtextboxCtg.Name = "maskedtextboxCtg"
+        Me.maskedtextboxCtg.Size = New System.Drawing.Size(90, 20)
+        Me.maskedtextboxCtg.TabIndex = 3
+        Me.maskedtextboxCtg.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
+        '
         'labelComprobanteNumeroTercero
         '
         Me.labelComprobanteNumeroTercero.AutoSize = True
-        Me.labelComprobanteNumeroTercero.Location = New System.Drawing.Point(204, 96)
+        Me.labelComprobanteNumeroTercero.Location = New System.Drawing.Point(200, 96)
         Me.labelComprobanteNumeroTercero.Name = "labelComprobanteNumeroTercero"
         Me.labelComprobanteNumeroTercero.Size = New System.Drawing.Size(47, 13)
         Me.labelComprobanteNumeroTercero.TabIndex = 14
@@ -909,10 +931,10 @@ Partial Class formPesada
         Me.maskedtextboxComprobanteNumeroTercero.AsciiOnly = True
         Me.maskedtextboxComprobanteNumeroTercero.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
         Me.maskedtextboxComprobanteNumeroTercero.HidePromptOnLeave = True
-        Me.maskedtextboxComprobanteNumeroTercero.Location = New System.Drawing.Point(257, 91)
-        Me.maskedtextboxComprobanteNumeroTercero.Mask = "0000-00000000"
+        Me.maskedtextboxComprobanteNumeroTercero.Location = New System.Drawing.Point(253, 91)
+        Me.maskedtextboxComprobanteNumeroTercero.Mask = "00000-00000000"
         Me.maskedtextboxComprobanteNumeroTercero.Name = "maskedtextboxComprobanteNumeroTercero"
-        Me.maskedtextboxComprobanteNumeroTercero.Size = New System.Drawing.Size(90, 20)
+        Me.maskedtextboxComprobanteNumeroTercero.Size = New System.Drawing.Size(94, 20)
         Me.maskedtextboxComprobanteNumeroTercero.TabIndex = 15
         Me.maskedtextboxComprobanteNumeroTercero.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
         '
@@ -954,9 +976,9 @@ Partial Class formPesada
         Me.maskedtextboxComprobanteNumero.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
         Me.maskedtextboxComprobanteNumero.HidePromptOnLeave = True
         Me.maskedtextboxComprobanteNumero.Location = New System.Drawing.Point(92, 91)
-        Me.maskedtextboxComprobanteNumero.Mask = "0000-00000000"
+        Me.maskedtextboxComprobanteNumero.Mask = "00000-00000000"
         Me.maskedtextboxComprobanteNumero.Name = "maskedtextboxComprobanteNumero"
-        Me.maskedtextboxComprobanteNumero.Size = New System.Drawing.Size(90, 20)
+        Me.maskedtextboxComprobanteNumero.Size = New System.Drawing.Size(94, 20)
         Me.maskedtextboxComprobanteNumero.TabIndex = 13
         Me.maskedtextboxComprobanteNumero.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
         '
@@ -1082,7 +1104,7 @@ Partial Class formPesada
         Me.labelKilogramoNeto.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.labelKilogramoNeto.Location = New System.Drawing.Point(193, 29)
         Me.labelKilogramoNeto.Name = "labelKilogramoNeto"
-        Me.labelKilogramoNeto.Size = New System.Drawing.Size(69, 16)
+        Me.labelKilogramoNeto.Size = New System.Drawing.Size(68, 16)
         Me.labelKilogramoNeto.TabIndex = 6
         Me.labelKilogramoNeto.Text = "Kgs. Neto:"
         '
@@ -1654,28 +1676,6 @@ Partial Class formPesada
         Me.checkboxEsVerificado.Size = New System.Drawing.Size(15, 14)
         Me.checkboxEsVerificado.TabIndex = 6
         Me.checkboxEsVerificado.UseVisualStyleBackColor = True
-        '
-        'labelCtg
-        '
-        Me.labelCtg.AutoSize = True
-        Me.labelCtg.Location = New System.Drawing.Point(212, 16)
-        Me.labelCtg.Name = "labelCtg"
-        Me.labelCtg.Size = New System.Drawing.Size(41, 13)
-        Me.labelCtg.TabIndex = 2
-        Me.labelCtg.Text = "C.T.G.:"
-        '
-        'maskedtextboxCtg
-        '
-        Me.maskedtextboxCtg.AllowPromptAsInput = False
-        Me.maskedtextboxCtg.AsciiOnly = True
-        Me.maskedtextboxCtg.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
-        Me.maskedtextboxCtg.HidePromptOnLeave = True
-        Me.maskedtextboxCtg.Location = New System.Drawing.Point(259, 14)
-        Me.maskedtextboxCtg.Mask = "00000000000"
-        Me.maskedtextboxCtg.Name = "maskedtextboxCtg"
-        Me.maskedtextboxCtg.Size = New System.Drawing.Size(90, 20)
-        Me.maskedtextboxCtg.TabIndex = 3
-        Me.maskedtextboxCtg.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
         '
         'formPesada
         '

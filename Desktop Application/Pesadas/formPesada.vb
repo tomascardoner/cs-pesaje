@@ -618,7 +618,7 @@
         Dim result As Int64
 
         If Int64.TryParse(maskedtextboxComprobanteNumero.Text.Trim, result) Then
-            maskedtextboxComprobanteNumero.Text = result.ToString(New String("0"c, 12))
+            maskedtextboxComprobanteNumero.Text = result.ToString(New String("0"c, 13))
         End If
     End Sub
 
@@ -626,7 +626,7 @@
         Dim result As Int64
 
         If Int64.TryParse(maskedtextboxComprobanteNumeroTercero.Text.Trim, result) Then
-            maskedtextboxComprobanteNumeroTercero.Text = result.ToString(New String("0"c, 12))
+            maskedtextboxComprobanteNumeroTercero.Text = result.ToString(New String("0"c, 13))
         End If
     End Sub
 
@@ -740,7 +740,7 @@
     End Sub
 
     Private Sub TitularCargarLista()
-        If checkboxTitularTodos.Checked Or Not comboboxPlanta.Visible Then
+        If checkboxTitularTodos.Checked Or checkboxProductoOtro.Checked Then
             pFillAndRefreshLists.Entidad(comboboxTitular, mPesadaActual.Titular_IDEntidad, False, True, False, False, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER, False, False, False, False)
         Else
             pFillAndRefreshLists.EntidadTitularPorProductoPlanta(comboboxTitular, mPesadaActual.Titular_IDEntidad, CByte(comboboxProducto.SelectedValue), CByte(comboboxPlanta.SelectedValue), radiobuttonEntrada.Checked, radiobuttonSalida.Checked, radiobuttonNinguno.Checked, True, False, False)
@@ -1123,13 +1123,13 @@
         End If
 
         ' Número de Comprobante
-        If maskedtextboxComprobanteNumero.Text.Length > 0 AndAlso maskedtextboxComprobanteNumero.Text.Length < 12 Then
-            MsgBox("El Número de Comprobante debe contener 12 dígitos.", MsgBoxStyle.Information, My.Application.Info.Title)
+        If maskedtextboxComprobanteNumero.Text.Length > 0 AndAlso maskedtextboxComprobanteNumero.Text.Length < 13 Then
+            MsgBox("El Número de Comprobante debe contener 13 dígitos.", MsgBoxStyle.Information, My.Application.Info.Title)
             maskedtextboxComprobanteNumero.Focus()
             Return False
         End If
-        If maskedtextboxComprobanteNumeroTercero.Text.Length > 0 AndAlso maskedtextboxComprobanteNumeroTercero.Text.Length < 12 Then
-            MsgBox("El Número de Comprobante del Tercero debe contener 12 dígitos.", MsgBoxStyle.Information, My.Application.Info.Title)
+        If maskedtextboxComprobanteNumeroTercero.Text.Length > 0 AndAlso maskedtextboxComprobanteNumeroTercero.Text.Length < 13 Then
+            MsgBox("El Número de Comprobante del Tercero debe contener 13 dígitos.", MsgBoxStyle.Information, My.Application.Info.Title)
             maskedtextboxComprobanteNumeroTercero.Focus()
             Return False
         End If
