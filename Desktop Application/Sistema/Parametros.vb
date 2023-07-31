@@ -44,7 +44,11 @@
             End Using
             Return True
         Catch ex As Exception
-            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al conectarse a la base de datos.")
+            If ex.Source = "mscorlib" Then
+                CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al inicializar los componentes.")
+            Else
+                CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al conectarse a la base de datos.")
+            End If
             Return False
         End Try
     End Function
