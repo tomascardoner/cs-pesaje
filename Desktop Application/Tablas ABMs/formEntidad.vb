@@ -367,8 +367,8 @@
 
         End Using
 
-        bindingsourceOrigenesDestinosInlcuidos.DataSource = listOrigenesDestinosIncluidos
-        bindingsourceOrigenesDestinosNoInlcuidos.DataSource = listOrigenesDestinosNoIncluidos
+        bindingsourceOrigenesDestinosIncluidos.DataSource = listOrigenesDestinosIncluidos
+        bindingsourceOrigenesDestinosNoIncluidos.DataSource = listOrigenesDestinosNoIncluidos
 
         Me.Cursor = Cursors.Default
     End Sub

@@ -135,8 +135,7 @@
 
         listItems = (From ent In mdbContext.Entidad
                      Where (ent.IDEntidad <> CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER Or MostrarItemOtro) And ((IDEntidadActual.HasValue And ent.IDEntidad = IDEntidadActual.Value) Or (ent.EsActivo And ((EsTitular And ent.EsTitular) Or (EsTransportista And ent.EsTransportista) Or (EsChofer And ent.EsChofer)) And (ent.Transportista_IDEntidad = IDTransportista Or IDTransportista = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER Or IDTransportista = CardonerSistemas.Constants.FIELD_VALUE_ALL_INTEGER) And (ent.UsoFrecuente Or Not UsoFrecuente)))
-                     Order By ent.Nombre
-                     Select ent).ToList
+                     Select ent).Distinct().OrderBy(Function(ent) ent.Nombre).ToList
 
         If AgregarItem_Otro Then
             Dim Item_Otro As New Entidad With {
@@ -174,8 +173,7 @@
         listItems = (From ent In mdbContext.Entidad
                      Join ent_pro_pla In mdbContext.Entidad_Producto_Planta On ent.IDEntidad Equals ent_pro_pla.IDEntidad
                      Where ent.IDEntidad <> CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER And (ent.IDEntidad = IDEntidadActual Or (ent.EsActivo And ent.EsTitular And ent_pro_pla.IDProducto = IDProducto And ent_pro_pla.IDPlanta = IDPlanta And ((TipoEntrada And ent_pro_pla.TipoEntrada) Or (TipoSalida And ent_pro_pla.TipoSalida) Or (TipoNinguno And ent_pro_pla.TipoNinguno))))
-                     Order By ent.Nombre
-                     Select ent).ToList
+                     Select ent).Distinct().OrderBy(Function(ent) ent.Nombre).ToList
 
         If AgregarItem_Todos Then
             Dim Item_Todos As New Entidad With {
@@ -356,8 +354,7 @@
             listItems = (From ori In mdbContext.OrigenDestino
                          Join ent_ori In mdbContext.Entidad_OrigenDestino On ori.IDOrigenDestino Equals ent_ori.IDOrigenDestino
                          Where (IDOrigenDestino.HasValue And ori.IDOrigenDestino = IDOrigenDestino.Value) Or (ent_ori.IDEntidad = IDEntidad And ori.EsActivo)
-                         Order By ori.Nombre
-                         Select ori).ToList
+                         Select ori).Distinct().OrderBy(Function(ori) ori.Nombre).ToList
         End If
 
         If AgregarItem_Otro Then

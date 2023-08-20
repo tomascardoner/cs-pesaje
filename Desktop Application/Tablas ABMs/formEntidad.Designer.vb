@@ -60,23 +60,13 @@ Partial Class formEntidad
         Me.textboxDomicilio = New System.Windows.Forms.TextBox()
         Me.labelDomicilio = New System.Windows.Forms.Label()
         Me.textboxDomicilioCodigoPostal = New System.Windows.Forms.TextBox()
-        Me.tabpageNotasAuditoria = New System.Windows.Forms.TabPage()
-        Me.checkboxEsActivo = New System.Windows.Forms.CheckBox()
-        Me.labelIDEntidad = New System.Windows.Forms.Label()
-        Me.textboxIDEntidad = New System.Windows.Forms.TextBox()
-        Me.textboxUsuarioModificacion = New System.Windows.Forms.TextBox()
-        Me.textboxUsuarioCreacion = New System.Windows.Forms.TextBox()
-        Me.textboxFechaHoraModificacion = New System.Windows.Forms.TextBox()
-        Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
-        Me.textboxNotas = New System.Windows.Forms.TextBox()
-        Me.labelNotas = New System.Windows.Forms.Label()
         Me.tabpageOrigenesDestinos = New System.Windows.Forms.TabPage()
         Me.datagridviewOrigenesDestinosIncluidos = New System.Windows.Forms.DataGridView()
         Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.bindingsourceOrigenesDestinosInlcuidos = New System.Windows.Forms.BindingSource(Me.components)
+        Me.bindingsourceOrigenesDestinosIncluidos = New System.Windows.Forms.BindingSource(Me.components)
         Me.datagridviewOrigenesDestinosNoIncluidos = New System.Windows.Forms.DataGridView()
         Me.columnNombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.bindingsourceOrigenesDestinosNoInlcuidos = New System.Windows.Forms.BindingSource(Me.components)
+        Me.bindingsourceOrigenesDestinosNoIncluidos = New System.Windows.Forms.BindingSource(Me.components)
         Me.Label1 = New System.Windows.Forms.Label()
         Me.labelOrigenesDestinosNoIncluidos = New System.Windows.Forms.Label()
         Me.panelOrigenesDestinosButtons = New System.Windows.Forms.Panel()
@@ -93,6 +83,16 @@ Partial Class formEntidad
         Me.buttonProductosPlantasAgregar = New System.Windows.Forms.ToolStripButton()
         Me.buttonProductosPlantasEditar = New System.Windows.Forms.ToolStripButton()
         Me.buttonProductosPlantasBorrar = New System.Windows.Forms.ToolStripButton()
+        Me.tabpageNotasAuditoria = New System.Windows.Forms.TabPage()
+        Me.checkboxEsActivo = New System.Windows.Forms.CheckBox()
+        Me.labelIDEntidad = New System.Windows.Forms.Label()
+        Me.textboxIDEntidad = New System.Windows.Forms.TextBox()
+        Me.textboxUsuarioModificacion = New System.Windows.Forms.TextBox()
+        Me.textboxUsuarioCreacion = New System.Windows.Forms.TextBox()
+        Me.textboxFechaHoraModificacion = New System.Windows.Forms.TextBox()
+        Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
+        Me.textboxNotas = New System.Windows.Forms.TextBox()
+        Me.labelNotas = New System.Windows.Forms.Label()
         labelTipo = New System.Windows.Forms.Label()
         labelEsActivo = New System.Windows.Forms.Label()
         labelModificacion = New System.Windows.Forms.Label()
@@ -103,16 +103,16 @@ Partial Class formEntidad
         Me.toolstripMain.SuspendLayout()
         Me.tabcontrolMain.SuspendLayout()
         Me.tabpageGeneral.SuspendLayout()
-        Me.tabpageNotasAuditoria.SuspendLayout()
         Me.tabpageOrigenesDestinos.SuspendLayout()
         CType(Me.datagridviewOrigenesDestinosIncluidos, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.bindingsourceOrigenesDestinosInlcuidos, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.bindingsourceOrigenesDestinosIncluidos, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.datagridviewOrigenesDestinosNoIncluidos, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.bindingsourceOrigenesDestinosNoInlcuidos, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.bindingsourceOrigenesDestinosNoIncluidos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panelOrigenesDestinosButtons.SuspendLayout()
         Me.tabpageProductosPlantas.SuspendLayout()
         CType(Me.datagridviewProductosPlantas, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.toolstripProductosPlantas.SuspendLayout()
+        Me.tabpageNotasAuditoria.SuspendLayout()
         Me.SuspendLayout()
         '
         'labelTipo
@@ -446,112 +446,6 @@ Partial Class formEntidad
         Me.textboxDomicilioCodigoPostal.Size = New System.Drawing.Size(50, 20)
         Me.textboxDomicilioCodigoPostal.TabIndex = 11
         '
-        'tabpageNotasAuditoria
-        '
-        Me.tabpageNotasAuditoria.Controls.Add(Me.checkboxEsActivo)
-        Me.tabpageNotasAuditoria.Controls.Add(labelEsActivo)
-        Me.tabpageNotasAuditoria.Controls.Add(Me.labelIDEntidad)
-        Me.tabpageNotasAuditoria.Controls.Add(Me.textboxIDEntidad)
-        Me.tabpageNotasAuditoria.Controls.Add(Me.textboxUsuarioModificacion)
-        Me.tabpageNotasAuditoria.Controls.Add(Me.textboxUsuarioCreacion)
-        Me.tabpageNotasAuditoria.Controls.Add(Me.textboxFechaHoraModificacion)
-        Me.tabpageNotasAuditoria.Controls.Add(Me.textboxFechaHoraCreacion)
-        Me.tabpageNotasAuditoria.Controls.Add(labelModificacion)
-        Me.tabpageNotasAuditoria.Controls.Add(labelCreacion)
-        Me.tabpageNotasAuditoria.Controls.Add(Me.textboxNotas)
-        Me.tabpageNotasAuditoria.Controls.Add(Me.labelNotas)
-        Me.tabpageNotasAuditoria.Location = New System.Drawing.Point(4, 25)
-        Me.tabpageNotasAuditoria.Name = "tabpageNotasAuditoria"
-        Me.tabpageNotasAuditoria.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageNotasAuditoria.Size = New System.Drawing.Size(520, 333)
-        Me.tabpageNotasAuditoria.TabIndex = 1
-        Me.tabpageNotasAuditoria.Text = "Notas y Auditoría"
-        Me.tabpageNotasAuditoria.UseVisualStyleBackColor = True
-        '
-        'checkboxEsActivo
-        '
-        Me.checkboxEsActivo.AutoSize = True
-        Me.checkboxEsActivo.Location = New System.Drawing.Point(124, 235)
-        Me.checkboxEsActivo.Name = "checkboxEsActivo"
-        Me.checkboxEsActivo.Size = New System.Drawing.Size(15, 14)
-        Me.checkboxEsActivo.TabIndex = 36
-        Me.checkboxEsActivo.UseVisualStyleBackColor = True
-        '
-        'labelIDEntidad
-        '
-        Me.labelIDEntidad.AutoSize = True
-        Me.labelIDEntidad.Location = New System.Drawing.Point(8, 258)
-        Me.labelIDEntidad.Name = "labelIDEntidad"
-        Me.labelIDEntidad.Size = New System.Drawing.Size(76, 13)
-        Me.labelIDEntidad.TabIndex = 34
-        Me.labelIDEntidad.Text = "N° de Entidad:"
-        '
-        'textboxIDEntidad
-        '
-        Me.textboxIDEntidad.Location = New System.Drawing.Point(124, 255)
-        Me.textboxIDEntidad.MaxLength = 10
-        Me.textboxIDEntidad.Name = "textboxIDEntidad"
-        Me.textboxIDEntidad.ReadOnly = True
-        Me.textboxIDEntidad.Size = New System.Drawing.Size(72, 20)
-        Me.textboxIDEntidad.TabIndex = 39
-        Me.textboxIDEntidad.TabStop = False
-        Me.textboxIDEntidad.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'textboxUsuarioModificacion
-        '
-        Me.textboxUsuarioModificacion.Location = New System.Drawing.Point(251, 307)
-        Me.textboxUsuarioModificacion.MaxLength = 50
-        Me.textboxUsuarioModificacion.Name = "textboxUsuarioModificacion"
-        Me.textboxUsuarioModificacion.ReadOnly = True
-        Me.textboxUsuarioModificacion.Size = New System.Drawing.Size(259, 20)
-        Me.textboxUsuarioModificacion.TabIndex = 45
-        '
-        'textboxUsuarioCreacion
-        '
-        Me.textboxUsuarioCreacion.Location = New System.Drawing.Point(251, 281)
-        Me.textboxUsuarioCreacion.MaxLength = 50
-        Me.textboxUsuarioCreacion.Name = "textboxUsuarioCreacion"
-        Me.textboxUsuarioCreacion.ReadOnly = True
-        Me.textboxUsuarioCreacion.Size = New System.Drawing.Size(259, 20)
-        Me.textboxUsuarioCreacion.TabIndex = 42
-        '
-        'textboxFechaHoraModificacion
-        '
-        Me.textboxFechaHoraModificacion.Location = New System.Drawing.Point(124, 307)
-        Me.textboxFechaHoraModificacion.MaxLength = 0
-        Me.textboxFechaHoraModificacion.Name = "textboxFechaHoraModificacion"
-        Me.textboxFechaHoraModificacion.ReadOnly = True
-        Me.textboxFechaHoraModificacion.Size = New System.Drawing.Size(121, 20)
-        Me.textboxFechaHoraModificacion.TabIndex = 44
-        '
-        'textboxFechaHoraCreacion
-        '
-        Me.textboxFechaHoraCreacion.Location = New System.Drawing.Point(124, 281)
-        Me.textboxFechaHoraCreacion.MaxLength = 0
-        Me.textboxFechaHoraCreacion.Name = "textboxFechaHoraCreacion"
-        Me.textboxFechaHoraCreacion.ReadOnly = True
-        Me.textboxFechaHoraCreacion.Size = New System.Drawing.Size(121, 20)
-        Me.textboxFechaHoraCreacion.TabIndex = 41
-        '
-        'textboxNotas
-        '
-        Me.textboxNotas.Location = New System.Drawing.Point(124, 6)
-        Me.textboxNotas.MaxLength = 0
-        Me.textboxNotas.Multiline = True
-        Me.textboxNotas.Name = "textboxNotas"
-        Me.textboxNotas.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.textboxNotas.Size = New System.Drawing.Size(386, 223)
-        Me.textboxNotas.TabIndex = 38
-        '
-        'labelNotas
-        '
-        Me.labelNotas.AutoSize = True
-        Me.labelNotas.Location = New System.Drawing.Point(8, 9)
-        Me.labelNotas.Name = "labelNotas"
-        Me.labelNotas.Size = New System.Drawing.Size(38, 13)
-        Me.labelNotas.TabIndex = 37
-        Me.labelNotas.Text = "Notas:"
-        '
         'tabpageOrigenesDestinos
         '
         Me.tabpageOrigenesDestinos.Controls.Add(Me.datagridviewOrigenesDestinosIncluidos)
@@ -583,7 +477,7 @@ Partial Class formEntidad
         Me.datagridviewOrigenesDestinosIncluidos.AutoGenerateColumns = False
         Me.datagridviewOrigenesDestinosIncluidos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.datagridviewOrigenesDestinosIncluidos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1})
-        Me.datagridviewOrigenesDestinosIncluidos.DataSource = Me.bindingsourceOrigenesDestinosInlcuidos
+        Me.datagridviewOrigenesDestinosIncluidos.DataSource = Me.bindingsourceOrigenesDestinosIncluidos
         Me.datagridviewOrigenesDestinosIncluidos.Location = New System.Drawing.Point(296, 34)
         Me.datagridviewOrigenesDestinosIncluidos.MultiSelect = False
         Me.datagridviewOrigenesDestinosIncluidos.Name = "datagridviewOrigenesDestinosIncluidos"
@@ -620,7 +514,7 @@ Partial Class formEntidad
         Me.datagridviewOrigenesDestinosNoIncluidos.AutoGenerateColumns = False
         Me.datagridviewOrigenesDestinosNoIncluidos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.datagridviewOrigenesDestinosNoIncluidos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnNombre})
-        Me.datagridviewOrigenesDestinosNoIncluidos.DataSource = Me.bindingsourceOrigenesDestinosNoInlcuidos
+        Me.datagridviewOrigenesDestinosNoIncluidos.DataSource = Me.bindingsourceOrigenesDestinosNoIncluidos
         Me.datagridviewOrigenesDestinosNoIncluidos.Location = New System.Drawing.Point(0, 34)
         Me.datagridviewOrigenesDestinosNoIncluidos.MultiSelect = False
         Me.datagridviewOrigenesDestinosNoIncluidos.Name = "datagridviewOrigenesDestinosNoIncluidos"
@@ -811,6 +705,112 @@ Partial Class formEntidad
         Me.buttonProductosPlantasBorrar.Size = New System.Drawing.Size(83, 36)
         Me.buttonProductosPlantasBorrar.Text = "Borrar"
         '
+        'tabpageNotasAuditoria
+        '
+        Me.tabpageNotasAuditoria.Controls.Add(Me.checkboxEsActivo)
+        Me.tabpageNotasAuditoria.Controls.Add(labelEsActivo)
+        Me.tabpageNotasAuditoria.Controls.Add(Me.labelIDEntidad)
+        Me.tabpageNotasAuditoria.Controls.Add(Me.textboxIDEntidad)
+        Me.tabpageNotasAuditoria.Controls.Add(Me.textboxUsuarioModificacion)
+        Me.tabpageNotasAuditoria.Controls.Add(Me.textboxUsuarioCreacion)
+        Me.tabpageNotasAuditoria.Controls.Add(Me.textboxFechaHoraModificacion)
+        Me.tabpageNotasAuditoria.Controls.Add(Me.textboxFechaHoraCreacion)
+        Me.tabpageNotasAuditoria.Controls.Add(labelModificacion)
+        Me.tabpageNotasAuditoria.Controls.Add(labelCreacion)
+        Me.tabpageNotasAuditoria.Controls.Add(Me.textboxNotas)
+        Me.tabpageNotasAuditoria.Controls.Add(Me.labelNotas)
+        Me.tabpageNotasAuditoria.Location = New System.Drawing.Point(4, 25)
+        Me.tabpageNotasAuditoria.Name = "tabpageNotasAuditoria"
+        Me.tabpageNotasAuditoria.Padding = New System.Windows.Forms.Padding(3)
+        Me.tabpageNotasAuditoria.Size = New System.Drawing.Size(520, 333)
+        Me.tabpageNotasAuditoria.TabIndex = 1
+        Me.tabpageNotasAuditoria.Text = "Notas y Auditoría"
+        Me.tabpageNotasAuditoria.UseVisualStyleBackColor = True
+        '
+        'checkboxEsActivo
+        '
+        Me.checkboxEsActivo.AutoSize = True
+        Me.checkboxEsActivo.Location = New System.Drawing.Point(124, 235)
+        Me.checkboxEsActivo.Name = "checkboxEsActivo"
+        Me.checkboxEsActivo.Size = New System.Drawing.Size(15, 14)
+        Me.checkboxEsActivo.TabIndex = 36
+        Me.checkboxEsActivo.UseVisualStyleBackColor = True
+        '
+        'labelIDEntidad
+        '
+        Me.labelIDEntidad.AutoSize = True
+        Me.labelIDEntidad.Location = New System.Drawing.Point(8, 258)
+        Me.labelIDEntidad.Name = "labelIDEntidad"
+        Me.labelIDEntidad.Size = New System.Drawing.Size(76, 13)
+        Me.labelIDEntidad.TabIndex = 34
+        Me.labelIDEntidad.Text = "N° de Entidad:"
+        '
+        'textboxIDEntidad
+        '
+        Me.textboxIDEntidad.Location = New System.Drawing.Point(124, 255)
+        Me.textboxIDEntidad.MaxLength = 10
+        Me.textboxIDEntidad.Name = "textboxIDEntidad"
+        Me.textboxIDEntidad.ReadOnly = True
+        Me.textboxIDEntidad.Size = New System.Drawing.Size(72, 20)
+        Me.textboxIDEntidad.TabIndex = 39
+        Me.textboxIDEntidad.TabStop = False
+        Me.textboxIDEntidad.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'textboxUsuarioModificacion
+        '
+        Me.textboxUsuarioModificacion.Location = New System.Drawing.Point(251, 307)
+        Me.textboxUsuarioModificacion.MaxLength = 50
+        Me.textboxUsuarioModificacion.Name = "textboxUsuarioModificacion"
+        Me.textboxUsuarioModificacion.ReadOnly = True
+        Me.textboxUsuarioModificacion.Size = New System.Drawing.Size(259, 20)
+        Me.textboxUsuarioModificacion.TabIndex = 45
+        '
+        'textboxUsuarioCreacion
+        '
+        Me.textboxUsuarioCreacion.Location = New System.Drawing.Point(251, 281)
+        Me.textboxUsuarioCreacion.MaxLength = 50
+        Me.textboxUsuarioCreacion.Name = "textboxUsuarioCreacion"
+        Me.textboxUsuarioCreacion.ReadOnly = True
+        Me.textboxUsuarioCreacion.Size = New System.Drawing.Size(259, 20)
+        Me.textboxUsuarioCreacion.TabIndex = 42
+        '
+        'textboxFechaHoraModificacion
+        '
+        Me.textboxFechaHoraModificacion.Location = New System.Drawing.Point(124, 307)
+        Me.textboxFechaHoraModificacion.MaxLength = 0
+        Me.textboxFechaHoraModificacion.Name = "textboxFechaHoraModificacion"
+        Me.textboxFechaHoraModificacion.ReadOnly = True
+        Me.textboxFechaHoraModificacion.Size = New System.Drawing.Size(121, 20)
+        Me.textboxFechaHoraModificacion.TabIndex = 44
+        '
+        'textboxFechaHoraCreacion
+        '
+        Me.textboxFechaHoraCreacion.Location = New System.Drawing.Point(124, 281)
+        Me.textboxFechaHoraCreacion.MaxLength = 0
+        Me.textboxFechaHoraCreacion.Name = "textboxFechaHoraCreacion"
+        Me.textboxFechaHoraCreacion.ReadOnly = True
+        Me.textboxFechaHoraCreacion.Size = New System.Drawing.Size(121, 20)
+        Me.textboxFechaHoraCreacion.TabIndex = 41
+        '
+        'textboxNotas
+        '
+        Me.textboxNotas.Location = New System.Drawing.Point(124, 6)
+        Me.textboxNotas.MaxLength = 0
+        Me.textboxNotas.Multiline = True
+        Me.textboxNotas.Name = "textboxNotas"
+        Me.textboxNotas.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.textboxNotas.Size = New System.Drawing.Size(386, 223)
+        Me.textboxNotas.TabIndex = 38
+        '
+        'labelNotas
+        '
+        Me.labelNotas.AutoSize = True
+        Me.labelNotas.Location = New System.Drawing.Point(8, 9)
+        Me.labelNotas.Name = "labelNotas"
+        Me.labelNotas.Size = New System.Drawing.Size(38, 13)
+        Me.labelNotas.TabIndex = 37
+        Me.labelNotas.Text = "Notas:"
+        '
         'formEntidad
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -831,20 +831,20 @@ Partial Class formEntidad
         Me.tabcontrolMain.ResumeLayout(False)
         Me.tabpageGeneral.ResumeLayout(False)
         Me.tabpageGeneral.PerformLayout()
-        Me.tabpageNotasAuditoria.ResumeLayout(False)
-        Me.tabpageNotasAuditoria.PerformLayout()
         Me.tabpageOrigenesDestinos.ResumeLayout(False)
         Me.tabpageOrigenesDestinos.PerformLayout()
         CType(Me.datagridviewOrigenesDestinosIncluidos, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.bindingsourceOrigenesDestinosInlcuidos, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.bindingsourceOrigenesDestinosIncluidos, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.datagridviewOrigenesDestinosNoIncluidos, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.bindingsourceOrigenesDestinosNoInlcuidos, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.bindingsourceOrigenesDestinosNoIncluidos, System.ComponentModel.ISupportInitialize).EndInit()
         Me.panelOrigenesDestinosButtons.ResumeLayout(False)
         Me.tabpageProductosPlantas.ResumeLayout(False)
         Me.tabpageProductosPlantas.PerformLayout()
         CType(Me.datagridviewProductosPlantas, System.ComponentModel.ISupportInitialize).EndInit()
         Me.toolstripProductosPlantas.ResumeLayout(False)
         Me.toolstripProductosPlantas.PerformLayout()
+        Me.tabpageNotasAuditoria.ResumeLayout(False)
+        Me.tabpageNotasAuditoria.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -887,8 +887,8 @@ Partial Class formEntidad
     Friend WithEvents buttonOrigenesDestinosEliminar As System.Windows.Forms.Button
     Friend WithEvents buttonOrigenesDestinosAgregar As System.Windows.Forms.Button
     Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents bindingsourceOrigenesDestinosNoInlcuidos As System.Windows.Forms.BindingSource
-    Friend WithEvents bindingsourceOrigenesDestinosInlcuidos As System.Windows.Forms.BindingSource
+    Friend WithEvents bindingsourceOrigenesDestinosNoIncluidos As System.Windows.Forms.BindingSource
+    Friend WithEvents bindingsourceOrigenesDestinosIncluidos As System.Windows.Forms.BindingSource
     Friend WithEvents datagridviewOrigenesDestinosIncluidos As System.Windows.Forms.DataGridView
     Friend WithEvents DataGridViewTextBoxColumn1 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents datagridviewOrigenesDestinosNoIncluidos As System.Windows.Forms.DataGridView
