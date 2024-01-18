@@ -314,11 +314,16 @@
                 Me.Cursor = Cursors.Default
                 Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)
                     Case CardonerSistemas.Database.EntityFramework.Errors.DuplicatedEntity
-                        MsgBox("No se pueden guardar los cambios porque ya existe una Entidad con el mismo Nombre.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                        Select Case dbuex.InnerException.InnerException.Message.GetSubString(4, "'"c)
+                            Case "AK__Entidad__Nombre"
+                                MsgBox("No se pueden guardar los cambios porque ya existe una Entidad con el mismo Nombre.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                            Case "AK__Entidad__CUIT_CUIL"
+                                MsgBox("No se pueden guardar los cambios porque ya existe una Entidad con el mismo CUIT/CUIL.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                        End Select
                     Case CardonerSistemas.Database.EntityFramework.Errors.Unknown
                         CardonerSistemas.ErrorHandler.ProcessError(CType(dbuex, Exception), My.Resources.STRING_ERROR_SAVING_CHANGES)
-                End Select
-                Exit Sub
+                        End Select
+                        Exit Sub
             Catch ex As Exception
                 Me.Cursor = Cursors.Default
                 CardonerSistemas.ErrorHandler.ProcessError(ex, My.Resources.STRING_ERROR_SAVING_CHANGES)

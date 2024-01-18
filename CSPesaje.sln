@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29306.81
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio Version 17
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Desktop Application", "Desktop Application\Desktop Application.vbproj", "{80F91FA5-66EC-49A8-87A4-A4EBB1DDE34D}"
 EndProject
 Global
