@@ -57,7 +57,7 @@
         Catch ex As Exception
             CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer las Entidades.")
             Me.Cursor = Cursors.Default
-            Exit Sub
+            Return
         End Try
 
         Me.Cursor = Cursors.Default
@@ -76,7 +76,7 @@
             For Each CurrentRowChecked As DataGridViewRow In datagridviewMain.Rows
                 If CType(CurrentRowChecked.DataBoundItem, Entidad).IDEntidad = PositionIDEntidad Then
                     datagridviewMain.CurrentCell = CurrentRowChecked.Cells(columnNombre.Name)
-                    Exit For
+                    Return
                 End If
             Next
         End If
@@ -90,27 +90,27 @@
 
             Try
                 ' Inicializo las variables
-                mReportSelectionFormula = ""
+                mReportSelectionFormula = String.Empty
                 mlistEntidadFiltradaYOrdenada = mlistEntidadBase
 
                 ' Filtro por Búsqueda en Nombre
                 If mBusquedaAplicada Then
-                    mlistEntidadFiltradaYOrdenada = mlistEntidadFiltradaYOrdenada.Where(Function(p) p.Nombre.ToLower.Contains(textboxBuscar.Text.ToLower.Trim)).ToList
+                    mlistEntidadFiltradaYOrdenada = mlistEntidadFiltradaYOrdenada.Where(Function(p) p.Nombre.RemoveDiacritics.ToLower.Contains(textboxBuscar.Text.RemoveDiacritics.ToLower.Trim)).ToList
                 End If
 
                 ' Filtro por Tipos de Entidad
-                If Not (menuitemEntidadTipo_Titular.Checked And menuitemEntidadTipo_Transportista.Checked And menuitemEntidadTipo_Chofer.Checked) Then
-                    mlistEntidadFiltradaYOrdenada = mlistEntidadFiltradaYOrdenada.Where(Function(ent) ((menuitemEntidadTipo_Titular.Checked And ent.EsTitular) Or (menuitemEntidadTipo_Transportista.Checked And ent.EsTransportista) Or (menuitemEntidadTipo_Chofer.Checked And ent.EsChofer))).ToList
+                If Not (menuitemEntidadTipo_Titular.Checked AndAlso menuitemEntidadTipo_Transportista.Checked AndAlso menuitemEntidadTipo_Chofer.Checked) Then
+                    mlistEntidadFiltradaYOrdenada = mlistEntidadFiltradaYOrdenada.Where(Function(ent) ((menuitemEntidadTipo_Titular.Checked AndAlso ent.EsTitular) OrElse (menuitemEntidadTipo_Transportista.Checked AndAlso ent.EsTransportista) OrElse (menuitemEntidadTipo_Chofer.Checked AndAlso ent.EsChofer))).ToList
                 End If
 
                 ' Filtro por Activo
                 Select Case comboboxActivo.SelectedIndex
                     Case CardonerSistemas.Constants.ComboBoxAllYesNo_AllListindex        ' Todos
                     Case CardonerSistemas.Constants.ComboBoxAllYesNo_YesListindex        ' Sí
-                        mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, "", " AND ").ToString & "{Entidad.EsActivo} = 1"
+                        mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, String.Empty, " AND ").ToString & "{Entidad.EsActivo} = 1"
                         mlistEntidadFiltradaYOrdenada = mlistEntidadFiltradaYOrdenada.Where(Function(a) a.EsActivo).ToList
                     Case CardonerSistemas.Constants.ComboBoxAllYesNo_NoListindex         ' No
-                        mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, "", " AND ").ToString & "{Entidad.EsActivo} = 0"
+                        mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, String.Empty, " AND ").ToString & "{Entidad.EsActivo} = 0"
                         mlistEntidadFiltradaYOrdenada = mlistEntidadFiltradaYOrdenada.Where(Function(a) Not a.EsActivo).ToList
                 End Select
 
@@ -125,7 +125,7 @@
             Catch ex As Exception
                 CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al filtrar los datos.")
                 Me.Cursor = Cursors.Default
-                Exit Sub
+                Return
             End Try
 
             OrderData()
@@ -161,16 +161,14 @@
 #Region "Controls behavior"
 
     Private Sub Me_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
-        If Not textboxBuscar.Focused Then
-            If Char.IsLetter(e.KeyChar) Then
-                For Each RowCurrent As DataGridViewRow In datagridviewMain.Rows
-                    If RowCurrent.Cells(columnNombre.Name).Value.ToString.StartsWith(e.KeyChar, StringComparison.CurrentCultureIgnoreCase) Then
-                        RowCurrent.Cells(columnNombre.Name).Selected = True
-                        datagridviewMain.Focus()
-                        Exit For
-                    End If
-                Next
-            End If
+        If Not textboxBuscar.Focused AndAlso Char.IsLetter(e.KeyChar) Then
+            For Each RowCurrent As DataGridViewRow In datagridviewMain.Rows
+                If RowCurrent.Cells(columnNombre.Name).Value.ToString.StartsWith(e.KeyChar, StringComparison.CurrentCultureIgnoreCase) Then
+                    RowCurrent.Cells(columnNombre.Name).Selected = True
+                    datagridviewMain.Focus()
+                    Return
+                End If
+            Next
         End If
     End Sub
 
@@ -224,7 +222,7 @@
 
         ClickedColumn = CType(datagridviewMain.Columns(e.ColumnIndex), DataGridViewColumn)
 
-        If ClickedColumn.Name = columnNombre.Name Or ClickedColumn.Name = columnCUIT_CUIL.Name Then
+        If ClickedColumn.Name = columnNombre.Name OrElse ClickedColumn.Name = columnCUIT_CUIL.Name Then
             If ClickedColumn Is mOrdenColumna Then
                 ' La columna clickeada es la misma por la que ya estaba ordenado, así que cambio la dirección del orden
                 If mOrdenTipo = SortOrder.Ascending Then
@@ -235,11 +233,11 @@
             Else
                 ' La columna clickeada es diferencte a la que ya estaba ordenada.
                 ' En primer lugar saco el ícono de orden de la columna vieja
-                If Not mOrdenColumna Is Nothing Then
+                If mOrdenColumna IsNot Nothing Then
                     mOrdenColumna.HeaderCell.SortGlyphDirection = SortOrder.None
                 End If
 
-                ' Ahora preparo todo para la nueva columna
+                ' Guardo la información de la nueva columna
                 mOrdenTipo = SortOrder.Ascending
                 mOrdenColumna = ClickedColumn
             End If
@@ -253,114 +251,100 @@
 #Region "Main Toolbar"
 
     Private Sub Agregar_Click() Handles buttonAgregar.Click
-        If Permisos.VerificarPermiso(Permisos.ENTIDAD_AGREGAR) Then
-            Me.Cursor = Cursors.WaitCursor
-
-            datagridviewMain.Enabled = False
-
-            formEntidad.LoadAndShow(True, Me, 0)
-
-            datagridviewMain.Enabled = True
-
-            Me.Cursor = Cursors.Default
+        If Not Permisos.VerificarPermiso(Permisos.ENTIDAD_AGREGAR) Then
+            Return
         End If
+        Me.Cursor = Cursors.WaitCursor
+        datagridviewMain.Enabled = False
+        formEntidad.LoadAndShow(True, Me, 0)
+        datagridviewMain.Enabled = True
+        Me.Cursor = Cursors.Default
     End Sub
 
     Private Sub Editar_Click() Handles buttonEditar.Click
         If datagridviewMain.CurrentRow Is Nothing Then
             MsgBox("No hay ninguna Entidad para editar.", vbInformation, My.Application.Info.Title)
-        Else
-            If Permisos.VerificarPermiso(Permisos.ENTIDAD_EDITAR) Then
-                Me.Cursor = Cursors.WaitCursor
-
-                datagridviewMain.Enabled = False
-
-                formEntidad.LoadAndShow(True, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, Entidad).IDEntidad)
-
-                datagridviewMain.Enabled = True
-
-                Me.Cursor = Cursors.Default
-            End If
+            Return
         End If
+        If Not Permisos.VerificarPermiso(Permisos.ENTIDAD_EDITAR) Then
+            Return
+        End If
+        Me.Cursor = Cursors.WaitCursor
+        datagridviewMain.Enabled = False
+        formEntidad.LoadAndShow(True, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, Entidad).IDEntidad)
+        datagridviewMain.Enabled = True
+        Me.Cursor = Cursors.Default
     End Sub
 
     Private Sub Eliminar_Click() Handles buttonEliminar.Click
         If datagridviewMain.CurrentRow Is Nothing Then
             MsgBox("No hay ninguna Entidad para eliminar.", vbInformation, My.Application.Info.Title)
-        Else
-            If Permisos.VerificarPermiso(Permisos.ENTIDAD_ELIMINAR) Then
-                Dim Mensaje As String
-                Mensaje = String.Format("Se eliminará la Entidad seleccionada.{0}{0}{1}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, CType(datagridviewMain.SelectedRows(0).DataBoundItem, Entidad).Nombre)
-                If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
-                    Me.Cursor = Cursors.WaitCursor
-
-                    Try
-                        Using dbContext = New CSPesajeContext(True)
-                            Dim EntidadActual As Entidad
-                            EntidadActual = dbContext.Entidad.Find(CType(datagridviewMain.SelectedRows(0).DataBoundItem, Entidad).IDEntidad)
-
-                            dbContext.Entidad.Attach(EntidadActual)
-                            dbContext.Entidad.Remove(EntidadActual)
-                            dbContext.SaveChanges()
-                        End Using
-                    Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
-                        Me.Cursor = Cursors.Default
-                        Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)
-                            Case CardonerSistemas.Database.EntityFramework.Errors.RelatedEntity
-                                MsgBox("No se puede eliminar la Entidad porque tiene datos relacionados.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
-                        End Select
-                        Exit Sub
-                    Catch ex As Exception
-                        CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al eliminar la Entidad.")
-                    End Try
-
-                    RefreshData()
-
-                    Me.Cursor = Cursors.Default
-                End If
-            End If
+            Return
         End If
+        If Not Permisos.VerificarPermiso(Permisos.ENTIDAD_ELIMINAR) Then
+            Return
+        End If
+
+        Dim mensaje As String = $"Se eliminará la Entidad seleccionada.{vbCrLf}{vbCrLf}{CType(datagridviewMain.SelectedRows(0).DataBoundItem, Entidad).Nombre}{vbCrLf}{vbCrLf}¿Confirma la eliminación definitiva?"
+        If MessageBox.Show(mensaje, My.Application.Info.Title, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = MsgBoxResult.No Then
+            Return
+        End If
+
+        Me.Cursor = Cursors.WaitCursor
+        Try
+            Using dbContext = New CSPesajeContext(True)
+                Dim EntidadActual As Entidad
+                EntidadActual = dbContext.Entidad.Find(CType(datagridviewMain.SelectedRows(0).DataBoundItem, Entidad).IDEntidad)
+
+                dbContext.Entidad.Attach(EntidadActual)
+                dbContext.Entidad.Remove(EntidadActual)
+                dbContext.SaveChanges()
+            End Using
+        Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
+            Me.Cursor = Cursors.Default
+            Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)
+                Case CardonerSistemas.Database.EntityFramework.Errors.RelatedEntity
+                    MsgBox("No se puede eliminar la Entidad porque tiene datos relacionados.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+            End Select
+            Return
+        Catch ex As Exception
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al eliminar la Entidad.")
+        End Try
+
+        RefreshData()
+        Me.Cursor = Cursors.Default
     End Sub
 
     Private Sub Ver() Handles datagridviewMain.DoubleClick
         If datagridviewMain.CurrentRow Is Nothing Then
             MsgBox("No hay ninguna Entidad para ver.", vbInformation, My.Application.Info.Title)
-        Else
-            Me.Cursor = Cursors.WaitCursor
-
-            datagridviewMain.Enabled = False
-
-            formEntidad.LoadAndShow(False, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, Entidad).IDEntidad)
-
-            datagridviewMain.Enabled = True
-
-            Me.Cursor = Cursors.Default
+            Return
         End If
+        Me.Cursor = Cursors.WaitCursor
+        datagridviewMain.Enabled = False
+        formEntidad.LoadAndShow(False, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, Entidad).IDEntidad)
+        datagridviewMain.Enabled = True
+        Me.Cursor = Cursors.Default
     End Sub
 
     Private Sub Imprimir_Listado() Handles menuitemImprimirListado.Click
         If datagridviewMain.CurrentRow Is Nothing Then
             MsgBox("No hay ninguna Entidad para imprimir el Listado.", vbInformation, My.Application.Info.Title)
-        Else
-            If Permisos.VerificarPermiso(Permisos.ENTIDAD_IMPRIMIR) Then
-                Me.Cursor = Cursors.WaitCursor
-
-                datagridviewMain.Enabled = False
-
-                Dim ReporteActual As New Reporte
-                If ReporteActual.Open(pGeneralConfig.ReportsPath & "\") Then
-                    If ReporteActual.SetDatabaseConnection(pDatabase.Datasource, pDatabase.InitialCatalog, pDatabase.UserId, pDatabase.Password) Then
-                        ReporteActual.RecordSelectionFormula = mReportSelectionFormula
-
-                        Reportes.PreviewCrystalReport(ReporteActual, "Listado de Entidades")
-                    End If
-                End If
-
-                datagridviewMain.Enabled = True
-
-                Me.Cursor = Cursors.Default
-            End If
+            Return
         End If
+        If Not Permisos.VerificarPermiso(Permisos.ENTIDAD_IMPRIMIR) Then
+            Return
+        End If
+
+        Me.Cursor = Cursors.WaitCursor
+        datagridviewMain.Enabled = False
+        Dim ReporteActual As New Reporte
+        If ReporteActual.Open($"{pGeneralConfig.ReportsPath}\") AndAlso ReporteActual.SetDatabaseConnection(pDatabase.Datasource, pDatabase.InitialCatalog, pDatabase.UserId, pDatabase.Password) Then
+            ReporteActual.RecordSelectionFormula = mReportSelectionFormula
+            Reportes.PreviewCrystalReport(ReporteActual, "Listado de Entidades")
+        End If
+        datagridviewMain.Enabled = True
+        Me.Cursor = Cursors.Default
     End Sub
 
 #End Region
