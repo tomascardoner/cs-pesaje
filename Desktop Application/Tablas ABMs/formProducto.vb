@@ -8,6 +8,8 @@
     Private mIsLoading As Boolean
     Private mEditMode As Boolean
 
+    Private tabControlExtension As CardonerSistemas.TabControlExtension
+
 #End Region
 
 #Region "Form stuff"
@@ -44,14 +46,14 @@
 
     Private Sub ChangeMode()
         If mIsLoading Then
-            Exit Sub
+            Return
         End If
 
         ' Toolbar
         buttonGuardar.Visible = mEditMode
         buttonCancelar.Visible = mEditMode
-        buttonEditar.Visible = (mEditMode = False)
-        buttonCerrar.Visible = (mEditMode = False)
+        buttonEditar.Visible = Not mEditMode
+        buttonCerrar.Visible = Not mEditMode
 
         ' General
         textboxNombre.ReadOnly = Not mEditMode
@@ -86,14 +88,15 @@
     Friend Sub SetAppearance()
         Me.Icon = CardonerSistemas.Graphics.GetIconFromBitmap(My.Resources.ImageTablas32)
 
+        tabControlExtension = New CardonerSistemas.TabControlExtension(tabcontrolMain)
         If Not Permisos.VerificarPermiso(Permisos.PRODUCTOMERMAHUMEDAD, False) Then
-            tabcontrolMain.HideTabPageByName(tabpageMermasHumedad.Name)
+            tabControlExtension.HidePage(tabpageMermasHumedad)
         End If
         If Not Permisos.VerificarPermiso(Permisos.PRODUCTOPLANTA, False) Then
-            tabcontrolMain.HideTabPageByName(tabpagePlantas.Name)
+            tabControlExtension.HidePage(tabpagePlantas)
         End If
         If Not Permisos.VerificarPermiso(Permisos.PRODUCTOCOSECHA, False) Then
-            tabcontrolMain.HideTabPageByName(tabpageCosechas.Name)
+            tabControlExtension.HidePage(tabpageCosechas)
         End If
     End Sub
 
@@ -103,6 +106,7 @@
             mdbContext = Nothing
         End If
         mProductoActual = Nothing
+        tabControlExtension = Nothing
         Me.Dispose()
     End Sub
 
@@ -191,7 +195,7 @@
             tabcontrolMain.SelectedTab = tabpageGeneral
             MsgBox("Debe ingresar el Nombre.", MsgBoxStyle.Information, My.Application.Info.Title)
             textboxNombre.Focus()
-            Exit Sub
+            Return
         End If
 
         ' Generar el ID nuevo
@@ -230,12 +234,12 @@
                     Case Else
                         CardonerSistemas.ErrorHandler.ProcessError(CType(dbuex, Exception), My.Resources.STRING_ERROR_SAVING_CHANGES)
                 End Select
-                Exit Sub
+                Return
 
             Catch ex As Exception
                 Me.Cursor = Cursors.Default
                 CardonerSistemas.ErrorHandler.ProcessError(ex, My.Resources.STRING_ERROR_SAVING_CHANGES)
-                Exit Sub
+                Return
             End Try
         End If
 
@@ -268,7 +272,7 @@
         Catch ex As Exception
             CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer las Mermas de Humedad del Producto.")
             Me.Cursor = Cursors.Default
-            Exit Sub
+            Return
         End Try
 
         Me.Cursor = Cursors.Default
@@ -277,7 +281,7 @@
             For Each CurrentRowChecked As DataGridViewRow In datagridviewMermasHumedad.Rows
                 If CType(CurrentRowChecked.DataBoundItem, Producto_Humedad).Humedad = PositionHumedad Then
                     datagridviewMermasHumedad.CurrentCell = CurrentRowChecked.Cells(0)
-                    Exit For
+                    Return
                 End If
             Next
         End If
@@ -380,7 +384,7 @@
         Catch ex As Exception
             CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer las Plantas del Producto.")
             Me.Cursor = Cursors.Default
-            Exit Sub
+            Return
         End Try
 
         Me.Cursor = Cursors.Default
@@ -389,7 +393,7 @@
             For Each CurrentRowChecked As DataGridViewRow In datagridviewPlantas.Rows
                 If CType(CurrentRowChecked.DataBoundItem, Planta).IDPlanta = PositionIDPlanta Then
                     datagridviewPlantas.CurrentCell = CurrentRowChecked.Cells(0)
-                    Exit For
+                    Return
                 End If
             Next
         End If
@@ -500,7 +504,7 @@
         Catch ex As Exception
             CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer las Cosechas del Producto.")
             Me.Cursor = Cursors.Default
-            Exit Sub
+            Return
         End Try
 
         Me.Cursor = Cursors.Default
@@ -509,7 +513,7 @@
             For Each CurrentRowChecked As DataGridViewRow In datagridviewCosechas.Rows
                 If CType(CurrentRowChecked.DataBoundItem, CosechasRowData).IDCosecha = PositionIDCosecha Then
                     datagridviewCosechas.CurrentCell = CurrentRowChecked.Cells(0)
-                    Exit For
+                    Return
                 End If
             Next
         End If

@@ -210,7 +210,7 @@ Partial Class formPesadaAsistente
         '
         'buttonFechaHoraInicioAhora
         '
-        Me.buttonFechaHoraInicioAhora.Image = Global.My.Resources.Resources.ImageCalendarToday16
+        Me.buttonFechaHoraInicioAhora.Image = My.Resources.Resources.ImageCalendarToday16
         Me.buttonFechaHoraInicioAhora.Location = New System.Drawing.Point(274, 24)
         Me.buttonFechaHoraInicioAhora.Name = "buttonFechaHoraInicioAhora"
         Me.buttonFechaHoraInicioAhora.Size = New System.Drawing.Size(22, 22)
@@ -302,7 +302,7 @@ Partial Class formPesadaAsistente
         'buttonAnterior
         '
         Me.buttonAnterior.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.buttonAnterior.Image = Global.My.Resources.Resources.ImageMovePrevious24
+        Me.buttonAnterior.Image = My.Resources.Resources.ImageMovePrevious24
         Me.buttonAnterior.Location = New System.Drawing.Point(289, 0)
         Me.buttonAnterior.Name = "buttonAnterior"
         Me.buttonAnterior.Size = New System.Drawing.Size(96, 32)
@@ -314,7 +314,7 @@ Partial Class formPesadaAsistente
         'buttonSiguiente
         '
         Me.buttonSiguiente.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.buttonSiguiente.Image = Global.My.Resources.Resources.ImageMoveNext24
+        Me.buttonSiguiente.Image = My.Resources.Resources.ImageMoveNext24
         Me.buttonSiguiente.Location = New System.Drawing.Point(391, 0)
         Me.buttonSiguiente.Name = "buttonSiguiente"
         Me.buttonSiguiente.Size = New System.Drawing.Size(96, 32)

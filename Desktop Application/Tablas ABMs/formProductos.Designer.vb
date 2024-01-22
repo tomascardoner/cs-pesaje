@@ -107,7 +107,7 @@ Partial Class formProductos
         '
         'buttonAgregar
         '
-        Me.buttonAgregar.Image = Global.My.Resources.Resources.ImageItemAgregar32
+        Me.buttonAgregar.Image = My.Resources.Resources.ImageItemAgregar32
         Me.buttonAgregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonAgregar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonAgregar.Name = "buttonAgregar"
@@ -116,7 +116,7 @@ Partial Class formProductos
         '
         'buttonEditar
         '
-        Me.buttonEditar.Image = Global.My.Resources.Resources.ImageItemEditar32
+        Me.buttonEditar.Image = My.Resources.Resources.ImageItemEditar32
         Me.buttonEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonEditar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonEditar.Name = "buttonEditar"
@@ -125,7 +125,7 @@ Partial Class formProductos
         '
         'buttonEliminar
         '
-        Me.buttonEliminar.Image = Global.My.Resources.Resources.ImageItemBorrar32
+        Me.buttonEliminar.Image = My.Resources.Resources.ImageItemBorrar32
         Me.buttonEliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonEliminar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonEliminar.Name = "buttonEliminar"

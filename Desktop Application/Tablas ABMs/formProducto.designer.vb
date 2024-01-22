@@ -37,7 +37,7 @@ Partial Class formProducto
         Me.buttonEditar = New System.Windows.Forms.ToolStripButton()
         Me.buttonCerrar = New System.Windows.Forms.ToolStripButton()
         Me.toolstripMain = New System.Windows.Forms.ToolStrip()
-        Me.tabcontrolMain = New CardonerSistemas.TabControl()
+        Me.tabcontrolMain = New System.Windows.Forms.TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
         Me.ComboBoxTicketPesada_IDReporte = New System.Windows.Forms.ComboBox()
         Me.LabelMermaHumedadManipuleo = New System.Windows.Forms.Label()
@@ -144,7 +144,7 @@ Partial Class formProducto
         'buttonGuardar
         '
         Me.buttonGuardar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonGuardar.Image = Global.My.Resources.Resources.ImageAceptar32
+        Me.buttonGuardar.Image = My.Resources.Resources.ImageAceptar32
         Me.buttonGuardar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonGuardar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonGuardar.Name = "buttonGuardar"
@@ -154,7 +154,7 @@ Partial Class formProducto
         'buttonCancelar
         '
         Me.buttonCancelar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonCancelar.Image = Global.My.Resources.Resources.ImageCancelar32
+        Me.buttonCancelar.Image = My.Resources.Resources.ImageCancelar32
         Me.buttonCancelar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCancelar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonCancelar.Name = "buttonCancelar"
@@ -164,7 +164,7 @@ Partial Class formProducto
         'buttonEditar
         '
         Me.buttonEditar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonEditar.Image = Global.My.Resources.Resources.ImageItemEditar32
+        Me.buttonEditar.Image = My.Resources.Resources.ImageItemEditar32
         Me.buttonEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonEditar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonEditar.Name = "buttonEditar"
@@ -174,7 +174,7 @@ Partial Class formProducto
         'buttonCerrar
         '
         Me.buttonCerrar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonCerrar.Image = Global.My.Resources.Resources.ImageClose32
+        Me.buttonCerrar.Image = My.Resources.Resources.ImageClose32
         Me.buttonCerrar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCerrar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonCerrar.Name = "buttonCerrar"
@@ -424,7 +424,7 @@ Partial Class formProducto
         '
         'buttonMermasHumedadAgregar
         '
-        Me.buttonMermasHumedadAgregar.Image = Global.My.Resources.Resources.ImageItemAgregar32
+        Me.buttonMermasHumedadAgregar.Image = My.Resources.Resources.ImageItemAgregar32
         Me.buttonMermasHumedadAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonMermasHumedadAgregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonMermasHumedadAgregar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -434,7 +434,7 @@ Partial Class formProducto
         '
         'buttonMermasHumedadEditar
         '
-        Me.buttonMermasHumedadEditar.Image = Global.My.Resources.Resources.ImageItemEditar32
+        Me.buttonMermasHumedadEditar.Image = My.Resources.Resources.ImageItemEditar32
         Me.buttonMermasHumedadEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonMermasHumedadEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonMermasHumedadEditar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -444,7 +444,7 @@ Partial Class formProducto
         '
         'buttonMermasHumedadBorrar
         '
-        Me.buttonMermasHumedadBorrar.Image = Global.My.Resources.Resources.ImageItemBorrar32
+        Me.buttonMermasHumedadBorrar.Image = My.Resources.Resources.ImageItemBorrar32
         Me.buttonMermasHumedadBorrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonMermasHumedadBorrar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonMermasHumedadBorrar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -511,7 +511,7 @@ Partial Class formProducto
         '
         'buttonPlantasAgregar
         '
-        Me.buttonPlantasAgregar.Image = Global.My.Resources.Resources.ImageItemAgregar32
+        Me.buttonPlantasAgregar.Image = My.Resources.Resources.ImageItemAgregar32
         Me.buttonPlantasAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonPlantasAgregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonPlantasAgregar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -521,7 +521,7 @@ Partial Class formProducto
         '
         'buttonPlantasEditar
         '
-        Me.buttonPlantasEditar.Image = Global.My.Resources.Resources.ImageItemEditar32
+        Me.buttonPlantasEditar.Image = My.Resources.Resources.ImageItemEditar32
         Me.buttonPlantasEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonPlantasEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonPlantasEditar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -531,7 +531,7 @@ Partial Class formProducto
         '
         'buttonPlantasBorrar
         '
-        Me.buttonPlantasBorrar.Image = Global.My.Resources.Resources.ImageItemBorrar32
+        Me.buttonPlantasBorrar.Image = My.Resources.Resources.ImageItemBorrar32
         Me.buttonPlantasBorrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonPlantasBorrar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonPlantasBorrar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -629,7 +629,7 @@ Partial Class formProducto
         '
         'buttonCosechasAgregar
         '
-        Me.buttonCosechasAgregar.Image = Global.My.Resources.Resources.ImageItemAgregar32
+        Me.buttonCosechasAgregar.Image = My.Resources.Resources.ImageItemAgregar32
         Me.buttonCosechasAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonCosechasAgregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCosechasAgregar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -639,7 +639,7 @@ Partial Class formProducto
         '
         'buttonCosechasEditar
         '
-        Me.buttonCosechasEditar.Image = Global.My.Resources.Resources.ImageItemEditar32
+        Me.buttonCosechasEditar.Image = My.Resources.Resources.ImageItemEditar32
         Me.buttonCosechasEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonCosechasEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCosechasEditar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -649,7 +649,7 @@ Partial Class formProducto
         '
         'buttonCosechasBorrar
         '
-        Me.buttonCosechasBorrar.Image = Global.My.Resources.Resources.ImageItemBorrar32
+        Me.buttonCosechasBorrar.Image = My.Resources.Resources.ImageItemBorrar32
         Me.buttonCosechasBorrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonCosechasBorrar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCosechasBorrar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -865,7 +865,7 @@ Partial Class formProducto
     Friend WithEvents buttonCerrar As System.Windows.Forms.ToolStripButton
     Friend WithEvents toolstripMain As System.Windows.Forms.ToolStrip
     Friend WithEvents checkboxEsActivo As System.Windows.Forms.CheckBox
-    Friend WithEvents tabcontrolMain As CardonerSistemas.TabControl
+    Friend WithEvents tabcontrolMain As System.Windows.Forms.TabControl
     Friend WithEvents tabpageGeneral As System.Windows.Forms.TabPage
     Friend WithEvents tabpageNotasAuditoria As System.Windows.Forms.TabPage
     Friend WithEvents textboxNotas As System.Windows.Forms.TextBox

@@ -9,6 +9,8 @@
     Private mEditMode As Boolean = False
     Private mIsNew As Boolean
 
+    Private tabControlExtension As CardonerSistemas.TabControlExtension
+
 #End Region
 
 #Region "Form stuff"
@@ -48,7 +50,7 @@
 
     Private Sub ChangeMode()
         If mIsLoading Then
-            Exit Sub
+            Return
         End If
 
         buttonGuardar.Visible = mEditMode
@@ -83,30 +85,30 @@
         comboboxTitular.Enabled = mEditMode
         textboxTitular.ReadOnly = Not mEditMode
         checkboxTitularTodos.Visible = mEditMode
-        checkboxOrigenOtro.Visible = ((radiobuttonEntrada.Checked Or radiobuttonNinguno.Checked) And mEditMode)
-        comboboxOrigen.Visible = (radiobuttonEntrada.Checked Or radiobuttonNinguno.Checked) And Not checkboxOrigenOtro.Checked
+        checkboxOrigenOtro.Visible = ((radiobuttonEntrada.Checked OrElse radiobuttonNinguno.Checked) AndAlso mEditMode)
+        comboboxOrigen.Visible = (radiobuttonEntrada.Checked OrElse radiobuttonNinguno.Checked) AndAlso Not checkboxOrigenOtro.Checked
         comboboxOrigen.Enabled = mEditMode
         textboxOrigen.ReadOnly = Not mEditMode
-        textboxOrigen.Visible = (radiobuttonEntrada.Checked Or radiobuttonNinguno.Checked) And checkboxOrigenOtro.Checked
-        checkboxOrigenTodos.Visible = (mEditMode And (radiobuttonEntrada.Checked Or radiobuttonNinguno.Checked) And Not checkboxOrigenOtro.Checked)
-        checkboxDestinoOtro.Visible = ((radiobuttonSalida.Checked Or radiobuttonNinguno.Checked) And mEditMode)
-        comboboxDestino.Visible = (radiobuttonSalida.Checked Or radiobuttonNinguno.Checked) And Not checkboxDestinoOtro.Checked
+        textboxOrigen.Visible = (radiobuttonEntrada.Checked OrElse radiobuttonNinguno.Checked) AndAlso checkboxOrigenOtro.Checked
+        checkboxOrigenTodos.Visible = (mEditMode AndAlso (radiobuttonEntrada.Checked OrElse radiobuttonNinguno.Checked) AndAlso Not checkboxOrigenOtro.Checked)
+        checkboxDestinoOtro.Visible = ((radiobuttonSalida.Checked OrElse radiobuttonNinguno.Checked) AndAlso mEditMode)
+        comboboxDestino.Visible = (radiobuttonSalida.Checked OrElse radiobuttonNinguno.Checked) AndAlso Not checkboxDestinoOtro.Checked
         comboboxDestino.Enabled = mEditMode
         textboxDestino.ReadOnly = Not mEditMode
-        textboxDestino.Visible = (radiobuttonSalida.Checked Or radiobuttonNinguno.Checked) And checkboxDestinoOtro.Checked
-        checkboxDestinoTodos.Visible = (mEditMode And (radiobuttonSalida.Checked Or radiobuttonNinguno.Checked) And Not checkboxDestinoOtro.Checked)
+        textboxDestino.Visible = (radiobuttonSalida.Checked OrElse radiobuttonNinguno.Checked) AndAlso checkboxDestinoOtro.Checked
+        checkboxDestinoTodos.Visible = (mEditMode AndAlso (radiobuttonSalida.Checked OrElse radiobuttonNinguno.Checked) AndAlso Not checkboxDestinoOtro.Checked)
 
         ' Transporte
         checkboxTransportistaOtro.Visible = mEditMode
         comboboxTransportista.Enabled = mEditMode
         textboxTransportista.ReadOnly = Not mEditMode
         checkboxTransportistaTodos.Visible = mEditMode
-        maskedtextboxTransportistaCUIT.ReadOnly = Not (mEditMode And checkboxTransportistaOtro.Checked)
+        maskedtextboxTransportistaCUIT.ReadOnly = Not (mEditMode AndAlso checkboxTransportistaOtro.Checked)
         checkboxChoferOtro.Visible = mEditMode
         comboboxChofer.Enabled = mEditMode
         textboxChofer.ReadOnly = Not mEditMode
         checkboxChoferTodos.Visible = mEditMode
-        maskedtextboxChoferCUIT_CUIL.ReadOnly = Not (mEditMode And checkboxChoferOtro.Checked)
+        maskedtextboxChoferCUIT_CUIL.ReadOnly = Not (mEditMode AndAlso checkboxChoferOtro.Checked)
         checkboxCamionOtro.Visible = mEditMode
         comboboxCamion.Enabled = mEditMode
         textboxCamion_DominioChasis.ReadOnly = Not mEditMode
@@ -158,13 +160,14 @@
         pFillAndRefreshLists.Producto(comboboxProducto, mPesadaActual.IDProducto, False, True, False, False)
         pFillAndRefreshLists.Entidad(comboboxTransportista, mPesadaActual.Transportista_IDEntidad, False, False, True, False, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER, True, False, False, True)
 
+        tabControlExtension = New CardonerSistemas.TabControlExtension(tabcontrolNotasExtras)
         If Permisos.VerificarPermiso(Permisos.PESADA_MOSTRAR_EXTRAS, False) Then
-            tabcontrolNotasExtras.ShowTabPageByName(tabpageExtras.Name)
+            tabControlExtension.ShowPage(tabpageExtras)
         Else
-            tabcontrolNotasExtras.HideTabPageByName(tabpageExtras.Name)
+            tabControlExtension.HidePage(tabpageExtras)
         End If
 
-        groupboxControl.Visible = (Permisos.VerificarPermiso(Permisos.PESADA_MOSTRAR_VERIFICADO, False) And Permisos.VerificarPermiso(Permisos.PESADA_MOSTRAR_ACTIVO, False))
+        groupboxControl.Visible = (Permisos.VerificarPermiso(Permisos.PESADA_MOSTRAR_VERIFICADO, False) AndAlso Permisos.VerificarPermiso(Permisos.PESADA_MOSTRAR_ACTIVO, False))
         labelEsVerificado.Visible = Permisos.VerificarPermiso(Permisos.PESADA_MOSTRAR_VERIFICADO, False)
         checkboxEsVerificado.Visible = Permisos.VerificarPermiso(Permisos.PESADA_MOSTRAR_VERIFICADO, False)
         labelEsActivo.Visible = Permisos.VerificarPermiso(Permisos.PESADA_MOSTRAR_ACTIVO, False)
@@ -174,8 +177,8 @@
 
         groupboxTarifasAplica.Visible = Permisos.VerificarPermiso(Permisos.PESADA_MOSTRAR_TARIFASASAPLICA, False)
 
-        buttonObtenerKilogramosBrutos.Visible = (pBalanzaConeccionHabilitada And mEditMode)
-        buttonObtenerKilogramosTara.Visible = (pBalanzaConeccionHabilitada And mEditMode)
+        buttonObtenerKilogramosBrutos.Visible = (pBalanzaConeccionHabilitada AndAlso mEditMode)
+        buttonObtenerKilogramosTara.Visible = (pBalanzaConeccionHabilitada AndAlso mEditMode)
     End Sub
 
     Friend Sub SetAppearance()
@@ -191,6 +194,7 @@
         mdbContext.Dispose()
         mdbContext = Nothing
         mPesadaActual = Nothing
+        tabControlExtension = Nothing
         Me.Dispose()
     End Sub
 
@@ -384,10 +388,8 @@
     Friend Sub SetDataFromControlsToObject()
         With mPesadaActual
             ' Si hay algún item Otro especificado, me aseguro que exista el objeto correspondiente
-            If checkboxProductoOtro.Checked Or checkboxTitularOtro.Checked Or checkboxOrigenOtro.Checked Or checkboxDestinoOtro.Checked Or checkboxTransportistaOtro.Checked Or checkboxChoferOtro.Checked Or checkboxCamionOtro.Checked Then
-                If .Pesada_Otro Is Nothing Then
-                    .Pesada_Otro = New Pesada_Otro
-                End If
+            If (checkboxProductoOtro.Checked OrElse checkboxTitularOtro.Checked OrElse checkboxOrigenOtro.Checked OrElse checkboxDestinoOtro.Checked OrElse checkboxTransportistaOtro.Checked OrElse checkboxChoferOtro.Checked OrElse checkboxCamionOtro.Checked) AndAlso .Pesada_Otro Is Nothing Then
+                .Pesada_Otro = New Pesada_Otro
             End If
 
             ' Encabezado
@@ -439,10 +441,8 @@
                 End If
             Else
                 .IDOrigen = Nothing
-                If checkboxOrigenOtro.Checked Then
-                    If .Pesada_Otro IsNot Nothing Then
-                        .Pesada_Otro.Origen_Nombre = String.Empty
-                    End If
+                If checkboxOrigenOtro.Checked AndAlso .Pesada_Otro IsNot Nothing Then
+                    .Pesada_Otro.Origen_Nombre = String.Empty
                 End If
             End If
 
@@ -458,10 +458,8 @@
                 End If
             Else
                 .IDDestino = Nothing
-                If checkboxDestinoOtro.Checked Then
-                    If .Pesada_Otro IsNot Nothing Then
-                        .Pesada_Otro.Destino_Nombre = String.Empty
-                    End If
+                If checkboxDestinoOtro.Checked AndAlso .Pesada_Otro IsNot Nothing Then
+                    .Pesada_Otro.Destino_Nombre = String.Empty
                 End If
             End If
 
@@ -508,14 +506,14 @@
             ' Kilogramos
             .KilogramoBruto = CS_ValueTranslation.FromControlTextBoxToObjectInteger(integertextboxKilogramoBruto.Text)
             .KilogramoTara = CS_ValueTranslation.FromControlTextBoxToObjectInteger(integertextboxKilogramoTara.Text)
-            If integertextboxKilogramoBruto.IsNull Or integertextboxKilogramoTara.IsNull Then
+            If integertextboxKilogramoBruto.IsNull OrElse integertextboxKilogramoTara.IsNull Then
                 .KilogramoNeto = Nothing
             Else
                 .KilogramoNeto = CInt(integertextboxKilogramoBruto.IntegerValue - integertextboxKilogramoTara.IntegerValue)
             End If
 
             ' Análisis
-            If doubletextboxHumedad.DoubleValue > 0 Or doubletextboxZaranda.DoubleValue > 0 Or checkboxFumigado.Checked Or integertextboxGranoVerde.IntegerValue > 0 Or integertextboxGranoDaniado.IntegerValue > 0 Or checkboxMezclado.Checked Or doubletextboxPesoHectolitrico.DoubleValue > 0 Or doubletextboxGluten.DoubleValue > 0 Then
+            If doubletextboxHumedad.DoubleValue > 0 OrElse doubletextboxZaranda.DoubleValue > 0 OrElse checkboxFumigado.Checked OrElse integertextboxGranoVerde.IntegerValue > 0 OrElse integertextboxGranoDaniado.IntegerValue > 0 OrElse checkboxMezclado.Checked OrElse doubletextboxPesoHectolitrico.DoubleValue > 0 OrElse doubletextboxGluten.DoubleValue > 0 Then
                 If .Pesada_Analisis Is Nothing Then
                     .Pesada_Analisis = New Pesada_Analisis
                 End If
@@ -561,10 +559,8 @@
             .EsActivo = checkboxEsActivo.Checked
 
             ' Otros
-            If Not (checkboxProductoOtro.Checked Or checkboxTitularOtro.Checked Or checkboxOrigenOtro.Checked Or checkboxDestinoOtro.Checked Or checkboxTransportistaOtro.Checked Or checkboxChoferOtro.Checked Or checkboxCamionOtro.Checked) Then
-                If .Pesada_Otro IsNot Nothing Then
-                    mdbContext.Pesada_Otro.Remove(.Pesada_Otro)
-                End If
+            If Not (checkboxProductoOtro.Checked OrElse checkboxTitularOtro.Checked OrElse checkboxOrigenOtro.Checked OrElse checkboxDestinoOtro.Checked OrElse checkboxTransportistaOtro.Checked OrElse checkboxChoferOtro.Checked OrElse checkboxCamionOtro.Checked) AndAlso .Pesada_Otro IsNot Nothing Then
+                mdbContext.Pesada_Otro.Remove(.Pesada_Otro)
             End If
         End With
     End Sub
@@ -597,7 +593,7 @@
     End Sub
 
     Private Sub HoraInicioCambio() Handles datetimepickerHoraInicio.ValueChanged
-        datetimepickerFechaInicio.Value = New Date(datetimepickerFechaInicio.Value.Year, datetimepickerFechaInicio.Value.Month, datetimepickerFechaInicio.Value.Day, datetimepickerHoraInicio.Value.Hour, datetimepickerHoraInicio.Value.Minute, datetimepickerHoraInicio.Value.Second)
+        datetimepickerFechaInicio.Value = New Date(datetimepickerFechaInicio.Value.Year, datetimepickerFechaInicio.Value.Month, datetimepickerFechaInicio.Value.Day, datetimepickerHoraInicio.Value.Hour, datetimepickerHoraInicio.Value.Minute, datetimepickerHoraInicio.Value.Second, DateTimeKind.Local)
     End Sub
 
     Private Sub FechaHoraInicioAhora() Handles buttonFechaHoraInicioAhora.Click
@@ -606,7 +602,7 @@
     End Sub
 
     Private Sub HoraFinCambio() Handles datetimepickerHoraFin.ValueChanged
-        datetimepickerFechaFin.Value = New Date(datetimepickerFechaFin.Value.Year, datetimepickerFechaFin.Value.Month, datetimepickerFechaFin.Value.Day, datetimepickerHoraFin.Value.Hour, datetimepickerHoraFin.Value.Minute, datetimepickerHoraFin.Value.Second)
+        datetimepickerFechaFin.Value = New Date(datetimepickerFechaFin.Value.Year, datetimepickerFechaFin.Value.Month, datetimepickerFechaFin.Value.Day, datetimepickerHoraFin.Value.Hour, datetimepickerHoraFin.Value.Minute, datetimepickerHoraFin.Value.Second, DateTimeKind.Local)
     End Sub
 
     Private Sub FechaHoraFinAhora() Handles buttonFechaHoraFinAhora.Click
@@ -696,7 +692,7 @@
     Private Sub TipoTodos() Handles checkboxTipoTodos.CheckedChanged
         Dim Producto_PlantaActual As Producto_Planta
 
-        If comboboxProducto.SelectedValue Is Nothing Or comboboxPlanta.SelectedValue Is Nothing Then
+        If comboboxProducto.SelectedValue Is Nothing OrElse comboboxPlanta.SelectedValue Is Nothing Then
             radiobuttonEntrada.Visible = False
             radiobuttonSalida.Visible = False
             radiobuttonNinguno.Visible = False
@@ -712,11 +708,11 @@
                 radiobuttonNinguno.Visible = (Producto_PlantaActual.TipoNinguno = Constantes.PESADA_TIPO_PERIODICIDAD_FRECUENTEMENTE)
             End If
 
-            If radiobuttonEntrada.Visible And radiobuttonSalida.Visible = False And radiobuttonNinguno.Visible = False Then
+            If radiobuttonEntrada.Visible AndAlso (Not radiobuttonSalida.Visible) AndAlso (Not radiobuttonNinguno.Visible) Then
                 radiobuttonEntrada.Checked = True
-            ElseIf radiobuttonEntrada.Visible = False And radiobuttonSalida.Visible And radiobuttonNinguno.Visible = False Then
+            ElseIf (Not radiobuttonEntrada.Visible) AndAlso radiobuttonSalida.Visible AndAlso (Not radiobuttonNinguno.Visible) Then
                 radiobuttonSalida.Checked = True
-            ElseIf radiobuttonEntrada.Visible = False And radiobuttonSalida.Visible = False And radiobuttonNinguno.Visible Then
+            ElseIf (Not radiobuttonEntrada.Visible) AndAlso (Not radiobuttonSalida.Visible) AndAlso radiobuttonNinguno.Visible Then
                 radiobuttonNinguno.Checked = True
             Else
                 radiobuttonEntrada.Checked = False
@@ -740,7 +736,7 @@
     End Sub
 
     Private Sub TitularCargarLista()
-        If checkboxTitularTodos.Checked Or checkboxProductoOtro.Checked Then
+        If checkboxTitularTodos.Checked OrElse checkboxProductoOtro.Checked Then
             pFillAndRefreshLists.Entidad(comboboxTitular, mPesadaActual.Titular_IDEntidad, False, True, False, False, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER, False, False, False, False)
         Else
             pFillAndRefreshLists.EntidadTitularPorProductoPlanta(comboboxTitular, mPesadaActual.Titular_IDEntidad, CByte(comboboxProducto.SelectedValue), CByte(comboboxPlanta.SelectedValue), radiobuttonEntrada.Checked, radiobuttonSalida.Checked, radiobuttonNinguno.Checked, True, False, False)
@@ -775,11 +771,11 @@
     End Sub
 
     Private Sub OrigenOtro() Handles checkboxOrigenOtro.CheckedChanged
-        labelOrigen.Visible = (radiobuttonEntrada.Checked Or radiobuttonNinguno.Checked)
-        checkboxOrigenOtro.Visible = ((radiobuttonEntrada.Checked Or radiobuttonNinguno.Checked) And mEditMode)
-        comboboxOrigen.Visible = (radiobuttonEntrada.Checked Or radiobuttonNinguno.Checked) And Not checkboxOrigenOtro.Checked
-        textboxOrigen.Visible = (radiobuttonEntrada.Checked Or radiobuttonNinguno.Checked) And checkboxOrigenOtro.Checked
-        checkboxOrigenTodos.Visible = (radiobuttonEntrada.Checked Or radiobuttonNinguno.Checked) And Not checkboxOrigenOtro.Checked
+        labelOrigen.Visible = (radiobuttonEntrada.Checked OrElse radiobuttonNinguno.Checked)
+        checkboxOrigenOtro.Visible = ((radiobuttonEntrada.Checked OrElse radiobuttonNinguno.Checked) AndAlso mEditMode)
+        comboboxOrigen.Visible = (radiobuttonEntrada.Checked OrElse radiobuttonNinguno.Checked) AndAlso Not checkboxOrigenOtro.Checked
+        textboxOrigen.Visible = (radiobuttonEntrada.Checked OrElse radiobuttonNinguno.Checked) AndAlso checkboxOrigenOtro.Checked
+        checkboxOrigenTodos.Visible = (radiobuttonEntrada.Checked OrElse radiobuttonNinguno.Checked) AndAlso Not checkboxOrigenOtro.Checked
 
         If checkboxOrigenOtro.Checked Then
             textboxOrigen.Focus()
@@ -788,17 +784,12 @@
         End If
     End Sub
 
-    Private Sub OrigenCambio() Handles comboboxOrigen.SelectedValueChanged
-        If comboboxOrigen.SelectedItem IsNot Nothing Then
-        End If
-    End Sub
-
     Private Sub DestinoOtro() Handles checkboxDestinoOtro.CheckedChanged
-        labelDestino.Visible = (radiobuttonSalida.Checked Or radiobuttonNinguno.Checked)
-        checkboxDestinoOtro.Visible = ((radiobuttonSalida.Checked Or radiobuttonNinguno.Checked) And mEditMode)
-        comboboxDestino.Visible = (radiobuttonSalida.Checked Or radiobuttonNinguno.Checked) And Not checkboxDestinoOtro.Checked
-        textboxDestino.Visible = (radiobuttonSalida.Checked Or radiobuttonNinguno.Checked) And checkboxDestinoOtro.Checked
-        checkboxDestinoTodos.Visible = (radiobuttonSalida.Checked Or radiobuttonNinguno.Checked) And Not checkboxDestinoOtro.Checked
+        labelDestino.Visible = (radiobuttonSalida.Checked OrElse radiobuttonNinguno.Checked)
+        checkboxDestinoOtro.Visible = ((radiobuttonSalida.Checked OrElse radiobuttonNinguno.Checked) AndAlso mEditMode)
+        comboboxDestino.Visible = (radiobuttonSalida.Checked OrElse radiobuttonNinguno.Checked) AndAlso Not checkboxDestinoOtro.Checked
+        textboxDestino.Visible = (radiobuttonSalida.Checked OrElse radiobuttonNinguno.Checked) AndAlso checkboxDestinoOtro.Checked
+        checkboxDestinoTodos.Visible = (radiobuttonSalida.Checked OrElse radiobuttonNinguno.Checked) AndAlso Not checkboxDestinoOtro.Checked
 
         If checkboxDestinoOtro.Checked Then
             textboxDestino.Focus()
@@ -807,16 +798,11 @@
         End If
     End Sub
 
-    Private Sub DestinoCambio() Handles comboboxDestino.SelectedValueChanged
-        If comboboxDestino.SelectedItem IsNot Nothing Then
-        End If
-    End Sub
-
     Private Sub TransportistaOtro() Handles checkboxTransportistaOtro.CheckedChanged
         comboboxTransportista.Visible = Not checkboxTransportistaOtro.Checked
         textboxTransportista.Visible = checkboxTransportistaOtro.Checked
         checkboxTransportistaTodos.Visible = Not checkboxTransportistaOtro.Checked
-        maskedtextboxTransportistaCUIT.ReadOnly = Not (mEditMode And checkboxTransportistaOtro.Checked)
+        maskedtextboxTransportistaCUIT.ReadOnly = Not (mEditMode AndAlso checkboxTransportistaOtro.Checked)
 
         If checkboxTransportistaOtro.Checked Then
             maskedtextboxTransportistaCUIT.Text = String.Empty
@@ -841,13 +827,8 @@
             pFillAndRefreshLists.Camion(comboboxCamion, mPesadaActual.IDCamion, False, CInt(comboboxTransportista.SelectedValue), True, True, False, True)
             ChoferTodos()
 
-            If CInt(comboboxTransportista.SelectedValue) = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER Then
-                CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxCamion, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.First)
-                CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxChofer, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.First)
-            Else
-                CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxCamion, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.First)
-                CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxChofer, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.First)
-            End If
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxCamion, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.First)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxChofer, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.First)
         End If
     End Sub
 
@@ -860,7 +841,7 @@
         comboboxChofer.Visible = Not checkboxChoferOtro.Checked
         textboxChofer.Visible = checkboxChoferOtro.Checked
         checkboxChoferTodos.Visible = Not checkboxChoferOtro.Checked
-        maskedtextboxChoferCUIT_CUIL.ReadOnly = Not (mEditMode And checkboxChoferOtro.Checked)
+        maskedtextboxChoferCUIT_CUIL.ReadOnly = Not (mEditMode AndAlso checkboxChoferOtro.Checked)
 
         If checkboxChoferOtro.Checked Then
             maskedtextboxChoferCUIT_CUIL.Text = String.Empty
@@ -910,7 +891,7 @@
     End Sub
 
     Private Sub KilogramoIngreso(sender As Object, e As KeyPressEventArgs) Handles integertextboxKilogramoBruto.KeyPress, integertextboxKilogramoTara.KeyPress
-        If integertextboxKilogramoBruto.IsNull Or integertextboxKilogramoTara.IsNull Then
+        If integertextboxKilogramoBruto.IsNull OrElse integertextboxKilogramoTara.IsNull Then
             FechaHoraInicioAhora()
             FechaHoraFinAhora()
         Else
@@ -919,7 +900,7 @@
     End Sub
 
     Private Sub KilogramoCambio(sender As Object, e As EventArgs) Handles integertextboxKilogramoBruto.TextChanged, integertextboxKilogramoTara.TextChanged
-        If integertextboxKilogramoBruto.IsNull Or integertextboxKilogramoTara.IsNull Then
+        If integertextboxKilogramoBruto.IsNull OrElse integertextboxKilogramoTara.IsNull Then
             integertextboxKilogramoNeto.Text = String.Empty
         Else
             integertextboxKilogramoNeto.IntegerValue = integertextboxKilogramoBruto.IntegerValue - integertextboxKilogramoTara.IntegerValue
@@ -1015,10 +996,8 @@
                     If mPesadaActual.Pesada_Acondicionamiento Is Nothing Then
                         mPesadaActual.Pesada_Acondicionamiento = New Pesada_Acondicionamiento
                     End If
-                    If Not mPesadaActual.Pesada_Acondicionamiento.CalcularAcondicionamiento(mPesadaActual) Then
-                        If Not mPesadaActual.Pesada_Acondicionamiento.TarifaManual Then
-                            mdbContext.Pesada_Acondicionamiento.Remove(mPesadaActual.Pesada_Acondicionamiento)
-                        End If
+                    If Not mPesadaActual.Pesada_Acondicionamiento.CalcularAcondicionamiento(mPesadaActual) AndAlso Not mPesadaActual.Pesada_Acondicionamiento.TarifaManual Then
+                        mdbContext.Pesada_Acondicionamiento.Remove(mPesadaActual.Pesada_Acondicionamiento)
                     End If
                 Else
                     If mPesadaActual.Pesada_Acondicionamiento IsNot Nothing Then
@@ -1043,11 +1022,11 @@
                     Case CardonerSistemas.Database.EntityFramework.Errors.Unknown
                         CardonerSistemas.ErrorHandler.ProcessError(CType(dbuex, Exception), My.Resources.STRING_ERROR_SAVING_CHANGES)
                 End Select
-                Exit Sub
+                Return
             Catch ex As Exception
                 Me.Cursor = Cursors.Default
                 CardonerSistemas.ErrorHandler.ProcessError(ex, My.Resources.STRING_ERROR_SAVING_CHANGES)
-                Exit Sub
+                Return
             End Try
         End If
 
@@ -1088,7 +1067,9 @@
             ' La fecha de la pesada es igual a la actual
             If DateDiff(DateInterval.Minute, DateTime.Now, datetimepickerFechaInicio.Value) < -CS_Parameter_System.GetIntegerAsInteger(Parametros.PESADA_HORA_INICIOACTUAL_DIFERENCIAMAXIMA_MINUTOS) Then
                 ' La hora de la pesada es anterior a la actual en más de X minutos
+#Disable Warning S1066 ' Mergeable "if" statements should be combined
                 If Not Permisos.VerificarPermiso(Permisos.PESADA_AGREGAR_HORA_ANTERIOR, False) Then
+#Enable Warning S1066 ' Mergeable "if" statements should be combined
                     MsgBox("La hora de inicio no debe ser menor a la hora actual.", MsgBoxStyle.Information, My.Application.Info.Title)
                     datetimepickerHoraInicio.Focus()
                     Return False
@@ -1096,7 +1077,7 @@
             End If
         ElseIf DateDiff(DateInterval.Day, DateTime.Now, datetimepickerFechaInicio.Value) >= -CS_Parameter_System.GetIntegerAsInteger(Parametros.PESADA_FECHA_INICIOACTUAL_ANTERIOR_DIFERENCIAMAXIMA_DIAS) Then
             ' La fecha de la pesada es menos de X días anterior a la fecha actual
-            If Not (Permisos.VerificarPermiso(Permisos.PESADA_AGREGAR_FECHA_ANTERIOR_XDIAS, False) Or Permisos.VerificarPermiso(Permisos.PESADA_AGREGAR_FECHA_ANTERIOR, False)) Then
+            If Not (Permisos.VerificarPermiso(Permisos.PESADA_AGREGAR_FECHA_ANTERIOR_XDIAS, False) OrElse Permisos.VerificarPermiso(Permisos.PESADA_AGREGAR_FECHA_ANTERIOR, False)) Then
                 MsgBox(String.Format("La fecha de inicio de la pesada no debe ser menor en {0} días a la fecha actual.", CS_Parameter_System.GetIntegerAsInteger(Parametros.PESADA_FECHA_INICIOACTUAL_ANTERIOR_DIFERENCIAMAXIMA_DIAS)), MsgBoxStyle.Information, My.Application.Info.Title)
                 datetimepickerFechaInicio.Focus()
                 Return False
@@ -1158,7 +1139,7 @@
         End If
 
         ' Tipo
-        If groupboxTipo.Visible AndAlso (radiobuttonEntrada.Checked = False And radiobuttonSalida.Checked = False And radiobuttonNinguno.Checked = False) Then
+        If groupboxTipo.Visible AndAlso ((Not radiobuttonEntrada.Checked) AndAlso (Not radiobuttonSalida.Checked) AndAlso (Not radiobuttonNinguno.Checked)) Then
             MsgBox("Debe especificar el Tipo de Pesada.", MsgBoxStyle.Information, My.Application.Info.Title)
             labelTipo.Focus()
             Return False
@@ -1209,7 +1190,7 @@
                 textboxTransportista.Focus()
                 Return False
             End If
-            If maskedtextboxTransportistaCUIT.Text.Length > 0 And maskedtextboxTransportistaCUIT.Text.Length < 11 Then
+            If maskedtextboxTransportistaCUIT.Text.Length > 0 AndAlso maskedtextboxTransportistaCUIT.Text.Length < 11 Then
                 MsgBox("El CUIT del Transportista debe contener 11 dígitos.", MsgBoxStyle.Information, My.Application.Info.Title)
                 maskedtextboxTransportistaCUIT.Focus()
                 Return False
@@ -1229,7 +1210,7 @@
                 textboxChofer.Focus()
                 Return False
             End If
-            If maskedtextboxChoferCUIT_CUIL.Text.Length > 0 And maskedtextboxChoferCUIT_CUIL.Text.Length < 11 Then
+            If maskedtextboxChoferCUIT_CUIL.Text.Length > 0 AndAlso maskedtextboxChoferCUIT_CUIL.Text.Length < 11 Then
                 MsgBox("El CUIT / CUIL del Chofer debe contener 11 dígitos.", MsgBoxStyle.Information, My.Application.Info.Title)
                 maskedtextboxChoferCUIT_CUIL.Focus()
                 Return False
@@ -1244,12 +1225,12 @@
 
         ' Camión
         If checkboxCamionOtro.Checked Then
-            If textboxCamion_DominioChasis.Text.Trim.Length > 0 And textboxCamion_DominioChasis.Text.Trim.Length < 6 Then
+            If textboxCamion_DominioChasis.Text.Trim.Length > 0 AndAlso textboxCamion_DominioChasis.Text.Trim.Length < 6 Then
                 MsgBox("El Dominio del Chasis debe contener al menos 6 caracteres.", MsgBoxStyle.Information, My.Application.Info.Title)
                 textboxCamion_DominioChasis.Focus()
                 Return False
             End If
-            If textboxCamion_DominioAcoplado.Text.Trim.Length > 0 And textboxCamion_DominioAcoplado.Text.Trim.Length < 6 Then
+            If textboxCamion_DominioAcoplado.Text.Trim.Length > 0 AndAlso textboxCamion_DominioAcoplado.Text.Trim.Length < 6 Then
                 MsgBox("El Dominio del Acoplado debe contener al menos 6 caracteres.", MsgBoxStyle.Information, My.Application.Info.Title)
                 textboxCamion_DominioAcoplado.Focus()
                 Return False
@@ -1263,11 +1244,9 @@
         End If
 
         ' Kilogramos
-        If integertextboxKilogramoBruto.IsNull And integertextboxKilogramoTara.IsNull Then
-            If MsgBox("No ha especificado los Kilogramos." & vbCrLf & vbCrLf & "¿Desea ingresarlos?", CType(MsgBoxStyle.Exclamation Or MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
-                integertextboxKilogramoBruto.Focus()
-                Return False
-            End If
+        If integertextboxKilogramoBruto.IsNull AndAlso integertextboxKilogramoTara.IsNull AndAlso MsgBox("No ha especificado los Kilogramos." & vbCrLf & vbCrLf & "¿Desea ingresarlos?", CType(MsgBoxStyle.Exclamation Or MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
+            integertextboxKilogramoBruto.Focus()
+            Return False
         End If
 
         Return True

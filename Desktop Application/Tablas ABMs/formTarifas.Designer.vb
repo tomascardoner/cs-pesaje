@@ -70,7 +70,7 @@ Partial Class formTarifas
         '
         'buttonAgregar
         '
-        Me.buttonAgregar.Image = Global.My.Resources.Resources.ImageItemAgregar32
+        Me.buttonAgregar.Image = My.Resources.Resources.ImageItemAgregar32
         Me.buttonAgregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonAgregar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonAgregar.Name = "buttonAgregar"
@@ -79,7 +79,7 @@ Partial Class formTarifas
         '
         'buttonCopiar
         '
-        Me.buttonCopiar.Image = Global.My.Resources.Resources.ImageItemCopiar32
+        Me.buttonCopiar.Image = My.Resources.Resources.ImageItemCopiar32
         Me.buttonCopiar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCopiar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonCopiar.Name = "buttonCopiar"
@@ -88,7 +88,7 @@ Partial Class formTarifas
         '
         'buttonEditar
         '
-        Me.buttonEditar.Image = Global.My.Resources.Resources.ImageItemEditar32
+        Me.buttonEditar.Image = My.Resources.Resources.ImageItemEditar32
         Me.buttonEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonEditar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonEditar.Name = "buttonEditar"
@@ -97,7 +97,7 @@ Partial Class formTarifas
         '
         'buttonEliminar
         '
-        Me.buttonEliminar.Image = Global.My.Resources.Resources.ImageItemBorrar32
+        Me.buttonEliminar.Image = My.Resources.Resources.ImageItemBorrar32
         Me.buttonEliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonEliminar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonEliminar.Name = "buttonEliminar"

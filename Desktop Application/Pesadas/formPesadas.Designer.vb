@@ -450,7 +450,7 @@ Partial Class formPesadas
         '
         'buttonAgregar
         '
-        Me.buttonAgregar.Image = Global.My.Resources.Resources.ImageItemAgregar32
+        Me.buttonAgregar.Image = My.Resources.Resources.ImageItemAgregar32
         Me.buttonAgregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonAgregar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonAgregar.Name = "buttonAgregar"
@@ -460,7 +460,7 @@ Partial Class formPesadas
         '
         'buttonEditar
         '
-        Me.buttonEditar.Image = Global.My.Resources.Resources.ImageItemEditar32
+        Me.buttonEditar.Image = My.Resources.Resources.ImageItemEditar32
         Me.buttonEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonEditar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonEditar.Name = "buttonEditar"
@@ -470,7 +470,7 @@ Partial Class formPesadas
         '
         'buttonCopiar
         '
-        Me.buttonCopiar.Image = Global.My.Resources.Resources.ImageItemCopiar32
+        Me.buttonCopiar.Image = My.Resources.Resources.ImageItemCopiar32
         Me.buttonCopiar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCopiar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonCopiar.Name = "buttonCopiar"
@@ -480,7 +480,7 @@ Partial Class formPesadas
         '
         'buttonEliminar
         '
-        Me.buttonEliminar.Image = Global.My.Resources.Resources.ImageItemBorrar32
+        Me.buttonEliminar.Image = My.Resources.Resources.ImageItemBorrar32
         Me.buttonEliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonEliminar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonEliminar.Name = "buttonEliminar"
@@ -491,7 +491,7 @@ Partial Class formPesadas
         'buttonImprimir
         '
         Me.buttonImprimir.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemImprimir_TicketPesadaReducido, Me.menuitemSeparator1})
-        Me.buttonImprimir.Image = Global.My.Resources.Resources.ImageImprimir32
+        Me.buttonImprimir.Image = My.Resources.Resources.ImageImprimir32
         Me.buttonImprimir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonImprimir.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonImprimir.Name = "buttonImprimir"
@@ -549,7 +549,7 @@ Partial Class formPesadas
         'buttonFechaDesdeAnterior
         '
         Me.buttonFechaDesdeAnterior.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.buttonFechaDesdeAnterior.Image = Global.My.Resources.Resources.ImageCalendarPrevious16
+        Me.buttonFechaDesdeAnterior.Image = My.Resources.Resources.ImageCalendarPrevious16
         Me.buttonFechaDesdeAnterior.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonFechaDesdeAnterior.Name = "buttonFechaDesdeAnterior"
         Me.buttonFechaDesdeAnterior.Size = New System.Drawing.Size(23, 43)
@@ -566,7 +566,7 @@ Partial Class formPesadas
         'buttonFechaDesdeSiguiente
         '
         Me.buttonFechaDesdeSiguiente.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.buttonFechaDesdeSiguiente.Image = Global.My.Resources.Resources.ImageCalendarNext16
+        Me.buttonFechaDesdeSiguiente.Image = My.Resources.Resources.ImageCalendarNext16
         Me.buttonFechaDesdeSiguiente.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonFechaDesdeSiguiente.Name = "buttonFechaDesdeSiguiente"
         Me.buttonFechaDesdeSiguiente.Size = New System.Drawing.Size(23, 43)
@@ -575,7 +575,7 @@ Partial Class formPesadas
         'buttonFechaDesdeHoy
         '
         Me.buttonFechaDesdeHoy.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.buttonFechaDesdeHoy.Image = Global.My.Resources.Resources.ImageCalendarToday16
+        Me.buttonFechaDesdeHoy.Image = My.Resources.Resources.ImageCalendarToday16
         Me.buttonFechaDesdeHoy.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonFechaDesdeHoy.Name = "buttonFechaDesdeHoy"
         Me.buttonFechaDesdeHoy.Size = New System.Drawing.Size(23, 43)
@@ -592,7 +592,7 @@ Partial Class formPesadas
         'buttonFechaHastaAnterior
         '
         Me.buttonFechaHastaAnterior.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.buttonFechaHastaAnterior.Image = Global.My.Resources.Resources.ImageCalendarPrevious16
+        Me.buttonFechaHastaAnterior.Image = My.Resources.Resources.ImageCalendarPrevious16
         Me.buttonFechaHastaAnterior.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonFechaHastaAnterior.Name = "buttonFechaHastaAnterior"
         Me.buttonFechaHastaAnterior.Size = New System.Drawing.Size(23, 43)
@@ -601,7 +601,7 @@ Partial Class formPesadas
         'buttonFechaHastaSiguiente
         '
         Me.buttonFechaHastaSiguiente.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.buttonFechaHastaSiguiente.Image = Global.My.Resources.Resources.ImageCalendarNext16
+        Me.buttonFechaHastaSiguiente.Image = My.Resources.Resources.ImageCalendarNext16
         Me.buttonFechaHastaSiguiente.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonFechaHastaSiguiente.Name = "buttonFechaHastaSiguiente"
         Me.buttonFechaHastaSiguiente.Size = New System.Drawing.Size(23, 43)
@@ -610,7 +610,7 @@ Partial Class formPesadas
         'buttonFechaHastaHoy
         '
         Me.buttonFechaHastaHoy.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.buttonFechaHastaHoy.Image = Global.My.Resources.Resources.ImageCalendarToday16
+        Me.buttonFechaHastaHoy.Image = My.Resources.Resources.ImageCalendarToday16
         Me.buttonFechaHastaHoy.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonFechaHastaHoy.Name = "buttonFechaHastaHoy"
         Me.buttonFechaHastaHoy.Size = New System.Drawing.Size(23, 43)

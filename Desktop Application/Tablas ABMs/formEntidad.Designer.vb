@@ -53,7 +53,7 @@ Partial Class formEntidad
         Me.labelTransportista = New System.Windows.Forms.Label()
         Me.labelCamion = New System.Windows.Forms.Label()
         Me.comboboxTransportista = New System.Windows.Forms.ComboBox()
-        Me.tabcontrolMain = New CardonerSistemas.TabControl()
+        Me.tabcontrolMain = New System.Windows.Forms.TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
         Me.comboboxDomicilioLocalidad = New System.Windows.Forms.ComboBox()
         Me.comboboxDomicilioProvincia = New System.Windows.Forms.ComboBox()
@@ -207,7 +207,7 @@ Partial Class formEntidad
         'buttonCerrar
         '
         Me.buttonCerrar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonCerrar.Image = Global.My.Resources.Resources.ImageClose32
+        Me.buttonCerrar.Image = My.Resources.Resources.ImageClose32
         Me.buttonCerrar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCerrar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonCerrar.Name = "buttonCerrar"
@@ -217,7 +217,7 @@ Partial Class formEntidad
         'buttonEditar
         '
         Me.buttonEditar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonEditar.Image = Global.My.Resources.Resources.ImageItemEditar32
+        Me.buttonEditar.Image = My.Resources.Resources.ImageItemEditar32
         Me.buttonEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonEditar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonEditar.Name = "buttonEditar"
@@ -227,7 +227,7 @@ Partial Class formEntidad
         'buttonCancelar
         '
         Me.buttonCancelar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonCancelar.Image = Global.My.Resources.Resources.ImageCancelar32
+        Me.buttonCancelar.Image = My.Resources.Resources.ImageCancelar32
         Me.buttonCancelar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCancelar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonCancelar.Name = "buttonCancelar"
@@ -237,7 +237,7 @@ Partial Class formEntidad
         'buttonGuardar
         '
         Me.buttonGuardar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonGuardar.Image = Global.My.Resources.Resources.ImageAceptar32
+        Me.buttonGuardar.Image = My.Resources.Resources.ImageAceptar32
         Me.buttonGuardar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonGuardar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonGuardar.Name = "buttonGuardar"
@@ -677,7 +677,7 @@ Partial Class formEntidad
         '
         'buttonProductosPlantasAgregar
         '
-        Me.buttonProductosPlantasAgregar.Image = Global.My.Resources.Resources.ImageItemAgregar32
+        Me.buttonProductosPlantasAgregar.Image = My.Resources.Resources.ImageItemAgregar32
         Me.buttonProductosPlantasAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonProductosPlantasAgregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonProductosPlantasAgregar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -687,7 +687,7 @@ Partial Class formEntidad
         '
         'buttonProductosPlantasEditar
         '
-        Me.buttonProductosPlantasEditar.Image = Global.My.Resources.Resources.ImageItemEditar32
+        Me.buttonProductosPlantasEditar.Image = My.Resources.Resources.ImageItemEditar32
         Me.buttonProductosPlantasEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonProductosPlantasEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonProductosPlantasEditar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -697,7 +697,7 @@ Partial Class formEntidad
         '
         'buttonProductosPlantasBorrar
         '
-        Me.buttonProductosPlantasBorrar.Image = Global.My.Resources.Resources.ImageItemBorrar32
+        Me.buttonProductosPlantasBorrar.Image = My.Resources.Resources.ImageItemBorrar32
         Me.buttonProductosPlantasBorrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonProductosPlantasBorrar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonProductosPlantasBorrar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -869,7 +869,7 @@ Partial Class formEntidad
     Friend WithEvents labelTransportista As System.Windows.Forms.Label
     Friend WithEvents labelCamion As System.Windows.Forms.Label
     Friend WithEvents comboboxTransportista As System.Windows.Forms.ComboBox
-    Friend WithEvents tabcontrolMain As CardonerSistemas.TabControl
+    Friend WithEvents tabcontrolMain As System.Windows.Forms.TabControl
     Friend WithEvents tabpageGeneral As System.Windows.Forms.TabPage
     Friend WithEvents tabpageNotasAuditoria As System.Windows.Forms.TabPage
     Friend WithEvents checkboxEsActivo As System.Windows.Forms.CheckBox

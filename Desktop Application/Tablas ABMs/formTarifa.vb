@@ -9,6 +9,8 @@
     Private mEditMode As Boolean = False
     Private mIsNew As Boolean
 
+    Private tabControlExtension As CardonerSistemas.TabControlExtension
+
 #End Region
 
 #Region "Form stuff"
@@ -16,7 +18,7 @@
     Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDCosecha As Byte, ByVal IDProducto As Byte, ByVal Indice As Short, ByVal copiar As Boolean)
         mIsLoading = True
         mEditMode = EditMode
-        mIsNew = (Indice = 0 Or copiar)
+        mIsNew = (Indice = 0 OrElse copiar)
 
         If mIsNew Then
             mCosecha_Producto_TarifaActual = New Cosecha_Producto_Tarifa
@@ -35,14 +37,9 @@
         End If
         buttonIndiceObtener.Visible = mIsNew
 
-        'Me.MdiParent = pFormMDIMain
         CardonerSistemas.Forms.CenterToParent(ParentForm, Me)
         InitializeFormAndControls()
         SetDataFromObjectToControls()
-        'If Me.WindowState = FormWindowState.Minimized Then
-        '    Me.WindowState = FormWindowState.Normal
-        'End If
-        'Me.Focus()
         mIsLoading = False
 
         ChangeMode()
@@ -67,14 +64,9 @@
 
         buttonIndiceObtener.Visible = mIsNew
 
-        'Me.MdiParent = pFormMDIMain
         CardonerSistemas.Forms.CenterToParent(ParentForm, Me)
         InitializeFormAndControls()
         SetDataFromObjectToControls()
-        'If Me.WindowState = FormWindowState.Minimized Then
-        '    Me.WindowState = FormWindowState.Normal
-        'End If
-        'Me.Focus()
         mIsLoading = False
 
         ChangeMode()
@@ -84,7 +76,7 @@
 
     Private Sub ChangeMode()
         If mIsLoading Then
-            Exit Sub
+            Return
         End If
 
         ' Toolbar
@@ -138,23 +130,21 @@
     End Sub
 
     Friend Sub InitializeFormAndControls()
-        SetAppearance()
-
         pFillAndRefreshLists.Cosecha(comboboxCosecha, mCosecha_Producto_TarifaActual.IDCosecha, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE, DateTime.MinValue, False, False, True)
         pFillAndRefreshLists.Producto(comboboxProducto, mCosecha_Producto_TarifaActual.IDProducto, False, True, False, False)
 
         pFillAndRefreshLists.Planta(comboboxPlanta, mCosecha_Producto_TarifaActual.IDPlanta, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE, False, True)
         pFillAndRefreshLists.Entidad(comboboxEntidad, mCosecha_Producto_TarifaActual.IDEntidad, False, False, True, False, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER, True, False, False, True)
         pFillAndRefreshLists.OrigenDestino(comboboxOrigen, mCosecha_Producto_TarifaActual.IDOrigen, False, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER, False, False, True)
-    End Sub
 
-    Friend Sub SetAppearance()
+        tabControlExtension = New CardonerSistemas.TabControlExtension(tabcontrolMain)
     End Sub
 
     Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
         mdbContext.Dispose()
         mdbContext = Nothing
         mCosecha_Producto_TarifaActual = Nothing
+        tabControlExtension = Nothing
         Me.Dispose()
     End Sub
 
@@ -235,8 +225,6 @@
                 .TarifaSecadoTipo = Constantes.PRODUCTO_TARIFA_SECADO_TIPO_FIJA
             ElseIf radiobuttonSecadoTipoEscala.Checked Then
                 .TarifaSecadoTipo = Constantes.PRODUCTO_TARIFA_SECADO_TIPO_ESCALA
-            Else
-                Throw New Exception("No se ha seleccionado el Tipo de Secado")
             End If
             .TarifaSecadoInicialPunto = Convert.ToDecimal(doubletextboxTarifaSecadoInicialPunto.DoubleValue)
             .TarifaSecadoInicialImporte = currencytextboxTarifaSecadoInicialImporte.DecimalValue
@@ -251,8 +239,6 @@
                 .TarifaSecadoHumedadRedondeoPuntoTipo = Constantes.PRODUCTO_TARIFA_SECADO_REDONDEOPUNTO_TIPO_SUPERIOR
             ElseIf radiobuttonTarifasSecadoRedondeoPuntoTipoInferior.Checked Then
                 .TarifaSecadoHumedadRedondeoPuntoTipo = Constantes.PRODUCTO_TARIFA_SECADO_REDONDEOPUNTO_TIPO_INFERIOR
-            Else
-                Throw New Exception("No se ha seleccionado el Tipo de Redondeo por Punto para el Secado")
             End If
 
             ' Almacenaje
@@ -262,8 +248,6 @@
                 .AlmacenajeTipo = Constantes.ALMACENAJE_TIPO_DIAS_GRACIA_SI_RETIRA_ANTES
             ElseIf radiobuttonAlmacenajeTipoFechaFija.Checked Then
                 .AlmacenajeTipo = Constantes.ALMACENAJE_TIPO_FECHA_FIJA
-            Else
-                Throw New Exception("No se ha seleccionado el Tipo de Almacenaje")
             End If
             .AlmacenajeDiaGracia = CS_ValueTranslation_Syncfusion.FromControlToShort(integertextboxAlmacenajeDiaGracia)
             .AlmacenajeInicio = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerAlmacenajeInicio.Value, datetimepickerAlmacenajeInicio.Checked)
@@ -292,7 +276,7 @@
         Catch ex As Exception
             CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer las Escalas de Tarifas de Secado.")
             Me.Cursor = Cursors.Default
-            Exit Sub
+            Return
         End Try
 
         Me.Cursor = Cursors.Default
@@ -301,7 +285,7 @@
             For Each CurrentRowChecked As DataGridViewRow In datagridviewTarifaSecadoEscala.Rows
                 If CType(datagridviewTarifaSecadoEscala.CurrentRow.DataBoundItem, Cosecha_Producto_TarifaEscala).HumedadExcesoInicio = PositionHumedadExcesoInicio Then
                     datagridviewTarifaSecadoEscala.CurrentCell = CurrentRowChecked.Cells(0)
-                    Exit For
+                    Return
                 End If
             Next
         End If
@@ -329,14 +313,14 @@
     End Sub
 
     Private Sub IndiceObtener(sender As Object, e As EventArgs) Handles buttonIndiceObtener.Click
-        If Not (comboboxCosecha.SelectedValue Is Nothing Or comboboxProducto.SelectedValue Is Nothing) Then
+        If Not (comboboxCosecha.SelectedValue Is Nothing OrElse comboboxProducto.SelectedValue Is Nothing) Then
             Dim IDCosecha As Byte = Convert.ToByte(comboboxCosecha.SelectedValue)
             Dim IDProducto As Byte = Convert.ToByte(comboboxProducto.SelectedValue)
 
-            If mdbContext.Cosecha_Producto_Tarifa.Where(Function(cpt) cpt.IDCosecha = IDCosecha And cpt.IDProducto = IDProducto).Count = 0 Then
+            If mdbContext.Cosecha_Producto_Tarifa.Where(Function(cpt) cpt.IDCosecha = IDCosecha AndAlso cpt.IDProducto = IDProducto).Count = 0 Then
                 updownIndice.Value = 1
             Else
-                updownIndice.Value = mdbContext.Cosecha_Producto_Tarifa.Where(Function(cpt) cpt.IDCosecha = IDCosecha And cpt.IDProducto = IDProducto).Max(Function(cpt) cpt.Indice) + Convert.ToInt16(1)
+                updownIndice.Value = mdbContext.Cosecha_Producto_Tarifa.Where(Function(cpt) cpt.IDCosecha = IDCosecha AndAlso cpt.IDProducto = IDProducto).Max(Function(cpt) cpt.Indice) + Convert.ToInt16(1)
             End If
         End If
     End Sub
@@ -347,9 +331,9 @@
 
     Private Sub SecadoTipoEscala_CheckedChanged(sender As Object, e As EventArgs) Handles radiobuttonSecadoTipoEscala.CheckedChanged
         If radiobuttonSecadoTipoEscala.Checked Then
-            tabcontrolMain.ShowTabPageByName(tabpageSecadoEscala.Name)
+            tabControlExtension.ShowPage(tabpageSecadoEscala)
         Else
-            tabcontrolMain.HideTabPageByName(tabpageSecadoEscala.Name)
+            tabControlExtension.HidePage(tabpageSecadoEscala)
         End If
     End Sub
 
@@ -376,7 +360,7 @@
             MsgBox("Debe especificar la Cosecha.", MsgBoxStyle.Information, My.Application.Info.Title)
             tabcontrolMain.SelectedTab = tabpageGeneral
             comboboxCosecha.Focus()
-            Exit Sub
+            Return
         End If
 
         ' Producto
@@ -384,7 +368,7 @@
             MsgBox("Debe especificar el Producto.", MsgBoxStyle.Information, My.Application.Info.Title)
             tabcontrolMain.SelectedTab = tabpageGeneral
             comboboxProducto.Focus()
-            Exit Sub
+            Return
         End If
 
         ' Indice
@@ -392,7 +376,7 @@
             MsgBox("El Índice debe ser mayor o igual a 1.", MsgBoxStyle.Information, My.Application.Info.Title)
             tabcontrolMain.SelectedTab = tabpageGeneral
             updownIndice.Focus()
-            Exit Sub
+            Return
         End If
 
         ' Nombre
@@ -400,38 +384,40 @@
             MsgBox("Debe especificar el Nombre.", MsgBoxStyle.Information, My.Application.Info.Title)
             tabcontrolMain.SelectedTab = tabpageGeneral
             textboxNombre.Focus()
-            Exit Sub
+            Return
         End If
 
         ' Fecha desde y hasta
-        If datetimepickerFechaDesde.Checked And datetimepickerFechaHasta.Checked Then
+        If datetimepickerFechaDesde.Checked AndAlso datetimepickerFechaHasta.Checked Then
+#Disable Warning S1066 ' Mergeable "if" statements should be combined
             If DateDiff(DateInterval.Day, datetimepickerFechaDesde.Value, datetimepickerFechaHasta.Value) > 0 Then
+#Enable Warning S1066 ' Mergeable "if" statements should be combined
                 MsgBox("La fecha hasta debe ser posterior a la fecha desde.", MsgBoxStyle.Information, My.Application.Info.Title)
                 tabcontrolMain.SelectedTab = tabpageGeneral
                 datetimepickerFechaHasta.Focus()
-                Exit Sub
+                Return
             End If
         End If
 
         ' Tipo de Tarifa de Secado
-        If Not (radiobuttonSecadoTipoFijo.Checked Or radiobuttonSecadoTipoEscala.Checked) Then
+        If Not (radiobuttonSecadoTipoFijo.Checked OrElse radiobuttonSecadoTipoEscala.Checked) Then
             MsgBox("Deber especificar el Tipo de Tarifa de Secado.", MsgBoxStyle.Information, My.Application.Info.Title)
             tabcontrolMain.SelectedTab = tabpageTarifas
-            Exit Sub
+            Return
         End If
 
         ' Tipo de Redondeo de Punto de Secado
-        If Not (radiobuttonTarifasSecadoRedondeoPuntoTipoNinguno.Checked Or radiobuttonTarifasSecadoRedondeoPuntoTipoEntero.Checked Or radiobuttonTarifasSecadoRedondeoPuntoTipoSuperior.Checked Or radiobuttonTarifasSecadoRedondeoPuntoTipoInferior.Checked) Then
+        If Not (radiobuttonTarifasSecadoRedondeoPuntoTipoNinguno.Checked OrElse radiobuttonTarifasSecadoRedondeoPuntoTipoEntero.Checked OrElse radiobuttonTarifasSecadoRedondeoPuntoTipoSuperior.Checked OrElse radiobuttonTarifasSecadoRedondeoPuntoTipoInferior.Checked) Then
             MsgBox("Deber especificar el Tipo de Redondeo por Punto de Secado.", MsgBoxStyle.Information, My.Application.Info.Title)
             tabcontrolMain.SelectedTab = tabpageTarifas
-            Exit Sub
+            Return
         End If
 
         ' Tipo de Almacenaje
-        If Not (radiobuttonAlmacenajeTipoDiasGraciaFijo.Checked Or radiobuttonAlmacenajeTipoDiasGraciaSiRetiraAntes.Checked Or radiobuttonAlmacenajeTipoFechaFija.Checked) Then
+        If Not (radiobuttonAlmacenajeTipoDiasGraciaFijo.Checked OrElse radiobuttonAlmacenajeTipoDiasGraciaSiRetiraAntes.Checked OrElse radiobuttonAlmacenajeTipoFechaFija.Checked) Then
             MsgBox("Deber especificar el Tipo de Almacenaje.", MsgBoxStyle.Information, My.Application.Info.Title)
             tabcontrolMain.SelectedTab = tabpageAlmacenaje
-            Exit Sub
+            Return
         End If
 
         ' Paso los datos desde los controles al Objecto de EF
@@ -459,12 +445,12 @@
                     Case CardonerSistemas.Database.EntityFramework.Errors.Unknown
                         CardonerSistemas.ErrorHandler.ProcessError(CType(dbuex, Exception), My.Resources.STRING_ERROR_SAVING_CHANGES)
                 End Select
-                Exit Sub
+                Return
             Catch ex As Exception
                 Me.Cursor = Cursors.Default
 
                 CardonerSistemas.ErrorHandler.ProcessError(ex, My.Resources.STRING_ERROR_SAVING_CHANGES)
-                Exit Sub
+                Return
             End Try
         End If
 

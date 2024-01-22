@@ -94,7 +94,7 @@ Partial Class formSplashScreen
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.DarkOliveGreen
-        Me.BackgroundImage = Global.My.Resources.Resources.ImageSplashScreenBackground
+        Me.BackgroundImage = My.Resources.Resources.ImageSplashScreenBackground
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(498, 329)
         Me.ControlBox = False

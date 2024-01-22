@@ -68,7 +68,7 @@ Partial Class formCamiones
         '
         'buttonAgregar
         '
-        Me.buttonAgregar.Image = Global.My.Resources.Resources.ImageItemAgregar32
+        Me.buttonAgregar.Image = My.Resources.Resources.ImageItemAgregar32
         Me.buttonAgregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonAgregar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonAgregar.Name = "buttonAgregar"
@@ -77,7 +77,7 @@ Partial Class formCamiones
         '
         'buttonEditar
         '
-        Me.buttonEditar.Image = Global.My.Resources.Resources.ImageItemEditar32
+        Me.buttonEditar.Image = My.Resources.Resources.ImageItemEditar32
         Me.buttonEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonEditar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonEditar.Name = "buttonEditar"
@@ -86,7 +86,7 @@ Partial Class formCamiones
         '
         'buttonEliminar
         '
-        Me.buttonEliminar.Image = Global.My.Resources.Resources.ImageItemBorrar32
+        Me.buttonEliminar.Image = My.Resources.Resources.ImageItemBorrar32
         Me.buttonEliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonEliminar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonEliminar.Name = "buttonEliminar"
@@ -96,7 +96,7 @@ Partial Class formCamiones
         'buttonImprimir
         '
         Me.buttonImprimir.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemImprimirListado})
-        Me.buttonImprimir.Image = Global.My.Resources.Resources.ImageImprimir32
+        Me.buttonImprimir.Image = My.Resources.Resources.ImageImprimir32
         Me.buttonImprimir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonImprimir.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonImprimir.Name = "buttonImprimir"

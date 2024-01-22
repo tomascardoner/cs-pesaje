@@ -187,7 +187,7 @@ Partial Class formMDIMain
         'dropdownbuttonTablas
         '
         Me.dropdownbuttonTablas.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemTablas_Entidades, Me.menuitemTablas_Camiones, Me.menuitemTablas_OrigenesDestinos, Me.menuitemTablas_Productos, Me.menuitemTablas_Cosechas, Me.menuitemTablas_GruposUsuarios, Me.menuitemTablas_GruposUsuariosPermisos, Me.menuitemTablas_Usuarios, Me.menuitemTablas_Tarifas})
-        Me.dropdownbuttonTablas.Image = Global.My.Resources.Resources.ImageTablas32
+        Me.dropdownbuttonTablas.Image = My.Resources.Resources.ImageTablas32
         Me.dropdownbuttonTablas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.dropdownbuttonTablas.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.dropdownbuttonTablas.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -251,7 +251,7 @@ Partial Class formMDIMain
         '
         'buttonPesadas
         '
-        Me.buttonPesadas.Image = Global.My.Resources.Resources.ImagePesadas32
+        Me.buttonPesadas.Image = My.Resources.Resources.ImagePesadas32
         Me.buttonPesadas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonPesadas.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonPesadas.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -261,7 +261,7 @@ Partial Class formMDIMain
         '
         'buttonResumenPesadas
         '
-        Me.buttonResumenPesadas.Image = Global.My.Resources.Resources.ImageResumen32
+        Me.buttonResumenPesadas.Image = My.Resources.Resources.ImageResumen32
         Me.buttonResumenPesadas.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonResumenPesadas.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonResumenPesadas.Name = "buttonResumenPesadas"
@@ -270,7 +270,7 @@ Partial Class formMDIMain
         '
         'buttonReportes
         '
-        Me.buttonReportes.Image = Global.My.Resources.Resources.ImageReportes32
+        Me.buttonReportes.Image = My.Resources.Resources.ImageReportes32
         Me.buttonReportes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonReportes.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonReportes.ImageTransparentColor = System.Drawing.Color.Magenta

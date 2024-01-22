@@ -115,7 +115,7 @@
         comboboxEsActivo.Items.AddRange({My.Resources.STRING_ITEM_ALL_MALE, My.Resources.STRING_YES, My.Resources.STRING_NO})
         comboboxEsActivo.SelectedIndex = CardonerSistemas.Constants.ComboBoxAllYesNo_YesListindex
 
-        toolstriptabFiltrosAvanzados.Visible = (Permisos.VerificarPermiso(Permisos.PESADA_MOSTRAR_VERIFICADO, False) Or Permisos.VerificarPermiso(Permisos.PESADA_MOSTRAR_ACTIVO, False))
+        toolstriptabFiltrosAvanzados.Visible = (Permisos.VerificarPermiso(Permisos.PESADA_MOSTRAR_VERIFICADO, False) OrElse Permisos.VerificarPermiso(Permisos.PESADA_MOSTRAR_ACTIVO, False))
     End Sub
 
     Private Sub Me_FormClosed() Handles Me.FormClosed
@@ -164,7 +164,7 @@
         Dim FechaHasta As Date
 
         If mSkipFilterData Then
-            Exit Sub
+            Return
         End If
 
         Me.Cursor = Cursors.WaitCursor
@@ -176,6 +176,7 @@
 
         Try
             Using dbContext As New CSPesajeContext(True)
+#Disable Warning S3358 ' If operators should not be nested
                 mlistPesadaBase = (From pe In dbContext.Pesada
                                    Join ent In dbContext.Entidad On pe.Titular_IDEntidad Equals ent.IDEntidad
                                    Join pr In dbContext.Producto On pe.IDProducto Equals pr.IDProducto
@@ -195,13 +196,24 @@
                                    From chg In Chofer_Group.DefaultIfEmpty
                                    Group Join ca In dbContext.Camion On pe.Transportista_IDEntidad Equals ca.IDEntidad And pe.IDCamion Equals ca.IDCamion Into Camion_Group = Group
                                    From cag In Camion_Group.DefaultIfEmpty
-                                   Where pe.FechaHoraInicio >= FechaDesde And pe.FechaHoraInicio <= FechaHasta
-                                   Select New GridRowData With {.IDPesada = pe.IDPesada, .FechaHoraInicio = pe.FechaHoraInicio, .FechaHoraFin = pe.FechaHoraFin, .Ctg = pe.Ctg, .IDTitular = pe.Titular_IDEntidad, .TitularNombre = If(pe.Titular_IDEntidad = CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Titular_Nombre, ent.Nombre), .IDProducto = pe.IDProducto, .ProductoNombre = If(pe.IDProducto = CardonerSistemas.Constants.FIELD_VALUE_OTHER_BYTE, pe_otg.Producto_Nombre, pr.Nombre), .Producto_TicketPesada_IDReporte = pr.TicketPesada_IDReporte, .IDPlanta = pe.IDPlanta, .Tipo = pe.Tipo, .TipoNombre = pe.TipoNombre, .IDCosecha = pe.IDCosecha, .CosechaNombre = If(cog Is Nothing, "", cog.Nombre), .IDOrigen = pe.IDOrigen, .OrigenNombre = If(pe.IDOrigen = CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Origen_Nombre, If(og Is Nothing, "", og.Nombre)), .IDDestino = pe.IDDestino, .DestinoNombre = If(pe.IDDestino = CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Destino_Nombre, If(dg Is Nothing, "", dg.Nombre)), .KilogramoBruto = pe.KilogramoBruto, .KilogramoTara = pe.KilogramoTara, .KilogramoNeto = pe.KilogramoNeto, .Humedad = If(pe_ang Is Nothing, Nothing, pe_ang.Humedad), .Zaranda = If(pe_ang Is Nothing, Nothing, pe_ang.Zaranda), .KilogramoFinal = pe.KilogramoFinal, .IDTransportista = pe.Transportista_IDEntidad, .TransportistaNombre = If(pe.Transportista_IDEntidad = CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Transportista_Nombre, If(trg Is Nothing, "", trg.Nombre)), .IDChofer = pe.Chofer_IDEntidad, .ChoferNombre = If(pe.Chofer_IDEntidad = CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Chofer_Nombre, If(chg Is Nothing, "", chg.Nombre)), .CamionNombreDominios = If(pe.IDCamion = CardonerSistemas.Constants.FIELD_VALUE_OTHER_BYTE, pe_otg.Camion_DominioChasis & If(pe_otg.Camion_DominioAcoplado Is Nothing, "", " - " & pe_otg.Camion_DominioAcoplado), If(cag Is Nothing, "", cag.NombreDominios)), .EsVerificado = pe.EsVerificado, .EsActivo = pe.EsActivo}).ToList
+                                   Where pe.FechaHoraInicio >= FechaDesde AndAlso pe.FechaHoraInicio <= FechaHasta
+                                   Let titularNombre = If(pe.Titular_IDEntidad = CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER, pe_otg.Titular_Nombre, ent.Nombre)
+                                   Let productoNombre = If(pe.IDProducto = CardonerSistemas.Constants.FIELD_VALUE_OTHER_BYTE, pe_otg.Producto_Nombre, pr.Nombre)
+                                   Let cosechaNombre = If(cog Is Nothing, String.Empty, cog.Nombre)
+                                   Let origenNombre = If(pe.IDOrigen = CardonerSistemas.FIELD_VALUE_OTHER_INTEGER, pe_otg.Origen_Nombre, If(og Is Nothing, String.Empty, og.Nombre))
+                                   Let destinoNombre = If(pe.IDDestino = CardonerSistemas.FIELD_VALUE_OTHER_INTEGER, pe_otg.Destino_Nombre, If(dg Is Nothing, String.Empty, dg.Nombre))
+                                   Let humedad = If(pe_ang Is Nothing, Nothing, pe_ang.Humedad)
+                                   Let zaranda = If(pe_ang Is Nothing, Nothing, pe_ang.Zaranda)
+                                   Let transportistaNombre = If(pe.Transportista_IDEntidad = CardonerSistemas.FIELD_VALUE_OTHER_INTEGER, pe_otg.Transportista_Nombre, If(trg Is Nothing, String.Empty, trg.Nombre))
+                                   Let choferNombre = If(pe.Chofer_IDEntidad = CardonerSistemas.FIELD_VALUE_OTHER_INTEGER, pe_otg.Chofer_Nombre, If(chg Is Nothing, String.Empty, chg.Nombre))
+                                   Let CamionNombreDominios = If(pe.IDCamion = CardonerSistemas.Constants.FIELD_VALUE_OTHER_BYTE, pe_otg.Camion_DominioChasis & If(pe_otg.Camion_DominioAcoplado Is Nothing, String.Empty, " - " & pe_otg.Camion_DominioAcoplado), If(cag Is Nothing, String.Empty, cag.NombreDominios))
+                                   Select New GridRowData With {.IDPesada = pe.IDPesada, .FechaHoraInicio = pe.FechaHoraInicio, .FechaHoraFin = pe.FechaHoraFin, .Ctg = pe.Ctg, .IDTitular = pe.Titular_IDEntidad, .TitularNombre = titularNombre, .IDProducto = pe.IDProducto, .ProductoNombre = productoNombre, .Producto_TicketPesada_IDReporte = pr.TicketPesada_IDReporte, .IDPlanta = pe.IDPlanta, .Tipo = pe.Tipo, .TipoNombre = pe.TipoNombre, .IDCosecha = pe.IDCosecha, .CosechaNombre = cosechaNombre, .IDOrigen = pe.IDOrigen, .OrigenNombre = origenNombre, .IDDestino = pe.IDDestino, .DestinoNombre = destinoNombre, .KilogramoBruto = pe.KilogramoBruto, .KilogramoTara = pe.KilogramoTara, .KilogramoNeto = pe.KilogramoNeto, .Humedad = humedad, .Zaranda = zaranda, .KilogramoFinal = pe.KilogramoFinal, .IDTransportista = pe.Transportista_IDEntidad, .TransportistaNombre = transportistaNombre, .IDChofer = pe.Chofer_IDEntidad, .ChoferNombre = choferNombre, .CamionNombreDominios = CamionNombreDominios, .EsVerificado = pe.EsVerificado, .EsActivo = pe.EsActivo}).ToList
+#Enable Warning S3358 ' If operators should not be nested
             End Using
         Catch ex As Exception
             CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer las Pesadas.")
             Me.Cursor = Cursors.Default
-            Exit Sub
+            Return
         End Try
 
         Me.Cursor = Cursors.Default
@@ -220,7 +232,7 @@
             For Each CurrentRowChecked As DataGridViewRow In datagridviewMain.Rows
                 If CType(CurrentRowChecked.DataBoundItem, GridRowData).IDPesada = PositionIDPesada Then
                     datagridviewMain.CurrentCell = CurrentRowChecked.Cells(columnIDPesada.Name)
-                    Exit For
+                    Return
                 End If
             Next
         End If
@@ -259,8 +271,8 @@
                 End If
 
                 ' Filtro por Tipos de Pesada
-                If Not (menuitemPesadaTipo_Entrada.Checked And menuitemPesadaTipo_Salida.Checked And menuitemPesadaTipo_Ninguno.Checked) Then
-                    mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) ((menuitemPesadaTipo_Entrada.Checked And p.Tipo = PESADA_TIPO_ENTRADA) Or (menuitemPesadaTipo_Salida.Checked And p.Tipo = PESADA_TIPO_SALIDA) Or (menuitemPesadaTipo_Ninguno.Checked And p.Tipo = PESADA_TIPO_NINGUNA))).ToList
+                If Not (menuitemPesadaTipo_Entrada.Checked AndAlso menuitemPesadaTipo_Salida.Checked AndAlso menuitemPesadaTipo_Ninguno.Checked) Then
+                    mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) ((menuitemPesadaTipo_Entrada.Checked AndAlso p.Tipo = PESADA_TIPO_ENTRADA) OrElse (menuitemPesadaTipo_Salida.Checked AndAlso p.Tipo = PESADA_TIPO_SALIDA) OrElse (menuitemPesadaTipo_Ninguno.Checked AndAlso p.Tipo = PESADA_TIPO_NINGUNA))).ToList
                     mRecordSelectionFormula_Filter &= String.Format(" AND (({0} AND {{Pesada.Tipo}} = '{1}') OR ({2} AND {{Pesada.Tipo}} = '{3}') OR ({4} AND {{Pesada.Tipo}} = '{5}'))", menuitemPesadaTipo_Entrada.Checked, PESADA_TIPO_ENTRADA, menuitemPesadaTipo_Salida.Checked, PESADA_TIPO_SALIDA, menuitemPesadaTipo_Ninguno.Checked, PESADA_TIPO_NINGUNA)
                 End If
 
@@ -331,7 +343,7 @@
             Catch ex As Exception
                 CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al filtrar los datos.")
                 Me.Cursor = Cursors.Default
-                Exit Sub
+                Return
             End Try
 
             OrderData()
@@ -397,7 +409,7 @@
         buttonFechaDesdeHoy.Visible = labelFechaDesdeDiaSemana.Visible
 
         ' Fecha Hasta
-        labelFechaY.Visible = (comboboxPeriodoTipo.SelectedIndex = CInt(CardonerSistemas.DateTime.PeriodTypes.Range) And comboboxPeriodoValor.SelectedIndex = CInt(CardonerSistemas.DateTime.PeriodRangeValues.DateBetween))
+        labelFechaY.Visible = (comboboxPeriodoTipo.SelectedIndex = CInt(CardonerSistemas.DateTime.PeriodTypes.Range) AndAlso comboboxPeriodoValor.SelectedIndex = CInt(CardonerSistemas.DateTime.PeriodRangeValues.DateBetween))
         buttonFechaHastaAnterior.Visible = labelFechaY.Visible
         datetimepickerFechaHastaHost.Visible = labelFechaY.Visible
         buttonFechaHastaSiguiente.Visible = labelFechaY.Visible
@@ -491,12 +503,12 @@
     Private Sub GridCellFormatting(sender As Object, e As DataGridViewCellFormattingEventArgs) Handles datagridviewMain.CellFormatting
         Dim gridRowData As GridRowData
 
-        If Not (mEntradaHumedadVaciaMostrarError Or mEntradaZarandeoVacioMostrarError) Then
+        If Not (mEntradaHumedadVaciaMostrarError OrElse mEntradaZarandeoVacioMostrarError) Then
             Return
         End If
 
         gridRowData = CType(datagridviewMain.Rows(e.RowIndex).DataBoundItem, GridRowData)
-        If gridRowData.Tipo = Constantes.PESADA_TIPO_ENTRADA AndAlso ((mEntradaHumedadVaciaMostrarError And Not gridRowData.Humedad.HasValue) Or (mEntradaZarandeoVacioMostrarError And Not gridRowData.Zaranda.HasValue)) Then
+        If gridRowData.Tipo = Constantes.PESADA_TIPO_ENTRADA AndAlso ((mEntradaHumedadVaciaMostrarError AndAlso Not gridRowData.Humedad.HasValue) OrElse (mEntradaZarandeoVacioMostrarError AndAlso Not gridRowData.Zaranda.HasValue)) Then
             If e.ColumnIndex = columnIDPesada.Index OrElse e.ColumnIndex = columnFechaHoraInicio.Index OrElse e.ColumnIndex = columnTipo.Index OrElse e.ColumnIndex = columnHumedad.Index OrElse e.ColumnIndex = columnZaranda.Index Then
                 Appearance.DataGridSetCellStyleError(CType(datagridviewMain.Rows(e.RowIndex).Cells(e.ColumnIndex), DataGridViewTextBoxCell))
             Else
@@ -512,7 +524,7 @@
 
         ClickedColumn = CType(datagridviewMain.Columns(e.ColumnIndex), DataGridViewColumn)
 
-        If ClickedColumn.Name = columnIDPesada.Name Or ClickedColumn.Name = columnCtg.Name Or ClickedColumn.Name = columnFechaHoraInicio.Name Or ClickedColumn.Name = columnKilogramoNeto.Name Then
+        If ClickedColumn.Name = columnIDPesada.Name OrElse ClickedColumn.Name = columnCtg.Name OrElse ClickedColumn.Name = columnFechaHoraInicio.Name OrElse ClickedColumn.Name = columnKilogramoNeto.Name Then
             If ClickedColumn Is mOrdenColumna Then
                 ' La columna clickeada es la misma por la que ya estaba ordenado, así que cambio la dirección del orden
                 If mOrdenTipo = SortOrder.Ascending Then
@@ -523,11 +535,11 @@
             Else
                 ' La columna clickeada es diferencte a la que ya estaba ordenada.
                 ' En primer lugar saco el ícono de orden de la columna vieja
-                If Not mOrdenColumna Is Nothing Then
+                If mOrdenColumna IsNot Nothing Then
                     mOrdenColumna.HeaderCell.SortGlyphDirection = SortOrder.None
                 End If
 
-                ' Ahora preparo todo para la nueva columna
+                ' Guardo la info de la nueva columna
                 mOrdenTipo = SortOrder.Ascending
                 mOrdenColumna = ClickedColumn
             End If
@@ -597,7 +609,7 @@
                             Case CardonerSistemas.Database.EntityFramework.Errors.RelatedEntity
                                 MsgBox("No se puede eliminar la Pesada porque tiene datos relacionados.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                         End Select
-                        Exit Sub
+                        Return
                     Catch ex As Exception
                         CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al eliminar la Pesada.")
                     End Try
@@ -642,7 +654,7 @@
                 CurrentRow = CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData)
                 If Not CurrentRow.Producto_TicketPesada_IDReporte.HasValue Then
                     MsgBox("No hay ningún Reporte especificado para este Producto.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
-                    Exit Sub
+                    Return
                 End If
 
                 Me.Cursor = Cursors.WaitCursor
@@ -656,9 +668,11 @@
                     If ReporteActual IsNot Nothing Then
                         ReporteActual.ReporteParametros.Single(Function(rp) rp.Nombre = "IDPesada").Valor = CurrentRow.IDPesada
                         ReporteActual.ReporteParametros.Single(Function(rp) rp.Nombre = "EsReducido").Valor = sender.Equals(menuitemImprimir_TicketPesadaReducido)
-                        If ReporteActual.Open(pGeneralConfig.ReportsPath & "\" & ReporteActual.Archivo) Then
+                        If ReporteActual.Open($"{pGeneralConfig.ReportsPath}\{ReporteActual.Archivo}") Then
+#Disable Warning S1066 ' Mergeable "if" statements should be combined
                             If ReporteActual.SetDatabaseConnection(pDatabase.Datasource, pDatabase.InitialCatalog, pDatabase.UserId, pDatabase.Password) Then
-                                If pGeneralConfig.ReportePesadaPrevisualizar = False Then
+#Enable Warning S1066 ' Mergeable "if" statements should be combined
+                                If Not pGeneralConfig.ReportePesadaPrevisualizar Then
                                     ReporteActual.ReportObject.PrintToPrinter(1, False, 1, 100)
                                 Else
                                     Reportes.PreviewCrystalReport(ReporteActual, "Ticket Pesada N° " & Microsoft.VisualBasic.Strings.Format(CurrentRow.IDPesada, "N0"))
@@ -706,7 +720,7 @@
 
                         reporteParametro = Nothing
 
-                        If ReporteActual.Open(pGeneralConfig.ReportsPath & "\" & ReporteActual.Archivo) Then
+                        If ReporteActual.Open($"{pGeneralConfig.ReportsPath}\{ReporteActual.Archivo}") Then
                             If ReporteActual.RecordSelectionFormula <> "" Then
                                 ReporteActual.RecordSelectionFormula &= " AND " & mRecordSelectionFormula_Refresh & mRecordSelectionFormula_Filter
                             Else
@@ -729,7 +743,7 @@
     Private Sub Tareas_CalcularMermas() Handles menuitemCalcularMermas.Click
         If datagridviewMain.Rows.Count = 0 Then
             MsgBox("No hay ninguna Pesada para calcular mermas.", vbInformation, My.Application.Info.Title)
-            Exit Sub
+            Return
         End If
 
         If MsgBox(String.Format("Se calcularán las mermas para todas las entradas mostradas.{0}{0}¿Desea continuar?", vbCrLf), CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
@@ -750,7 +764,7 @@
                         ' Leo la Pesada actual de la base de datos
                         PesadaActual = dbContext.Pesada.Find(CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDPesada)
 
-                        If PesadaActual.Tipo = PESADA_TIPO_ENTRADA Or PesadaActual.Tipo = PESADA_TIPO_SALIDA Then
+                        If PesadaActual.Tipo = PESADA_TIPO_ENTRADA OrElse PesadaActual.Tipo = PESADA_TIPO_SALIDA Then
                             ' Recalculo mermas
                             If PesadaActual.Pesada_Analisis Is Nothing Then
                                 PesadaActual.Pesada_Analisis = New Pesada_Analisis
@@ -765,11 +779,9 @@
                 End Using
             Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                 Me.Cursor = Cursors.Default
-                Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)
-                End Select
                 datagridviewMain.Enabled = True
                 Me.Cursor = Cursors.Default
-                Exit Sub
+                Return
             Catch ex As Exception
                 CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al calcular mermas de la Pesada.")
             End Try
@@ -787,7 +799,7 @@
     Private Sub Tareas_CalcularAcondicionamiento() Handles menuitemCalcularAcondicionamiento.Click
         If datagridviewMain.Rows.Count = 0 Then
             MsgBox("No hay ninguna Pesada para calcular el acondicionamiento.", vbInformation, My.Application.Info.Title)
-            Exit Sub
+            Return
         End If
 
         If MsgBox(String.Format("Se calculará el acondicionamiento para todas las entradas mostradas.{0}{0}¿Desea continuar?", vbCrLf), CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
@@ -823,11 +835,9 @@
                 End Using
             Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                 Me.Cursor = Cursors.Default
-                Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)
-                End Select
                 datagridviewMain.Enabled = True
                 Me.Cursor = Cursors.Default
-                Exit Sub
+                Return
             Catch ex As Exception
                 CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al calcular el acondicionamiento de la Pesada.")
             End Try

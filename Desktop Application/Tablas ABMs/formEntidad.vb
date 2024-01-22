@@ -9,6 +9,8 @@
     Private mEditMode As Boolean = False
     Private mIsNew As Boolean
 
+    Private tabControlExtension As CardonerSistemas.TabControlExtension
+
 #End Region
 
 #Region "Form stuff"
@@ -51,21 +53,21 @@
 
     Private Sub ChangeMode()
         If mIsLoading Then
-            Exit Sub
+            Return
         End If
 
         buttonGuardar.Visible = mEditMode
         buttonCancelar.Visible = mEditMode
-        buttonEditar.Visible = (mEditMode = False)
-        buttonCerrar.Visible = (mEditMode = False)
+        buttonEditar.Visible = Not mEditMode
+        buttonCerrar.Visible = Not mEditMode
 
         ' General
-        textboxNombre.ReadOnly = (mEditMode = False)
-        maskedtextboxCUIT_CUIL.ReadOnly = (mEditMode = False)
-        textboxDomicilio.ReadOnly = (mEditMode = False)
+        textboxNombre.ReadOnly = Not mEditMode
+        maskedtextboxCUIT_CUIL.ReadOnly = Not mEditMode
+        textboxDomicilio.ReadOnly = Not mEditMode
         comboboxDomicilioProvincia.Enabled = mEditMode
         comboboxDomicilioLocalidad.Enabled = mEditMode
-        textboxDomicilioCodigoPostal.ReadOnly = (mEditMode = False)
+        textboxDomicilioCodigoPostal.ReadOnly = Not mEditMode
         checkboxTipoTitular.Enabled = mEditMode
         checkboxTipoTransportista.Enabled = mEditMode
         checkboxTipoChofer.Enabled = mEditMode
@@ -73,13 +75,13 @@
         ' Transportista
         labelTransportista.Visible = checkboxTipoChofer.Checked
         comboboxTransportista.Visible = checkboxTipoChofer.Checked
-        comboboxTransportista.Enabled = (checkboxTipoChofer.Checked And mEditMode)
+        comboboxTransportista.Enabled = (checkboxTipoChofer.Checked AndAlso mEditMode)
         labelCamion.Visible = checkboxTipoChofer.Checked
         comboboxCamion.Visible = checkboxTipoChofer.Checked
-        comboboxCamion.Enabled = (checkboxTipoChofer.Checked And mEditMode)
+        comboboxCamion.Enabled = (checkboxTipoChofer.Checked AndAlso mEditMode)
 
         ' Notas y auditoría
-        textboxNotas.ReadOnly = (mEditMode = False)
+        textboxNotas.ReadOnly = Not mEditMode
         checkboxEsActivo.Enabled = mEditMode
     End Sub
 
@@ -92,12 +94,13 @@
     End Sub
 
     Friend Sub SetAppearance()
-        If (Not mEntidadActual.EsTitular) Or mEditMode Then
-            tabcontrolMain.HideTabPageByName(tabpageOrigenesDestinos.Name)
-            tabcontrolMain.HideTabPageByName(tabpageProductosPlantas.Name)
+        tabControlExtension = New CardonerSistemas.TabControlExtension(tabcontrolMain)
+        If (Not mEntidadActual.EsTitular) OrElse mEditMode Then
+            tabControlExtension.HidePage(tabpageOrigenesDestinos)
+            tabControlExtension.HidePage(tabpageProductosPlantas)
         Else
-            tabcontrolMain.ShowTabPageByName(tabpageOrigenesDestinos.Name)
-            tabcontrolMain.ShowTabPageByName(tabpageProductosPlantas.Name)
+            tabControlExtension.ShowPage(tabpageOrigenesDestinos)
+            tabControlExtension.ShowPage(tabpageProductosPlantas)
         End If
     End Sub
 
@@ -105,6 +108,7 @@
         mdbContext.Dispose()
         mdbContext = Nothing
         mEntidadActual = Nothing
+        tabControlExtension = Nothing
         Me.Dispose()
     End Sub
 
@@ -323,11 +327,11 @@
                     Case CardonerSistemas.Database.EntityFramework.Errors.Unknown
                         CardonerSistemas.ErrorHandler.ProcessError(CType(dbuex, Exception), My.Resources.STRING_ERROR_SAVING_CHANGES)
                         End Select
-                        Exit Sub
+                Return
             Catch ex As Exception
                 Me.Cursor = Cursors.Default
                 CardonerSistemas.ErrorHandler.ProcessError(ex, My.Resources.STRING_ERROR_SAVING_CHANGES)
-                Exit Sub
+                Return
             End Try
         End If
 
@@ -358,17 +362,17 @@
         Using dbContext As New CSPesajeContext(True)
             listOrigenesDestinosIncluidos = (From od In dbContext.OrigenDestino
                                              Join e_od In dbContext.Entidad_OrigenDestino On od.IDOrigenDestino Equals e_od.IDOrigenDestino
-                                             Where e_od.IDEntidad = mEntidadActual.IDEntidad And od.EsActivo And od.IDOrigenDestino <> CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER
+                                             Where e_od.IDEntidad = mEntidadActual.IDEntidad AndAlso od.EsActivo AndAlso od.IDOrigenDestino <> CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER
                                              Order By od.Nombre
                                              Select od).ToList
 
             listOrigenesDestinosTodos = (From od In dbContext.OrigenDestino
-                                         Where od.EsActivo And od.IDOrigenDestino <> CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER
+                                         Where od.EsActivo AndAlso od.IDOrigenDestino <> CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER
                                          Order By od.Nombre
                                          Select od).ToList
 
             listOrigenesDestinosNoIncluidos = (From odt In listOrigenesDestinosTodos
-                                               Where Not listOrigenesDestinosIncluidos.Any(Function(od) od.IDOrigenDestino = odt.IDOrigenDestino)).ToList
+                                               Where Not listOrigenesDestinosIncluidos.Exists(Function(od) od.IDOrigenDestino = odt.IDOrigenDestino)).ToList
 
         End Using
 
@@ -379,7 +383,7 @@
     End Sub
 
     Private Sub OrigenDestinoAgregar() Handles buttonOrigenesDestinosAgregar.Click
-        If mEntidadActual.EsTitular And Not mEditMode Then
+        If mEntidadActual.EsTitular AndAlso Not mEditMode Then
             If datagridviewOrigenesDestinosNoIncluidos.CurrentRow Is Nothing Then
                 MsgBox("No hay ningún Origen-Destino no incluído para agregar.", vbInformation, My.Application.Info.Title)
             Else
@@ -407,7 +411,7 @@
     End Sub
 
     Private Sub OrigenDestinoEliminar() Handles buttonOrigenesDestinosEliminar.Click
-        If mEntidadActual.EsTitular And Not mEditMode Then
+        If mEntidadActual.EsTitular AndAlso Not mEditMode Then
             If datagridviewOrigenesDestinosIncluidos.CurrentRow Is Nothing Then
                 MsgBox("No hay ningún Origen-Destino incluído para eliminar.", vbInformation, My.Application.Info.Title)
             Else
@@ -466,16 +470,16 @@
         Catch ex As Exception
             CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer los Productos y Plantas de la Entidad.")
             Me.Cursor = Cursors.Default
-            Exit Sub
+            Return
         End Try
 
         Me.Cursor = Cursors.Default
 
         If PositionIDPlanta <> CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE Then
             For Each CurrentRowChecked As DataGridViewRow In datagridviewProductosPlantas.Rows
-                If CType(CurrentRowChecked.DataBoundItem, ProductoPlantaRowData).IDProducto = PositionIDProducto And CType(CurrentRowChecked.DataBoundItem, ProductoPlantaRowData).IDPlanta = PositionIDPlanta Then
+                If CType(CurrentRowChecked.DataBoundItem, ProductoPlantaRowData).IDProducto = PositionIDProducto AndAlso CType(CurrentRowChecked.DataBoundItem, ProductoPlantaRowData).IDPlanta = PositionIDPlanta Then
                     datagridviewProductosPlantas.CurrentCell = CurrentRowChecked.Cells(0)
-                    Exit For
+                    Return
                 End If
             Next
         End If

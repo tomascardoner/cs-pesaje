@@ -38,7 +38,7 @@ Partial Class formOrigenDestino
         Me.buttonGuardar = New System.Windows.Forms.ToolStripButton()
         Me.tooltipMain = New System.Windows.Forms.ToolTip(Me.components)
         Me.labelCUIT_CUIL = New System.Windows.Forms.Label()
-        Me.tabcontrolMain = New CardonerSistemas.TabControl()
+        Me.tabcontrolMain = New System.Windows.Forms.TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
         Me.maskedtextboxCUIT_CUIL = New System.Windows.Forms.MaskedTextBox()
         Me.buttonAbrirEnGoogleEarth = New System.Windows.Forms.Button()
@@ -162,7 +162,7 @@ Partial Class formOrigenDestino
         'buttonCerrar
         '
         Me.buttonCerrar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonCerrar.Image = Global.My.Resources.Resources.ImageClose32
+        Me.buttonCerrar.Image = My.Resources.Resources.ImageClose32
         Me.buttonCerrar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCerrar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonCerrar.Name = "buttonCerrar"
@@ -172,7 +172,7 @@ Partial Class formOrigenDestino
         'buttonEditar
         '
         Me.buttonEditar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonEditar.Image = Global.My.Resources.Resources.ImageItemEditar32
+        Me.buttonEditar.Image = My.Resources.Resources.ImageItemEditar32
         Me.buttonEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonEditar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonEditar.Name = "buttonEditar"
@@ -182,7 +182,7 @@ Partial Class formOrigenDestino
         'buttonCancelar
         '
         Me.buttonCancelar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonCancelar.Image = Global.My.Resources.Resources.ImageCancelar32
+        Me.buttonCancelar.Image = My.Resources.Resources.ImageCancelar32
         Me.buttonCancelar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCancelar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonCancelar.Name = "buttonCancelar"
@@ -192,7 +192,7 @@ Partial Class formOrigenDestino
         'buttonGuardar
         '
         Me.buttonGuardar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonGuardar.Image = Global.My.Resources.Resources.ImageAceptar32
+        Me.buttonGuardar.Image = My.Resources.Resources.ImageAceptar32
         Me.buttonGuardar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonGuardar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonGuardar.Name = "buttonGuardar"
@@ -525,7 +525,7 @@ Partial Class formOrigenDestino
     Friend WithEvents comboboxDomicilioLocalidad As System.Windows.Forms.ComboBox
     Friend WithEvents comboboxDomicilioProvincia As System.Windows.Forms.ComboBox
     Friend WithEvents textboxDomicilioCodigoPostal As System.Windows.Forms.TextBox
-    Friend WithEvents tabcontrolMain As CardonerSistemas.TabControl
+    Friend WithEvents tabcontrolMain As System.Windows.Forms.TabControl
     Friend WithEvents tabpageGeneral As System.Windows.Forms.TabPage
     Friend WithEvents tabpageNotasAuditoria As System.Windows.Forms.TabPage
     Friend WithEvents textboxIDOrigenDestino As System.Windows.Forms.TextBox

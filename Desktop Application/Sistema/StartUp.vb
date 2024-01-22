@@ -16,7 +16,7 @@
     Friend pUsuario As Usuario
     Friend pBalanzaConeccionHabilitada As Boolean = False
 
-    Friend Sub Main()
+    <STAThread> Friend Sub Main()
         Dim StartupTime As Date
 
         Cursor.Current = Cursors.AppStarting
@@ -26,12 +26,7 @@
         ' Cargo los archivos de configuración de la aplicación
         If Not Configuration.LoadFiles() Then
             TerminateApplication()
-            Exit Sub
-        End If
-
-        ' Verifico si ya hay una instancia ejecutandose, si permite iniciar otra, o de lo contrario, muestro la instancia original
-        If pGeneralConfig.SingleInstanceApplication Then
-
+            Return
         End If
 
         ' Realizo la inicialización de la Aplicación
@@ -83,7 +78,7 @@
             formSplashScreen.Close()
             formSplashScreen.Dispose()
             TerminateApplication()
-            Exit Sub
+            Return
         End If
 
         ' Verifico que la Base de Datos corresponda a esta Aplicación a través del GUID guardado en los Parámetros
@@ -92,7 +87,7 @@
             formSplashScreen.Close()
             formSplashScreen.Dispose()
             TerminateApplication()
-            Exit Sub
+            Return
         End If
 
         ' Muestro el Nombre de la Compañía a la que está licenciada la Aplicación
@@ -101,7 +96,7 @@
             formSplashScreen.Close()
             formSplashScreen.Dispose()
             TerminateApplication()
-            Exit Sub
+            Return
         End If
         formSplashScreen.labelLicensedTo.Text = pLicensedTo
         Application.DoEvents()
@@ -157,7 +152,7 @@
                 If pUsuario Is Nothing Then
                     Application.Exit()
                     My.Application.Log.WriteEntry("La Aplicación ha finalizado porque el Usuario especificado en Auto-Logon no existe.", TraceEventType.Warning)
-                    Exit Sub
+                    Return
                 End If
                 Dim DecryptedPassword As String = String.Empty
                 If Not CardonerSistemas.Encrypt.StringCipher.Decrypt(pGeneralConfig.AutoLogonPassword, CardonerSistemas.Constants.PublicEncryptionPassword, DecryptedPassword) Then
@@ -165,30 +160,29 @@
                     TerminateApplication()
                     Application.Exit()
                     My.Application.Log.WriteEntry("La Aplicación ha finalizado porque el Password especificado en el Auto-Logon es incorrecto.", TraceEventType.Warning)
-                    Exit Sub
+                    Return
                 End If
                 If DecryptedPassword <> pUsuario.Password Then
                     MsgBox("La contraseña especificada en Auto-Logon es incorrecta.", MsgBoxStyle.Critical, My.Application.Info.Title)
                     TerminateApplication()
                     Application.Exit()
                     My.Application.Log.WriteEntry("La Aplicación ha finalizado porque el Password especificado en el Auto-Logon es incorrecto.", TraceEventType.Warning)
-                    Exit Sub
+                    Return
                 End If
 
                 Appearance.UserLoggedIn()
             End Using
         Else
             ' El Usuario debe iniciar sesión a través del form correspondiente
-            If Not formLogin.ShowDialog(formSplashScreen) = DialogResult.OK Then
+            If formLogin.ShowDialog(formSplashScreen) <> DialogResult.OK Then
                 Application.Exit()
                 My.Application.Log.WriteEntry("La Aplicación ha finalizado porque el Usuario no ha iniciado sesión.", TraceEventType.Warning)
-                Exit Sub
+                Return
             End If
             formLogin.Close()
             formLogin.Dispose()
         End If
 
-        ' Está todo listo. Cambio el puntero del mouse a modo normal y habilito los forms
         pFormMDIMain.Cursor = Cursors.Default
         pFormMDIMain.Enabled = True
 
