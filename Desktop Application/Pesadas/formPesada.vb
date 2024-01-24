@@ -75,6 +75,7 @@
         textboxProducto.ReadOnly = Not mEditMode
         checkboxProductoTodos.Visible = mEditMode
         comboboxPlanta.Enabled = mEditMode
+        ComboBoxPlantaDeposito.Enabled = mEditMode
         groupboxTipo.Enabled = mEditMode
         checkboxTipoTodos.Visible = mEditMode
         comboboxCosecha.Enabled = mEditMode
@@ -231,6 +232,7 @@
                 textboxProducto.Text = String.Empty
             End If
             CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxPlanta, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.Value, .IDPlanta, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(ComboBoxPlantaDeposito, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.Value, .IDDeposito, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
             TipoTodos()
             Select Case .Tipo
                 Case Constantes.PESADA_TIPO_ENTRADA
@@ -410,6 +412,11 @@
                 End If
             End If
             .IDPlanta = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxPlanta.SelectedValue)
+            If comboboxPlanta.SelectedValue Is Nothing Then
+                .IDDeposito = Nothing
+            Else
+                .IDDeposito = CS_ValueTranslation.FromControlComboBoxToObjectByte(ComboBoxPlantaDeposito.SelectedValue)
+            End If
             If radiobuttonEntrada.Checked Then
                 .Tipo = Constantes.PESADA_TIPO_ENTRADA
             ElseIf radiobuttonSalida.Checked Then
@@ -668,7 +675,8 @@
         comboboxProducto.Focus()
     End Sub
 
-    Private Sub PlantaCambio() Handles comboboxPlanta.SelectedValueChanged
+    Private Sub PlantaCambio(sender As Object, e As EventArgs) Handles comboboxPlanta.SelectedValueChanged
+        pFillAndRefreshLists.PlantaDeposito(ComboBoxPlantaDeposito, CByte(comboboxPlanta.SelectedValue), False, True)
         TipoTodos()
         TitularCargarLista()
     End Sub

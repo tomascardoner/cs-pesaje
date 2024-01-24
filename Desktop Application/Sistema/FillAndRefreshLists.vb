@@ -303,6 +303,34 @@
         ComboBoxControl.DataSource = listItems
     End Sub
 
+    Friend Sub PlantaDeposito(theControl As ComboBox, idPlantaActual As Byte, agregarItemTodos As Boolean, agregarItemNoEspecifica As Boolean)
+        Dim listItems As List(Of PlantaDeposito)
+
+        theControl.ValueMember = "IDDeposito"
+        theControl.DisplayMember = "Nombre"
+
+        listItems = (From pd In mdbContext.PlantaDeposito
+                     Where pd.IDPlanta = idPlantaActual AndAlso pd.EsActivo
+                     Order By pd.Nombre
+                     Select pd).ToList
+
+        If agregarItemTodos Then
+            listItems.Insert(0, New PlantaDeposito With {
+                .IDDeposito = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            })
+        End If
+
+        If agregarItemNoEspecifica Then
+            listItems.Insert(0, New PlantaDeposito With {
+                .IDDeposito = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            })
+        End If
+
+        theControl.DataSource = listItems
+    End Sub
+
     Friend Sub Cosecha(ByRef ComboBoxControl As ComboBox, ByVal IDCosecha As Byte?, ByVal IDProducto As Byte, ByVal Fecha As Date, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean, Optional InvertirOrden As Boolean = False)
         Dim listItems As List(Of Cosecha)
 

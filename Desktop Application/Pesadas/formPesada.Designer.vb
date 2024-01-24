@@ -156,6 +156,7 @@ Partial Class formPesada
         Me.checkboxEsActivo = New System.Windows.Forms.CheckBox()
         Me.labelEsVerificado = New System.Windows.Forms.Label()
         Me.checkboxEsVerificado = New System.Windows.Forms.CheckBox()
+        Me.ComboBoxPlantaDeposito = New System.Windows.Forms.ComboBox()
         Me.toolstripMain.SuspendLayout()
         Me.groupboxTransporte.SuspendLayout()
         CType(Me.integertextboxKilometro, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -194,7 +195,7 @@ Partial Class formPesada
         'buttonCerrar
         '
         Me.buttonCerrar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonCerrar.Image = My.Resources.Resources.ImageClose32
+        Me.buttonCerrar.Image = Global.CSPesaje.My.Resources.Resources.ImageClose32
         Me.buttonCerrar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCerrar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonCerrar.Name = "buttonCerrar"
@@ -204,7 +205,7 @@ Partial Class formPesada
         'buttonEditar
         '
         Me.buttonEditar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonEditar.Image = My.Resources.Resources.ImageItemEditar32
+        Me.buttonEditar.Image = Global.CSPesaje.My.Resources.Resources.ImageItemEditar32
         Me.buttonEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonEditar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonEditar.Name = "buttonEditar"
@@ -214,7 +215,7 @@ Partial Class formPesada
         'buttonCancelar
         '
         Me.buttonCancelar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonCancelar.Image = My.Resources.Resources.ImageCancelar32
+        Me.buttonCancelar.Image = Global.CSPesaje.My.Resources.Resources.ImageCancelar32
         Me.buttonCancelar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCancelar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonCancelar.Name = "buttonCancelar"
@@ -224,7 +225,7 @@ Partial Class formPesada
         'buttonGuardar
         '
         Me.buttonGuardar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonGuardar.Image = My.Resources.Resources.ImageAceptar32
+        Me.buttonGuardar.Image = Global.CSPesaje.My.Resources.Resources.ImageAceptar32
         Me.buttonGuardar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonGuardar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonGuardar.Name = "buttonGuardar"
@@ -736,6 +737,7 @@ Partial Class formPesada
         '
         'groupboxProductoPlantaCosecha
         '
+        Me.groupboxProductoPlantaCosecha.Controls.Add(Me.ComboBoxPlantaDeposito)
         Me.groupboxProductoPlantaCosecha.Controls.Add(Me.checkboxCosechaTodos)
         Me.groupboxProductoPlantaCosecha.Controls.Add(Me.checkboxTipoTodos)
         Me.groupboxProductoPlantaCosecha.Controls.Add(Me.labelTipo)
@@ -832,7 +834,7 @@ Partial Class formPesada
         Me.comboboxPlanta.FormattingEnabled = True
         Me.comboboxPlanta.Location = New System.Drawing.Point(92, 40)
         Me.comboboxPlanta.Name = "comboboxPlanta"
-        Me.comboboxPlanta.Size = New System.Drawing.Size(233, 21)
+        Me.comboboxPlanta.Size = New System.Drawing.Size(114, 21)
         Me.comboboxPlanta.TabIndex = 6
         '
         'labelPlanta
@@ -940,7 +942,7 @@ Partial Class formPesada
         '
         'buttonFechaHoraFinAhora
         '
-        Me.buttonFechaHoraFinAhora.Image = My.Resources.Resources.ImageCalendarToday16
+        Me.buttonFechaHoraFinAhora.Image = Global.CSPesaje.My.Resources.Resources.ImageCalendarToday16
         Me.buttonFechaHoraFinAhora.Location = New System.Drawing.Point(303, 64)
         Me.buttonFechaHoraFinAhora.Name = "buttonFechaHoraFinAhora"
         Me.buttonFechaHoraFinAhora.Size = New System.Drawing.Size(22, 22)
@@ -951,7 +953,7 @@ Partial Class formPesada
         '
         'buttonFechaHoraInicioAhora
         '
-        Me.buttonFechaHoraInicioAhora.Image = My.Resources.Resources.ImageCalendarToday16
+        Me.buttonFechaHoraInicioAhora.Image = Global.CSPesaje.My.Resources.Resources.ImageCalendarToday16
         Me.buttonFechaHoraInicioAhora.Location = New System.Drawing.Point(303, 38)
         Me.buttonFechaHoraInicioAhora.Name = "buttonFechaHoraInicioAhora"
         Me.buttonFechaHoraInicioAhora.Size = New System.Drawing.Size(22, 22)
@@ -1080,7 +1082,7 @@ Partial Class formPesada
         '
         'buttonObtenerKilogramosTara
         '
-        Me.buttonObtenerKilogramosTara.Image = My.Resources.Resources.ImageBalanza16
+        Me.buttonObtenerKilogramosTara.Image = Global.CSPesaje.My.Resources.Resources.ImageBalanza16
         Me.buttonObtenerKilogramosTara.Location = New System.Drawing.Point(151, 38)
         Me.buttonObtenerKilogramosTara.Name = "buttonObtenerKilogramosTara"
         Me.buttonObtenerKilogramosTara.Size = New System.Drawing.Size(22, 22)
@@ -1090,7 +1092,7 @@ Partial Class formPesada
         '
         'buttonObtenerKilogramosBrutos
         '
-        Me.buttonObtenerKilogramosBrutos.Image = My.Resources.Resources.ImageBalanza16
+        Me.buttonObtenerKilogramosBrutos.Image = Global.CSPesaje.My.Resources.Resources.ImageBalanza16
         Me.buttonObtenerKilogramosBrutos.Location = New System.Drawing.Point(151, 12)
         Me.buttonObtenerKilogramosBrutos.Name = "buttonObtenerKilogramosBrutos"
         Me.buttonObtenerKilogramosBrutos.Size = New System.Drawing.Size(22, 22)
@@ -1677,6 +1679,15 @@ Partial Class formPesada
         Me.checkboxEsVerificado.TabIndex = 6
         Me.checkboxEsVerificado.UseVisualStyleBackColor = True
         '
+        'ComboBoxPlantaDeposito
+        '
+        Me.ComboBoxPlantaDeposito.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ComboBoxPlantaDeposito.FormattingEnabled = True
+        Me.ComboBoxPlantaDeposito.Location = New System.Drawing.Point(212, 40)
+        Me.ComboBoxPlantaDeposito.Name = "ComboBoxPlantaDeposito"
+        Me.ComboBoxPlantaDeposito.Size = New System.Drawing.Size(135, 21)
+        Me.ComboBoxPlantaDeposito.TabIndex = 7
+        '
         'formPesada
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1872,4 +1883,5 @@ Partial Class formPesada
     Friend WithEvents textboxCamion_DominioChasisExtra As TextBox
     Friend WithEvents labelCtg As Label
     Friend WithEvents maskedtextboxCtg As MaskedTextBox
+    Friend WithEvents ComboBoxPlantaDeposito As ComboBox
 End Class
