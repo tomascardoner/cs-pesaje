@@ -105,7 +105,7 @@
         If MostrarGrupoAdministradores Then
             listItems = mdbContext.UsuarioGrupo.Where(Function(ug) ug.EsActivo).OrderBy(Function(ug) ug.Nombre).ToList
         Else
-            listItems = mdbContext.UsuarioGrupo.Where(Function(ug) ug.EsActivo And ug.IDUsuarioGrupo <> Constantes.UsurioGrupoAdministradoresId).OrderBy(Function(ug) ug.Nombre).ToList
+            listItems = mdbContext.UsuarioGrupo.Where(Function(ug) ug.EsActivo AndAlso ug.IDUsuarioGrupo <> Constantes.UsurioGrupoAdministradoresId).OrderBy(Function(ug) ug.Nombre).ToList
         End If
 
         If AgregarItem_Todos Then
@@ -134,7 +134,7 @@
         ComboBoxControl.DisplayMember = "Nombre"
 
         listItems = (From ent In mdbContext.Entidad
-                     Where (ent.IDEntidad <> CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER Or MostrarItemOtro) And ((IDEntidadActual.HasValue And ent.IDEntidad = IDEntidadActual.Value) Or (ent.EsActivo And ((EsTitular And ent.EsTitular) Or (EsTransportista And ent.EsTransportista) Or (EsChofer And ent.EsChofer)) And (ent.Transportista_IDEntidad = IDTransportista Or IDTransportista = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER Or IDTransportista = CardonerSistemas.Constants.FIELD_VALUE_ALL_INTEGER) And (ent.UsoFrecuente Or Not UsoFrecuente)))
+                     Where (ent.IDEntidad <> CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER Or MostrarItemOtro) AndAlso ((IDEntidadActual.HasValue AndAlso ent.IDEntidad = IDEntidadActual.Value) Or (ent.EsActivo AndAlso ((EsTitular AndAlso ent.EsTitular) Or (EsTransportista AndAlso ent.EsTransportista) Or (EsChofer AndAlso ent.EsChofer)) AndAlso (ent.Transportista_IDEntidad = IDTransportista Or IDTransportista = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER Or IDTransportista = CardonerSistemas.Constants.FIELD_VALUE_ALL_INTEGER) AndAlso (ent.UsoFrecuente Or Not UsoFrecuente)))
                      Select ent).Distinct().OrderBy(Function(ent) ent.Nombre).ToList
 
         If AgregarItem_Otro Then
@@ -172,7 +172,7 @@
 
         listItems = (From ent In mdbContext.Entidad
                      Join ent_pro_pla In mdbContext.Entidad_Producto_Planta On ent.IDEntidad Equals ent_pro_pla.IDEntidad
-                     Where ent.IDEntidad <> CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER And (ent.IDEntidad = IDEntidadActual Or (ent.EsActivo And ent.EsTitular And ent_pro_pla.IDProducto = IDProducto And ent_pro_pla.IDPlanta = IDPlanta And ((TipoEntrada And ent_pro_pla.TipoEntrada) Or (TipoSalida And ent_pro_pla.TipoSalida) Or (TipoNinguno And ent_pro_pla.TipoNinguno))))
+                     Where ent.IDEntidad <> CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER AndAlso (ent.IDEntidad = IDEntidadActual Or (ent.EsActivo AndAlso ent.EsTitular AndAlso ent_pro_pla.IDProducto = IDProducto AndAlso ent_pro_pla.IDPlanta = IDPlanta AndAlso ((TipoEntrada AndAlso ent_pro_pla.TipoEntrada) Or (TipoSalida AndAlso ent_pro_pla.TipoSalida) Or (TipoNinguno AndAlso ent_pro_pla.TipoNinguno))))
                      Select ent).Distinct().OrderBy(Function(ent) ent.Nombre).ToList
 
         If AgregarItem_Todos Then
@@ -200,19 +200,19 @@
         ComboBoxControl.ValueMember = "IDCamion"
         ComboBoxControl.DisplayMember = "Descripcion"
 
-        If MostrarNombre And MostrarPatentes Then
+        If MostrarNombre AndAlso MostrarPatentes Then
             listItems = (From c In mdbContext.Camion
-                         Where c.IDEntidad = IDEntidad And (c.IDEntidad <> CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER Or MostrarItemOtro) And (c.EsActivo Or c.IDCamion = IDCamionActual)
+                         Where c.IDEntidad = IDEntidad AndAlso (c.IDEntidad <> CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER Or MostrarItemOtro) AndAlso (c.EsActivo Or c.IDCamion = IDCamionActual)
                          Order By c.DominioChasis, c.DominioAcoplado
                          Select New Camion_ListItem With {.IDCamion = c.IDCamion, .Descripcion = c.Nombre & CStr(If(c.DominioChasis Is Nothing, String.Empty, " - " & c.DominioChasis)) & CStr(If(c.DominioAcoplado Is Nothing, String.Empty, " - " & c.DominioAcoplado))}).ToList
         ElseIf MostrarNombre Then
             listItems = (From c In mdbContext.Camion
-                         Where c.IDEntidad = IDEntidad And (c.IDEntidad <> CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER Or MostrarItemOtro) And (c.EsActivo Or c.IDCamion = IDCamionActual)
+                         Where c.IDEntidad = IDEntidad AndAlso (c.IDEntidad <> CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER Or MostrarItemOtro) AndAlso (c.EsActivo Or c.IDCamion = IDCamionActual)
                          Order By c.Nombre
                          Select New Camion_ListItem With {.IDCamion = c.IDCamion, .Descripcion = c.Nombre}).ToList
         ElseIf MostrarPatentes Then
             listItems = (From c In mdbContext.Camion
-                         Where c.IDEntidad = IDEntidad And (c.IDEntidad <> CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER Or MostrarItemOtro) And (c.EsActivo Or c.IDCamion = IDCamionActual)
+                         Where c.IDEntidad = IDEntidad AndAlso (c.IDEntidad <> CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER Or MostrarItemOtro) AndAlso (c.EsActivo Or c.IDCamion = IDCamionActual)
                          Order By c.DominioChasis, c.DominioAcoplado
                          Select New Camion_ListItem With {.IDCamion = c.IDCamion, .Descripcion = CStr(If(c.DominioChasis, String.Empty)) & CStr(If(c.DominioAcoplado Is Nothing, String.Empty, " - " & c.DominioAcoplado))}).ToList
         Else
@@ -246,7 +246,7 @@
         ComboBoxControl.DisplayMember = "Nombre"
         IDProductoSeleccionadoActualmente = CByte(ComboBoxControl.SelectedValue)
 
-        listItems = mdbContext.Producto.Where(Function(pr) (pr.IDProducto <> CardonerSistemas.Constants.FIELD_VALUE_OTHER_BYTE Or MostrarItemOtro) And (pr.IDProducto = IDProductoActual.Value Or ((UsoFrecuente = False Or pr.UsoFrecuente) And pr.EsActivo))).OrderBy(Function(cl) cl.Nombre).ToList
+        listItems = mdbContext.Producto.Where(Function(pr) (pr.IDProducto <> CardonerSistemas.Constants.FIELD_VALUE_OTHER_BYTE Or MostrarItemOtro) AndAlso (pr.IDProducto = IDProductoActual.Value Or ((UsoFrecuente = False Or pr.UsoFrecuente) AndAlso pr.EsActivo))).OrderBy(Function(cl) cl.Nombre).ToList
 
         If AgregarItem_Todos Then
             Dim Item_Todos As New Producto With {
@@ -275,11 +275,11 @@
         ComboBoxControl.DisplayMember = "Nombre"
 
         If IDProducto = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE Then
-            listItems = mdbContext.Planta.Where(Function(pl) (IDPlantaActual.HasValue And pl.IDPlanta = IDPlantaActual.Value) Or pl.EsActivo).OrderBy(Function(pl) pl.Nombre).ToList
+            listItems = mdbContext.Planta.Where(Function(pl) (IDPlantaActual.HasValue AndAlso pl.IDPlanta = IDPlantaActual.Value) Or pl.EsActivo).OrderBy(Function(pl) pl.Nombre).ToList
         Else
             listItems = (From pl In mdbContext.Planta
                          Join pp In mdbContext.Producto_Planta On pl.IDPlanta Equals pp.IDPlanta
-                         Where pp.IDProducto = IDProducto And ((IDPlantaActual.HasValue And pl.IDPlanta = IDPlantaActual.Value) Or (pl.EsActivo))
+                         Where pp.IDProducto = IDProducto AndAlso ((IDPlantaActual.HasValue AndAlso pl.IDPlanta = IDPlantaActual.Value) Or (pl.EsActivo))
                          Order By pl.Nombre
                          Select pl).ToList
         End If
@@ -310,11 +310,11 @@
         ComboBoxControl.DisplayMember = "Nombre"
 
         If IDProducto = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE Then
-            listItems = mdbContext.Cosecha.Where(Function(co) (IDCosecha.HasValue And co.IDCosecha = IDCosecha.Value) Or co.EsActivo).ToList
+            listItems = mdbContext.Cosecha.Where(Function(co) (IDCosecha.HasValue AndAlso co.IDCosecha = IDCosecha.Value) Or co.EsActivo).ToList
         Else
             listItems = (From co In mdbContext.Cosecha
                          Join pc In mdbContext.Producto_Cosecha On co.IDCosecha Equals pc.IDCosecha
-                         Where pc.IDProducto = IDProducto And ((IDCosecha.HasValue And co.IDCosecha = IDCosecha.Value) Or (pc.EsActivo And pc.Inicio <= Fecha And pc.Fin >= Fecha))
+                         Where pc.IDProducto = IDProducto AndAlso ((IDCosecha.HasValue AndAlso co.IDCosecha = IDCosecha.Value) Or (pc.EsActivo AndAlso pc.Inicio <= Fecha AndAlso pc.Fin >= Fecha))
                          Select co).ToList
         End If
         If InvertirOrden Then
@@ -349,11 +349,11 @@
         ComboBoxControl.DisplayMember = "Nombre"
 
         If IDEntidad = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER Or IDEntidad = CardonerSistemas.Constants.FIELD_VALUE_ALL_INTEGER Then
-            listItems = mdbContext.OrigenDestino.Where(Function(od) (od.IDOrigenDestino <> CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER Or MostrarItemOtro) And (IDOrigenDestino.HasValue And od.IDOrigenDestino = IDOrigenDestino.Value) Or od.EsActivo).OrderBy(Function(od) od.Nombre).ToList
+            listItems = mdbContext.OrigenDestino.Where(Function(od) (od.IDOrigenDestino <> CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER Or MostrarItemOtro) AndAlso (IDOrigenDestino.HasValue AndAlso od.IDOrigenDestino = IDOrigenDestino.Value) Or od.EsActivo).OrderBy(Function(od) od.Nombre).ToList
         Else
             listItems = (From ori In mdbContext.OrigenDestino
                          Join ent_ori In mdbContext.Entidad_OrigenDestino On ori.IDOrigenDestino Equals ent_ori.IDOrigenDestino
-                         Where (IDOrigenDestino.HasValue And ori.IDOrigenDestino = IDOrigenDestino.Value) Or (ent_ori.IDEntidad = IDEntidad And ori.EsActivo)
+                         Where (IDOrigenDestino.HasValue AndAlso ori.IDOrigenDestino = IDOrigenDestino.Value) Or (ent_ori.IDEntidad = IDEntidad AndAlso ori.EsActivo)
                          Select ori).Distinct().OrderBy(Function(ori) ori.Nombre).ToList
         End If
 

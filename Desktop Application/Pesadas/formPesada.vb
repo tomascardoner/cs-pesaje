@@ -944,10 +944,11 @@
 #Region "Main Toolbar"
 
     Private Sub Editar_Click() Handles buttonEditar.Click
-        If Permisos.VerificarPermiso(Permisos.PESADA_EDITAR) Then
-            mEditMode = True
-            ChangeMode()
+        If Not Permisos.VerificarPermiso(Permisos.PESADA_EDITAR) Then
+            Return
         End If
+        mEditMode = True
+        ChangeMode()
     End Sub
 
     Private Sub Cerrar_Click() Handles buttonCerrar.Click
@@ -1049,7 +1050,7 @@
 
     Private Function VerificarDatos() As Boolean
         ' Ctg
-        If maskedtextboxCtg.Text.Length > 0 AndAlso maskedtextboxCtg.Text.Length < 11 Then
+        If maskedtextboxCtg.Text.Trim.Length > 0 AndAlso maskedtextboxCtg.Text.Trim.Length < 11 Then
             MsgBox("El C.T.G. debe contener 11 dígitos.", MsgBoxStyle.Information, My.Application.Info.Title)
             maskedtextboxCtg.Focus()
             Return False
