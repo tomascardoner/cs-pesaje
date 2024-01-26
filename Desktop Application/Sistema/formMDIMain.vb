@@ -117,14 +117,6 @@
 
 #End Region
 
-#Region "Controls behavior"
-
-    Private Sub UsuarioNombre_DoubleClick() Handles labelUsuarioNombre.MouseDown
-        CerrarSesionUsuario()
-    End Sub
-
-#End Region
-
 #Region "Extra stuff"
 
     Private Sub ShowForm(ByVal idPermiso As String, ByRef form As Form)
@@ -145,13 +137,13 @@
     Private Sub CerrarSesionUsuario()
         If MsgBox("¿Desea cerrar la sesión del Usuario actual?", CType(MsgBoxStyle.Question + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
             CardonerSistemas.Forms.MdiChildCloseAll(Me)
-            labelUsuarioNombre.Image = Nothing
-            labelUsuarioNombre.Text = ""
+            'labelUsuarioNombre.Image = Nothing
+            'labelUsuarioNombre.Text = ""
             pUsuario = Nothing
-            If Not formLogin.ShowDialog(Me) = DialogResult.OK Then
+            If formLogin.ShowDialog(Me) = DialogResult.Cancel Then
                 Application.Exit()
                 My.Application.Log.WriteEntry("La Aplicación ha finalizado porque el Usuario no ha iniciado sesión.", TraceEventType.Warning)
-                Exit Sub
+                Return
             End If
             formLogin.Close()
             formLogin.Dispose()

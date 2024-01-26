@@ -49,13 +49,13 @@
 
         Select Case pUsuario.Genero
             Case Constantes.PERSONA_GENERO_MASCULINO
-                pFormMDIMain.labelUsuarioNombre.Image = My.Resources.Resources.ImageUsuarioHombre16
+                'pFormMDIMain.labelUsuarioNombre.Image = My.Resources.Resources.ImageUsuarioHombre16
             Case Constantes.PERSONA_GENERO_FEMENINO
-                pFormMDIMain.labelUsuarioNombre.Image = My.Resources.Resources.ImageUsuarioMujer16
+                'pFormMDIMain.labelUsuarioNombre.Image = My.Resources.Resources.ImageUsuarioMujer16
             Case Else
-                pFormMDIMain.labelUsuarioNombre.Image = Nothing
+                'pFormMDIMain.labelUsuarioNombre.Image = Nothing
         End Select
-        pFormMDIMain.labelUsuarioNombre.Text = pUsuario.Descripcion
+        'pFormMDIMain.labelUsuarioNombre.Text = pUsuario.Descripcion
 
         My.Application.Log.WriteEntry(String.Format("El Usuario '{0}' ha iniciado sesión.", pUsuario.Nombre), TraceEventType.Information)
     End Sub

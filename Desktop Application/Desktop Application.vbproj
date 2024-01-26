@@ -846,6 +846,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\DatabaseLoginInfo48.png" />
+    <Content Include="Resources\ToolbarExpandir16.png" />
     <None Include="Resources\Summary32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

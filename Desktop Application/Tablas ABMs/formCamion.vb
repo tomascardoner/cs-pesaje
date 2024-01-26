@@ -58,29 +58,24 @@
 
     Private Sub ChangeMode()
         If mIsLoading Then
-            Exit Sub
+            Return
         End If
 
         buttonGuardar.Visible = mEditMode
         buttonCancelar.Visible = mEditMode
-        buttonEditar.Visible = (mEditMode = False)
-        buttonCerrar.Visible = (mEditMode = False)
+        buttonEditar.Visible = Not mEditMode
+        buttonCerrar.Visible = Not mEditMode
 
         checkboxEsActivo.Enabled = mEditMode
-        comboboxTransportista.Enabled = mEditMode
-        textboxNombre.ReadOnly = (mEditMode = False)
-        textboxDominioChasis.ReadOnly = (mEditMode = False)
-        textboxDominioChasisExtra.ReadOnly = (mEditMode = False)
-        textboxDominioAcoplado.ReadOnly = (mEditMode = False)
+        comboboxTransportista.Enabled = mEditMode AndAlso mIsNew
+        textboxNombre.ReadOnly = Not mEditMode
+        textboxDominioChasis.ReadOnly = Not mEditMode
+        textboxDominioChasisExtra.ReadOnly = Not mEditMode
+        textboxDominioAcoplado.ReadOnly = Not mEditMode
     End Sub
 
     Friend Sub InitializeFormAndControls()
-        SetAppearance()
-
         pFillAndRefreshLists.Entidad(comboboxTransportista, mCamionActual.IDEntidad, False, False, True, False, 0, False, False, False, False)
-    End Sub
-
-    Friend Sub SetAppearance()
     End Sub
 
     Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
@@ -151,10 +146,11 @@
 #Region "Main Toolbar"
 
     Private Sub Editar_Click() Handles buttonEditar.Click
-        If Permisos.VerificarPermiso(Permisos.CAMION_EDITAR) Then
-            mEditMode = True
-            ChangeMode()
+        If Not Permisos.VerificarPermiso(Permisos.CAMION_EDITAR) Then
+            Return
         End If
+        mEditMode = True
+        ChangeMode()
     End Sub
 
     Private Sub Cerrar_Click() Handles buttonCerrar.Click
@@ -162,16 +158,8 @@
     End Sub
 
     Private Sub Guardar_Click() Handles buttonGuardar.Click
-        ' Verificar que estén todos los campos con datos coherentes
-        If comboboxTransportista.SelectedValue Is Nothing Then
-            MsgBox("Debe especificar el Transportista al cual pertenece el Camión.", MsgBoxStyle.Information, My.Application.Info.Title)
-            comboboxTransportista.Focus()
-            Exit Sub
-        End If
-        If textboxNombre.Text.Trim.Length = 0 Then
-            MsgBox("Debe ingresar el Nombre.", MsgBoxStyle.Information, My.Application.Info.Title)
-            textboxNombre.Focus()
-            Exit Sub
+        If Not VerificarDatos() Then
+            Return
         End If
 
         ' Generar el ID del Camión nuevo
@@ -214,11 +202,11 @@
                     Case CardonerSistemas.Database.EntityFramework.Errors.Unknown
                         CardonerSistemas.ErrorHandler.ProcessError(CType(dbuex, Exception), My.Resources.STRING_ERROR_SAVING_CHANGES)
                 End Select
-                Exit Sub
+                Return
             Catch ex As Exception
                 Me.Cursor = Cursors.Default
                 CardonerSistemas.ErrorHandler.ProcessError(ex, My.Resources.STRING_ERROR_SAVING_CHANGES)
-                Exit Sub
+                Return
             End Try
         End If
 
@@ -234,6 +222,26 @@
             Me.Close()
         End If
     End Sub
+
+#End Region
+
+#Region "Cosas extra"
+
+    Private Function VerificarDatos() As Boolean
+        ' Verificar que estén todos los campos con datos coherentes
+        If comboboxTransportista.SelectedValue Is Nothing Then
+            MsgBox("Debe especificar el Transportista al cual pertenece el Camión.", MsgBoxStyle.Information, My.Application.Info.Title)
+            comboboxTransportista.Focus()
+            Return False
+        End If
+        If textboxNombre.Text.Trim.Length = 0 Then
+            MsgBox("Debe ingresar el Nombre.", MsgBoxStyle.Information, My.Application.Info.Title)
+            textboxNombre.Focus()
+            Return False
+        End If
+
+        Return True
+    End Function
 
 #End Region
 

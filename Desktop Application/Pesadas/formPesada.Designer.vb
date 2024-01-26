@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class formPesada
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class formPesada
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.toolstripMain = New System.Windows.Forms.ToolStrip()
@@ -74,6 +74,7 @@ Partial Class formPesada
         Me.textboxOrigen = New System.Windows.Forms.TextBox()
         Me.comboboxOrigen = New System.Windows.Forms.ComboBox()
         Me.groupboxProductoPlantaCosecha = New System.Windows.Forms.GroupBox()
+        Me.ComboBoxPlantaDeposito = New System.Windows.Forms.ComboBox()
         Me.labelTipo = New System.Windows.Forms.Label()
         Me.comboboxCosecha = New System.Windows.Forms.ComboBox()
         Me.labelCosecha = New System.Windows.Forms.Label()
@@ -156,7 +157,6 @@ Partial Class formPesada
         Me.checkboxEsActivo = New System.Windows.Forms.CheckBox()
         Me.labelEsVerificado = New System.Windows.Forms.Label()
         Me.checkboxEsVerificado = New System.Windows.Forms.CheckBox()
-        Me.ComboBoxPlantaDeposito = New System.Windows.Forms.ComboBox()
         Me.toolstripMain.SuspendLayout()
         Me.groupboxTransporte.SuspendLayout()
         CType(Me.integertextboxKilometro, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -756,6 +756,15 @@ Partial Class formPesada
         Me.groupboxProductoPlantaCosecha.Size = New System.Drawing.Size(353, 132)
         Me.groupboxProductoPlantaCosecha.TabIndex = 1
         Me.groupboxProductoPlantaCosecha.TabStop = False
+        '
+        'ComboBoxPlantaDeposito
+        '
+        Me.ComboBoxPlantaDeposito.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ComboBoxPlantaDeposito.FormattingEnabled = True
+        Me.ComboBoxPlantaDeposito.Location = New System.Drawing.Point(212, 40)
+        Me.ComboBoxPlantaDeposito.Name = "ComboBoxPlantaDeposito"
+        Me.ComboBoxPlantaDeposito.Size = New System.Drawing.Size(135, 21)
+        Me.ComboBoxPlantaDeposito.TabIndex = 7
         '
         'labelTipo
         '
@@ -1678,15 +1687,6 @@ Partial Class formPesada
         Me.checkboxEsVerificado.Size = New System.Drawing.Size(15, 14)
         Me.checkboxEsVerificado.TabIndex = 6
         Me.checkboxEsVerificado.UseVisualStyleBackColor = True
-        '
-        'ComboBoxPlantaDeposito
-        '
-        Me.ComboBoxPlantaDeposito.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ComboBoxPlantaDeposito.FormattingEnabled = True
-        Me.ComboBoxPlantaDeposito.Location = New System.Drawing.Point(212, 40)
-        Me.ComboBoxPlantaDeposito.Name = "ComboBoxPlantaDeposito"
-        Me.ComboBoxPlantaDeposito.Size = New System.Drawing.Size(135, 21)
-        Me.ComboBoxPlantaDeposito.TabIndex = 7
         '
         'formPesada
         '

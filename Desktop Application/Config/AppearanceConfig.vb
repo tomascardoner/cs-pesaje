@@ -253,7 +253,7 @@
                 name = name.Trim()
                 font = New Font(name, size, CType(IIf(bold, FontStyle.Bold, FontStyle.Regular), FontStyle))
             Catch ex As Exception
-
+                Throw ex
             End Try
         End If
         Return font

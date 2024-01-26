@@ -208,6 +208,9 @@
   <data name="ImageTablas32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Toolbox-icon_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="ImageToolbarExpandir16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ToolbarExpandir16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="ImageUsuarioHombre16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\User-Coat-Red-icon (8).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

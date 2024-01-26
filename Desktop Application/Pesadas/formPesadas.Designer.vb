@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class formPesadas
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,27 +20,28 @@ Partial Class formPesadas
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle31 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle32 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle33 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle34 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle35 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle36 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle37 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle38 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle39 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle40 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(formPesadas))
-        Me.statusstripMain = New System.Windows.Forms.StatusStrip()
-        Me.statuslabelMain = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.datagridviewMain = New System.Windows.Forms.DataGridView()
+        Me.DataGridViewMain = New System.Windows.Forms.DataGridView()
         Me.columnIDPesada = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnFechaHoraInicio = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnFechaHoraFin = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnCtg = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ColumnComprobante = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ColumnPlanta = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ColumnPlantaDeposito = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnEntidadTitular = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnProducto = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnTipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -57,135 +58,129 @@ Partial Class formPesadas
         Me.columnChofer = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnCamion = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.bindingsourceMain = New System.Windows.Forms.BindingSource(Me.components)
-        Me.ribbonMain = New Syncfusion.Windows.Forms.Tools.RibbonControlAdv()
-        Me.toolstriptabPrincipal = New Syncfusion.Windows.Forms.Tools.ToolStripTabItem()
-        Me.toolstripgroupAcciones = New Syncfusion.Windows.Forms.Tools.ToolStripEx()
-        Me.buttonAgregar = New System.Windows.Forms.ToolStripButton()
-        Me.buttonEditar = New System.Windows.Forms.ToolStripButton()
-        Me.buttonCopiar = New System.Windows.Forms.ToolStripButton()
-        Me.buttonEliminar = New System.Windows.Forms.ToolStripButton()
-        Me.buttonImprimir = New System.Windows.Forms.ToolStripSplitButton()
-        Me.menuitemImprimir_TicketPesadaReducido = New System.Windows.Forms.ToolStripMenuItem()
-        Me.menuitemSeparator1 = New System.Windows.Forms.ToolStripSeparator()
-        Me.toolstripgroupPeriodo = New Syncfusion.Windows.Forms.Tools.ToolStripEx()
-        Me.comboboxPeriodoTipo = New System.Windows.Forms.ToolStripComboBox()
-        Me.comboboxPeriodoValor = New System.Windows.Forms.ToolStripComboBox()
-        Me.labelFecha = New System.Windows.Forms.ToolStripLabel()
-        Me.buttonFechaDesdeAnterior = New System.Windows.Forms.ToolStripButton()
-        Me.labelFechaDesdeDiaSemana = New System.Windows.Forms.ToolStripLabel()
-        Me.buttonFechaDesdeSiguiente = New System.Windows.Forms.ToolStripButton()
-        Me.buttonFechaDesdeHoy = New System.Windows.Forms.ToolStripButton()
-        Me.labelFechaY = New System.Windows.Forms.ToolStripLabel()
-        Me.buttonFechaHastaAnterior = New System.Windows.Forms.ToolStripButton()
-        Me.buttonFechaHastaSiguiente = New System.Windows.Forms.ToolStripButton()
-        Me.buttonFechaHastaHoy = New System.Windows.Forms.ToolStripButton()
-        Me.toolstriptabFiltrosBasicos = New Syncfusion.Windows.Forms.Tools.ToolStripTabItem()
-        Me.toolstripgroupTitular = New Syncfusion.Windows.Forms.Tools.ToolStripEx()
-        Me.comboboxTitular = New System.Windows.Forms.ToolStripComboBox()
-        Me.toolstripgroupProducto = New Syncfusion.Windows.Forms.Tools.ToolStripEx()
-        Me.comboboxProducto = New System.Windows.Forms.ToolStripComboBox()
-        Me.toolstripgroupPlanta = New Syncfusion.Windows.Forms.Tools.ToolStripEx()
-        Me.comboboxPlanta = New System.Windows.Forms.ToolStripComboBox()
-        Me.tooltripgroupPesadaTipo = New Syncfusion.Windows.Forms.Tools.ToolStripEx()
-        Me.dropdownbuttonPesadaTipo = New System.Windows.Forms.ToolStripDropDownButton()
-        Me.menuitemPesadaTipo_Entrada = New System.Windows.Forms.ToolStripMenuItem()
-        Me.menuitemPesadaTipo_Salida = New System.Windows.Forms.ToolStripMenuItem()
-        Me.menuitemPesadaTipo_Ninguno = New System.Windows.Forms.ToolStripMenuItem()
-        Me.separatorMarcarTodos = New System.Windows.Forms.ToolStripSeparator()
-        Me.menuitemPesadaTipo_MarcarTodos = New System.Windows.Forms.ToolStripMenuItem()
-        Me.menuitemPesadaTipo_DesmarcarTodos = New System.Windows.Forms.ToolStripMenuItem()
-        Me.toolstripgroupCosecha = New Syncfusion.Windows.Forms.Tools.ToolStripEx()
-        Me.comboboxCosecha = New System.Windows.Forms.ToolStripComboBox()
-        Me.toolstripgroupOrigen = New Syncfusion.Windows.Forms.Tools.ToolStripEx()
-        Me.comboboxOrigen = New System.Windows.Forms.ToolStripComboBox()
-        Me.toolstripgroupDestino = New Syncfusion.Windows.Forms.Tools.ToolStripEx()
-        Me.comboboxDestino = New System.Windows.Forms.ToolStripComboBox()
-        Me.toolstripgroupTransportista = New Syncfusion.Windows.Forms.Tools.ToolStripEx()
-        Me.comboboxTransportista = New System.Windows.Forms.ToolStripComboBox()
-        Me.toolstripgroupChofer = New Syncfusion.Windows.Forms.Tools.ToolStripEx()
-        Me.comboboxChofer = New System.Windows.Forms.ToolStripComboBox()
-        Me.toolstriptabFiltrosAvanzados = New Syncfusion.Windows.Forms.Tools.ToolStripTabItem()
-        Me.toolstripgroupEsVerificado = New Syncfusion.Windows.Forms.Tools.ToolStripEx()
-        Me.comboboxEsVerificado = New System.Windows.Forms.ToolStripComboBox()
-        Me.toolstripgroupEsActivo = New Syncfusion.Windows.Forms.Tools.ToolStripEx()
-        Me.comboboxEsActivo = New System.Windows.Forms.ToolStripComboBox()
-        Me.toolstripgroupMenu = New Syncfusion.Windows.Forms.Tools.ToolStripEx()
-        Me.dropdownbuttonTareas = New System.Windows.Forms.ToolStripDropDownButton()
-        Me.menuitemCalcularMermas = New System.Windows.Forms.ToolStripMenuItem()
-        Me.menuitemCalcularAcondicionamiento = New System.Windows.Forms.ToolStripMenuItem()
-        Me.statusstripMain.SuspendLayout()
-        CType(Me.datagridviewMain, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TabControlToolbar = New System.Windows.Forms.TabControl()
+        Me.TabPageToolbarPrincipal = New System.Windows.Forms.TabPage()
+        Me.ToolStripPeriodo = New System.Windows.Forms.ToolStrip()
+        Me.ToolStripComboBoxPeriodoTipo = New System.Windows.Forms.ToolStripComboBox()
+        Me.ToolStripComboBoxPeriodoValor = New System.Windows.Forms.ToolStripComboBox()
+        Me.ToolStripLabelFecha = New System.Windows.Forms.ToolStripLabel()
+        Me.ToolStripButtonFechaDesdeAnterior = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripLabelFechaDesdeDiaSemana = New System.Windows.Forms.ToolStripLabel()
+        Me.ToolStripButtonFechaDesdeSiguiente = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButtonFechaDesdeHoy = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripLabelFechaY = New System.Windows.Forms.ToolStripLabel()
+        Me.ToolStripButtonFechaHastaAnterior = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButtonFechaHastaHoy = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButtonFechaHastaSiguiente = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButtonExpandir = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripAcciones = New System.Windows.Forms.ToolStrip()
+        Me.ToolStripButtonAgregar = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButtonEditar = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButtonBorrar = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButtonImprimir = New System.Windows.Forms.ToolStripSplitButton()
+        Me.ToolStripMenuItemImprimirTicketReducido = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TabPageToolbarBasicos = New System.Windows.Forms.TabPage()
+        Me.ToolStripTiposPesada = New System.Windows.Forms.ToolStrip()
+        Me.ToolStripDropDownButtonTiposPesada = New System.Windows.Forms.ToolStripDropDownButton()
+        Me.ToolStripMenuItemTiposPesadaEntrada = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItemTiposPesadaSalida = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItemTiposPesadaNinguna = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparatorTiposPesada = New System.Windows.Forms.ToolStripSeparator()
+        Me.ToolStripMenuItemTiposPesadaMarcarTodos = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItemTiposPesadaDesmarcarTodos = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripCosecha = New System.Windows.Forms.ToolStrip()
+        Me.ToolStripLabelCosecha = New System.Windows.Forms.ToolStripLabel()
+        Me.ToolStripComboBoxCosecha = New System.Windows.Forms.ToolStripComboBox()
+        Me.ToolStripPlanta = New System.Windows.Forms.ToolStrip()
+        Me.ToolStripLabelPlanta = New System.Windows.Forms.ToolStripLabel()
+        Me.ToolStripComboBoxPlanta = New System.Windows.Forms.ToolStripComboBox()
+        Me.ToolStripProducto = New System.Windows.Forms.ToolStrip()
+        Me.ToolStripLabelProducto = New System.Windows.Forms.ToolStripLabel()
+        Me.ToolStripComboBoxProducto = New System.Windows.Forms.ToolStripComboBox()
+        Me.ToolStripTitular = New System.Windows.Forms.ToolStrip()
+        Me.ToolStripLabelTitular = New System.Windows.Forms.ToolStripLabel()
+        Me.ToolStripComboBoxTitular = New System.Windows.Forms.ToolStripComboBox()
+        Me.TabPageToolbarOtros = New System.Windows.Forms.TabPage()
+        Me.ToolStripChofer = New System.Windows.Forms.ToolStrip()
+        Me.ToolStripLabelChofer = New System.Windows.Forms.ToolStripLabel()
+        Me.ToolStripComboBoxChofer = New System.Windows.Forms.ToolStripComboBox()
+        Me.ToolStripTransportista = New System.Windows.Forms.ToolStrip()
+        Me.ToolStripLabelTransportista = New System.Windows.Forms.ToolStripLabel()
+        Me.ToolStripComboBoxTransportista = New System.Windows.Forms.ToolStripComboBox()
+        Me.ToolStripDestino = New System.Windows.Forms.ToolStrip()
+        Me.ToolStripLabelDestino = New System.Windows.Forms.ToolStripLabel()
+        Me.ToolStripComboBoxDestino = New System.Windows.Forms.ToolStripComboBox()
+        Me.ToolStripOrigen = New System.Windows.Forms.ToolStrip()
+        Me.ToolStripLabelOrigen = New System.Windows.Forms.ToolStripLabel()
+        Me.ToolStripComboBoxOrigen = New System.Windows.Forms.ToolStripComboBox()
+        Me.TabPageToolbarAvanzados = New System.Windows.Forms.TabPage()
+        Me.ToolStripTareas = New System.Windows.Forms.ToolStrip()
+        Me.ToolStripDropDownButtonTareas = New System.Windows.Forms.ToolStripDropDownButton()
+        Me.ToolStripMenuItemTareasCalcularMermas = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItemTareasCalcularAcondicionamiento = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripActivo = New System.Windows.Forms.ToolStrip()
+        Me.ToolStripLabelActivo = New System.Windows.Forms.ToolStripLabel()
+        Me.ToolStripComboBoxActivo = New System.Windows.Forms.ToolStripComboBox()
+        Me.ToolStripVerificado = New System.Windows.Forms.ToolStrip()
+        Me.ToolStripLabelVerificado = New System.Windows.Forms.ToolStripLabel()
+        Me.ToolStripComboBoxVerificado = New System.Windows.Forms.ToolStripComboBox()
+        CType(Me.DataGridViewMain, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.bindingsourceMain, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ribbonMain, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ribbonMain.SuspendLayout()
-        Me.toolstriptabPrincipal.Panel.SuspendLayout()
-        Me.toolstripgroupAcciones.SuspendLayout()
-        Me.toolstripgroupPeriodo.SuspendLayout()
-        Me.toolstriptabFiltrosBasicos.Panel.SuspendLayout()
-        Me.toolstripgroupTitular.SuspendLayout()
-        Me.toolstripgroupProducto.SuspendLayout()
-        Me.toolstripgroupPlanta.SuspendLayout()
-        Me.tooltripgroupPesadaTipo.SuspendLayout()
-        Me.toolstripgroupCosecha.SuspendLayout()
-        Me.toolstripgroupOrigen.SuspendLayout()
-        Me.toolstripgroupDestino.SuspendLayout()
-        Me.toolstripgroupTransportista.SuspendLayout()
-        Me.toolstripgroupChofer.SuspendLayout()
-        Me.toolstriptabFiltrosAvanzados.Panel.SuspendLayout()
-        Me.toolstripgroupEsVerificado.SuspendLayout()
-        Me.toolstripgroupEsActivo.SuspendLayout()
-        Me.toolstripgroupMenu.SuspendLayout()
+        Me.TabControlToolbar.SuspendLayout()
+        Me.TabPageToolbarPrincipal.SuspendLayout()
+        Me.ToolStripPeriodo.SuspendLayout()
+        Me.ToolStripAcciones.SuspendLayout()
+        Me.TabPageToolbarBasicos.SuspendLayout()
+        Me.ToolStripTiposPesada.SuspendLayout()
+        Me.ToolStripCosecha.SuspendLayout()
+        Me.ToolStripPlanta.SuspendLayout()
+        Me.ToolStripProducto.SuspendLayout()
+        Me.ToolStripTitular.SuspendLayout()
+        Me.TabPageToolbarOtros.SuspendLayout()
+        Me.ToolStripChofer.SuspendLayout()
+        Me.ToolStripTransportista.SuspendLayout()
+        Me.ToolStripDestino.SuspendLayout()
+        Me.ToolStripOrigen.SuspendLayout()
+        Me.TabPageToolbarAvanzados.SuspendLayout()
+        Me.ToolStripTareas.SuspendLayout()
+        Me.ToolStripActivo.SuspendLayout()
+        Me.ToolStripVerificado.SuspendLayout()
         Me.SuspendLayout()
         '
-        'statusstripMain
+        'DataGridViewMain
         '
-        Me.statusstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.statuslabelMain})
-        Me.statusstripMain.Location = New System.Drawing.Point(0, 347)
-        Me.statusstripMain.Name = "statusstripMain"
-        Me.statusstripMain.Size = New System.Drawing.Size(1197, 22)
-        Me.statusstripMain.TabIndex = 1
-        '
-        'statuslabelMain
-        '
-        Me.statuslabelMain.Name = "statuslabelMain"
-        Me.statuslabelMain.Size = New System.Drawing.Size(1182, 17)
-        Me.statuslabelMain.Spring = True
-        Me.statuslabelMain.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'datagridviewMain
-        '
-        Me.datagridviewMain.AllowUserToAddRows = False
-        Me.datagridviewMain.AllowUserToDeleteRows = False
-        Me.datagridviewMain.AllowUserToOrderColumns = True
-        Me.datagridviewMain.AllowUserToResizeRows = False
-        DataGridViewCellStyle31.BackColor = System.Drawing.SystemColors.GradientActiveCaption
-        DataGridViewCellStyle31.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle31.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
-        DataGridViewCellStyle31.SelectionForeColor = System.Drawing.SystemColors.WindowText
-        Me.datagridviewMain.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle31
-        Me.datagridviewMain.AutoGenerateColumns = False
-        Me.datagridviewMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.datagridviewMain.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnIDPesada, Me.columnFechaHoraInicio, Me.columnFechaHoraFin, Me.columnCtg, Me.columnEntidadTitular, Me.columnProducto, Me.columnTipo, Me.columnCosecha, Me.columnOrigen, Me.columnDestino, Me.columnKilogramoBruto, Me.columnKilogramoTara, Me.columnKilogramoNeto, Me.columnHumedad, Me.columnZaranda, Me.columnKilogramoFinal, Me.columnEntidadTransportista, Me.columnChofer, Me.columnCamion})
-        Me.datagridviewMain.DataSource = Me.bindingsourceMain
-        Me.datagridviewMain.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.datagridviewMain.Location = New System.Drawing.Point(0, 125)
-        Me.datagridviewMain.MultiSelect = False
-        Me.datagridviewMain.Name = "datagridviewMain"
-        Me.datagridviewMain.ReadOnly = True
-        Me.datagridviewMain.RowHeadersVisible = False
-        Me.datagridviewMain.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        Me.datagridviewMain.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datagridviewMain.Size = New System.Drawing.Size(1197, 222)
-        Me.datagridviewMain.TabIndex = 3
+        Me.DataGridViewMain.AllowUserToAddRows = False
+        Me.DataGridViewMain.AllowUserToDeleteRows = False
+        Me.DataGridViewMain.AllowUserToResizeColumns = False
+        Me.DataGridViewMain.AllowUserToResizeRows = False
+        DataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.GradientActiveCaption
+        DataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
+        DataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.WindowText
+        Me.DataGridViewMain.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle11
+        Me.DataGridViewMain.AutoGenerateColumns = False
+        Me.DataGridViewMain.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
+        Me.DataGridViewMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridViewMain.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnIDPesada, Me.columnFechaHoraInicio, Me.columnFechaHoraFin, Me.columnCtg, Me.ColumnComprobante, Me.ColumnPlanta, Me.ColumnPlantaDeposito, Me.columnEntidadTitular, Me.columnProducto, Me.columnTipo, Me.columnCosecha, Me.columnOrigen, Me.columnDestino, Me.columnKilogramoBruto, Me.columnKilogramoTara, Me.columnKilogramoNeto, Me.columnHumedad, Me.columnZaranda, Me.columnKilogramoFinal, Me.columnEntidadTransportista, Me.columnChofer, Me.columnCamion})
+        Me.DataGridViewMain.DataSource = Me.bindingsourceMain
+        Me.DataGridViewMain.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.DataGridViewMain.Location = New System.Drawing.Point(0, 100)
+        Me.DataGridViewMain.MultiSelect = False
+        Me.DataGridViewMain.Name = "DataGridViewMain"
+        Me.DataGridViewMain.ReadOnly = True
+        Me.DataGridViewMain.RowHeadersVisible = False
+        Me.DataGridViewMain.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
+        Me.DataGridViewMain.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.DataGridViewMain.Size = New System.Drawing.Size(1197, 269)
+        Me.DataGridViewMain.TabIndex = 3
         '
         'columnIDPesada
         '
-        Me.columnIDPesada.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.columnIDPesada.DataPropertyName = "IDPesada"
-        DataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle32.Format = "N0"
-        DataGridViewCellStyle32.NullValue = Nothing
-        Me.columnIDPesada.DefaultCellStyle = DataGridViewCellStyle32
+        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle12.Format = "N0"
+        DataGridViewCellStyle12.NullValue = Nothing
+        Me.columnIDPesada.DefaultCellStyle = DataGridViewCellStyle12
         Me.columnIDPesada.HeaderText = "Número"
         Me.columnIDPesada.Name = "columnIDPesada"
         Me.columnIDPesada.ReadOnly = True
@@ -193,12 +188,11 @@ Partial Class formPesadas
         '
         'columnFechaHoraInicio
         '
-        Me.columnFechaHoraInicio.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.columnFechaHoraInicio.DataPropertyName = "FechaHoraInicio"
-        DataGridViewCellStyle33.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle33.Format = "g"
-        DataGridViewCellStyle33.NullValue = Nothing
-        Me.columnFechaHoraInicio.DefaultCellStyle = DataGridViewCellStyle33
+        DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle13.Format = "g"
+        DataGridViewCellStyle13.NullValue = Nothing
+        Me.columnFechaHoraInicio.DefaultCellStyle = DataGridViewCellStyle13
         Me.columnFechaHoraInicio.HeaderText = "Inicio"
         Me.columnFechaHoraInicio.Name = "columnFechaHoraInicio"
         Me.columnFechaHoraInicio.ReadOnly = True
@@ -206,29 +200,50 @@ Partial Class formPesadas
         '
         'columnFechaHoraFin
         '
-        Me.columnFechaHoraFin.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.columnFechaHoraFin.DataPropertyName = "FechaHoraFin"
-        DataGridViewCellStyle34.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle34.Format = "g"
-        DataGridViewCellStyle34.NullValue = Nothing
-        Me.columnFechaHoraFin.DefaultCellStyle = DataGridViewCellStyle34
+        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle14.Format = "g"
+        DataGridViewCellStyle14.NullValue = Nothing
+        Me.columnFechaHoraFin.DefaultCellStyle = DataGridViewCellStyle14
         Me.columnFechaHoraFin.HeaderText = "Fin"
         Me.columnFechaHoraFin.Name = "columnFechaHoraFin"
         Me.columnFechaHoraFin.ReadOnly = True
-        Me.columnFechaHoraFin.Visible = False
+        Me.columnFechaHoraFin.Width = 46
         '
         'columnCtg
         '
-        Me.columnCtg.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.columnCtg.DataPropertyName = "Ctg"
         Me.columnCtg.HeaderText = "C.T.G."
         Me.columnCtg.Name = "columnCtg"
         Me.columnCtg.ReadOnly = True
         Me.columnCtg.Width = 63
         '
+        'ColumnComprobante
+        '
+        Me.ColumnComprobante.DataPropertyName = "ComprobanteNumero"
+        Me.ColumnComprobante.HeaderText = "Comprobante"
+        Me.ColumnComprobante.Name = "ColumnComprobante"
+        Me.ColumnComprobante.ReadOnly = True
+        Me.ColumnComprobante.Width = 95
+        '
+        'ColumnPlanta
+        '
+        Me.ColumnPlanta.DataPropertyName = "PlantaNombre"
+        Me.ColumnPlanta.HeaderText = "Planta"
+        Me.ColumnPlanta.Name = "ColumnPlanta"
+        Me.ColumnPlanta.ReadOnly = True
+        Me.ColumnPlanta.Width = 62
+        '
+        'ColumnPlantaDeposito
+        '
+        Me.ColumnPlantaDeposito.DataPropertyName = "PlantaDepositoNombre"
+        Me.ColumnPlantaDeposito.HeaderText = "Depósito"
+        Me.ColumnPlantaDeposito.Name = "ColumnPlantaDeposito"
+        Me.ColumnPlantaDeposito.ReadOnly = True
+        Me.ColumnPlantaDeposito.Width = 74
+        '
         'columnEntidadTitular
         '
-        Me.columnEntidadTitular.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.columnEntidadTitular.DataPropertyName = "TitularNombre"
         Me.columnEntidadTitular.HeaderText = "Titular"
         Me.columnEntidadTitular.Name = "columnEntidadTitular"
@@ -237,7 +252,6 @@ Partial Class formPesadas
         '
         'columnProducto
         '
-        Me.columnProducto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.columnProducto.DataPropertyName = "ProductoNombre"
         Me.columnProducto.HeaderText = "Producto"
         Me.columnProducto.Name = "columnProducto"
@@ -246,7 +260,6 @@ Partial Class formPesadas
         '
         'columnTipo
         '
-        Me.columnTipo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.columnTipo.DataPropertyName = "TipoNombre"
         Me.columnTipo.HeaderText = "Tipo"
         Me.columnTipo.Name = "columnTipo"
@@ -255,7 +268,6 @@ Partial Class formPesadas
         '
         'columnCosecha
         '
-        Me.columnCosecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.columnCosecha.DataPropertyName = "CosechaNombre"
         Me.columnCosecha.HeaderText = "Cosecha"
         Me.columnCosecha.Name = "columnCosecha"
@@ -264,7 +276,6 @@ Partial Class formPesadas
         '
         'columnOrigen
         '
-        Me.columnOrigen.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.columnOrigen.DataPropertyName = "OrigenNombre"
         Me.columnOrigen.HeaderText = "Origen"
         Me.columnOrigen.Name = "columnOrigen"
@@ -273,7 +284,6 @@ Partial Class formPesadas
         '
         'columnDestino
         '
-        Me.columnDestino.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.columnDestino.DataPropertyName = "DestinoNombre"
         Me.columnDestino.HeaderText = "Destino"
         Me.columnDestino.Name = "columnDestino"
@@ -282,12 +292,11 @@ Partial Class formPesadas
         '
         'columnKilogramoBruto
         '
-        Me.columnKilogramoBruto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.columnKilogramoBruto.DataPropertyName = "KilogramoBruto"
-        DataGridViewCellStyle35.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle35.Format = "N0"
-        DataGridViewCellStyle35.NullValue = Nothing
-        Me.columnKilogramoBruto.DefaultCellStyle = DataGridViewCellStyle35
+        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle15.Format = "N0"
+        DataGridViewCellStyle15.NullValue = Nothing
+        Me.columnKilogramoBruto.DefaultCellStyle = DataGridViewCellStyle15
         Me.columnKilogramoBruto.HeaderText = "Kgs. Bruto"
         Me.columnKilogramoBruto.Name = "columnKilogramoBruto"
         Me.columnKilogramoBruto.ReadOnly = True
@@ -295,11 +304,10 @@ Partial Class formPesadas
         '
         'columnKilogramoTara
         '
-        Me.columnKilogramoTara.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.columnKilogramoTara.DataPropertyName = "KilogramoTara"
-        DataGridViewCellStyle36.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle36.Format = "N0"
-        Me.columnKilogramoTara.DefaultCellStyle = DataGridViewCellStyle36
+        DataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle16.Format = "N0"
+        Me.columnKilogramoTara.DefaultCellStyle = DataGridViewCellStyle16
         Me.columnKilogramoTara.HeaderText = "Kgs. Tara"
         Me.columnKilogramoTara.Name = "columnKilogramoTara"
         Me.columnKilogramoTara.ReadOnly = True
@@ -307,11 +315,10 @@ Partial Class formPesadas
         '
         'columnKilogramoNeto
         '
-        Me.columnKilogramoNeto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.columnKilogramoNeto.DataPropertyName = "KilogramoNeto"
-        DataGridViewCellStyle37.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle37.Format = "N0"
-        Me.columnKilogramoNeto.DefaultCellStyle = DataGridViewCellStyle37
+        DataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle17.Format = "N0"
+        Me.columnKilogramoNeto.DefaultCellStyle = DataGridViewCellStyle17
         Me.columnKilogramoNeto.HeaderText = "Kgs. Neto"
         Me.columnKilogramoNeto.Name = "columnKilogramoNeto"
         Me.columnKilogramoNeto.ReadOnly = True
@@ -319,12 +326,11 @@ Partial Class formPesadas
         '
         'columnHumedad
         '
-        Me.columnHumedad.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.columnHumedad.DataPropertyName = "Humedad"
-        DataGridViewCellStyle38.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle38.Format = "N1"
-        DataGridViewCellStyle38.NullValue = Nothing
-        Me.columnHumedad.DefaultCellStyle = DataGridViewCellStyle38
+        DataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle18.Format = "N1"
+        DataGridViewCellStyle18.NullValue = Nothing
+        Me.columnHumedad.DefaultCellStyle = DataGridViewCellStyle18
         Me.columnHumedad.HeaderText = "Hum."
         Me.columnHumedad.Name = "columnHumedad"
         Me.columnHumedad.ReadOnly = True
@@ -332,11 +338,10 @@ Partial Class formPesadas
         '
         'columnZaranda
         '
-        Me.columnZaranda.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.columnZaranda.DataPropertyName = "Zaranda"
-        DataGridViewCellStyle39.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle39.Format = "N1"
-        Me.columnZaranda.DefaultCellStyle = DataGridViewCellStyle39
+        DataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle19.Format = "N1"
+        Me.columnZaranda.DefaultCellStyle = DataGridViewCellStyle19
         Me.columnZaranda.HeaderText = "Zar."
         Me.columnZaranda.Name = "columnZaranda"
         Me.columnZaranda.ReadOnly = True
@@ -344,11 +349,10 @@ Partial Class formPesadas
         '
         'columnKilogramoFinal
         '
-        Me.columnKilogramoFinal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.columnKilogramoFinal.DataPropertyName = "KilogramoFinal"
-        DataGridViewCellStyle40.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle40.Format = "N0"
-        Me.columnKilogramoFinal.DefaultCellStyle = DataGridViewCellStyle40
+        DataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle20.Format = "N0"
+        Me.columnKilogramoFinal.DefaultCellStyle = DataGridViewCellStyle20
         Me.columnKilogramoFinal.HeaderText = "Kgs. Final"
         Me.columnKilogramoFinal.Name = "columnKilogramoFinal"
         Me.columnKilogramoFinal.ReadOnly = True
@@ -356,7 +360,6 @@ Partial Class formPesadas
         '
         'columnEntidadTransportista
         '
-        Me.columnEntidadTransportista.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.columnEntidadTransportista.DataPropertyName = "TransportistaNombre"
         Me.columnEntidadTransportista.HeaderText = "Transportista"
         Me.columnEntidadTransportista.Name = "columnEntidadTransportista"
@@ -365,7 +368,6 @@ Partial Class formPesadas
         '
         'columnChofer
         '
-        Me.columnChofer.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.columnChofer.DataPropertyName = "ChoferNombre"
         Me.columnChofer.HeaderText = "Chofer"
         Me.columnChofer.Name = "columnChofer"
@@ -374,757 +376,785 @@ Partial Class formPesadas
         '
         'columnCamion
         '
-        Me.columnCamion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.columnCamion.DataPropertyName = "CamionNombreDominios"
         Me.columnCamion.HeaderText = "Camión"
         Me.columnCamion.Name = "columnCamion"
         Me.columnCamion.ReadOnly = True
         Me.columnCamion.Width = 67
         '
-        'ribbonMain
-        '
-        Me.ribbonMain.AllowCollapse = False
-        Me.ribbonMain.CaptionFont = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ribbonMain.Dock = Syncfusion.Windows.Forms.Tools.DockStyleEx.Top
-        Me.ribbonMain.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.ribbonMain.Header.AddMainItem(toolstriptabPrincipal)
-        Me.ribbonMain.Header.AddMainItem(toolstriptabFiltrosBasicos)
-        Me.ribbonMain.Header.AddMainItem(toolstriptabFiltrosAvanzados)
-        Me.ribbonMain.Location = New System.Drawing.Point(0, 0)
-        Me.ribbonMain.MenuButtonFont = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.ribbonMain.MenuButtonText = ""
-        Me.ribbonMain.MenuButtonVisible = False
-        Me.ribbonMain.MenuColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(198, Byte), Integer))
-        Me.ribbonMain.Name = "ribbonMain"
-        Me.ribbonMain.OfficeColorScheme = Syncfusion.Windows.Forms.Tools.ToolStripEx.ColorScheme.Managed
-        '
-        'ribbonMain.OfficeMenu
-        '
-        Me.ribbonMain.OfficeMenu.Name = "OfficeMenu"
-        Me.ribbonMain.OfficeMenu.ShowItemToolTips = True
-        Me.ribbonMain.OfficeMenu.Size = New System.Drawing.Size(12, 65)
-        Me.ribbonMain.QuickPanelImageLayout = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.ribbonMain.QuickPanelVisible = False
-        Me.ribbonMain.RibbonHeaderImage = Syncfusion.Windows.Forms.Tools.RibbonHeaderImage.None
-        Me.ribbonMain.SelectedTab = Me.toolstriptabPrincipal
-        Me.ribbonMain.ShowRibbonDisplayOptionButton = True
-        Me.ribbonMain.Size = New System.Drawing.Size(1197, 125)
-        Me.ribbonMain.SystemText.QuickAccessDialogDropDownName = "Start menu"
-        Me.ribbonMain.SystemText.RenameDisplayLabelText = "&Display Name:"
-        Me.ribbonMain.TabIndex = 4
-        '
-        'toolstriptabPrincipal
-        '
-        Me.toolstriptabPrincipal.Name = "toolstriptabPrincipal"
-        '
-        'ribbonMain.RibbonPanel1
-        '
-        Me.toolstriptabPrincipal.Panel.Controls.Add(Me.toolstripgroupAcciones)
-        Me.toolstriptabPrincipal.Panel.Controls.Add(Me.toolstripgroupPeriodo)
-        Me.toolstriptabPrincipal.Panel.Name = "RibbonPanel1"
-        Me.toolstriptabPrincipal.Panel.ScrollPosition = 0
-        Me.toolstriptabPrincipal.Panel.ShowLauncher = False
-        Me.toolstriptabPrincipal.Panel.TabIndex = 2
-        Me.toolstriptabPrincipal.Panel.Text = "Principal"
-        Me.toolstriptabPrincipal.Position = 0
-        Me.toolstriptabPrincipal.Size = New System.Drawing.Size(57, 19)
-        Me.toolstriptabPrincipal.Tag = "1"
-        Me.toolstriptabPrincipal.Text = "Principal"
-        '
-        'toolstripgroupAcciones
-        '
-        Me.toolstripgroupAcciones.Dock = System.Windows.Forms.DockStyle.None
-        Me.toolstripgroupAcciones.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.toolstripgroupAcciones.ForeColor = System.Drawing.Color.MidnightBlue
-        Me.toolstripgroupAcciones.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.toolstripgroupAcciones.Image = Nothing
-        Me.toolstripgroupAcciones.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonAgregar, Me.buttonEditar, Me.buttonCopiar, Me.buttonEliminar, Me.buttonImprimir})
-        Me.toolstripgroupAcciones.LauncherStyle = Syncfusion.Windows.Forms.Tools.LauncherStyle.Office2007
-        Me.toolstripgroupAcciones.Location = New System.Drawing.Point(0, 1)
-        Me.toolstripgroupAcciones.Name = "toolstripgroupAcciones"
-        Me.toolstripgroupAcciones.Padding = New System.Windows.Forms.Padding(0, 5, 0, 0)
-        Me.toolstripgroupAcciones.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.toolstripgroupAcciones.Size = New System.Drawing.Size(261, 69)
-        Me.toolstripgroupAcciones.TabIndex = 1
-        Me.toolstripgroupAcciones.Text = "Acciones"
-        '
-        'buttonAgregar
-        '
-        Me.buttonAgregar.Image = My.Resources.Resources.ImageItemAgregar32
-        Me.buttonAgregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.buttonAgregar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonAgregar.Name = "buttonAgregar"
-        Me.buttonAgregar.Size = New System.Drawing.Size(52, 44)
-        Me.buttonAgregar.Text = "Agregar"
-        Me.buttonAgregar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        '
-        'buttonEditar
-        '
-        Me.buttonEditar.Image = My.Resources.Resources.ImageItemEditar32
-        Me.buttonEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.buttonEditar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonEditar.Name = "buttonEditar"
-        Me.buttonEditar.Size = New System.Drawing.Size(41, 44)
-        Me.buttonEditar.Text = "Editar"
-        Me.buttonEditar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        '
-        'buttonCopiar
-        '
-        Me.buttonCopiar.Image = My.Resources.Resources.ImageItemCopiar32
-        Me.buttonCopiar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.buttonCopiar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonCopiar.Name = "buttonCopiar"
-        Me.buttonCopiar.Size = New System.Drawing.Size(45, 44)
-        Me.buttonCopiar.Text = "Copiar"
-        Me.buttonCopiar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        '
-        'buttonEliminar
-        '
-        Me.buttonEliminar.Image = My.Resources.Resources.ImageItemBorrar32
-        Me.buttonEliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.buttonEliminar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonEliminar.Name = "buttonEliminar"
-        Me.buttonEliminar.Size = New System.Drawing.Size(52, 44)
-        Me.buttonEliminar.Text = "Eliminar"
-        Me.buttonEliminar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        '
-        'buttonImprimir
-        '
-        Me.buttonImprimir.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemImprimir_TicketPesadaReducido, Me.menuitemSeparator1})
-        Me.buttonImprimir.Image = My.Resources.Resources.ImageImprimir32
-        Me.buttonImprimir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.buttonImprimir.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonImprimir.Name = "buttonImprimir"
-        Me.buttonImprimir.Size = New System.Drawing.Size(65, 44)
-        Me.buttonImprimir.Text = "Imprimir"
-        Me.buttonImprimir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        '
-        'menuitemImprimir_TicketPesadaReducido
-        '
-        Me.menuitemImprimir_TicketPesadaReducido.Name = "menuitemImprimir_TicketPesadaReducido"
-        Me.menuitemImprimir_TicketPesadaReducido.Size = New System.Drawing.Size(153, 22)
-        Me.menuitemImprimir_TicketPesadaReducido.Text = "Ticket reducido"
-        '
-        'menuitemSeparator1
-        '
-        Me.menuitemSeparator1.Name = "menuitemSeparator1"
-        Me.menuitemSeparator1.Size = New System.Drawing.Size(150, 6)
-        '
-        'toolstripgroupPeriodo
-        '
-        Me.toolstripgroupPeriodo.Dock = System.Windows.Forms.DockStyle.None
-        Me.toolstripgroupPeriodo.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.toolstripgroupPeriodo.ForeColor = System.Drawing.Color.MidnightBlue
-        Me.toolstripgroupPeriodo.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.toolstripgroupPeriodo.Image = Nothing
-        Me.toolstripgroupPeriodo.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.comboboxPeriodoTipo, Me.comboboxPeriodoValor, Me.labelFecha, Me.buttonFechaDesdeAnterior, Me.labelFechaDesdeDiaSemana, Me.buttonFechaDesdeSiguiente, Me.buttonFechaDesdeHoy, Me.labelFechaY, Me.buttonFechaHastaAnterior, Me.buttonFechaHastaSiguiente, Me.buttonFechaHastaHoy})
-        Me.toolstripgroupPeriodo.Location = New System.Drawing.Point(263, 1)
-        Me.toolstripgroupPeriodo.Name = "toolstripgroupPeriodo"
-        Me.toolstripgroupPeriodo.Padding = New System.Windows.Forms.Padding(0, 5, 0, 0)
-        Me.toolstripgroupPeriodo.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.toolstripgroupPeriodo.ShowLauncher = True
-        Me.toolstripgroupPeriodo.Size = New System.Drawing.Size(468, 69)
-        Me.toolstripgroupPeriodo.TabIndex = 2
-        Me.toolstripgroupPeriodo.Text = "Período"
-        '
-        'comboboxPeriodoTipo
-        '
-        Me.comboboxPeriodoTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboboxPeriodoTipo.Name = "comboboxPeriodoTipo"
-        Me.comboboxPeriodoTipo.Size = New System.Drawing.Size(75, 46)
-        '
-        'comboboxPeriodoValor
-        '
-        Me.comboboxPeriodoValor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboboxPeriodoValor.Name = "comboboxPeriodoValor"
-        Me.comboboxPeriodoValor.Size = New System.Drawing.Size(121, 46)
-        '
-        'labelFecha
-        '
-        Me.labelFecha.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.labelFecha.Name = "labelFecha"
-        Me.labelFecha.Size = New System.Drawing.Size(40, 43)
-        Me.labelFecha.Text = "Fecha:"
-        '
-        'buttonFechaDesdeAnterior
-        '
-        Me.buttonFechaDesdeAnterior.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.buttonFechaDesdeAnterior.Image = My.Resources.Resources.ImageCalendarPrevious16
-        Me.buttonFechaDesdeAnterior.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonFechaDesdeAnterior.Name = "buttonFechaDesdeAnterior"
-        Me.buttonFechaDesdeAnterior.Size = New System.Drawing.Size(23, 43)
-        Me.buttonFechaDesdeAnterior.ToolTipText = "Día anterior"
-        '
-        'labelFechaDesdeDiaSemana
-        '
-        Me.labelFechaDesdeDiaSemana.AutoSize = False
-        Me.labelFechaDesdeDiaSemana.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.labelFechaDesdeDiaSemana.Name = "labelFechaDesdeDiaSemana"
-        Me.labelFechaDesdeDiaSemana.Size = New System.Drawing.Size(60, 43)
-        Me.labelFechaDesdeDiaSemana.Text = "Día"
-        '
-        'buttonFechaDesdeSiguiente
-        '
-        Me.buttonFechaDesdeSiguiente.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.buttonFechaDesdeSiguiente.Image = My.Resources.Resources.ImageCalendarNext16
-        Me.buttonFechaDesdeSiguiente.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonFechaDesdeSiguiente.Name = "buttonFechaDesdeSiguiente"
-        Me.buttonFechaDesdeSiguiente.Size = New System.Drawing.Size(23, 43)
-        Me.buttonFechaDesdeSiguiente.ToolTipText = "Día siguiente"
-        '
-        'buttonFechaDesdeHoy
-        '
-        Me.buttonFechaDesdeHoy.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.buttonFechaDesdeHoy.Image = My.Resources.Resources.ImageCalendarToday16
-        Me.buttonFechaDesdeHoy.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonFechaDesdeHoy.Name = "buttonFechaDesdeHoy"
-        Me.buttonFechaDesdeHoy.Size = New System.Drawing.Size(23, 43)
-        Me.buttonFechaDesdeHoy.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.buttonFechaDesdeHoy.ToolTipText = "Hoy"
-        '
-        'labelFechaY
-        '
-        Me.labelFechaY.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.labelFechaY.Name = "labelFechaY"
-        Me.labelFechaY.Size = New System.Drawing.Size(24, 43)
-        Me.labelFechaY.Text = "  y  "
-        '
-        'buttonFechaHastaAnterior
-        '
-        Me.buttonFechaHastaAnterior.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.buttonFechaHastaAnterior.Image = My.Resources.Resources.ImageCalendarPrevious16
-        Me.buttonFechaHastaAnterior.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonFechaHastaAnterior.Name = "buttonFechaHastaAnterior"
-        Me.buttonFechaHastaAnterior.Size = New System.Drawing.Size(23, 43)
-        Me.buttonFechaHastaAnterior.ToolTipText = "Día anterior"
-        '
-        'buttonFechaHastaSiguiente
-        '
-        Me.buttonFechaHastaSiguiente.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.buttonFechaHastaSiguiente.Image = My.Resources.Resources.ImageCalendarNext16
-        Me.buttonFechaHastaSiguiente.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonFechaHastaSiguiente.Name = "buttonFechaHastaSiguiente"
-        Me.buttonFechaHastaSiguiente.Size = New System.Drawing.Size(23, 43)
-        Me.buttonFechaHastaSiguiente.ToolTipText = "Día siguiente"
-        '
-        'buttonFechaHastaHoy
-        '
-        Me.buttonFechaHastaHoy.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.buttonFechaHastaHoy.Image = My.Resources.Resources.ImageCalendarToday16
-        Me.buttonFechaHastaHoy.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonFechaHastaHoy.Name = "buttonFechaHastaHoy"
-        Me.buttonFechaHastaHoy.Size = New System.Drawing.Size(23, 43)
-        Me.buttonFechaHastaHoy.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.buttonFechaHastaHoy.ToolTipText = "Hoy"
-        '
-        'toolstriptabFiltrosBasicos
-        '
-        Me.toolstriptabFiltrosBasicos.Name = "toolstriptabFiltrosBasicos"
-        '
-        'ribbonMain.RibbonPanel2
-        '
-        Me.toolstriptabFiltrosBasicos.Panel.Controls.Add(Me.toolstripgroupTitular)
-        Me.toolstriptabFiltrosBasicos.Panel.Controls.Add(Me.toolstripgroupProducto)
-        Me.toolstriptabFiltrosBasicos.Panel.Controls.Add(Me.toolstripgroupPlanta)
-        Me.toolstriptabFiltrosBasicos.Panel.Controls.Add(Me.tooltripgroupPesadaTipo)
-        Me.toolstriptabFiltrosBasicos.Panel.Controls.Add(Me.toolstripgroupCosecha)
-        Me.toolstriptabFiltrosBasicos.Panel.Controls.Add(Me.toolstripgroupOrigen)
-        Me.toolstriptabFiltrosBasicos.Panel.Controls.Add(Me.toolstripgroupDestino)
-        Me.toolstriptabFiltrosBasicos.Panel.Controls.Add(Me.toolstripgroupTransportista)
-        Me.toolstriptabFiltrosBasicos.Panel.Controls.Add(Me.toolstripgroupChofer)
-        Me.toolstriptabFiltrosBasicos.Panel.Name = "RibbonPanel2"
-        Me.toolstriptabFiltrosBasicos.Panel.ScrollPosition = 0
-        Me.toolstriptabFiltrosBasicos.Panel.ShowLauncher = False
-        Me.toolstriptabFiltrosBasicos.Panel.TabIndex = 3
-        Me.toolstriptabFiltrosBasicos.Panel.Text = "Básicos"
-        Me.toolstriptabFiltrosBasicos.Position = 1
-        Me.toolstriptabFiltrosBasicos.Size = New System.Drawing.Size(50, 19)
-        Me.toolstriptabFiltrosBasicos.Tag = "1"
-        Me.toolstriptabFiltrosBasicos.Text = "Básicos"
-        '
-        'toolstripgroupTitular
-        '
-        Me.toolstripgroupTitular.Dock = System.Windows.Forms.DockStyle.None
-        Me.toolstripgroupTitular.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.toolstripgroupTitular.ForeColor = System.Drawing.Color.MidnightBlue
-        Me.toolstripgroupTitular.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.toolstripgroupTitular.Image = Nothing
-        Me.toolstripgroupTitular.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.comboboxTitular})
-        Me.toolstripgroupTitular.Location = New System.Drawing.Point(0, 1)
-        Me.toolstripgroupTitular.Name = "toolstripgroupTitular"
-        Me.toolstripgroupTitular.Padding = New System.Windows.Forms.Padding(0, 5, 0, 0)
-        Me.toolstripgroupTitular.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.toolstripgroupTitular.Size = New System.Drawing.Size(208, 69)
-        Me.toolstripgroupTitular.TabIndex = 1
-        Me.toolstripgroupTitular.Text = "Titular"
-        '
-        'comboboxTitular
-        '
-        Me.comboboxTitular.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboboxTitular.Name = "comboboxTitular"
-        Me.comboboxTitular.Size = New System.Drawing.Size(200, 23)
-        '
-        'toolstripgroupProducto
-        '
-        Me.toolstripgroupProducto.Dock = System.Windows.Forms.DockStyle.None
-        Me.toolstripgroupProducto.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.toolstripgroupProducto.ForeColor = System.Drawing.Color.MidnightBlue
-        Me.toolstripgroupProducto.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.toolstripgroupProducto.Image = Nothing
-        Me.toolstripgroupProducto.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.comboboxProducto})
-        Me.toolstripgroupProducto.Location = New System.Drawing.Point(210, 1)
-        Me.toolstripgroupProducto.Name = "toolstripgroupProducto"
-        Me.toolstripgroupProducto.Padding = New System.Windows.Forms.Padding(0, 5, 0, 0)
-        Me.toolstripgroupProducto.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.toolstripgroupProducto.Size = New System.Drawing.Size(128, 69)
-        Me.toolstripgroupProducto.TabIndex = 2
-        Me.toolstripgroupProducto.Text = "Producto"
-        '
-        'comboboxProducto
-        '
-        Me.comboboxProducto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboboxProducto.Name = "comboboxProducto"
-        Me.comboboxProducto.Size = New System.Drawing.Size(120, 23)
-        '
-        'toolstripgroupPlanta
-        '
-        Me.toolstripgroupPlanta.Dock = System.Windows.Forms.DockStyle.None
-        Me.toolstripgroupPlanta.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.toolstripgroupPlanta.ForeColor = System.Drawing.Color.MidnightBlue
-        Me.toolstripgroupPlanta.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.toolstripgroupPlanta.Image = Nothing
-        Me.toolstripgroupPlanta.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.comboboxPlanta})
-        Me.toolstripgroupPlanta.Location = New System.Drawing.Point(340, 1)
-        Me.toolstripgroupPlanta.Name = "toolstripgroupPlanta"
-        Me.toolstripgroupPlanta.Padding = New System.Windows.Forms.Padding(0, 5, 0, 0)
-        Me.toolstripgroupPlanta.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.toolstripgroupPlanta.Size = New System.Drawing.Size(138, 69)
-        Me.toolstripgroupPlanta.TabIndex = 7
-        Me.toolstripgroupPlanta.Text = "Planta"
-        '
-        'comboboxPlanta
-        '
-        Me.comboboxPlanta.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboboxPlanta.Name = "comboboxPlanta"
-        Me.comboboxPlanta.Size = New System.Drawing.Size(130, 23)
-        '
-        'tooltripgroupPesadaTipo
-        '
-        Me.tooltripgroupPesadaTipo.Dock = System.Windows.Forms.DockStyle.None
-        Me.tooltripgroupPesadaTipo.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.tooltripgroupPesadaTipo.ForeColor = System.Drawing.Color.MidnightBlue
-        Me.tooltripgroupPesadaTipo.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.tooltripgroupPesadaTipo.Image = Nothing
-        Me.tooltripgroupPesadaTipo.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.dropdownbuttonPesadaTipo})
-        Me.tooltripgroupPesadaTipo.Location = New System.Drawing.Point(480, 1)
-        Me.tooltripgroupPesadaTipo.Name = "tooltripgroupPesadaTipo"
-        Me.tooltripgroupPesadaTipo.Padding = New System.Windows.Forms.Padding(0, 5, 0, 0)
-        Me.tooltripgroupPesadaTipo.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.tooltripgroupPesadaTipo.Size = New System.Drawing.Size(114, 69)
-        Me.tooltripgroupPesadaTipo.TabIndex = 0
-        '
-        'dropdownbuttonPesadaTipo
-        '
-        Me.dropdownbuttonPesadaTipo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.dropdownbuttonPesadaTipo.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemPesadaTipo_Entrada, Me.menuitemPesadaTipo_Salida, Me.menuitemPesadaTipo_Ninguno, Me.separatorMarcarTodos, Me.menuitemPesadaTipo_MarcarTodos, Me.menuitemPesadaTipo_DesmarcarTodos})
-        Me.dropdownbuttonPesadaTipo.Image = CType(resources.GetObject("dropdownbuttonPesadaTipo.Image"), System.Drawing.Image)
-        Me.dropdownbuttonPesadaTipo.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.dropdownbuttonPesadaTipo.Name = "dropdownbuttonPesadaTipo"
-        Me.dropdownbuttonPesadaTipo.Size = New System.Drawing.Size(108, 44)
-        Me.dropdownbuttonPesadaTipo.Text = "Tipos de Pesadas"
-        '
-        'menuitemPesadaTipo_Entrada
-        '
-        Me.menuitemPesadaTipo_Entrada.Checked = True
-        Me.menuitemPesadaTipo_Entrada.CheckOnClick = True
-        Me.menuitemPesadaTipo_Entrada.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.menuitemPesadaTipo_Entrada.Name = "menuitemPesadaTipo_Entrada"
-        Me.menuitemPesadaTipo_Entrada.Size = New System.Drawing.Size(160, 22)
-        Me.menuitemPesadaTipo_Entrada.Text = "Entrada"
-        '
-        'menuitemPesadaTipo_Salida
-        '
-        Me.menuitemPesadaTipo_Salida.Checked = True
-        Me.menuitemPesadaTipo_Salida.CheckOnClick = True
-        Me.menuitemPesadaTipo_Salida.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.menuitemPesadaTipo_Salida.Name = "menuitemPesadaTipo_Salida"
-        Me.menuitemPesadaTipo_Salida.Size = New System.Drawing.Size(160, 22)
-        Me.menuitemPesadaTipo_Salida.Text = "Salida"
-        '
-        'menuitemPesadaTipo_Ninguno
-        '
-        Me.menuitemPesadaTipo_Ninguno.Checked = True
-        Me.menuitemPesadaTipo_Ninguno.CheckOnClick = True
-        Me.menuitemPesadaTipo_Ninguno.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.menuitemPesadaTipo_Ninguno.Name = "menuitemPesadaTipo_Ninguno"
-        Me.menuitemPesadaTipo_Ninguno.Size = New System.Drawing.Size(160, 22)
-        Me.menuitemPesadaTipo_Ninguno.Text = "Ninguna"
-        '
-        'separatorMarcarTodos
-        '
-        Me.separatorMarcarTodos.Name = "separatorMarcarTodos"
-        Me.separatorMarcarTodos.Size = New System.Drawing.Size(157, 6)
-        '
-        'menuitemPesadaTipo_MarcarTodos
-        '
-        Me.menuitemPesadaTipo_MarcarTodos.Name = "menuitemPesadaTipo_MarcarTodos"
-        Me.menuitemPesadaTipo_MarcarTodos.Size = New System.Drawing.Size(160, 22)
-        Me.menuitemPesadaTipo_MarcarTodos.Text = "Marcar todos"
-        '
-        'menuitemPesadaTipo_DesmarcarTodos
-        '
-        Me.menuitemPesadaTipo_DesmarcarTodos.Name = "menuitemPesadaTipo_DesmarcarTodos"
-        Me.menuitemPesadaTipo_DesmarcarTodos.Size = New System.Drawing.Size(160, 22)
-        Me.menuitemPesadaTipo_DesmarcarTodos.Text = "Desmarcar todos"
-        '
-        'toolstripgroupCosecha
-        '
-        Me.toolstripgroupCosecha.Dock = System.Windows.Forms.DockStyle.None
-        Me.toolstripgroupCosecha.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.toolstripgroupCosecha.ForeColor = System.Drawing.Color.MidnightBlue
-        Me.toolstripgroupCosecha.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.toolstripgroupCosecha.Image = Nothing
-        Me.toolstripgroupCosecha.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.comboboxCosecha})
-        Me.toolstripgroupCosecha.Location = New System.Drawing.Point(596, 1)
-        Me.toolstripgroupCosecha.Name = "toolstripgroupCosecha"
-        Me.toolstripgroupCosecha.Padding = New System.Windows.Forms.Padding(0, 5, 0, 0)
-        Me.toolstripgroupCosecha.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.toolstripgroupCosecha.Size = New System.Drawing.Size(108, 69)
-        Me.toolstripgroupCosecha.TabIndex = 3
-        Me.toolstripgroupCosecha.Text = "Cosecha"
-        '
-        'comboboxCosecha
-        '
-        Me.comboboxCosecha.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboboxCosecha.Name = "comboboxCosecha"
-        Me.comboboxCosecha.Size = New System.Drawing.Size(100, 23)
-        '
-        'toolstripgroupOrigen
-        '
-        Me.toolstripgroupOrigen.Dock = System.Windows.Forms.DockStyle.None
-        Me.toolstripgroupOrigen.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.toolstripgroupOrigen.ForeColor = System.Drawing.Color.MidnightBlue
-        Me.toolstripgroupOrigen.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.toolstripgroupOrigen.Image = Nothing
-        Me.toolstripgroupOrigen.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.comboboxOrigen})
-        Me.toolstripgroupOrigen.Location = New System.Drawing.Point(706, 1)
-        Me.toolstripgroupOrigen.Name = "toolstripgroupOrigen"
-        Me.toolstripgroupOrigen.Padding = New System.Windows.Forms.Padding(0, 5, 0, 0)
-        Me.toolstripgroupOrigen.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.toolstripgroupOrigen.Size = New System.Drawing.Size(178, 69)
-        Me.toolstripgroupOrigen.TabIndex = 4
-        Me.toolstripgroupOrigen.Text = "Orígen"
-        '
-        'comboboxOrigen
-        '
-        Me.comboboxOrigen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboboxOrigen.Name = "comboboxOrigen"
-        Me.comboboxOrigen.Size = New System.Drawing.Size(170, 23)
-        '
-        'toolstripgroupDestino
-        '
-        Me.toolstripgroupDestino.Dock = System.Windows.Forms.DockStyle.None
-        Me.toolstripgroupDestino.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.toolstripgroupDestino.ForeColor = System.Drawing.Color.MidnightBlue
-        Me.toolstripgroupDestino.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.toolstripgroupDestino.Image = Nothing
-        Me.toolstripgroupDestino.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.comboboxDestino})
-        Me.toolstripgroupDestino.Location = New System.Drawing.Point(886, 1)
-        Me.toolstripgroupDestino.Name = "toolstripgroupDestino"
-        Me.toolstripgroupDestino.Padding = New System.Windows.Forms.Padding(0, 5, 0, 0)
-        Me.toolstripgroupDestino.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.toolstripgroupDestino.Size = New System.Drawing.Size(178, 69)
-        Me.toolstripgroupDestino.TabIndex = 8
-        Me.toolstripgroupDestino.Text = "Destino"
-        '
-        'comboboxDestino
-        '
-        Me.comboboxDestino.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboboxDestino.Name = "comboboxDestino"
-        Me.comboboxDestino.Size = New System.Drawing.Size(170, 23)
-        '
-        'toolstripgroupTransportista
-        '
-        Me.toolstripgroupTransportista.Dock = System.Windows.Forms.DockStyle.None
-        Me.toolstripgroupTransportista.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.toolstripgroupTransportista.ForeColor = System.Drawing.Color.MidnightBlue
-        Me.toolstripgroupTransportista.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.toolstripgroupTransportista.Image = Nothing
-        Me.toolstripgroupTransportista.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.comboboxTransportista})
-        Me.toolstripgroupTransportista.Location = New System.Drawing.Point(1066, 1)
-        Me.toolstripgroupTransportista.Name = "toolstripgroupTransportista"
-        Me.toolstripgroupTransportista.Padding = New System.Windows.Forms.Padding(0, 5, 0, 0)
-        Me.toolstripgroupTransportista.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.toolstripgroupTransportista.Size = New System.Drawing.Size(208, 69)
-        Me.toolstripgroupTransportista.TabIndex = 5
-        Me.toolstripgroupTransportista.Text = "Transportista"
-        '
-        'comboboxTransportista
-        '
-        Me.comboboxTransportista.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboboxTransportista.Name = "comboboxTransportista"
-        Me.comboboxTransportista.Size = New System.Drawing.Size(200, 23)
-        '
-        'toolstripgroupChofer
-        '
-        Me.toolstripgroupChofer.Dock = System.Windows.Forms.DockStyle.None
-        Me.toolstripgroupChofer.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.toolstripgroupChofer.ForeColor = System.Drawing.Color.MidnightBlue
-        Me.toolstripgroupChofer.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.toolstripgroupChofer.Image = Nothing
-        Me.toolstripgroupChofer.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.comboboxChofer})
-        Me.toolstripgroupChofer.Location = New System.Drawing.Point(1276, 1)
-        Me.toolstripgroupChofer.Name = "toolstripgroupChofer"
-        Me.toolstripgroupChofer.Padding = New System.Windows.Forms.Padding(0, 5, 0, 0)
-        Me.toolstripgroupChofer.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.toolstripgroupChofer.Size = New System.Drawing.Size(129, 69)
-        Me.toolstripgroupChofer.TabIndex = 6
-        Me.toolstripgroupChofer.Text = "Chofer"
-        '
-        'comboboxChofer
-        '
-        Me.comboboxChofer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboboxChofer.Name = "comboboxChofer"
-        Me.comboboxChofer.Size = New System.Drawing.Size(121, 23)
-        '
-        'toolstriptabFiltrosAvanzados
-        '
-        Me.toolstriptabFiltrosAvanzados.Name = "toolstriptabFiltrosAvanzados"
-        '
-        'ribbonMain.RibbonPanel3
-        '
-        Me.toolstriptabFiltrosAvanzados.Panel.Controls.Add(Me.toolstripgroupEsVerificado)
-        Me.toolstriptabFiltrosAvanzados.Panel.Controls.Add(Me.toolstripgroupEsActivo)
-        Me.toolstriptabFiltrosAvanzados.Panel.Controls.Add(Me.toolstripgroupMenu)
-        Me.toolstriptabFiltrosAvanzados.Panel.Name = "RibbonPanel3"
-        Me.toolstriptabFiltrosAvanzados.Panel.ScrollPosition = 0
-        Me.toolstriptabFiltrosAvanzados.Panel.TabIndex = 4
-        Me.toolstriptabFiltrosAvanzados.Panel.Text = "Avanzados"
-        Me.toolstriptabFiltrosAvanzados.Position = 2
-        Me.toolstriptabFiltrosAvanzados.Size = New System.Drawing.Size(68, 19)
-        Me.toolstriptabFiltrosAvanzados.Tag = "1"
-        Me.toolstriptabFiltrosAvanzados.Text = "Avanzados"
-        '
-        'toolstripgroupEsVerificado
-        '
-        Me.toolstripgroupEsVerificado.Dock = System.Windows.Forms.DockStyle.None
-        Me.toolstripgroupEsVerificado.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.toolstripgroupEsVerificado.ForeColor = System.Drawing.Color.MidnightBlue
-        Me.toolstripgroupEsVerificado.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.toolstripgroupEsVerificado.Image = Nothing
-        Me.toolstripgroupEsVerificado.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.comboboxEsVerificado})
-        Me.toolstripgroupEsVerificado.Location = New System.Drawing.Point(0, 1)
-        Me.toolstripgroupEsVerificado.Name = "toolstripgroupEsVerificado"
-        Me.toolstripgroupEsVerificado.Padding = New System.Windows.Forms.Padding(0, 5, 0, 0)
-        Me.toolstripgroupEsVerificado.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.toolstripgroupEsVerificado.ShowLauncher = False
-        Me.toolstripgroupEsVerificado.Size = New System.Drawing.Size(88, 69)
-        Me.toolstripgroupEsVerificado.TabIndex = 6
-        Me.toolstripgroupEsVerificado.Text = "Verificado"
-        '
-        'comboboxEsVerificado
-        '
-        Me.comboboxEsVerificado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboboxEsVerificado.Name = "comboboxEsVerificado"
-        Me.comboboxEsVerificado.Size = New System.Drawing.Size(80, 23)
-        '
-        'toolstripgroupEsActivo
-        '
-        Me.toolstripgroupEsActivo.Dock = System.Windows.Forms.DockStyle.None
-        Me.toolstripgroupEsActivo.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.toolstripgroupEsActivo.ForeColor = System.Drawing.Color.MidnightBlue
-        Me.toolstripgroupEsActivo.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.toolstripgroupEsActivo.Image = Nothing
-        Me.toolstripgroupEsActivo.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.comboboxEsActivo})
-        Me.toolstripgroupEsActivo.Location = New System.Drawing.Point(90, 1)
-        Me.toolstripgroupEsActivo.Name = "toolstripgroupEsActivo"
-        Me.toolstripgroupEsActivo.Padding = New System.Windows.Forms.Padding(0, 5, 0, 0)
-        Me.toolstripgroupEsActivo.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.toolstripgroupEsActivo.ShowLauncher = False
-        Me.toolstripgroupEsActivo.Size = New System.Drawing.Size(88, 69)
-        Me.toolstripgroupEsActivo.TabIndex = 5
-        Me.toolstripgroupEsActivo.Text = "Activo"
-        '
-        'comboboxEsActivo
-        '
-        Me.comboboxEsActivo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboboxEsActivo.Name = "comboboxEsActivo"
-        Me.comboboxEsActivo.Size = New System.Drawing.Size(80, 23)
-        '
-        'toolstripgroupMenu
-        '
-        Me.toolstripgroupMenu.AutoSize = False
-        Me.toolstripgroupMenu.Dock = System.Windows.Forms.DockStyle.None
-        Me.toolstripgroupMenu.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.toolstripgroupMenu.ForeColor = System.Drawing.Color.MidnightBlue
-        Me.toolstripgroupMenu.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.toolstripgroupMenu.Image = Nothing
-        Me.toolstripgroupMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.dropdownbuttonTareas})
-        Me.toolstripgroupMenu.Location = New System.Drawing.Point(180, 1)
-        Me.toolstripgroupMenu.Name = "toolstripgroupMenu"
-        Me.toolstripgroupMenu.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.toolstripgroupMenu.ShowLauncher = False
-        Me.toolstripgroupMenu.Size = New System.Drawing.Size(70, 69)
-        Me.toolstripgroupMenu.TabIndex = 7
-        '
-        'dropdownbuttonTareas
-        '
-        Me.dropdownbuttonTareas.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.dropdownbuttonTareas.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemCalcularMermas, Me.menuitemCalcularAcondicionamiento})
-        Me.dropdownbuttonTareas.Image = CType(resources.GetObject("dropdownbuttonTareas.Image"), System.Drawing.Image)
-        Me.dropdownbuttonTareas.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.dropdownbuttonTareas.Name = "dropdownbuttonTareas"
-        Me.dropdownbuttonTareas.Size = New System.Drawing.Size(52, 66)
-        Me.dropdownbuttonTareas.Text = "Tareas"
-        '
-        'menuitemCalcularMermas
-        '
-        Me.menuitemCalcularMermas.Name = "menuitemCalcularMermas"
-        Me.menuitemCalcularMermas.Size = New System.Drawing.Size(217, 22)
-        Me.menuitemCalcularMermas.Text = "Calcular mermas"
-        '
-        'menuitemCalcularAcondicionamiento
-        '
-        Me.menuitemCalcularAcondicionamiento.Name = "menuitemCalcularAcondicionamiento"
-        Me.menuitemCalcularAcondicionamiento.Size = New System.Drawing.Size(217, 22)
-        Me.menuitemCalcularAcondicionamiento.Text = "Calcular acondicionamiento"
+        'TabControlToolbar
+        '
+        Me.TabControlToolbar.Controls.Add(Me.TabPageToolbarPrincipal)
+        Me.TabControlToolbar.Controls.Add(Me.TabPageToolbarBasicos)
+        Me.TabControlToolbar.Controls.Add(Me.TabPageToolbarOtros)
+        Me.TabControlToolbar.Controls.Add(Me.TabPageToolbarAvanzados)
+        Me.TabControlToolbar.Dock = System.Windows.Forms.DockStyle.Top
+        Me.TabControlToolbar.Font = New System.Drawing.Font("Segoe UI", 8.25!)
+        Me.TabControlToolbar.Location = New System.Drawing.Point(0, 0)
+        Me.TabControlToolbar.Name = "TabControlToolbar"
+        Me.TabControlToolbar.SelectedIndex = 0
+        Me.TabControlToolbar.Size = New System.Drawing.Size(1197, 100)
+        Me.TabControlToolbar.TabIndex = 5
+        '
+        'TabPageToolbarPrincipal
+        '
+        Me.TabPageToolbarPrincipal.BackColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(233, Byte), Integer), CType(CType(249, Byte), Integer))
+        Me.TabPageToolbarPrincipal.Controls.Add(Me.ToolStripPeriodo)
+        Me.TabPageToolbarPrincipal.Controls.Add(Me.ToolStripAcciones)
+        Me.TabPageToolbarPrincipal.Location = New System.Drawing.Point(4, 22)
+        Me.TabPageToolbarPrincipal.Name = "TabPageToolbarPrincipal"
+        Me.TabPageToolbarPrincipal.Size = New System.Drawing.Size(1189, 74)
+        Me.TabPageToolbarPrincipal.TabIndex = 0
+        Me.TabPageToolbarPrincipal.Text = "Principal"
+        '
+        'ToolStripPeriodo
+        '
+        Me.ToolStripPeriodo.BackColor = System.Drawing.Color.FromArgb(CType(CType(194, Byte), Integer), CType(CType(217, Byte), Integer), CType(CType(240, Byte), Integer))
+        Me.ToolStripPeriodo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.ToolStripPeriodo.Dock = System.Windows.Forms.DockStyle.Left
+        Me.ToolStripPeriodo.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.ToolStripPeriodo.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripComboBoxPeriodoTipo, Me.ToolStripComboBoxPeriodoValor, Me.ToolStripLabelFecha, Me.ToolStripButtonFechaDesdeAnterior, Me.ToolStripLabelFechaDesdeDiaSemana, Me.ToolStripButtonFechaDesdeSiguiente, Me.ToolStripButtonFechaDesdeHoy, Me.ToolStripLabelFechaY, Me.ToolStripButtonFechaHastaAnterior, Me.ToolStripButtonFechaHastaHoy, Me.ToolStripButtonFechaHastaSiguiente, Me.ToolStripButtonExpandir})
+        Me.ToolStripPeriodo.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow
+        Me.ToolStripPeriodo.Location = New System.Drawing.Point(212, 0)
+        Me.ToolStripPeriodo.Name = "ToolStripPeriodo"
+        Me.ToolStripPeriodo.Padding = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.ToolStripPeriodo.Size = New System.Drawing.Size(524, 74)
+        Me.ToolStripPeriodo.TabIndex = 1
+        Me.ToolStripPeriodo.Text = "Período"
+        '
+        'ToolStripComboBoxPeriodoTipo
+        '
+        Me.ToolStripComboBoxPeriodoTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ToolStripComboBoxPeriodoTipo.Name = "ToolStripComboBoxPeriodoTipo"
+        Me.ToolStripComboBoxPeriodoTipo.Size = New System.Drawing.Size(75, 74)
+        '
+        'ToolStripComboBoxPeriodoValor
+        '
+        Me.ToolStripComboBoxPeriodoValor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ToolStripComboBoxPeriodoValor.Name = "ToolStripComboBoxPeriodoValor"
+        Me.ToolStripComboBoxPeriodoValor.Size = New System.Drawing.Size(121, 74)
+        '
+        'ToolStripLabelFecha
+        '
+        Me.ToolStripLabelFecha.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.ToolStripLabelFecha.Name = "ToolStripLabelFecha"
+        Me.ToolStripLabelFecha.Size = New System.Drawing.Size(41, 71)
+        Me.ToolStripLabelFecha.Text = "Fecha:"
+        '
+        'ToolStripButtonFechaDesdeAnterior
+        '
+        Me.ToolStripButtonFechaDesdeAnterior.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButtonFechaDesdeAnterior.Image = Global.CSPesaje.My.Resources.Resources.ImageCalendarPrevious16
+        Me.ToolStripButtonFechaDesdeAnterior.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButtonFechaDesdeAnterior.Name = "ToolStripButtonFechaDesdeAnterior"
+        Me.ToolStripButtonFechaDesdeAnterior.Size = New System.Drawing.Size(23, 71)
+        Me.ToolStripButtonFechaDesdeAnterior.ToolTipText = "Día anterior"
+        '
+        'ToolStripLabelFechaDesdeDiaSemana
+        '
+        Me.ToolStripLabelFechaDesdeDiaSemana.AutoSize = False
+        Me.ToolStripLabelFechaDesdeDiaSemana.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.ToolStripLabelFechaDesdeDiaSemana.Name = "ToolStripLabelFechaDesdeDiaSemana"
+        Me.ToolStripLabelFechaDesdeDiaSemana.Size = New System.Drawing.Size(60, 43)
+        Me.ToolStripLabelFechaDesdeDiaSemana.Text = "Día"
+        '
+        'ToolStripButtonFechaDesdeSiguiente
+        '
+        Me.ToolStripButtonFechaDesdeSiguiente.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButtonFechaDesdeSiguiente.Image = Global.CSPesaje.My.Resources.Resources.ImageCalendarNext16
+        Me.ToolStripButtonFechaDesdeSiguiente.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButtonFechaDesdeSiguiente.Name = "ToolStripButtonFechaDesdeSiguiente"
+        Me.ToolStripButtonFechaDesdeSiguiente.Size = New System.Drawing.Size(23, 71)
+        Me.ToolStripButtonFechaDesdeSiguiente.ToolTipText = "Día siguiente"
+        '
+        'ToolStripButtonFechaDesdeHoy
+        '
+        Me.ToolStripButtonFechaDesdeHoy.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButtonFechaDesdeHoy.Image = Global.CSPesaje.My.Resources.Resources.ImageCalendarToday16
+        Me.ToolStripButtonFechaDesdeHoy.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButtonFechaDesdeHoy.Name = "ToolStripButtonFechaDesdeHoy"
+        Me.ToolStripButtonFechaDesdeHoy.Size = New System.Drawing.Size(23, 71)
+        Me.ToolStripButtonFechaDesdeHoy.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.ToolStripButtonFechaDesdeHoy.ToolTipText = "Hoy"
+        '
+        'ToolStripLabelFechaY
+        '
+        Me.ToolStripLabelFechaY.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.ToolStripLabelFechaY.Name = "ToolStripLabelFechaY"
+        Me.ToolStripLabelFechaY.Size = New System.Drawing.Size(25, 71)
+        Me.ToolStripLabelFechaY.Text = "  y  "
+        '
+        'ToolStripButtonFechaHastaAnterior
+        '
+        Me.ToolStripButtonFechaHastaAnterior.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButtonFechaHastaAnterior.Image = Global.CSPesaje.My.Resources.Resources.ImageCalendarPrevious16
+        Me.ToolStripButtonFechaHastaAnterior.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButtonFechaHastaAnterior.Name = "ToolStripButtonFechaHastaAnterior"
+        Me.ToolStripButtonFechaHastaAnterior.Size = New System.Drawing.Size(23, 71)
+        Me.ToolStripButtonFechaHastaAnterior.ToolTipText = "Día anterior"
+        '
+        'ToolStripButtonFechaHastaHoy
+        '
+        Me.ToolStripButtonFechaHastaHoy.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButtonFechaHastaHoy.Image = Global.CSPesaje.My.Resources.Resources.ImageCalendarToday16
+        Me.ToolStripButtonFechaHastaHoy.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButtonFechaHastaHoy.Name = "ToolStripButtonFechaHastaHoy"
+        Me.ToolStripButtonFechaHastaHoy.Size = New System.Drawing.Size(23, 71)
+        Me.ToolStripButtonFechaHastaHoy.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.ToolStripButtonFechaHastaHoy.ToolTipText = "Hoy"
+        '
+        'ToolStripButtonFechaHastaSiguiente
+        '
+        Me.ToolStripButtonFechaHastaSiguiente.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButtonFechaHastaSiguiente.Image = Global.CSPesaje.My.Resources.Resources.ImageCalendarNext16
+        Me.ToolStripButtonFechaHastaSiguiente.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButtonFechaHastaSiguiente.Name = "ToolStripButtonFechaHastaSiguiente"
+        Me.ToolStripButtonFechaHastaSiguiente.Size = New System.Drawing.Size(23, 71)
+        Me.ToolStripButtonFechaHastaSiguiente.ToolTipText = "Día siguiente"
+        '
+        'ToolStripButtonExpandir
+        '
+        Me.ToolStripButtonExpandir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButtonExpandir.Image = Global.CSPesaje.My.Resources.Resources.ImageToolbarExpandir16
+        Me.ToolStripButtonExpandir.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.ToolStripButtonExpandir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.ToolStripButtonExpandir.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButtonExpandir.Name = "ToolStripButtonExpandir"
+        Me.ToolStripButtonExpandir.Size = New System.Drawing.Size(23, 71)
+        Me.ToolStripButtonExpandir.Text = "Expandir"
+        '
+        'ToolStripAcciones
+        '
+        Me.ToolStripAcciones.AllowMerge = False
+        Me.ToolStripAcciones.BackColor = System.Drawing.Color.FromArgb(CType(CType(194, Byte), Integer), CType(CType(217, Byte), Integer), CType(CType(240, Byte), Integer))
+        Me.ToolStripAcciones.Dock = System.Windows.Forms.DockStyle.Left
+        Me.ToolStripAcciones.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.ToolStripAcciones.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButtonAgregar, Me.ToolStripButtonEditar, Me.ToolStripButtonBorrar, Me.ToolStripButtonImprimir})
+        Me.ToolStripAcciones.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow
+        Me.ToolStripAcciones.Location = New System.Drawing.Point(0, 0)
+        Me.ToolStripAcciones.Name = "ToolStripAcciones"
+        Me.ToolStripAcciones.Padding = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.ToolStripAcciones.Size = New System.Drawing.Size(212, 74)
+        Me.ToolStripAcciones.TabIndex = 0
+        Me.ToolStripAcciones.Text = "Acciones"
+        '
+        'ToolStripButtonAgregar
+        '
+        Me.ToolStripButtonAgregar.Image = Global.CSPesaje.My.Resources.Resources.ImageItemAgregar32
+        Me.ToolStripButtonAgregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.ToolStripButtonAgregar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButtonAgregar.Name = "ToolStripButtonAgregar"
+        Me.ToolStripButtonAgregar.Size = New System.Drawing.Size(53, 71)
+        Me.ToolStripButtonAgregar.Text = "Agregar"
+        Me.ToolStripButtonAgregar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        '
+        'ToolStripButtonEditar
+        '
+        Me.ToolStripButtonEditar.Image = Global.CSPesaje.My.Resources.Resources.ImageItemEditar32
+        Me.ToolStripButtonEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.ToolStripButtonEditar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButtonEditar.Name = "ToolStripButtonEditar"
+        Me.ToolStripButtonEditar.Size = New System.Drawing.Size(41, 71)
+        Me.ToolStripButtonEditar.Text = "Editar"
+        Me.ToolStripButtonEditar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        '
+        'ToolStripButtonBorrar
+        '
+        Me.ToolStripButtonBorrar.Image = Global.CSPesaje.My.Resources.Resources.ImageItemBorrar32
+        Me.ToolStripButtonBorrar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.ToolStripButtonBorrar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButtonBorrar.Name = "ToolStripButtonBorrar"
+        Me.ToolStripButtonBorrar.Size = New System.Drawing.Size(43, 71)
+        Me.ToolStripButtonBorrar.Text = "Borrar"
+        Me.ToolStripButtonBorrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        '
+        'ToolStripButtonImprimir
+        '
+        Me.ToolStripButtonImprimir.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItemImprimirTicketReducido})
+        Me.ToolStripButtonImprimir.Image = Global.CSPesaje.My.Resources.Resources.ImageImprimir32
+        Me.ToolStripButtonImprimir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.ToolStripButtonImprimir.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButtonImprimir.Name = "ToolStripButtonImprimir"
+        Me.ToolStripButtonImprimir.Size = New System.Drawing.Size(69, 71)
+        Me.ToolStripButtonImprimir.Text = "Imprimir"
+        Me.ToolStripButtonImprimir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        '
+        'ToolStripMenuItemImprimirTicketReducido
+        '
+        Me.ToolStripMenuItemImprimirTicketReducido.Name = "ToolStripMenuItemImprimirTicketReducido"
+        Me.ToolStripMenuItemImprimirTicketReducido.Size = New System.Drawing.Size(155, 22)
+        Me.ToolStripMenuItemImprimirTicketReducido.Text = "Ticket reducido"
+        '
+        'TabPageToolbarBasicos
+        '
+        Me.TabPageToolbarBasicos.BackColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(233, Byte), Integer), CType(CType(249, Byte), Integer))
+        Me.TabPageToolbarBasicos.Controls.Add(Me.ToolStripTiposPesada)
+        Me.TabPageToolbarBasicos.Controls.Add(Me.ToolStripCosecha)
+        Me.TabPageToolbarBasicos.Controls.Add(Me.ToolStripPlanta)
+        Me.TabPageToolbarBasicos.Controls.Add(Me.ToolStripProducto)
+        Me.TabPageToolbarBasicos.Controls.Add(Me.ToolStripTitular)
+        Me.TabPageToolbarBasicos.Location = New System.Drawing.Point(4, 22)
+        Me.TabPageToolbarBasicos.Name = "TabPageToolbarBasicos"
+        Me.TabPageToolbarBasicos.Size = New System.Drawing.Size(1189, 74)
+        Me.TabPageToolbarBasicos.TabIndex = 1
+        Me.TabPageToolbarBasicos.Text = "Básicos"
+        '
+        'ToolStripTiposPesada
+        '
+        Me.ToolStripTiposPesada.AllowMerge = False
+        Me.ToolStripTiposPesada.BackColor = System.Drawing.Color.FromArgb(CType(CType(194, Byte), Integer), CType(CType(217, Byte), Integer), CType(CType(240, Byte), Integer))
+        Me.ToolStripTiposPesada.Dock = System.Windows.Forms.DockStyle.Left
+        Me.ToolStripTiposPesada.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.ToolStripTiposPesada.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripDropDownButtonTiposPesada})
+        Me.ToolStripTiposPesada.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow
+        Me.ToolStripTiposPesada.Location = New System.Drawing.Point(484, 0)
+        Me.ToolStripTiposPesada.Name = "ToolStripTiposPesada"
+        Me.ToolStripTiposPesada.Padding = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.ToolStripTiposPesada.Size = New System.Drawing.Size(115, 74)
+        Me.ToolStripTiposPesada.TabIndex = 4
+        Me.ToolStripTiposPesada.Text = "Tipos"
+        '
+        'ToolStripDropDownButtonTiposPesada
+        '
+        Me.ToolStripDropDownButtonTiposPesada.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.ToolStripDropDownButtonTiposPesada.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItemTiposPesadaEntrada, Me.ToolStripMenuItemTiposPesadaSalida, Me.ToolStripMenuItemTiposPesadaNinguna, Me.ToolStripSeparatorTiposPesada, Me.ToolStripMenuItemTiposPesadaMarcarTodos, Me.ToolStripMenuItemTiposPesadaDesmarcarTodos})
+        Me.ToolStripDropDownButtonTiposPesada.Image = CType(resources.GetObject("ToolStripDropDownButtonTiposPesada.Image"), System.Drawing.Image)
+        Me.ToolStripDropDownButtonTiposPesada.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripDropDownButtonTiposPesada.Name = "ToolStripDropDownButtonTiposPesada"
+        Me.ToolStripDropDownButtonTiposPesada.Size = New System.Drawing.Size(109, 71)
+        Me.ToolStripDropDownButtonTiposPesada.Text = "Tipos de Pesadas"
+        '
+        'ToolStripMenuItemTiposPesadaEntrada
+        '
+        Me.ToolStripMenuItemTiposPesadaEntrada.Checked = True
+        Me.ToolStripMenuItemTiposPesadaEntrada.CheckOnClick = True
+        Me.ToolStripMenuItemTiposPesadaEntrada.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.ToolStripMenuItemTiposPesadaEntrada.Name = "ToolStripMenuItemTiposPesadaEntrada"
+        Me.ToolStripMenuItemTiposPesadaEntrada.Size = New System.Drawing.Size(163, 22)
+        Me.ToolStripMenuItemTiposPesadaEntrada.Text = "Entrada"
+        '
+        'ToolStripMenuItemTiposPesadaSalida
+        '
+        Me.ToolStripMenuItemTiposPesadaSalida.Checked = True
+        Me.ToolStripMenuItemTiposPesadaSalida.CheckOnClick = True
+        Me.ToolStripMenuItemTiposPesadaSalida.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.ToolStripMenuItemTiposPesadaSalida.Name = "ToolStripMenuItemTiposPesadaSalida"
+        Me.ToolStripMenuItemTiposPesadaSalida.Size = New System.Drawing.Size(163, 22)
+        Me.ToolStripMenuItemTiposPesadaSalida.Text = "Salida"
+        '
+        'ToolStripMenuItemTiposPesadaNinguna
+        '
+        Me.ToolStripMenuItemTiposPesadaNinguna.Checked = True
+        Me.ToolStripMenuItemTiposPesadaNinguna.CheckOnClick = True
+        Me.ToolStripMenuItemTiposPesadaNinguna.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.ToolStripMenuItemTiposPesadaNinguna.Name = "ToolStripMenuItemTiposPesadaNinguna"
+        Me.ToolStripMenuItemTiposPesadaNinguna.Size = New System.Drawing.Size(163, 22)
+        Me.ToolStripMenuItemTiposPesadaNinguna.Text = "Ninguna"
+        '
+        'ToolStripSeparatorTiposPesada
+        '
+        Me.ToolStripSeparatorTiposPesada.Name = "ToolStripSeparatorTiposPesada"
+        Me.ToolStripSeparatorTiposPesada.Size = New System.Drawing.Size(160, 6)
+        '
+        'ToolStripMenuItemTiposPesadaMarcarTodos
+        '
+        Me.ToolStripMenuItemTiposPesadaMarcarTodos.Name = "ToolStripMenuItemTiposPesadaMarcarTodos"
+        Me.ToolStripMenuItemTiposPesadaMarcarTodos.Size = New System.Drawing.Size(163, 22)
+        Me.ToolStripMenuItemTiposPesadaMarcarTodos.Text = "Marcar todos"
+        '
+        'ToolStripMenuItemTiposPesadaDesmarcarTodos
+        '
+        Me.ToolStripMenuItemTiposPesadaDesmarcarTodos.Name = "ToolStripMenuItemTiposPesadaDesmarcarTodos"
+        Me.ToolStripMenuItemTiposPesadaDesmarcarTodos.Size = New System.Drawing.Size(163, 22)
+        Me.ToolStripMenuItemTiposPesadaDesmarcarTodos.Text = "Desmarcar todos"
+        '
+        'ToolStripCosecha
+        '
+        Me.ToolStripCosecha.AllowMerge = False
+        Me.ToolStripCosecha.BackColor = System.Drawing.Color.FromArgb(CType(CType(194, Byte), Integer), CType(CType(217, Byte), Integer), CType(CType(240, Byte), Integer))
+        Me.ToolStripCosecha.Dock = System.Windows.Forms.DockStyle.Left
+        Me.ToolStripCosecha.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.ToolStripCosecha.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripLabelCosecha, Me.ToolStripComboBoxCosecha})
+        Me.ToolStripCosecha.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
+        Me.ToolStripCosecha.Location = New System.Drawing.Point(398, 0)
+        Me.ToolStripCosecha.Name = "ToolStripCosecha"
+        Me.ToolStripCosecha.Padding = New System.Windows.Forms.Padding(2, 8, 2, 0)
+        Me.ToolStripCosecha.Size = New System.Drawing.Size(86, 74)
+        Me.ToolStripCosecha.TabIndex = 3
+        Me.ToolStripCosecha.Text = "Cosecha"
+        '
+        'ToolStripLabelCosecha
+        '
+        Me.ToolStripLabelCosecha.Name = "ToolStripLabelCosecha"
+        Me.ToolStripLabelCosecha.Size = New System.Drawing.Size(77, 15)
+        Me.ToolStripLabelCosecha.Text = "Cosecha"
+        '
+        'ToolStripComboBoxCosecha
+        '
+        Me.ToolStripComboBoxCosecha.AutoSize = False
+        Me.ToolStripComboBoxCosecha.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ToolStripComboBoxCosecha.Name = "ToolStripComboBoxCosecha"
+        Me.ToolStripComboBoxCosecha.Size = New System.Drawing.Size(80, 23)
+        '
+        'ToolStripPlanta
+        '
+        Me.ToolStripPlanta.AllowMerge = False
+        Me.ToolStripPlanta.BackColor = System.Drawing.Color.FromArgb(CType(CType(194, Byte), Integer), CType(CType(217, Byte), Integer), CType(CType(240, Byte), Integer))
+        Me.ToolStripPlanta.Dock = System.Windows.Forms.DockStyle.Left
+        Me.ToolStripPlanta.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.ToolStripPlanta.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripLabelPlanta, Me.ToolStripComboBoxPlanta})
+        Me.ToolStripPlanta.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
+        Me.ToolStripPlanta.Location = New System.Drawing.Point(302, 0)
+        Me.ToolStripPlanta.Name = "ToolStripPlanta"
+        Me.ToolStripPlanta.Padding = New System.Windows.Forms.Padding(2, 8, 2, 0)
+        Me.ToolStripPlanta.Size = New System.Drawing.Size(96, 74)
+        Me.ToolStripPlanta.TabIndex = 2
+        Me.ToolStripPlanta.Text = "Planta"
+        '
+        'ToolStripLabelPlanta
+        '
+        Me.ToolStripLabelPlanta.Name = "ToolStripLabelPlanta"
+        Me.ToolStripLabelPlanta.Size = New System.Drawing.Size(87, 15)
+        Me.ToolStripLabelPlanta.Text = "Planta"
+        '
+        'ToolStripComboBoxPlanta
+        '
+        Me.ToolStripComboBoxPlanta.AutoSize = False
+        Me.ToolStripComboBoxPlanta.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ToolStripComboBoxPlanta.Name = "ToolStripComboBoxPlanta"
+        Me.ToolStripComboBoxPlanta.Size = New System.Drawing.Size(90, 23)
+        '
+        'ToolStripProducto
+        '
+        Me.ToolStripProducto.AllowMerge = False
+        Me.ToolStripProducto.BackColor = System.Drawing.Color.FromArgb(CType(CType(194, Byte), Integer), CType(CType(217, Byte), Integer), CType(CType(240, Byte), Integer))
+        Me.ToolStripProducto.Dock = System.Windows.Forms.DockStyle.Left
+        Me.ToolStripProducto.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.ToolStripProducto.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripLabelProducto, Me.ToolStripComboBoxProducto})
+        Me.ToolStripProducto.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
+        Me.ToolStripProducto.Location = New System.Drawing.Point(186, 0)
+        Me.ToolStripProducto.Name = "ToolStripProducto"
+        Me.ToolStripProducto.Padding = New System.Windows.Forms.Padding(2, 8, 2, 0)
+        Me.ToolStripProducto.Size = New System.Drawing.Size(116, 74)
+        Me.ToolStripProducto.TabIndex = 1
+        Me.ToolStripProducto.Text = "Producto"
+        '
+        'ToolStripLabelProducto
+        '
+        Me.ToolStripLabelProducto.Name = "ToolStripLabelProducto"
+        Me.ToolStripLabelProducto.Size = New System.Drawing.Size(107, 15)
+        Me.ToolStripLabelProducto.Text = "Producto"
+        '
+        'ToolStripComboBoxProducto
+        '
+        Me.ToolStripComboBoxProducto.AutoSize = False
+        Me.ToolStripComboBoxProducto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ToolStripComboBoxProducto.Name = "ToolStripComboBoxProducto"
+        Me.ToolStripComboBoxProducto.Size = New System.Drawing.Size(110, 23)
+        '
+        'ToolStripTitular
+        '
+        Me.ToolStripTitular.AllowMerge = False
+        Me.ToolStripTitular.BackColor = System.Drawing.Color.FromArgb(CType(CType(194, Byte), Integer), CType(CType(217, Byte), Integer), CType(CType(240, Byte), Integer))
+        Me.ToolStripTitular.Dock = System.Windows.Forms.DockStyle.Left
+        Me.ToolStripTitular.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.ToolStripTitular.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripLabelTitular, Me.ToolStripComboBoxTitular})
+        Me.ToolStripTitular.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
+        Me.ToolStripTitular.Location = New System.Drawing.Point(0, 0)
+        Me.ToolStripTitular.Name = "ToolStripTitular"
+        Me.ToolStripTitular.Padding = New System.Windows.Forms.Padding(2, 8, 2, 0)
+        Me.ToolStripTitular.Size = New System.Drawing.Size(186, 74)
+        Me.ToolStripTitular.TabIndex = 0
+        Me.ToolStripTitular.Text = "Titular"
+        '
+        'ToolStripLabelTitular
+        '
+        Me.ToolStripLabelTitular.Name = "ToolStripLabelTitular"
+        Me.ToolStripLabelTitular.Size = New System.Drawing.Size(177, 15)
+        Me.ToolStripLabelTitular.Text = "Titular"
+        '
+        'ToolStripComboBoxTitular
+        '
+        Me.ToolStripComboBoxTitular.AutoSize = False
+        Me.ToolStripComboBoxTitular.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ToolStripComboBoxTitular.Name = "ToolStripComboBoxTitular"
+        Me.ToolStripComboBoxTitular.Size = New System.Drawing.Size(180, 23)
+        '
+        'TabPageToolbarOtros
+        '
+        Me.TabPageToolbarOtros.BackColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(233, Byte), Integer), CType(CType(249, Byte), Integer))
+        Me.TabPageToolbarOtros.Controls.Add(Me.ToolStripChofer)
+        Me.TabPageToolbarOtros.Controls.Add(Me.ToolStripTransportista)
+        Me.TabPageToolbarOtros.Controls.Add(Me.ToolStripDestino)
+        Me.TabPageToolbarOtros.Controls.Add(Me.ToolStripOrigen)
+        Me.TabPageToolbarOtros.Location = New System.Drawing.Point(4, 22)
+        Me.TabPageToolbarOtros.Name = "TabPageToolbarOtros"
+        Me.TabPageToolbarOtros.Size = New System.Drawing.Size(1189, 74)
+        Me.TabPageToolbarOtros.TabIndex = 2
+        Me.TabPageToolbarOtros.Text = "Otros"
+        '
+        'ToolStripChofer
+        '
+        Me.ToolStripChofer.AllowMerge = False
+        Me.ToolStripChofer.BackColor = System.Drawing.Color.FromArgb(CType(CType(194, Byte), Integer), CType(CType(217, Byte), Integer), CType(CType(240, Byte), Integer))
+        Me.ToolStripChofer.Dock = System.Windows.Forms.DockStyle.Left
+        Me.ToolStripChofer.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.ToolStripChofer.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripLabelChofer, Me.ToolStripComboBoxChofer})
+        Me.ToolStripChofer.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
+        Me.ToolStripChofer.Location = New System.Drawing.Point(718, 0)
+        Me.ToolStripChofer.Name = "ToolStripChofer"
+        Me.ToolStripChofer.Padding = New System.Windows.Forms.Padding(2, 8, 2, 0)
+        Me.ToolStripChofer.Size = New System.Drawing.Size(216, 74)
+        Me.ToolStripChofer.TabIndex = 4
+        Me.ToolStripChofer.Text = "Chofer"
+        '
+        'ToolStripLabelChofer
+        '
+        Me.ToolStripLabelChofer.Name = "ToolStripLabelChofer"
+        Me.ToolStripLabelChofer.Size = New System.Drawing.Size(207, 15)
+        Me.ToolStripLabelChofer.Text = "Chofer"
+        '
+        'ToolStripComboBoxChofer
+        '
+        Me.ToolStripComboBoxChofer.AutoSize = False
+        Me.ToolStripComboBoxChofer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ToolStripComboBoxChofer.Name = "ToolStripComboBoxChofer"
+        Me.ToolStripComboBoxChofer.Size = New System.Drawing.Size(210, 23)
+        '
+        'ToolStripTransportista
+        '
+        Me.ToolStripTransportista.AllowMerge = False
+        Me.ToolStripTransportista.BackColor = System.Drawing.Color.FromArgb(CType(CType(194, Byte), Integer), CType(CType(217, Byte), Integer), CType(CType(240, Byte), Integer))
+        Me.ToolStripTransportista.Dock = System.Windows.Forms.DockStyle.Left
+        Me.ToolStripTransportista.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.ToolStripTransportista.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripLabelTransportista, Me.ToolStripComboBoxTransportista})
+        Me.ToolStripTransportista.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
+        Me.ToolStripTransportista.Location = New System.Drawing.Point(492, 0)
+        Me.ToolStripTransportista.Name = "ToolStripTransportista"
+        Me.ToolStripTransportista.Padding = New System.Windows.Forms.Padding(2, 8, 2, 0)
+        Me.ToolStripTransportista.Size = New System.Drawing.Size(226, 74)
+        Me.ToolStripTransportista.TabIndex = 3
+        Me.ToolStripTransportista.Text = "Transportista"
+        '
+        'ToolStripLabelTransportista
+        '
+        Me.ToolStripLabelTransportista.Name = "ToolStripLabelTransportista"
+        Me.ToolStripLabelTransportista.Size = New System.Drawing.Size(217, 15)
+        Me.ToolStripLabelTransportista.Text = "Transportista"
+        '
+        'ToolStripComboBoxTransportista
+        '
+        Me.ToolStripComboBoxTransportista.AutoSize = False
+        Me.ToolStripComboBoxTransportista.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ToolStripComboBoxTransportista.Name = "ToolStripComboBoxTransportista"
+        Me.ToolStripComboBoxTransportista.Size = New System.Drawing.Size(220, 23)
+        '
+        'ToolStripDestino
+        '
+        Me.ToolStripDestino.AllowMerge = False
+        Me.ToolStripDestino.BackColor = System.Drawing.Color.FromArgb(CType(CType(194, Byte), Integer), CType(CType(217, Byte), Integer), CType(CType(240, Byte), Integer))
+        Me.ToolStripDestino.Dock = System.Windows.Forms.DockStyle.Left
+        Me.ToolStripDestino.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.ToolStripDestino.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripLabelDestino, Me.ToolStripComboBoxDestino})
+        Me.ToolStripDestino.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
+        Me.ToolStripDestino.Location = New System.Drawing.Point(246, 0)
+        Me.ToolStripDestino.Name = "ToolStripDestino"
+        Me.ToolStripDestino.Padding = New System.Windows.Forms.Padding(2, 8, 2, 0)
+        Me.ToolStripDestino.Size = New System.Drawing.Size(246, 74)
+        Me.ToolStripDestino.TabIndex = 2
+        Me.ToolStripDestino.Text = "Destino"
+        '
+        'ToolStripLabelDestino
+        '
+        Me.ToolStripLabelDestino.Name = "ToolStripLabelDestino"
+        Me.ToolStripLabelDestino.Size = New System.Drawing.Size(237, 15)
+        Me.ToolStripLabelDestino.Text = "Destino"
+        '
+        'ToolStripComboBoxDestino
+        '
+        Me.ToolStripComboBoxDestino.AutoSize = False
+        Me.ToolStripComboBoxDestino.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ToolStripComboBoxDestino.Name = "ToolStripComboBoxDestino"
+        Me.ToolStripComboBoxDestino.Size = New System.Drawing.Size(240, 23)
+        '
+        'ToolStripOrigen
+        '
+        Me.ToolStripOrigen.AllowMerge = False
+        Me.ToolStripOrigen.BackColor = System.Drawing.Color.FromArgb(CType(CType(194, Byte), Integer), CType(CType(217, Byte), Integer), CType(CType(240, Byte), Integer))
+        Me.ToolStripOrigen.Dock = System.Windows.Forms.DockStyle.Left
+        Me.ToolStripOrigen.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.ToolStripOrigen.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripLabelOrigen, Me.ToolStripComboBoxOrigen})
+        Me.ToolStripOrigen.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
+        Me.ToolStripOrigen.Location = New System.Drawing.Point(0, 0)
+        Me.ToolStripOrigen.Name = "ToolStripOrigen"
+        Me.ToolStripOrigen.Padding = New System.Windows.Forms.Padding(2, 8, 2, 0)
+        Me.ToolStripOrigen.Size = New System.Drawing.Size(246, 74)
+        Me.ToolStripOrigen.TabIndex = 1
+        Me.ToolStripOrigen.Text = "Origen"
+        '
+        'ToolStripLabelOrigen
+        '
+        Me.ToolStripLabelOrigen.Name = "ToolStripLabelOrigen"
+        Me.ToolStripLabelOrigen.Size = New System.Drawing.Size(237, 15)
+        Me.ToolStripLabelOrigen.Text = "Origen"
+        '
+        'ToolStripComboBoxOrigen
+        '
+        Me.ToolStripComboBoxOrigen.AutoSize = False
+        Me.ToolStripComboBoxOrigen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ToolStripComboBoxOrigen.Name = "ToolStripComboBoxOrigen"
+        Me.ToolStripComboBoxOrigen.Size = New System.Drawing.Size(240, 23)
+        '
+        'TabPageToolbarAvanzados
+        '
+        Me.TabPageToolbarAvanzados.BackColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(233, Byte), Integer), CType(CType(249, Byte), Integer))
+        Me.TabPageToolbarAvanzados.Controls.Add(Me.ToolStripTareas)
+        Me.TabPageToolbarAvanzados.Controls.Add(Me.ToolStripActivo)
+        Me.TabPageToolbarAvanzados.Controls.Add(Me.ToolStripVerificado)
+        Me.TabPageToolbarAvanzados.Location = New System.Drawing.Point(4, 22)
+        Me.TabPageToolbarAvanzados.Name = "TabPageToolbarAvanzados"
+        Me.TabPageToolbarAvanzados.Size = New System.Drawing.Size(1189, 74)
+        Me.TabPageToolbarAvanzados.TabIndex = 3
+        Me.TabPageToolbarAvanzados.Text = "Avanzados"
+        '
+        'ToolStripTareas
+        '
+        Me.ToolStripTareas.AllowMerge = False
+        Me.ToolStripTareas.BackColor = System.Drawing.Color.FromArgb(CType(CType(194, Byte), Integer), CType(CType(217, Byte), Integer), CType(CType(240, Byte), Integer))
+        Me.ToolStripTareas.Dock = System.Windows.Forms.DockStyle.Left
+        Me.ToolStripTareas.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.ToolStripTareas.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripDropDownButtonTareas})
+        Me.ToolStripTareas.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow
+        Me.ToolStripTareas.Location = New System.Drawing.Point(152, 0)
+        Me.ToolStripTareas.Name = "ToolStripTareas"
+        Me.ToolStripTareas.Padding = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.ToolStripTareas.Size = New System.Drawing.Size(58, 74)
+        Me.ToolStripTareas.TabIndex = 6
+        Me.ToolStripTareas.Text = "Tareas"
+        '
+        'ToolStripDropDownButtonTareas
+        '
+        Me.ToolStripDropDownButtonTareas.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.ToolStripDropDownButtonTareas.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItemTareasCalcularMermas, Me.ToolStripMenuItemTareasCalcularAcondicionamiento})
+        Me.ToolStripDropDownButtonTareas.Image = CType(resources.GetObject("ToolStripDropDownButtonTareas.Image"), System.Drawing.Image)
+        Me.ToolStripDropDownButtonTareas.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripDropDownButtonTareas.Name = "ToolStripDropDownButtonTareas"
+        Me.ToolStripDropDownButtonTareas.Size = New System.Drawing.Size(52, 71)
+        Me.ToolStripDropDownButtonTareas.Text = "Tareas"
+        '
+        'ToolStripMenuItemTareasCalcularMermas
+        '
+        Me.ToolStripMenuItemTareasCalcularMermas.Name = "ToolStripMenuItemTareasCalcularMermas"
+        Me.ToolStripMenuItemTareasCalcularMermas.Size = New System.Drawing.Size(223, 22)
+        Me.ToolStripMenuItemTareasCalcularMermas.Text = "Calcular mermas"
+        '
+        'ToolStripMenuItemTareasCalcularAcondicionamiento
+        '
+        Me.ToolStripMenuItemTareasCalcularAcondicionamiento.Name = "ToolStripMenuItemTareasCalcularAcondicionamiento"
+        Me.ToolStripMenuItemTareasCalcularAcondicionamiento.Size = New System.Drawing.Size(223, 22)
+        Me.ToolStripMenuItemTareasCalcularAcondicionamiento.Text = "Calcular acondicionamiento"
+        '
+        'ToolStripActivo
+        '
+        Me.ToolStripActivo.AllowMerge = False
+        Me.ToolStripActivo.BackColor = System.Drawing.Color.FromArgb(CType(CType(194, Byte), Integer), CType(CType(217, Byte), Integer), CType(CType(240, Byte), Integer))
+        Me.ToolStripActivo.Dock = System.Windows.Forms.DockStyle.Left
+        Me.ToolStripActivo.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.ToolStripActivo.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripLabelActivo, Me.ToolStripComboBoxActivo})
+        Me.ToolStripActivo.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
+        Me.ToolStripActivo.Location = New System.Drawing.Point(76, 0)
+        Me.ToolStripActivo.Name = "ToolStripActivo"
+        Me.ToolStripActivo.Padding = New System.Windows.Forms.Padding(2, 8, 2, 0)
+        Me.ToolStripActivo.Size = New System.Drawing.Size(76, 74)
+        Me.ToolStripActivo.TabIndex = 5
+        Me.ToolStripActivo.Text = "Activo"
+        '
+        'ToolStripLabelActivo
+        '
+        Me.ToolStripLabelActivo.Name = "ToolStripLabelActivo"
+        Me.ToolStripLabelActivo.Size = New System.Drawing.Size(67, 15)
+        Me.ToolStripLabelActivo.Text = "Activo"
+        '
+        'ToolStripComboBoxActivo
+        '
+        Me.ToolStripComboBoxActivo.AutoSize = False
+        Me.ToolStripComboBoxActivo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ToolStripComboBoxActivo.Name = "ToolStripComboBoxActivo"
+        Me.ToolStripComboBoxActivo.Size = New System.Drawing.Size(70, 23)
+        '
+        'ToolStripVerificado
+        '
+        Me.ToolStripVerificado.AllowMerge = False
+        Me.ToolStripVerificado.BackColor = System.Drawing.Color.FromArgb(CType(CType(194, Byte), Integer), CType(CType(217, Byte), Integer), CType(CType(240, Byte), Integer))
+        Me.ToolStripVerificado.Dock = System.Windows.Forms.DockStyle.Left
+        Me.ToolStripVerificado.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.ToolStripVerificado.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripLabelVerificado, Me.ToolStripComboBoxVerificado})
+        Me.ToolStripVerificado.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
+        Me.ToolStripVerificado.Location = New System.Drawing.Point(0, 0)
+        Me.ToolStripVerificado.Name = "ToolStripVerificado"
+        Me.ToolStripVerificado.Padding = New System.Windows.Forms.Padding(2, 8, 2, 0)
+        Me.ToolStripVerificado.Size = New System.Drawing.Size(76, 74)
+        Me.ToolStripVerificado.TabIndex = 4
+        Me.ToolStripVerificado.Text = "Verificado"
+        '
+        'ToolStripLabelVerificado
+        '
+        Me.ToolStripLabelVerificado.Name = "ToolStripLabelVerificado"
+        Me.ToolStripLabelVerificado.Size = New System.Drawing.Size(67, 15)
+        Me.ToolStripLabelVerificado.Text = "Verificado"
+        '
+        'ToolStripComboBoxVerificado
+        '
+        Me.ToolStripComboBoxVerificado.AutoSize = False
+        Me.ToolStripComboBoxVerificado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ToolStripComboBoxVerificado.Name = "ToolStripComboBoxVerificado"
+        Me.ToolStripComboBoxVerificado.Size = New System.Drawing.Size(70, 23)
         '
         'formPesadas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1197, 369)
-        Me.Controls.Add(Me.datagridviewMain)
-        Me.Controls.Add(Me.statusstripMain)
-        Me.Controls.Add(Me.ribbonMain)
+        Me.ControlBox = False
+        Me.Controls.Add(Me.DataGridViewMain)
+        Me.Controls.Add(Me.TabControlToolbar)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.KeyPreview = True
         Me.Name = "formPesadas"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Pesadas"
-        Me.statusstripMain.ResumeLayout(False)
-        Me.statusstripMain.PerformLayout()
-        CType(Me.datagridviewMain, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DataGridViewMain, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.bindingsourceMain, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ribbonMain, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ribbonMain.ResumeLayout(False)
-        Me.ribbonMain.PerformLayout()
-        Me.toolstriptabPrincipal.Panel.ResumeLayout(False)
-        Me.toolstriptabPrincipal.Panel.PerformLayout()
-        Me.toolstripgroupAcciones.ResumeLayout(False)
-        Me.toolstripgroupAcciones.PerformLayout()
-        Me.toolstripgroupPeriodo.ResumeLayout(False)
-        Me.toolstripgroupPeriodo.PerformLayout()
-        Me.toolstriptabFiltrosBasicos.Panel.ResumeLayout(False)
-        Me.toolstriptabFiltrosBasicos.Panel.PerformLayout()
-        Me.toolstripgroupTitular.ResumeLayout(False)
-        Me.toolstripgroupTitular.PerformLayout()
-        Me.toolstripgroupProducto.ResumeLayout(False)
-        Me.toolstripgroupProducto.PerformLayout()
-        Me.toolstripgroupPlanta.ResumeLayout(False)
-        Me.toolstripgroupPlanta.PerformLayout()
-        Me.tooltripgroupPesadaTipo.ResumeLayout(False)
-        Me.tooltripgroupPesadaTipo.PerformLayout()
-        Me.toolstripgroupCosecha.ResumeLayout(False)
-        Me.toolstripgroupCosecha.PerformLayout()
-        Me.toolstripgroupOrigen.ResumeLayout(False)
-        Me.toolstripgroupOrigen.PerformLayout()
-        Me.toolstripgroupDestino.ResumeLayout(False)
-        Me.toolstripgroupDestino.PerformLayout()
-        Me.toolstripgroupTransportista.ResumeLayout(False)
-        Me.toolstripgroupTransportista.PerformLayout()
-        Me.toolstripgroupChofer.ResumeLayout(False)
-        Me.toolstripgroupChofer.PerformLayout()
-        Me.toolstriptabFiltrosAvanzados.Panel.ResumeLayout(False)
-        Me.toolstriptabFiltrosAvanzados.Panel.PerformLayout()
-        Me.toolstripgroupEsVerificado.ResumeLayout(False)
-        Me.toolstripgroupEsVerificado.PerformLayout()
-        Me.toolstripgroupEsActivo.ResumeLayout(False)
-        Me.toolstripgroupEsActivo.PerformLayout()
-        Me.toolstripgroupMenu.ResumeLayout(False)
-        Me.toolstripgroupMenu.PerformLayout()
+        Me.TabControlToolbar.ResumeLayout(False)
+        Me.TabPageToolbarPrincipal.ResumeLayout(False)
+        Me.TabPageToolbarPrincipal.PerformLayout()
+        Me.ToolStripPeriodo.ResumeLayout(False)
+        Me.ToolStripPeriodo.PerformLayout()
+        Me.ToolStripAcciones.ResumeLayout(False)
+        Me.ToolStripAcciones.PerformLayout()
+        Me.TabPageToolbarBasicos.ResumeLayout(False)
+        Me.TabPageToolbarBasicos.PerformLayout()
+        Me.ToolStripTiposPesada.ResumeLayout(False)
+        Me.ToolStripTiposPesada.PerformLayout()
+        Me.ToolStripCosecha.ResumeLayout(False)
+        Me.ToolStripCosecha.PerformLayout()
+        Me.ToolStripPlanta.ResumeLayout(False)
+        Me.ToolStripPlanta.PerformLayout()
+        Me.ToolStripProducto.ResumeLayout(False)
+        Me.ToolStripProducto.PerformLayout()
+        Me.ToolStripTitular.ResumeLayout(False)
+        Me.ToolStripTitular.PerformLayout()
+        Me.TabPageToolbarOtros.ResumeLayout(False)
+        Me.TabPageToolbarOtros.PerformLayout()
+        Me.ToolStripChofer.ResumeLayout(False)
+        Me.ToolStripChofer.PerformLayout()
+        Me.ToolStripTransportista.ResumeLayout(False)
+        Me.ToolStripTransportista.PerformLayout()
+        Me.ToolStripDestino.ResumeLayout(False)
+        Me.ToolStripDestino.PerformLayout()
+        Me.ToolStripOrigen.ResumeLayout(False)
+        Me.ToolStripOrigen.PerformLayout()
+        Me.TabPageToolbarAvanzados.ResumeLayout(False)
+        Me.TabPageToolbarAvanzados.PerformLayout()
+        Me.ToolStripTareas.ResumeLayout(False)
+        Me.ToolStripTareas.PerformLayout()
+        Me.ToolStripActivo.ResumeLayout(False)
+        Me.ToolStripActivo.PerformLayout()
+        Me.ToolStripVerificado.ResumeLayout(False)
+        Me.ToolStripVerificado.PerformLayout()
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
-    Private WithEvents statusstripMain As System.Windows.Forms.StatusStrip
-    Private WithEvents statuslabelMain As System.Windows.Forms.ToolStripStatusLabel
-    Private WithEvents datagridviewMain As System.Windows.Forms.DataGridView
+    Private WithEvents DataGridViewMain As System.Windows.Forms.DataGridView
     Private WithEvents bindingsourceMain As System.Windows.Forms.BindingSource
-    Friend WithEvents ribbonMain As Syncfusion.Windows.Forms.Tools.RibbonControlAdv
-    Friend WithEvents toolstriptabPrincipal As Syncfusion.Windows.Forms.Tools.ToolStripTabItem
-    Friend WithEvents toolstripgroupAcciones As Syncfusion.Windows.Forms.Tools.ToolStripEx
-    Friend WithEvents buttonAgregar As System.Windows.Forms.ToolStripButton
-    Friend WithEvents buttonEditar As System.Windows.Forms.ToolStripButton
-    Friend WithEvents buttonCopiar As System.Windows.Forms.ToolStripButton
-    Friend WithEvents buttonEliminar As System.Windows.Forms.ToolStripButton
-    Friend WithEvents buttonImprimir As System.Windows.Forms.ToolStripSplitButton
-    Friend WithEvents toolstripgroupPeriodo As Syncfusion.Windows.Forms.Tools.ToolStripEx
-    Friend WithEvents comboboxPeriodoTipo As System.Windows.Forms.ToolStripComboBox
-    Friend WithEvents buttonFechaDesdeAnterior As System.Windows.Forms.ToolStripButton
-    Friend WithEvents buttonFechaDesdeSiguiente As System.Windows.Forms.ToolStripButton
-    Friend WithEvents buttonFechaDesdeHoy As System.Windows.Forms.ToolStripButton
-    Friend WithEvents labelFechaY As System.Windows.Forms.ToolStripLabel
-    Friend WithEvents toolstriptabFiltrosBasicos As Syncfusion.Windows.Forms.Tools.ToolStripTabItem
-    Friend WithEvents tooltripgroupPesadaTipo As Syncfusion.Windows.Forms.Tools.ToolStripEx
-    Friend WithEvents buttonFechaHastaAnterior As System.Windows.Forms.ToolStripButton
-    Friend WithEvents buttonFechaHastaSiguiente As System.Windows.Forms.ToolStripButton
-    Friend WithEvents buttonFechaHastaHoy As System.Windows.Forms.ToolStripButton
-    Friend WithEvents dropdownbuttonPesadaTipo As System.Windows.Forms.ToolStripDropDownButton
-    Friend WithEvents menuitemPesadaTipo_Entrada As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents menuitemPesadaTipo_Salida As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents menuitemPesadaTipo_Ninguno As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents separatorMarcarTodos As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents menuitemPesadaTipo_MarcarTodos As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents menuitemPesadaTipo_DesmarcarTodos As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents comboboxPeriodoValor As System.Windows.Forms.ToolStripComboBox
-    Friend WithEvents labelFecha As System.Windows.Forms.ToolStripLabel
-    Friend WithEvents toolstripgroupTitular As Syncfusion.Windows.Forms.Tools.ToolStripEx
-    Friend WithEvents comboboxTitular As System.Windows.Forms.ToolStripComboBox
-    Friend WithEvents toolstripgroupProducto As Syncfusion.Windows.Forms.Tools.ToolStripEx
-    Friend WithEvents comboboxProducto As System.Windows.Forms.ToolStripComboBox
-    Friend WithEvents toolstripgroupCosecha As Syncfusion.Windows.Forms.Tools.ToolStripEx
-    Friend WithEvents comboboxCosecha As System.Windows.Forms.ToolStripComboBox
-    Friend WithEvents toolstripgroupOrigen As Syncfusion.Windows.Forms.Tools.ToolStripEx
-    Friend WithEvents comboboxOrigen As System.Windows.Forms.ToolStripComboBox
-    Friend WithEvents toolstripgroupTransportista As Syncfusion.Windows.Forms.Tools.ToolStripEx
-    Friend WithEvents comboboxTransportista As System.Windows.Forms.ToolStripComboBox
-    Friend WithEvents toolstripgroupChofer As Syncfusion.Windows.Forms.Tools.ToolStripEx
-    Friend WithEvents comboboxChofer As System.Windows.Forms.ToolStripComboBox
-    Friend WithEvents toolstriptabFiltrosAvanzados As Syncfusion.Windows.Forms.Tools.ToolStripTabItem
-    Friend WithEvents menuitemImprimir_TicketPesadaReducido As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents toolstripgroupPlanta As Syncfusion.Windows.Forms.Tools.ToolStripEx
-    Friend WithEvents comboboxPlanta As System.Windows.Forms.ToolStripComboBox
-    Friend WithEvents toolstripgroupEsVerificado As Syncfusion.Windows.Forms.Tools.ToolStripEx
-    Friend WithEvents comboboxEsVerificado As System.Windows.Forms.ToolStripComboBox
-    Friend WithEvents toolstripgroupEsActivo As Syncfusion.Windows.Forms.Tools.ToolStripEx
-    Friend WithEvents comboboxEsActivo As System.Windows.Forms.ToolStripComboBox
-    Friend WithEvents toolstripgroupMenu As Syncfusion.Windows.Forms.Tools.ToolStripEx
-    Friend WithEvents dropdownbuttonTareas As System.Windows.Forms.ToolStripDropDownButton
-    Friend WithEvents menuitemCalcularMermas As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents menuitemSeparator1 As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents menuitemCalcularAcondicionamiento As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents toolstripgroupDestino As Syncfusion.Windows.Forms.Tools.ToolStripEx
-    Friend WithEvents comboboxDestino As System.Windows.Forms.ToolStripComboBox
-    Friend WithEvents labelFechaDesdeDiaSemana As System.Windows.Forms.ToolStripLabel
-    Friend WithEvents columnIDPesada As DataGridViewTextBoxColumn
-    Friend WithEvents columnFechaHoraInicio As DataGridViewTextBoxColumn
-    Friend WithEvents columnFechaHoraFin As DataGridViewTextBoxColumn
-    Friend WithEvents columnCtg As DataGridViewTextBoxColumn
-    Friend WithEvents columnEntidadTitular As DataGridViewTextBoxColumn
-    Friend WithEvents columnProducto As DataGridViewTextBoxColumn
-    Friend WithEvents columnTipo As DataGridViewTextBoxColumn
-    Friend WithEvents columnCosecha As DataGridViewTextBoxColumn
-    Friend WithEvents columnOrigen As DataGridViewTextBoxColumn
-    Friend WithEvents columnDestino As DataGridViewTextBoxColumn
-    Friend WithEvents columnKilogramoBruto As DataGridViewTextBoxColumn
-    Friend WithEvents columnKilogramoTara As DataGridViewTextBoxColumn
-    Friend WithEvents columnKilogramoNeto As DataGridViewTextBoxColumn
-    Friend WithEvents columnHumedad As DataGridViewTextBoxColumn
-    Friend WithEvents columnZaranda As DataGridViewTextBoxColumn
-    Friend WithEvents columnKilogramoFinal As DataGridViewTextBoxColumn
-    Friend WithEvents columnEntidadTransportista As DataGridViewTextBoxColumn
-    Friend WithEvents columnChofer As DataGridViewTextBoxColumn
-    Friend WithEvents columnCamion As DataGridViewTextBoxColumn
+    Private WithEvents columnIDPesada As DataGridViewTextBoxColumn
+    Private WithEvents columnFechaHoraInicio As DataGridViewTextBoxColumn
+    Private WithEvents columnFechaHoraFin As DataGridViewTextBoxColumn
+    Private WithEvents columnCtg As DataGridViewTextBoxColumn
+    Private WithEvents ColumnComprobante As DataGridViewTextBoxColumn
+    Private WithEvents ColumnPlanta As DataGridViewTextBoxColumn
+    Private WithEvents ColumnPlantaDeposito As DataGridViewTextBoxColumn
+    Private WithEvents columnEntidadTitular As DataGridViewTextBoxColumn
+    Private WithEvents columnProducto As DataGridViewTextBoxColumn
+    Private WithEvents columnTipo As DataGridViewTextBoxColumn
+    Private WithEvents columnCosecha As DataGridViewTextBoxColumn
+    Private WithEvents columnOrigen As DataGridViewTextBoxColumn
+    Private WithEvents columnDestino As DataGridViewTextBoxColumn
+    Private WithEvents columnKilogramoBruto As DataGridViewTextBoxColumn
+    Private WithEvents columnKilogramoTara As DataGridViewTextBoxColumn
+    Private WithEvents columnKilogramoNeto As DataGridViewTextBoxColumn
+    Private WithEvents columnHumedad As DataGridViewTextBoxColumn
+    Private WithEvents columnZaranda As DataGridViewTextBoxColumn
+    Private WithEvents columnKilogramoFinal As DataGridViewTextBoxColumn
+    Private WithEvents columnEntidadTransportista As DataGridViewTextBoxColumn
+    Private WithEvents columnChofer As DataGridViewTextBoxColumn
+    Private WithEvents columnCamion As DataGridViewTextBoxColumn
+    Friend WithEvents TabControlToolbar As TabControl
+    Friend WithEvents TabPageToolbarPrincipal As TabPage
+    Friend WithEvents TabPageToolbarBasicos As TabPage
+    Friend WithEvents TabPageToolbarOtros As TabPage
+    Friend WithEvents TabPageToolbarAvanzados As TabPage
+    Friend WithEvents ToolStripAcciones As ToolStrip
+    Friend WithEvents ToolStripButtonAgregar As ToolStripButton
+    Friend WithEvents ToolStripButtonEditar As ToolStripButton
+    Friend WithEvents ToolStripButtonBorrar As ToolStripButton
+    Friend WithEvents ToolStripButtonImprimir As ToolStripSplitButton
+    Friend WithEvents ToolStripPeriodo As ToolStrip
+    Friend WithEvents ToolStripComboBoxPeriodoTipo As ToolStripComboBox
+    Friend WithEvents ToolStripComboBoxPeriodoValor As ToolStripComboBox
+    Private WithEvents ToolStripLabelFecha As ToolStripLabel
+    Private WithEvents ToolStripLabelFechaDesdeDiaSemana As ToolStripLabel
+    Friend WithEvents ToolStripButtonFechaDesdeSiguiente As ToolStripButton
+    Friend WithEvents ToolStripButtonFechaDesdeAnterior As ToolStripButton
+    Friend WithEvents ToolStripButtonFechaDesdeHoy As ToolStripButton
+    Friend WithEvents ToolStripMenuItemImprimirTicketReducido As ToolStripMenuItem
+    Private WithEvents ToolStripLabelFechaY As ToolStripLabel
+    Friend WithEvents ToolStripButtonFechaHastaAnterior As ToolStripButton
+    Friend WithEvents ToolStripButtonFechaHastaHoy As ToolStripButton
+    Friend WithEvents ToolStripButtonFechaHastaSiguiente As ToolStripButton
+    Friend WithEvents ToolStripTitular As ToolStrip
+    Friend WithEvents ToolStripLabelTitular As ToolStripLabel
+    Friend WithEvents ToolStripComboBoxTitular As ToolStripComboBox
+    Friend WithEvents ToolStripProducto As ToolStrip
+    Friend WithEvents ToolStripLabelProducto As ToolStripLabel
+    Friend WithEvents ToolStripComboBoxProducto As ToolStripComboBox
+    Friend WithEvents ToolStripPlanta As ToolStrip
+    Friend WithEvents ToolStripLabelPlanta As ToolStripLabel
+    Friend WithEvents ToolStripComboBoxPlanta As ToolStripComboBox
+    Friend WithEvents ToolStripCosecha As ToolStrip
+    Friend WithEvents ToolStripLabelCosecha As ToolStripLabel
+    Friend WithEvents ToolStripComboBoxCosecha As ToolStripComboBox
+    Friend WithEvents ToolStripTiposPesada As ToolStrip
+    Friend WithEvents ToolStripDropDownButtonTiposPesada As ToolStripDropDownButton
+    Private WithEvents ToolStripMenuItemTiposPesadaEntrada As ToolStripMenuItem
+    Private WithEvents ToolStripMenuItemTiposPesadaSalida As ToolStripMenuItem
+    Private WithEvents ToolStripMenuItemTiposPesadaNinguna As ToolStripMenuItem
+    Private WithEvents ToolStripSeparatorTiposPesada As ToolStripSeparator
+    Private WithEvents ToolStripMenuItemTiposPesadaMarcarTodos As ToolStripMenuItem
+    Private WithEvents ToolStripMenuItemTiposPesadaDesmarcarTodos As ToolStripMenuItem
+    Friend WithEvents ToolStripChofer As ToolStrip
+    Friend WithEvents ToolStripLabelChofer As ToolStripLabel
+    Friend WithEvents ToolStripComboBoxChofer As ToolStripComboBox
+    Friend WithEvents ToolStripTransportista As ToolStrip
+    Friend WithEvents ToolStripLabelTransportista As ToolStripLabel
+    Friend WithEvents ToolStripComboBoxTransportista As ToolStripComboBox
+    Friend WithEvents ToolStripDestino As ToolStrip
+    Friend WithEvents ToolStripLabelDestino As ToolStripLabel
+    Friend WithEvents ToolStripComboBoxDestino As ToolStripComboBox
+    Friend WithEvents ToolStripOrigen As ToolStrip
+    Friend WithEvents ToolStripLabelOrigen As ToolStripLabel
+    Friend WithEvents ToolStripComboBoxOrigen As ToolStripComboBox
+    Friend WithEvents ToolStripTareas As ToolStrip
+    Friend WithEvents ToolStripDropDownButtonTareas As ToolStripDropDownButton
+    Private WithEvents ToolStripMenuItemTareasCalcularMermas As ToolStripMenuItem
+    Private WithEvents ToolStripMenuItemTareasCalcularAcondicionamiento As ToolStripMenuItem
+    Friend WithEvents ToolStripActivo As ToolStrip
+    Friend WithEvents ToolStripLabelActivo As ToolStripLabel
+    Friend WithEvents ToolStripComboBoxActivo As ToolStripComboBox
+    Friend WithEvents ToolStripVerificado As ToolStrip
+    Friend WithEvents ToolStripLabelVerificado As ToolStripLabel
+    Friend WithEvents ToolStripComboBoxVerificado As ToolStripComboBox
+    Friend WithEvents ToolStripButtonExpandir As ToolStripButton
 End Class
