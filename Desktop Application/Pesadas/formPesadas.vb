@@ -1,9 +1,10 @@
-﻿Public Class formPesadas
+﻿Imports System.Text
+
+Public Class formPesadas
 
 #Region "Declaraciones"
 
-    Private mFiltroPeriodoExpandido As Boolean = False
-    Private tabControlExtensionToolbar As CardonerSistemas.TabControlExtension
+    Private filtroPeriodoExpandido As Boolean = False
 
     ' Filtro de fechas
     Private WithEvents ToolStripControlHostFechaDesde As ToolStripControlHost
@@ -49,7 +50,10 @@
     Private mlistPesadaBase As List(Of GridRowData)
     Private mlistPesadaFiltradaYOrdenada As List(Of GridRowData)
 
-    Private mSkipFilterData As Boolean = False
+    Private columnasParaMostrar As Boolean()
+    Private columnasParaMostrarUltimoCambio As New Date(9999, 12, 31, 23, 59, 59, DateTimeKind.Local)
+
+    Private suspendActions As Boolean
     Private mRecordSelectionFormula_Refresh As String
     Private mRecordSelectionFormula_Filter As String
 
@@ -61,33 +65,6 @@
 
 #End Region
 
-#Region "Declaraciones de columnas para mostrar"
-
-    Private WithEvents ToolStripControlHostCheckBoxColumnaNumero As ToolStripControlHost
-    Private WithEvents ToolStripControlHostCheckBoxColumnaInicio As ToolStripControlHost
-    Private WithEvents ToolStripControlHostCheckBoxColumnaFin As ToolStripControlHost
-    Private WithEvents ToolStripControlHostCheckBoxColumnaCtg As ToolStripControlHost
-    Private WithEvents ToolStripControlHostCheckBoxColumnaComprobante As ToolStripControlHost
-    Private WithEvents ToolStripControlHostCheckBoxColumnaPlanta As ToolStripControlHost
-    Private WithEvents ToolStripControlHostCheckBoxColumnaDeposito As ToolStripControlHost
-    Private WithEvents ToolStripControlHostCheckBoxColumnaTitular As ToolStripControlHost
-    Private WithEvents ToolStripControlHostCheckBoxColumnaProducto As ToolStripControlHost
-    Private WithEvents ToolStripControlHostCheckBoxColumnaTipo As ToolStripControlHost
-    Private WithEvents ToolStripControlHostCheckBoxColumnaCosecha As ToolStripControlHost
-    Private WithEvents ToolStripControlHostCheckBoxColumnaOrigen As ToolStripControlHost
-    Private WithEvents ToolStripControlHostCheckBoxColumnaDestino As ToolStripControlHost
-    Private WithEvents ToolStripControlHostCheckBoxColumnaKilosBruto As ToolStripControlHost
-    Private WithEvents ToolStripControlHostCheckBoxColumnaKilosTara As ToolStripControlHost
-    Private WithEvents ToolStripControlHostCheckBoxColumnaKilosNeto As ToolStripControlHost
-    Private WithEvents ToolStripControlHostCheckBoxColumnaHumedad As ToolStripControlHost
-    Private WithEvents ToolStripControlHostCheckBoxColumnaZarandeo As ToolStripControlHost
-    Private WithEvents ToolStripControlHostCheckBoxColumnaKilosFinal As ToolStripControlHost
-    Private WithEvents ToolStripControlHostCheckBoxColumnaTransportista As ToolStripControlHost
-    Private WithEvents ToolStripControlHostCheckBoxColumnaChofer As ToolStripControlHost
-    Private WithEvents ToolStripControlHostCheckBoxColumnaCamión As ToolStripControlHost
-
-#End Region
-
 #Region "Cosas del form"
 
     Friend Sub SetAppearance()
@@ -96,131 +73,29 @@
 
     Private Sub Me_Load() Handles Me.Load
         SetAppearance()
-
-        mSkipFilterData = True
-
+        suspendActions = True
         InitializeFormAndControls()
-
         mEntradaHumedadVaciaMostrarError = CS_Parameter_System.GetBoolean(Parametros.PESADA_ENTRADA_HUMEDAD_VACIA_MOSTRARERROR, True).Value
         mEntradaZarandeoVacioMostrarError = CS_Parameter_System.GetBoolean(Parametros.PESADA_ENTRADA_ZARANDEO_VACIO_MOSTRARERROR, True).Value
-
-        mSkipFilterData = False
-
+        suspendActions = False
         mOrdenColumna = columnFechaHoraInicio
         mOrdenTipo = SortOrder.Ascending
-
         RefreshData()
     End Sub
 
     Friend Sub InitializeFormAndControls()
-        tabControlExtensionToolbar = New CardonerSistemas.TabControlExtension(TabControlToolbar)
-
-        ' Filtro de Fechas
-        InicializarDateTimePickersParaFiltroDeFechas()
-        CardonerSistemas.DateTime.FillPeriodTypesComboBox(ToolStripComboBoxPeriodoTipo.ComboBox, CardonerSistemas.DateTime.PeriodTypes.Month)
-        FiltroPeriodoMostrar()
-        ToolStripComboBoxPeriodoValor.Visible = False
-        ToolStripLabelFechaDesdeDiaSemana.Text = CType(ToolStripControlHostFechaDesde.Control, DateTimePicker).Value.ToString("dddd")
-
-        ' Reportes
-        Using dbContext As New CSPesajeContext(True)
-            Dim listReportes As List(Of Reporte)
-            Dim ReporteGrupoID As Byte = CS_Parameter_System.GetIntegerAsByte(Parametros.REPORTEGRUPO_PESADAS_REPORTES_ID)
-
-            listReportes = dbContext.Reporte.Where(Function(r) r.IDReporteGrupo = ReporteGrupoID).OrderBy(Function(r) r.Nombre).ToList
-
-            For Each ReporteActual As Reporte In listReportes
-                ToolStripButtonImprimir.DropDownItems.Add(
-                    New ToolStripMenuItem(
-                        ReporteActual.Nombre, Nothing, New EventHandler(AddressOf ImprimirReportes), "ToolStripMenuItemImprimir_" & ReporteActual.Archivo.Replace(" ", "_")) With {.Tag = ReporteActual.IDReporte}
-                    )
-            Next
-        End Using
-
-        ' Filtros Básicos
-        pFillAndRefreshLists.Entidad(ToolStripComboBoxTitular.ComboBox, Nothing, False, True, False, False, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER, False, True, True, False)
-        pFillAndRefreshLists.Producto(ToolStripComboBoxProducto.ComboBox, Nothing, True, False, True, False)
-        ToolStripComboBoxProducto.ComboBox.SelectedIndex = 0
-        pFillAndRefreshLists.Planta(ToolStripComboBoxPlanta.ComboBox, Nothing, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE, True, False)
-        pFillAndRefreshLists.Cosecha(ToolStripComboBoxCosecha.ComboBox, Nothing, Nothing, DateTime.MinValue, True, False, True)
-        pFillAndRefreshLists.Entidad(ToolStripComboBoxTransportista.ComboBox, Nothing, False, False, True, False, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER, False, True, True, False)
-
-        ' Filtros Avanzados
-        ToolStripComboBoxVerificado.Items.AddRange({My.Resources.STRING_ITEM_ALL_MALE, My.Resources.STRING_YES, My.Resources.STRING_NO})
-        ToolStripComboBoxVerificado.SelectedIndex = CardonerSistemas.Constants.ComboBoxAllYesNo_AllListindex
-        ToolStripComboBoxActivo.Items.AddRange({My.Resources.STRING_ITEM_ALL_MALE, My.Resources.STRING_YES, My.Resources.STRING_NO})
-        ToolStripComboBoxActivo.SelectedIndex = CardonerSistemas.Constants.ComboBoxAllYesNo_YesListindex
-
-        tabControlExtensionToolbar.PageVisible(TabPageToolbarAvanzados, Permisos.VerificarPermiso(Permisos.PESADA_MOSTRAR_VERIFICADO, False) OrElse Permisos.VerificarPermiso(Permisos.PESADA_MOSTRAR_ACTIVO, False))
-
-        ' Columnas
-        InicializarCheckBoxsParaSeleccionDeColumnas()
+        InicializarFiltroDePeriodo()
+        CargarListaDeReportes()
+        CargarFiltros()
+        InicializarSelectorDeColumnas()
     End Sub
 
     Private Sub Me_FormClosed() Handles Me.FormClosed
+        If DateDiff(DateInterval.Second, columnasParaMostrarUltimoCambio, DateAndTime.Now) > 5 Then
+            GuardarColumnasParaMostrar()
+        End If
         mlistPesadaBase = Nothing
         mlistPesadaFiltradaYOrdenada = Nothing
-    End Sub
-
-    Private Sub InicializarDateTimePickersParaFiltroDeFechas()
-        ' Create a new ToolStripControlHost, passing in a control.
-        ToolStripControlHostFechaDesde = New ToolStripControlHost(New DateTimePicker())
-        ToolStripControlHostFechaHasta = New ToolStripControlHost(New DateTimePicker())
-
-        ' Set the font on the ToolStripControlHost, this will affect the hosted control.
-        'dateTimePickerHost.Font = New Font("Arial", 7.0F, FontStyle.Italic)
-
-        ' Set the Width property, this will also affect the hosted control.
-        ToolStripControlHostFechaDesde.Width = 100
-        ToolStripControlHostFechaDesde.DisplayStyle = ToolStripItemDisplayStyle.Text
-        ToolStripControlHostFechaHasta.Width = 100
-        ToolStripControlHostFechaHasta.DisplayStyle = ToolStripItemDisplayStyle.Text
-
-        ' Setting the Text property requires a string that converts to a
-        ' DateTime type since that is what the hosted control requires.
-        ToolStripControlHostFechaDesde.Text = DateTime.Today.ToShortDateString
-        ToolStripControlHostFechaHasta.Text = DateTime.Today.ToShortDateString
-
-        ' Cast the Control property back to the original type to set a
-        ' type-specific property.
-        CType(ToolStripControlHostFechaDesde.Control, DateTimePicker).Format = DateTimePickerFormat.Short
-        CType(ToolStripControlHostFechaHasta.Control, DateTimePicker).Format = DateTimePickerFormat.Short
-
-        ' Add the control host to the ToolStrip.
-        ToolStripPeriodo.Items.Insert(ToolStripPeriodo.Items.IndexOf(ToolStripButtonFechaDesdeSiguiente), ToolStripControlHostFechaDesde)
-        ToolStripPeriodo.Items.Insert(ToolStripPeriodo.Items.IndexOf(ToolStripButtonFechaHastaSiguiente), ToolStripControlHostFechaHasta)
-
-        ToolStripControlHostFechaDesde.Visible = False
-        ToolStripControlHostFechaHasta.Visible = False
-    End Sub
-
-    Private Function CrearHostControlConCheckBox(nombre As String, texto As String, chequeado As Boolean) As ToolStripControlHost
-        Dim hostControl As ToolStripControlHost
-        Dim checkBox As CheckBox
-
-        checkBox = New CheckBox() With {
-            .Name = $"CheckBoxColumna{nombre}",
-            .Text = texto,
-            .Checked = chequeado
-        }
-        hostControl = New ToolStripControlHost(checkBox) With {
-            .Name = $"ToolStripControlHostCheckBox{nombre}",
-            .Width = 100
-        }
-        Return hostControl
-    End Function
-
-    Private Sub InicializarCheckBoxsParaSeleccionDeColumnas()
-        Dim clb As New CheckedListBox With {
-            .CheckOnClick = True,
-            .MultiColumn = True,
-            .HorizontalScrollbar = False,
-            .Width = 700
-        }
-        clb.Items.AddRange({"Número", "Inicio", "Fin", "C.T.G.", "Comprobante", "Planta", "Depósito", "Titular", "Producto", "Tipo", "Cosecha", "Origen", "Destino", "Kgs. Bruto", "Kgs. Tara", "Kgs. Neto", "Hum.", "Zar.", "Kgs. Final", "Transportista", "Chofer", "Camión"})
-        'ToolStripControlHostCheckedListBoxColumnas = New ToolStripControlHost(clb) With {.Width = 700}
-        'ToolStripExColumnas.Items.Add(ToolStripControlHostCheckedListBoxColumnas)
-        'ToolStripExColumnas.Width = 700
     End Sub
 
 #End Region
@@ -231,7 +106,7 @@
         Dim FechaDesde As Date
         Dim FechaHasta As Date
 
-        If mSkipFilterData Then
+        If suspendActions Then
             Return
         End If
 
@@ -312,116 +187,117 @@
     End Sub
 
     Private Sub FilterData()
-
-        If Not mSkipFilterData Then
-            Me.Cursor = Cursors.WaitCursor
-
-            Try
-                ' Inicializo las variables
-                mlistPesadaFiltradaYOrdenada = mlistPesadaBase
-                mRecordSelectionFormula_Filter = String.Empty
-
-                '///////////////////////////////
-                '//    FILTROS BÁSICOS        //
-                '///////////////////////////////
-
-                ' Filtro por Titular
-                If CInt(ToolStripComboBoxTitular.ComboBox.SelectedValue) <> CardonerSistemas.Constants.FIELD_VALUE_ALL_INTEGER Then
-                    mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) p.IDTitular = CInt(ToolStripComboBoxTitular.ComboBox.SelectedValue)).ToList
-                    mRecordSelectionFormula_Filter &= $" AND {{Pesada.Titular_IDEntidad}} = {ToolStripComboBoxTitular.ComboBox.SelectedValue}"
-                End If
-
-                ' Filtro por Producto
-                If CInt(ToolStripComboBoxProducto.ComboBox.SelectedValue) <> CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE Then
-                    mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) p.IDProducto = CByte(ToolStripComboBoxProducto.ComboBox.SelectedValue)).ToList
-                    mRecordSelectionFormula_Filter &= $" AND {{Pesada.IDProducto}} = {ToolStripComboBoxProducto.ComboBox.SelectedValue}"
-                End If
-
-                ' Filtro por Planta
-                If CInt(ToolStripComboBoxPlanta.ComboBox.SelectedValue) <> CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE Then
-                    mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) p.IDPlanta.HasValue AndAlso p.IDPlanta.Value = CByte(ToolStripComboBoxPlanta.ComboBox.SelectedValue)).ToList
-                    mRecordSelectionFormula_Filter &= $" AND {{Pesada.IDPlanta}} = {ToolStripComboBoxPlanta.ComboBox.SelectedValue}"
-                End If
-
-                ' Filtro por Tipos de Pesada
-                If Not (ToolStripMenuItemTiposPesadaEntrada.Checked AndAlso ToolStripMenuItemTiposPesadaSalida.Checked AndAlso ToolStripMenuItemTiposPesadaNinguna.Checked) Then
-                    mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) ((ToolStripMenuItemTiposPesadaEntrada.Checked AndAlso p.Tipo = PESADA_TIPO_ENTRADA) OrElse (ToolStripMenuItemTiposPesadaSalida.Checked AndAlso p.Tipo = PESADA_TIPO_SALIDA) OrElse (ToolStripMenuItemTiposPesadaNinguna.Checked AndAlso p.Tipo = PESADA_TIPO_NINGUNA))).ToList
-                    mRecordSelectionFormula_Filter &= $" AND (({ToolStripMenuItemTiposPesadaEntrada.Checked} AND {{Pesada.Tipo}} = '{PESADA_TIPO_ENTRADA}') OR ({ToolStripMenuItemTiposPesadaSalida.Checked} AND {{Pesada.Tipo}} = '{PESADA_TIPO_SALIDA}') OR ({ToolStripMenuItemTiposPesadaNinguna.Checked} AND {{Pesada.Tipo}} = '{PESADA_TIPO_NINGUNA}'))"
-                End If
-
-                ' Filtro por Cosecha
-                If CInt(ToolStripComboBoxCosecha.ComboBox.SelectedValue) <> CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE Then
-                    mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) p.IDCosecha.HasValue AndAlso p.IDCosecha.Value = CByte(ToolStripComboBoxCosecha.ComboBox.SelectedValue)).ToList
-                    mRecordSelectionFormula_Filter &= $" AND {{Pesada.IDCosecha}} = {ToolStripComboBoxCosecha.ComboBox.SelectedValue}"
-                End If
-
-                ' Filtro por Origen
-                If CInt(ToolStripComboBoxOrigen.ComboBox.SelectedValue) <> CardonerSistemas.Constants.FIELD_VALUE_ALL_INTEGER Then
-                    mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) p.IDOrigen.HasValue AndAlso p.IDOrigen.Value = CInt(ToolStripComboBoxOrigen.ComboBox.SelectedValue)).ToList
-                    mRecordSelectionFormula_Filter &= $" AND {{Pesada.IDOrigen}} = {ToolStripComboBoxOrigen.ComboBox.SelectedValue}"
-                End If
-
-                ' Filtro por Destino
-                If CInt(ToolStripComboBoxDestino.ComboBox.SelectedValue) <> CardonerSistemas.Constants.FIELD_VALUE_ALL_INTEGER Then
-                    mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) p.IDDestino.HasValue AndAlso p.IDDestino.Value = CInt(ToolStripComboBoxDestino.ComboBox.SelectedValue)).ToList
-                    mRecordSelectionFormula_Filter &= $" AND {{Pesada.IDDestino}} = {ToolStripComboBoxDestino.ComboBox.SelectedValue}"
-                End If
-
-                ' Filtro por Transportista
-                If CInt(ToolStripComboBoxTransportista.ComboBox.SelectedValue) <> CardonerSistemas.Constants.FIELD_VALUE_ALL_INTEGER Then
-                    mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) p.IDTransportista.HasValue AndAlso p.IDTransportista.Value = CInt(ToolStripComboBoxTransportista.ComboBox.SelectedValue)).ToList
-                    mRecordSelectionFormula_Filter &= $" AND {{Pesada.Transportista_IDEntidad}} = {ToolStripComboBoxTransportista.ComboBox.SelectedValue}"
-                End If
-
-                ' Filtro por Chofer
-                If CInt(ToolStripComboBoxChofer.ComboBox.SelectedValue) <> CardonerSistemas.Constants.FIELD_VALUE_ALL_INTEGER Then
-                    mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) p.IDChofer.HasValue AndAlso p.IDChofer.Value = CInt(ToolStripComboBoxChofer.ComboBox.SelectedValue)).ToList
-                    mRecordSelectionFormula_Filter &= $" AND {{Pesada.Chofer_IDEntidad}} = {ToolStripComboBoxChofer.ComboBox.SelectedValue}"
-                End If
-
-                '///////////////////////////////
-                '//    FILTROS AVANZADOS      //
-                '///////////////////////////////
-
-                ' Filtro por Verificado
-                Select Case ToolStripComboBoxVerificado.SelectedIndex
-                    Case CardonerSistemas.Constants.ComboBoxAllYesNo_AllListindex       ' Todos
-                    Case CardonerSistemas.Constants.ComboBoxAllYesNo_YesListindex       ' Sí
-                        mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) p.EsVerificado).ToList
-                        mRecordSelectionFormula_Filter &= " AND {Pesada.EsVerificado}"
-                    Case CardonerSistemas.Constants.ComboBoxAllYesNo_NoListindex        ' No
-                        mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) Not p.EsVerificado).ToList
-                        mRecordSelectionFormula_Filter &= " AND (NOT {Pesada.EsVerificado})"
-                End Select
-
-                ' Filtro por Activo
-                Select Case ToolStripComboBoxActivo.SelectedIndex
-                    Case CardonerSistemas.Constants.ComboBoxAllYesNo_AllListindex       ' Todos
-                    Case CardonerSistemas.Constants.ComboBoxAllYesNo_YesListindex       ' Sí
-                        mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) p.EsActivo).ToList
-                        mRecordSelectionFormula_Filter &= " AND {Pesada.EsActivo}"
-                    Case CardonerSistemas.Constants.ComboBoxAllYesNo_NoListindex        ' No
-                        mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) Not p.EsActivo).ToList
-                        mRecordSelectionFormula_Filter &= " AND (NOT {Pesada.EsActivo})"
-                End Select
-
-                'Select Case mlistPesadaFiltradaYOrdenada.Count
-                '    Case 0
-                '        statuslabelMain.Text = "No hay Pesadas para mostrar."
-                '    Case 1
-                '        statuslabelMain.Text = "Se muestra 1 Pesada."
-                '    Case Else
-                '        statuslabelMain.Text = $"Se muestran {mlistPesadaFiltradaYOrdenada.Count} Pesadas."
-                'End Select
-            Catch ex As Exception
-                CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al filtrar los datos.")
-                Me.Cursor = Cursors.Default
-                Return
-            End Try
-
-            OrderData()
-            Me.Cursor = Cursors.Default
+        If suspendActions Then
+            Return
         End If
+
+        Me.Cursor = Cursors.WaitCursor
+
+        Try
+            ' Inicializo las variables
+            mlistPesadaFiltradaYOrdenada = mlistPesadaBase
+            mRecordSelectionFormula_Filter = String.Empty
+
+            '///////////////////////////////
+            '//    FILTROS BÁSICOS        //
+            '///////////////////////////////
+
+            ' Filtro por Titular
+            If CInt(ToolStripComboBoxTitular.ComboBox.SelectedValue) <> CardonerSistemas.Constants.FIELD_VALUE_ALL_INTEGER Then
+                mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) p.IDTitular = CInt(ToolStripComboBoxTitular.ComboBox.SelectedValue)).ToList
+                mRecordSelectionFormula_Filter &= $" AND {{Pesada.Titular_IDEntidad}} = {ToolStripComboBoxTitular.ComboBox.SelectedValue}"
+            End If
+
+            ' Filtro por Producto
+            If CInt(ToolStripComboBoxProducto.ComboBox.SelectedValue) <> CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE Then
+                mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) p.IDProducto = CByte(ToolStripComboBoxProducto.ComboBox.SelectedValue)).ToList
+                mRecordSelectionFormula_Filter &= $" AND {{Pesada.IDProducto}} = {ToolStripComboBoxProducto.ComboBox.SelectedValue}"
+            End If
+
+            ' Filtro por Planta
+            If CInt(ToolStripComboBoxPlanta.ComboBox.SelectedValue) <> CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE Then
+                mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) p.IDPlanta.HasValue AndAlso p.IDPlanta.Value = CByte(ToolStripComboBoxPlanta.ComboBox.SelectedValue)).ToList
+                mRecordSelectionFormula_Filter &= $" AND {{Pesada.IDPlanta}} = {ToolStripComboBoxPlanta.ComboBox.SelectedValue}"
+            End If
+
+            ' Filtro por Tipos de Pesada
+            If Not (ToolStripMenuItemTiposPesadaEntrada.Checked AndAlso ToolStripMenuItemTiposPesadaSalida.Checked AndAlso ToolStripMenuItemTiposPesadaNinguna.Checked) Then
+                mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) ((ToolStripMenuItemTiposPesadaEntrada.Checked AndAlso p.Tipo = PESADA_TIPO_ENTRADA) OrElse (ToolStripMenuItemTiposPesadaSalida.Checked AndAlso p.Tipo = PESADA_TIPO_SALIDA) OrElse (ToolStripMenuItemTiposPesadaNinguna.Checked AndAlso p.Tipo = PESADA_TIPO_NINGUNA))).ToList
+                mRecordSelectionFormula_Filter &= $" AND (({ToolStripMenuItemTiposPesadaEntrada.Checked} AND {{Pesada.Tipo}} = '{PESADA_TIPO_ENTRADA}') OR ({ToolStripMenuItemTiposPesadaSalida.Checked} AND {{Pesada.Tipo}} = '{PESADA_TIPO_SALIDA}') OR ({ToolStripMenuItemTiposPesadaNinguna.Checked} AND {{Pesada.Tipo}} = '{PESADA_TIPO_NINGUNA}'))"
+            End If
+
+            ' Filtro por Cosecha
+            If CInt(ToolStripComboBoxCosecha.ComboBox.SelectedValue) <> CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE Then
+                mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) p.IDCosecha.HasValue AndAlso p.IDCosecha.Value = CByte(ToolStripComboBoxCosecha.ComboBox.SelectedValue)).ToList
+                mRecordSelectionFormula_Filter &= $" AND {{Pesada.IDCosecha}} = {ToolStripComboBoxCosecha.ComboBox.SelectedValue}"
+            End If
+
+            ' Filtro por Origen
+            If CInt(ToolStripComboBoxOrigen.ComboBox.SelectedValue) <> CardonerSistemas.Constants.FIELD_VALUE_ALL_INTEGER Then
+                mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) p.IDOrigen.HasValue AndAlso p.IDOrigen.Value = CInt(ToolStripComboBoxOrigen.ComboBox.SelectedValue)).ToList
+                mRecordSelectionFormula_Filter &= $" AND {{Pesada.IDOrigen}} = {ToolStripComboBoxOrigen.ComboBox.SelectedValue}"
+            End If
+
+            ' Filtro por Destino
+            If CInt(ToolStripComboBoxDestino.ComboBox.SelectedValue) <> CardonerSistemas.Constants.FIELD_VALUE_ALL_INTEGER Then
+                mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) p.IDDestino.HasValue AndAlso p.IDDestino.Value = CInt(ToolStripComboBoxDestino.ComboBox.SelectedValue)).ToList
+                mRecordSelectionFormula_Filter &= $" AND {{Pesada.IDDestino}} = {ToolStripComboBoxDestino.ComboBox.SelectedValue}"
+            End If
+
+            ' Filtro por Transportista
+            If CInt(ToolStripComboBoxTransportista.ComboBox.SelectedValue) <> CardonerSistemas.Constants.FIELD_VALUE_ALL_INTEGER Then
+                mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) p.IDTransportista.HasValue AndAlso p.IDTransportista.Value = CInt(ToolStripComboBoxTransportista.ComboBox.SelectedValue)).ToList
+                mRecordSelectionFormula_Filter &= $" AND {{Pesada.Transportista_IDEntidad}} = {ToolStripComboBoxTransportista.ComboBox.SelectedValue}"
+            End If
+
+            ' Filtro por Chofer
+            If CInt(ToolStripComboBoxChofer.ComboBox.SelectedValue) <> CardonerSistemas.Constants.FIELD_VALUE_ALL_INTEGER Then
+                mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) p.IDChofer.HasValue AndAlso p.IDChofer.Value = CInt(ToolStripComboBoxChofer.ComboBox.SelectedValue)).ToList
+                mRecordSelectionFormula_Filter &= $" AND {{Pesada.Chofer_IDEntidad}} = {ToolStripComboBoxChofer.ComboBox.SelectedValue}"
+            End If
+
+            '///////////////////////////////
+            '//    FILTROS AVANZADOS      //
+            '///////////////////////////////
+
+            ' Filtro por Verificado
+            Select Case ToolStripComboBoxVerificado.SelectedIndex
+                Case CardonerSistemas.Constants.ComboBoxAllYesNo_AllListindex       ' Todos
+                Case CardonerSistemas.Constants.ComboBoxAllYesNo_YesListindex       ' Sí
+                    mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) p.EsVerificado).ToList
+                    mRecordSelectionFormula_Filter &= " AND {Pesada.EsVerificado}"
+                Case CardonerSistemas.Constants.ComboBoxAllYesNo_NoListindex        ' No
+                    mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) Not p.EsVerificado).ToList
+                    mRecordSelectionFormula_Filter &= " AND (NOT {Pesada.EsVerificado})"
+            End Select
+
+            ' Filtro por Activo
+            Select Case ToolStripComboBoxActivo.SelectedIndex
+                Case CardonerSistemas.Constants.ComboBoxAllYesNo_AllListindex       ' Todos
+                Case CardonerSistemas.Constants.ComboBoxAllYesNo_YesListindex       ' Sí
+                    mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) p.EsActivo).ToList
+                    mRecordSelectionFormula_Filter &= " AND {Pesada.EsActivo}"
+                Case CardonerSistemas.Constants.ComboBoxAllYesNo_NoListindex        ' No
+                    mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) Not p.EsActivo).ToList
+                    mRecordSelectionFormula_Filter &= " AND (NOT {Pesada.EsActivo})"
+            End Select
+
+            'Select Case mlistPesadaFiltradaYOrdenada.Count
+            '    Case 0
+            '        statuslabelMain.Text = "No hay Pesadas para mostrar."
+            '    Case 1
+            '        statuslabelMain.Text = "Se muestra 1 Pesada."
+            '    Case Else
+            '        statuslabelMain.Text = $"Se muestran {mlistPesadaFiltradaYOrdenada.Count} Pesadas."
+            'End Select
+        Catch ex As Exception
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al filtrar los datos.")
+            Me.Cursor = Cursors.Default
+            Return
+        End Try
+
+        OrderData()
+        Me.Cursor = Cursors.Default
     End Sub
 
     Private Sub OrderData()
@@ -453,7 +329,8 @@
                 End If
 
         End Select
-        bindingsourceMain.DataSource = mlistPesadaFiltradaYOrdenada
+        DataGridViewMain.AutoGenerateColumns = False
+        DataGridViewMain.DataSource = mlistPesadaFiltradaYOrdenada
 
         ' Muestro el ícono de orden en la columna correspondiente
         mOrdenColumna.HeaderCell.SortGlyphDirection = mOrdenTipo
@@ -462,69 +339,6 @@
 #End Region
 
 #Region "Eventos de los controles"
-
-    Private Sub Periodo_LauncherClick(sender As Object, e As EventArgs) Handles ToolStripButtonExpandir.Click
-        mFiltroPeriodoExpandido = Not mFiltroPeriodoExpandido
-        If mFiltroPeriodoExpandido Then
-            ToolStripButtonExpandir.Text = "Contraer"
-        Else
-            ToolStripButtonExpandir.Text = "Expandir"
-        End If
-        FiltroPeriodoMostrar()
-    End Sub
-
-    Private Sub PeriodoTipoSeleccionar(sender As Object, e As EventArgs) Handles ToolStripComboBoxPeriodoTipo.SelectedIndexChanged
-        CardonerSistemas.DateTime.FillPeriodValuesComboBox(ToolStripComboBoxPeriodoValor.ComboBox, CType(ToolStripComboBoxPeriodoTipo.SelectedIndex, CardonerSistemas.DateTime.PeriodTypes))
-    End Sub
-
-    Private Sub PeriodoValorSeleccionar(sender As Object, e As EventArgs) Handles ToolStripComboBoxPeriodoValor.SelectedIndexChanged
-        ' Fecha Desde
-        ToolStripLabelFechaDesdeDiaSemana.Visible = (ToolStripComboBoxPeriodoTipo.SelectedIndex = CInt(CardonerSistemas.DateTime.PeriodTypes.Range))
-        ToolStripButtonFechaDesdeAnterior.Visible = ToolStripLabelFechaDesdeDiaSemana.Visible
-        ToolStripControlHostFechaDesde.Visible = ToolStripLabelFechaDesdeDiaSemana.Visible
-        ToolStripButtonFechaDesdeSiguiente.Visible = ToolStripLabelFechaDesdeDiaSemana.Visible
-        ToolStripButtonFechaDesdeHoy.Visible = ToolStripLabelFechaDesdeDiaSemana.Visible
-
-        ' Fecha Hasta
-        ToolStripLabelFechaY.Visible = (ToolStripComboBoxPeriodoTipo.SelectedIndex = CInt(CardonerSistemas.DateTime.PeriodTypes.Range) AndAlso ToolStripComboBoxPeriodoValor.SelectedIndex = CInt(CardonerSistemas.DateTime.PeriodRangeValues.DateBetween))
-        ToolStripButtonFechaHastaAnterior.Visible = ToolStripLabelFechaY.Visible
-        ToolStripControlHostFechaHasta.Visible = ToolStripLabelFechaY.Visible
-        ToolStripButtonFechaHastaSiguiente.Visible = ToolStripLabelFechaY.Visible
-        ToolStripButtonFechaHastaHoy.Visible = ToolStripLabelFechaY.Visible
-
-        RefreshData()
-    End Sub
-
-    ' ///// Fecha Desde /////
-    Private Sub FechaDesdeAnterior(sender As Object, e As EventArgs) Handles ToolStripButtonFechaDesdeAnterior.Click
-        CType(ToolStripControlHostFechaDesde.Control, DateTimePicker).Value = CType(ToolStripControlHostFechaDesde.Control, DateTimePicker).Value.AddDays(-1)
-    End Sub
-
-    Private Sub FechaDesdeSiguiente(sender As Object, e As EventArgs) Handles ToolStripButtonFechaDesdeSiguiente.Click
-        CType(ToolStripControlHostFechaDesde.Control, DateTimePicker).Value = CType(ToolStripControlHostFechaDesde.Control, DateTimePicker).Value.AddDays(1)
-    End Sub
-
-    Private Sub FechaDesdeHoy(sender As Object, e As EventArgs) Handles ToolStripButtonFechaDesdeHoy.Click
-        CType(ToolStripControlHostFechaDesde.Control, DateTimePicker).Value = DateAndTime.Today
-    End Sub
-
-    ' ///// Fecha Hasta /////
-    Private Sub FechaHastaAnterior(sender As Object, e As EventArgs) Handles ToolStripButtonFechaHastaAnterior.Click
-        CType(ToolStripControlHostFechaHasta.Control, DateTimePicker).Value = CType(ToolStripControlHostFechaHasta.Control, DateTimePicker).Value.AddDays(-1)
-    End Sub
-
-    Private Sub FechaHastaSiguiente(sender As Object, e As EventArgs) Handles ToolStripButtonFechaHastaSiguiente.Click
-        CType(ToolStripControlHostFechaHasta.Control, DateTimePicker).Value = CType(ToolStripControlHostFechaHasta.Control, DateTimePicker).Value.AddDays(1)
-    End Sub
-
-    Private Sub FechaHastaHoy(sender As Object, e As EventArgs) Handles ToolStripButtonFechaHastaHoy.Click
-        CType(ToolStripControlHostFechaHasta.Control, DateTimePicker).Value = DateAndTime.Today
-    End Sub
-
-    Private Sub FechaCambiar(sender As Object, e As EventArgs) Handles ToolStripControlHostFechaDesde.TextChanged, ToolStripControlHostFechaHasta.TextChanged
-        ToolStripLabelFechaDesdeDiaSemana.Text = CType(ToolStripControlHostFechaDesde.Control, DateTimePicker).Value.ToString("dddd")
-        RefreshData()
-    End Sub
 
     Private Sub PesadaTipo_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItemTiposPesadaEntrada.Click, ToolStripMenuItemTiposPesadaSalida.Click, ToolStripMenuItemTiposPesadaNinguna.Click
         FilterData()
@@ -542,43 +356,39 @@
         FilterData()
     End Sub
 
-    Private Sub Columnas_Click(sender As Object, e As EventArgs) Handles ToolStripControlHostCheckBoxColumnaNumero.Click, ToolStripControlHostCheckBoxColumnaInicio.Click, ToolStripControlHostCheckBoxColumnaFin.Click, ToolStripControlHostCheckBoxColumnaCtg.Click
-        MostrarColumnas(CType(sender, ToolStripControlHost))
-    End Sub
-
-    Private Sub MarcarYDesmarcarTodo_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItemTiposPesadaMarcarTodos.Click, ToolStripMenuItemTiposPesadaDesmarcarTodos.Click
-        mSkipFilterData = True
+    Private Sub TiposPesadaMarcarYDesmarcarTodo_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItemTiposPesadaMarcarTodos.Click, ToolStripMenuItemTiposPesadaDesmarcarTodos.Click
+        suspendActions = True
 
         ToolStripMenuItemTiposPesadaEntrada.Checked = (CType(sender, ToolStripMenuItem) Is ToolStripMenuItemTiposPesadaMarcarTodos)
         ToolStripMenuItemTiposPesadaSalida.Checked = (CType(sender, ToolStripMenuItem) Is ToolStripMenuItemTiposPesadaMarcarTodos)
         ToolStripMenuItemTiposPesadaNinguna.Checked = (CType(sender, ToolStripMenuItem) Is ToolStripMenuItemTiposPesadaMarcarTodos)
 
-        mSkipFilterData = False
+        suspendActions = False
 
         FilterData()
     End Sub
 
-    Private Sub Titular_Change(sender As Object, e As EventArgs) Handles ToolStripComboBoxTitular.SelectedIndexChanged
+    Private Sub Titular_Cambio(sender As Object, e As EventArgs) Handles ToolStripComboBoxTitular.SelectedIndexChanged
         Dim SaveSkipFilterData As Boolean
 
-        SaveSkipFilterData = mSkipFilterData
-        mSkipFilterData = True
+        SaveSkipFilterData = suspendActions
+        suspendActions = True
 
         pFillAndRefreshLists.OrigenDestino(ToolStripComboBoxOrigen.ComboBox, Nothing, True, CInt(ToolStripComboBoxTitular.ComboBox.SelectedValue), True, True, False)
         pFillAndRefreshLists.OrigenDestino(ToolStripComboBoxDestino.ComboBox, Nothing, True, CInt(ToolStripComboBoxTitular.ComboBox.SelectedValue), True, True, False)
 
-        mSkipFilterData = SaveSkipFilterData
+        suspendActions = SaveSkipFilterData
 
         FilterData()
     End Sub
 
-    Private Sub Transportista_Change(sender As Object, e As EventArgs) Handles ToolStripComboBoxTransportista.SelectedIndexChanged
+    Private Sub Transportista_Cambio(sender As Object, e As EventArgs) Handles ToolStripComboBoxTransportista.SelectedIndexChanged
         Dim SaveSkipFilterData As Boolean
 
-        SaveSkipFilterData = mSkipFilterData
-        mSkipFilterData = True
+        SaveSkipFilterData = suspendActions
+        suspendActions = True
         pFillAndRefreshLists.Entidad(ToolStripComboBoxChofer.ComboBox, Nothing, False, False, False, True, CInt(ToolStripComboBoxTransportista.ComboBox.SelectedValue), False, True, True, False)
-        mSkipFilterData = SaveSkipFilterData
+        suspendActions = SaveSkipFilterData
         FilterData()
     End Sub
 
@@ -901,33 +711,234 @@
 
 #End Region
 
-#Region "Cosas extra"
+#Region "Inicialización general"
+
+    Private Sub CargarListaDeReportes()
+        Using dbContext As New CSPesajeContext(True)
+            Dim listReportes As List(Of Reporte)
+            Dim ReporteGrupoID As Byte = CS_Parameter_System.GetIntegerAsByte(Parametros.REPORTEGRUPO_PESADAS_REPORTES_ID)
+
+            listReportes = dbContext.Reporte.Where(Function(r) r.IDReporteGrupo = ReporteGrupoID).OrderBy(Function(r) r.Nombre).ToList
+            For Each ReporteActual As Reporte In listReportes
+                ToolStripButtonImprimir.DropDownItems.Add(
+                    New ToolStripMenuItem(
+                        ReporteActual.Nombre, Nothing, New EventHandler(AddressOf ImprimirReportes), "ToolStripMenuItemImprimir_" & ReporteActual.Archivo.Replace(" ", "_")) With {.Tag = ReporteActual.IDReporte}
+                    )
+            Next
+        End Using
+    End Sub
+
+    Private Sub CargarFiltros()
+        ' Filtros básicos
+        pFillAndRefreshLists.Entidad(ToolStripComboBoxTitular.ComboBox, Nothing, False, True, False, False, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER, False, True, True, False)
+        pFillAndRefreshLists.Producto(ToolStripComboBoxProducto.ComboBox, Nothing, True, False, True, False)
+        ToolStripComboBoxProducto.ComboBox.SelectedIndex = 0
+        pFillAndRefreshLists.Planta(ToolStripComboBoxPlanta.ComboBox, Nothing, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE, True, False)
+        pFillAndRefreshLists.Cosecha(ToolStripComboBoxCosecha.ComboBox, Nothing, Nothing, DateTime.MinValue, True, False, True)
+
+        ' Otros filtros
+        pFillAndRefreshLists.Entidad(ToolStripComboBoxTransportista.ComboBox, Nothing, False, False, True, False, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER, False, True, True, False)
+
+        ' Filtros Avanzados
+        ToolStripComboBoxVerificado.Items.AddRange({My.Resources.STRING_ITEM_ALL_MALE, My.Resources.STRING_YES, My.Resources.STRING_NO})
+        ToolStripComboBoxVerificado.SelectedIndex = CardonerSistemas.Constants.ComboBoxAllYesNo_AllListindex
+        ToolStripComboBoxActivo.Items.AddRange({My.Resources.STRING_ITEM_ALL_MALE, My.Resources.STRING_YES, My.Resources.STRING_NO})
+        ToolStripComboBoxActivo.SelectedIndex = CardonerSistemas.Constants.ComboBoxAllYesNo_YesListindex
+
+        If Not (Permisos.VerificarPermiso(Permisos.PESADA_MOSTRAR_VERIFICADO, False) OrElse Permisos.VerificarPermiso(Permisos.PESADA_MOSTRAR_ACTIVO, False)) Then
+            TabPageToolbarAvanzados.Visible = False
+        End If
+    End Sub
+
+#End Region
+
+#Region "Filtro de período"
+
+    Private Sub InicializarFiltroDePeriodo()
+        InicializarDateTimePickersParaFiltroDeFechas()
+        CardonerSistemas.DateTime.FillPeriodTypesComboBox(ToolStripComboBoxPeriodoTipo.ComboBox, CardonerSistemas.DateTime.PeriodTypes.Month)
+        FiltroPeriodoMostrar()
+        ToolStripComboBoxPeriodoValor.Visible = False
+        ToolStripLabelFechaDesdeDiaSemana.Text = CType(ToolStripControlHostFechaDesde.Control, DateTimePicker).Value.ToString("dddd")
+    End Sub
+
+    Private Sub InicializarDateTimePickersParaFiltroDeFechas()
+        ' Create a new ToolStripControlHost, passing in a control.
+        ToolStripControlHostFechaDesde = New ToolStripControlHost(New DateTimePicker())
+        ToolStripControlHostFechaHasta = New ToolStripControlHost(New DateTimePicker())
+
+        ' Set the font on the ToolStripControlHost, this will affect the hosted control.
+        'dateTimePickerHost.Font = New Font("Arial", 7.0F, FontStyle.Italic)
+
+        ' Set the Width property, this will also affect the hosted control.
+        ToolStripControlHostFechaDesde.Width = 100
+        ToolStripControlHostFechaDesde.DisplayStyle = ToolStripItemDisplayStyle.Text
+        ToolStripControlHostFechaHasta.Width = 100
+        ToolStripControlHostFechaHasta.DisplayStyle = ToolStripItemDisplayStyle.Text
+
+        ' Setting the Text property requires a string that converts to a
+        ' DateTime type since that is what the hosted control requires.
+        ToolStripControlHostFechaDesde.Text = DateTime.Today.ToShortDateString
+        ToolStripControlHostFechaHasta.Text = DateTime.Today.ToShortDateString
+
+        ' Cast the Control property back to the original type to set a
+        ' type-specific property.
+        CType(ToolStripControlHostFechaDesde.Control, DateTimePicker).Format = DateTimePickerFormat.Short
+        CType(ToolStripControlHostFechaHasta.Control, DateTimePicker).Format = DateTimePickerFormat.Short
+
+        ' Add the control host to the ToolStrip.
+        ToolStripPeriodo.Items.Insert(ToolStripPeriodo.Items.IndexOf(ToolStripButtonFechaDesdeSiguiente), ToolStripControlHostFechaDesde)
+        ToolStripPeriodo.Items.Insert(ToolStripPeriodo.Items.IndexOf(ToolStripButtonFechaHastaSiguiente), ToolStripControlHostFechaHasta)
+
+        ToolStripControlHostFechaDesde.Visible = False
+        ToolStripControlHostFechaHasta.Visible = False
+    End Sub
+
+    Private Sub Periodo_ExpandirContraer(sender As Object, e As EventArgs) Handles ToolStripButtonExpandir.Click
+        filtroPeriodoExpandido = Not filtroPeriodoExpandido
+        If filtroPeriodoExpandido Then
+            ToolStripButtonExpandir.Text = "Contraer"
+        Else
+            ToolStripButtonExpandir.Text = "Expandir"
+        End If
+        FiltroPeriodoMostrar()
+    End Sub
+
+    Private Sub PeriodoTipoSeleccionar(sender As Object, e As EventArgs) Handles ToolStripComboBoxPeriodoTipo.SelectedIndexChanged
+        CardonerSistemas.DateTime.FillPeriodValuesComboBox(ToolStripComboBoxPeriodoValor.ComboBox, CType(ToolStripComboBoxPeriodoTipo.SelectedIndex, CardonerSistemas.DateTime.PeriodTypes))
+    End Sub
+
+    Private Sub PeriodoValorSeleccionar(sender As Object, e As EventArgs) Handles ToolStripComboBoxPeriodoValor.SelectedIndexChanged
+        ' Fecha Desde
+        ToolStripLabelFechaDesdeDiaSemana.Visible = (ToolStripComboBoxPeriodoTipo.SelectedIndex = CInt(CardonerSistemas.DateTime.PeriodTypes.Range))
+        ToolStripButtonFechaDesdeAnterior.Visible = ToolStripLabelFechaDesdeDiaSemana.Visible
+        ToolStripControlHostFechaDesde.Visible = ToolStripLabelFechaDesdeDiaSemana.Visible
+        ToolStripButtonFechaDesdeSiguiente.Visible = ToolStripLabelFechaDesdeDiaSemana.Visible
+        ToolStripButtonFechaDesdeHoy.Visible = ToolStripLabelFechaDesdeDiaSemana.Visible
+
+        ' Fecha Hasta
+        ToolStripLabelFechaY.Visible = (ToolStripComboBoxPeriodoTipo.SelectedIndex = CInt(CardonerSistemas.DateTime.PeriodTypes.Range) AndAlso ToolStripComboBoxPeriodoValor.SelectedIndex = CInt(CardonerSistemas.DateTime.PeriodRangeValues.DateBetween))
+        ToolStripButtonFechaHastaAnterior.Visible = ToolStripLabelFechaY.Visible
+        ToolStripControlHostFechaHasta.Visible = ToolStripLabelFechaY.Visible
+        ToolStripButtonFechaHastaSiguiente.Visible = ToolStripLabelFechaY.Visible
+        ToolStripButtonFechaHastaHoy.Visible = ToolStripLabelFechaY.Visible
+
+        RefreshData()
+    End Sub
+
+    ' ///// Fecha Desde /////
+    Private Sub FechaDesdeAnterior(sender As Object, e As EventArgs) Handles ToolStripButtonFechaDesdeAnterior.Click
+        CType(ToolStripControlHostFechaDesde.Control, DateTimePicker).Value = CType(ToolStripControlHostFechaDesde.Control, DateTimePicker).Value.AddDays(-1)
+    End Sub
+
+    Private Sub FechaDesdeSiguiente(sender As Object, e As EventArgs) Handles ToolStripButtonFechaDesdeSiguiente.Click
+        CType(ToolStripControlHostFechaDesde.Control, DateTimePicker).Value = CType(ToolStripControlHostFechaDesde.Control, DateTimePicker).Value.AddDays(1)
+    End Sub
+
+    Private Sub FechaDesdeHoy(sender As Object, e As EventArgs) Handles ToolStripButtonFechaDesdeHoy.Click
+        CType(ToolStripControlHostFechaDesde.Control, DateTimePicker).Value = DateAndTime.Today
+    End Sub
+
+    ' ///// Fecha Hasta /////
+    Private Sub FechaHastaAnterior(sender As Object, e As EventArgs) Handles ToolStripButtonFechaHastaAnterior.Click
+        CType(ToolStripControlHostFechaHasta.Control, DateTimePicker).Value = CType(ToolStripControlHostFechaHasta.Control, DateTimePicker).Value.AddDays(-1)
+    End Sub
+
+    Private Sub FechaHastaSiguiente(sender As Object, e As EventArgs) Handles ToolStripButtonFechaHastaSiguiente.Click
+        CType(ToolStripControlHostFechaHasta.Control, DateTimePicker).Value = CType(ToolStripControlHostFechaHasta.Control, DateTimePicker).Value.AddDays(1)
+    End Sub
+
+    Private Sub FechaHastaHoy(sender As Object, e As EventArgs) Handles ToolStripButtonFechaHastaHoy.Click
+        CType(ToolStripControlHostFechaHasta.Control, DateTimePicker).Value = DateAndTime.Today
+    End Sub
+
+    Private Sub FechaCambiar(sender As Object, e As EventArgs) Handles ToolStripControlHostFechaDesde.TextChanged, ToolStripControlHostFechaHasta.TextChanged
+        ToolStripLabelFechaDesdeDiaSemana.Text = CType(ToolStripControlHostFechaDesde.Control, DateTimePicker).Value.ToString("dddd")
+        RefreshData()
+    End Sub
 
     Private Sub FiltroPeriodoMostrar()
         ToolStripPeriodo.SuspendLayout()
-        If Not mFiltroPeriodoExpandido Then
+        If Not filtroPeriodoExpandido Then
             ToolStripComboBoxPeriodoTipo.SelectedIndex = CardonerSistemas.DateTime.PeriodTypes.Range
             ToolStripComboBoxPeriodoValor.SelectedIndex = CardonerSistemas.DateTime.PeriodRangeValues.DateEqual
         End If
-        ToolStripComboBoxPeriodoTipo.Visible = mFiltroPeriodoExpandido
-        ToolStripComboBoxPeriodoValor.Visible = mFiltroPeriodoExpandido
-        ToolStripLabelFecha.Visible = Not mFiltroPeriodoExpandido
+        ToolStripComboBoxPeriodoTipo.Visible = filtroPeriodoExpandido
+        ToolStripComboBoxPeriodoValor.Visible = filtroPeriodoExpandido
+        ToolStripLabelFecha.Visible = Not filtroPeriodoExpandido
         ToolStripPeriodo.ResumeLayout()
     End Sub
 
-    Private Sub MostrarColumnas(sender As ToolStripControlHost)
-        Dim value As Boolean = CType(sender.Control, CheckBox).Checked
+#End Region
 
-        Select Case sender.Control.Name
-            Case ToolStripControlHostCheckBoxColumnaNumero.Control.Name
-                columnIDPesada.Visible = value
-            Case ToolStripControlHostCheckBoxColumnaInicio.Control.Name
-                columnFechaHoraInicio.Visible = value
-            Case ToolStripControlHostCheckBoxColumnaFin.Control.Name
-                columnFechaHoraFin.Visible = value
-            Case ToolStripControlHostCheckBoxColumnaCtg.Control.Name
-                columnCtg.Visible = value
-        End Select
+#Region "Selección de columnas para mostrar"
+
+    Private Sub InicializarSelectorDeColumnas()
+        Array.Resize(columnasParaMostrar, DataGridViewMain.Columns.Count)
+        ObtenerColumnasParaMostrar()
+
+        For index As Integer = 0 To columnasParaMostrar.Length - 1
+            If index <= DataGridViewMain.Columns.Count - 1 Then
+                CheckedListBoxColumnas.Items.Add(DataGridViewMain.Columns(index).HeaderText, columnasParaMostrar(index))
+                DataGridViewMain.Columns(index).Visible = columnasParaMostrar(index)
+            End If
+        Next
+    End Sub
+
+    Private Sub CheckedListBoxColumnas_ItemCheck(sender As Object, e As ItemCheckEventArgs) Handles CheckedListBoxColumnas.ItemCheck
+        If suspendActions Then
+            Return
+        End If
+        DataGridViewMain.Columns(e.Index).Visible = (e.NewValue = CheckState.Checked)
+        columnasParaMostrar(e.Index) = (e.NewValue = CheckState.Checked)
+        columnasParaMostrarUltimoCambio = DateAndTime.Now
+        TimerGuardarColumnasVisibles.Start()
+    End Sub
+
+    Private Sub ButtonColumnasMostrarTodas_Click(sender As Object, e As EventArgs) Handles ButtonColumnasMostrarTodas.Click
+        For index As Integer = 0 To columnasParaMostrar.Length - 1
+            If Not CheckedListBoxColumnas.GetItemChecked(index) Then
+                CheckedListBoxColumnas.SetItemChecked(index, True)
+            End If
+        Next
+        DataGridViewMain.Focus()
+    End Sub
+
+    Private Sub ObtenerColumnasParaMostrar()
+        Dim parametroColumnas As String = CS_Parameter_System.GetString($"{Parametros.PESADAS_GRILLA_COLUMNAS}_{pUsuario.IDUsuario}", String.Empty)
+
+        For index As Integer = 0 To columnasParaMostrar.Length - 1
+            If index <= parametroColumnas.Length - 1 AndAlso parametroColumnas(index) = "0" Then
+                columnasParaMostrar(index) = False
+            Else
+                columnasParaMostrar(index) = True
+            End If
+        Next index
+    End Sub
+
+    Private Sub GuardarColumnasParaMostrar()
+        Dim sb As New StringBuilder
+
+        For index As Integer = 0 To columnasParaMostrar.Length - 1
+            sb.Append(IIf(columnasParaMostrar(index), "1", "0"))
+        Next index
+        CS_Parameter_System.SetString($"{Parametros.PESADAS_GRILLA_COLUMNAS}_{pUsuario.IDUsuario}", sb.ToString())
+    End Sub
+
+    Private Sub MostrarColumnas()
+        For index As Integer = 0 To DataGridViewMain.Columns.Count - 1
+            If index <= columnasParaMostrar.Length - 1 Then
+                DataGridViewMain.Columns(index).Visible = columnasParaMostrar(index)
+            End If
+        Next index
+    End Sub
+
+    Private Sub TimerGuardarColumnasVisibles_Tick(sender As Object, e As EventArgs) Handles TimerGuardarColumnasVisibles.Tick
+        If DateDiff(DateInterval.Second, columnasParaMostrarUltimoCambio, DateAndTime.Now) > 5 Then
+            columnasParaMostrarUltimoCambio = New Date(9999, 12, 31, 23, 59, 59, DateTimeKind.Local)
+            TimerGuardarColumnasVisibles.Stop()
+            GuardarColumnasParaMostrar()
+        End If
     End Sub
 
 #End Region

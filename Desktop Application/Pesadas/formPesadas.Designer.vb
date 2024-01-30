@@ -57,7 +57,6 @@ Partial Class formPesadas
         Me.columnEntidadTransportista = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnChofer = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnCamion = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.bindingsourceMain = New System.Windows.Forms.BindingSource(Me.components)
         Me.TabControlToolbar = New System.Windows.Forms.TabControl()
         Me.TabPageToolbarPrincipal = New System.Windows.Forms.TabPage()
         Me.ToolStripPeriodo = New System.Windows.Forms.ToolStrip()
@@ -124,8 +123,11 @@ Partial Class formPesadas
         Me.ToolStripVerificado = New System.Windows.Forms.ToolStrip()
         Me.ToolStripLabelVerificado = New System.Windows.Forms.ToolStripLabel()
         Me.ToolStripComboBoxVerificado = New System.Windows.Forms.ToolStripComboBox()
+        Me.TabPageColumnas = New System.Windows.Forms.TabPage()
+        Me.CheckedListBoxColumnas = New System.Windows.Forms.CheckedListBox()
+        Me.ButtonColumnasMostrarTodas = New System.Windows.Forms.Button()
+        Me.TimerGuardarColumnasVisibles = New System.Windows.Forms.Timer(Me.components)
         CType(Me.DataGridViewMain, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.bindingsourceMain, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControlToolbar.SuspendLayout()
         Me.TabPageToolbarPrincipal.SuspendLayout()
         Me.ToolStripPeriodo.SuspendLayout()
@@ -145,6 +147,7 @@ Partial Class formPesadas
         Me.ToolStripTareas.SuspendLayout()
         Me.ToolStripActivo.SuspendLayout()
         Me.ToolStripVerificado.SuspendLayout()
+        Me.TabPageColumnas.SuspendLayout()
         Me.SuspendLayout()
         '
         'DataGridViewMain
@@ -158,11 +161,9 @@ Partial Class formPesadas
         DataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
         DataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.WindowText
         Me.DataGridViewMain.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle11
-        Me.DataGridViewMain.AutoGenerateColumns = False
         Me.DataGridViewMain.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
         Me.DataGridViewMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridViewMain.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnIDPesada, Me.columnFechaHoraInicio, Me.columnFechaHoraFin, Me.columnCtg, Me.ColumnComprobante, Me.ColumnPlanta, Me.ColumnPlantaDeposito, Me.columnEntidadTitular, Me.columnProducto, Me.columnTipo, Me.columnCosecha, Me.columnOrigen, Me.columnDestino, Me.columnKilogramoBruto, Me.columnKilogramoTara, Me.columnKilogramoNeto, Me.columnHumedad, Me.columnZaranda, Me.columnKilogramoFinal, Me.columnEntidadTransportista, Me.columnChofer, Me.columnCamion})
-        Me.DataGridViewMain.DataSource = Me.bindingsourceMain
         Me.DataGridViewMain.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridViewMain.Location = New System.Drawing.Point(0, 100)
         Me.DataGridViewMain.MultiSelect = False
@@ -388,6 +389,7 @@ Partial Class formPesadas
         Me.TabControlToolbar.Controls.Add(Me.TabPageToolbarBasicos)
         Me.TabControlToolbar.Controls.Add(Me.TabPageToolbarOtros)
         Me.TabControlToolbar.Controls.Add(Me.TabPageToolbarAvanzados)
+        Me.TabControlToolbar.Controls.Add(Me.TabPageColumnas)
         Me.TabControlToolbar.Dock = System.Windows.Forms.DockStyle.Top
         Me.TabControlToolbar.Font = New System.Drawing.Font("Segoe UI", 8.25!)
         Me.TabControlToolbar.Location = New System.Drawing.Point(0, 0)
@@ -418,7 +420,7 @@ Partial Class formPesadas
         Me.ToolStripPeriodo.Location = New System.Drawing.Point(212, 0)
         Me.ToolStripPeriodo.Name = "ToolStripPeriodo"
         Me.ToolStripPeriodo.Padding = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.ToolStripPeriodo.Size = New System.Drawing.Size(524, 74)
+        Me.ToolStripPeriodo.Size = New System.Drawing.Size(493, 74)
         Me.ToolStripPeriodo.TabIndex = 1
         Me.ToolStripPeriodo.Text = "Período"
         '
@@ -1010,6 +1012,42 @@ Partial Class formPesadas
         Me.ToolStripComboBoxVerificado.Name = "ToolStripComboBoxVerificado"
         Me.ToolStripComboBoxVerificado.Size = New System.Drawing.Size(70, 23)
         '
+        'TabPageColumnas
+        '
+        Me.TabPageColumnas.BackColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(233, Byte), Integer), CType(CType(249, Byte), Integer))
+        Me.TabPageColumnas.Controls.Add(Me.CheckedListBoxColumnas)
+        Me.TabPageColumnas.Controls.Add(Me.ButtonColumnasMostrarTodas)
+        Me.TabPageColumnas.Location = New System.Drawing.Point(4, 22)
+        Me.TabPageColumnas.Name = "TabPageColumnas"
+        Me.TabPageColumnas.Size = New System.Drawing.Size(1189, 74)
+        Me.TabPageColumnas.TabIndex = 4
+        Me.TabPageColumnas.Text = "Columnas"
+        '
+        'CheckedListBoxColumnas
+        '
+        Me.CheckedListBoxColumnas.BackColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(233, Byte), Integer), CType(CType(249, Byte), Integer))
+        Me.CheckedListBoxColumnas.CheckOnClick = True
+        Me.CheckedListBoxColumnas.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.CheckedListBoxColumnas.Location = New System.Drawing.Point(64, 0)
+        Me.CheckedListBoxColumnas.MultiColumn = True
+        Me.CheckedListBoxColumnas.Name = "CheckedListBoxColumnas"
+        Me.CheckedListBoxColumnas.Size = New System.Drawing.Size(1125, 74)
+        Me.CheckedListBoxColumnas.TabIndex = 0
+        '
+        'ButtonColumnasMostrarTodas
+        '
+        Me.ButtonColumnasMostrarTodas.Dock = System.Windows.Forms.DockStyle.Left
+        Me.ButtonColumnasMostrarTodas.Location = New System.Drawing.Point(0, 0)
+        Me.ButtonColumnasMostrarTodas.Name = "ButtonColumnasMostrarTodas"
+        Me.ButtonColumnasMostrarTodas.Size = New System.Drawing.Size(64, 74)
+        Me.ButtonColumnasMostrarTodas.TabIndex = 1
+        Me.ButtonColumnasMostrarTodas.Text = "Mostrar todas"
+        Me.ButtonColumnasMostrarTodas.UseVisualStyleBackColor = True
+        '
+        'TimerGuardarColumnasVisibles
+        '
+        Me.TimerGuardarColumnasVisibles.Interval = 1000
+        '
         'formPesadas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1026,7 +1064,6 @@ Partial Class formPesadas
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Pesadas"
         CType(Me.DataGridViewMain, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.bindingsourceMain, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabControlToolbar.ResumeLayout(False)
         Me.TabPageToolbarPrincipal.ResumeLayout(False)
         Me.TabPageToolbarPrincipal.PerformLayout()
@@ -1064,11 +1101,11 @@ Partial Class formPesadas
         Me.ToolStripActivo.PerformLayout()
         Me.ToolStripVerificado.ResumeLayout(False)
         Me.ToolStripVerificado.PerformLayout()
+        Me.TabPageColumnas.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
     Private WithEvents DataGridViewMain As System.Windows.Forms.DataGridView
-    Private WithEvents bindingsourceMain As System.Windows.Forms.BindingSource
     Private WithEvents columnIDPesada As DataGridViewTextBoxColumn
     Private WithEvents columnFechaHoraInicio As DataGridViewTextBoxColumn
     Private WithEvents columnFechaHoraFin As DataGridViewTextBoxColumn
@@ -1157,4 +1194,8 @@ Partial Class formPesadas
     Friend WithEvents ToolStripLabelVerificado As ToolStripLabel
     Friend WithEvents ToolStripComboBoxVerificado As ToolStripComboBox
     Friend WithEvents ToolStripButtonExpandir As ToolStripButton
+    Friend WithEvents TabPageColumnas As TabPage
+    Friend WithEvents CheckedListBoxColumnas As CheckedListBox
+    Friend WithEvents ButtonColumnasMostrarTodas As Button
+    Friend WithEvents TimerGuardarColumnasVisibles As Timer
 End Class

@@ -51,6 +51,8 @@ Partial Class formMDIMain
         Me.buttonResumenPesadas = New System.Windows.Forms.ToolStripButton()
         Me.buttonReportes = New System.Windows.Forms.ToolStripButton()
         Me.textboxKilogramo = New System.Windows.Forms.TextBox()
+        Me.ToolStripMenuItemVentanaCerrar = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparatorVentana = New System.Windows.Forms.ToolStripSeparator()
         Me.menustripMain.SuspendLayout()
         Me.panelMain.SuspendLayout()
         Me.toolstripMain.SuspendLayout()
@@ -108,6 +110,7 @@ Partial Class formMDIMain
         '
         'menuitemVentana
         '
+        Me.menuitemVentana.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItemVentanaCerrar, Me.ToolStripSeparatorVentana})
         Me.menuitemVentana.Name = "menuitemVentana"
         Me.menuitemVentana.Size = New System.Drawing.Size(61, 20)
         Me.menuitemVentana.Text = "&Ventana"
@@ -268,6 +271,17 @@ Partial Class formMDIMain
         Me.textboxKilogramo.TabIndex = 3
         Me.textboxKilogramo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
+        'ToolStripMenuItemVentanaCerrar
+        '
+        Me.ToolStripMenuItemVentanaCerrar.Name = "ToolStripMenuItemVentanaCerrar"
+        Me.ToolStripMenuItemVentanaCerrar.Size = New System.Drawing.Size(180, 22)
+        Me.ToolStripMenuItemVentanaCerrar.Text = "Cerrar"
+        '
+        'ToolStripSeparatorVentana
+        '
+        Me.ToolStripSeparatorVentana.Name = "ToolStripSeparatorVentana"
+        Me.ToolStripSeparatorVentana.Size = New System.Drawing.Size(177, 6)
+        '
         'formMDIMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -321,4 +335,6 @@ Partial Class formMDIMain
     Friend WithEvents menuitemTablas_OrigenesDestinos As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents buttonResumenPesadas As ToolStripButton
     Friend WithEvents menuitemArchivo_CambiarContrasena As ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItemVentanaCerrar As ToolStripMenuItem
+    Friend WithEvents ToolStripSeparatorVentana As ToolStripSeparator
 End Class

@@ -13,26 +13,23 @@
 
     ' VALORES PREDETERMINADOS
     Friend Const DEFAULT_PROVINCIA_ID As String = "DEFAULT_PROVINCIA_ID"
-
     Friend Const DEFAULT_LOCALIDAD_ID As String = "DEFAULT_LOCALIDAD_ID"
     Friend Const DEFAULT_CODIGOPOSTAL As String = "DEFAULT_CODIGOPOSTAL"
 
     ' PESADAS
     Friend Const PESADA_FECHA_INICIOACTUAL_ANTERIOR_DIFERENCIAMAXIMA_DIAS As String = "PESADA_FECHA_INICIOACTUAL_ANTERIOR_DIFERENCIAMAXIMA_DIAS"
-
     Friend Const PESADA_FECHA_INICIOFIN_DIFERENCIAMAXIMA_DIAS As String = "PESADA_FECHA_INICIOFIN_DIFERENCIAMAXIMA_DIAS"
     Friend Const PESADA_HORA_INICIOACTUAL_DIFERENCIAMAXIMA_MINUTOS As String = "PESADA_HORA_INICIOACTUAL_DIFERENCIAMAXIMA_MINUTOS"
     Friend Const PESADA_ENTRADA_HUMEDAD_VACIA_MOSTRARERROR As String = "PESADA_ENTRADA_HUMEDAD_VACIA_MOSTRARERROR"
     Friend Const PESADA_ENTRADA_ZARANDEO_VACIO_MOSTRARERROR As String = "PESADA_ENTRADA_ZARANDEO_VACIO_MOSTRARERROR"
+    Friend Const PESADAS_GRILLA_COLUMNAS As String = "PESADAS_GRILLA_COLUMNAS"
 
     ' REPORTES
     Friend Const REPORTEGRUPO_PESADAS_TICKETS_ID As String = "REPORTEGRUPO_PESADAS_TICKETS_ID"
-
     Friend Const REPORTEGRUPO_PESADAS_REPORTES_ID As String = "REPORTEGRUPO_PESADAS_REPORTES_ID"
 
     ' MAPAS
     Friend Const MAPS_GOOGLEMAPS_LOCATIONLINK As String = "MAPS_GOOGLEMAPS_LOCATIONLINK"
-
     Friend Const MAPS_GOOGLEMAPS_ZOOMDEFAULT As String = "MAPS_GOOGLEMAPS_ZOOMDEFAULT"
 
 #End Region
@@ -56,10 +53,10 @@
     Friend Function SaveParameter(parametro As Parametro) As Boolean
         Try
             Using dbcontext As New CSPesajeContext(True)
-                Dim parametroExistente As Parametro
-                parametroExistente = dbcontext.Parametro.Find(parametro.IDParametro)
+                Dim parametroExistente As Parametro = dbcontext.Parametro.Find(parametro.IDParametro)
+
                 If parametroExistente Is Nothing Then
-                    dbcontext.Parametro.Append(parametro)
+                    dbcontext.Parametro.Add(parametro)
                 Else
                     parametroExistente.Texto = parametro.Texto
                     parametroExistente.NumeroEntero = parametro.NumeroEntero

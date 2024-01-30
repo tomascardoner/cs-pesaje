@@ -23,8 +23,10 @@
     End Sub
 
     Private Sub Me_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
-        If Not (e.CloseReason = CloseReason.ApplicationExitCall Or e.CloseReason = CloseReason.TaskManagerClosing Or e.CloseReason = CloseReason.WindowsShutDown) Then
+        If Not (e.CloseReason = CloseReason.ApplicationExitCall OrElse e.CloseReason = CloseReason.TaskManagerClosing OrElse e.CloseReason = CloseReason.WindowsShutDown) Then
+#Disable Warning S1066 ' Mergeable "if" statements should be combined
             If MsgBox("¿Desea salir de la aplicación?", CType(MsgBoxStyle.Information + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.No Then
+#Enable Warning S1066 ' Mergeable "if" statements should be combined
                 e.Cancel = True
             End If
         End If
@@ -48,6 +50,14 @@
 
     Private Sub UsuarioCambiarContrasena(sender As Object, e As EventArgs) Handles menuitemArchivo_CambiarContrasena.Click
         formCambiarContrasena.ShowDialog(Me)
+    End Sub
+
+#End Region
+
+#Region "Menú Ventana"
+
+    Private Sub ToolStripMenuItemVentanaCerrar_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItemVentanaCerrar.Click
+        Me.ActiveMdiChild?.Close()
     End Sub
 
 #End Region
