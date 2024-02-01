@@ -7,6 +7,8 @@
   "ListsFontName": "Microsoft Sans Serif",
   "ListsFontSize": 11.25,
   "ListsFontBold": false,
+  "ToolbarContainerBackColor": "#DCE9F9",
+  "ToolbarBackColor": "#C2D9F0",
   "GridRowBackColor": "Window",
   "GridRowForeColor": "ControlText",
   "GridRowSelectionBackColor": "Highlight",

@@ -32,6 +32,8 @@ Partial Class formMDIMain
         Me.menuitemArchivo_Separador_Salir = New System.Windows.Forms.ToolStripSeparator()
         Me.menuitemArchivo_Salir = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemVentana = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItemVentanaCerrar = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparatorVentana = New System.Windows.Forms.ToolStripSeparator()
         Me.menuitemDebug = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemAyuda = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemAyuda_AcercaDe = New System.Windows.Forms.ToolStripMenuItem()
@@ -51,11 +53,14 @@ Partial Class formMDIMain
         Me.buttonResumenPesadas = New System.Windows.Forms.ToolStripButton()
         Me.buttonReportes = New System.Windows.Forms.ToolStripButton()
         Me.textboxKilogramo = New System.Windows.Forms.TextBox()
-        Me.ToolStripMenuItemVentanaCerrar = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparatorVentana = New System.Windows.Forms.ToolStripSeparator()
+        Me.TableLayoutPanelUsuario = New System.Windows.Forms.TableLayoutPanel()
+        Me.LabelUsuarioDescripcion = New System.Windows.Forms.Label()
+        Me.PictureBoxUsuarioAvatar = New System.Windows.Forms.PictureBox()
         Me.menustripMain.SuspendLayout()
         Me.panelMain.SuspendLayout()
         Me.toolstripMain.SuspendLayout()
+        Me.TableLayoutPanelUsuario.SuspendLayout()
+        CType(Me.PictureBoxUsuarioAvatar, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'menustripMain
@@ -64,7 +69,7 @@ Partial Class formMDIMain
         Me.menustripMain.Location = New System.Drawing.Point(0, 0)
         Me.menustripMain.MdiWindowListItem = Me.menuitemVentana
         Me.menustripMain.Name = "menustripMain"
-        Me.menustripMain.Size = New System.Drawing.Size(718, 24)
+        Me.menustripMain.Size = New System.Drawing.Size(861, 24)
         Me.menustripMain.TabIndex = 0
         '
         'menuitemArchivo
@@ -115,6 +120,17 @@ Partial Class formMDIMain
         Me.menuitemVentana.Size = New System.Drawing.Size(61, 20)
         Me.menuitemVentana.Text = "&Ventana"
         '
+        'ToolStripMenuItemVentanaCerrar
+        '
+        Me.ToolStripMenuItemVentanaCerrar.Name = "ToolStripMenuItemVentanaCerrar"
+        Me.ToolStripMenuItemVentanaCerrar.Size = New System.Drawing.Size(106, 22)
+        Me.ToolStripMenuItemVentanaCerrar.Text = "Cerrar"
+        '
+        'ToolStripSeparatorVentana
+        '
+        Me.ToolStripSeparatorVentana.Name = "ToolStripSeparatorVentana"
+        Me.ToolStripSeparatorVentana.Size = New System.Drawing.Size(103, 6)
+        '
         'menuitemDebug
         '
         Me.menuitemDebug.Name = "menuitemDebug"
@@ -139,17 +155,19 @@ Partial Class formMDIMain
         '
         Me.panelMain.AutoSize = True
         Me.panelMain.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.panelMain.ColumnCount = 2
+        Me.panelMain.ColumnCount = 3
         Me.panelMain.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
-        Me.panelMain.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.panelMain.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.panelMain.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.panelMain.Controls.Add(Me.toolstripMain, 0, 0)
-        Me.panelMain.Controls.Add(Me.textboxKilogramo, 1, 0)
+        Me.panelMain.Controls.Add(Me.textboxKilogramo, 2, 0)
+        Me.panelMain.Controls.Add(Me.TableLayoutPanelUsuario, 1, 0)
         Me.panelMain.Dock = System.Windows.Forms.DockStyle.Top
         Me.panelMain.Location = New System.Drawing.Point(0, 24)
         Me.panelMain.Name = "panelMain"
         Me.panelMain.RowCount = 1
         Me.panelMain.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.panelMain.Size = New System.Drawing.Size(718, 44)
+        Me.panelMain.Size = New System.Drawing.Size(861, 44)
         Me.panelMain.TabIndex = 4
         '
         'toolstripMain
@@ -263,7 +281,7 @@ Partial Class formMDIMain
         Me.textboxKilogramo.Dock = System.Windows.Forms.DockStyle.Right
         Me.textboxKilogramo.Font = New System.Drawing.Font("Microsoft Sans Serif", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.textboxKilogramo.ForeColor = System.Drawing.Color.Lime
-        Me.textboxKilogramo.Location = New System.Drawing.Point(602, 3)
+        Me.textboxKilogramo.Location = New System.Drawing.Point(745, 3)
         Me.textboxKilogramo.MaxLength = 6
         Me.textboxKilogramo.Name = "textboxKilogramo"
         Me.textboxKilogramo.ReadOnly = True
@@ -271,22 +289,51 @@ Partial Class formMDIMain
         Me.textboxKilogramo.TabIndex = 3
         Me.textboxKilogramo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
-        'ToolStripMenuItemVentanaCerrar
+        'TableLayoutPanelUsuario
         '
-        Me.ToolStripMenuItemVentanaCerrar.Name = "ToolStripMenuItemVentanaCerrar"
-        Me.ToolStripMenuItemVentanaCerrar.Size = New System.Drawing.Size(180, 22)
-        Me.ToolStripMenuItemVentanaCerrar.Text = "Cerrar"
+        Me.TableLayoutPanelUsuario.ColumnCount = 4
+        Me.TableLayoutPanelUsuario.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanelUsuario.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+        Me.TableLayoutPanelUsuario.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+        Me.TableLayoutPanelUsuario.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanelUsuario.Controls.Add(Me.LabelUsuarioDescripcion, 2, 1)
+        Me.TableLayoutPanelUsuario.Controls.Add(Me.PictureBoxUsuarioAvatar, 1, 1)
+        Me.TableLayoutPanelUsuario.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanelUsuario.Location = New System.Drawing.Point(417, 3)
+        Me.TableLayoutPanelUsuario.Name = "TableLayoutPanelUsuario"
+        Me.TableLayoutPanelUsuario.RowCount = 3
+        Me.TableLayoutPanelUsuario.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanelUsuario.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanelUsuario.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanelUsuario.Size = New System.Drawing.Size(217, 38)
+        Me.TableLayoutPanelUsuario.TabIndex = 4
         '
-        'ToolStripSeparatorVentana
+        'LabelUsuarioDescripcion
         '
-        Me.ToolStripSeparatorVentana.Name = "ToolStripSeparatorVentana"
-        Me.ToolStripSeparatorVentana.Size = New System.Drawing.Size(177, 6)
+        Me.LabelUsuarioDescripcion.AutoSize = True
+        Me.LabelUsuarioDescripcion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.LabelUsuarioDescripcion.Location = New System.Drawing.Point(130, 12)
+        Me.LabelUsuarioDescripcion.Name = "LabelUsuarioDescripcion"
+        Me.LabelUsuarioDescripcion.Size = New System.Drawing.Size(0, 13)
+        Me.LabelUsuarioDescripcion.TabIndex = 5
+        Me.LabelUsuarioDescripcion.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'PictureBoxUsuarioAvatar
+        '
+        Me.PictureBoxUsuarioAvatar.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PictureBoxUsuarioAvatar.Location = New System.Drawing.Point(83, 12)
+        Me.PictureBoxUsuarioAvatar.Margin = New System.Windows.Forms.Padding(0)
+        Me.PictureBoxUsuarioAvatar.Name = "PictureBoxUsuarioAvatar"
+        Me.PictureBoxUsuarioAvatar.Size = New System.Drawing.Size(44, 13)
+        Me.PictureBoxUsuarioAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
+        Me.PictureBoxUsuarioAvatar.TabIndex = 6
+        Me.PictureBoxUsuarioAvatar.TabStop = False
         '
         'formMDIMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(718, 415)
+        Me.ClientSize = New System.Drawing.Size(861, 415)
         Me.Controls.Add(Me.panelMain)
         Me.Controls.Add(Me.menustripMain)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
@@ -303,6 +350,9 @@ Partial Class formMDIMain
         Me.panelMain.PerformLayout()
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()
+        Me.TableLayoutPanelUsuario.ResumeLayout(False)
+        Me.TableLayoutPanelUsuario.PerformLayout()
+        CType(Me.PictureBoxUsuarioAvatar, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -337,4 +387,7 @@ Partial Class formMDIMain
     Friend WithEvents menuitemArchivo_CambiarContrasena As ToolStripMenuItem
     Friend WithEvents ToolStripMenuItemVentanaCerrar As ToolStripMenuItem
     Friend WithEvents ToolStripSeparatorVentana As ToolStripSeparator
+    Friend WithEvents TableLayoutPanelUsuario As TableLayoutPanel
+    Friend WithEvents LabelUsuarioDescripcion As Label
+    Friend WithEvents PictureBoxUsuarioAvatar As PictureBox
 End Class

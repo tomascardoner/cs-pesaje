@@ -7,6 +7,10 @@
     Private Const ListsFontSizeDefault As Single = 8.25
     Private Const ListsFontBoldDefault As Boolean = False
 
+    ' Toolbar colors 
+    Private Const ToolbarContainerBackColorDefault As String = "Control"
+    Private Const ToolbarBackColorDefault As String = "Control"
+
     ' Grid row colors standard
     Private Const GridRowBackColorDefault As String = "Window"
     Private Const GridRowForeColorDefault As String = "ControlText"
@@ -32,6 +36,10 @@
 #Region "Fields"
 
     Private _ListsFont As Font
+
+    ' Toolbar colors 
+    Private _ToolbarContainerBackColorObject As Color
+    Private _ToolbarBackColorObject As Color
 
     ' Grid row colors standard
     Private _GridRowBackColorObject As Color
@@ -64,6 +72,8 @@
     Public Property ListsFontName As String
     Public Property ListsFontSize As Single
     Public Property ListsFontBold As Boolean
+    Public Property ToolbarContainerBackColor As String
+    Public Property ToolbarBackColor As String
     Public Property GridRowBackColor As String
     Public Property GridRowForeColor As String
     Public Property GridRowSelectionBackColor As String
@@ -91,6 +101,24 @@
         End Get
         Set(value As Font)
             SetFont(value, ListsFontName, ListsFontSize, ListsFontBold, _ListsFont, ListsFontNameDefault, ListsFontSizeDefault, ListsFontBoldDefault)
+        End Set
+    End Property
+
+    Friend Property ToolbarContainerBackColorObject As Color
+        Get
+            Return GetColor(ToolbarContainerBackColor, _ToolbarContainerBackColorObject, ToolbarContainerBackColorDefault)
+        End Get
+        Set(value As Color)
+            GridRowBackColor = SetColor(value, _ToolbarContainerBackColorObject, ToolbarContainerBackColorDefault)
+        End Set
+    End Property
+
+    Friend Property ToolbarBackColorObject As Color
+        Get
+            Return GetColor(ToolbarBackColor, _ToolbarBackColorObject, ToolbarBackColorDefault)
+        End Get
+        Set(value As Color)
+            GridRowBackColor = SetColor(value, _ToolbarBackColorObject, ToolbarBackColorDefault)
         End Set
     End Property
 

@@ -59,6 +59,9 @@ Partial Class formPesadas
         Me.columnCamion = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TabControlToolbar = New System.Windows.Forms.TabControl()
         Me.TabPageToolbarPrincipal = New System.Windows.Forms.TabPage()
+        Me.ToolStripLimpiarFiltros = New System.Windows.Forms.ToolStrip()
+        Me.ToolStripButtonLimpiarFiltros = New System.Windows.Forms.ToolStripButton()
+        Me.LabelCantidadPesadas = New System.Windows.Forms.Label()
         Me.ToolStripPeriodo = New System.Windows.Forms.ToolStrip()
         Me.ToolStripComboBoxPeriodoTipo = New System.Windows.Forms.ToolStripComboBox()
         Me.ToolStripComboBoxPeriodoValor = New System.Windows.Forms.ToolStripComboBox()
@@ -130,6 +133,7 @@ Partial Class formPesadas
         CType(Me.DataGridViewMain, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControlToolbar.SuspendLayout()
         Me.TabPageToolbarPrincipal.SuspendLayout()
+        Me.ToolStripLimpiarFiltros.SuspendLayout()
         Me.ToolStripPeriodo.SuspendLayout()
         Me.ToolStripAcciones.SuspendLayout()
         Me.TabPageToolbarBasicos.SuspendLayout()
@@ -400,7 +404,8 @@ Partial Class formPesadas
         '
         'TabPageToolbarPrincipal
         '
-        Me.TabPageToolbarPrincipal.BackColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(233, Byte), Integer), CType(CType(249, Byte), Integer))
+        Me.TabPageToolbarPrincipal.Controls.Add(Me.ToolStripLimpiarFiltros)
+        Me.TabPageToolbarPrincipal.Controls.Add(Me.LabelCantidadPesadas)
         Me.TabPageToolbarPrincipal.Controls.Add(Me.ToolStripPeriodo)
         Me.TabPageToolbarPrincipal.Controls.Add(Me.ToolStripAcciones)
         Me.TabPageToolbarPrincipal.Location = New System.Drawing.Point(4, 22)
@@ -409,9 +414,41 @@ Partial Class formPesadas
         Me.TabPageToolbarPrincipal.TabIndex = 0
         Me.TabPageToolbarPrincipal.Text = "Principal"
         '
+        'ToolStripLimpiarFiltros
+        '
+        Me.ToolStripLimpiarFiltros.AllowMerge = False
+        Me.ToolStripLimpiarFiltros.Dock = System.Windows.Forms.DockStyle.Left
+        Me.ToolStripLimpiarFiltros.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.ToolStripLimpiarFiltros.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButtonLimpiarFiltros})
+        Me.ToolStripLimpiarFiltros.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow
+        Me.ToolStripLimpiarFiltros.Location = New System.Drawing.Point(705, 0)
+        Me.ToolStripLimpiarFiltros.Name = "ToolStripLimpiarFiltros"
+        Me.ToolStripLimpiarFiltros.Padding = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.ToolStripLimpiarFiltros.Size = New System.Drawing.Size(90, 74)
+        Me.ToolStripLimpiarFiltros.TabIndex = 7
+        Me.ToolStripLimpiarFiltros.Text = "Limpiar filtros"
+        '
+        'ToolStripButtonLimpiarFiltros
+        '
+        Me.ToolStripButtonLimpiarFiltros.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.ToolStripButtonLimpiarFiltros.Image = CType(resources.GetObject("ToolStripButtonLimpiarFiltros.Image"), System.Drawing.Image)
+        Me.ToolStripButtonLimpiarFiltros.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButtonLimpiarFiltros.Name = "ToolStripButtonLimpiarFiltros"
+        Me.ToolStripButtonLimpiarFiltros.Size = New System.Drawing.Size(84, 71)
+        Me.ToolStripButtonLimpiarFiltros.Text = "Limpiar filtros"
+        '
+        'LabelCantidadPesadas
+        '
+        Me.LabelCantidadPesadas.Dock = System.Windows.Forms.DockStyle.Right
+        Me.LabelCantidadPesadas.Location = New System.Drawing.Point(999, 0)
+        Me.LabelCantidadPesadas.Name = "LabelCantidadPesadas"
+        Me.LabelCantidadPesadas.Padding = New System.Windows.Forms.Padding(2, 0, 3, 0)
+        Me.LabelCantidadPesadas.Size = New System.Drawing.Size(190, 74)
+        Me.LabelCantidadPesadas.TabIndex = 2
+        Me.LabelCantidadPesadas.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
         'ToolStripPeriodo
         '
-        Me.ToolStripPeriodo.BackColor = System.Drawing.Color.FromArgb(CType(CType(194, Byte), Integer), CType(CType(217, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.ToolStripPeriodo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.ToolStripPeriodo.Dock = System.Windows.Forms.DockStyle.Left
         Me.ToolStripPeriodo.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
@@ -528,7 +565,6 @@ Partial Class formPesadas
         'ToolStripAcciones
         '
         Me.ToolStripAcciones.AllowMerge = False
-        Me.ToolStripAcciones.BackColor = System.Drawing.Color.FromArgb(CType(CType(194, Byte), Integer), CType(CType(217, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.ToolStripAcciones.Dock = System.Windows.Forms.DockStyle.Left
         Me.ToolStripAcciones.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.ToolStripAcciones.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButtonAgregar, Me.ToolStripButtonEditar, Me.ToolStripButtonBorrar, Me.ToolStripButtonImprimir})
@@ -589,7 +625,6 @@ Partial Class formPesadas
         '
         'TabPageToolbarBasicos
         '
-        Me.TabPageToolbarBasicos.BackColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(233, Byte), Integer), CType(CType(249, Byte), Integer))
         Me.TabPageToolbarBasicos.Controls.Add(Me.ToolStripTiposPesada)
         Me.TabPageToolbarBasicos.Controls.Add(Me.ToolStripCosecha)
         Me.TabPageToolbarBasicos.Controls.Add(Me.ToolStripPlanta)
@@ -604,7 +639,6 @@ Partial Class formPesadas
         'ToolStripTiposPesada
         '
         Me.ToolStripTiposPesada.AllowMerge = False
-        Me.ToolStripTiposPesada.BackColor = System.Drawing.Color.FromArgb(CType(CType(194, Byte), Integer), CType(CType(217, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.ToolStripTiposPesada.Dock = System.Windows.Forms.DockStyle.Left
         Me.ToolStripTiposPesada.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.ToolStripTiposPesada.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripDropDownButtonTiposPesada})
@@ -673,7 +707,6 @@ Partial Class formPesadas
         'ToolStripCosecha
         '
         Me.ToolStripCosecha.AllowMerge = False
-        Me.ToolStripCosecha.BackColor = System.Drawing.Color.FromArgb(CType(CType(194, Byte), Integer), CType(CType(217, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.ToolStripCosecha.Dock = System.Windows.Forms.DockStyle.Left
         Me.ToolStripCosecha.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.ToolStripCosecha.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripLabelCosecha, Me.ToolStripComboBoxCosecha})
@@ -701,7 +734,6 @@ Partial Class formPesadas
         'ToolStripPlanta
         '
         Me.ToolStripPlanta.AllowMerge = False
-        Me.ToolStripPlanta.BackColor = System.Drawing.Color.FromArgb(CType(CType(194, Byte), Integer), CType(CType(217, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.ToolStripPlanta.Dock = System.Windows.Forms.DockStyle.Left
         Me.ToolStripPlanta.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.ToolStripPlanta.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripLabelPlanta, Me.ToolStripComboBoxPlanta})
@@ -729,7 +761,6 @@ Partial Class formPesadas
         'ToolStripProducto
         '
         Me.ToolStripProducto.AllowMerge = False
-        Me.ToolStripProducto.BackColor = System.Drawing.Color.FromArgb(CType(CType(194, Byte), Integer), CType(CType(217, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.ToolStripProducto.Dock = System.Windows.Forms.DockStyle.Left
         Me.ToolStripProducto.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.ToolStripProducto.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripLabelProducto, Me.ToolStripComboBoxProducto})
@@ -757,7 +788,6 @@ Partial Class formPesadas
         'ToolStripTitular
         '
         Me.ToolStripTitular.AllowMerge = False
-        Me.ToolStripTitular.BackColor = System.Drawing.Color.FromArgb(CType(CType(194, Byte), Integer), CType(CType(217, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.ToolStripTitular.Dock = System.Windows.Forms.DockStyle.Left
         Me.ToolStripTitular.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.ToolStripTitular.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripLabelTitular, Me.ToolStripComboBoxTitular})
@@ -784,7 +814,6 @@ Partial Class formPesadas
         '
         'TabPageToolbarOtros
         '
-        Me.TabPageToolbarOtros.BackColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(233, Byte), Integer), CType(CType(249, Byte), Integer))
         Me.TabPageToolbarOtros.Controls.Add(Me.ToolStripChofer)
         Me.TabPageToolbarOtros.Controls.Add(Me.ToolStripTransportista)
         Me.TabPageToolbarOtros.Controls.Add(Me.ToolStripDestino)
@@ -798,7 +827,6 @@ Partial Class formPesadas
         'ToolStripChofer
         '
         Me.ToolStripChofer.AllowMerge = False
-        Me.ToolStripChofer.BackColor = System.Drawing.Color.FromArgb(CType(CType(194, Byte), Integer), CType(CType(217, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.ToolStripChofer.Dock = System.Windows.Forms.DockStyle.Left
         Me.ToolStripChofer.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.ToolStripChofer.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripLabelChofer, Me.ToolStripComboBoxChofer})
@@ -826,7 +854,6 @@ Partial Class formPesadas
         'ToolStripTransportista
         '
         Me.ToolStripTransportista.AllowMerge = False
-        Me.ToolStripTransportista.BackColor = System.Drawing.Color.FromArgb(CType(CType(194, Byte), Integer), CType(CType(217, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.ToolStripTransportista.Dock = System.Windows.Forms.DockStyle.Left
         Me.ToolStripTransportista.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.ToolStripTransportista.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripLabelTransportista, Me.ToolStripComboBoxTransportista})
@@ -854,7 +881,6 @@ Partial Class formPesadas
         'ToolStripDestino
         '
         Me.ToolStripDestino.AllowMerge = False
-        Me.ToolStripDestino.BackColor = System.Drawing.Color.FromArgb(CType(CType(194, Byte), Integer), CType(CType(217, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.ToolStripDestino.Dock = System.Windows.Forms.DockStyle.Left
         Me.ToolStripDestino.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.ToolStripDestino.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripLabelDestino, Me.ToolStripComboBoxDestino})
@@ -882,7 +908,6 @@ Partial Class formPesadas
         'ToolStripOrigen
         '
         Me.ToolStripOrigen.AllowMerge = False
-        Me.ToolStripOrigen.BackColor = System.Drawing.Color.FromArgb(CType(CType(194, Byte), Integer), CType(CType(217, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.ToolStripOrigen.Dock = System.Windows.Forms.DockStyle.Left
         Me.ToolStripOrigen.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.ToolStripOrigen.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripLabelOrigen, Me.ToolStripComboBoxOrigen})
@@ -909,7 +934,6 @@ Partial Class formPesadas
         '
         'TabPageToolbarAvanzados
         '
-        Me.TabPageToolbarAvanzados.BackColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(233, Byte), Integer), CType(CType(249, Byte), Integer))
         Me.TabPageToolbarAvanzados.Controls.Add(Me.ToolStripTareas)
         Me.TabPageToolbarAvanzados.Controls.Add(Me.ToolStripActivo)
         Me.TabPageToolbarAvanzados.Controls.Add(Me.ToolStripVerificado)
@@ -922,7 +946,6 @@ Partial Class formPesadas
         'ToolStripTareas
         '
         Me.ToolStripTareas.AllowMerge = False
-        Me.ToolStripTareas.BackColor = System.Drawing.Color.FromArgb(CType(CType(194, Byte), Integer), CType(CType(217, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.ToolStripTareas.Dock = System.Windows.Forms.DockStyle.Left
         Me.ToolStripTareas.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.ToolStripTareas.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripDropDownButtonTareas})
@@ -959,7 +982,6 @@ Partial Class formPesadas
         'ToolStripActivo
         '
         Me.ToolStripActivo.AllowMerge = False
-        Me.ToolStripActivo.BackColor = System.Drawing.Color.FromArgb(CType(CType(194, Byte), Integer), CType(CType(217, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.ToolStripActivo.Dock = System.Windows.Forms.DockStyle.Left
         Me.ToolStripActivo.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.ToolStripActivo.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripLabelActivo, Me.ToolStripComboBoxActivo})
@@ -987,7 +1009,6 @@ Partial Class formPesadas
         'ToolStripVerificado
         '
         Me.ToolStripVerificado.AllowMerge = False
-        Me.ToolStripVerificado.BackColor = System.Drawing.Color.FromArgb(CType(CType(194, Byte), Integer), CType(CType(217, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.ToolStripVerificado.Dock = System.Windows.Forms.DockStyle.Left
         Me.ToolStripVerificado.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.ToolStripVerificado.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripLabelVerificado, Me.ToolStripComboBoxVerificado})
@@ -1025,7 +1046,6 @@ Partial Class formPesadas
         '
         'CheckedListBoxColumnas
         '
-        Me.CheckedListBoxColumnas.BackColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(233, Byte), Integer), CType(CType(249, Byte), Integer))
         Me.CheckedListBoxColumnas.CheckOnClick = True
         Me.CheckedListBoxColumnas.Dock = System.Windows.Forms.DockStyle.Fill
         Me.CheckedListBoxColumnas.Location = New System.Drawing.Point(64, 0)
@@ -1067,6 +1087,8 @@ Partial Class formPesadas
         Me.TabControlToolbar.ResumeLayout(False)
         Me.TabPageToolbarPrincipal.ResumeLayout(False)
         Me.TabPageToolbarPrincipal.PerformLayout()
+        Me.ToolStripLimpiarFiltros.ResumeLayout(False)
+        Me.ToolStripLimpiarFiltros.PerformLayout()
         Me.ToolStripPeriodo.ResumeLayout(False)
         Me.ToolStripPeriodo.PerformLayout()
         Me.ToolStripAcciones.ResumeLayout(False)
@@ -1198,4 +1220,7 @@ Partial Class formPesadas
     Friend WithEvents CheckedListBoxColumnas As CheckedListBox
     Friend WithEvents ButtonColumnasMostrarTodas As Button
     Friend WithEvents TimerGuardarColumnasVisibles As Timer
+    Friend WithEvents LabelCantidadPesadas As Label
+    Friend WithEvents ToolStripLimpiarFiltros As ToolStrip
+    Friend WithEvents ToolStripButtonLimpiarFiltros As ToolStripButton
 End Class

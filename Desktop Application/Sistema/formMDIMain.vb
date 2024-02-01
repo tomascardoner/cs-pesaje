@@ -9,16 +9,10 @@
 #Region "Form stuff"
 
     Private Sub Me_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ' Cambio el puntero del mouse para indicar que la aplicación está iniciando
         Me.Cursor = Cursors.AppStarting
-
-        ' Deshabilito el Form principal hasta que se cierre el SplashScreen
         Me.Enabled = False
-
         Me.Text = My.Application.Info.Title
-
         menuitemAyuda_AcercaDe.Text = String.Format("&Acerca de {0}...", My.Application.Info.Title)
-
         textboxKilogramo.Visible = pBalanzaConeccionHabilitada
     End Sub
 
@@ -144,11 +138,11 @@
         End If
     End Sub
 
-    Private Sub CerrarSesionUsuario()
+    Private Sub CerrarSesionUsuario() Handles PictureBoxUsuarioAvatar.DoubleClick, LabelUsuarioDescripcion.DoubleClick
         If MsgBox("¿Desea cerrar la sesión del Usuario actual?", CType(MsgBoxStyle.Question + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
             CardonerSistemas.Forms.MdiChildCloseAll(Me)
-            'labelUsuarioNombre.Image = Nothing
-            'labelUsuarioNombre.Text = ""
+            LabelUsuarioDescripcion.Text = String.Empty
+            PictureBoxUsuarioAvatar.Image = Nothing
             pUsuario = Nothing
             If formLogin.ShowDialog(Me) = DialogResult.Cancel Then
                 Application.Exit()

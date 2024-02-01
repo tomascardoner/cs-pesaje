@@ -69,6 +69,8 @@ Public Class formPesadas
 
     Friend Sub SetAppearance()
         DataGridSetAppearance(DataGridViewMain)
+        TabToolBarSetColors(TabControlToolbar)
+        CheckedListBoxColumnas.BackColor = pAppearanceConfig.ToolbarBackColorObject
     End Sub
 
     Private Sub Me_Load() Handles Me.Load
@@ -282,14 +284,14 @@ Public Class formPesadas
                     mRecordSelectionFormula_Filter &= " AND (NOT {Pesada.EsActivo})"
             End Select
 
-            'Select Case mlistPesadaFiltradaYOrdenada.Count
-            '    Case 0
-            '        statuslabelMain.Text = "No hay Pesadas para mostrar."
-            '    Case 1
-            '        statuslabelMain.Text = "Se muestra 1 Pesada."
-            '    Case Else
-            '        statuslabelMain.Text = $"Se muestran {mlistPesadaFiltradaYOrdenada.Count} Pesadas."
-            'End Select
+            Select Case mlistPesadaFiltradaYOrdenada.Count
+                Case 0
+                    LabelCantidadPesadas.Text = "No hay Pesadas para mostrar."
+                Case 1
+                    LabelCantidadPesadas.Text = "Se muestra 1 Pesada."
+                Case Else
+                    LabelCantidadPesadas.Text = $"Se muestran {mlistPesadaFiltradaYOrdenada.Count} Pesadas."
+            End Select
         Catch ex As Exception
             CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al filtrar los datos.")
             Me.Cursor = Cursors.Default
@@ -390,6 +392,37 @@ Public Class formPesadas
         pFillAndRefreshLists.Entidad(ToolStripComboBoxChofer.ComboBox, Nothing, False, False, False, True, CInt(ToolStripComboBoxTransportista.ComboBox.SelectedValue), False, True, True, False)
         suspendActions = SaveSkipFilterData
         FilterData()
+    End Sub
+
+    Private Sub ToolStripButtonLimpiarFiltros_Click(sender As Object, e As EventArgs) Handles ToolStripButtonLimpiarFiltros.Click
+        suspendActions = True
+
+        ' Filtro de período
+        filtroPeriodoExpandido = False
+        FiltroPeriodoMostrar()
+        ToolStripControlHostFechaDesde.Text = DateTime.Today.ToShortDateString
+        ToolStripControlHostFechaHasta.Text = DateTime.Today.ToShortDateString
+
+        ' Filtros básicos
+        ToolStripComboBoxTitular.SelectedIndex = 0
+        ToolStripComboBoxProducto.SelectedIndex = 0
+        ToolStripComboBoxPlanta.SelectedIndex = 0
+        ToolStripComboBoxCosecha.SelectedIndex = 0
+        ToolStripMenuItemTiposPesadaMarcarTodos.PerformClick()
+
+        ' Filtros otros
+        ToolStripComboBoxOrigen.SelectedIndex = 0
+        ToolStripComboBoxDestino.SelectedIndex = 0
+        ToolStripComboBoxTransportista.SelectedIndex = 0
+        ToolStripComboBoxChofer.SelectedIndex = 0
+
+        ' Filtros avanzados
+        ToolStripComboBoxVerificado.SelectedIndex = 0
+        ToolStripComboBoxActivo.SelectedIndex = 1
+
+        suspendActions = False
+
+        RefreshData()
     End Sub
 
     Private Sub GridCellFormatting(sender As Object, e As DataGridViewCellFormattingEventArgs) Handles DataGridViewMain.CellFormatting
@@ -614,7 +647,7 @@ Public Class formPesadas
         Me.Cursor = Cursors.Default
     End Sub
 
-    Private Sub Tareas_CalcularMermas() Handles ToolStripMenuItemTareasCalcularMermas.Click
+    Private Sub Tareas_CalcularMermas(sender As Object, e As EventArgs) Handles ToolStripMenuItemTareasCalcularMermas.Click
         If DataGridViewMain.Rows.Count = 0 Then
             MsgBox("No hay Pesadas para calcular mermas.", vbInformation, My.Application.Info.Title)
             Return
@@ -661,7 +694,7 @@ Public Class formPesadas
         End If
     End Sub
 
-    Private Sub Tareas_CalcularAcondicionamiento() Handles ToolStripMenuItemTareasCalcularAcondicionamiento.Click
+    Private Sub Tareas_CalcularAcondicionamiento(sender As Object, e As EventArgs) Handles ToolStripMenuItemTareasCalcularAcondicionamiento.Click
         If DataGridViewMain.Rows.Count = 0 Then
             MsgBox("No hay Pesadas para calcular el acondicionamiento.", vbInformation, My.Application.Info.Title)
             Return

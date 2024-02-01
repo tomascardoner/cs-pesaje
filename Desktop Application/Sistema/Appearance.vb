@@ -1,5 +1,8 @@
 ﻿Module Appearance
-    Friend Sub DataGridSetAppearance(ByRef grid As DataGridView)
+
+#Region "Grillas"
+
+    Friend Sub DataGridSetAppearance(grid As DataGridView)
         With grid
             ' Fuentes
             .DefaultCellStyle.Font = pAppearanceConfig.ListsFont
@@ -19,7 +22,7 @@
         End With
     End Sub
 
-    Friend Sub DataGridSetCellStyleStandard(ByRef cell As DataGridViewTextBoxCell, ByVal rowIndex As Integer)
+    Friend Sub DataGridSetCellStyleStandard(cell As DataGridViewTextBoxCell, rowIndex As Integer)
         If rowIndex Mod 2 = 0 Then
             ' Filas pares
             cell.Style.BackColor = pAppearanceConfig.GridRowBackColorObject
@@ -35,12 +38,33 @@
         End If
     End Sub
 
-    Friend Sub DataGridSetCellStyleError(ByRef cell As DataGridViewTextBoxCell)
+    Friend Sub DataGridSetCellStyleError(cell As DataGridViewTextBoxCell)
         cell.Style.BackColor = pAppearanceConfig.GridRowErrorBackColorObject
         cell.Style.ForeColor = pAppearanceConfig.GridRowErrorForeColorObject
         cell.Style.SelectionBackColor = pAppearanceConfig.GridRowErrorSelectionBackColorObject
         cell.Style.SelectionForeColor = pAppearanceConfig.GridRowErrorSelectionForeColorObject
     End Sub
+
+#End Region
+
+#Region "Toolbars"
+
+    Friend Sub TabToolBarSetColors(sourceTabControl As TabControl)
+        For Each tabPageCurrent As TabPage In sourceTabControl.TabPages
+            tabPageCurrent.BackColor = pAppearanceConfig.ToolbarContainerBackColorObject
+            ToolStripSetColors(tabPageCurrent)
+        Next
+    End Sub
+
+    Friend Sub ToolStripSetColors(sourceTabPage As TabPage)
+        For Each controlCurrent As Control In sourceTabPage.Controls
+            If TypeOf (controlCurrent) Is ToolStrip Then
+                controlCurrent.BackColor = pAppearanceConfig.ToolbarBackColorObject
+            End If
+        Next
+    End Sub
+
+#End Region
 
     Friend Sub UserLoggedIn()
         LoadPermisos()
@@ -49,15 +73,15 @@
 
         Select Case pUsuario.Genero
             Case Constantes.PERSONA_GENERO_MASCULINO
-                'pFormMDIMain.labelUsuarioNombre.Image = My.Resources.Resources.ImageUsuarioHombre16
+                pFormMDIMain.PictureBoxUsuarioAvatar.Image = My.Resources.Resources.ImageUsuarioHombre16
             Case Constantes.PERSONA_GENERO_FEMENINO
-                'pFormMDIMain.labelUsuarioNombre.Image = My.Resources.Resources.ImageUsuarioMujer16
+                pFormMDIMain.PictureBoxUsuarioAvatar.Image = My.Resources.Resources.ImageUsuarioMujer16
             Case Else
-                'pFormMDIMain.labelUsuarioNombre.Image = Nothing
+                pFormMDIMain.PictureBoxUsuarioAvatar.Image = Nothing
         End Select
-        'pFormMDIMain.labelUsuarioNombre.Text = pUsuario.Descripcion
+        pFormMDIMain.LabelUsuarioDescripcion.Text = pUsuario.Descripcion
 
-        My.Application.Log.WriteEntry(String.Format("El Usuario '{0}' ha iniciado sesión.", pUsuario.Nombre), TraceEventType.Information)
+        My.Application.Log.WriteEntry($"El Usuario '{pUsuario.Nombre}' ha iniciado sesión.", TraceEventType.Information)
     End Sub
 
 End Module
