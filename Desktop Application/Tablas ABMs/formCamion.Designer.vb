@@ -69,9 +69,9 @@ Partial Class formCamion
         Me.labelIDCamion.AutoSize = True
         Me.labelIDCamion.Location = New System.Drawing.Point(12, 52)
         Me.labelIDCamion.Name = "labelIDCamion"
-        Me.labelIDCamion.Size = New System.Drawing.Size(75, 13)
+        Me.labelIDCamion.Size = New System.Drawing.Size(74, 13)
         Me.labelIDCamion.TabIndex = 0
-        Me.labelIDCamion.Text = "N° de Camion:"
+        Me.labelIDCamion.Text = "N° de camión:"
         '
         'textboxIDCamion
         '
@@ -104,7 +104,7 @@ Partial Class formCamion
         'buttonCerrar
         '
         Me.buttonCerrar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonCerrar.Image = My.Resources.Resources.ImageClose32
+        Me.buttonCerrar.Image = Global.CSPesaje.My.Resources.Resources.ImageClose32
         Me.buttonCerrar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCerrar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonCerrar.Name = "buttonCerrar"
@@ -114,7 +114,7 @@ Partial Class formCamion
         'buttonEditar
         '
         Me.buttonEditar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonEditar.Image = My.Resources.Resources.ImageItemEditar32
+        Me.buttonEditar.Image = Global.CSPesaje.My.Resources.Resources.ImageItemEditar32
         Me.buttonEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonEditar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonEditar.Name = "buttonEditar"
@@ -124,7 +124,7 @@ Partial Class formCamion
         'buttonCancelar
         '
         Me.buttonCancelar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonCancelar.Image = My.Resources.Resources.ImageCancelar32
+        Me.buttonCancelar.Image = Global.CSPesaje.My.Resources.Resources.ImageCancelar32
         Me.buttonCancelar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCancelar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonCancelar.Name = "buttonCancelar"
@@ -134,7 +134,7 @@ Partial Class formCamion
         'buttonGuardar
         '
         Me.buttonGuardar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonGuardar.Image = My.Resources.Resources.ImageAceptar32
+        Me.buttonGuardar.Image = Global.CSPesaje.My.Resources.Resources.ImageAceptar32
         Me.buttonGuardar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonGuardar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonGuardar.Name = "buttonGuardar"
@@ -173,9 +173,9 @@ Partial Class formCamion
         Me.labelDominioAcoplado.AutoSize = True
         Me.labelDominioAcoplado.Location = New System.Drawing.Point(12, 157)
         Me.labelDominioAcoplado.Name = "labelDominioAcoplado"
-        Me.labelDominioAcoplado.Size = New System.Drawing.Size(96, 13)
+        Me.labelDominioAcoplado.Size = New System.Drawing.Size(95, 13)
         Me.labelDominioAcoplado.TabIndex = 9
-        Me.labelDominioAcoplado.Text = "Dominio Acoplado:"
+        Me.labelDominioAcoplado.Text = "Dominio acoplado:"
         '
         'textboxDominioAcoplado
         '
@@ -200,9 +200,9 @@ Partial Class formCamion
         Me.labelDominioChasis.AutoSize = True
         Me.labelDominioChasis.Location = New System.Drawing.Point(12, 131)
         Me.labelDominioChasis.Name = "labelDominioChasis"
-        Me.labelDominioChasis.Size = New System.Drawing.Size(82, 13)
+        Me.labelDominioChasis.Size = New System.Drawing.Size(81, 13)
         Me.labelDominioChasis.TabIndex = 6
-        Me.labelDominioChasis.Text = "Dominio Chasis:"
+        Me.labelDominioChasis.Text = "Dominio chasis:"
         '
         'textboxDominioChasisExtra
         '
@@ -239,7 +239,7 @@ Partial Class formCamion
         Me.ShowIcon = False
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
-        Me.Text = "Detalle de la Camion"
+        Me.Text = "Detalle del camión"
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()
         Me.ResumeLayout(False)
