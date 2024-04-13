@@ -23,7 +23,6 @@
 
         'Me.MdiParent = pFormMDIMain
         CardonerSistemas.Forms.CenterToParent(ParentForm, Me)
-        InitializeFormAndControls()
         SetDataFromObjectToControls()
 
         ChangeMode()
@@ -37,19 +36,16 @@
     Private Sub ChangeMode()
         buttonGuardar.Visible = mEditMode
         buttonCancelar.Visible = mEditMode
-        buttonEditar.Visible = (mParentEditMode And Not mEditMode)
+        buttonEditar.Visible = (mParentEditMode AndAlso Not mEditMode)
         buttonCerrar.Visible = Not mEditMode
 
-        doubletextboxHumedadExcesoInicio.ReadOnly = Not (mIsNew And mEditMode)
+        doubletextboxHumedadExcesoInicio.ReadOnly = Not (mIsNew AndAlso mEditMode)
         radiobuttonTipoPunto.Enabled = mEditMode
         radiobuttonTipoCompleta.Enabled = mEditMode
         radiobuttonTipoSecado.Enabled = mEditMode
         radiobuttonTipoSecadoZarandeo.Enabled = mEditMode
         radiobuttonTipoFijo.Enabled = mEditMode
         currencytextboxTarifa.ReadOnly = Not mEditMode
-    End Sub
-
-    Friend Sub InitializeFormAndControls()
     End Sub
 
     Private Sub FormEnd(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
@@ -140,16 +136,16 @@
         If mIsNew AndAlso doubletextboxHumedadExcesoInicio.DoubleValue = 0 Then
             MsgBox("Debe especificar el Exceso de Humedad Inicial.", MsgBoxStyle.Information, My.Application.Info.Title)
             doubletextboxHumedadExcesoInicio.Focus()
-            Exit Sub
+            Return
         End If
-        If Not (radiobuttonTipoPunto.Checked Or radiobuttonTipoCompleta.Checked Or radiobuttonTipoSecado.Checked Or radiobuttonTipoSecadoZarandeo.Checked Or radiobuttonTipoFijo.Checked) Then
+        If Not (radiobuttonTipoPunto.Checked OrElse radiobuttonTipoCompleta.Checked OrElse radiobuttonTipoSecado.Checked OrElse radiobuttonTipoSecadoZarandeo.Checked OrElse radiobuttonTipoFijo.Checked) Then
             MsgBox("Debe especificar el Tipo de Tarifa.", MsgBoxStyle.Information, My.Application.Info.Title)
-            Exit Sub
+            Return
         End If
         If currencytextboxTarifa.DecimalValue = 0 Then
             MsgBox("Debe especificar una Tarifa mayor que cero.", MsgBoxStyle.Information, My.Application.Info.Title)
             currencytextboxTarifa.Focus()
-            Exit Sub
+            Return
         End If
 
         ' Si es un nuevo item agrego el objeto nuevo a la colección del parent

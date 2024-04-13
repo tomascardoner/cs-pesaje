@@ -87,7 +87,7 @@
         Catch ex As Exception
             CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer las Tarifas.")
             Me.Cursor = Cursors.Default
-            Exit Sub
+            Return
         End Try
 
         Me.Cursor = Cursors.Default
@@ -114,12 +114,10 @@
                 CurrentGridRowData = CType(CurrentRowChecked.DataBoundItem, GridRowData)
                 If CurrentGridRowData.IDCosecha = PositionIDCosecha AndAlso CurrentGridRowData.IDProducto = PositionIDProducto AndAlso CurrentGridRowData.Indice = PositionIndice Then
                     datagridviewMain.CurrentCell = CurrentRowChecked.Cells(columnNombre.Name)
-                    Exit For
+                    Return
                 End If
             Next
         End If
-
-        CurrentGridRowData = Nothing
     End Sub
 
     Private Sub FilterData()
@@ -154,7 +152,7 @@
             Catch ex As Exception
                 CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al filtrar los datos.")
                 Me.Cursor = Cursors.Default
-                Exit Sub
+                Return
             End Try
 
             OrderData()
@@ -191,11 +189,10 @@
             Else
                 ' La columna clickeada es diferencte a la que ya estaba ordenada.
                 ' En primer lugar saco el ícono de orden de la columna vieja
-                If Not mOrdenColumna Is Nothing Then
+                If mOrdenColumna IsNot Nothing Then
                     mOrdenColumna.HeaderCell.SortGlyphDirection = SortOrder.None
                 End If
 
-                ' Ahora preparo todo para la nueva columna
                 mOrdenTipo = SortOrder.Ascending
                 mOrdenColumna = ClickedColumn
             End If
@@ -215,13 +212,9 @@
     Private Sub Agregar_Click() Handles buttonAgregar.Click
         If Permisos.VerificarPermiso(Permisos.TARIFA_AGREGAR) Then
             Me.Cursor = Cursors.WaitCursor
-
             datagridviewMain.Enabled = False
-
             formTarifa.LoadAndShow(True, Me, CType(comboboxCosecha.SelectedItem, Cosecha).IDCosecha, CType(comboboxProducto.SelectedItem, Producto).IDProducto, 0, False)
-
             datagridviewMain.Enabled = True
-
             Me.Cursor = Cursors.Default
         End If
     End Sub
@@ -232,18 +225,12 @@
         Else
             If Permisos.VerificarPermiso(Permisos.TARIFA_AGREGAR) Then
                 Me.Cursor = Cursors.WaitCursor
-
                 datagridviewMain.Enabled = False
-
                 Dim GridRowDataActual As GridRowData
                 GridRowDataActual = CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData)
-
                 formTarifa.LoadAndShow(True, Me, GridRowDataActual.IDCosecha, GridRowDataActual.IDProducto, GridRowDataActual.Indice, True)
-
                 GridRowDataActual = Nothing
-
                 datagridviewMain.Enabled = True
-
                 Me.Cursor = Cursors.Default
             End If
         End If
@@ -255,18 +242,12 @@
         Else
             If Permisos.VerificarPermiso(Permisos.TARIFA_EDITAR) Then
                 Me.Cursor = Cursors.WaitCursor
-
                 datagridviewMain.Enabled = False
-
                 Dim GridRowDataActual As GridRowData
                 GridRowDataActual = CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData)
-
                 formTarifa.LoadAndShow(True, Me, GridRowDataActual.IDCosecha, GridRowDataActual.IDProducto, GridRowDataActual.Indice, False)
-
                 GridRowDataActual = Nothing
-
                 datagridviewMain.Enabled = True
-
                 Me.Cursor = Cursors.Default
             End If
         End If
@@ -301,7 +282,7 @@
                             Case CardonerSistemas.Database.EntityFramework.Errors.RelatedEntity
                                 MsgBox("No se puede eliminar la Tarifa porque tiene datos relacionados.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                         End Select
-                        Exit Sub
+                        Return
                     Catch ex As Exception
                         CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al eliminar la Tarifa.")
                     End Try
@@ -319,18 +300,12 @@
             MsgBox("No hay ninguna Tarifa para ver.", vbInformation, My.Application.Info.Title)
         Else
             Me.Cursor = Cursors.WaitCursor
-
             datagridviewMain.Enabled = False
-
             Dim GridRowDataActual As GridRowData
             GridRowDataActual = CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData)
-
             formTarifa.LoadAndShow(False, Me, GridRowDataActual.IDCosecha, GridRowDataActual.IDProducto, GridRowDataActual.Indice, False)
-
             GridRowDataActual = Nothing
-
             datagridviewMain.Enabled = True
-
             Me.Cursor = Cursors.Default
         End If
     End Sub

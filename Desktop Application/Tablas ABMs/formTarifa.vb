@@ -255,7 +255,7 @@
         End With
     End Sub
 
-    Friend Sub RefreshData_SecadoEscalas(Optional ByVal PositionHumedadExcesoInicio As Decimal = 0, Optional ByVal RestoreCurrentPosition As Boolean = False)
+    Friend Sub RefreshData_SecadoEscalas(Optional PositionHumedadExcesoInicio As Decimal = 0, Optional RestoreCurrentPosition As Boolean = False)
         Dim listSecadoEscalas As List(Of Cosecha_Producto_TarifaEscala)
 
         If RestoreCurrentPosition Then
@@ -281,9 +281,9 @@
 
         Me.Cursor = Cursors.Default
 
-        If PositionHumedadExcesoInicio <> 0 Then
+        If PositionHumedadExcesoInicio > 0 Then
             For Each CurrentRowChecked As DataGridViewRow In datagridviewTarifaSecadoEscala.Rows
-                If CType(datagridviewTarifaSecadoEscala.CurrentRow.DataBoundItem, Cosecha_Producto_TarifaEscala).HumedadExcesoInicio = PositionHumedadExcesoInicio Then
+                If CType(CurrentRowChecked.DataBoundItem, Cosecha_Producto_TarifaEscala).HumedadExcesoInicio = PositionHumedadExcesoInicio Then
                     datagridviewTarifaSecadoEscala.CurrentCell = CurrentRowChecked.Cells(0)
                     Return
                 End If
