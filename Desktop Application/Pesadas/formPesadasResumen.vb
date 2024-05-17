@@ -10,7 +10,7 @@
         pFillAndRefreshLists.Producto(ComboBoxProducto, Nothing, True, False, False, False)
         pFillAndRefreshLists.Cosecha(ComboBoxCosecha, Nothing, Nothing, DateTime.MinValue, True, False, True)
         pFillAndRefreshLists.Planta(ComboBoxPlanta, Nothing, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE, True, False)
-        pFillAndRefreshLists.Entidad(ComboBoxTitular, Nothing, False, True, False, False, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER, False, True, True, False)
+        pFillAndRefreshLists.Entidad(ComboBoxTitular, Nothing, False, True, False, False, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER, True, True, False)
 
         ' Filtro de activos
         ComboBoxActivas.Items.AddRange({My.Resources.STRING_ITEM_ALL_MALE, My.Resources.STRING_YES, My.Resources.STRING_NO})

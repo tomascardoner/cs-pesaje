@@ -92,11 +92,11 @@
           <Property Name="IDLocalidad" Type="smallint" />
           <Property Name="CodigoPostal" Type="varchar" MaxLength="8" />
           <Property Name="EsTitular" Type="bit" Nullable="false" />
+          <Property Name="EsTitularLiquidacionServicio" Type="bit" Nullable="false" />
           <Property Name="EsTransportista" Type="bit" Nullable="false" />
           <Property Name="EsChofer" Type="bit" Nullable="false" />
           <Property Name="Transportista_IDEntidad" Type="int" />
           <Property Name="IDCamion" Type="tinyint" />
-          <Property Name="UsoFrecuente" Type="bit" Nullable="false" />
           <Property Name="Notas" Type="varchar(max)" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
@@ -206,6 +206,7 @@
           <Property Name="Notas" Type="varchar(max)" />
           <Property Name="EsVerificado" Type="bit" Nullable="false" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
+          <Property Name="LiquidacionServicioIDEntidad" Type="int" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
           <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
@@ -318,8 +319,6 @@
           <Property Name="MermaHumedadManipuleo" Type="decimal" Precision="2" Scale="2" />
           <Property Name="UtilizaPlanta" Type="bit" Nullable="false" />
           <Property Name="UtilizaCosecha" Type="bit" Nullable="false" />
-          <Property Name="UsoFrecuente" Type="bit" Nullable="false" />
-          <Property Name="UltimoUso" Type="date" Nullable="false" />
           <Property Name="TicketPesada_IDReporte" Type="smallint" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
@@ -600,6 +599,18 @@
             </Principal>
             <Dependent Role="Pesada">
               <PropertyRef Name="Chofer_IDEntidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Entidad__Pesada__LiquidacionServicio">
+          <End Role="Entidad" Type="Self.Entidad" Multiplicity="0..1" />
+          <End Role="Pesada" Type="Self.Pesada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entidad">
+              <PropertyRef Name="IDEntidad" />
+            </Principal>
+            <Dependent Role="Pesada">
+              <PropertyRef Name="LiquidacionServicioIDEntidad" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1270,6 +1281,10 @@
             <End Role="Entidad" EntitySet="Entidad" />
             <End Role="Pesada" EntitySet="Pesada" />
           </AssociationSet>
+          <AssociationSet Name="FK__Entidad__Pesada__LiquidacionServicio" Association="Self.FK__Entidad__Pesada__LiquidacionServicio">
+            <End Role="Entidad" EntitySet="Entidad" />
+            <End Role="Pesada" EntitySet="Pesada" />
+          </AssociationSet>
           <AssociationSet Name="FK__Entidad__Pesada__Titular" Association="Self.FK__Entidad__Pesada__Titular">
             <End Role="Entidad" EntitySet="Entidad" />
             <End Role="Pesada" EntitySet="Pesada" />
@@ -1537,6 +1552,10 @@
             <End Role="Entidad1" EntitySet="Entidad" />
           </AssociationSet>
           <AssociationSet Name="FK__Entidad__Pesada__Chofer" Association="CSPesajeModel.FK__Entidad__Pesada__Chofer">
+            <End Role="Entidad" EntitySet="Entidad" />
+            <End Role="Pesada" EntitySet="Pesada" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Entidad__Pesada__LiquidacionServicio" Association="CSPesajeModel.FK__Entidad__Pesada__LiquidacionServicio">
             <End Role="Entidad" EntitySet="Entidad" />
             <End Role="Pesada" EntitySet="Pesada" />
           </AssociationSet>
@@ -1855,11 +1874,11 @@
           <Property Name="IDLocalidad" Type="Int16" />
           <Property Name="CodigoPostal" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
           <Property Name="EsTitular" Type="Boolean" Nullable="false" />
+          <Property Name="EsTitularLiquidacionServicio" Type="Boolean" Nullable="false" />
           <Property Name="EsTransportista" Type="Boolean" Nullable="false" />
           <Property Name="EsChofer" Type="Boolean" Nullable="false" />
           <Property Name="Transportista_IDEntidad" Type="Int32" />
           <Property Name="IDCamion" Type="Byte" />
-          <Property Name="UsoFrecuente" Type="Boolean" Nullable="false" />
           <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
@@ -1870,6 +1889,7 @@
           <NavigationProperty Name="EntidadesChoferes" Relationship="CSPesajeModel.FK__Entidad__Entidad__Transportista" FromRole="Entidad" ToRole="Entidad1" />
           <NavigationProperty Name="EntidadTransportista" Relationship="CSPesajeModel.FK__Entidad__Entidad__Transportista" FromRole="Entidad1" ToRole="Entidad" />
           <NavigationProperty Name="PesadasComoChofer" Relationship="CSPesajeModel.FK__Entidad__Pesada__Chofer" FromRole="Entidad" ToRole="Pesada" />
+          <NavigationProperty Name="PesadasConLiquidacionServicio" Relationship="CSPesajeModel.FK__Entidad__Pesada__LiquidacionServicio" FromRole="Entidad" ToRole="Pesada" />
           <NavigationProperty Name="PesadasComoTitular" Relationship="CSPesajeModel.FK__Entidad__Pesada__Titular" FromRole="Entidad" ToRole="Pesada" />
           <NavigationProperty Name="PesadasComoTransportista" Relationship="CSPesajeModel.FK__Entidad__Pesada__Transportista" FromRole="Entidad" ToRole="Pesada" />
           <NavigationProperty Name="Entidades_OrigenesDestinos" Relationship="CSPesajeModel.FK__OrigenDestino_Entidad__Entidad" FromRole="Entidad" ToRole="Entidad_OrigenDestino" />
@@ -1983,12 +2003,14 @@
           <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="EsVerificado" Type="Boolean" Nullable="false" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
+          <Property Name="LiquidacionServicioIDEntidad" Type="Int32" />
           <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Cosecha" Relationship="CSPesajeModel.FK__Cosecha__Pesada" FromRole="Pesada" ToRole="Cosecha" />
           <NavigationProperty Name="EntidadChofer" Relationship="CSPesajeModel.FK__Entidad__Pesada__Chofer" FromRole="Pesada" ToRole="Entidad" />
+          <NavigationProperty Name="EntidadLiquidacionServicio" Relationship="CSPesajeModel.FK__Entidad__Pesada__LiquidacionServicio" FromRole="Pesada" ToRole="Entidad" />
           <NavigationProperty Name="EntidadTitular" Relationship="CSPesajeModel.FK__Entidad__Pesada__Titular" FromRole="Pesada" ToRole="Entidad" />
           <NavigationProperty Name="EntidadTransportista" Relationship="CSPesajeModel.FK__Entidad__Pesada__Transportista" FromRole="Pesada" ToRole="Entidad" />
           <NavigationProperty Name="Pesada_Acondicionamiento" Relationship="CSPesajeModel.FK__Pesada__Pesada_Acondicionamiento" FromRole="Pesada" ToRole="Pesada_Acondicionamiento" />
@@ -2103,8 +2125,6 @@
           <Property Name="MermaHumedadManipuleo" Type="Decimal" Precision="2" Scale="2" />
           <Property Name="UtilizaPlanta" Type="Boolean" Nullable="false" />
           <Property Name="UtilizaCosecha" Type="Boolean" Nullable="false" />
-          <Property Name="UsoFrecuente" Type="Boolean" Nullable="false" />
-          <Property Name="UltimoUso" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="TicketPesada_IDReporte" Type="Int16" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
@@ -2423,6 +2443,18 @@
             </Principal>
             <Dependent Role="Pesada">
               <PropertyRef Name="Chofer_IDEntidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Entidad__Pesada__LiquidacionServicio">
+          <End Role="Entidad" Type="CSPesajeModel.Entidad" Multiplicity="0..1" />
+          <End Role="Pesada" Type="CSPesajeModel.Pesada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entidad">
+              <PropertyRef Name="IDEntidad" />
+            </Principal>
+            <Dependent Role="Pesada">
+              <PropertyRef Name="LiquidacionServicioIDEntidad" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3163,11 +3195,11 @@
                 <ScalarProperty Name="IDProvincia" ColumnName="IDProvincia" />
                 <ScalarProperty Name="Domicilio" ColumnName="Domicilio" />
                 <ScalarProperty Name="Notas" ColumnName="Notas" />
-                <ScalarProperty Name="UsoFrecuente" ColumnName="UsoFrecuente" />
                 <ScalarProperty Name="IDEntidad" ColumnName="IDEntidad" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="CUIT_CUIL" ColumnName="CUIT_CUIL" />
                 <ScalarProperty Name="EsTitular" ColumnName="EsTitular" />
+                <ScalarProperty Name="EsTitularLiquidacionServicio" ColumnName="EsTitularLiquidacionServicio" />
                 <ScalarProperty Name="EsTransportista" ColumnName="EsTransportista" />
                 <ScalarProperty Name="EsChofer" ColumnName="EsChofer" />
                 <ScalarProperty Name="Transportista_IDEntidad" ColumnName="Transportista_IDEntidad" />
@@ -3250,6 +3282,7 @@
                 <ScalarProperty Name="Camion_IDEntidad" ColumnName="Camion_IDEntidad" />
                 <ScalarProperty Name="EsVerificado" ColumnName="EsVerificado" />
                 <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
+                <ScalarProperty Name="LiquidacionServicioIDEntidad" ColumnName="LiquidacionServicioIDEntidad" />
                 <ScalarProperty Name="ComprobanteNumeroTercero" ColumnName="ComprobanteNumeroTercero" />
                 <ScalarProperty Name="TipoNombre" ColumnName="TipoNombre" />
                 <ScalarProperty Name="IDPesada" ColumnName="IDPesada" />
@@ -3372,8 +3405,6 @@
                 <ScalarProperty Name="MermaHumedadBase" ColumnName="MermaHumedadBase" />
                 <ScalarProperty Name="MermaHumedadManipuleo" ColumnName="MermaHumedadManipuleo" />
                 <ScalarProperty Name="UtilizaPlanta" ColumnName="UtilizaPlanta" />
-                <ScalarProperty Name="UsoFrecuente" ColumnName="UsoFrecuente" />
-                <ScalarProperty Name="UltimoUso" ColumnName="UltimoUso" />
                 <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
                 <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
                 <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />

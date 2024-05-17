@@ -5,6 +5,7 @@ Public Class formPesadas
 #Region "Declaraciones"
 
     Private filtroPeriodoExpandido As Boolean = False
+    Private tabControlExtension As CardonerSistemas.TabControlExtension
 
     ' Filtro de fechas
     Private WithEvents ToolStripControlHostFechaDesde As ToolStripControlHost
@@ -45,6 +46,7 @@ Public Class formPesadas
         Public Property CamionNombreDominios As String
         Public Property EsVerificado As Boolean
         Public Property EsActivo As Boolean
+        Public Property LiquidacionServicioIDEntidad As Integer?
     End Class
 
     Private mlistPesadaBase As List(Of GridRowData)
@@ -79,6 +81,9 @@ Public Class formPesadas
         InitializeFormAndControls()
         mEntradaHumedadVaciaMostrarError = CS_Parameter_System.GetBoolean(Parametros.PESADA_ENTRADA_HUMEDAD_VACIA_MOSTRARERROR, True).Value
         mEntradaZarandeoVacioMostrarError = CS_Parameter_System.GetBoolean(Parametros.PESADA_ENTRADA_ZARANDEO_VACIO_MOSTRARERROR, True).Value
+        If mEntradaHumedadVaciaMostrarError OrElse mEntradaZarandeoVacioMostrarError Then
+            AddHandler DataGridViewMain.CellFormatting, AddressOf GridCellFormatting
+        End If
         suspendActions = False
         mOrdenColumna = columnFechaHoraInicio
         mOrdenTipo = SortOrder.Ascending
@@ -86,6 +91,7 @@ Public Class formPesadas
     End Sub
 
     Friend Sub InitializeFormAndControls()
+        tabControlExtension = New CardonerSistemas.TabControlExtension(TabControlToolbar)
         InicializarFiltroDePeriodo()
         CargarListaDeReportes()
         CargarFiltros()
@@ -98,6 +104,7 @@ Public Class formPesadas
         End If
         mlistPesadaBase = Nothing
         mlistPesadaFiltradaYOrdenada = Nothing
+        tabControlExtension = Nothing
     End Sub
 
 #End Region
@@ -157,7 +164,7 @@ Public Class formPesadas
                                    Let transportistaNombre = If(pe.Transportista_IDEntidad = CardonerSistemas.FIELD_VALUE_OTHER_INTEGER, pe_otg.Transportista_Nombre, If(trg Is Nothing, String.Empty, trg.Nombre))
                                    Let choferNombre = If(pe.Chofer_IDEntidad = CardonerSistemas.FIELD_VALUE_OTHER_INTEGER, pe_otg.Chofer_Nombre, If(chg Is Nothing, String.Empty, chg.Nombre))
                                    Let CamionNombreDominios = If(pe.IDCamion = CardonerSistemas.Constants.FIELD_VALUE_OTHER_BYTE, pe_otg.Camion_DominioChasis & If(pe_otg.Camion_DominioAcoplado Is Nothing, String.Empty, " - " & pe_otg.Camion_DominioAcoplado), If(cag Is Nothing, String.Empty, cag.NombreDominios))
-                                   Select New GridRowData With {.IDPesada = pe.IDPesada, .FechaHoraInicio = pe.FechaHoraInicio, .FechaHoraFin = pe.FechaHoraFin, .Ctg = pe.Ctg, .ComprobanteNumero = pe.ComprobanteNumeroConFormato, .IDTitular = pe.Titular_IDEntidad, .TitularNombre = titularNombre, .IDProducto = pe.IDProducto, .ProductoNombre = productoNombre, .Producto_TicketPesada_IDReporte = pr.TicketPesada_IDReporte, .IDPlanta = pe.IDPlanta, .PlantaNombre = plantaNombre, .PlantaDepositoNombre = plantaDepositoNombre, .Tipo = pe.Tipo, .TipoNombre = pe.TipoNombre, .IDCosecha = pe.IDCosecha, .CosechaNombre = cosechaNombre, .IDOrigen = pe.IDOrigen, .OrigenNombre = origenNombre, .IDDestino = pe.IDDestino, .DestinoNombre = destinoNombre, .KilogramoBruto = pe.KilogramoBruto, .KilogramoTara = pe.KilogramoTara, .KilogramoNeto = pe.KilogramoNeto, .Humedad = humedad, .Zaranda = zaranda, .KilogramoFinal = pe.KilogramoFinal, .IDTransportista = pe.Transportista_IDEntidad, .TransportistaNombre = transportistaNombre, .IDChofer = pe.Chofer_IDEntidad, .ChoferNombre = choferNombre, .CamionNombreDominios = CamionNombreDominios, .EsVerificado = pe.EsVerificado, .EsActivo = pe.EsActivo}).ToList
+                                   Select New GridRowData With {.IDPesada = pe.IDPesada, .FechaHoraInicio = pe.FechaHoraInicio, .FechaHoraFin = pe.FechaHoraFin, .Ctg = pe.Ctg, .ComprobanteNumero = pe.ComprobanteNumeroConFormato, .IDTitular = pe.Titular_IDEntidad, .TitularNombre = titularNombre, .IDProducto = pe.IDProducto, .ProductoNombre = productoNombre, .Producto_TicketPesada_IDReporte = pr.TicketPesada_IDReporte, .IDPlanta = pe.IDPlanta, .PlantaNombre = plantaNombre, .PlantaDepositoNombre = plantaDepositoNombre, .Tipo = pe.Tipo, .TipoNombre = pe.TipoNombre, .IDCosecha = pe.IDCosecha, .CosechaNombre = cosechaNombre, .IDOrigen = pe.IDOrigen, .OrigenNombre = origenNombre, .IDDestino = pe.IDDestino, .DestinoNombre = destinoNombre, .KilogramoBruto = pe.KilogramoBruto, .KilogramoTara = pe.KilogramoTara, .KilogramoNeto = pe.KilogramoNeto, .Humedad = humedad, .Zaranda = zaranda, .KilogramoFinal = pe.KilogramoFinal, .IDTransportista = pe.Transportista_IDEntidad, .TransportistaNombre = transportistaNombre, .IDChofer = pe.Chofer_IDEntidad, .ChoferNombre = choferNombre, .CamionNombreDominios = CamionNombreDominios, .EsVerificado = pe.EsVerificado, .EsActivo = pe.EsActivo, .LiquidacionServicioIDEntidad = pe.LiquidacionServicioIDEntidad}).ToList
 #Enable Warning S3358 ' If operators should not be nested
             End Using
         Catch ex As Exception
@@ -284,6 +291,17 @@ Public Class formPesadas
                     mRecordSelectionFormula_Filter &= " AND (NOT {Pesada.EsActivo})"
             End Select
 
+            ' Filtro por Liquidación de Servicios
+            Select Case CInt(ToolStripComboBoxLiquidacionServicio.ComboBox.SelectedValue)
+                Case CardonerSistemas.Constants.FIELD_VALUE_ALL_INTEGER
+                Case CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER
+                    mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) Not p.LiquidacionServicioIDEntidad.HasValue).ToList
+                    mRecordSelectionFormula_Filter &= $" AND IsNull({{Pesada.LiquidacionServicioIDEntidad}})"
+                Case Else
+                    mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) p.IDTitular = CInt(ToolStripComboBoxLiquidacionServicio.ComboBox.SelectedValue)).ToList
+                    mRecordSelectionFormula_Filter &= $" AND {{Pesada.LiquidacionServicioIDEntidad}} = {ToolStripComboBoxLiquidacionServicio.ComboBox.SelectedValue}"
+            End Select
+
             Select Case mlistPesadaFiltradaYOrdenada.Count
                 Case 0
                     LabelCantidadPesadas.Text = "No hay Pesadas para mostrar."
@@ -354,7 +372,7 @@ Public Class formPesadas
         FilterData()
     End Sub
 
-    Private Sub FiltrosAvanzados_Click(sender As Object, e As EventArgs) Handles ToolStripComboBoxVerificado.SelectedIndexChanged, ToolStripComboBoxActivo.SelectedIndexChanged
+    Private Sub FiltrosAvanzados_Click(sender As Object, e As EventArgs) Handles ToolStripComboBoxVerificado.SelectedIndexChanged, ToolStripComboBoxActivo.SelectedIndexChanged, ToolStripComboBoxLiquidacionServicio.SelectedIndexChanged
         FilterData()
     End Sub
 
@@ -389,7 +407,7 @@ Public Class formPesadas
 
         SaveSkipFilterData = suspendActions
         suspendActions = True
-        pFillAndRefreshLists.Entidad(ToolStripComboBoxChofer.ComboBox, Nothing, False, False, False, True, CInt(ToolStripComboBoxTransportista.ComboBox.SelectedValue), False, True, True, False)
+        pFillAndRefreshLists.Entidad(ToolStripComboBoxChofer.ComboBox, Nothing, False, False, False, True, CInt(ToolStripComboBoxTransportista.ComboBox.SelectedValue), True, True, False)
         suspendActions = SaveSkipFilterData
         FilterData()
     End Sub
@@ -425,12 +443,8 @@ Public Class formPesadas
         RefreshData()
     End Sub
 
-    Private Sub GridCellFormatting(sender As Object, e As DataGridViewCellFormattingEventArgs) Handles DataGridViewMain.CellFormatting
+    Private Sub GridCellFormatting(sender As Object, e As DataGridViewCellFormattingEventArgs)
         Dim gridRowData As GridRowData
-
-        If Not (mEntradaHumedadVaciaMostrarError OrElse mEntradaZarandeoVacioMostrarError) Then
-            Return
-        End If
 
         gridRowData = CType(DataGridViewMain.Rows(e.RowIndex).DataBoundItem, GridRowData)
         If gridRowData.Tipo = Constantes.PESADA_TIPO_ENTRADA AndAlso ((mEntradaHumedadVaciaMostrarError AndAlso Not gridRowData.Humedad.HasValue) OrElse (mEntradaZarandeoVacioMostrarError AndAlso Not gridRowData.Zaranda.HasValue)) Then
@@ -755,32 +769,37 @@ Public Class formPesadas
             For Each ReporteActual As Reporte In listReportes
                 ToolStripButtonImprimir.DropDownItems.Add(
                     New ToolStripMenuItem(
-                        ReporteActual.Nombre, Nothing, New EventHandler(AddressOf ImprimirReportes), "ToolStripMenuItemImprimir_" & ReporteActual.Archivo.Replace(" ", "_")) With {.Tag = ReporteActual.IDReporte}
-                    )
+                        ReporteActual.Nombre,
+                        Nothing,
+                        New EventHandler(AddressOf ImprimirReportes),
+                        "ToolStripMenuItemImprimir_" & ReporteActual.Archivo.Replace(" ", "_")) With {.Tag = ReporteActual.IDReporte})
             Next
         End Using
     End Sub
 
     Private Sub CargarFiltros()
         ' Filtros básicos
-        pFillAndRefreshLists.Entidad(ToolStripComboBoxTitular.ComboBox, Nothing, False, True, False, False, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER, False, True, True, False)
+        pFillAndRefreshLists.Entidad(ToolStripComboBoxTitular.ComboBox, Nothing, False, True, False, False, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER, True, True, False)
         pFillAndRefreshLists.Producto(ToolStripComboBoxProducto.ComboBox, Nothing, True, False, True, False)
         ToolStripComboBoxProducto.ComboBox.SelectedIndex = 0
         pFillAndRefreshLists.Planta(ToolStripComboBoxPlanta.ComboBox, Nothing, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE, True, False)
         pFillAndRefreshLists.Cosecha(ToolStripComboBoxCosecha.ComboBox, Nothing, Nothing, DateTime.MinValue, True, False, True)
 
         ' Otros filtros
-        pFillAndRefreshLists.Entidad(ToolStripComboBoxTransportista.ComboBox, Nothing, False, False, True, False, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER, False, True, True, False)
+        pFillAndRefreshLists.Entidad(ToolStripComboBoxTransportista.ComboBox, Nothing, False, False, True, False, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER, True, True, False)
 
         ' Filtros Avanzados
         ToolStripComboBoxVerificado.Items.AddRange({My.Resources.STRING_ITEM_ALL_MALE, My.Resources.STRING_YES, My.Resources.STRING_NO})
         ToolStripComboBoxVerificado.SelectedIndex = CardonerSistemas.Constants.ComboBoxAllYesNo_AllListindex
         ToolStripComboBoxActivo.Items.AddRange({My.Resources.STRING_ITEM_ALL_MALE, My.Resources.STRING_YES, My.Resources.STRING_NO})
         ToolStripComboBoxActivo.SelectedIndex = CardonerSistemas.Constants.ComboBoxAllYesNo_YesListindex
+        pFillAndRefreshLists.EntidadLiquidacionServicio(ToolStripComboBoxLiquidacionServicio.ComboBox, CardonerSistemas.Constants.FIELD_VALUE_ALL_INTEGER, False, True, True)
 
-        If Not (Permisos.VerificarPermiso(Permisos.PESADA_MOSTRAR_VERIFICADO, False) OrElse Permisos.VerificarPermiso(Permisos.PESADA_MOSTRAR_ACTIVO, False)) Then
-            TabPageToolbarAvanzados.Visible = False
-        End If
+        Dim permisoMostrarVerificado As Boolean = Permisos.VerificarPermiso(Permisos.PESADA_MOSTRAR_VERIFICADO, False)
+        Dim permisoMostrarActivo As Boolean = Permisos.VerificarPermiso(Permisos.PESADA_MOSTRAR_ACTIVO, False)
+        ToolStripVerificado.Visible = permisoMostrarVerificado
+        ToolStripActivo.Visible = permisoMostrarActivo
+        tabControlExtension.PageVisible(TabPageToolbarAvanzados, permisoMostrarVerificado OrElse permisoMostrarActivo)
     End Sub
 
 #End Region

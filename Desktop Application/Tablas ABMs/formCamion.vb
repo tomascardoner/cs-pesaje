@@ -75,7 +75,7 @@
     End Sub
 
     Friend Sub InitializeFormAndControls()
-        pFillAndRefreshLists.Entidad(comboboxTransportista, mCamionActual.IDEntidad, False, False, True, False, 0, False, False, False, False)
+        pFillAndRefreshLists.Entidad(comboboxTransportista, mCamionActual.IDEntidad, False, False, True, False, 0, False, False, False)
     End Sub
 
     Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed

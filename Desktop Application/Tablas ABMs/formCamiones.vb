@@ -36,7 +36,7 @@
 
         mSkipFilterData = True
 
-        pFillAndRefreshLists.Entidad(comboboxTransportista.ComboBox, Nothing, False, False, True, False, 0, False, True, False, False)
+        pFillAndRefreshLists.Entidad(comboboxTransportista.ComboBox, Nothing, False, False, True, False, 0, True, False, False)
 
         comboboxActivo.Items.AddRange({My.Resources.STRING_ITEM_ALL_MALE, My.Resources.STRING_YES, My.Resources.STRING_NO})
         comboboxActivo.SelectedIndex = CardonerSistemas.Constants.ComboBoxAllYesNo_YesListindex
@@ -71,7 +71,7 @@
         Catch ex As Exception
             CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer los Camiones.")
             Me.Cursor = Cursors.Default
-            Exit Sub
+            Return
         End Try
 
         Me.Cursor = Cursors.Default
@@ -92,7 +92,7 @@
             For Each CurrentRowChecked As DataGridViewRow In datagridviewMain.Rows
                 If CType(CurrentRowChecked.DataBoundItem, GridRowData).IDEntidad = PositionIDEntidad AndAlso CType(CurrentRowChecked.DataBoundItem, GridRowData).IDCamion = PositionIDCamion Then
                     datagridviewMain.CurrentCell = CurrentRowChecked.Cells(columnNombre.Name)
-                    Exit For
+                    Return
                 End If
             Next
         End If
@@ -136,7 +136,7 @@
             Catch ex As Exception
                 CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al filtrar los datos.")
                 Me.Cursor = Cursors.Default
-                Exit Sub
+                Return
             End Try
 
             OrderData()
@@ -196,7 +196,7 @@
 
         ClickedColumn = CType(datagridviewMain.Columns(e.ColumnIndex), DataGridViewColumn)
 
-        If ClickedColumn.Name = columnTransportista.Name Or ClickedColumn.Name = columnNombre.Name Or ClickedColumn.Name = columnDominioChasis.Name Or ClickedColumn.Name = columnDominioAcoplado.Name Then
+        If ClickedColumn.Name = columnTransportista.Name OrElse ClickedColumn.Name = columnNombre.Name OrElse ClickedColumn.Name = columnDominioChasis.Name OrElse ClickedColumn.Name = columnDominioAcoplado.Name Then
             If ClickedColumn Is mOrdenColumna Then
                 ' La columna clickeada es la misma por la que ya estaba ordenado, así que cambio la dirección del orden
                 If mOrdenTipo = SortOrder.Ascending Then
@@ -207,11 +207,11 @@
             Else
                 ' La columna clickeada es diferencte a la que ya estaba ordenada.
                 ' En primer lugar saco el ícono de orden de la columna vieja
-                If Not mOrdenColumna Is Nothing Then
+                If mOrdenColumna IsNot Nothing Then
                     mOrdenColumna.HeaderCell.SortGlyphDirection = SortOrder.None
                 End If
 
-                ' Ahora preparo todo para la nueva columna
+                ' Ahora preparo to do para la nueva columna
                 mOrdenTipo = SortOrder.Ascending
                 mOrdenColumna = ClickedColumn
             End If
@@ -292,7 +292,7 @@
                             Case CardonerSistemas.Database.EntityFramework.Errors.RelatedEntity
                                 MsgBox("No se puede eliminar el Camión porque tiene datos relacionados.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                         End Select
-                        Exit Sub
+                        Return
                     Catch ex As Exception
                         CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al eliminar el Camión.")
                     End Try

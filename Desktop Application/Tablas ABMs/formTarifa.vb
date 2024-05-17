@@ -134,7 +134,7 @@
         pFillAndRefreshLists.Producto(comboboxProducto, mCosecha_Producto_TarifaActual.IDProducto, False, True, False, False)
 
         pFillAndRefreshLists.Planta(comboboxPlanta, mCosecha_Producto_TarifaActual.IDPlanta, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE, False, True)
-        pFillAndRefreshLists.Entidad(comboboxEntidad, mCosecha_Producto_TarifaActual.IDEntidad, False, False, True, False, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER, True, False, False, True)
+        pFillAndRefreshLists.EntidadLiquidacionServicio(comboboxEntidad, mCosecha_Producto_TarifaActual.IDEntidad, True, False, True)
         pFillAndRefreshLists.OrigenDestino(comboboxOrigen, mCosecha_Producto_TarifaActual.IDOrigen, False, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER, False, False, True)
 
         tabControlExtension = New CardonerSistemas.TabControlExtension(tabcontrolMain)

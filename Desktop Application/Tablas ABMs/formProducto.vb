@@ -122,7 +122,6 @@
             CS_ValueTranslation_Syncfusion.FromValueToControl(.MermaHumedadManipuleo, DoubleTextBoxMermaHumedadManipuleo)
             checkboxUtilizaPlanta.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.UtilizaPlanta)
             checkboxUtilizaCosecha.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.UtilizaCosecha)
-            checkboxUsoFrecuente.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.UsoFrecuente)
             CardonerSistemas.Controls.ComboBox.SetSelectedValue(ComboBoxTicketPesada_IDReporte, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .TicketPesada_IDReporte)
 
             ' Datos de la pestaña Notas y Auditoría
@@ -143,7 +142,6 @@
             .MermaHumedadManipuleo = CS_ValueTranslation_Syncfusion.FromControlToDecimal(DoubleTextBoxMermaHumedadManipuleo)
             .UtilizaPlanta = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxUtilizaPlanta.CheckState)
             .UtilizaCosecha = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxUtilizaCosecha.CheckState)
-            .UsoFrecuente = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxUsoFrecuente.CheckState)
             .TicketPesada_IDReporte = CS_ValueTranslation.FromControlComboBoxToObjectShort(ComboBoxTicketPesada_IDReporte.SelectedValue, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
 
             .EsActivo = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxEsActivo.CheckState)

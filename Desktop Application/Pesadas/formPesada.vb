@@ -145,6 +145,7 @@
         checkboxZarandeoAplica.Enabled = mEditMode
         checkboxFumigadoAplica.Enabled = mEditMode
         checkboxMezclaAplica.Enabled = mEditMode
+        ComboBoxLiquidacionServicioEntidad.Enabled = mEditMode
     End Sub
 
     Friend Sub InitializeFormAndControls()
@@ -159,7 +160,8 @@
         CamionOtro()
 
         pFillAndRefreshLists.Producto(comboboxProducto, mPesadaActual.IDProducto, False, True, False, False)
-        pFillAndRefreshLists.Entidad(comboboxTransportista, mPesadaActual.Transportista_IDEntidad, False, False, True, False, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER, True, False, False, True)
+        pFillAndRefreshLists.Entidad(comboboxTransportista, mPesadaActual.Transportista_IDEntidad, False, False, True, False, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER, False, False, True)
+        pFillAndRefreshLists.EntidadLiquidacionServicio(ComboBoxLiquidacionServicioEntidad, mPesadaActual.LiquidacionServicioIDEntidad, False, False, True)
 
         tabControlExtension = New CardonerSistemas.TabControlExtension(tabcontrolNotasExtras)
         If Permisos.VerificarPermiso(Permisos.PESADA_MOSTRAR_EXTRAS, False) Then
@@ -334,6 +336,13 @@
             integertextboxKilogramoBruto.Text = CS_ValueTranslation.FromObjectIntegerToControlTextBox(.KilogramoBruto)
             integertextboxKilogramoTara.Text = CS_ValueTranslation.FromObjectIntegerToControlTextBox(.KilogramoTara)
 
+            ' Notas
+            textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
+
+            ' EsVerificado y EsActivo
+            checkboxEsVerificado.Checked = .EsVerificado
+            checkboxEsActivo.Checked = .EsActivo
+
             ' Análisis
             If .Pesada_Analisis Is Nothing Then
                 doubletextboxHumedad.Text = String.Empty
@@ -378,12 +387,8 @@
                 checkboxMezclaAplica.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.Pesada_Acondicionamiento.MezcladoAplica)
             End If
 
-            ' Notas
-            textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
-
-            ' EsVerificado y EsActivo
-            checkboxEsVerificado.Checked = .EsVerificado
-            checkboxEsActivo.Checked = .EsActivo
+            ' Liquidación de servicios
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(ComboBoxLiquidacionServicioEntidad, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirst, .LiquidacionServicioIDEntidad)
         End With
     End Sub
 
@@ -519,6 +524,13 @@
                 .KilogramoNeto = CInt(integertextboxKilogramoBruto.IntegerValue - integertextboxKilogramoTara.IntegerValue)
             End If
 
+            ' Notas
+            .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
+
+            ' EsVerificado y EsActivo
+            .EsVerificado = checkboxEsVerificado.Checked
+            .EsActivo = checkboxEsActivo.Checked
+
             ' Análisis
             If doubletextboxHumedad.DoubleValue > 0 OrElse doubletextboxZaranda.DoubleValue > 0 OrElse checkboxFumigado.Checked OrElse integertextboxGranoVerde.IntegerValue > 0 OrElse integertextboxGranoDaniado.IntegerValue > 0 OrElse checkboxMezclado.Checked OrElse doubletextboxPesoHectolitrico.DoubleValue > 0 OrElse doubletextboxGluten.DoubleValue > 0 Then
                 If .Pesada_Analisis Is Nothing Then
@@ -558,12 +570,8 @@
                 End If
             End If
 
-            ' Notas
-            .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
-
-            ' EsVerificado y EsActivo
-            .EsVerificado = checkboxEsVerificado.Checked
-            .EsActivo = checkboxEsActivo.Checked
+            ' Liquidación de servicios
+            .LiquidacionServicioIDEntidad = CS_ValueTranslation.FromControlComboBoxToObjectInteger(ComboBoxLiquidacionServicioEntidad.SelectedValue)
 
             ' Otros
             If Not (checkboxProductoOtro.Checked OrElse checkboxTitularOtro.Checked OrElse checkboxOrigenOtro.Checked OrElse checkboxDestinoOtro.Checked OrElse checkboxTransportistaOtro.Checked OrElse checkboxChoferOtro.Checked OrElse checkboxCamionOtro.Checked) AndAlso .Pesada_Otro IsNot Nothing Then
@@ -745,7 +753,7 @@
 
     Private Sub TitularCargarLista()
         If checkboxTitularTodos.Checked OrElse checkboxProductoOtro.Checked Then
-            pFillAndRefreshLists.Entidad(comboboxTitular, mPesadaActual.Titular_IDEntidad, False, True, False, False, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER, False, False, False, False)
+            pFillAndRefreshLists.Entidad(comboboxTitular, mPesadaActual.Titular_IDEntidad, False, True, False, False, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER, False, False, False)
         Else
             pFillAndRefreshLists.EntidadTitularPorProductoPlanta(comboboxTitular, mPesadaActual.Titular_IDEntidad, CByte(comboboxProducto.SelectedValue), CByte(comboboxPlanta.SelectedValue), radiobuttonEntrada.Checked, radiobuttonSalida.Checked, radiobuttonNinguno.Checked, True, False, False)
         End If
@@ -841,7 +849,7 @@
     End Sub
 
     Private Sub TransportistaTodos() Handles checkboxTransportistaTodos.CheckedChanged
-        pFillAndRefreshLists.Entidad(comboboxTransportista, mPesadaActual.Transportista_IDEntidad, False, False, True, False, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER, checkboxTransportistaTodos.Checked, False, False, True)
+        pFillAndRefreshLists.Entidad(comboboxTransportista, mPesadaActual.Transportista_IDEntidad, False, False, True, False, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER, False, False, True)
         comboboxTransportista.Focus()
     End Sub
 
@@ -875,9 +883,9 @@
 
     Private Sub ChoferTodos() Handles checkboxChoferTodos.CheckedChanged
         If checkboxChoferTodos.Checked Then
-            pFillAndRefreshLists.Entidad(comboboxChofer, mPesadaActual.Chofer_IDEntidad, False, False, False, True, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER, False, False, False, True)
+            pFillAndRefreshLists.Entidad(comboboxChofer, mPesadaActual.Chofer_IDEntidad, False, False, False, True, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER, False, False, True)
         Else
-            pFillAndRefreshLists.Entidad(comboboxChofer, mPesadaActual.Chofer_IDEntidad, False, False, False, True, CInt(comboboxTransportista.SelectedValue), False, False, False, True)
+            pFillAndRefreshLists.Entidad(comboboxChofer, mPesadaActual.Chofer_IDEntidad, False, False, False, True, CInt(comboboxTransportista.SelectedValue), False, False, True)
         End If
         comboboxChofer.Focus()
     End Sub
@@ -1260,6 +1268,10 @@
 
         Return True
     End Function
+
+    Private Sub ChoferCambio(sender As Object, e As EventArgs) Handles comboboxChofer.SelectedValueChanged
+
+    End Sub
 
 #End Region
 

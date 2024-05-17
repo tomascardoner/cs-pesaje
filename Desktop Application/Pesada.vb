@@ -40,6 +40,7 @@ Partial Public Class Pesada
     Public Property Notas As String
     Public Property EsVerificado As Boolean
     Public Property EsActivo As Boolean
+    Public Property LiquidacionServicioIDEntidad As Nullable(Of Integer)
     Public Property IDUsuarioCreacion As Short
     Public Property FechaHoraCreacion As Date
     Public Property IDUsuarioModificacion As Short
@@ -47,6 +48,7 @@ Partial Public Class Pesada
 
     Public Overridable Property Cosecha As Cosecha
     Public Overridable Property EntidadChofer As Entidad
+    Public Overridable Property EntidadLiquidacionServicio As Entidad
     Public Overridable Property EntidadTitular As Entidad
     Public Overridable Property EntidadTransportista As Entidad
     Public Overridable Property Pesada_Acondicionamiento As Pesada_Acondicionamiento

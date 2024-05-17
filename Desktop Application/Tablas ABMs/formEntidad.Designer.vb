@@ -93,6 +93,8 @@ Partial Class formEntidad
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
         Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.labelNotas = New System.Windows.Forms.Label()
+        Me.checkboxTipoTitularLiquidacionServicio = New System.Windows.Forms.CheckBox()
+        Me.LabelTipoTitularLiquidacionServicio = New System.Windows.Forms.Label()
         labelTipo = New System.Windows.Forms.Label()
         labelEsActivo = New System.Windows.Forms.Label()
         labelModificacion = New System.Windows.Forms.Label()
@@ -207,7 +209,7 @@ Partial Class formEntidad
         'buttonCerrar
         '
         Me.buttonCerrar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonCerrar.Image = My.Resources.Resources.ImageClose32
+        Me.buttonCerrar.Image = Global.CSPesaje.My.Resources.Resources.ImageClose32
         Me.buttonCerrar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCerrar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonCerrar.Name = "buttonCerrar"
@@ -217,7 +219,7 @@ Partial Class formEntidad
         'buttonEditar
         '
         Me.buttonEditar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonEditar.Image = My.Resources.Resources.ImageItemEditar32
+        Me.buttonEditar.Image = Global.CSPesaje.My.Resources.Resources.ImageItemEditar32
         Me.buttonEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonEditar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonEditar.Name = "buttonEditar"
@@ -227,7 +229,7 @@ Partial Class formEntidad
         'buttonCancelar
         '
         Me.buttonCancelar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonCancelar.Image = My.Resources.Resources.ImageCancelar32
+        Me.buttonCancelar.Image = Global.CSPesaje.My.Resources.Resources.ImageCancelar32
         Me.buttonCancelar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCancelar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonCancelar.Name = "buttonCancelar"
@@ -237,7 +239,7 @@ Partial Class formEntidad
         'buttonGuardar
         '
         Me.buttonGuardar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonGuardar.Image = My.Resources.Resources.ImageAceptar32
+        Me.buttonGuardar.Image = Global.CSPesaje.My.Resources.Resources.ImageAceptar32
         Me.buttonGuardar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonGuardar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonGuardar.Name = "buttonGuardar"
@@ -270,19 +272,19 @@ Partial Class formEntidad
         'labelTipoChofer
         '
         Me.labelTipoChofer.AutoSize = True
-        Me.labelTipoChofer.Location = New System.Drawing.Point(320, 193)
+        Me.labelTipoChofer.Location = New System.Drawing.Point(465, 193)
         Me.labelTipoChofer.Name = "labelTipoChofer"
         Me.labelTipoChofer.Size = New System.Drawing.Size(38, 13)
-        Me.labelTipoChofer.TabIndex = 18
+        Me.labelTipoChofer.TabIndex = 20
         Me.labelTipoChofer.Text = "Chofer"
         '
         'labelTipoTransportista
         '
         Me.labelTipoTransportista.AutoSize = True
-        Me.labelTipoTransportista.Location = New System.Drawing.Point(206, 193)
+        Me.labelTipoTransportista.Location = New System.Drawing.Point(351, 193)
         Me.labelTipoTransportista.Name = "labelTipoTransportista"
         Me.labelTipoTransportista.Size = New System.Drawing.Size(68, 13)
-        Me.labelTipoTransportista.TabIndex = 16
+        Me.labelTipoTransportista.TabIndex = 18
         Me.labelTipoTransportista.Text = "Transportista"
         '
         'labelTipoTitular
@@ -297,19 +299,19 @@ Partial Class formEntidad
         'checkboxTipoChofer
         '
         Me.checkboxTipoChofer.AutoSize = True
-        Me.checkboxTipoChofer.Location = New System.Drawing.Point(299, 193)
+        Me.checkboxTipoChofer.Location = New System.Drawing.Point(444, 193)
         Me.checkboxTipoChofer.Name = "checkboxTipoChofer"
         Me.checkboxTipoChofer.Size = New System.Drawing.Size(15, 14)
-        Me.checkboxTipoChofer.TabIndex = 17
+        Me.checkboxTipoChofer.TabIndex = 19
         Me.checkboxTipoChofer.UseVisualStyleBackColor = True
         '
         'checkboxTipoTransportista
         '
         Me.checkboxTipoTransportista.AutoSize = True
-        Me.checkboxTipoTransportista.Location = New System.Drawing.Point(185, 193)
+        Me.checkboxTipoTransportista.Location = New System.Drawing.Point(330, 193)
         Me.checkboxTipoTransportista.Name = "checkboxTipoTransportista"
         Me.checkboxTipoTransportista.Size = New System.Drawing.Size(15, 14)
-        Me.checkboxTipoTransportista.TabIndex = 15
+        Me.checkboxTipoTransportista.TabIndex = 17
         Me.checkboxTipoTransportista.UseVisualStyleBackColor = True
         '
         'checkboxTipoTitular
@@ -328,7 +330,7 @@ Partial Class formEntidad
         Me.comboboxCamion.Location = New System.Drawing.Point(101, 271)
         Me.comboboxCamion.Name = "comboboxCamion"
         Me.comboboxCamion.Size = New System.Drawing.Size(404, 21)
-        Me.comboboxCamion.TabIndex = 22
+        Me.comboboxCamion.TabIndex = 24
         '
         'labelTransportista
         '
@@ -336,7 +338,7 @@ Partial Class formEntidad
         Me.labelTransportista.Location = New System.Drawing.Point(6, 246)
         Me.labelTransportista.Name = "labelTransportista"
         Me.labelTransportista.Size = New System.Drawing.Size(71, 13)
-        Me.labelTransportista.TabIndex = 19
+        Me.labelTransportista.TabIndex = 21
         Me.labelTransportista.Text = "Transportista:"
         '
         'labelCamion
@@ -345,7 +347,7 @@ Partial Class formEntidad
         Me.labelCamion.Location = New System.Drawing.Point(6, 274)
         Me.labelCamion.Name = "labelCamion"
         Me.labelCamion.Size = New System.Drawing.Size(45, 13)
-        Me.labelCamion.TabIndex = 21
+        Me.labelCamion.TabIndex = 23
         Me.labelCamion.Text = "Camión:"
         '
         'comboboxTransportista
@@ -355,7 +357,7 @@ Partial Class formEntidad
         Me.comboboxTransportista.Location = New System.Drawing.Point(101, 243)
         Me.comboboxTransportista.Name = "comboboxTransportista"
         Me.comboboxTransportista.Size = New System.Drawing.Size(404, 21)
-        Me.comboboxTransportista.TabIndex = 20
+        Me.comboboxTransportista.TabIndex = 22
         '
         'tabcontrolMain
         '
@@ -372,6 +374,8 @@ Partial Class formEntidad
         '
         'tabpageGeneral
         '
+        Me.tabpageGeneral.Controls.Add(Me.checkboxTipoTitularLiquidacionServicio)
+        Me.tabpageGeneral.Controls.Add(Me.LabelTipoTitularLiquidacionServicio)
         Me.tabpageGeneral.Controls.Add(Me.comboboxDomicilioLocalidad)
         Me.tabpageGeneral.Controls.Add(Me.comboboxDomicilioProvincia)
         Me.tabpageGeneral.Controls.Add(Me.textboxDomicilio)
@@ -677,7 +681,7 @@ Partial Class formEntidad
         '
         'buttonProductosPlantasAgregar
         '
-        Me.buttonProductosPlantasAgregar.Image = My.Resources.Resources.ImageItemAgregar32
+        Me.buttonProductosPlantasAgregar.Image = Global.CSPesaje.My.Resources.Resources.ImageItemAgregar32
         Me.buttonProductosPlantasAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonProductosPlantasAgregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonProductosPlantasAgregar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -687,7 +691,7 @@ Partial Class formEntidad
         '
         'buttonProductosPlantasEditar
         '
-        Me.buttonProductosPlantasEditar.Image = My.Resources.Resources.ImageItemEditar32
+        Me.buttonProductosPlantasEditar.Image = Global.CSPesaje.My.Resources.Resources.ImageItemEditar32
         Me.buttonProductosPlantasEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonProductosPlantasEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonProductosPlantasEditar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -697,7 +701,7 @@ Partial Class formEntidad
         '
         'buttonProductosPlantasBorrar
         '
-        Me.buttonProductosPlantasBorrar.Image = My.Resources.Resources.ImageItemBorrar32
+        Me.buttonProductosPlantasBorrar.Image = Global.CSPesaje.My.Resources.Resources.ImageItemBorrar32
         Me.buttonProductosPlantasBorrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonProductosPlantasBorrar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonProductosPlantasBorrar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -811,6 +815,24 @@ Partial Class formEntidad
         Me.labelNotas.TabIndex = 37
         Me.labelNotas.Text = "Notas:"
         '
+        'checkboxTipoTitularLiquidacionServicio
+        '
+        Me.checkboxTipoTitularLiquidacionServicio.AutoSize = True
+        Me.checkboxTipoTitularLiquidacionServicio.Location = New System.Drawing.Point(182, 193)
+        Me.checkboxTipoTitularLiquidacionServicio.Name = "checkboxTipoTitularLiquidacionServicio"
+        Me.checkboxTipoTitularLiquidacionServicio.Size = New System.Drawing.Size(15, 14)
+        Me.checkboxTipoTitularLiquidacionServicio.TabIndex = 15
+        Me.checkboxTipoTitularLiquidacionServicio.UseVisualStyleBackColor = True
+        '
+        'LabelTipoTitularLiquidacionServicio
+        '
+        Me.LabelTipoTitularLiquidacionServicio.AutoSize = True
+        Me.LabelTipoTitularLiquidacionServicio.Location = New System.Drawing.Point(203, 193)
+        Me.LabelTipoTitularLiquidacionServicio.Name = "LabelTipoTitularLiquidacionServicio"
+        Me.LabelTipoTitularLiquidacionServicio.Size = New System.Drawing.Size(105, 13)
+        Me.LabelTipoTitularLiquidacionServicio.TabIndex = 16
+        Me.LabelTipoTitularLiquidacionServicio.Text = "Liquidación servicios"
+        '
         'formEntidad
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -909,4 +931,6 @@ Partial Class formEntidad
     Friend WithEvents buttonProductosPlantasAgregar As ToolStripButton
     Friend WithEvents buttonProductosPlantasEditar As ToolStripButton
     Friend WithEvents buttonProductosPlantasBorrar As ToolStripButton
+    Friend WithEvents checkboxTipoTitularLiquidacionServicio As CheckBox
+    Friend WithEvents LabelTipoTitularLiquidacionServicio As Label
 End Class

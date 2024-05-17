@@ -23,7 +23,6 @@
         If mIsNew Then
             mEntidadActual = New Entidad
             With mEntidadActual
-                .UsoFrecuente = True
                 .EsActivo = True
                 .IDUsuarioCreacion = pUsuario.IDUsuario
                 .FechaHoraCreacion = Now
@@ -69,6 +68,7 @@
         comboboxDomicilioLocalidad.Enabled = mEditMode
         textboxDomicilioCodigoPostal.ReadOnly = Not mEditMode
         checkboxTipoTitular.Enabled = mEditMode
+        checkboxTipoTitularLiquidacionServicio.Enabled = mEditMode
         checkboxTipoTransportista.Enabled = mEditMode
         checkboxTipoChofer.Enabled = mEditMode
 
@@ -89,7 +89,7 @@
         SetAppearance()
 
         pFillAndRefreshLists.Provincia(comboboxDomicilioProvincia, True)
-        pFillAndRefreshLists.Entidad(comboboxTransportista, mEntidadActual.Transportista_IDEntidad, False, False, True, False, 0, False, False, False, True)
+        pFillAndRefreshLists.Entidad(comboboxTransportista, mEntidadActual.Transportista_IDEntidad, False, False, True, False, 0, False, False, True)
         CargarCamiones()
     End Sub
 
@@ -131,6 +131,7 @@
             textboxDomicilioCodigoPostal.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.CodigoPostal)
 
             checkboxTipoTitular.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.EsTitular)
+            checkboxTipoTitularLiquidacionServicio.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.EsTitularLiquidacionServicio)
             checkboxTipoTransportista.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.EsTransportista)
             checkboxTipoChofer.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.EsChofer)
 
@@ -184,6 +185,7 @@
             .CodigoPostal = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxDomicilioCodigoPostal.Text)
 
             .EsTitular = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxTipoTitular.CheckState)
+            .EsTitularLiquidacionServicio = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxTipoTitularLiquidacionServicio.CheckState)
             .EsTransportista = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxTipoTransportista.CheckState)
             .EsChofer = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxTipoChofer.CheckState)
 

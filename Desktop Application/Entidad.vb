@@ -19,11 +19,11 @@ Partial Public Class Entidad
     Public Property IDLocalidad As Nullable(Of Short)
     Public Property CodigoPostal As String
     Public Property EsTitular As Boolean
+    Public Property EsTitularLiquidacionServicio As Boolean
     Public Property EsTransportista As Boolean
     Public Property EsChofer As Boolean
     Public Property Transportista_IDEntidad As Nullable(Of Integer)
     Public Property IDCamion As Nullable(Of Byte)
-    Public Property UsoFrecuente As Boolean
     Public Property Notas As String
     Public Property EsActivo As Boolean
     Public Property IDUsuarioCreacion As Short
@@ -35,6 +35,7 @@ Partial Public Class Entidad
     Public Overridable Property EntidadesChoferes As ICollection(Of Entidad) = New HashSet(Of Entidad)
     Public Overridable Property EntidadTransportista As Entidad
     Public Overridable Property PesadasComoChofer As ICollection(Of Pesada) = New HashSet(Of Pesada)
+    Public Overridable Property PesadasConLiquidacionServicio As ICollection(Of Pesada) = New HashSet(Of Pesada)
     Public Overridable Property PesadasComoTitular As ICollection(Of Pesada) = New HashSet(Of Pesada)
     Public Overridable Property PesadasComoTransportista As ICollection(Of Pesada) = New HashSet(Of Pesada)
     Public Overridable Property Entidades_OrigenesDestinos As ICollection(Of Entidad_OrigenDestino) = New HashSet(Of Entidad_OrigenDestino)

@@ -33,17 +33,18 @@
             FechaPesada = CS_ValueTranslation.FromDateTimeToDate(PesadaActual.FechaHoraInicio)
 
             Using dbContextDatos As New CSPesajeContext(True)
-                listCosecha_Producto_Tarifa = dbContextDatos.Cosecha_Producto_Tarifa.Where(Function(cpt) cpt.IDCosecha = PesadaActualLocal.IDCosecha.Value And cpt.IDProducto = PesadaActualLocal.IDProducto).ToList
+                listCosecha_Producto_Tarifa = dbContextDatos.Cosecha_Producto_Tarifa.Where(Function(cpt) cpt.IDCosecha = PesadaActualLocal.IDCosecha.Value AndAlso cpt.IDProducto = PesadaActualLocal.IDProducto).ToList
                 ProductoActual = dbContextDatos.Producto.Find(PesadaActual.IDProducto)
             End Using
 
             ' Debo buscar en el siguiente orden
             ' - Filtrar las que coincida el rango de fechas con la fecha del movimiento o que no tengan un rango especificado
-            listCosecha_Producto_Tarifa = listCosecha_Producto_Tarifa.Where(Function(cpt) (cpt.FechaDesde Is Nothing OrElse cpt.FechaDesde.Value <= FechaPesada) And (cpt.FechaHasta Is Nothing OrElse cpt.FechaHasta.Value >= FechaPesada)).ToList
+            listCosecha_Producto_Tarifa = listCosecha_Producto_Tarifa.Where(Function(cpt) (cpt.FechaDesde Is Nothing OrElse cpt.FechaDesde.Value <= FechaPesada) AndAlso (cpt.FechaHasta Is Nothing OrElse cpt.FechaHasta.Value >= FechaPesada)).ToList
             ' - Filtrar los que coincidan con la Planta
-            listCosecha_Producto_Tarifa = listCosecha_Producto_Tarifa.Where(Function(cpt) cpt.IDPlanta.HasValue = False OrElse cpt.IDPlanta.Value = PesadaActualLocal.IDPlanta.Value).ToList
+            listCosecha_Producto_Tarifa = listCosecha_Producto_Tarifa.Where(Function(cpt) (Not cpt.IDPlanta.HasValue) OrElse cpt.IDPlanta.Value = PesadaActualLocal.IDPlanta.Value).ToList
             ' - Filtrar los que coincidan con la Entidad
-            listCosecha_Producto_Tarifa = listCosecha_Producto_Tarifa.Where(Function(cpt) cpt.IDEntidad Is Nothing OrElse cpt.IDEntidad.Value = PesadaActualLocal.Titular_IDEntidad).ToList
+            Dim idEntidad As Integer = CType(IIf(PesadaActualLocal.LiquidacionServicioIDEntidad.HasValue, PesadaActualLocal.LiquidacionServicioIDEntidad, PesadaActualLocal.Titular_IDEntidad), Integer)
+            listCosecha_Producto_Tarifa = listCosecha_Producto_Tarifa.Where(Function(cpt) cpt.IDEntidad Is Nothing OrElse cpt.IDEntidad.Value = idEntidad).ToList
             ' - Filtrar los que coincidan con el Origen
             listCosecha_Producto_Tarifa = listCosecha_Producto_Tarifa.Where(Function(cpt) cpt.IDOrigen Is Nothing OrElse (PesadaActualLocal.IDOrigen.HasValue AndAlso cpt.IDOrigen.Value = PesadaActualLocal.IDOrigen.Value)).ToList
             ' - Ordenar por Entidad DESC (para darle prioridad a las que especifican Entidad), Origen DESC, Indice

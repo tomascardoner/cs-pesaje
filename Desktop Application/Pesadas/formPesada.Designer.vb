@@ -157,6 +157,8 @@ Partial Class formPesada
         Me.checkboxEsActivo = New System.Windows.Forms.CheckBox()
         Me.labelEsVerificado = New System.Windows.Forms.Label()
         Me.checkboxEsVerificado = New System.Windows.Forms.CheckBox()
+        Me.GroupBoxLiquidacionServicio = New System.Windows.Forms.GroupBox()
+        Me.ComboBoxLiquidacionServicioEntidad = New System.Windows.Forms.ComboBox()
         Me.toolstripMain.SuspendLayout()
         Me.groupboxTransporte.SuspendLayout()
         CType(Me.integertextboxKilometro, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -181,6 +183,7 @@ Partial Class formPesada
         Me.groupboxTarifasAplica.SuspendLayout()
         Me.groupboxMermasAplica.SuspendLayout()
         Me.groupboxControl.SuspendLayout()
+        Me.GroupBoxLiquidacionServicio.SuspendLayout()
         Me.SuspendLayout()
         '
         'toolstripMain
@@ -1450,6 +1453,7 @@ Partial Class formPesada
         '
         'tabpageExtras
         '
+        Me.tabpageExtras.Controls.Add(Me.GroupBoxLiquidacionServicio)
         Me.tabpageExtras.Controls.Add(Me.groupboxTarifasAplica)
         Me.tabpageExtras.Controls.Add(Me.groupboxMermasAplica)
         Me.tabpageExtras.Controls.Add(Me.groupboxControl)
@@ -1688,6 +1692,25 @@ Partial Class formPesada
         Me.checkboxEsVerificado.TabIndex = 6
         Me.checkboxEsVerificado.UseVisualStyleBackColor = True
         '
+        'GroupBoxLiquidacionServicio
+        '
+        Me.GroupBoxLiquidacionServicio.Controls.Add(Me.ComboBoxLiquidacionServicioEntidad)
+        Me.GroupBoxLiquidacionServicio.Location = New System.Drawing.Point(412, 6)
+        Me.GroupBoxLiquidacionServicio.Name = "GroupBoxLiquidacionServicio"
+        Me.GroupBoxLiquidacionServicio.Size = New System.Drawing.Size(293, 89)
+        Me.GroupBoxLiquidacionServicio.TabIndex = 3
+        Me.GroupBoxLiquidacionServicio.TabStop = False
+        Me.GroupBoxLiquidacionServicio.Text = "Liquidar servicios a:"
+        '
+        'ComboBoxLiquidacionServicioEntidad
+        '
+        Me.ComboBoxLiquidacionServicioEntidad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ComboBoxLiquidacionServicioEntidad.FormattingEnabled = True
+        Me.ComboBoxLiquidacionServicioEntidad.Location = New System.Drawing.Point(6, 20)
+        Me.ComboBoxLiquidacionServicioEntidad.Name = "ComboBoxLiquidacionServicioEntidad"
+        Me.ComboBoxLiquidacionServicioEntidad.Size = New System.Drawing.Size(281, 21)
+        Me.ComboBoxLiquidacionServicioEntidad.TabIndex = 12
+        '
         'formPesada
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1746,6 +1769,7 @@ Partial Class formPesada
         Me.groupboxMermasAplica.PerformLayout()
         Me.groupboxControl.ResumeLayout(False)
         Me.groupboxControl.PerformLayout()
+        Me.GroupBoxLiquidacionServicio.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1884,4 +1908,6 @@ Partial Class formPesada
     Friend WithEvents labelCtg As Label
     Friend WithEvents maskedtextboxCtg As MaskedTextBox
     Friend WithEvents ComboBoxPlantaDeposito As ComboBox
+    Friend WithEvents GroupBoxLiquidacionServicio As GroupBox
+    Friend WithEvents ComboBoxLiquidacionServicioEntidad As ComboBox
 End Class
