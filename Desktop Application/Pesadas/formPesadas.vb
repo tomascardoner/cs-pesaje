@@ -298,7 +298,7 @@ Public Class formPesadas
                     mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) Not p.LiquidacionServicioIDEntidad.HasValue).ToList
                     mRecordSelectionFormula_Filter &= $" AND IsNull({{Pesada.LiquidacionServicioIDEntidad}})"
                 Case Else
-                    mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) p.IDTitular = CInt(ToolStripComboBoxLiquidacionServicio.ComboBox.SelectedValue)).ToList
+                    mlistPesadaFiltradaYOrdenada = mlistPesadaFiltradaYOrdenada.Where(Function(p) p.LiquidacionServicioIDEntidad.HasValue AndAlso p.LiquidacionServicioIDEntidad.Value = CInt(ToolStripComboBoxLiquidacionServicio.ComboBox.SelectedValue)).ToList
                     mRecordSelectionFormula_Filter &= $" AND {{Pesada.LiquidacionServicioIDEntidad}} = {ToolStripComboBoxLiquidacionServicio.ComboBox.SelectedValue}"
             End Select
 
@@ -437,6 +437,7 @@ Public Class formPesadas
         ' Filtros avanzados
         ToolStripComboBoxVerificado.SelectedIndex = 0
         ToolStripComboBoxActivo.SelectedIndex = 1
+        ToolStripComboBoxLiquidacionServicio.SelectedIndex = 0
 
         suspendActions = False
 
