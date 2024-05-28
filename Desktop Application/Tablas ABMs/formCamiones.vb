@@ -286,6 +286,7 @@
                             dbContext.Camion.Remove(CamionActual)
                             dbContext.SaveChanges()
                         End Using
+                        pFillAndRefreshLists.CamionesLoad()
                     Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                         Me.Cursor = Cursors.Default
                         Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)

@@ -154,6 +154,7 @@
                 mdbContext.SaveChanges()
 
                 ' Refresco la lista para mostrar los cambios
+                pFillAndRefreshLists.ProductosPlantasLoad()
                 formProducto.PlantasRefreshData(mdbContext, mProducto_PlantaActual.IDPlanta)
 
             Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException

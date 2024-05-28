@@ -222,6 +222,7 @@
                 mdbContext.SaveChanges()
 
                 ' Refresco la lista para mostrar los cambios
+                pFillAndRefreshLists.ProductosLoad()
                 formProductos.RefreshData(mProductoActual.IDProducto)
 
             Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
@@ -433,6 +434,7 @@
                     pp = mdbContext.Producto_Planta.Find(mProductoActual.IDProducto, CType(datagridviewPlantas.SelectedRows(0).DataBoundItem, Planta).IDPlanta)
                     mdbContext.Producto_Planta.Remove(pp)
                     mdbContext.SaveChanges()
+                    pFillAndRefreshLists.ProductosPlantasLoad()
                 Catch dbuex As Entity.Infrastructure.DbUpdateException
                     Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)
                         Case CardonerSistemas.Database.EntityFramework.Errors.RelatedEntity
@@ -553,6 +555,7 @@
                     pc = mdbContext.Producto_Cosecha.Find(mProductoActual.IDProducto, CType(datagridviewCosechas.SelectedRows(0).DataBoundItem, CosechasRowData).IDCosecha)
                     mdbContext.Producto_Cosecha.Remove(pc)
                     mdbContext.SaveChanges()
+                    pFillAndRefreshLists.ProductosCosechasLoad()
                 Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                     Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)
                         Case CardonerSistemas.Database.EntityFramework.Errors.RelatedEntity

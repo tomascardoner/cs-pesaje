@@ -189,6 +189,7 @@
                 mdbContext.SaveChanges()
 
                 ' Refresco la lista de Camiones para mostrar los cambios
+                pFillAndRefreshLists.CamionesLoad()
                 If CardonerSistemas.Forms.MdiChildIsLoaded(CType(pFormMDIMain, Form), "formCamiones") Then
                     Dim formCamions As formCamiones = CType(CardonerSistemas.Forms.MdiChildGetInstance(CType(pFormMDIMain, Form), "formCamiones"), formCamiones)
                     formCamions.RefreshData(mCamionActual.IDEntidad, mCamionActual.IDCamion)

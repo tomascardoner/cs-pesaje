@@ -178,6 +178,7 @@
                 mdbContext.SaveChanges()
 
                 ' Refresco la lista para mostrar los cambios
+                pFillAndRefreshLists.CosechasLoad()
                 formCosechas.RefreshData(mCosechaActual.IDCosecha)
 
             Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException

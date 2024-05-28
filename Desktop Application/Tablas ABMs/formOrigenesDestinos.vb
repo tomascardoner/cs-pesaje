@@ -306,6 +306,7 @@
                             dbContext.OrigenDestino.Remove(OrigenDestinoActual)
                             dbContext.SaveChanges()
                         End Using
+                        pFillAndRefreshLists.OrigenesDestinosLoad()
                     Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                         Me.Cursor = Cursors.Default
                         Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)

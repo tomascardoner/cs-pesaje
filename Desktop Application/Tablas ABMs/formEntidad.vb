@@ -311,6 +311,7 @@
                 mdbContext.SaveChanges()
 
                 ' Refresco la lista de Entidades para mostrar los cambios
+                pFillAndRefreshLists.EntidadesLoad()
                 If CardonerSistemas.Forms.MdiChildIsLoaded(CType(pFormMDIMain, Form), "formEntidades") Then
                     Dim formEntidads As formEntidades = CType(CardonerSistemas.Forms.MdiChildGetInstance(CType(pFormMDIMain, Form), "formEntidades"), formEntidades)
                     formEntidads.RefreshData(mEntidadActual.IDEntidad)
@@ -407,6 +408,7 @@
                     dbContext.SaveChanges()
                 End Using
 
+                pFillAndRefreshLists.EntidadesOrigenesDestinosLoad()
                 OrigenesDestinosRefreshData()
             End If
         End If
@@ -424,6 +426,7 @@
                     dbContext.SaveChanges()
                 End Using
 
+                pFillAndRefreshLists.EntidadesOrigenesDestinosLoad()
                 OrigenesDestinosRefreshData()
             End If
         End If
@@ -521,6 +524,7 @@
                 epp = mdbContext.Entidad_Producto_Planta.Find(mEntidadActual.IDEntidad, CType(datagridviewProductosPlantas.SelectedRows(0).DataBoundItem, ProductoPlantaRowData).IDProducto, CType(datagridviewProductosPlantas.SelectedRows(0).DataBoundItem, ProductoPlantaRowData).IDPlanta)
                 mdbContext.Entidad_Producto_Planta.Remove(epp)
                 mdbContext.SaveChanges()
+                pFillAndRefreshLists.EntidadesProductosPlantasLoad()
             Catch dbuex As Entity.Infrastructure.DbUpdateException
                 Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)
                     Case CardonerSistemas.Database.EntityFramework.Errors.RelatedEntity

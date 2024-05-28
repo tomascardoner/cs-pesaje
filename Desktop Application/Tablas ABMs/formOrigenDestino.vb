@@ -276,6 +276,7 @@
                 mdbContext.SaveChanges()
 
                 ' Refresco la lista de OrigenesDestinos para mostrar los cambios
+                pFillAndRefreshLists.OrigenesDestinosLoad()
                 If CardonerSistemas.Forms.MdiChildIsLoaded(CType(pFormMDIMain, Form), "formOrigenesDestinos") Then
                     Dim formOrigenDestinos As formOrigenesDestinos = CType(CardonerSistemas.Forms.MdiChildGetInstance(CType(pFormMDIMain, Form), "formOrigenesDestinos"), formOrigenesDestinos)
                     formOrigenDestinos.RefreshData(mOrigenDestinoActual.IDOrigenDestino)

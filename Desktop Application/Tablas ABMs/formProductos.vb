@@ -228,7 +228,7 @@
                             dbContext.SaveChanges()
                             ProductoEliminar = Nothing
                         End Using
-
+                        pFillAndRefreshLists.ProductosLoad()
                     Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                         Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)
                             Case CardonerSistemas.Database.EntityFramework.Errors.RelatedEntity

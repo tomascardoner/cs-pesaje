@@ -300,6 +300,7 @@
                 dbContext.Entidad.Remove(EntidadActual)
                 dbContext.SaveChanges()
             End Using
+            pFillAndRefreshLists.EntidadesLoad()
         Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
             Me.Cursor = Cursors.Default
             Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)

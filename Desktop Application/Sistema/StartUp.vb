@@ -37,7 +37,7 @@
         ' Muestro el SplashScreen y cambio el puntero del mouse para indicar que la aplicación está iniciando.
         formSplashScreen.Show()
         formSplashScreen.Cursor = Cursors.AppStarting
-        formSplashScreen.labelStatus.Text = "Obteniendo los parámetros de conexión a la Base de datos..."
+        formSplashScreen.labelStatus.Text = "Leyendo la información de conexión a la base de datos..."
         Application.DoEvents()
 
         ' Obtengo el Connection String para las conexiones de ADO .NET
@@ -72,7 +72,7 @@
         CSPesajeContext.ConnectionString = CardonerSistemas.Database.EntityFramework.CreateConnectionString(pDatabaseConfig.Provider, pDatabase.ConnectionString, "CSPesaje")
 
         ' Cargos los Parámetros desde la Base de datos
-        formSplashScreen.labelStatus.Text = "Cargando los parámetros desde la Base de datos..."
+        formSplashScreen.labelStatus.Text = "Cargando los parámetros de la aplicación..."
         Application.DoEvents()
         If Not Parametros.LoadParameters() Then
             formSplashScreen.Close()
@@ -81,6 +81,8 @@
             Return
         End If
 
+        formSplashScreen.labelStatus.Text = "Verificando los parámetros de la aplicación..."
+        Application.DoEvents()
         ' Verifico que la Base de Datos corresponda a esta Aplicación a través del GUID guardado en los Parámetros
         If CS_Parameter_System.GetString(Parametros.APPLICATION_DATABASE_GUID) <> Constantes.ApplicationDatabaseGuid Then
             MsgBox("La Base de Datos especificada no corresponde a esta aplicación.", MsgBoxStyle.Critical, My.Application.Info.Title)
@@ -102,6 +104,8 @@
         Application.DoEvents()
 
         ' Preparo instancia de clase para llenar los ComboBox
+        formSplashScreen.labelStatus.Text = "Cargando las listas de la base de datos..."
+        Application.DoEvents()
         pFillAndRefreshLists = New FillAndRefreshLists
 
         ' Tomo el tiempo de inicio para controlar los segundos mínimos que se debe mostrar el Splash Screen
