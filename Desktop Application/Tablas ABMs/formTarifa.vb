@@ -353,70 +353,9 @@
     End Sub
 
     Private Sub Guardar_Click() Handles buttonGuardar.Click
+
         ' Verificar que estén todos los campos con datos coherentes
-
-        ' Cosecha
-        If comboboxCosecha.SelectedItem Is Nothing Then
-            MsgBox("Debe especificar la Cosecha.", MsgBoxStyle.Information, My.Application.Info.Title)
-            tabcontrolMain.SelectedTab = tabpageGeneral
-            comboboxCosecha.Focus()
-            Return
-        End If
-
-        ' Producto
-        If comboboxProducto.SelectedValue Is Nothing Then
-            MsgBox("Debe especificar el Producto.", MsgBoxStyle.Information, My.Application.Info.Title)
-            tabcontrolMain.SelectedTab = tabpageGeneral
-            comboboxProducto.Focus()
-            Return
-        End If
-
-        ' Indice
-        If updownIndice.Value < 1 Then
-            MsgBox("El Índice debe ser mayor o igual a 1.", MsgBoxStyle.Information, My.Application.Info.Title)
-            tabcontrolMain.SelectedTab = tabpageGeneral
-            updownIndice.Focus()
-            Return
-        End If
-
-        ' Nombre
-        If textboxNombre.Text.Trim().Length = 0 Then
-            MsgBox("Debe especificar el Nombre.", MsgBoxStyle.Information, My.Application.Info.Title)
-            tabcontrolMain.SelectedTab = tabpageGeneral
-            textboxNombre.Focus()
-            Return
-        End If
-
-        ' Fecha desde y hasta
-        If datetimepickerFechaDesde.Checked AndAlso datetimepickerFechaHasta.Checked Then
-#Disable Warning S1066 ' Mergeable "if" statements should be combined
-            If DateDiff(DateInterval.Day, datetimepickerFechaDesde.Value, datetimepickerFechaHasta.Value) > 0 Then
-#Enable Warning S1066 ' Mergeable "if" statements should be combined
-                MsgBox("La fecha hasta debe ser posterior a la fecha desde.", MsgBoxStyle.Information, My.Application.Info.Title)
-                tabcontrolMain.SelectedTab = tabpageGeneral
-                datetimepickerFechaHasta.Focus()
-                Return
-            End If
-        End If
-
-        ' Tipo de Tarifa de Secado
-        If Not (radiobuttonSecadoTipoFijo.Checked OrElse radiobuttonSecadoTipoEscala.Checked) Then
-            MsgBox("Deber especificar el Tipo de Tarifa de Secado.", MsgBoxStyle.Information, My.Application.Info.Title)
-            tabcontrolMain.SelectedTab = tabpageTarifas
-            Return
-        End If
-
-        ' Tipo de Redondeo de Punto de Secado
-        If Not (radiobuttonTarifasSecadoRedondeoPuntoTipoNinguno.Checked OrElse radiobuttonTarifasSecadoRedondeoPuntoTipoEntero.Checked OrElse radiobuttonTarifasSecadoRedondeoPuntoTipoSuperior.Checked OrElse radiobuttonTarifasSecadoRedondeoPuntoTipoInferior.Checked) Then
-            MsgBox("Deber especificar el Tipo de Redondeo por Punto de Secado.", MsgBoxStyle.Information, My.Application.Info.Title)
-            tabcontrolMain.SelectedTab = tabpageTarifas
-            Return
-        End If
-
-        ' Tipo de Almacenaje
-        If Not (radiobuttonAlmacenajeTipoDiasGraciaFijo.Checked OrElse radiobuttonAlmacenajeTipoDiasGraciaSiRetiraAntes.Checked OrElse radiobuttonAlmacenajeTipoFechaFija.Checked) Then
-            MsgBox("Deber especificar el Tipo de Almacenaje.", MsgBoxStyle.Information, My.Application.Info.Title)
-            tabcontrolMain.SelectedTab = tabpageAlmacenaje
+        If Not VerifyData() Then
             Return
         End If
 
@@ -546,6 +485,75 @@
     Private Sub Indice_Enter(sender As Object, e As EventArgs) Handles updownIndice.Enter
         updownIndice.Select(0, 5)
     End Sub
+
+#End Region
+
+#Region "Extra stuff"
+
+    Private Function VerifyData() As Boolean
+        ' Cosecha
+        If comboboxCosecha.SelectedItem Is Nothing Then
+            MsgBox("Debe especificar la Cosecha.", MsgBoxStyle.Information, My.Application.Info.Title)
+            tabcontrolMain.SelectedTab = tabpageGeneral
+            comboboxCosecha.Focus()
+            Return False
+        End If
+
+        ' Producto
+        If comboboxProducto.SelectedValue Is Nothing Then
+            MsgBox("Debe especificar el Producto.", MsgBoxStyle.Information, My.Application.Info.Title)
+            tabcontrolMain.SelectedTab = tabpageGeneral
+            comboboxProducto.Focus()
+            Return False
+        End If
+
+        ' Indice
+        If updownIndice.Value < 1 Then
+            MsgBox("El Índice debe ser mayor o igual a 1.", MsgBoxStyle.Information, My.Application.Info.Title)
+            tabcontrolMain.SelectedTab = tabpageGeneral
+            updownIndice.Focus()
+            Return False
+        End If
+
+        ' Nombre
+        If textboxNombre.Text.Trim().Length = 0 Then
+            MsgBox("Debe especificar el Nombre.", MsgBoxStyle.Information, My.Application.Info.Title)
+            tabcontrolMain.SelectedTab = tabpageGeneral
+            textboxNombre.Focus()
+            Return False
+        End If
+
+        ' Fecha desde y hasta
+        If datetimepickerFechaDesde.Checked AndAlso datetimepickerFechaHasta.Checked AndAlso DateDiff(DateInterval.Day, datetimepickerFechaHasta.Value, datetimepickerFechaDesde.Value) > 0 Then
+            MsgBox("La fecha hasta debe ser posterior a la fecha desde.", MsgBoxStyle.Information, My.Application.Info.Title)
+            tabcontrolMain.SelectedTab = tabpageGeneral
+            datetimepickerFechaHasta.Focus()
+            Return False
+        End If
+
+        ' Tipo de Tarifa de Secado
+        If Not (radiobuttonSecadoTipoFijo.Checked OrElse radiobuttonSecadoTipoEscala.Checked) Then
+            MsgBox("Deber especificar el Tipo de Tarifa de Secado.", MsgBoxStyle.Information, My.Application.Info.Title)
+            tabcontrolMain.SelectedTab = tabpageTarifas
+            Return False
+        End If
+
+        ' Tipo de Redondeo de Punto de Secado
+        If Not (radiobuttonTarifasSecadoRedondeoPuntoTipoNinguno.Checked OrElse radiobuttonTarifasSecadoRedondeoPuntoTipoEntero.Checked OrElse radiobuttonTarifasSecadoRedondeoPuntoTipoSuperior.Checked OrElse radiobuttonTarifasSecadoRedondeoPuntoTipoInferior.Checked) Then
+            MsgBox("Deber especificar el Tipo de Redondeo por Punto de Secado.", MsgBoxStyle.Information, My.Application.Info.Title)
+            tabcontrolMain.SelectedTab = tabpageTarifas
+            Return False
+        End If
+
+        ' Tipo de Almacenaje
+        If Not (radiobuttonAlmacenajeTipoDiasGraciaFijo.Checked OrElse radiobuttonAlmacenajeTipoDiasGraciaSiRetiraAntes.Checked OrElse radiobuttonAlmacenajeTipoFechaFija.Checked) Then
+            MsgBox("Deber especificar el Tipo de Almacenaje.", MsgBoxStyle.Information, My.Application.Info.Title)
+            tabcontrolMain.SelectedTab = tabpageAlmacenaje
+            Return False
+        End If
+
+        Return True
+    End Function
 
 #End Region
 
