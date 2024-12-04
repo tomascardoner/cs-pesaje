@@ -44,13 +44,13 @@
 
     Private Sub ChangeMode()
         If mIsLoading Then
-            Exit Sub
+            Return
         End If
 
         buttonGuardar.Visible = mEditMode
         buttonCancelar.Visible = mEditMode
-        buttonEditar.Visible = (mEditMode = False)
-        buttonCerrar.Visible = (mEditMode = False)
+        buttonEditar.Visible = Not mEditMode
+        buttonCerrar.Visible = Not mEditMode
 
         ComboBoxCosecha.Enabled = mIsNew
 
@@ -62,7 +62,7 @@
     Friend Sub InitializeFormAndControls()
         SetAppearance()
 
-        pFillAndRefreshLists.Cosecha(ComboBoxCosecha, Nothing, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_DATE, False, False)
+        pFillAndRefreshLists.Cosecha(ComboBoxCosecha, Nothing, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_DATE, False, True)
     End Sub
 
     Friend Sub SetAppearance()
@@ -159,6 +159,7 @@
                 ' Refresco la lista para mostrar los cambios
                 pFillAndRefreshLists.ProductosCosechasLoad()
                 formProducto.CosechasRefreshData(mdbContext, mProducto_CosechaActual.IDCosecha)
+                Me.Close()
 
             Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                 Me.Cursor = Cursors.Default
@@ -166,16 +167,13 @@
                     Case CardonerSistemas.Database.EntityFramework.Errors.PrimaryKeyViolation
                         MsgBox("No se pueden guardar los cambios porque ya existe la Cosecha en el Producto.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                 End Select
-                Exit Sub
-
             Catch ex As Exception
                 Me.Cursor = Cursors.Default
                 CardonerSistemas.ErrorHandler.ProcessError(ex, My.Resources.STRING_ERROR_SAVING_CHANGES)
-                Exit Sub
             End Try
+        Else
+            Me.Close()
         End If
-
-        Me.Close()
     End Sub
 
 #End Region
