@@ -39,13 +39,13 @@
 
     Private Sub ChangeMode()
         If mIsLoading Then
-            Exit Sub
+            Return
         End If
 
         buttonGuardar.Visible = mEditMode
         buttonCancelar.Visible = mEditMode
-        buttonEditar.Visible = (mEditMode = False)
-        buttonCerrar.Visible = (mEditMode = False)
+        buttonEditar.Visible = Not mEditMode
+        buttonCerrar.Visible = Not mEditMode
 
         ComboBoxProducto.Enabled = mIsNew
         ComboBoxPlanta.Enabled = mIsNew
@@ -163,12 +163,12 @@
                     Case CardonerSistemas.Database.EntityFramework.Errors.PrimaryKeyViolation
                         MsgBox("No se pueden guardar los cambios porque ya existe el Producto y la Planta en la Entidad.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                 End Select
-                Exit Sub
+                Return
 
             Catch ex As Exception
                 Me.Cursor = Cursors.Default
                 CardonerSistemas.ErrorHandler.ProcessError(ex, My.Resources.STRING_ERROR_SAVING_CHANGES)
-                Exit Sub
+                Return
             End Try
         End If
 

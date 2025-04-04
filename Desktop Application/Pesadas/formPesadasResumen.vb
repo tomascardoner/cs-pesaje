@@ -15,7 +15,7 @@
         ' Filtro de activos
         ComboBoxActivas.Items.AddRange({My.Resources.STRING_ITEM_ALL_MALE, My.Resources.STRING_YES, My.Resources.STRING_NO})
         ComboBoxActivas.SelectedIndex = CardonerSistemas.Constants.ComboBoxAllYesNo_YesListindex
-        ComboBoxActivas.Visible = (Permisos.VerificarPermiso(Permisos.PESADA_MOSTRAR_VERIFICADO, False) Or Permisos.VerificarPermiso(Permisos.PESADA_MOSTRAR_ACTIVO, False))
+        ComboBoxActivas.Visible = (Permisos.VerificarPermiso(Permisos.PESADA_MOSTRAR_VERIFICADO, False) OrElse Permisos.VerificarPermiso(Permisos.PESADA_MOSTRAR_ACTIVO, False))
 
         loading = False
     End Sub
@@ -56,7 +56,7 @@
             ComboBoxTitular.Focus()
             Return
         End If
-        If CheckBoxTipoEntradas.Checked = False AndAlso CheckBoxTipoSalidas.Checked = False Then
+        If Not CheckBoxTipoEntradas.Checked AndAlso Not CheckBoxTipoSalidas.Checked Then
             MessageBox.Show("Debe especificar si suma Entradas y/o Salidas.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Information)
             Return
         End If
@@ -123,7 +123,7 @@
                 End If
             End Using
         Catch ex As Exception
-
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al calcular el Resumen de Pesadas.")
         End Try
     End Sub
 

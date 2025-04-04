@@ -66,7 +66,7 @@
 
             CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer los Usuarios.")
             Me.Cursor = Cursors.Default
-            Exit Sub
+            Return
         End Try
 
         Me.Cursor = Cursors.Default
@@ -126,7 +126,7 @@
             Catch ex As Exception
                 CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al filtrar los datos.")
                 Me.Cursor = Cursors.Default
-                Exit Sub
+                Return
             End Try
 
             OrderData()
@@ -206,11 +206,10 @@
         Else
             ' La columna clickeada es diferencte a la que ya estaba ordenada.
             ' En primer lugar saco el ícono de orden de la columna vieja
-            If Not mOrdenColumna Is Nothing Then
+            If mOrdenColumna IsNot Nothing Then
                 mOrdenColumna.HeaderCell.SortGlyphDirection = SortOrder.None
             End If
 
-            ' Ahora preparo todo para la nueva columna
             mOrdenTipo = SortOrder.Ascending
             mOrdenColumna = ClickedColumn
         End If
@@ -274,7 +273,7 @@
                                 MsgBox("No se puede borrar el Usuario porque tiene datos relacionados.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                         End Select
                         Me.Cursor = Cursors.Default
-                        Exit Sub
+                        Return
 
                     Catch ex As Exception
                         CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al borrar el Usuario.")

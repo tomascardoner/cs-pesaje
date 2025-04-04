@@ -495,7 +495,7 @@
             listCosechas = (From c In dbContext.Cosecha
                             Join pc In dbContext.Producto_Cosecha On c.IDCosecha Equals pc.IDCosecha
                             Where pc.IDProducto = mProductoActual.IDProducto
-                            Order By c.Nombre
+                            Order By c.Nombre Descending
                             Select New CosechasRowData With {.IDCosecha = pc.IDCosecha, .Nombre = c.Nombre, .Inicio = pc.Inicio, .Fin = pc.Fin, .EsActivo = pc.EsActivo}).ToList()
 
             datagridviewCosechas.AutoGenerateColumns = False

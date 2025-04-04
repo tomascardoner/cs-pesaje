@@ -5,7 +5,7 @@ Partial Public Class CSPesajeContext
 
     Public Shared Property ConnectionString As String
 
-    Public Sub New(ByVal UseCustomConnectionString As Boolean)
+    Public Sub New(useCustomConnectionString As Boolean)
         MyBase.New(ConnectionString)
     End Sub
 End Class

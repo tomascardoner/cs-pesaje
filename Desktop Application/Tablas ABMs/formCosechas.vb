@@ -8,7 +8,7 @@
     Private mSkipFilterData As Boolean
     Private mReportSelectionFormula As String
 
-    Private mOrdenTipo As SortOrder = SortOrder.Ascending
+    Private mOrdenTipo As SortOrder = SortOrder.Descending
 
 #End Region
 
@@ -50,7 +50,7 @@
 
             CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer lAs Cosechas.")
             Me.Cursor = Cursors.Default
-            Exit Sub
+            Return
         End Try
 
         Me.Cursor = Cursors.Default
@@ -69,7 +69,7 @@
             For Each CurrentRowChecked As DataGridViewRow In datagridviewMain.Rows
                 If CType(CurrentRowChecked.DataBoundItem, Cosecha).IDCosecha = PositionIDCosecha Then
                     datagridviewMain.CurrentCell = CurrentRowChecked.Cells(0)
-                    Exit For
+                    Return
                 End If
             Next
         End If
@@ -108,7 +108,7 @@
             Catch ex As Exception
                 CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al filtrar los datos.")
                 Me.Cursor = Cursors.Default
-                Exit Sub
+                Return
             End Try
 
             OrderData()
@@ -171,7 +171,6 @@
                 columnNombre.HeaderCell.SortGlyphDirection = SortOrder.None
             End If
 
-            ' Ahora preparo todo para la nueva columna
             mOrdenTipo = SortOrder.Ascending
         End If
 
@@ -235,7 +234,7 @@
                                 MsgBox("No se puede eliminar la Cosecha porque tiene datos relacionados.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                         End Select
                         Me.Cursor = Cursors.Default
-                        Exit Sub
+                        Return
 
                     Catch ex As Exception
                         CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al eliminar la Cosecha.")

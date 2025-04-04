@@ -62,7 +62,7 @@
     Friend Sub InitializeFormAndControls()
         SetAppearance()
 
-        pFillAndRefreshLists.Cosecha(ComboBoxCosecha, Nothing, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_DATE, False, True)
+        pFillAndRefreshLists.Cosecha(ComboBoxCosecha, Nothing, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_DATE, False, True, True)
     End Sub
 
     Friend Sub SetAppearance()

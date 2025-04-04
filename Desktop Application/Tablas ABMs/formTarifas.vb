@@ -56,6 +56,9 @@
         pFillAndRefreshLists.Cosecha(comboboxCosecha.ComboBox, Nothing, Nothing, DateTime.MinValue, True, False, True)
         pFillAndRefreshLists.Producto(comboboxProducto.ComboBox, Nothing, True, False, True, False)
         comboboxProducto.ComboBox.SelectedIndex = 0
+        If comboboxCosecha.Items.Count > 1 Then
+            comboboxCosecha.SelectedIndex = 1
+        End If
     End Sub
 
     Private Sub Me_FormClosed() Handles Me.FormClosed

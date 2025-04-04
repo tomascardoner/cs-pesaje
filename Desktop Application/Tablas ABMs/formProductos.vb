@@ -50,7 +50,7 @@
 
             CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer los Productos.")
             Me.Cursor = Cursors.Default
-            Exit Sub
+            Return
         End Try
 
         Me.Cursor = Cursors.Default
@@ -108,7 +108,7 @@
             Catch ex As Exception
                 CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al filtrar los datos.")
                 Me.Cursor = Cursors.Default
-                Exit Sub
+                Return
             End Try
 
             OrderData()
@@ -171,7 +171,6 @@
                 columnNombre.HeaderCell.SortGlyphDirection = SortOrder.None
             End If
 
-            ' Ahora preparo todo para la nueva columna
             mOrdenTipo = SortOrder.Ascending
         End If
 
@@ -235,7 +234,7 @@
                                 MsgBox("No se puede eliminar el Producto porque tiene datos relacionados.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                         End Select
                         Me.Cursor = Cursors.Default
-                        Exit Sub
+                        Return
 
                     Catch ex As Exception
                         CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al eliminar el Producto.")

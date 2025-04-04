@@ -333,20 +333,13 @@
         Else
             If Permisos.VerificarPermiso(Permisos.CAMION_IMPRIMIR) Then
                 Me.Cursor = Cursors.WaitCursor
-
                 datagridviewMain.Enabled = False
-
                 Dim ReporteActual As New Reporte
-                If ReporteActual.Open(pGeneralConfig.ReportsPath & "\") Then
-                    If ReporteActual.SetDatabaseConnection(pDatabase.Datasource, pDatabase.InitialCatalog, pDatabase.UserId, pDatabase.Password) Then
-                        ReporteActual.RecordSelectionFormula = mReportSelectionFormula
-
-                        Reportes.PreviewCrystalReport(ReporteActual, "Listado de Camiones")
-                    End If
+                If ReporteActual.Open($"{pGeneralConfig.ReportsPath}\") AndAlso ReporteActual.SetDatabaseConnection(pDatabase.Datasource, pDatabase.InitialCatalog, pDatabase.UserId, pDatabase.Password) Then
+                    ReporteActual.RecordSelectionFormula = mReportSelectionFormula
+                    Reportes.PreviewCrystalReport(ReporteActual, "Listado de Camiones")
                 End If
-
                 datagridviewMain.Enabled = True
-
                 Me.Cursor = Cursors.Default
             End If
         End If

@@ -5,14 +5,12 @@
     Private Sub Me_Load() Handles Me.Load
         mdbContext = New CSPesajeContext(True)
 
-        If pGeneralConfig.ShowLastLoggedInUser Then
-            If My.Settings.LastLoggedInUser <> "" Then
-                textboxNombre.Text = My.Settings.LastLoggedInUser
-                labelPassword.TabIndex = 0
-                textboxPassword.TabIndex = 1
-                labelNombre.TabIndex = 2
-                textboxNombre.TabIndex = 3
-            End If
+        If pGeneralConfig.ShowLastLoggedInUser AndAlso My.Settings.LastLoggedInUser <> String.Empty Then
+            textboxNombre.Text = My.Settings.LastLoggedInUser
+            labelPassword.TabIndex = 0
+            textboxPassword.TabIndex = 1
+            labelNombre.TabIndex = 2
+            textboxNombre.TabIndex = 3
         End If
     End Sub
 
@@ -44,29 +42,26 @@
         If textboxNombre.TextLength = 0 Then
             MsgBox("Debe ingresar el Nombre del Usuario.", vbInformation, My.Application.Info.Title)
             textboxNombre.Focus()
-            Exit Sub
+            Return
         End If
 
         If textboxNombre.TextLength < CS_Parameter_System.GetIntegerAsByte(Parametros.USER_USERNAME_MINIMUM_LENGHT, 4) Then
             MsgBox(String.Format("El Nombre del Usuario debe contener al menos {0} caracteres.", CS_Parameter_System.GetIntegerAsByte(Parametros.USER_USERNAME_MINIMUM_LENGHT, 4)), vbInformation, My.Application.Info.Title)
             textboxNombre.Focus()
-            Exit Sub
+            Return
         End If
 
         If textboxPassword.TextLength = 0 Then
             MsgBox("Debe ingresar la Contraseña.", vbInformation, My.Application.Info.Title)
             textboxPassword.Focus()
-            Exit Sub
+            Return
         End If
         If textboxPassword.TextLength < CS_Parameter_System.GetIntegerAsByte(Parametros.USER_PASSWORD_MINIMUM_LENGHT, 8) Then
             MsgBox(String.Format("La Contraseña debe contener al menos {0} caracteres.", CS_Parameter_System.GetIntegerAsByte(Parametros.USER_PASSWORD_MINIMUM_LENGHT, 8)), vbInformation, My.Application.Info.Title)
             textboxPassword.Focus()
-            Exit Sub
-        End If
-        If CS_Parameter_System.GetBoolean(Parametros.USER_PASSWORD_SECURE_REQUIRED, True) Then
+            Return
         End If
 
-        ' Está todo OK, busco el Usuario en la Base de Datos
         Me.Cursor = Cursors.WaitCursor
 
         UsuarioCurrent = mdbContext.Usuario.Where(Function(usr) usr.Nombre = textboxNombre.Text).FirstOrDefault
@@ -81,7 +76,7 @@
             If mIntentos > 3 Then
                 Me.DialogResult = Windows.Forms.DialogResult.Cancel
             End If
-            Exit Sub
+            Return
         End If
         If String.Compare(textboxPassword.Text, UsuarioCurrent.Password, False) <> 0 Then
             My.Application.Log.WriteEntry(String.Format("Se intentó iniciar sesión con el Usuario '{0}', pero la Contraseña es incorrecta.", textboxNombre.Text.Trim), TraceEventType.Warning)
@@ -94,7 +89,7 @@
             If mIntentos > 3 Then
                 Me.DialogResult = Windows.Forms.DialogResult.Cancel
             End If
-            Exit Sub
+            Return
         End If
 
         pUsuario = UsuarioCurrent

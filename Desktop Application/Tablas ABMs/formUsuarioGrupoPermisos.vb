@@ -32,7 +32,7 @@
 
     Private Sub UsuarioGrupo_SelectedValueChanged() Handles comboboxUsuarioGrupo.SelectedValueChanged
         If comboboxUsuarioGrupo.SelectedValue Is Nothing Then
-            Exit Sub
+            Return
         End If
         Cursor.Current = Cursors.WaitCursor
 
@@ -45,8 +45,8 @@
         Dim nodeCurrent As TreeNode
         Dim permisoCurrent As UsuarioGrupoPermiso
 
-        If e.Action <> TreeViewAction.ByMouse And e.Action <> TreeViewAction.ByKeyboard Then
-            Exit Sub
+        If e.Action <> TreeViewAction.ByMouse AndAlso e.Action <> TreeViewAction.ByKeyboard Then
+            Return
         End If
 
         nodeCurrent = e.Node

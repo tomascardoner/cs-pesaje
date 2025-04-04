@@ -69,7 +69,7 @@
         Catch ex As Exception
             CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer los Orígenes-Destinos.")
             Me.Cursor = Cursors.Default
-            Exit Sub
+            Return
         End Try
 
         Me.Cursor = Cursors.Default
@@ -132,7 +132,7 @@
             Catch ex As Exception
                 CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al filtrar los datos.")
                 Me.Cursor = Cursors.Default
-                Exit Sub
+                Return
             End Try
 
             OrderData()
@@ -232,7 +232,7 @@
             Else
                 ' La columna clickeada es diferencte a la que ya estaba ordenada.
                 ' En primer lugar saco el ícono de orden de la columna vieja
-                If Not mOrdenColumna Is Nothing Then
+                If mOrdenColumna IsNot Nothing Then
                     mOrdenColumna.HeaderCell.SortGlyphDirection = SortOrder.None
                 End If
 
@@ -313,7 +313,7 @@
                             Case CardonerSistemas.Database.EntityFramework.Errors.RelatedEntity
                                 MsgBox("No se puede eliminar el Origen-Destino porque tiene datos relacionados.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                         End Select
-                        Exit Sub
+                        Return
                     Catch ex As Exception
                         CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al eliminar el Origen-Destino.")
                     End Try

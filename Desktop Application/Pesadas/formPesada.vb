@@ -872,7 +872,7 @@
         End If
     End Sub
 
-    Private Sub ChoferCambio() Handles comboboxChofer.SelectedValueChanged
+    Private Sub ChoferCambio(sender As Object, e As EventArgs) Handles comboboxChofer.SelectedValueChanged
         If comboboxChofer.SelectedItem IsNot Nothing Then
             maskedtextboxChoferCUIT_CUIL.Text = CType(comboboxChofer.SelectedItem, Entidad).CUIT_CUIL
             If CType(comboboxChofer.SelectedItem, Entidad).IDCamion.HasValue Then
@@ -1268,10 +1268,6 @@
 
         Return True
     End Function
-
-    Private Sub ChoferCambio(sender As Object, e As EventArgs) Handles comboboxChofer.SelectedValueChanged
-
-    End Sub
 
 #End Region
 

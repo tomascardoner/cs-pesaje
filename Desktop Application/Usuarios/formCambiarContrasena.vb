@@ -62,13 +62,13 @@
             If textboxPasswordNueva.TextLength < CS_Parameter_System.GetIntegerAsByte(Parametros.USER_PASSWORD_MINIMUM_LENGHT, 8) Then
                 MsgBox($"La Contraseña debe contener al menos {CS_Parameter_System.GetIntegerAsByte(Parametros.USER_PASSWORD_MINIMUM_LENGHT, 8)} caracteres.", vbInformation, My.Application.Info.Title)
                 textboxPasswordNueva.Focus()
-                Exit Sub
+                Return
             End If
         Else
             If textboxPasswordNueva.TextLength < 4 Then
                 MsgBox("La Contraseña debe contener al menos 4 caracteres.", vbInformation, My.Application.Info.Title)
                 textboxPasswordNueva.Focus()
-                Exit Sub
+                Return
             End If
         End If
 

@@ -526,7 +526,7 @@ Public Class formPesadas
         If Not Permisos.VerificarPermiso(Permisos.PESADA_ELIMINAR) Then
             Return
         End If
-        Dim Mensaje As String = $"Se eliminará la Pesada seleccionada.{vbCrLf}{vbCrLf}Número: {FormatNumber(CType(DataGridViewMain.SelectedRows(0).DataBoundItem, GridRowData).IDPesada, 0)}{vbCrLf}{vbCrLf}Fecha/hora de inicio: {CType(DataGridViewMain.SelectedRows(0).DataBoundItem, GridRowData).FechaHoraInicio.ToString("dd/MM/yyyy HH:mm")}{vbCrLf}{vbCrLf}¿Confirma la eliminación definitiva?"
+        Dim Mensaje As String = $"Se eliminará la Pesada seleccionada.{vbCrLf}{vbCrLf}Número: {FormatNumber(CType(DataGridViewMain.SelectedRows(0).DataBoundItem, GridRowData).IDPesada, 0)}{vbCrLf}{vbCrLf}Fecha/hora de inicio: {CType(DataGridViewMain.SelectedRows(0).DataBoundItem, GridRowData).FechaHoraInicio:dd/MM/yyyy HH:mm}{vbCrLf}{vbCrLf}¿Confirma la eliminación definitiva?"
         If MessageBox.Show(Mensaje, My.Application.Info.Title, MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) = MsgBoxResult.No Then
             Return
         End If
@@ -579,7 +579,7 @@ Public Class formPesadas
         End If
         'If sender.Equals(buttonImprimir) Then
         '    If MsgBox("Se va a imprimir directamente el Comprobante seleccionado." & vbCrLf & vbCrLf & "¿Desea continuar?", CType(MsgBoxStyle.Question + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.No Then
-        '        Exit Sub
+        '        Return
         '    End If
         'End If
 

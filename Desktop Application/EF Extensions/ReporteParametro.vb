@@ -9,24 +9,24 @@
                 Select Case Me.Tipo
                     Case Constantes.REPORTE_PARAMETRO_TIPO_PERSONA
                     Case Constantes.REPORTE_PARAMETRO_TIPO_NUMBER_INTEGER
-                        If Not Me.ValorPredeterminadoNumeroEntero Is Nothing Then
+                        If Me.ValorPredeterminadoNumeroEntero IsNot Nothing Then
                             mValor = Me.ValorPredeterminadoNumeroEntero
                         End If
                     Case Constantes.REPORTE_PARAMETRO_TIPO_NUMBER_DECIMAL
-                        If Not Me.ValorPredeterminadoNumeroDecimal Is Nothing Then
+                        If Me.ValorPredeterminadoNumeroDecimal IsNot Nothing Then
                             mValor = Me.ValorPredeterminadoNumeroDecimal
                         End If
                     Case Constantes.REPORTE_PARAMETRO_TIPO_MONEY
-                        If Not Me.ValorPredeterminadoMoneda Is Nothing Then
+                        If Me.ValorPredeterminadoMoneda IsNot Nothing Then
                             mValor = Me.ValorPredeterminadoMoneda
                         End If
                     Case Constantes.REPORTE_PARAMETRO_TIPO_DATETIME, Constantes.REPORTE_PARAMETRO_TIPO_DATE, Constantes.REPORTE_PARAMETRO_TIPO_TIME
-                        If Not Me.ValorPredeterminadoFechaHora Is Nothing Then
+                        If Me.ValorPredeterminadoFechaHora IsNot Nothing Then
                             mValor = Me.ValorPredeterminadoFechaHora
                         End If
                     Case Constantes.REPORTE_PARAMETRO_TIPO_YEAR_MONTH_FROM, Constantes.REPORTE_PARAMETRO_TIPO_YEAR_MONTH_TO
                     Case Constantes.REPORTE_PARAMETRO_TIPO_BOOLEAN
-                        If Not Me.ValorPredeterminadoSiNo Is Nothing Then
+                        If Me.ValorPredeterminadoSiNo IsNot Nothing Then
                             mValor = Me.ValorPredeterminadoSiNo
                         End If
                     Case Else

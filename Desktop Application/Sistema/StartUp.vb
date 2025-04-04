@@ -42,7 +42,7 @@
 
         ' Obtengo el Connection String para las conexiones de ADO .NET
         pDatabase = New CardonerSistemas.Database.Ado.SqlServer()
-        If Not pDatabase.SetProperties(pDatabaseConfig.Datasource, pDatabaseConfig.Database, pDatabaseConfig.UserId, pDatabaseConfig.Password, pDatabaseConfig.ConnectTimeout, pDatabaseConfig.ConnectRetryCount, pDatabaseConfig.ConnectRetryInterval) Then
+        If Not pDatabase.SetProperties(pDatabaseConfig.Datasource, pDatabaseConfig.Database, String.Empty, pDatabaseConfig.UserId, pDatabaseConfig.Password, pDatabaseConfig.ConnectTimeout, pDatabaseConfig.ConnectRetryCount, pDatabaseConfig.ConnectRetryInterval) Then
             formSplashScreen.Close()
             formSplashScreen.Dispose()
             TerminateApplication()

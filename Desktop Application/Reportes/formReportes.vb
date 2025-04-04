@@ -2,7 +2,7 @@
 
 #Region "Declarations"
 
-    Private mdbContext As New CSPesajeContext(True)
+    Private ReadOnly mdbContext As New CSPesajeContext(True)
 
 #End Region
 
@@ -31,14 +31,16 @@
             treeviewReportes.BeginUpdate()
             For Each ReporteGrupoActual As ReporteGrupo In mdbContext.ReporteGrupo
                 ' Agrego el Grupo de Reportes
-                ReporteGrupoNode = New TreeNode(ReporteGrupoActual.Nombre)
-                ReporteGrupoNode.Tag = ReporteGrupoActual
+                ReporteGrupoNode = New TreeNode(ReporteGrupoActual.Nombre) With {
+                    .Tag = ReporteGrupoActual
+                }
                 treeviewReportes.Nodes.Add(ReporteGrupoNode)
 
                 For Each ReporteActual As Reporte In ReporteGrupoActual.Reportes
                     ' Agrego el Reporte
-                    ReporteNode = New TreeNode(ReporteActual.Nombre)
-                    ReporteNode.Tag = ReporteActual
+                    ReporteNode = New TreeNode(ReporteActual.Nombre) With {
+                        .Tag = ReporteActual
+                    }
                     ReporteGrupoNode.Nodes.Add(ReporteNode)
                 Next
             Next
@@ -169,10 +171,8 @@
     Private Sub MostrarReporte(sender As Object, e As EventArgs) Handles buttonImprimir.Click, buttonPrevisualizar.Click
         Dim ReporteActual As Reporte
 
-        If sender.Equals(buttonImprimir) Then
-            If MsgBox("Se va a imprimir directamente el Reporte seleccionado." & vbCrLf & vbCrLf & "¿Desea continuar?", CType(MsgBoxStyle.Question + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.No Then
-                Exit Sub
-            End If
+        If sender.Equals(buttonImprimir) AndAlso MsgBox("Se va a imprimir directamente el Reporte seleccionado." & vbCrLf & vbCrLf & "¿Desea continuar?", CType(MsgBoxStyle.Question + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.No Then
+            Return
         End If
 
         ReporteActual = CType(treeviewReportes.SelectedNode.Tag, Reporte)
@@ -180,19 +180,17 @@
             If ParametroActual.Requerido AndAlso ParametroActual.Valor Is Nothing Then
                 MsgBox(ParametroActual.RequeridoLeyenda, MsgBoxStyle.Information, My.Application.Info.Title)
                 listviewParametros.Focus()
-                Exit Sub
+                Return
             End If
         Next
 
         Me.Cursor = Cursors.WaitCursor
 
-        If ReporteActual.Open(pGeneralConfig.ReportsPath & "\" & ReporteActual.Archivo) Then
-            If ReporteActual.SetDatabaseConnection(pDatabase.Datasource, pDatabase.InitialCatalog, pDatabase.UserId, pDatabase.Password) Then
-                If sender.Equals(buttonImprimir) Then
-                    ReporteActual.ReportObject.PrintToPrinter(1, False, 1, 1000)
-                Else
-                    Reportes.PreviewCrystalReport(ReporteActual, ReporteActual.Titulo)
-                End If
+        If ReporteActual.Open($"{pGeneralConfig.ReportsPath}\{ReporteActual.Archivo}") AndAlso ReporteActual.SetDatabaseConnection(pDatabase.Datasource, pDatabase.InitialCatalog, pDatabase.UserId, pDatabase.Password) Then
+            If sender.Equals(buttonImprimir) Then
+                ReporteActual.ReportObject.PrintToPrinter(1, False, 1, 1000)
+            Else
+                Reportes.PreviewCrystalReport(ReporteActual, ReporteActual.Titulo)
             End If
         End If
 

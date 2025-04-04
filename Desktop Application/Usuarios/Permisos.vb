@@ -106,7 +106,7 @@
         If pUsuario.IDUsuarioGrupo = Constantes.UsurioGrupoAdministradoresId Then
             Return True
         Else
-            If pPermisos.Find(Function(usrper) usrper.IDUsuarioGrupo = pUsuario.IDUsuarioGrupo And usrper.IDPermiso.TrimEnd = IDPermiso) Is Nothing Then
+            If pPermisos.Find(Function(usrper) usrper.IDUsuarioGrupo = pUsuario.IDUsuarioGrupo AndAlso usrper.IDPermiso.TrimEnd = IDPermiso) Is Nothing Then
                 If MostrarAviso Then
                     MsgBox(My.Resources.STRING_PERMISO_MENSAJE, MsgBoxStyle.Exclamation, My.Application.Info.Title)
                 End If
@@ -195,7 +195,7 @@
                 listPermisos = dbcontext.UsuarioGrupoPermiso.Where(Function(ugp) ugp.IDUsuarioGrupo = IDUsuarioGrupo).OrderBy(Function(ugp) ugp.IDPermiso).ToList()
             Catch ex As Exception
                 CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer la lista de permisos efectivos.")
-                Exit Sub
+                Return
             End Try
         End Using
 

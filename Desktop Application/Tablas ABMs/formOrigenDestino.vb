@@ -50,34 +50,29 @@
 
     Private Sub ChangeMode()
         If mIsLoading Then
-            Exit Sub
+            Return
         End If
 
         buttonGuardar.Visible = mEditMode
         buttonCancelar.Visible = mEditMode
-        buttonEditar.Visible = (mEditMode = False)
-        buttonCerrar.Visible = (mEditMode = False)
+        buttonEditar.Visible = Not mEditMode
+        buttonCerrar.Visible = Not mEditMode
 
-        textboxNombre.ReadOnly = (mEditMode = False)
-        maskedtextboxCUIT_CUIL.ReadOnly = (mEditMode = False)
-        textboxDomicilio.ReadOnly = (mEditMode = False)
+        textboxNombre.ReadOnly = Not mEditMode
+        maskedtextboxCUIT_CUIL.ReadOnly = Not mEditMode
+        textboxDomicilio.ReadOnly = Not mEditMode
         comboboxDomicilioProvincia.Enabled = mEditMode
         comboboxDomicilioLocalidad.Enabled = mEditMode
-        textboxDomicilioCodigoPostal.ReadOnly = (mEditMode = False)
-        doubletextboxLatitud.ReadOnly = (mEditMode = False)
-        doubletextboxLongitud.ReadOnly = (mEditMode = False)
+        textboxDomicilioCodigoPostal.ReadOnly = Not mEditMode
+        doubletextboxLatitud.ReadOnly = Not mEditMode
+        doubletextboxLongitud.ReadOnly = Not mEditMode
 
-        textboxNotas.ReadOnly = (mEditMode = False)
+        textboxNotas.ReadOnly = Not mEditMode
         checkboxEsActivo.Enabled = mEditMode
     End Sub
 
     Friend Sub InitializeFormAndControls()
-        SetAppearance()
-
         pFillAndRefreshLists.Provincia(comboboxDomicilioProvincia, True)
-    End Sub
-
-    Friend Sub SetAppearance()
     End Sub
 
     Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
@@ -199,7 +194,7 @@
     Private Sub AbrirEnGoogleMaps_Click(sender As Object, e As EventArgs) Handles buttonAbrirEnGoogleMaps.Click
         Dim LinkString As String
 
-        If doubletextboxLatitud.Text <> "" And doubletextboxLongitud.Text <> "" Then
+        If doubletextboxLatitud.Text <> String.Empty AndAlso doubletextboxLongitud.Text <> String.Empty Then
             LinkString = CS_Parameter_System.GetString(Parametros.MAPS_GOOGLEMAPS_LOCATIONLINK)
             LinkString = LinkString.Replace(Constantes.MAPAS_LINK_PARAMETRO_ZOOM, CS_Parameter_System.GetIntegerAsByte(Parametros.MAPS_GOOGLEMAPS_ZOOMDEFAULT).ToString)
             LinkString = LinkString.Replace(Constantes.MAPAS_LINK_PARAMETRO_LATITUD, doubletextboxLatitud.DoubleValue.ToString.Replace(",", "."))
@@ -207,9 +202,6 @@
 
             Process.Start(LinkString)
         End If
-    End Sub
-
-    Private Sub AbrirEnGoogleEarth_Click(sender As Object, e As EventArgs) Handles buttonAbrirEnGoogleEarth.Click
     End Sub
 
 #End Region
@@ -232,7 +224,7 @@
         If textboxNombre.Text.Trim.Length = 0 Then
             MsgBox("Debe ingresar el Nombre.", MsgBoxStyle.Information, My.Application.Info.Title)
             textboxNombre.Focus()
-            Exit Sub
+            Return
         End If
 
         ' Verifico el Número de CUIT / CUIL
@@ -240,12 +232,12 @@
             If maskedtextboxCUIT_CUIL.Text.Trim.Length < 11 Then
                 MsgBox("El Número de CUIT / CUIL debe contener 11 dígitos (sin contar los guiones).", MsgBoxStyle.Information, My.Application.Info.Title)
                 maskedtextboxCUIT_CUIL.Focus()
-                Exit Sub
+                Return
             End If
             If Not CardonerSistemas.AFIP.VerificarCUIT(maskedtextboxCUIT_CUIL.Text) Then
                 MsgBox("El Número de CUIT / CUIL ingresado es incorrecto.", MsgBoxStyle.Information, My.Application.Info.Title)
                 maskedtextboxCUIT_CUIL.Focus()
-                Exit Sub
+                Return
             End If
         End If
 
@@ -290,11 +282,11 @@
                     Case CardonerSistemas.Database.EntityFramework.Errors.Unknown
                         CardonerSistemas.ErrorHandler.ProcessError(CType(dbuex, Exception), My.Resources.STRING_ERROR_SAVING_CHANGES)
                 End Select
-                Exit Sub
+                Return
             Catch ex As Exception
                 Me.Cursor = Cursors.Default
                 CardonerSistemas.ErrorHandler.ProcessError(ex, My.Resources.STRING_ERROR_SAVING_CHANGES)
-                Exit Sub
+                Return
             End Try
         End If
 

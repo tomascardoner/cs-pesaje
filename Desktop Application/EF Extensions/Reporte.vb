@@ -59,7 +59,7 @@ Partial Public Class Reporte
                                         If ParametroActual.Valor Is Nothing Then
                                             Select Case .ParameterType
                                                 Case ParameterType.ReportParameter
-                                                    .CurrentValues.AddValue(New Date(9999, 1, 1))
+                                                    .CurrentValues.AddValue(New Date(9999, 1, 1, 0, 0, 0, DateTimeKind.Local))
                                                 Case ParameterType.StoreProcedureParameter
                                                     .CurrentValues.AddValue(Nothing)
                                             End Select
@@ -93,7 +93,6 @@ Partial Public Class Reporte
     End Function
 
     Friend Function SetDatabaseConnection(ByVal ServerName As String, ByVal DatabaseName As String, ByVal UserID As String, ByVal Password As String) As Boolean
-        Dim crtableLogoninfos As New TableLogOnInfos
         Dim crtableLogoninfo As New TableLogOnInfo
         Dim crConnectionInfo As New ConnectionInfo
         Dim CrTables As Tables

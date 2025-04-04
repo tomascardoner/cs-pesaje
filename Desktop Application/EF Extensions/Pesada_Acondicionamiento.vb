@@ -149,7 +149,7 @@
                                     Dim Cosecha_Producto_TarifaEscalaActual As Cosecha_Producto_TarifaEscala
 
                                     Using dbContext As New CSPesajeContext(True)
-                                        listCosecha_Producto_TarifaEscala = dbContext.Cosecha_Producto_TarifaEscala.Where(Function(cpte) cpte.IDCosecha = PesadaActualLocal.IDCosecha.Value And cpte.IDProducto = PesadaActualLocal.IDProducto And cpte.Indice = Me.TarifaIndice And cpte.HumedadExcesoInicio <= Me.HumedadExcesoReal).OrderByDescending(Function(cpte) cpte.HumedadExcesoInicio).ToList
+                                        listCosecha_Producto_TarifaEscala = dbContext.Cosecha_Producto_TarifaEscala.Where(Function(cpte) cpte.IDCosecha = PesadaActualLocal.IDCosecha.Value AndAlso cpte.IDProducto = PesadaActualLocal.IDProducto AndAlso cpte.Indice = Me.TarifaIndice AndAlso cpte.HumedadExcesoInicio <= Me.HumedadExcesoReal).OrderByDescending(Function(cpte) cpte.HumedadExcesoInicio).ToList
                                     End Using
 
                                     If listCosecha_Producto_TarifaEscala.Count = 0 Then
