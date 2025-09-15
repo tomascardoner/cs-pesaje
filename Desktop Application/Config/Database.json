@@ -4,7 +4,7 @@
   "AttachDBFilename": null,
   "IntegratedSecurity": false,
   "UserId": "sa",
-  "Password": "wHwceq\u002Bq7ty96gqsGtMNTsxS69i3YCt0j9QfkkUIIP54SXTmFmFh0bppuApvGDTe5Wtb\u002B\u002BwEmBpOm7tQQ6IZ4\u002BplNcbI27h4fapm3UE7nLZwIVrXPiG9lSD33l7mzqbY",
+  "Password": "mGJXmXKCtQQdYxaTaqC+gyBCsJXIN7bCfj0j2sVrJvJ70g65o+jHX6yTnthSeDJD3Tydb880nKO4ly8nAJIg98E+MHgCPSN1iJ+Gaij/u3ZBTTyVu2wQJZ7aPRDxObs1;wHwceq\u002Bq7ty96gqsGtMNTsxS69i3YCt0j9QfkkUIIP54SXTmFmFh0bppuApvGDTe5Wtb\u002B\u002BwEmBpOm7tQQ6IZ4\u002BplNcbI27h4fapm3UE7nLZwIVrXPiG9lSD33l7mzqbY",
   "Provider": "System.Data.SqlClient",
   "TrustServerCertificate ": true,
   "ConnectTimeout": 30,
