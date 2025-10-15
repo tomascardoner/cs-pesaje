@@ -2,8 +2,8 @@
   "SingleInstanceApplication": true,
   "ReportsPath": "{Dropbox}\\Cardoner Sistemas\\CS-Pesaje\\2017\\Reportes",
   "ShowLastLoggedInUser": true,
-  "AutoLogonUsername": "administrador",
-  "AutoLogonPassword": "GEArbcalxSNg4FEBwawQ2D2GnknR7mPDnsn6Md2W0oN762w7mII+cQoHip3YW3fp25danzb8nk88SATSAS1jV3VCXCbP4xoENqfOjH8pjvwMB816o0ubIc1QgLpbZzPW",
+  "AutoLogonUsername": "principal",
+  "AutoLogonPassword": "p2pc8/vbsMaZVxEGM/ZIsUHeQrEA+tI77gsGiK/pz8fpEnc44dv38HUlqqp1n0Ta+LXygg/uIqOflvsmnlW6+ArEfQy+zYtVtNtdcLeCGH4I7v49LHj2UHH1Vy2NmPiq",
   "ScaleConnectionEnabled": false,
   "ReportePesadaPrevisualizar": true
 }
