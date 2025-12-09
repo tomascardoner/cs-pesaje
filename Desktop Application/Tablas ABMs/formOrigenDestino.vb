@@ -247,7 +247,7 @@
                 If dbcMaxID.OrigenDestino.Where(Function(e) e.IDOrigenDestino <> CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER).Count = 0 Then
                     mOrigenDestinoActual.IDOrigenDestino = 1
                 Else
-                    mOrigenDestinoActual.IDOrigenDestino = CByte(dbcMaxID.OrigenDestino.Where(Function(e) e.IDOrigenDestino <> CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER).Max(Function(ent) ent.IDOrigenDestino) + 1)
+                    mOrigenDestinoActual.IDOrigenDestino = dbcMaxID.OrigenDestino.Where(Function(e) e.IDOrigenDestino <> CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER).Max(Function(ent) ent.IDOrigenDestino) + 1
                 End If
             End Using
         End If
