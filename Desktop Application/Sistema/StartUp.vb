@@ -154,23 +154,24 @@
             Using dbcontext As New CSPesajeContext(True)
                 pUsuario = dbcontext.Usuario.Where(Function(us) us.Nombre = pGeneralConfig.AutoLogonUsername).FirstOrDefault
                 If pUsuario Is Nothing Then
+                    MsgBox("La aplicación ha finalizado porque el usuario de Auto Logon especificado no existe.", MsgBoxStyle.Critical, My.Application.Info.Title)
+                    My.Application.Log.WriteEntry("La aplicación ha finalizado porque el usuario de Auto Logon especificado no existe.", TraceEventType.Warning)
                     Application.Exit()
-                    My.Application.Log.WriteEntry("La Aplicación ha finalizado porque el Usuario especificado en Auto-Logon no existe.", TraceEventType.Warning)
                     Return
                 End If
-                Dim DecryptedPassword As String = String.Empty
-                If Not CardonerSistemas.Encrypt.StringCipher.Decrypt(pGeneralConfig.AutoLogonPassword, CardonerSistemas.Constants.PublicEncryptionPassword, DecryptedPassword) Then
-                    MsgBox("La contraseña especificada en Auto-Logon es incorrecta.", MsgBoxStyle.Critical, My.Application.Info.Title)
+                Dim decryptedPassword As String = String.Empty
+                If Not CardonerSistemas.Encrypt.StringCipher.Decrypt(pGeneralConfig.AutoLogonPassword, CardonerSistemas.Constants.PublicEncryptionPassword, decryptedPassword) Then
+                    MsgBox("La contraseña especificada para el usuario de Auto Logon no se puede desencriptar.", MsgBoxStyle.Critical, My.Application.Info.Title)
+                    My.Application.Log.WriteEntry("La contraseña especificada para el usuario de Auto Logon no se puede desencriptar.", TraceEventType.Warning)
                     TerminateApplication()
                     Application.Exit()
-                    My.Application.Log.WriteEntry("La Aplicación ha finalizado porque el Password especificado en el Auto-Logon es incorrecto.", TraceEventType.Warning)
                     Return
                 End If
-                If DecryptedPassword <> pUsuario.Password Then
-                    MsgBox("La contraseña especificada en Auto-Logon es incorrecta.", MsgBoxStyle.Critical, My.Application.Info.Title)
+                If decryptedPassword <> pUsuario.Password Then
+                    MsgBox("La contraseña especificada para el usuario de Auto Logon es incorrecta.", MsgBoxStyle.Critical, My.Application.Info.Title)
+                    My.Application.Log.WriteEntry("La contraseña especificada para el usuario de Auto Logon es incorrecta.", TraceEventType.Warning)
                     TerminateApplication()
                     Application.Exit()
-                    My.Application.Log.WriteEntry("La Aplicación ha finalizado porque el Password especificado en el Auto-Logon es incorrecto.", TraceEventType.Warning)
                     Return
                 End If
 
